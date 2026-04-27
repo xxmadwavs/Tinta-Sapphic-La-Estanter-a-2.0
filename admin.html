@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin ~ Tinta Sapphic</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --bg:#0e0b10;--surface:#16121a;--surface2:#1e1924;--surface3:#251f2e;
+  --border:rgba(180,120,200,0.1);--border2:rgba(180,120,200,0.22);
+  --text:#f0eaf5;--muted:#8a7898;
+  --accent:#c06fc4;--accent2:#da99de;--accent-soft:rgba(192,111,196,0.12);
+  --rose:#d4607a;--rose-soft:rgba(212,96,122,0.12);
+  --gold:#c9975a;--gold-soft:rgba(201,151,90,0.12);
+  --teal:#5bbcb0;--teal-soft:rgba(91,188,176,0.15);
+  --radius:14px;--radius-lg:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 0%,rgba(192,111,196,0.06) 0%,transparent 55%);pointer-events:none;z-index:0}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(14,11,16,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;display:flex;align-items:baseline;gap:.3em}
+.logo-tinta{font-weight:700;letter-spacing:.12em;font-size:.88em;text-transform:uppercase}
+.logo em{font-style:italic;font-weight:600;color:var(--accent)}
+.logo-badge{font-family:'Instrument Sans',sans-serif;font-size:10px;padding:2px 10px;border-radius:20px;background:rgba(212,96,122,0.18);color:var(--rose);border:1px solid rgba(212,96,122,0.3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-left:.5rem}
+.topbar-actions{display:flex;gap:8px;align-items:center}
+
+.container{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;margin-bottom:.2rem}
+.page-title em{font-style:italic;color:var(--accent)}
+.page-sub{font-size:13px;color:var(--muted);margin-bottom:2rem}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.stat-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1}
+.stat-num em{font-style:italic;color:var(--accent)}
+.stat-label{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+.card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.25rem}
+.card-title{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1.2rem;font-weight:600}
+
+.book-list{display:grid;gap:.6rem}
+.book-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1.1rem;display:flex;align-items:center;gap:1rem;transition:all .18s}
+.book-item:hover{border-color:var(--border2)}
+.book-thumb{width:38px;height:56px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--border)}
+.book-thumb-ph{width:38px;height:56px;border-radius:8px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;color:var(--muted)}
+.book-info{flex:1;min-width:0}
+.book-name{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.book-meta{font-size:12px;color:var(--muted);margin-top:1px}
+.book-actions{display:flex;gap:6px;flex-shrink:0}
+.badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600}
+.badge-genre{background:var(--accent-soft);color:var(--accent2);border:1px solid rgba(192,111,196,0.2)}
+
+.btn{padding:6px 16px;border-radius:20px;border:1px solid var(--border2);cursor:pointer;font-size:12.5px;font-family:'Instrument Sans',sans-serif;font-weight:500;background:transparent;color:var(--text);transition:all .15s}
+.btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent2)}
+.btn.teal{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.btn.teal:hover{opacity:.85}
+.btn.danger{color:var(--rose);border-color:rgba(212,96,122,0.3)}
+.btn.danger:hover{background:var(--rose-soft)}
+.btn.small{padding:4px 12px;font-size:11.5px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.8);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:300;padding:1.5rem 1rem;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:640px;margin:auto;padding:2rem;box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;font-style:italic;margin-bottom:1.5rem}
+.modal-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
+.modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
+
+.form-section{margin-bottom:1.4rem}
+.form-section-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.8rem;font-weight:600;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.form-row{margin-bottom:10px}
+.form-label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.form-row input,.form-row textarea{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s}
+.form-row textarea{resize:vertical;min-height:90px;line-height:1.55}
+.form-row input:focus,.form-row textarea:focus{border-color:var(--accent)}
+.form-row input::placeholder,.form-row textarea::placeholder{color:var(--muted)}
+.form-row-half{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border)}
+
+/* AUTHORS TAG INPUT */
+.tag-input-wrap{display:flex;flex-wrap:wrap;gap:.35rem;padding:8px 10px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);min-height:42px;align-items:center;cursor:text;transition:border-color .15s}
+.tag-input-wrap:focus-within{border-color:var(--accent)}
+.author-pill{display:flex;align-items:center;gap:4px;padding:2px 10px;border-radius:20px;background:var(--teal-soft);border:1px solid rgba(91,188,176,0.3);font-size:12px;color:var(--teal);white-space:nowrap}
+.author-pill button{background:transparent;border:none;color:inherit;cursor:pointer;font-size:13px;padding:0;line-height:1;opacity:.7}
+.author-pill button:hover{opacity:1}
+.tag-bare-input{background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;min-width:100px;flex:1}
+
+.cover-row{display:flex;gap:12px;align-items:flex-start}
+.cover-preview{width:54px;height:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);display:none;flex-shrink:0}
+.cover-hint{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:4px}
+
+/* CHIP SELECTORS */
+.chip-group{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
+.chip-opt{padding:5px 13px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .14s;white-space:nowrap;line-height:1.4}
+.chip-opt:hover{border-color:var(--accent);color:var(--accent2)}
+.chip-opt.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.chip-opt.rose.active{background:var(--rose-soft);border-color:var(--rose);color:#e0909e}
+.chip-opt.teal.active{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
+.chip-opt.lavender.active{background:rgba(155,130,201,0.15);border-color:#9b82c9;color:#c4b0e8}
+
+/* SPICY */
+.spicy-grid{display:flex;flex-direction:column;gap:.4rem;margin-top:.4rem}
+.spicy-row{display:flex;align-items:center;gap:.6rem;padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .14s}
+.spicy-row:hover{border-color:var(--gold)}
+.spicy-row.active{border-color:var(--gold);background:var(--gold-soft)}
+.spicy-row input[type=radio]{accent-color:var(--gold);width:14px;height:14px;flex-shrink:0}
+.spicy-label{font-size:13px;color:var(--text);flex:1}
+.spicy-desc{font-size:11px;color:var(--muted)}
+
+/* IMPORT/EXPORT */
+.edition-row{display:grid;grid-template-columns:110px 130px 1fr 32px;gap:.4rem;align-items:center}
+.edition-row input,.edition-row select{padding:7px 10px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s;width:100%}
+.edition-row input:focus,.edition-row select:focus{border-color:var(--accent)}
+.edition-row input::placeholder{color:var(--muted)}
+.edition-del{width:28px;height:28px;border-radius:50%;background:transparent;border:1px solid rgba(212,96,122,0.3);color:var(--rose);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.edition-del:hover{background:var(--rose-soft)}
+@media(max-width:500px){.edition-row{grid-template-columns:1fr 1fr;}.edition-row input[placeholder="https://…"]{grid-column:1/-1}}
+#importFile{display:none}
+
+.toast{position:fixed;bottom:2rem;right:2rem;padding:10px 22px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;transform:translateY(80px);opacity:0;transition:all .25s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:var(--teal);color:var(--bg)}
+.toast.error{background:var(--rose);color:#fff}
+.toast.warn{background:var(--gold);color:var(--bg)}
+
+.empty{text-align:center;color:var(--muted);padding:2.5rem;font-style:italic}
+
+/* duplicate warning */
+.dup-warning{display:none;margin-top:6px;padding:8px 12px;border-radius:10px;background:rgba(212,96,122,0.12);border:1px solid rgba(212,96,122,0.35);font-size:12px;color:#e0909e;line-height:1.5}
+.dup-warning.show{display:block}
+.dup-warning strong{color:var(--rose);font-weight:600}
+.dup-warning .dup-list{margin-top:4px;display:flex;flex-wrap:wrap;gap:4px}
+.dup-warning .dup-pill{padding:2px 10px;border-radius:20px;background:rgba(212,96,122,0.18);border:1px solid rgba(212,96,122,0.3);font-size:11px;color:var(--rose);white-space:nowrap}
+.dup-ok{display:none;margin-top:6px;font-size:11.5px;color:var(--teal)}
+.dup-ok.show{display:block}
+
+.login-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:500;padding:1rem}
+.login-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:2.5rem 2rem;width:100%;max-width:340px;text-align:center}
+.login-box-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--muted);margin-bottom:1.5rem}
+.login-box-logo em{font-style:italic;color:var(--accent);font-weight:600}
+.login-box-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;margin-bottom:.3rem}
+.login-box-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem}
+.login-box input{width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s;margin-bottom:.6rem}
+.login-box input:focus{border-color:var(--accent)}
+.login-box input::placeholder{color:var(--muted)}
+.login-box .btn-primary{width:100%;padding:11px;border-radius:10px;background:var(--accent);border:none;color:#fff;font-size:13.5px;font-weight:600;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .18s}
+.login-box .btn-primary:hover{background:var(--accent2)}
+.login-error{font-size:12px;color:var(--rose);margin-top:.5rem;min-height:16px}
+
+@media(max-width:650px){.container{padding:1.25rem 1rem 3rem}.topbar{padding:0 1rem}.form-row-half{grid-template-columns:1fr}}
+
+/* paste autofill */
+.paste-bar{background:linear-gradient(135deg,rgba(192,111,196,0.08) 0%,rgba(91,188,176,0.06) 100%);border:1.5px solid rgba(192,111,196,0.25);border-radius:var(--radius);padding:14px 16px;margin-bottom:1.25rem;}
+.paste-bar-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);font-weight:600;margin-bottom:6px;}
+.paste-bar-row{display:flex;gap:7px;align-items:flex-start}
+.paste-bar-textarea{flex:1;padding:9px 13px;border-radius:10px;border:1px solid rgba(192,111,196,0.3);background:var(--surface2);color:var(--text);font-size:12px;font-family:'Instrument Sans',sans-serif;outline:none;resize:vertical;min-height:68px;line-height:1.4;}
+.paste-bar-textarea:focus{border-color:var(--accent)}
+.paste-bar-textarea::placeholder{color:var(--muted)}
+.paste-bar-btn{padding:9px 15px;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--accent) 0%,var(--teal) 100%);color:#fff;font-size:12.5px;font-weight:600;font-family:'Instrument Sans',sans-serif;white-space:nowrap;flex-shrink:0;}
+.paste-bar-btn:hover{opacity:.85}
+.paste-bar-status{font-size:12px;margin-top:7px;color:var(--muted);min-height:16px}
+.paste-bar-status.ok{color:var(--teal)}
+.paste-bar-status.err{color:var(--rose)}
+/* SECTION HEADERS ADMIN */
+.section-header-admin{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem;margin-top:1.2rem;padding-bottom:.5rem;border-bottom:1px solid var(--border2)}
+.section-header-admin:first-child{margin-top:0}
+.section-header-admin .section-icon{font-size:1.2rem}
+.section-header-admin .section-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;font-style:italic}
+.section-header-thais .section-title{color:var(--accent2)}
+.section-header-other .section-title{color:var(--teal)}
+.section-header-admin .section-count{font-size:11px;color:var(--muted);margin-left:auto}
+.section-sep{height:1px;background:var(--border2);margin:1.5rem 0}
+.source-chip-group{display:flex;gap:.5rem;margin-top:.4rem}
+.source-chip{padding:6px 16px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:13px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .14s;font-weight:500}
+.source-chip:hover{border-color:var(--accent);color:var(--accent2)}
+.source-chip.active-thais{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.source-chip.active-other{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
+
+</style>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-box-logo">Tinta <em>Sapphic</em></div>
+    <div class="login-box-title">Área admin</div>
+    <p class="login-box-sub">Solo para administradoras.</p>
+    <input type="email" id="adminEmail" placeholder="Email" autocomplete="email">
+    <input type="password" id="adminPass" placeholder="Contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')adminLogin()">
+    <button class="btn-primary" onclick="adminLogin()">Entrar</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<nav class="topbar" style="display:none" id="mainTopbar">
+  <div class="logo"><span class="logo-tinta">Tinta</span> <em>Sapphic</em><span class="logo-badge">Admin</span></div>
+  <div class="topbar-actions">
+    <label class="import-label" for="importFile">⬆ Importar JSON</label>
+    <input type="file" id="importFile" accept=".json" onchange="importJSON(this)">
+    <button class="btn teal small" onclick="exportJSON()">⬇ Exportar JSON</button>
+    <button class="btn small" onclick="adminLogout()">Salir</button>
+    <button class="btn primary small" onclick="openAddModal()">+ Añadir libro</button>
+  </div>
+</nav>
+
+<div class="container" id="mainContainer" style="display:none">
+  <h1 class="page-title">Panel de <em>libros</em></h1>
+  <p class="page-sub">Los libros se guardan en JSON. Los votos y usuarios van a Supabase. Exporta siempre una copia de seguridad.</p>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num" id="sTotal"><em>0</em></div><div class="stat-label">Libros</div></div>
+    <div class="stat-card"><div class="stat-num" id="sVotes"><em>—</em></div><div class="stat-label">Valoraciones</div></div>
+    <div class="stat-card"><div class="stat-num" id="sGenres"><em>0</em></div><div class="stat-label">Géneros únicos</div></div>
+    <div class="stat-card"><div class="stat-num" id="sAuthors"><em>0</em></div><div class="stat-label">Autoras</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Catálogo</div>
+    <div id="bookList"><div class="empty">Cargando…</div></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="bookModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modalTitle">Nuevo libro</div>
+
+    <div class="paste-bar">
+      <div class="paste-bar-label">Autocompletar</div>
+      <div class="paste-bar-row" style="margin-bottom:0">
+        <textarea class="paste-bar-textarea" id="pasteInput" placeholder="Pega aqui la info del libro (Titulo, Autora, Genero, Sinopsis...)"></textarea>
+        <button class="paste-bar-btn" onclick="runBookPaste()">Rellenar</button>
+      </div>
+      <div class="paste-bar-status" id="pasteStatus"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Datos básicos</div>
+      <div class="form-row">
+        <label class="form-label">Título *</label>
+        <input type="text" id="fTitle" placeholder="Título del libro" oninput="checkDuplicate(this.value)">
+        <div class="dup-warning" id="dupWarning">
+          ⚠️ <strong>¡Posible duplicado!</strong> Ya existe un libro con un título similar:
+          <div class="dup-list" id="dupList"></div>
+        </div>
+        <div class="dup-ok" id="dupOk">✓ Título disponible</div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Autora/s * <span style="color:var(--muted);font-size:10px;text-transform:none">(escribe y pulsa Enter para añadir varias)</span></label>
+        <div class="tag-input-wrap" id="authorWrap" onclick="document.getElementById('authorInput').focus()">
+          <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)">
+        </div>
+      </div>
+      <div class="form-row-half">
+        <div class="form-row">
+          <label class="form-label">Año</label>
+          <input type="number" id="fYear" placeholder="2024" min="1800" max="2100">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Páginas</label>
+          <input type="number" id="fPages" placeholder="320">
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">ISBN</label>
+        <input type="text" id="fIsbn" placeholder="978-…">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Sección *</div>
+      <div class="source-chip-group" id="sourceChips">
+        <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Libros Thais</button>
+        <button class="source-chip" id="sourceOther" onclick="setSource('other')">📚 Otros libros</button>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Portada</div>
+      <div class="cover-row">
+        <div style="flex:1">
+          <div class="form-row" style="margin-bottom:4px">
+            <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="previewCover(this.value)">
+          </div>
+          <div class="cover-hint">Busca el libro en <strong>Goodreads</strong> o <strong>Amazon</strong>, clic derecho en la portada → "Copiar dirección de imagen".</div>
+        </div>
+        <img id="coverPreview" class="cover-preview" alt="" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Sinopsis</div>
+      <div class="form-row">
+        <textarea id="fSynopsis" placeholder="Descripción del libro…" rows="4"></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Géneros <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(puedes seleccionar varios)</span></div>
+      <div class="chip-group" id="genreChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Subgéneros / Temáticas</div>
+      <div class="chip-group" id="subgenreChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Identidad y expresión de género <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(de las protagonistas)</span></div>
+      <div class="chip-group" id="identidadChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Personajes / Profesiones</div>
+      <div class="chip-group" id="characterChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Dinámica de pareja <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(cómo son ellas juntas)</span></div>
+      <div class="chip-group" id="dinamicaChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Tropos narrativos <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(cómo se desarrolla la trama)</span></div>
+      <div class="chip-group" id="tropeChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Nivel Spicy 🌶</div>
+      <div class="spicy-grid" id="spicyGrid"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Formato</div>
+      <div class="chip-group" id="formatoChips"></div>
+    </div>
+
+    <div class="form-section" id="sagaSection" style="display:none">
+      <div class="form-section-title">Saga</div>
+      <div class="form-row-half">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Nombre de la saga</label>
+          <input type="text" id="fSagaName" placeholder="Ej: WHALE, Caraval…">
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Número <span style="color:var(--muted);font-size:10px;text-transform:none">(acepta 0.5, 1, 1.5…)</span></label>
+          <input type="number" id="fSagaNum" placeholder="1" min="0" step="0.5">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Adaptación</div>
+      <div class="chip-group" id="adaptacionChips"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Dónde comprar <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(idioma · tienda · enlace)</span></div>
+      <div id="editionsWrap" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.6rem"></div>
+      <button class="btn small" onclick="addEdition()" type="button">+ Añadir edición</button>
+      <div style="font-size:11px;color:var(--muted);margin-top:.5rem">Ej: ES Español en Amazon · EN English en Book Depository…</div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" onclick="closeModal()">Cancelar</button>
+      <button class="btn primary" id="saveBtn" onclick="saveBook()">Guardar libro</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://fteitflirsmabcasmwij.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_2xi9ELv252qAXY_Fx3ADZg_nuWtgcUA';
+const ADMIN_EMAIL  = 'xxalittledreamxx@gmail.com';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ── 1. GÉNEROS ──────────────────────────────────────────────────────────
+const GENRES = [
+  'Acción','Aventura','Biografía','Ciencia Ficción','Comedia Romántica',
+  'Contemporánea','Dark Academia','Drama','Distopía','Ensayo',
+  'Fantasía','Fantasía Urbana','Filosofía','Gótico','Histórica',
+  'Horror','Juvenil','Misterio','No Ficción','New Adult',
+  'Paranormal','Psicológico','Romance','Thriller','YA'
+];
+
+// ── 2. SUBGÉNEROS / TEMÁTICAS ────────────────────────────────────────────
+const SUBGENRES = [
+  // Temáticas identitarias
+  'Autodescubrimiento','Coming of Age','Coming Out','Bisexual','No Binarie','Trans','Queer',
+  // Subgéneros narrativos
+  'Amnesia','BDSM','Bullying','Celebridad','Crimen','Dark Romance','Deporte',
+  'Erótica','Familia','Feminismo','Interracial','Mafia','Mitología','Música',
+  'Navidad','Omegaverse','Poesía','Poliamor','Reality Show','Reencarnación',
+  'Segunda Oportunidad','Small Town','Sobrenatural','Universidad','Viaje en el Tiempo',
+  'WhyChoose',
+  // Orígenes / tradiciones literarias
+  'Baihee 🇨🇳','GL Thai 🇹🇭','Wattpad'
+];
+
+// ── 3. PERSONAJES · Profesiones ──────────────────────────────────────────
+const CHARACTERS = [
+  'Abogada','Actriz','Arqueóloga','Artista','Azafata','Bailarina','Bombera',
+  'Cantante','CEO','Chef','Científica','Deportista','Detective','Doctora / Médica',
+  'Editora','Empresaria','Enfermera','Escritora','Estudiante','Farmacéutica',
+  'Florista','Fotógrafa','Futbolista','Granjera','Guardaespaldas','Hacker',
+  'Inspectora','Investigadora','Jardinera','Modelo','Música','Piloto','Pirata',
+  'Policía','Política','Profesora','Psicóloga','Reportera / Periodista',
+  'Tatuadora','Veterinaria',
+  // Paranormal / Fantástico
+  'Ángel','Bruja','Cambiaformas','Demonio','Diosa','Espíritu / Fantasma',
+  'Hada','Mujer Lobo','Sirena','Vampira','Zombie',
+  // Roles vitales
+  'Famosa','Madre Soltera','Millonaria / Billonaria','Realeza'
+];
+
+// ── 4. IDENTIDAD Y EXPRESIÓN DE GÉNERO ──────────────────────────────────
+const IDENTIDADES = [
+  // Expresión de género
+  'Butch','Femme','Masc','Soft Butch','Stud','Chapera / Stem','Andrógina',
+  // Arquetipos de energía
+  'Ice Queen','Nerd','Introvertida','Sunshine','Grumpy','Caos','Control',
+  // Identidades sexuales / de género
+  'Asexual','Bisexual','Lesbiana','No Binarie','Pansexual','Trans','Queer'
+];
+
+// ── 5. DINÁMICA DE PAREJA ────────────────────────────────────────────────
+const DINAMICAS = [
+  // Por expresión de género
+  'Butch × Femme','Soft Butch × Femme','Butch × Butch','Femme × Femme',
+  'Masc × Femme','Masc × Masc','Masc × Soft Butch',
+  'Stud × Femme','Chapera × Femme','Chapera × Butch',
+  'Andrógina × Femme','Andrógina × Butch','Andrógina × Andrógina',
+  // Por energía / personalidad
+  'Grumpy × Sunshine','Ice Queen × Sunshine','Ice Queen × Softie',
+  'Introvertida × Extrovertida','Dark × Light','Caos × Control',
+  'Nerd × Popular','Nerd × Jock','Seria × Divertida',
+  'Protectora × Delicada','Feroz × Tierna','Fría × Cálida',
+  'Dominante × Sumisa','Top × Bottom','Switch × Switch',
+  // Por poder / estatus
+  'Boss × Employee','Rich × Poor','Famosa × Anónima',
+  'Realeza × Plebeya','Mentora × Aprendiz','Veterana × Novata',
+  'Jefa × Subordinada','Bodyguard × VIP',
+  'Detective × Sospechosa','Cazadora × Presa',
+  // Paranormal / fantástica
+  'Vampira × Humana','Bruja × Mortal','Cazadora × Monstruo',
+  'Diosa × Devota','Hada × Humana','Sirena × Marinera','Alfa × Omega'
+];
+
+// ── 6. TROPOS NARRATIVOS ─────────────────────────────────────────────────
+const TROPES = [
+  // Cómo se enamoran
+  'Enemies to Lovers','Rivals to Lovers','Friends to Lovers','Friends with Benefits',
+  'Strangers to Lovers','Fake Relationship','Second Chance Romance',
+  'Childhood Friends','Forbidden Love','Slow Burn','Unrequited Love',
+  'One Night Stand → More',
+  // Obstáculos / tensión
+  'Age Gap','Love Triangle','Secret Relationship','Jealousy Trope',
+  'Forbidden Love','Revenge Romance','Opposites Attract',
+  // Situacionales
+  'Forced Proximity','Only One Bed','Roommates','Stranded Together',
+  'Road Trip','Vacation Romance',
+  // Roles / contexto
+  'Workplace Romance','Student × Teacher','Marriage of Convenience',
+  'Arranged Marriage','Bodyguard / VIP','Rich / Poor Romance',
+  // Sapphic específicos
+  'Lesbian Awakening','Bi Awakening','Coming Out tardío',
+  'Toaster Oven','Ice Queen × Toaster Oven','May-December Romance',
+  "Best Friend's Sister",
+  // Vínculos especiales
+  'Found Family','Hurt/Comfort','Soulmates','Destined Lovers',
+  'Conexión Mental / Bond','Reencarnación','Alpha/Beta/Omega',
+  'WhyChoose'
+];
+const SPICY_LEVELS = [
+  {v:0,label:'0/5 · Cero Steam',desc:'Sin escenas',icon:''},
+  {v:1,label:'1/5 · Mini Steam',desc:'Besos y miraditas',icon:'🌶'},
+  {v:2,label:'2/5 · Soft Steam',desc:'0–1 escena muy light',icon:'🌶🌶'},
+  {v:3,label:'3/5 · Spicy Light',desc:'1–2 escenas explícitas',icon:'🌶🌶🌶'},
+  {v:4,label:'4/5 · Spicy',desc:'3–4 escenas explícitas',icon:'🌶🌶🌶🌶'},
+  {v:5,label:'5/5 · Infernal 🔥',desc:'5+ escenas, nonstop',icon:'🌶🌶🌶🌶🌶'},
+];
+
+// Books stored in memory (from JSON), votes in Supabase
+let books = [], editingId = null;
+let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:0,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
+let authors = []; // array of strings
+let editions = []; // array of {lang, store, url}
+
+/* ── AUTH ── */
+async function adminLogin() {
+  const email = document.getElementById('adminEmail').value.trim();
+  const pass  = document.getElementById('adminPass').value;
+  if(!email||!pass){setLoginError('Rellena los campos.');return;}
+  const {error} = await sb.auth.signInWithPassword({email,password:pass});
+  if(error){setLoginError('Credenciales incorrectas.');return;}
+  const {data:{session}} = await sb.auth.getSession();
+  if(session.user.email !== ADMIN_EMAIL){await sb.auth.signOut();setLoginError('Sin acceso de admin.');return;}
+  showMainUI();
+  loadBooksFromStorage();
+  await loadVoteStats();
+}
+
+async function checkSession() {
+  const {data:{session}} = await sb.auth.getSession();
+  if(session && session.user.email === ADMIN_EMAIL){showMainUI();loadBooksFromStorage();await loadVoteStats();}
+}
+
+function showMainUI() {
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mainTopbar').style.display='flex';
+  document.getElementById('mainContainer').style.display='';
+}
+
+async function adminLogout(){await sb.auth.signOut();location.reload();}
+function setLoginError(msg){document.getElementById('loginError').textContent=msg;}
+
+/* ── BOOKS (JSON / memory) ── */
+function loadBooksFromStorage() {
+  // Try to load from in-memory (stays during session)
+  renderBookList();
+  updateStats();
+}
+
+function saveBooks() {
+  // Books live in memory only - export to JSON to persist
+}
+
+async function loadVoteStats() {
+  const {data} = await sb.from('ratings').select('book_id');
+  const counts = {};
+  if(data) data.forEach(r=>{counts[r.book_id]=(counts[r.book_id]||0)+1;});
+  window._voteCounts = counts;
+  const total = Object.values(counts).reduce((a,b)=>a+b,0);
+  document.getElementById('sVotes').innerHTML=`<em>${total}</em>`;
+  renderBookList();
+}
+
+function updateStats() {
+  const genreSet  = new Set(books.flatMap(b=>b.genres||[]));
+  const authorSet = new Set(books.flatMap(b=>b.authors||[]));
+  document.getElementById('sTotal').innerHTML  =`<em>${books.length}</em>`;
+  document.getElementById('sGenres').innerHTML =`<em>${genreSet.size}</em>`;
+  document.getElementById('sAuthors').innerHTML=`<em>${authorSet.size}</em>`;
+}
+
+function renderBookList() {
+  const list = document.getElementById('bookList');
+  if(!books.length){list.innerHTML='<div class="empty">Todavía no hay libros. ¡Añade el primero o importa un JSON!</div>';return;}
+  const vc = window._voteCounts||{};
+  function buildItem(b){
+    const cover=b.cover?`<img class="book-thumb" src="${b.cover}" alt="" onerror="this.outerHTML='<div class=book-thumb-ph>📖</div>'">`:`<div class="book-thumb-ph">📖</div>`;
+    const genreBadges=(b.genres||[]).slice(0,2).map(g=>`<span class="badge badge-genre">${g}</span>`).join('');
+    const spicyLabel=b.spicy>0?`<span class="badge" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.2)">${'🌶'.repeat(b.spicy)}</span>`:'';
+    const authorStr=(b.authors||[]).join(', ')||'—';
+    const votes=vc[b.id]||0;
+    const sagaStr=b.sagaName?` · ${b.sagaName}${b.sagaNum!=null?' #'+b.sagaNum:''}`:'';
+    return `<div class="book-item">
+      ${cover}
+      <div class="book-info">
+        <div class="book-name">${b.title} ${genreBadges}${spicyLabel}</div>
+        <div class="book-meta">${authorStr}${b.year?' · '+b.year:''}${sagaStr} · ${votes} voto${votes!==1?'s':''}</div>
+      </div>
+      <div class="book-actions">
+        <button class="btn small" onclick="openEditModal('${b.id}')">Editar</button>
+        <button class="btn small danger" onclick="deleteBook('${b.id}')">Borrar</button>
+      </div>
+    </div>`;
+  }
+  const thaisBooks=books.filter(b=>b.source==='thais');
+  const otherBooks=books.filter(b=>b.source!=='thais');
+  let html='';
+  if(thaisBooks.length){
+    html+=`<div class="section-header-admin section-header-thais"><span class="section-icon">🌸</span><div class="section-title">Libros Thais</div><span class="section-count">${thaisBooks.length} libro${thaisBooks.length!==1?'s':''}</span></div><div class="book-list">${thaisBooks.map(buildItem).join('')}</div>`;
+  }
+  if(otherBooks.length){
+    if(thaisBooks.length) html+='<div class="section-sep"></div>';
+    html+=`<div class="section-header-admin section-header-other"><span class="section-icon">📚</span><div class="section-title">Otros libros</div><span class="section-count">${otherBooks.length} libro${otherBooks.length!==1?'s':''}</span></div><div class="book-list">${otherBooks.map(buildItem).join('')}</div>`;
+  }
+  list.innerHTML=html;
+}
+
+/* ── MODAL ── */
+function openAddModal() {
+  editingId=null; clearForm();
+  document.getElementById('modalTitle').textContent='Nuevo libro';
+  document.getElementById('bookModal').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('fTitle').focus(),100);
+}
+
+function openEditModal(id) {
+  const b=books.find(bk=>bk.id===id);
+  if(!b) return;
+  editingId=id; clearForm();
+  document.getElementById('modalTitle').textContent='Editar libro';
+  document.getElementById('fTitle').value   =b.title||'';
+  checkDuplicate(b.title||'');
+  document.getElementById('fYear').value    =b.year||'';
+  document.getElementById('fCover').value   =b.cover||'';
+  document.getElementById('fSynopsis').value=b.synopsis||'';
+  document.getElementById('fPages').value   =b.pages||'';
+  document.getElementById('fIsbn').value    =b.isbn||'';
+  previewCover(b.cover||'');
+  authors=[...(b.authors||[])];
+  editions=[...(b.editions||[])];
+  sel.genres      =[...(b.genres||[])];
+  sel.subgenres   =[...(b.subgenres||[])];
+  sel.identidades =[...(b.identidades||[])];
+  sel.characters  =[...(b.characters||[])];
+  sel.dinamicas   =[...(b.dinamicas||[])];
+  sel.tropes      =[...(b.tropes||[])];
+  sel.spicy     =b.spicy||0;
+  sel.formato   =b.formato||null;
+  sel.adaptacion=b.adaptacion||null;
+  sel.sagaName  =b.sagaName||'';
+  sel.sagaNum   =b.sagaNum!=null?b.sagaNum:'';
+  document.getElementById('fSagaName').value=sel.sagaName;
+  document.getElementById('fSagaNum').value=sel.sagaNum!==''?sel.sagaNum:'';
+  updateSagaSection();
+  setSource(b.source||'thais');
+  renderAuthorPills();
+  renderAllChips();
+  renderEditions();
+  document.getElementById('bookModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function clearForm() {
+  ['fTitle','fYear','fCover','fSynopsis','fPages','fIsbn','fSagaName','fSagaNum'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('dupWarning').classList.remove('show');
+  document.getElementById('dupOk').classList.remove('show');
+  authors=[];editions=[];
+  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:0,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
+  setSource('thais');
+  const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
+  document.getElementById('sagaSection').style.display='none';
+  renderAuthorPills();
+  renderAllChips();
+  renderEditions();
+}
+
+/* ── DUPLICATE CHECK ── */
+function normTitle(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/gi,'').toLowerCase().trim();
+}
+function checkDuplicate(val){
+  const warn  = document.getElementById('dupWarning');
+  const ok    = document.getElementById('dupOk');
+  const list  = document.getElementById('dupList');
+  const query = normTitle(val);
+  if(!query||query.length<2){warn.classList.remove('show');ok.classList.remove('show');return;}
+
+  const matches = books.filter(b=>{
+    if(editingId && b.id===editingId) return false; // skip self when editing
+    const bt=normTitle(b.title);
+    // exact match or one contains the other (min 4 chars) or high overlap
+    return bt===query
+      || (query.length>=4 && bt.includes(query))
+      || (query.length>=4 && query.includes(bt))
+      || levenshtein(bt,query)<=2;
+  });
+
+  if(matches.length){
+    list.innerHTML=matches.map(b=>`<span class="dup-pill">📖 ${b.title}</span>`).join('');
+    warn.classList.add('show');
+    ok.classList.remove('show');
+  } else {
+    warn.classList.remove('show');
+    ok.classList.add('show');
+    setTimeout(()=>ok.classList.remove('show'),1800);
+  }
+}
+
+function levenshtein(a,b){
+  if(a===b) return 0;
+  if(!a.length) return b.length;
+  if(!b.length) return a.length;
+  const dp=Array.from({length:a.length+1},(_,i)=>Array.from({length:b.length+1},(_,j)=>i||j));
+  for(let i=1;i<=a.length;i++)
+    for(let j=1;j<=b.length;j++)
+      dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[a.length][b.length];
+}
+
+function closeModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';}
+
+/* ── AUTHORS ── */
+function handleAuthorInput(e) {
+  if(e.key==='Enter'||e.key===','){
+    e.preventDefault();
+    const val=e.target.value.trim().replace(/,$/,'').trim();
+    if(val&&!authors.includes(val)){authors.push(val);renderAuthorPills();}
+    e.target.value='';
+  } else if(e.key==='Backspace'&&!e.target.value&&authors.length){
+    authors.pop();renderAuthorPills();
+  }
+}
+
+function renderAuthorPills() {
+  const wrap=document.getElementById('authorWrap');
+  const pills=authors.map(a=>`<span class="author-pill">${a}<button onclick="removeAuthor('${a.replace(/'/g,"\\'")}')">×</button></span>`).join('');
+  wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${authors.length?'':'Nombre de la autora…'}" onkeydown="handleAuthorInput(event)">`;
+}
+
+function removeAuthor(name){authors=authors.filter(a=>a!==name);renderAuthorPills();}
+
+/* ── CHIPS ── */
+const FORMATOS    = ['Único','Dúo','Trilogía','Saga'];
+const ADAPTACIONES= ['Sin adaptación','Tiene serie','Tiene película'];
+
+function renderAllChips() {
+  renderChipGroup('genreChips',      GENRES,      'genres',      false);
+  renderChipGroup('subgenreChips',   SUBGENRES,   'subgenres',   false);
+  renderChipGroup('identidadChips',  IDENTIDADES, 'identidades', false);
+  renderChipGroup('characterChips',  CHARACTERS,  'characters',  true);
+  renderChipGroup('dinamicaChips',   DINAMICAS,   'dinamicas',   false);
+  renderChipGroup('tropeChips',      TROPES,      'tropes',      false);
+  renderSingleChips('formatoChips',    FORMATOS,    'formato',    'teal');
+  renderSingleChips('adaptacionChips', ADAPTACIONES,'adaptacion', 'lavender');
+  renderSpicy();
+}
+
+function renderChipGroup(cId,list,key,isRose){
+  document.getElementById(cId).innerHTML=list.map(v=>{
+    const active=sel[key].includes(v);
+    const cls=active?(isRose?'chip-opt rose active':'chip-opt active'):'chip-opt';
+    return `<button class="${cls}" onclick="toggleChip('${key}','${v.replace(/'/g,"\\'")}',${isRose})">${v}</button>`;
+  }).join('');
+}
+
+function renderSingleChips(cId,list,key,color){
+  document.getElementById(cId).innerHTML=list.map(v=>{
+    const active=sel[key]===v;
+    return `<button class="chip-opt${active?' active '+color:''}" onclick="toggleSingle('${key}','${v.replace(/'/g,"\\'")}','${color}')">${v}</button>`;
+  }).join('');
+}
+
+function toggleSingle(key,val){
+  sel[key]=sel[key]===val?null:val;
+  if(key==='formato') updateSagaSection();
+  renderAllChips();
+}
+
+function updateSagaSection(){
+  const show = ['Saga','Dúo','Trilogía'].includes(sel.formato);
+  document.getElementById('sagaSection').style.display = show ? '' : 'none';
+}
+
+function toggleChip(key,val,isRose){
+  const arr=sel[key],idx=arr.indexOf(val);
+  idx>=0?arr.splice(idx,1):arr.push(val);
+  renderAllChips();
+}
+
+function renderSpicy(){
+  document.getElementById('spicyGrid').innerHTML=SPICY_LEVELS.map(s=>`
+    <label class="spicy-row${sel.spicy===s.v?' active':''}" onclick="setSp(${s.v})">
+      <input type="radio" name="spicy" value="${s.v}" ${sel.spicy===s.v?'checked':''}>
+      <span class="spicy-label">${s.icon?s.icon+' ':''}<strong>${s.label}</strong></span>
+      <span class="spicy-desc">${s.desc}</span>
+    </label>`).join('');
+}
+
+function setSp(v){sel.spicy=v;renderSpicy();}
+function setSource(v){
+  sel.source=v;
+  document.getElementById('sourceThais').className='source-chip'+(v==='thais'?' active-thais':'');
+  document.getElementById('sourceOther').className='source-chip'+(v!=='thais'?' active-other':'');
+}
+
+
+/* ── SAVE / DELETE ── */
+function saveBook() {
+  const title=document.getElementById('fTitle').value.trim();
+  if(!title){showToast('El título es obligatorio','error');return;}
+  if(!authors.length){showToast('Añade al menos una autora','error');return;}
+
+  const bookData={
+    id:        editingId||'b_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+    title,
+    authors:   [...authors],
+    year:      parseInt(document.getElementById('fYear').value)||null,
+    cover:     document.getElementById('fCover').value.trim()||null,
+    synopsis:  document.getElementById('fSynopsis').value.trim()||null,
+    pages:     parseInt(document.getElementById('fPages').value)||null,
+    isbn:      document.getElementById('fIsbn').value.trim()||null,
+    genres:      [...sel.genres],
+    subgenres:   [...sel.subgenres],
+    identidades: [...sel.identidades],
+    characters:  [...sel.characters],
+    dinamicas:   [...sel.dinamicas],
+    tropes:      [...sel.tropes],
+    ambientacion:[...(sel.ambientacion||[])],
+    spicy:     sel.spicy,
+    formato:   sel.formato,
+    adaptacion:sel.adaptacion,
+    sagaName:  document.getElementById('fSagaName').value.trim()||null,
+    sagaNum:   document.getElementById('fSagaNum').value!==''?parseFloat(document.getElementById('fSagaNum').value):null,
+    source:    sel.source||'thais',
+    editions:  editions.filter(e=>e.url).map(e=>({lang:e.lang,store:e.store,url:e.url})),
+  };
+
+  if(editingId){
+    const idx=books.findIndex(b=>b.id===editingId);
+    if(idx>=0) books[idx]=bookData;
+  } else {
+    books.push(bookData);
+  }
+
+  closeModal();
+  renderBookList();
+  updateStats();
+  showToast(editingId?'Libro actualizado ✓':'Libro añadido ✓');
+}
+
+function deleteBook(id){
+  if(!confirm('¿Borrar este libro del catálogo?')) return;
+  books=books.filter(b=>b.id!==id);
+  renderBookList();
+  updateStats();
+  showToast('Libro eliminado — recuerda exportar el JSON');
+}
+
+/* ── IMPORT / EXPORT ── */
+function exportJSON(){
+  const json=JSON.stringify(books,null,2);
+  const blob=new Blob([json],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='books_data.json';
+  a.click();
+  showToast('JSON exportado ✓ — súbelo junto al index.html');
+}
+
+async function importJSON(input){
+  const file=input.files[0];
+  if(!file) return;
+  let data;
+  try{
+    const text=await file.text();
+    data=JSON.parse(text);
+    if(!Array.isArray(data)) throw new Error('Debe ser un array de libros.');
+  }catch(e){showToast('JSON inválido: '+e.message,'error');input.value='';return;}
+
+  // Migrate old format: author (string) → authors (array)
+  data=data.map(b=>{
+    if(!b.authors){
+      b.authors=b.author?[b.author]:[];
+      delete b.author;
+    }
+    if(!b.editions) b.editions=[];
+    return b;
+  });
+
+  books=data;
+  renderBookList();
+  updateStats();
+  input.value='';
+  showToast(`${data.length} libros importados ✓`);
+}
+
+function previewCover(url){
+  const img=document.getElementById('coverPreview');
+  if(url&&url.startsWith('http')){img.src=url;img.style.display='block';}
+  else{img.style.display='none';img.src='';}
+}
+
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className=`toast ${type}`;
+  setTimeout(()=>t.classList.add('show'),10);
+  setTimeout(()=>t.classList.remove('show'),3400);
+}
+
+/* ── EDITIONS ── */
+const LANGS = [
+  {code:'ES',label:'ES Español'},
+  {code:'EN',label:'EN English'},
+  {code:'FR',label:'FR Français'},
+  {code:'PT',label:'PT Português'},
+  {code:'DE',label:'DE Deutsch'},
+  {code:'IT',label:'IT Italiano'},
+  {code:'JP',label:'JP 日本語'},
+  {code:'KR',label:'KR 한국어'},
+  {code:'CN',label:'CN 中文'},
+  {code:'TH',label:'TH ภาษาไทย'},
+  {code:'AR',label:'AR العربية'},
+  {code:'OTHER',label:'Otro'},
+];
+const STORES = ['Amazon','Apple Books','Book Depository','Casa del Libro','Fnac','Google Play','Kobo','MEB','Naver','Rakuten','Sitio oficial','Otro'];
+
+function renderEditions(){
+  const wrap=document.getElementById('editionsWrap');
+  if(!editions.length){wrap.innerHTML='';return;}
+  wrap.innerHTML=editions.map((e,i)=>{
+    const langOpts=LANGS.map(l=>`<option value="${l.code}" ${e.lang===l.code?'selected':''}>${l.label}</option>`).join('');
+    const storeOpts=STORES.map(s=>`<option value="${s}" ${e.store===s?'selected':''}>${s}</option>`).join('');
+    return `<div class="edition-row">
+      <select onchange="updateEdition(${i},'lang',this.value)">${langOpts}</select>
+      <select onchange="updateEdition(${i},'store',this.value)">${storeOpts}</select>
+      <input type="url" placeholder="https://…" value="${e.url||''}" oninput="updateEdition(${i},'url',this.value)">
+      <button class="edition-del" onclick="removeEdition(${i})" type="button">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function addEdition(){
+  editions.push({lang:'ES',store:'Amazon',url:''});
+  renderEditions();
+}
+
+function updateEdition(i,key,val){
+  editions[i][key]=val;
+}
+
+function removeEdition(i){
+  editions.splice(i,1);
+  renderEditions();
+}
+
+
+/* PASTE AUTOFILL */
+function normalizeBold(str){
+  var out='',i=0;
+  while(i<str.length){
+    var cp=str.codePointAt(i);
+    if(cp>0xFFFF)i++;
+    if(cp>=0x1D400&&cp<=0x1D419)out+=String.fromCharCode(cp-0x1D400+65);
+    else if(cp>=0x1D41A&&cp<=0x1D433)out+=String.fromCharCode(cp-0x1D41A+97);
+    else out+=str[i];
+    i++;
+  }
+  return out;
+}
+function cleanStr(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]/g,'').toLowerCase();
+}
+function matchTagsToList(lineText, list, target){
+  /* Solo coge los hashtags de la linea y los compara exactamente contra la lista */
+  var tags=(lineText.match(/#[\w]+/g)||[]).map(function(t){return cleanStr(t.slice(1));});
+  list.forEach(function(item){
+    var ci=cleanStr(item);
+    tags.forEach(function(tag){
+      /* El tag debe ser igual o contenerse mutuamente (sin subcadenas cortas) */
+      if(tag.length>=3 && (tag===ci || ci===tag) && target.indexOf(item)<0) target.push(item);
+    });
+  });
+}
+function matchTagsLoose(lineText, list, target){
+  /* Version mas permisiva: el tag puede ser parte del item o viceversa, si tiene 4+ chars */
+  var tags=(lineText.match(/#[\w]+/g)||[]).map(function(t){return cleanStr(t.slice(1));});
+  list.forEach(function(item){
+    var ci=cleanStr(item);
+    tags.forEach(function(tag){
+      var minLen = (tag===tag.toUpperCase()&&tag.length>=2) ? 2 : 4;
+      if(tag.length>=minLen && (ci===tag || ci.indexOf(tag)>=0 || tag.indexOf(ci)>=0) && target.indexOf(item)<0) target.push(item);
+    });
+  });
+}
+function getLine(text, label){
+  var m=text.match(new RegExp(label+'\\s*:\\s*([^\\n]+)','i'));
+  return m ? m[1] : '';
+}
+function runBookPaste(){
+  var ta=document.getElementById('pasteInput');
+  var status=document.getElementById('pasteStatus');
+  var raw=ta?ta.value.trim():'';
+  if(!raw){status.className='paste-bar-status err';status.textContent='Pega primero el texto.';return;}
+  var text=normalizeBold(raw);
+  var filled=0,m;
+
+  /* Campos de texto simples */
+  m=text.match(/Titulo\s*:\s*([^\n]+)/i);
+  if(m){var t=m[1].replace(/[#*]/g,'').trim();if(t){document.getElementById('fTitle').value=t;filled++;}}
+
+  m=text.match(/Autora?\s*:\s*([^\n]+)/i);
+  if(m){var a=m[1].replace(/[#*]/g,'').trim().split(/[,\/]/)[0].trim();if(a){authors=[a];renderAuthorPills();filled++;}}
+
+  m=text.match(/A[n\u00f1]o\s*:\s*(\d{4})/i);
+  if(m){document.getElementById('fYear').value=m[1];filled++;}
+
+  m=text.match(/Pag(?:ina)?s?\s*:\s*(\d+)/i);
+  if(m){document.getElementById('fPages').value=m[1];filled++;}
+
+  m=text.match(/Spicy[^\d]*(\d)/i)||text.match(/(\d)\/5/);
+  if(m){var sp=parseInt(m[1]);if(sp>=0&&sp<=5){sel.spicy=sp;filled++;}}
+
+  m=text.match(/Sinopsis\s*:\s*\n?([\s\S]+)/i);
+  if(m){var syn=m[1].trim();if(syn){document.getElementById('fSynopsis').value=syn;filled++;}}
+
+  /* Listas: SOLO buscar en la linea especifica de cada campo */
+  var lineGenero     = getLine(text,'Genero');
+  var lineSubgenero  = getLine(text,'Subgenero');
+  var linePersonajes = getLine(text,'Personajes');
+  var lineTropes     = getLine(text,'Tropes');
+  var lineDinamica   = getLine(text,'Dinamica');
+  var lineIdentidad  = getLine(text,'Identidad');
+
+  if(lineGenero)    matchTagsLoose(lineGenero,    GENRES,      sel.genres);
+  if(lineSubgenero) matchTagsLoose(lineSubgenero, SUBGENRES,   sel.subgenres);
+  if(linePersonajes)matchTagsLoose(linePersonajes,CHARACTERS,  sel.characters);
+  if(lineTropes)    matchTagsLoose(lineTropes,    TROPES,      sel.tropes);
+  if(lineDinamica)  matchTagsLoose(lineDinamica,  DINAMICAS,   sel.dinamicas);
+  if(lineIdentidad) matchTagsLoose(lineIdentidad, IDENTIDADES, sel.identidades);
+
+  var anyChips=sel.genres.length||sel.subgenres.length||sel.characters.length||sel.tropes.length||sel.dinamicas.length||sel.identidades.length;
+  if(anyChips){renderAllChips();filled++;}
+
+  if(filled>0){
+    status.className='paste-bar-status ok';
+    status.textContent='Rellenados '+filled+' campo(s). Revisa y completa lo que falte.';
+    ta.value='';
+  }else{
+    status.className='paste-bar-status err';
+    status.textContent='No se encontraron datos. Incluye etiquetas como Titulo:, Autora:, Genero:, etc.';
+  }
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+document.getElementById('bookModal').addEventListener('click',e=>{if(e.target.id==='bookModal')closeModal();});
+
+checkSession();
+</script>
+</body>
+</html>
