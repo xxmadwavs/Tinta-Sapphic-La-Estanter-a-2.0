@@ -278,7 +278,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="form-section-title">Sección *</div>
       <div class="source-chip-group" id="sourceChips">
         <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Libros Thais</button>
-        <button class="source-chip" id="sourceOther" onclick="setSource('other')">📚 Otros libros</button>
+        <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Libros Occidentales</button>
       </div>
     </div>
 
@@ -583,7 +583,7 @@ function renderBookList() {
   }
   if(otherBooks.length){
     if(thaisBooks.length) html+='<div class="section-sep"></div>';
-    html+=`<div class="section-header-admin section-header-other"><span class="section-icon">📚</span><div class="section-title">Otros libros</div><span class="section-count">${otherBooks.length} libro${otherBooks.length!==1?'s':''}</span></div><div class="book-list">${otherBooks.map(buildItem).join('')}</div>`;
+    html+=`<div class="section-header-admin section-header-other"><span class="section-icon">📚</span><div class="section-title">Libros Occidentales</div><span class="section-count">${otherBooks.length} libro${otherBooks.length!==1?'s':''}</span></div><div class="book-list">${otherBooks.map(buildItem).join('')}</div>`;
   }
   list.innerHTML=html;
 }

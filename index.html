@@ -224,15 +224,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .toast.error{background:var(--rose);color:#fff}
 
 @media(max-width:700px){.books-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem}.modal-body{padding:1.25rem}.hero{padding:2.5rem 1.25rem 2rem}}
-/* SECTION HEADERS */
-.section-header{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem;margin-top:1.5rem}
-.section-header:first-child{margin-top:0}
-.section-icon{font-size:1.6rem;line-height:1}
-.section-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;font-style:italic;line-height:1}
-.section-header-thais .section-title{color:var(--accent2)}
-.section-header-other .section-title{color:var(--teal)}
-.section-count{font-size:11.5px;color:var(--muted);letter-spacing:.05em;margin-top:2px}
-.section-divider{height:1px;background:var(--border2);margin:2.5rem 0}
+/* SECTION TABS */
+.section-tabs{display:flex;gap:.4rem;margin-bottom:.75rem}
+.section-tab{display:flex;align-items:center;gap:.45rem;padding:9px 20px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;white-space:nowrap}
+.section-tab:hover{border-color:var(--border2);color:var(--text)}
+.section-tab.active-thais{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.section-tab.active-other{background:rgba(91,188,176,0.12);border-color:var(--teal);color:var(--teal)}
+.section-tab .tab-count{font-size:10.5px;padding:1px 7px;border-radius:20px;font-weight:700;margin-left:1px}
+.section-tab.active-thais .tab-count{background:var(--accent);color:#fff}
+.section-tab.active-other .tab-count{background:var(--teal);color:var(--bg)}
+.section-tab .tab-count.hidden{display:none}
+@media(max-width:600px){.section-tab{padding:7px 14px;font-size:12px}}
 
 </style>
 </head>
@@ -260,6 +262,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </section>
 
 <main class="main">
+  <div class="section-tabs" id="sectionTabs">
+    <button class="section-tab active-thais" id="tabThais" onclick="switchSection('thais')">🌸 Libros Thais <span class="tab-count" id="countThais">0</span></button>
+    <button class="section-tab" id="tabOther" onclick="switchSection('other')">🌍 Libros Occidentales <span class="tab-count hidden" id="countOther">0</span></button>
+  </div>
   <div class="filter-shell">
     <div class="filter-top">
       <div class="search-wrap">
@@ -367,7 +373,7 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const SPICY_LABELS = ['0/5 Sin Steam','1/5 Mini Steam','2/5 Soft Steam','3/5 Spicy Light','4/5 Spicy','5/5 Infernal 🔥'];
 const SPICY_ICONS  = ['','🌶','🌶🌶','🌶🌶🌶','🌶🌶🌶🌶','🌶🌶🌶🌶🌶'];
 
-let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
+let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null, activeSection='thais';
 let authMode='login', pendingStar=0;
 let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],sagas:[],adaptacion:null,valoracion:null};
 
@@ -607,7 +613,9 @@ function applyFilters(){
   else if(sort==='za') books.sort((a,b)=>b.title.localeCompare(a.title,'es'));
   else if(sort==='year_desc') books.sort((a,b)=>(b.year||0)-(a.year||0));
   else if(sort==='year_asc') books.sort((a,b)=>(a.year||0)-(b.year||0));
-  document.getElementById('resultsCount').textContent=`${books.length} de ${allBooks.length} libros`;
+  const _secBooks = activeSection==='thais' ? books.filter(b=>b.source==='thais') : books.filter(b=>b.source!=='thais');
+  const _secAll = activeSection==='thais' ? allBooks.filter(b=>b.source==='thais') : allBooks.filter(b=>b.source!=='thais');
+  document.getElementById('resultsCount').textContent=`${_secBooks.length} de ${_secAll.length} libros`;
   renderGrid(books);
 }
 
@@ -656,18 +664,32 @@ function renderGrid(books){
   }).join('');
   }
 
+  // Update tab counts
+  const ctThais = document.getElementById('countThais');
+  const ctOther = document.getElementById('countOther');
+  if(ctThais){ ctThais.textContent = thaisBooks.length; ctThais.className = 'tab-count' + (thaisBooks.length ? '' : ' hidden'); }
+  if(ctOther){ ctOther.textContent = otherBooks.length; ctOther.className = 'tab-count' + (otherBooks.length ? '' : ' hidden'); }
+
+  // Show only active section
+  const visible = activeSection === 'thais' ? thaisBooks : otherBooks;
   let html = '';
-  if(thaisBooks.length){
-    html += '<div class="section-header section-header-thais"><span class="section-icon">🌸</span><div><div class="section-title">Libros Thais</div><div class="section-count">'+thaisBooks.length+' libro'+(thaisBooks.length!==1?'s':'')+'</div></div></div><div class="books-grid">'+buildCards(thaisBooks)+'</div>';
-  }
-  if(otherBooks.length){
-    if(thaisBooks.length) html += '<div class="section-divider"></div>';
-    html += '<div class="section-header section-header-other"><span class="section-icon">📚</span><div><div class="section-title">Otros libros</div><div class="section-count">'+otherBooks.length+' libro'+(otherBooks.length!==1?'s':'')+'</div></div></div><div class="books-grid">'+buildCards(otherBooks)+'</div>';
-  }
-  if(!thaisBooks.length && !otherBooks.length){
-    html='<div class="empty-state"><div class="empty-big">¿Dónde están?</div><p>Ningún libro coincide.</p></div>';
+  if(visible.length){
+    html = '<div class="books-grid">'+buildCards(visible)+'</div>';
+  } else {
+    html = '<div class="empty-state"><div class="empty-big">¿Dónde están?</div><p>Ningún libro coincide en esta sección.</p></div>';
   }
   c.innerHTML = html;
+}
+
+function switchSection(section){
+  activeSection = section;
+  const tThais = document.getElementById('tabThais');
+  const tOther = document.getElementById('tabOther');
+  if(tThais) tThais.className = 'section-tab' + (section==='thais' ? ' active-thais' : '');
+  if(tOther) tOther.className = 'section-tab' + (section!=='thais' ? ' active-other' : '');
+  applyFilters();
+}
+
 }
 
 /* ── BOOK MODAL ── */
