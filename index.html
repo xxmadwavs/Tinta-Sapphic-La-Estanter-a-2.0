@@ -225,16 +225,20 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 @media(max-width:700px){.books-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem}.modal-body{padding:1.25rem}.hero{padding:2.5rem 1.25rem 2rem}}
 /* SECTION TABS */
-.section-tabs{display:flex;gap:.4rem;margin-bottom:.75rem}
+.section-tabs{display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap}
 .section-tab{display:flex;align-items:center;gap:.45rem;padding:9px 20px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;white-space:nowrap}
 .section-tab:hover{border-color:var(--border2);color:var(--text)}
 .section-tab.active-thais{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 .section-tab.active-other{background:rgba(91,188,176,0.12);border-color:var(--teal);color:var(--teal)}
+.section-tab.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
+.section-tab.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
 .section-tab .tab-count{font-size:10.5px;padding:1px 7px;border-radius:20px;font-weight:700;margin-left:1px}
 .section-tab.active-thais .tab-count{background:var(--accent);color:#fff}
 .section-tab.active-other .tab-count{background:var(--teal);color:var(--bg)}
+.section-tab.active-spanish .tab-count{background:#9b6fd4;color:#fff}
+.section-tab.active-baihee .tab-count{background:#d46060;color:#fff}
 .section-tab .tab-count.hidden{display:none}
-@media(max-width:600px){.section-tab{padding:7px 14px;font-size:12px}}
+@media(max-width:600px){.section-tabs{gap:.35rem;flex-wrap:wrap}.section-tab{padding:6px 12px;font-size:11.5px;flex:1 1 calc(50% - .35rem);justify-content:center}}
 
 </style>
 </head>
@@ -265,6 +269,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="section-tabs" id="sectionTabs">
     <button class="section-tab active-thais" id="tabThais" onclick="switchSection('thais')">🌸 Libros Thais <span class="tab-count" id="countThais">0</span></button>
     <button class="section-tab" id="tabOther" onclick="switchSection('other')">🌍 Libros Occidentales <span class="tab-count hidden" id="countOther">0</span></button>
+    <button class="section-tab" id="tabSpanish" onclick="switchSection('spanish')">💜 Libros en Español <span class="tab-count hidden" id="countSpanish">0</span></button>
+    <button class="section-tab" id="tabBaihee" onclick="switchSection('baihee')">🇨🇳 Baihee <span class="tab-count hidden" id="countBaihee">0</span></button>
   </div>
   <div class="filter-shell">
     <div class="filter-top">
@@ -626,7 +632,9 @@ function renderGrid(books){
   const rankMap={};sortedR.forEach((b,i)=>{if(ratingsMap[b.id]?.count>0)rankMap[b.id]=i+1;});
 
   const thaisBooks=books.filter(b=>b.source==='thais');
-  const otherBooks=books.filter(b=>b.source!=='thais');
+  const otherBooks=books.filter(b=>b.source==='other');
+  const spanishBooks=books.filter(b=>b.source==='spanish');
+  const baiheeBooks=books.filter(b=>b.source==='baihee');
 
   function buildCards(list){
     return list.map(b=>{
@@ -665,13 +673,14 @@ function renderGrid(books){
   }
 
   // Update tab counts
-  const ctThais = document.getElementById('countThais');
-  const ctOther = document.getElementById('countOther');
-  if(ctThais){ ctThais.textContent = thaisBooks.length; ctThais.className = 'tab-count' + (thaisBooks.length ? '' : ' hidden'); }
-  if(ctOther){ ctOther.textContent = otherBooks.length; ctOther.className = 'tab-count' + (otherBooks.length ? '' : ' hidden'); }
+  [{id:'countThais',list:thaisBooks},{id:'countOther',list:otherBooks},{id:'countSpanish',list:spanishBooks},{id:'countBaihee',list:baiheeBooks}].forEach(({id,list})=>{
+    const el=document.getElementById(id);
+    if(el){el.textContent=list.length;el.className='tab-count'+(list.length?'':' hidden');}
+  });
 
   // Show only active section
-  const visible = activeSection === 'thais' ? thaisBooks : otherBooks;
+  const sectionMap={thais:thaisBooks,other:otherBooks,spanish:spanishBooks,baihee:baiheeBooks};
+  const visible=sectionMap[activeSection]||thaisBooks;
   let html = '';
   if(visible.length){
     html = '<div class="books-grid">'+buildCards(visible)+'</div>';
@@ -682,11 +691,13 @@ function renderGrid(books){
 }
 
 function switchSection(section){
-  activeSection = section;
-  const tThais = document.getElementById('tabThais');
-  const tOther = document.getElementById('tabOther');
-  if(tThais) tThais.className = 'section-tab' + (section==='thais' ? ' active-thais' : '');
-  if(tOther) tOther.className = 'section-tab' + (section!=='thais' ? ' active-other' : '');
+  activeSection=section;
+  const tabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee'};
+  const cls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee'};
+  Object.entries(tabs).forEach(([key,id])=>{
+    const el=document.getElementById(id);
+    if(el) el.className='section-tab'+(key===section?' '+cls[key]:'');
+  });
   applyFilters();
 }
 

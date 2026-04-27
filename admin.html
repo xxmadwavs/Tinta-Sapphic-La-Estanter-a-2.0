@@ -174,6 +174,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .section-header-admin .section-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;font-style:italic}
 .section-header-thais .section-title{color:var(--accent2)}
 .section-header-other .section-title{color:var(--teal)}
+.section-header-spanish .section-title{color:#c9a8f0}
+.section-header-baihee .section-title{color:#f0a0a0}
 .section-header-admin .section-count{font-size:11px;color:var(--muted);margin-left:auto}
 .section-sep{height:1px;background:var(--border2);margin:1.5rem 0}
 .source-chip-group{display:flex;gap:.5rem;margin-top:.4rem}
@@ -181,6 +183,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .source-chip:hover{border-color:var(--accent);color:var(--accent2)}
 .source-chip.active-thais{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 .source-chip.active-other{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
+.source-chip.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
+.source-chip.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
 
 </style>
 </head>
@@ -279,6 +283,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="source-chip-group" id="sourceChips">
         <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Libros Thais</button>
         <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Libros Occidentales</button>
+        <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Libros en Español</button>
+        <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🇨🇳 Baihee</button>
       </div>
     </div>
 
@@ -576,15 +582,22 @@ function renderBookList() {
     </div>`;
   }
   const thaisBooks=books.filter(b=>b.source==='thais');
-  const otherBooks=books.filter(b=>b.source!=='thais');
+  const otherBooks=books.filter(b=>b.source==='other');
+  const spanishBooks=books.filter(b=>b.source==='spanish');
+  const baiheeBooks=books.filter(b=>b.source==='baihee');
+  const sections=[
+    {key:'thais', icon:'🌸', label:'Libros Thais', books:thaisBooks, cls:'section-header-thais'},
+    {key:'other', icon:'🌍', label:'Libros Occidentales', books:otherBooks, cls:'section-header-other'},
+    {key:'spanish', icon:'💜', label:'Libros en Español', books:spanishBooks, cls:'section-header-spanish'},
+    {key:'baihee', icon:'🇨🇳', label:'Baihee', books:baiheeBooks, cls:'section-header-baihee'},
+  ];
   let html='';
-  if(thaisBooks.length){
-    html+=`<div class="section-header-admin section-header-thais"><span class="section-icon">🌸</span><div class="section-title">Libros Thais</div><span class="section-count">${thaisBooks.length} libro${thaisBooks.length!==1?'s':''}</span></div><div class="book-list">${thaisBooks.map(buildItem).join('')}</div>`;
-  }
-  if(otherBooks.length){
-    if(thaisBooks.length) html+='<div class="section-sep"></div>';
-    html+=`<div class="section-header-admin section-header-other"><span class="section-icon">📚</span><div class="section-title">Libros Occidentales</div><span class="section-count">${otherBooks.length} libro${otherBooks.length!==1?'s':''}</span></div><div class="book-list">${otherBooks.map(buildItem).join('')}</div>`;
-  }
+  sections.forEach((s,i)=>{
+    if(!s.books.length) return;
+    if(html) html+='<div class="section-sep"></div>';
+    html+=`<div class="section-header-admin ${s.cls}"><span class="section-icon">${s.icon}</span><div class="section-title">${s.label}</div><span class="section-count">${s.books.length} libro${s.books.length!==1?'s':''}</span></div><div class="book-list">${s.books.map(buildItem).join('')}</div>`;
+  });
+  if(!html) html='<div class="empty">Todavía no hay libros. ¡Añade el primero o importa un JSON!</div>';
   list.innerHTML=html;
 }
 
@@ -773,8 +786,12 @@ function renderSpicy(){
 function setSp(v){sel.spicy=v;renderSpicy();}
 function setSource(v){
   sel.source=v;
-  document.getElementById('sourceThais').className='source-chip'+(v==='thais'?' active-thais':'');
-  document.getElementById('sourceOther').className='source-chip'+(v!=='thais'?' active-other':'');
+  const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee'};
+  const ids={thais:'sourceThais', other:'sourceOther', spanish:'sourceSpanish', baihee:'sourceBaihee'};
+  Object.entries(ids).forEach(([key,id])=>{
+    const el=document.getElementById(id);
+    if(el) el.className='source-chip'+(key===v?' '+map[key]:'');
+  });
 }
 
 
