@@ -487,6 +487,7 @@ const TROPES = [
   'WhyChoose'
 ];
 const SPICY_LEVELS = [
+  {v:null,label:'❓ Desconocido',desc:'Sin información',icon:'❓'},
   {v:0,label:'0/5 · Cero Steam',desc:'Sin escenas',icon:''},
   {v:1,label:'1/5 · Mini Steam',desc:'Besos y miraditas',icon:'🌶'},
   {v:2,label:'2/5 · Soft Steam',desc:'0–1 escena muy light',icon:'🌶🌶'},
@@ -497,7 +498,7 @@ const SPICY_LEVELS = [
 
 // Books stored in memory (from JSON), votes in Supabase
 let books = [], editingId = null;
-let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:0,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
+let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
 let authors = []; // array of strings
 let editions = []; // array of {lang, store, url}
 
@@ -565,7 +566,7 @@ function renderBookList() {
   function buildItem(b){
     const cover=b.cover?`<img class="book-thumb" src="${b.cover}" alt="" onerror="this.outerHTML='<div class=book-thumb-ph>📖</div>'">`:`<div class="book-thumb-ph">📖</div>`;
     const genreBadges=(b.genres||[]).slice(0,2).map(g=>`<span class="badge badge-genre">${g}</span>`).join('');
-    const spicyLabel=b.spicy>0?`<span class="badge" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.2)">${'🌶'.repeat(b.spicy)}</span>`:'';
+    const spicyLabel=(b.spicy===null||b.spicy===undefined)?`<span class="badge" style="background:rgba(120,120,120,0.12);color:var(--muted);border:1px solid rgba(120,120,120,0.2)">❓</span>`:b.spicy>0?`<span class="badge" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.2)">${'🌶'.repeat(b.spicy)}</span>`:'';
     const authorStr=(b.authors||[]).join(', ')||'—';
     const votes=vc[b.id]||0;
     const sagaStr=b.sagaName?` · ${b.sagaName}${b.sagaNum!=null?' #'+b.sagaNum:''}`:'';
@@ -639,6 +640,7 @@ function openEditModal(id) {
   document.getElementById('fSagaName').value=sel.sagaName;
   document.getElementById('fSagaNum').value=sel.sagaNum!==''?sel.sagaNum:'';
   updateSagaSection();
+  sel.spicy=b.spicy===undefined?null:b.spicy;
   setSource(b.source||'thais');
   renderAuthorPills();
   renderAllChips();
@@ -652,7 +654,7 @@ function clearForm() {
   document.getElementById('dupWarning').classList.remove('show');
   document.getElementById('dupOk').classList.remove('show');
   authors=[];editions=[];
-  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:0,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
+  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
   document.getElementById('sagaSection').style.display='none';
@@ -776,14 +778,14 @@ function toggleChip(key,val,isRose){
 
 function renderSpicy(){
   document.getElementById('spicyGrid').innerHTML=SPICY_LEVELS.map(s=>`
-    <label class="spicy-row${sel.spicy===s.v?' active':''}" onclick="setSp(${s.v})">
+    <label class="spicy-row${sel.spicy===s.v?' active':''}" onclick="setSp(${s.v===null?'null':s.v})">
       <input type="radio" name="spicy" value="${s.v}" ${sel.spicy===s.v?'checked':''}>
       <span class="spicy-label">${s.icon?s.icon+' ':''}<strong>${s.label}</strong></span>
       <span class="spicy-desc">${s.desc}</span>
     </label>`).join('');
 }
 
-function setSp(v){sel.spicy=v;renderSpicy();}
+function setSp(v){sel.spicy=(v==='null'||v===null)?null:parseInt(v);renderSpicy();}
 function setSource(v){
   sel.source=v;
   const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee'};
@@ -817,7 +819,7 @@ function saveBook() {
     dinamicas:   [...sel.dinamicas],
     tropes:      [...sel.tropes],
     ambientacion:[...(sel.ambientacion||[])],
-    spicy:     sel.spicy,
+    spicy:     sel.spicy===null?null:sel.spicy,
     formato:   sel.formato,
     adaptacion:sel.adaptacion,
     sagaName:  document.getElementById('fSagaName').value.trim()||null,
