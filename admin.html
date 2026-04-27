@@ -284,7 +284,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Libros Thais</button>
         <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Libros Occidentales</button>
         <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Libros en Español</button>
-        <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🇨🇳 Baihee</button>
+        <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
       </div>
     </div>
 
@@ -409,7 +409,7 @@ const SUBGENRES = [
   'Segunda Oportunidad','Small Town','Sobrenatural','Universidad','Viaje en el Tiempo',
   'WhyChoose',
   // Orígenes / tradiciones literarias
-  'Baihee 🇨🇳','GL Thai 🇹🇭','Wattpad'
+  'Baihee 🐉','GL Thai 🇹🇭','Wattpad'
 ];
 
 // ── 3. PERSONAJES · Profesiones ──────────────────────────────────────────
@@ -589,7 +589,7 @@ function renderBookList() {
     {key:'thais', icon:'🌸', label:'Libros Thais', books:thaisBooks, cls:'section-header-thais'},
     {key:'other', icon:'🌍', label:'Libros Occidentales', books:otherBooks, cls:'section-header-other'},
     {key:'spanish', icon:'💜', label:'Libros en Español', books:spanishBooks, cls:'section-header-spanish'},
-    {key:'baihee', icon:'🇨🇳', label:'Baihee', books:baiheeBooks, cls:'section-header-baihee'},
+    {key:'baihee', icon:'🐉', label:'Baihee', books:baiheeBooks, cls:'section-header-baihee'},
   ];
   let html='';
   sections.forEach((s,i)=>{
