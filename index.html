@@ -449,10 +449,11 @@ function updateStats(){
 /* ── DROPDOWNS ── */
 // Helper to get sorted unique values from a book field
 function uniqVals(key){
-  if(key==='authors') return [...new Set(allBooks.flatMap(b=>b.authors||[]))].sort();
-  if(key==='years')   return [...new Set(allBooks.map(b=>b.year).filter(Boolean))].sort((a,z)=>z-a).map(String);
-  if(key==='sagas')   return [...new Set(allBooks.map(b=>getSaga(b)).filter(Boolean))].sort();
-  return [...new Set(allBooks.flatMap(b=>b[key]||[]))].sort();
+  const sectionBooks = allBooks.filter(b=>b.source===activeSection);
+  if(key==='authors') return [...new Set(sectionBooks.flatMap(b=>b.authors||[]))].sort();
+  if(key==='years')   return [...new Set(sectionBooks.map(b=>b.year).filter(Boolean))].sort((a,z)=>z-a).map(String);
+  if(key==='sagas')   return [...new Set(sectionBooks.map(b=>getSaga(b)).filter(Boolean))].sort();
+  return [...new Set(sectionBooks.flatMap(b=>b[key]||[]))].sort();
 }
 
 const DD_MAP = {
@@ -692,12 +693,28 @@ function renderGrid(books){
 
 function switchSection(section){
   activeSection=section;
+
+  // Reset authors and sagas, keep others only if valid in new section
+  filters.authors=[];
+  filters.sagas=[];
+  // For remaining filters, keep only values that exist in the new section
+  const sectionBooks=allBooks.filter(b=>b.source===section);
+  ['genres','subgenres','dinamicas','tropes','characters','years','spicy'].forEach(key=>{
+    if(!filters[key].length) return;
+    if(key==='spicy'){ filters[key]=filters[key].filter(v=>sectionBooks.some(b=>b.spicy===v)); return; }
+    if(key==='years'){ filters[key]=filters[key].filter(v=>sectionBooks.some(b=>String(b.year)===v)); return; }
+    filters[key]=filters[key].filter(v=>sectionBooks.some(b=>(b[key]||[]).includes(v)));
+  });
+
   const tabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee'};
   const cls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee'};
   Object.entries(tabs).forEach(([key,id])=>{
     const el=document.getElementById(id);
     if(el) el.className='section-tab'+(key===section?' '+cls[key]:'');
   });
+
+  buildDropdowns();
+  renderActivePills();
   applyFilters();
 }
 
