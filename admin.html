@@ -122,6 +122,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .edition-del:hover{background:var(--rose-soft)}
 @media(max-width:500px){.edition-row{grid-template-columns:1fr 1fr;}.edition-row input[placeholder="https://…"]{grid-column:1/-1}}
 #importFile{display:none}
+.import-label{padding:4px 12px;border-radius:20px;border:1px solid var(--border2);cursor:pointer;font-size:11.5px;font-family:'Instrument Sans',sans-serif;font-weight:500;background:transparent;color:var(--text);transition:all .15s;white-space:nowrap}
+.import-label:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 
 .toast{position:fixed;bottom:2rem;right:2rem;padding:10px 22px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;transform:translateY(80px);opacity:0;transition:all .25s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
@@ -176,6 +178,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .section-header-other .section-title{color:var(--teal)}
 .section-header-spanish .section-title{color:#c9a8f0}
 .section-header-baihee .section-title{color:#f0a0a0}
+.section-header-asian .section-title{color:var(--gold)}
 .section-header-admin .section-count{font-size:11px;color:var(--muted);margin-left:auto}
 .section-sep{height:1px;background:var(--border2);margin:1.5rem 0}
 .source-chip-group{display:flex;gap:.5rem;margin-top:.4rem}
@@ -185,6 +188,24 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .source-chip.active-other{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
 .source-chip.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
 .source-chip.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
+.source-chip.active-asian{background:rgba(201,151,90,0.15);border-color:var(--gold);color:var(--gold)}
+
+/* ADMIN SEARCH / FILTER */
+.admin-filter-bar{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem;padding:.9rem 1.1rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius)}
+.admin-search-wrap{position:relative;flex:1;min-width:180px}
+.admin-search-wrap input{width:100%;padding:8px 12px 8px 34px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s}
+.admin-search-wrap input:focus{border-color:var(--accent)}
+.admin-search-wrap input::placeholder{color:var(--muted)}
+.admin-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;pointer-events:none}
+.admin-filter-chips{display:flex;gap:.35rem;flex-wrap:wrap}
+.admin-filter-chip{padding:5px 13px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11.5px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .14s;white-space:nowrap}
+.admin-filter-chip:hover{border-color:var(--accent);color:var(--accent2)}
+.admin-filter-chip.active-thais{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.admin-filter-chip.active-other{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
+.admin-filter-chip.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
+.admin-filter-chip.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
+.admin-filter-chip.active-asian{background:rgba(201,151,90,0.15);border-color:var(--gold);color:var(--gold)}
+.admin-results-count{font-size:11.5px;color:var(--muted);white-space:nowrap}
 
 </style>
 </head>
@@ -226,6 +247,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
   <div class="card">
     <div class="card-title">Catálogo</div>
+    <div class="admin-filter-bar">
+      <div class="admin-search-wrap">
+        <span class="admin-search-icon">🔍</span>
+        <input type="search" id="adminSearch" placeholder="Buscar por título o autora…" oninput="renderBookList()" autocomplete="off">
+      </div>
+      <div class="admin-filter-chips">
+        <button class="admin-filter-chip" id="afAll" onclick="setAdminFilter('all')">Todos</button>
+        <button class="admin-filter-chip" id="afThais" onclick="setAdminFilter('thais')">🌸 Thais</button>
+        <button class="admin-filter-chip" id="afOther" onclick="setAdminFilter('other')">🌍 Occidentales</button>
+        <button class="admin-filter-chip" id="afSpanish" onclick="setAdminFilter('spanish')">💜 Español</button>
+        <button class="admin-filter-chip" id="afBaihee" onclick="setAdminFilter('baihee')">🐉 Baihee</button>
+        <button class="admin-filter-chip" id="afAsian" onclick="setAdminFilter('asian')">🏮 Asiáticas</button>
+      </div>
+      <span class="admin-results-count" id="adminResultsCount"></span>
+    </div>
     <div id="bookList"><div class="empty">Cargando…</div></div>
   </div>
 </div>
@@ -285,6 +321,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Libros Occidentales</button>
         <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Libros en Español</button>
         <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
+        <button class="source-chip" id="sourceAsian" onclick="setSource('asian')">🏮 Asiáticas</button>
       </div>
     </div>
 
@@ -498,6 +535,7 @@ const SPICY_LEVELS = [
 
 // Books stored in memory (from JSON), votes in Supabase
 let books = [], editingId = null;
+let adminFilterSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian'
 let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
 let authors = []; // array of strings
 let editions = []; // array of {lang, store, url}
@@ -525,6 +563,7 @@ function showMainUI() {
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainTopbar').style.display='flex';
   document.getElementById('mainContainer').style.display='';
+  setAdminFilter('all');
 }
 
 async function adminLogout(){await sb.auth.signOut();location.reload();}
@@ -559,8 +598,33 @@ function updateStats() {
   document.getElementById('sAuthors').innerHTML=`<em>${authorSet.size}</em>`;
 }
 
+function setAdminFilter(section) {
+  adminFilterSection = section;
+  const chips = {all:'afAll',thais:'afThais',other:'afOther',spanish:'afSpanish',baihee:'afBaihee',asian:'afAsian'};
+  const cls = {thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian'};
+  Object.entries(chips).forEach(([key,id]) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.className = 'admin-filter-chip';
+    if(key === section) {
+      if(key === 'all') el.classList.add('active-thais'); // highlight all differently
+      else el.classList.add(cls[key]);
+    }
+  });
+  if(section === 'all') {
+    document.getElementById('afAll').style.background = 'var(--accent-soft)';
+    document.getElementById('afAll').style.borderColor = 'var(--accent)';
+    document.getElementById('afAll').style.color = 'var(--accent2)';
+  } else {
+    const allEl = document.getElementById('afAll');
+    if(allEl) { allEl.style.background = ''; allEl.style.borderColor = ''; allEl.style.color = ''; }
+  }
+  renderBookList();
+}
+
 function renderBookList() {
   const list = document.getElementById('bookList');
+  const searchQ = (document.getElementById('adminSearch')?.value||'').toLowerCase().trim();
   if(!books.length){list.innerHTML='<div class="empty">Todavía no hay libros. ¡Añade el primero o importa un JSON!</div>';return;}
   const vc = window._voteCounts||{};
   function buildItem(b){
@@ -582,15 +646,22 @@ function renderBookList() {
       </div>
     </div>`;
   }
-  const thaisBooks=books.filter(b=>b.source==='thais');
-  const otherBooks=books.filter(b=>b.source==='other');
-  const spanishBooks=books.filter(b=>b.source==='spanish');
-  const baiheeBooks=books.filter(b=>b.source==='baihee');
+  // Apply search + section filter
+  let filtered = books;
+  if(searchQ) filtered = filtered.filter(b => (b.title+' '+(b.authors||[]).join(' ')).toLowerCase().includes(searchQ));
+  if(typeof adminFilterSection !== 'undefined' && adminFilterSection !== 'all') filtered = filtered.filter(b => b.source === adminFilterSection);
+
+  const thaisBooks=filtered.filter(b=>b.source==='thais');
+  const otherBooks=filtered.filter(b=>b.source==='other');
+  const spanishBooks=filtered.filter(b=>b.source==='spanish');
+  const baiheeBooks=filtered.filter(b=>b.source==='baihee');
+  const asianBooks=filtered.filter(b=>b.source==='asian');
   const sections=[
     {key:'thais', icon:'🌸', label:'Libros Thais', books:thaisBooks, cls:'section-header-thais'},
     {key:'other', icon:'🌍', label:'Libros Occidentales', books:otherBooks, cls:'section-header-other'},
     {key:'spanish', icon:'💜', label:'Libros en Español', books:spanishBooks, cls:'section-header-spanish'},
     {key:'baihee', icon:'🐉', label:'Baihee', books:baiheeBooks, cls:'section-header-baihee'},
+    {key:'asian', icon:'🏮', label:'Asiáticas', books:asianBooks, cls:'section-header-asian'},
   ];
   let html='';
   sections.forEach((s,i)=>{
@@ -598,8 +669,10 @@ function renderBookList() {
     if(html) html+='<div class="section-sep"></div>';
     html+=`<div class="section-header-admin ${s.cls}"><span class="section-icon">${s.icon}</span><div class="section-title">${s.label}</div><span class="section-count">${s.books.length} libro${s.books.length!==1?'s':''}</span></div><div class="book-list">${s.books.map(buildItem).join('')}</div>`;
   });
-  if(!html) html='<div class="empty">Todavía no hay libros. ¡Añade el primero o importa un JSON!</div>';
+  if(!html) html=`<div class="empty">${searchQ?'No hay libros que coincidan con "'+searchQ+'"':'Todavía no hay libros. ¡Añade el primero o importa un JSON!'}</div>`;
   list.innerHTML=html;
+  const countEl=document.getElementById('adminResultsCount');
+  if(countEl) countEl.textContent=filtered.length+' de '+books.length+' libros';
 }
 
 /* ── MODAL ── */
@@ -788,8 +861,8 @@ function renderSpicy(){
 function setSp(v){sel.spicy=(v==='null'||v===null)?null:parseInt(v);renderSpicy();}
 function setSource(v){
   sel.source=v;
-  const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee'};
-  const ids={thais:'sourceThais', other:'sourceOther', spanish:'sourceSpanish', baihee:'sourceBaihee'};
+  const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee', asian:'active-asian'};
+  const ids={thais:'sourceThais', other:'sourceOther', spanish:'sourceSpanish', baihee:'sourceBaihee', asian:'sourceAsian'};
   Object.entries(ids).forEach(([key,id])=>{
     const el=document.getElementById(id);
     if(el) el.className='source-chip'+(key===v?' '+map[key]:'');
