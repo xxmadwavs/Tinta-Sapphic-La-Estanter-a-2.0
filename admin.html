@@ -179,6 +179,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .section-header-spanish .section-title{color:#c9a8f0}
 .section-header-baihee .section-title{color:#f0a0a0}
 .section-header-asian .section-title{color:var(--gold)}
+.section-header-african .section-title{color:#8fd48f}
 .section-header-admin .section-count{font-size:11px;color:var(--muted);margin-left:auto}
 .section-sep{height:1px;background:var(--border2);margin:1.5rem 0}
 .source-chip-group{display:flex;gap:.5rem;margin-top:.4rem}
@@ -189,6 +190,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .source-chip.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
 .source-chip.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
 .source-chip.active-asian{background:rgba(201,151,90,0.15);border-color:var(--gold);color:var(--gold)}
+.source-chip.active-african{background:rgba(91,164,91,0.15);border-color:#5ba45b;color:#8fd48f}
 
 /* ADMIN SEARCH / FILTER */
 .admin-filter-bar{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem;padding:.9rem 1.1rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius)}
@@ -205,6 +207,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .admin-filter-chip.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
 .admin-filter-chip.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
 .admin-filter-chip.active-asian{background:rgba(201,151,90,0.15);border-color:var(--gold);color:var(--gold)}
+.admin-filter-chip.active-african{background:rgba(91,164,91,0.15);border-color:#5ba45b;color:#8fd48f}
 .admin-results-count{font-size:11.5px;color:var(--muted);white-space:nowrap}
 
 /* ── SAFICLUB admin ── */
@@ -289,6 +292,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="admin-filter-chip" id="afSpanish" onclick="setAdminFilter('spanish')">💜 Español</button>
         <button class="admin-filter-chip" id="afBaihee" onclick="setAdminFilter('baihee')">🐉 Baihee</button>
         <button class="admin-filter-chip" id="afAsian" onclick="setAdminFilter('asian')">🏮 Asiáticas</button>
+        <button class="admin-filter-chip" id="afAfrican" onclick="setAdminFilter('african')">🪘 Africanas</button>
       </div>
       <span class="admin-results-count" id="adminResultsCount"></span>
     </div>
@@ -365,6 +369,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Libros en Español</button>
         <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
         <button class="source-chip" id="sourceAsian" onclick="setSource('asian')">🏮 Asiáticas</button>
+        <button class="source-chip" id="sourceAfrican" onclick="setSource('african')">🪘 Africanas</button>
       </div>
     </div>
 
@@ -661,8 +666,8 @@ function updateStats() {
 
 function setAdminFilter(section) {
   adminFilterSection = section;
-  const chips = {all:'afAll',thais:'afThais',other:'afOther',spanish:'afSpanish',baihee:'afBaihee',asian:'afAsian'};
-  const cls = {thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian'};
+  const chips = {all:'afAll',thais:'afThais',other:'afOther',spanish:'afSpanish',baihee:'afBaihee',asian:'afAsian',african:'afAfrican'};
+  const cls = {thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian',african:'active-african'};
   Object.entries(chips).forEach(([key,id]) => {
     const el = document.getElementById(id);
     if(!el) return;
@@ -717,12 +722,14 @@ function renderBookList() {
   const spanishBooks=filtered.filter(b=>b.source==='spanish');
   const baiheeBooks=filtered.filter(b=>b.source==='baihee');
   const asianBooks=filtered.filter(b=>b.source==='asian');
+  const africanBooks=filtered.filter(b=>b.source==='african');
   const sections=[
     {key:'thais', icon:'🌸', label:'Libros Thais', books:thaisBooks, cls:'section-header-thais'},
     {key:'other', icon:'🌍', label:'Libros Occidentales', books:otherBooks, cls:'section-header-other'},
     {key:'spanish', icon:'💜', label:'Libros en Español', books:spanishBooks, cls:'section-header-spanish'},
     {key:'baihee', icon:'🐉', label:'Baihee', books:baiheeBooks, cls:'section-header-baihee'},
     {key:'asian', icon:'🏮', label:'Asiáticas', books:asianBooks, cls:'section-header-asian'},
+    {key:'african', icon:'🪘', label:'Africanas', books:africanBooks, cls:'section-header-african'},
   ];
   let html='';
   sections.forEach((s,i)=>{
@@ -929,8 +936,8 @@ function renderSpicy(){
 function setSp(v){sel.spicy=(v==='null'||v===null)?null:parseInt(v);renderSpicy();}
 function setSource(v){
   sel.source=v;
-  const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee', asian:'active-asian'};
-  const ids={thais:'sourceThais', other:'sourceOther', spanish:'sourceSpanish', baihee:'sourceBaihee', asian:'sourceAsian'};
+  const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee', asian:'active-asian', african:'active-african'};
+  const ids={thais:'sourceThais', other:'sourceOther', spanish:'sourceSpanish', baihee:'sourceBaihee', asian:'sourceAsian', african:'sourceAfrican'};
   Object.entries(ids).forEach(([key,id])=>{
     const el=document.getElementById(id);
     if(el) el.className='source-chip'+(key===v?' '+map[key]:'');

@@ -516,12 +516,14 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .section-tab.active-spanish{background:rgba(155,111,212,0.15);border-color:#9b6fd4;color:#c9a8f0}
 .section-tab.active-baihee{background:rgba(212,96,96,0.12);border-color:#d46060;color:#f0a0a0}
 .section-tab.active-asian{background:rgba(201,151,90,0.15);border-color:var(--gold);color:var(--gold)}
+.section-tab.active-african{background:rgba(91,164,91,0.15);border-color:#5ba45b;color:#8fd48f}
 .section-tab .tab-count{font-size:10.5px;padding:1px 7px;border-radius:20px;font-weight:700;margin-left:1px}
 .section-tab.active-thais .tab-count{background:var(--accent);color:#fff}
 .section-tab.active-other .tab-count{background:var(--teal);color:var(--bg)}
 .section-tab.active-spanish .tab-count{background:#9b6fd4;color:#fff}
 .section-tab.active-baihee .tab-count{background:#d46060;color:#fff}
 .section-tab.active-asian .tab-count{background:var(--gold);color:var(--bg)}
+.section-tab.active-african .tab-count{background:#5ba45b;color:#fff}
 .section-tab .tab-count.hidden{display:none}
 @media(max-width:600px){.section-tabs{gap:.35rem;flex-wrap:wrap}.section-tab{padding:6px 12px;font-size:11.5px;flex:1 1 calc(50% - .35rem);justify-content:center}}
 </style>
@@ -663,6 +665,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
     <button class="section-tab" id="tabSpanish" onclick="switchSection('spanish')">💜 Libros en Español <span class="tab-count hidden" id="countSpanish">0</span></button>
     <button class="section-tab" id="tabBaihee" onclick="switchSection('baihee')">🐉 Baihee <span class="tab-count hidden" id="countBaihee">0</span></button>
     <button class="section-tab" id="tabAsian" onclick="switchSection('asian')">🏮 Asiáticas <span class="tab-count hidden" id="countAsian">0</span></button>
+    <button class="section-tab" id="tabAfrican" onclick="switchSection('african')">🪘 Africanas <span class="tab-count hidden" id="countAfrican">0</span></button>
   </div>
   <div class="filter-shell">
     <div class="filter-top">
@@ -1231,7 +1234,7 @@ function renderGrid(books, total, totalPages){
   const c=document.getElementById('booksContainer');
   // Update section tab counts (always from full filtered books before section split)
   const _all=[...allBooks];
-  [{id:'countThais',src:'thais'},{id:'countOther',src:'other'},{id:'countSpanish',src:'spanish'},{id:'countBaihee',src:'baihee'},{id:'countAsian',src:'asian'}].forEach(({id,src})=>{
+  [{id:'countThais',src:'thais'},{id:'countOther',src:'other'},{id:'countSpanish',src:'spanish'},{id:'countBaihee',src:'baihee'},{id:'countAsian',src:'asian'},{id:'countAfrican',src:'african'}].forEach(({id,src})=>{
     const el=document.getElementById(id);
     if(!el) return;
     const n=_all.filter(b=>b.source===src).length;
@@ -1663,8 +1666,8 @@ function switchSection(section){
     if(key==='years'){ filters[key]=filters[key].filter(v=>sectionBooks.some(b=>String(b.year)===v)); return; }
     filters[key]=filters[key].filter(v=>sectionBooks.some(b=>(b[key]||[]).includes(v)));
   });
-  const tabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee',asian:'tabAsian'};
-  const cls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian'};
+  const tabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee',asian:'tabAsian',african:'tabAfrican'};
+  const cls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian',african:'active-african'};
   Object.entries(tabs).forEach(([key,id])=>{
     const el=document.getElementById(id);
     if(el) el.className='section-tab'+(key===section?' '+cls[key]:'');
