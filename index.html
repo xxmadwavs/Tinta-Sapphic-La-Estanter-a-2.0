@@ -315,6 +315,112 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* ── SOLICITUDES ── */
 .sol-layout{display:grid;grid-template-columns:340px 1fr;gap:1.5rem;align-items:start;padding-bottom:4rem}
 @media(max-width:820px){.sol-layout{grid-template-columns:1fr}}
+
+/* ── HOME VIEW ─────────────────────────────────────── */
+#homeView{display:none;position:relative;z-index:1}
+#homeView.active{display:block}
+body.home-active .hero,body.home-active .main{display:none!important}
+
+.home-nav-btn{padding:7px 16px;border-radius:30px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body);transition:all .18s}
+.home-nav-btn:hover{border-color:var(--accent);color:var(--accent2)}
+.home-nav-btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+
+.hv-hero{padding:5rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+.hv-hero::before{content:'TS';position:absolute;right:-.02em;top:50%;transform:translateY(-52%);font-family:var(--font-display);font-size:clamp(8rem,20vw,15rem);font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(192,111,196,0.05);pointer-events:none;user-select:none}
+.hv-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:.7em}
+.hv-eyebrow::before,.hv-eyebrow::after{content:'';display:inline-block;width:28px;height:1px;background:currentColor;opacity:.5}
+.hv-h1{font-family:var(--font-display);font-size:clamp(3rem,9vw,6.5rem);font-weight:300;line-height:.95;letter-spacing:-.01em;margin-bottom:.6rem}
+.hv-h1 em{font-style:italic;font-weight:600;color:var(--accent)}
+.hv-jp{font-size:12px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.5rem}
+.hv-desc{max-width:500px;margin:0 auto 2.5rem;font-size:15px;color:var(--muted);line-height:1.75}
+.hv-ctas{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+.hv-cta{display:inline-flex;align-items:center;gap:.4em;padding:12px 26px;border-radius:30px;font-size:13.5px;font-weight:600;font-family:var(--font-body);border:none;cursor:pointer;text-decoration:none;transition:all .2s}
+.hv-cta-main{background:var(--accent);color:#fff}
+.hv-cta-main:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(192,111,196,.3)}
+.hv-cta-reads{background:var(--rose-soft);color:var(--rose);border:1px solid rgba(212,96,122,.35)}
+.hv-cta-reads:hover{background:rgba(212,96,122,.22);transform:translateY(-2px)}
+.hv-cta-sec{background:transparent;color:var(--muted);border:1px solid var(--border2)}
+.hv-cta-sec:hover{border-color:var(--accent);color:var(--accent2);transform:translateY(-2px)}
+
+.hv-stats-band{background:var(--surface);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:1.5rem 2rem;display:flex;justify-content:center;gap:0;flex-wrap:wrap}
+.hv-stat{display:flex;flex-direction:column;align-items:center;padding:0 2.5rem;border-right:1px solid var(--border)}
+.hv-stat:last-child{border-right:none}
+.hv-stat-n{font-family:var(--font-display);font-size:2.6rem;font-weight:300;line-height:1;color:var(--text)}
+.hv-stat-n em{font-style:italic;color:var(--accent)}
+.hv-stat-l{font-size:11px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:3px}
+
+.hv-features{max-width:1100px;margin:0 auto;padding:4rem 2rem 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.hv-feat-card{background:var(--surface);padding:2.2rem 2rem;position:relative;overflow:hidden;cursor:default}
+.hv-feat-card::before{content:attr(data-n);position:absolute;bottom:-12px;right:8px;font-family:var(--font-display);font-size:5.5rem;font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1.5px rgba(180,120,200,.06);pointer-events:none}
+.hv-feat-card.clickable{cursor:pointer;transition:background .18s}
+.hv-feat-card.clickable:hover{background:var(--surface2)}
+.hv-feat-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.hv-feat-h3{font-family:var(--font-display);font-size:1.35rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+.hv-feat-p{font-size:13px;color:var(--muted);line-height:1.75}
+.hv-feat-link{display:inline-flex;align-items:center;gap:.35em;margin-top:1rem;font-size:12.5px;font-weight:600;color:var(--accent2);background:none;border:none;cursor:pointer;font-family:var(--font-body);padding:0;transition:opacity .15s}
+.hv-feat-link:hover{opacity:.7}
+.hv-feat-link.rose{color:var(--rose)}
+
+.hv-safi-block{max-width:1100px;margin:1px auto 0;background:var(--surface);border-top:1px solid rgba(212,96,122,.15);position:relative;overflow:hidden;cursor:pointer;transition:background .18s}
+.hv-safi-block:hover{background:var(--surface2)}
+.hv-safi-block::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--rose),var(--accent))}
+.hv-safi-inner{display:grid;grid-template-columns:1fr 1fr;padding:2.5rem 2.5rem;gap:0}
+.hv-safi-left{padding-right:2.5rem;border-right:1px solid var(--border)}
+.hv-safi-right{padding-left:2.5rem;display:flex;flex-direction:column;gap:.7rem;justify-content:center}
+.hv-safi-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.hv-safi-badge{padding:2px 8px;border:1px solid rgba(212,96,122,.35);background:rgba(212,96,122,.08);font-size:8px;letter-spacing:.12em;border-radius:20px}
+.hv-safi-h2{font-family:var(--font-display);font-size:2.2rem;font-weight:300;font-style:italic;color:var(--text);margin-bottom:.8rem}
+.hv-safi-h2 em{color:var(--rose);font-weight:600}
+.hv-safi-p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:1.2rem}
+.hv-safi-cat{display:flex;flex-direction:column;gap:.5rem}
+.hv-safi-cat-row{display:flex;align-items:center;gap:.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.6rem .9rem;transition:border-color .15s}
+.hv-safi-cat-row:hover{border-color:rgba(212,96,122,.3)}
+.hv-safi-cat-name{flex:1;font-size:12.5px;font-weight:500;color:var(--text)}
+.hv-safi-cat-count{font-size:11px;color:var(--muted)}
+
+.hv-how{max-width:1100px;margin:4rem auto 0;padding:0 2rem 5rem}
+.hv-how-title{font-family:var(--font-display);font-size:2.5rem;font-weight:300;font-style:italic;text-align:center;margin-bottom:.3rem;color:var(--text)}
+.hv-how-sub{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:2.5rem}
+.hv-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.hv-how-card{background:var(--surface);padding:2rem 1.75rem;position:relative;overflow:hidden}
+.hv-how-card::before{content:attr(data-n);position:absolute;bottom:-12px;right:8px;font-family:var(--font-display);font-size:5rem;font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1.5px rgba(180,120,200,.06);pointer-events:none}
+.hv-how-icon{font-size:1.7rem;margin-bottom:.75rem;display:block}
+.hv-how-h3{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.hv-how-p{font-size:12.5px;color:var(--muted);line-height:1.75}
+
+.hv-footer{background:var(--surface);border-top:1px solid var(--border2);padding:2rem;text-align:center}
+.hv-footer-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:300;color:var(--text);margin-bottom:.25rem}
+.hv-footer-logo em{font-style:italic;color:var(--accent);font-weight:600}
+.hv-footer-sub{font-size:11px;color:var(--muted);letter-spacing:.1em}
+
+/* ── LEÍDAS tab panel ─────────────────────────────── */
+.safi-wrap{max-width:900px;margin:0 auto;padding-bottom:4rem}
+.safi-section-group{margin-bottom:2rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
+.safi-section-head{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.2rem;border-bottom:1px solid var(--border)}
+.safi-section-name{font-family:var(--font-display);font-size:1rem;font-style:italic;color:var(--accent2);font-weight:600}
+.safi-section-count{font-size:11.5px;color:var(--muted)}
+.safi-items{display:flex;flex-wrap:wrap;gap:.6rem;padding:1rem 1.2rem}
+.safi-item{display:flex;align-items:center;gap:.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.5rem .75rem;font-size:12.5px;color:var(--text);transition:border-color .15s}
+.safi-item:hover{border-color:var(--border2)}
+.safi-item img{width:28px;height:42px;object-fit:cover;border-radius:6px;flex-shrink:0;border:1px solid var(--border)}
+.safi-item-ph{width:28px;height:42px;border-radius:6px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--muted);flex-shrink:0}
+.safi-item-info{flex:1;min-width:0}
+.safi-item-title{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+.safi-item-sec{font-size:10.5px;color:var(--muted);margin-top:1px}
+.safi-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:0;transition:color .15s;flex-shrink:0;line-height:1}
+.safi-item-remove:hover{color:var(--rose)}
+.safi-empty{padding:2rem;text-align:center;color:var(--muted);font-style:italic;font-size:13px}
+
+@media(max-width:768px){
+  .hv-features{grid-template-columns:1fr}
+  .hv-safi-inner{grid-template-columns:1fr;padding:1.75rem 1.5rem}
+  .hv-safi-left{padding-right:0;border-right:none;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+  .hv-safi-right{padding-left:0;padding-top:1.25rem}
+  .hv-how-grid{grid-template-columns:1fr}
+  .hv-stat{padding:.75rem 1.5rem;border-right:none;border-bottom:1px solid var(--border)}
+  .hv-stat:last-child{border-bottom:none}
+  .hv-stats-band{flex-direction:column}
+}
 .sol-form-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.5rem 1.75rem 1.75rem}
 .sol-form-title{font-family:var(--font-display);font-size:1.5rem;font-weight:400;font-style:italic;margin-bottom:.2rem}
 .sol-form-sub{font-size:12px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
@@ -409,15 +515,122 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <body>
 
 <nav class="topbar">
-  <a class="logo" href="#">
+  <a class="logo" href="#" onclick="showHome();return false;" style="text-decoration:none">
     <span class="logo-tinta">Tinta</span><em>Sapphic</em>
     <span class="logo-sep">~</span>
     <span class="logo-sub">La Estantería</span>
   </a>
-  <div class="topbar-right" id="authArea">
-    <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
+  <div class="topbar-right" style="display:flex;align-items:center;gap:8px">
+    <button class="home-nav-btn" id="homeNavBtn" onclick="showHome()">⌂ Inicio</button>
+    <div id="authArea">
+      <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
+    </div>
   </div>
 </nav>
+
+<!-- HOME VIEW -->
+<div id="homeView">
+
+  <div class="hv-hero">
+    <div class="hv-eyebrow">📚 Libros Sapphic · F/F</div>
+    <h1 class="hv-h1">La <em>estantería</em><br>sapphic</h1>
+    <p class="hv-jp">Libros · Recs · SafiClub</p>
+    <p class="hv-desc">
+      La estantería de <strong style="color:var(--text)">Tinta Sapphic</strong>.
+      Explora libros sapphic curados, vota tus favoritos y descubre el SafiClub.
+    </p>
+    <div class="hv-ctas">
+      <button class="hv-cta hv-cta-main" onclick="showCatalog()">✦ Ver la estantería</button>
+      <button class="hv-cta hv-cta-reads" onclick="showCatalog('safi')">🌹 SafiClub</button>
+      <a class="hv-cta hv-cta-sec" href="#hv-how">¿Cómo funciona?</a>
+    </div>
+  </div>
+
+  <div class="hv-stats-band">
+    <div class="hv-stat"><div class="hv-stat-n" id="hvStatTotal">—</div><div class="hv-stat-l">Libros</div></div>
+    <div class="hv-stat"><div class="hv-stat-n" id="hvStatVotos">—</div><div class="hv-stat-l">Valoraciones</div></div>
+    <div class="hv-stat"><div class="hv-stat-n" id="hvStatSafi">—</div><div class="hv-stat-l">SafiClub</div></div>
+    <div class="hv-stat"><div class="hv-stat-n" id="hvStatThais">—</div><div class="hv-stat-l">Libros Thais</div></div>
+  </div>
+
+  <div class="hv-features">
+    <div class="hv-feat-card clickable" data-n="01" onclick="showCatalog()">
+      <span class="hv-feat-icon">📚</span>
+      <h3 class="hv-feat-h3">Explora la estantería</h3>
+      <p class="hv-feat-p">Libros sapphic organizados por sección — Thais, Occidentales, En Español, Baihee y más. Filtra por género, dinámica, tropo y spicy level.</p>
+      <button class="hv-feat-link" onclick="showCatalog()">→ Abrir estantería</button>
+    </div>
+    <div class="hv-feat-card" data-n="02">
+      <span class="hv-feat-icon">★</span>
+      <h3 class="hv-feat-h3">Vota y construye el Top 10</h3>
+      <p class="hv-feat-p">Inicia sesión con tu cuenta y puntúa del 1 al 5 los libros de Thais. Las valoraciones de toda la comunidad construyen el ranking.</p>
+      <button class="hv-feat-link" onclick="showCatalog('top10')">→ Ver el Top 10</button>
+    </div>
+    <div class="hv-feat-card" data-n="03">
+      <span class="hv-feat-icon">🔍</span>
+      <h3 class="hv-feat-h3">Filtros avanzados</h3>
+      <p class="hv-feat-p">Busca por dinámica de pareja, tropos, nivel spicy, saga, año de publicación y más. Combina varios filtros para encontrar exactamente lo que buscas.</p>
+    </div>
+  </div>
+
+  <div class="hv-safi-block" onclick="showCatalog('safi')" style="max-width:1100px;margin:1px auto 0">
+    <div class="hv-safi-inner">
+      <div class="hv-safi-left">
+        <div class="hv-safi-eyebrow">SafiClub <span class="hv-safi-badge">LECTURAS</span></div>
+        <h2 class="hv-safi-h2">El club<br>que <em>lee juntas</em></h2>
+        <p class="hv-safi-p">Las SafiClub de Tinta Sapphic organizadas por categoría. Descubre qué hemos leído, qué está en progreso y qué viene a continuación.</p>
+        <button class="hv-feat-link rose" onclick="event.stopPropagation();showCatalog('safi')">→ Ver todas las lecturas</button>
+      </div>
+      <div class="hv-safi-right">
+        <div class="hv-safi-cat">
+          <div class="hv-safi-cat-row">
+            <span>🌹</span>
+            <span class="hv-safi-cat-name">Lecturas del mes</span>
+            <span class="hv-safi-cat-count" id="hvSafiCatMes">—</span>
+          </div>
+          <div class="hv-safi-cat-row">
+            <span>📖</span>
+            <span class="hv-safi-cat-name">SafiClub</span>
+            <span class="hv-safi-cat-count" id="hvSafiCatLeidas">—</span>
+          </div>
+          <div class="hv-safi-cat-row">
+            <span>⭐</span>
+            <span class="hv-safi-cat-name">Favoritas del club</span>
+            <span class="hv-safi-cat-count" id="hvSafiCatFav">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hv-how" id="hv-how">
+    <h2 class="hv-how-title">¿Cómo funciona?</h2>
+    <p class="hv-how-sub">Todo lo que necesitas saber</p>
+    <div class="hv-how-grid">
+      <div class="hv-how-card" data-n="1">
+        <span class="hv-how-icon">🔍</span>
+        <h3 class="hv-how-h3">Explora el catálogo</h3>
+        <p class="hv-how-p">Navega por cientos de libros sapphic organizados en secciones. Usa los filtros para encontrar exactamente lo que busca tu alma lectora.</p>
+      </div>
+      <div class="hv-how-card" data-n="2">
+        <span class="hv-how-icon">✍️</span>
+        <h3 class="hv-how-h3">Crea tu cuenta</h3>
+        <p class="hv-how-p">Regístrate con tu usuario de Telegram y tu email. Es gratis y solo lleva un momento. Tu voto cuenta en el ranking comunitario.</p>
+      </div>
+      <div class="hv-how-card" data-n="3">
+        <span class="hv-how-icon">⭐</span>
+        <h3 class="hv-how-h3">Vota tus favoritos</h3>
+        <p class="hv-how-p">Puntúa los libros de Thais del 1 al 5. Las valoraciones de toda la comunidad construyen el Top 10. ¿Cuál será el número 1?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hv-footer">
+    <div class="hv-footer-logo">Tinta <em>Sapphic</em></div>
+    <div class="hv-footer-sub">La estantería sapphic de la comunidad</div>
+  </div>
+
+</div><!-- /#homeView -->
 
 <section class="hero">
   <div class="hero-eyebrow">📚 Libros Sapphic · F/F</div>
@@ -434,7 +647,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- TABS -->
   <div class="tab-bar">
     <button class="tab-btn active" id="tabEstanteria" onclick="switchTab('estanteria')">📚 Estantería</button>
-    <button class="tab-btn" id="tabTop10" onclick="switchTab('top10')">🏆 Top 10</button>
+    <button class="tab-btn" id="tabTop10" onclick="switchTab('top10')">🏆 Top 10 Thais</button>
+    <button class="tab-btn" id="tabSafi" onclick="switchTab('safi')">🌹 SafiClub</button>
     <button class="tab-btn" id="tabSolicitudes" onclick="switchTab('solicitudes')">📬 Solicitudes</button>
   </div>
 
@@ -522,6 +736,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- PANEL TOP 10 -->
   <div id="panelTop10" style="display:none">
     <div id="top10Container"></div>
+  </div>
+
+  <!-- PANEL LEÍDAS DEL CLUB -->
+  <div id="panelSafi" style="display:none">
+    <div class="safi-wrap" id="safiContainer">
+      <div class="loading"><div class="spinner"></div>Cargando lecturas…</div>
+    </div>
   </div>
 
   <!-- PANEL SOLICITUDES -->
@@ -716,6 +937,7 @@ async function init(){
   loadState();   // restaurar filtros y página desde la URL
   applyFilters(false);
   updateDDCounts();renderActivePills();
+  showHome();
   const debouncedLoadRatings=debounce(()=>{
     if(currentUser) loadMyRatings().then(()=>{applyFilters(false);if(activeBook)renderBookModal();checkSolicitudesNotif();});
     else{myRatings={};applyFilters(false);}
@@ -767,6 +989,7 @@ function updateStats(){
   document.getElementById('statBooks').innerHTML=`<em>${allBooks.length}</em>`;
   document.getElementById('statVotes').innerHTML=`<em>${Object.values(ratingsMap).reduce((s,r)=>s+r.count,0)}</em>`;
   if(activeTab==='top10') renderTop10();
+  if(document.getElementById('homeView').classList.contains('active')) updateHomeStats();
 }
 
 /* ── DROPDOWNS ── */
@@ -1291,12 +1514,85 @@ function switchTab(tab){
   activeTab=tab;
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
   document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
+  document.getElementById('tabSafi').classList.toggle('active',tab==='safi');
   document.getElementById('tabSolicitudes').classList.toggle('active',tab==='solicitudes');
   document.getElementById('panelEstanteria').style.display=tab==='estanteria'?'':'none';
   document.getElementById('panelTop10').style.display=tab==='top10'?'':'none';
+  document.getElementById('panelSafi').style.display=tab==='safi'?'':'none';
   document.getElementById('panelSolicitudes').style.display=tab==='solicitudes'?'':'none';
   if(tab==='top10') renderTop10();
+  if(tab==='safi') renderSafi();
   if(tab==='solicitudes') renderSolicitudes();
+}
+
+/* ── HOME VIEW ── */
+function showHome(){
+  document.getElementById('homeView').classList.add('active');
+  document.body.classList.add('home-active');
+  document.getElementById('homeNavBtn').classList.add('active');
+  updateHomeStats();
+}
+function showCatalog(tab){
+  document.getElementById('homeView').classList.remove('active');
+  document.body.classList.remove('home-active');
+  document.getElementById('homeNavBtn').classList.remove('active');
+  if(tab) switchTab(tab);
+}
+function updateHomeStats(){
+  const total=allBooks.length;
+  const thais=allBooks.filter(b=>b.source==='thais').length;
+  const votes=Object.values(ratingsMap).reduce((s,r)=>s+r.count,0);
+  const safiCount=allBooks.filter(b=>b.saficlub).length;
+  document.getElementById('hvStatTotal').textContent=total||'—';
+  document.getElementById('hvStatVotos').textContent=votes||'—';
+  document.getElementById('hvStatSafi').textContent=safiCount||'—';
+  document.getElementById('hvStatThais').textContent=thais||'—';
+  // categorías leídas
+  const allCats=new Set();
+  allBooks.filter(b=>b.saficlub).forEach(b=>(b.safi_categories||['Sin categoría']).forEach(c=>allCats.add(c)));
+  const catCounts={};
+  allCats.forEach(c=>{catCounts[c]=allBooks.filter(b=>b.saficlub&&(b.safi_categories||['Sin categoría']).includes(c)).length;});
+  const mes=catCounts['Lectura del mes']||catCounts['Lectura del Mes']||'—';
+  const safiLeidas=catCounts['Leídas']||catCounts['Club']||'—';
+  const fav=catCounts['Favoritas']||catCounts['Favoritas del club']||'—';
+  document.getElementById('hvSafiCatMes').textContent=typeof mes==='number'?mes+' libro'+(mes!==1?'s':''):mes;
+  document.getElementById('hvSafiCatLeidas').textContent=typeof safiLeidas==='number'?leidas2+' libro'+(leidas2!==1?'s':''):leidas2;
+  document.getElementById('hvSafiCatFav').textContent=typeof fav==='number'?fav+' libro'+(fav!==1?'s':''):fav;
+}
+
+/* ── LEÍDAS DEL CLUB ── */
+function renderSafi(){
+  const c=document.getElementById('safiContainer');
+  const safiData=allBooks.filter(b=>b.saficlub);
+  if(!safiData.length){
+    c.innerHTML=`<div class="safi-empty">Aún no hay entradas en SafiClub marcadas. 🌹</div>`;
+    return;
+  }
+  const allCats=new Set();
+  safiData.forEach(b=>(b.safi_categories||['Sin categoría']).forEach(c=>allCats.add(c)));
+  c.innerHTML=[...allCats].sort().map(cat=>{
+    const items=safiData.filter(b=>(b.safi_categories||['Sin categoría']).includes(cat));
+    const itemsHtml=items.map(b=>{
+      const cover=b.cover
+        ?`<img src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=safi-item-ph>📖</div>'">`
+        :`<div class="safi-item-ph">📖</div>`;
+      const authorStr=(b.authors||[]).join(', ')||'—';
+      return `<div class="safi-item" onclick="openBook('${b.id}')" style="cursor:pointer">
+        ${cover}
+        <div class="safi-item-info">
+          <div class="safi-item-title" title="${b.title}">${b.title}</div>
+          <div class="safi-item-sec">${authorStr}</div>
+        </div>
+      </div>`;
+    }).join('');
+    return `<div class="safi-section-group">
+      <div class="safi-section-head">
+        <span class="safi-section-name">${cat}</span>
+        <span class="safi-section-count">${items.length} libro${items.length!==1?'s':''}</span>
+      </div>
+      <div class="safi-items">${itemsHtml}</div>
+    </div>`;
+  }).join('');
 }
 
 function switchSection(section){
@@ -1322,12 +1618,12 @@ function switchSection(section){
   applyFilters();
 }
 
-/* ── TOP 10 ── */
+/* ── TOP 10 (solo Thais) ── */
 function renderTop10(){
   const c=document.getElementById('top10Container');
-  // ordenar por avg desc, solo libros con al menos 1 valoración
+  // ordenar por avg desc, solo libros Thais con al menos 1 valoración
   const ranked=[...allBooks]
-    .filter(b=>ratingsMap[b.id]?.count>0)
+    .filter(b=>b.source==='thais' && ratingsMap[b.id]?.count>0)
     .sort((a,b)=>{
       const da=ratingsMap[a.id],db=ratingsMap[b.id];
       if(db.avg!==da.avg) return db.avg-da.avg;

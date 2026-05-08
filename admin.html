@@ -207,6 +207,35 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .admin-filter-chip.active-asian{background:rgba(201,151,90,0.15);border-color:var(--gold);color:var(--gold)}
 .admin-results-count{font-size:11.5px;color:var(--muted);white-space:nowrap}
 
+/* ── SAFICLUB admin ── */
+.safi-admin-section{margin-top:1.5rem;background:var(--surface);border:1px solid rgba(212,96,122,0.2);border-radius:var(--radius-lg);position:relative;overflow:hidden}
+.safi-admin-section::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--rose),var(--accent))}
+.safi-admin-head{padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--border)}
+.safi-admin-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;font-style:italic;color:var(--text)}
+.safi-admin-title span{color:var(--rose)}
+.safi-admin-sub{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.safi-admin-body{padding:1rem 1.2rem}
+.safi-cats-list{display:flex;flex-direction:column;gap:1.2rem}
+.safi-cat-group{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2)}
+.safi-cat-head{display:flex;align-items:center;justify-content:space-between;padding:.6rem .9rem;border-bottom:1px solid var(--border)}
+.safi-cat-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--rose)}
+.safi-cat-count{font-size:11px;color:var(--muted)}
+.safi-cat-items{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem .9rem}
+.safi-admin-item{display:flex;align-items:center;gap:.5rem;background:var(--surface3);border:1px solid rgba(212,96,122,0.15);border-radius:8px;padding:.35rem .6rem;font-size:12px;color:var(--text)}
+.safi-admin-item img{width:28px;height:42px;object-fit:cover;border-radius:5px;flex-shrink:0;border:1px solid var(--border)}
+.safi-admin-item-ph{width:28px;height:42px;border-radius:5px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--muted)}
+.safi-admin-item-info{flex:1;min-width:0}
+.safi-admin-item-title{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.safi-admin-item-sec{font-size:9.5px;color:var(--muted);margin-top:1px}
+.safi-admin-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:0;transition:color .15s;flex-shrink:0;line-height:1}
+.safi-admin-item-remove:hover{color:var(--rose)}
+.safi-admin-empty{padding:1.5rem;text-align:center;color:var(--muted);font-style:italic;font-size:12.5px}
+
+/* saficlub form fields in edit modal */
+.safi-club-form{margin-top:8px;padding:10px 12px;background:rgba(212,96,122,0.05);border:1px solid rgba(212,96,122,0.2);border-radius:10px}
+.safi-club-cats-inp{width:100%;padding:7px 10px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:12.5px;outline:none;border-radius:8px;transition:border-color .2s}
+.safi-club-cats-inp:focus{border-color:var(--rose)}
+
 </style>
 </head>
 <body>
@@ -243,6 +272,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="stat-card"><div class="stat-num" id="sVotes"><em>—</em></div><div class="stat-label">Valoraciones</div></div>
     <div class="stat-card"><div class="stat-num" id="sGenres"><em>0</em></div><div class="stat-label">Géneros únicos</div></div>
     <div class="stat-card"><div class="stat-num" id="sAuthors"><em>0</em></div><div class="stat-label">Autoras</div></div>
+    <div class="stat-card"><div class="stat-num" id="sSafi"><em>0</em></div><div class="stat-label">SafiClub</div></div>
   </div>
 
   <div class="card">
@@ -263,6 +293,19 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <span class="admin-results-count" id="adminResultsCount"></span>
     </div>
     <div id="bookList"><div class="empty">Cargando…</div></div>
+  </div>
+
+  <!-- SAFICLUB — admin -->
+  <div class="safi-admin-section" id="safiAdminSection">
+    <div class="safi-admin-head">
+      <div>
+        <div class="safi-admin-title">Leídas del <span>club</span></div>
+        <div class="safi-admin-sub">Libros en SafiClub · <span id="safiAdminCount">0</span> libro(s)</div>
+      </div>
+    </div>
+    <div class="safi-admin-body">
+      <div id="safiCatsList"></div>
+    </div>
   </div>
 </div>
 
@@ -409,6 +452,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div id="editionsWrap" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.6rem"></div>
       <button class="btn small" onclick="addEdition()" type="button">+ Añadir edición</button>
       <div style="font-size:11px;color:var(--muted);margin-top:.5rem">Ej: ES Español en Amazon · EN English en Book Depository…</div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title" style="color:var(--rose)">🌹 SafiClub</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <input type="checkbox" id="fSafiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('safiCatField').style.display=this.checked?'block':'none'">
+        <label for="fSafiClub" id="safiLbl" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como SafiClub</label>
+      </div>
+      <div id="safiCatField" style="display:none">
+        <div class="safi-club-form">
+          <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
+          <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Escribe las categorías separadas por coma. Ej: <em>Lectura del mes, Leídas, Favoritas del club</em></div>
+        </div>
+      </div>
     </div>
 
     <div class="btn-row">
@@ -593,9 +651,12 @@ async function loadVoteStats() {
 function updateStats() {
   const genreSet  = new Set(books.flatMap(b=>b.genres||[]));
   const authorSet = new Set(books.flatMap(b=>b.authors||[]));
+  const safiCount = books.filter(b=>b.saficlub).length;
   document.getElementById('sTotal').innerHTML  =`<em>${books.length}</em>`;
   document.getElementById('sGenres').innerHTML =`<em>${genreSet.size}</em>`;
   document.getElementById('sAuthors').innerHTML=`<em>${authorSet.size}</em>`;
+  document.getElementById('sSafi').innerHTML =`<em>${safiCount}</em>`;
+  renderSafiAdmin();
 }
 
 function setAdminFilter(section) {
@@ -715,6 +776,10 @@ function openEditModal(id) {
   updateSagaSection();
   sel.spicy=b.spicy===undefined?null:b.spicy;
   setSource(b.source||'thais');
+  // SafiClub
+  document.getElementById('fSafiClub').checked=!!b.saficlub;
+  document.getElementById('safiCatField').style.display=b.saficlub?'block':'none';
+  document.getElementById('fSafiCats').value=(b.safi_categories||[]).join(', ');
   renderAuthorPills();
   renderAllChips();
   renderEditions();
@@ -731,6 +796,9 @@ function clearForm() {
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
   document.getElementById('sagaSection').style.display='none';
+  document.getElementById('fSafiClub').checked=false;
+  document.getElementById('safiCatField').style.display='none';
+  document.getElementById('fSafiCats').value='';
   renderAuthorPills();
   renderAllChips();
   renderEditions();
@@ -899,6 +967,12 @@ function saveBook() {
     sagaNum:   document.getElementById('fSagaNum').value!==''?parseFloat(document.getElementById('fSagaNum').value):null,
     source:    sel.source||'thais',
     editions:  editions.filter(e=>e.url).map(e=>({lang:e.lang,store:e.store,url:e.url})),
+    saficlub: document.getElementById('fSafiClub').checked,
+    safi_categories: document.getElementById('fSafiClub').checked
+      ? (document.getElementById('fSafiCats').value.split(',').map(s=>s.trim()).filter(Boolean).length
+          ? document.getElementById('fSafiCats').value.split(',').map(s=>s.trim()).filter(Boolean)
+          : ['Sin categoría'])
+      : [],
   };
 
   if(editingId){
@@ -1119,6 +1193,53 @@ function runBookPaste(){
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 document.getElementById('bookModal').addEventListener('click',e=>{if(e.target.id==='bookModal')closeModal();});
+
+/* ── SAFICLUB admin ── */
+function renderSafiAdmin() {
+  const safiData = books.filter(b=>b.saficlub);
+  document.getElementById('safiAdminCount').textContent = safiData.length;
+  const allCats = new Set();
+  safiData.forEach(b=>(b.safi_categories||['Sin categoría']).forEach(c=>allCats.add(c)));
+  const list = document.getElementById('safiCatsList');
+  if(!safiData.length){
+    list.innerHTML='<div class="safi-admin-empty">Ningún libro marcado como LECTURA DEL CLUB todavía.<br>Edita un libro y activa la opción "SafiClub".</div>';
+    return;
+  }
+  list.innerHTML=[...allCats].sort().map(cat=>{
+    const items=safiData.filter(b=>(b.safi_categories||['Sin categoría']).includes(cat));
+    const itemsHtml=items.map(b=>{
+      const cover=b.cover
+        ?`<img src="${b.cover}" onerror="this.style.display='none'">`
+        :`<div class="safi-admin-item-ph">📖</div>`;
+      const authorStr=(b.authors||[]).join(', ')||'—';
+      return `<div class="safi-admin-item">
+        ${cover}
+        <div class="safi-admin-item-info">
+          <div class="safi-admin-item-title" title="${b.title}">${b.title}</div>
+          <div class="safi-admin-item-sec">${authorStr}</div>
+        </div>
+        <button class="safi-admin-item-remove" onclick="removeFromSafi('${b.id}')" title="Quitar de SafiClub">✕</button>
+      </div>`;
+    }).join('');
+    return `<div class="safi-cat-group">
+      <div class="safi-cat-head">
+        <span class="safi-cat-name">${cat}</span>
+        <span class="safi-cat-count">${items.length} libro${items.length!==1?'s':''}</span>
+      </div>
+      <div class="safi-cat-items">${itemsHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+function removeFromSafi(id){
+  const b=books.find(x=>x.id===id);
+  if(!b) return;
+  b.saficlub=false;
+  b.safi_categories=[];
+  renderSafiAdmin();
+  updateStats();
+  showToast('Quitado de las SafiClub');
+}
 
 checkSession();
 </script>
