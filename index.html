@@ -937,7 +937,12 @@ async function init(){
   loadState();   // restaurar filtros y página desde la URL
   applyFilters(false);
   updateDDCounts();renderActivePills();
-  showHome();
+  const savedTab = sessionStorage.getItem('ts_active_tab');
+  if(savedTab && savedTab !== 'home') {
+    showCatalog(savedTab);
+  } else if(!sessionStorage.getItem('ts_active_tab')) {
+    showHome();
+  }
   const debouncedLoadRatings=debounce(()=>{
     if(currentUser) loadMyRatings().then(()=>{applyFilters(false);if(activeBook)renderBookModal();checkSolicitudesNotif();});
     else{myRatings={};applyFilters(false);}
@@ -1512,6 +1517,7 @@ function showToast(msg,type='success'){const t=document.getElementById('toast');
 let activeTab='estanteria';
 function switchTab(tab){
   activeTab=tab;
+  sessionStorage.setItem('ts_active_tab', tab);
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
   document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
   document.getElementById('tabSafi').classList.toggle('active',tab==='safi');
@@ -1527,6 +1533,7 @@ function switchTab(tab){
 
 /* ── HOME VIEW ── */
 function showHome(){
+  sessionStorage.setItem('ts_active_tab', 'home');
   document.getElementById('homeView').classList.add('active');
   document.body.classList.add('home-active');
   document.getElementById('homeNavBtn').classList.add('active');
