@@ -1679,20 +1679,27 @@ function switchSection(section){
 /* ── TOP 10 (solo Thais) ── */
 function renderTop10(){
   const c=document.getElementById('top10Container');
-  // ordenar por avg desc, solo libros Thais con al menos 1 valoración
-  const ranked=[...allBooks]
-    .filter(b=>b.source==='thais' && ratingsMap[b.id]?.count>0)
-    .sort((a,b)=>{
-      const da=ratingsMap[a.id],db=ratingsMap[b.id];
-      if(db.avg!==da.avg) return db.avg-da.avg;
-      return db.count-da.count; // desempate por número de votos
-    })
-    .slice(0,10);
-
-  if(!ranked.length){
+  // Media ponderada bayesiana (fórmula IMDb):
+  // score = (v/(v+m)) × R + (m/(v+m)) × C
+  // v = votos del libro, R = media del libro
+  // m = mínimo de votos para contar (percentil 25 o mín. 3)
+  // C = media global de todos los libros Thais con votos
+  const thaisRated=[...allBooks].filter(b=>b.source==='thais' && ratingsMap[b.id]?.count>0);
+  if(!thaisRated.length){
     c.innerHTML=`<div class="top10-empty">Aún no hay valoraciones. ¡Sé la primera en votar! 🌹</div>`;
     return;
   }
+  // Calcular C (media global) y m (mínimo de votos)
+  const allCounts=thaisRated.map(b=>ratingsMap[b.id].count).sort((a,b)=>a-b);
+  const C=thaisRated.reduce((s,b)=>s+ratingsMap[b.id].avg,0)/thaisRated.length;
+  const m=Math.max(3, allCounts[Math.floor(allCounts.length*0.25)]||3);
+  function weightedScore(b){
+    const {avg:R,count:v}=ratingsMap[b.id];
+    return (v/(v+m))*R + (m/(v+m))*C;
+  }
+  const ranked=thaisRated
+    .sort((a,b)=>weightedScore(b)-weightedScore(a))
+    .slice(0,10);
 
   function coverEl(b,cls){
     return b.cover
