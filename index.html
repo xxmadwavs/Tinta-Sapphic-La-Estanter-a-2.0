@@ -579,7 +579,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
     <div class="hv-feat-card clickable" data-n="02" onclick="showCatalog('top10')">
       <span class="hv-feat-icon">★</span>
       <h3 class="hv-feat-h3">Vota y construye el Top 10</h3>
-      <p class="hv-feat-p">Inicia sesión con tu cuenta y puntúa del 1 al 5 los libros de Thais. Las valoraciones de toda la comunidad construyen el ranking.</p>
+      <p class="hv-feat-p">Inicia sesión con tu cuenta y puntúa del 1 al 5 cualquier libro de la estantería. El Top 10 clasifica los libros Thais más valorados por la comunidad.</p>
       <button class="hv-feat-link" onclick="showCatalog('top10')">→ Ver el Top 10</button>
     </div>
     <div class="hv-feat-card clickable" data-n="03" onclick="showCatalog()">
@@ -625,7 +625,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <div class="hv-how-card" data-n="3">
         <div class="hv-how-step">3</div>
         <h3 class="hv-how-h3">Vota tus favoritos</h3>
-        <p class="hv-how-p">Puntúa los libros de Thais del 1 al 5. Las valoraciones de toda la comunidad construyen el Top 10. ¿Cuál será el número 1?</p>
+        <p class="hv-how-p">Puntúa los libros del 1 al 5. Puedes votar cualquier sección, y el Top 10 clasifica los libros Thais más valorados. ¿Cuál será el número 1?</p>
       </div>
     </div>
   </div>
@@ -1259,17 +1259,16 @@ function renderGrid(books, total, totalPages){
     const cardSagaNum=b.sagaNum!=null?' #'+b.sagaNum:'';
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${cardSagaName}${cardSagaNum}</div>`:'';
     const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
-    const showRating=b.source==='thais';
     return `<div class="book-card" onclick="openBook('${b.id}')">
-      <div class="book-cover-wrap">${spicyBadge}${coverEl}${showRating?avgBadge:''}</div>
+      <div class="book-cover-wrap">${spicyBadge}${coverEl}${avgBadge}</div>
       <div class="book-card-body">
         <div class="book-title">${b.title}</div>
         ${cardSagaSub}
         <div class="book-author">${authorStr}</div>
         <div class="book-tags">${genreTags}${dinamicaTag}${tropeTags}${yearTag}${formatoTag}${adaptTag}</div>
         <div class="book-footer">
-          ${showRating?(r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`):`<span class="no-ratings" style="opacity:0"> </span>`}
-          ${showRating?`<button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBook('${b.id}')">${voteLabel}</button>`:''}
+          ${r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`}
+          <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBook('${b.id}')">${voteLabel}</button>
         </div>
       </div>
     </div>`;
@@ -1375,7 +1374,7 @@ function renderBookModal(){
           </a>`).join('')}
         </div>
       </div>`:''}
-      ${b.source==='thais'?`<div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>`:''}
+      <div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>
     </div>`;
 }
 
