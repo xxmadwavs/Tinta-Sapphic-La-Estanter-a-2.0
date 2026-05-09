@@ -1054,8 +1054,9 @@ function moveSugFocus(dir){
 
 function renderAuthorPills() {
   const wrap=document.getElementById('authorWrap');
-  const pills=authors.map(a=>`<span class="author-pill">${a}<button type="button" onclick="removeAuthor('${a.replace(/'/g,"\\'")}')">×</button></span>`).join('');
-  wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${authors.length?'':\'Nombre de la autora…\'}" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">`;
+  const pills=authors.map(a=>`<span class="author-pill">${a}<button type="button" onclick="removeAuthor('${a.replace(/'/g,"\\'")}')" >×</button></span>`).join('');
+  const ph=authors.length?'':'Nombre de la autora…';
+  wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${ph}" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">`;
 }
 
 function removeAuthor(name){authors=authors.filter(a=>a!==name);renderAuthorPills();}
