@@ -578,8 +578,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
     </div>
     <div class="hv-feat-card clickable" data-n="02" onclick="showCatalog('top10')">
       <span class="hv-feat-icon">★</span>
-      <h3 class="hv-feat-h3">Vota y construye el Top 10</h3>
-      <p class="hv-feat-p">Inicia sesión con tu cuenta y puntúa del 1 al 5 cualquier libro de la estantería. El Top 10 clasifica los libros Thais más valorados por la comunidad.</p>
+      <h3 class="hv-feat-h3">Vota estrellas y nivel spicy</h3>
+      <p class="hv-feat-p">Inicia sesión y puntúa del 1 al 5 cualquier libro. Además, puedes votar el nivel spicy 🌶 de cada libro — cuantas más lo voten, más preciso será el dato para toda la comunidad.</p>
       <button class="hv-feat-link" onclick="showCatalog('top10')">→ Ver el Top 10</button>
     </div>
     <div class="hv-feat-card clickable" data-n="03" onclick="showCatalog()">
@@ -624,8 +624,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
       </div>
       <div class="hv-how-card" data-n="3">
         <div class="hv-how-step">3</div>
-        <h3 class="hv-how-h3">Vota tus favoritos</h3>
-        <p class="hv-how-p">Puntúa los libros del 1 al 5. Puedes votar cualquier sección, y el Top 10 clasifica los libros Thais más valorados. ¿Cuál será el número 1?</p>
+        <h3 class="hv-how-h3">Vota estrellas y spicy</h3>
+        <p class="hv-how-p">Puntúa los libros del 1 al 5 ★ y vota el nivel spicy 🌶 que crees que tienen. El dato que aparece en cada libro se construye con los votos de la comunidad.</p>
       </div>
     </div>
   </div>
@@ -902,6 +902,7 @@ function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()
 function pushState(){
   try{
     const params=new URLSearchParams();
+    if(activeSection&&activeSection!=='thais') params.set('section',activeSection);
     if(currentPage>1) params.set('page',currentPage);
     if(filters.q) params.set('q',filters.q);
     ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas'].forEach(k=>{
@@ -917,6 +918,7 @@ function pushState(){
 }
 function loadState(){
   const params=new URLSearchParams(location.search);
+  if(params.get('section')) activeSection=params.get('section');
   if(params.get('page')) currentPage=parseInt(params.get('page'))||1;
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
   ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas'].forEach(k=>{
@@ -943,6 +945,10 @@ async function init(){
   if(currentUser) await loadMyRatings();
   buildDropdowns();
   loadState();   // restaurar filtros y página desde la URL
+  // Pintar visualmente la sección activa restaurada
+  const _secTabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee',asian:'tabAsian',african:'tabAfrican'};
+  const _secCls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian',african:'active-african'};
+  Object.entries(_secTabs).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.className='section-tab'+(key===activeSection?' '+_secCls[key]:'');});
   applyFilters(false);
   updateDDCounts();renderActivePills();
   const savedTab = sessionStorage.getItem('ts_active_tab');
