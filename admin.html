@@ -65,62 +65,93 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn.small{padding:4px 12px;font-size:11.5px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 
-.modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.8);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:300;padding:1.5rem 1rem;overflow-y:auto}
+.modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.8);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:300;padding:1rem;overflow-y:auto}
 .modal-bg.open{display:flex}
-.modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:640px;margin:auto;padding:2rem;box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative}
-.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;font-style:italic;margin-bottom:1.5rem}
-.modal-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:980px;margin:auto;box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative;display:flex;flex-direction:column}
+.modal-top{padding:1.5rem 1.75rem 1rem;border-bottom:1px solid var(--border);position:relative;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;font-style:italic;flex:1}
+.modal-close{width:30px;height:30px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1;flex-shrink:0}
 .modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 
-.form-section{margin-bottom:1.4rem}
-.form-section-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.8rem;font-weight:600;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+/* Jump nav inside modal */
+.modal-jumpnav{display:flex;gap:.3rem;flex-wrap:wrap;align-items:center}
+.jnav-btn{padding:3px 11px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:11px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .13s;white-space:nowrap}
+.jnav-btn:hover{border-color:var(--accent);color:var(--accent2)}
+
+/* 2-col body */
+.modal-body{display:grid;grid-template-columns:340px 1fr;min-height:0}
+.modal-col-left{padding:1.5rem 1.5rem;border-right:1px solid var(--border);overflow-y:auto;max-height:calc(100vh - 160px)}
+.modal-col-right{padding:1.5rem 1.5rem;overflow-y:auto;max-height:calc(100vh - 160px)}
+@media(max-width:750px){.modal-body{grid-template-columns:1fr}.modal-col-left{border-right:none;border-bottom:1px solid var(--border);max-height:none}.modal-col-right{max-height:none}}
+
+.modal-footer{padding:1rem 1.75rem;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+
+.form-section{margin-bottom:1.3rem}
+.form-section-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.7rem;font-weight:600;padding-bottom:.35rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .form-row{margin-bottom:10px}
 .form-label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
-.form-row input,.form-row textarea{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s}
-.form-row textarea{resize:vertical;min-height:90px;line-height:1.55}
-.form-row input:focus,.form-row textarea:focus{border-color:var(--accent)}
+.form-row input,.form-row textarea,.form-row select{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s}
+.form-row textarea{resize:vertical;min-height:80px;line-height:1.55}
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus{border-color:var(--accent)}
 .form-row input::placeholder,.form-row textarea::placeholder{color:var(--muted)}
 .form-row-half{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border)}
+.btn-row{display:flex;gap:8px;justify-content:flex-end}
 
-/* AUTHORS TAG INPUT */
+/* AUTHORS with autocomplete */
+.author-field-wrap{position:relative}
 .tag-input-wrap{display:flex;flex-wrap:wrap;gap:.35rem;padding:8px 10px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);min-height:42px;align-items:center;cursor:text;transition:border-color .15s}
 .tag-input-wrap:focus-within{border-color:var(--accent)}
 .author-pill{display:flex;align-items:center;gap:4px;padding:2px 10px;border-radius:20px;background:var(--teal-soft);border:1px solid rgba(91,188,176,0.3);font-size:12px;color:var(--teal);white-space:nowrap}
 .author-pill button{background:transparent;border:none;color:inherit;cursor:pointer;font-size:13px;padding:0;line-height:1;opacity:.7}
 .author-pill button:hover{opacity:1}
 .tag-bare-input{background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;min-width:100px;flex:1}
+.author-suggestions{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border2);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,0.4);z-index:50;max-height:160px;overflow-y:auto;display:none;margin-top:3px}
+.author-suggestions.show{display:block}
+.author-sug-item{padding:7px 14px;font-size:13px;cursor:pointer;transition:background .1s}
+.author-sug-item:hover,.author-sug-item.focused{background:var(--surface2);color:var(--accent2)}
+.author-sug-item mark{background:transparent;color:var(--accent);font-weight:600}
 
-.cover-row{display:flex;gap:12px;align-items:flex-start}
-.cover-preview{width:54px;height:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);display:none;flex-shrink:0}
-.cover-hint{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:4px}
+.cover-row{display:flex;gap:10px;align-items:flex-start}
+.cover-preview{width:50px;height:74px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);display:none;flex-shrink:0}
+.cover-hint{font-size:11px;color:var(--muted);line-height:1.65;margin-top:4px}
 
 /* CHIP SELECTORS */
-.chip-group{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
-.chip-opt{padding:5px 13px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .14s;white-space:nowrap;line-height:1.4}
+.chip-group{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.35rem}
+.chip-opt{padding:4px 12px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11.5px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .13s;white-space:nowrap;line-height:1.5}
 .chip-opt:hover{border-color:var(--accent);color:var(--accent2)}
 .chip-opt.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 .chip-opt.rose.active{background:var(--rose-soft);border-color:var(--rose);color:#e0909e}
 .chip-opt.teal.active{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
 .chip-opt.lavender.active{background:rgba(155,130,201,0.15);border-color:#9b82c9;color:#c4b0e8}
 
+/* Collapsible chip section */
+.chip-section{margin-bottom:1.1rem}
+.chip-section-hd{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:.3rem 0;border-bottom:1px solid var(--border);margin-bottom:.5rem;user-select:none}
+.chip-section-hd:hover .chip-section-lbl{color:var(--accent2)}
+.chip-section-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:.4rem}
+.chip-section-badge{background:var(--accent);color:#fff;border-radius:20px;font-size:9.5px;font-weight:700;padding:1px 7px}
+.chip-section-arrow{font-size:10px;color:var(--muted);transition:transform .2s}
+.chip-section.collapsed .chip-section-arrow{transform:rotate(-90deg)}
+.chip-section.collapsed .chip-section-body{display:none}
+.chip-show-more{margin-top:.4rem;padding:3px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .13s}
+.chip-show-more:hover{border-color:var(--accent);color:var(--accent2)}
+
 /* SPICY */
-.spicy-grid{display:flex;flex-direction:column;gap:.4rem;margin-top:.4rem}
-.spicy-row{display:flex;align-items:center;gap:.6rem;padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .14s}
+.spicy-grid{display:flex;flex-direction:column;gap:.35rem;margin-top:.35rem}
+.spicy-row{display:flex;align-items:center;gap:.6rem;padding:7px 11px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .13s}
 .spicy-row:hover{border-color:var(--gold)}
 .spicy-row.active{border-color:var(--gold);background:var(--gold-soft)}
 .spicy-row input[type=radio]{accent-color:var(--gold);width:14px;height:14px;flex-shrink:0}
-.spicy-label{font-size:13px;color:var(--text);flex:1}
+.spicy-label{font-size:12.5px;color:var(--text);flex:1}
 .spicy-desc{font-size:11px;color:var(--muted)}
 
-/* IMPORT/EXPORT */
-.edition-row{display:grid;grid-template-columns:110px 130px 1fr 32px;gap:.4rem;align-items:center}
+/* EDITIONS */
+.edition-row{display:grid;grid-template-columns:100px 120px 1fr 30px;gap:.4rem;align-items:center}
 .edition-row input,.edition-row select{padding:7px 10px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s;width:100%}
 .edition-row input:focus,.edition-row select:focus{border-color:var(--accent)}
 .edition-row input::placeholder{color:var(--muted)}
-.edition-del{width:28px;height:28px;border-radius:50%;background:transparent;border:1px solid rgba(212,96,122,0.3);color:var(--rose);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.edition-del{width:26px;height:26px;border-radius:50%;background:transparent;border:1px solid rgba(212,96,122,0.3);color:var(--rose);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
 .edition-del:hover{background:var(--rose-soft)}
-@media(max-width:500px){.edition-row{grid-template-columns:1fr 1fr;}.edition-row input[placeholder="https://…"]{grid-column:1/-1}}
 #importFile{display:none}
 .import-label{padding:4px 12px;border-radius:20px;border:1px solid var(--border2);cursor:pointer;font-size:11.5px;font-family:'Instrument Sans',sans-serif;font-weight:500;background:transparent;color:var(--text);transition:all .15s;white-space:nowrap}
 .import-label:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
@@ -325,168 +356,225 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <!-- MODAL -->
 <div class="modal-bg" id="bookModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-title" id="modalTitle">Nuevo libro</div>
 
-    <div class="paste-bar">
-      <div class="paste-bar-label">Autocompletar</div>
-      <div class="paste-bar-row" style="margin-bottom:0">
-        <textarea class="paste-bar-textarea" id="pasteInput" placeholder="Pega aqui la info del libro (Titulo, Autora, Genero, Sinopsis...)"></textarea>
-        <button class="paste-bar-btn" onclick="runBookPaste()">Rellenar</button>
+    <!-- Header -->
+    <div class="modal-top">
+      <div class="modal-title" id="modalTitle">Nuevo libro</div>
+      <div class="modal-jumpnav" id="modalJumpNav">
+        <button class="jnav-btn" onclick="jumpTo('sec-basic')">📋 Básicos</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-genres')">🏷 Géneros</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-dinamica')">💞 Dinámica</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-tropes')">📖 Tropos</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-characters')">🧑 Personajes</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-spicy')">🌶 Spicy</button>
       </div>
-      <div class="paste-bar-status" id="pasteStatus"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Datos básicos</div>
-      <div class="form-row">
-        <label class="form-label">Título *</label>
-        <input type="text" id="fTitle" placeholder="Título del libro" oninput="checkDuplicate(this.value)">
-        <div class="dup-warning" id="dupWarning">
-          ⚠️ <strong>¡Posible duplicado!</strong> Ya existe un libro con un título similar:
-          <div class="dup-list" id="dupList"></div>
-        </div>
-        <div class="dup-ok" id="dupOk">✓ Título disponible</div>
-      </div>
-      <div class="form-row">
-        <label class="form-label">Autora/s * <span style="color:var(--muted);font-size:10px;text-transform:none">(escribe y pulsa Enter para añadir varias)</span></label>
-        <div class="tag-input-wrap" id="authorWrap" onclick="document.getElementById('authorInput').focus()">
-          <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)">
-        </div>
-      </div>
-      <div class="form-row-half">
-        <div class="form-row">
-          <label class="form-label">Año</label>
-          <input type="number" id="fYear" placeholder="2024" min="1800" max="2100">
-        </div>
-        <div class="form-row">
-          <label class="form-label">Páginas</label>
-          <input type="number" id="fPages" placeholder="320">
-        </div>
-      </div>
-      <div class="form-row">
-        <label class="form-label">ISBN</label>
-        <input type="text" id="fIsbn" placeholder="978-…">
-      </div>
-    </div>
+    <!-- 2-col body -->
+    <div class="modal-body">
 
-    <div class="form-section">
-      <div class="form-section-title">Sección *</div>
-      <div class="source-chip-group" id="sourceChips">
-        <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Libros Thais</button>
-        <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Libros Occidentales</button>
-        <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Libros en Español</button>
-        <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
-        <button class="source-chip" id="sourceAsian" onclick="setSource('asian')">🏮 Asiáticas</button>
-        <button class="source-chip" id="sourceAfrican" onclick="setSource('african')">🪘 Africanas</button>
-      </div>
-    </div>
+      <!-- LEFT COL: datos básicos -->
+      <div class="modal-col-left" id="modalColLeft">
 
-    <div class="form-section">
-      <div class="form-section-title">Portada</div>
-      <div class="cover-row">
-        <div style="flex:1">
-          <div class="form-row" style="margin-bottom:4px">
-            <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="previewCover(this.value)">
+        <div class="paste-bar" style="margin-bottom:1.1rem">
+          <div class="paste-bar-label">⚡ Autocompletar</div>
+          <div class="paste-bar-row" style="margin-bottom:0">
+            <textarea class="paste-bar-textarea" id="pasteInput" placeholder="Pega aquí la info del libro (Titulo, Autora, Genero, Sinopsis...)"></textarea>
+            <button class="paste-bar-btn" onclick="runBookPaste()">Rellenar</button>
           </div>
-          <div class="cover-hint">Busca el libro en <strong>Goodreads</strong> o <strong>Amazon</strong>, clic derecho en la portada → "Copiar dirección de imagen".</div>
+          <div class="paste-bar-status" id="pasteStatus"></div>
         </div>
-        <img id="coverPreview" class="cover-preview" alt="" onerror="this.style.display='none'">
-      </div>
-    </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Sinopsis</div>
-      <div class="form-row">
-        <textarea id="fSynopsis" placeholder="Descripción del libro…" rows="4"></textarea>
-      </div>
-    </div>
+        <div id="sec-basic" class="form-section">
+          <div class="form-section-title">Datos básicos</div>
+          <div class="form-row">
+            <label class="form-label">Título *</label>
+            <input type="text" id="fTitle" placeholder="Título del libro" oninput="checkDuplicate(this.value)">
+            <div class="dup-warning" id="dupWarning">⚠️ <strong>¡Posible duplicado!</strong> Ya existe un libro similar:<div class="dup-list" id="dupList"></div></div>
+            <div class="dup-ok" id="dupOk">✓ Título disponible</div>
+          </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Géneros <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(puedes seleccionar varios)</span></div>
-      <div class="chip-group" id="genreChips"></div>
-    </div>
+          <div class="form-row">
+            <label class="form-label">Autora/s * <span style="color:var(--muted);font-size:10px;text-transform:none">(Enter o coma para añadir varias)</span></label>
+            <div class="author-field-wrap">
+              <div class="tag-input-wrap" id="authorWrap" onclick="document.getElementById('authorInput').focus()">
+                <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">
+              </div>
+              <div class="author-suggestions" id="authorSuggestions"></div>
+            </div>
+          </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Subgéneros / Temáticas</div>
-      <div class="chip-group" id="subgenreChips"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Identidad y expresión de género <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(de las protagonistas)</span></div>
-      <div class="chip-group" id="identidadChips"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Personajes / Profesiones</div>
-      <div class="chip-group" id="characterChips"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Dinámica de pareja <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(cómo son ellas juntas)</span></div>
-      <div class="chip-group" id="dinamicaChips"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Tropos narrativos <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(cómo se desarrolla la trama)</span></div>
-      <div class="chip-group" id="tropeChips"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Nivel Spicy 🌶</div>
-      <div class="spicy-grid" id="spicyGrid"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Formato</div>
-      <div class="chip-group" id="formatoChips"></div>
-    </div>
-
-    <div class="form-section" id="sagaSection" style="display:none">
-      <div class="form-section-title">Saga</div>
-      <div class="form-row-half">
-        <div class="form-row" style="margin-bottom:0">
-          <label class="form-label">Nombre de la saga</label>
-          <input type="text" id="fSagaName" placeholder="Ej: WHALE, Caraval…">
+          <div class="form-row-half">
+            <div class="form-row" style="margin-bottom:0">
+              <label class="form-label">Año</label>
+              <input type="number" id="fYear" placeholder="2024" min="1800" max="2100">
+            </div>
+            <div class="form-row" style="margin-bottom:0">
+              <label class="form-label">Páginas</label>
+              <input type="number" id="fPages" placeholder="320">
+            </div>
+          </div>
+          <div class="form-row">
+            <label class="form-label">ISBN</label>
+            <input type="text" id="fIsbn" placeholder="978-…">
+          </div>
         </div>
-        <div class="form-row" style="margin-bottom:0">
-          <label class="form-label">Número <span style="color:var(--muted);font-size:10px;text-transform:none">(acepta 0.5, 1, 1.5…)</span></label>
-          <input type="number" id="fSagaNum" placeholder="1" min="0" step="0.5">
+
+        <div class="form-section">
+          <div class="form-section-title">Sección *</div>
+          <div class="source-chip-group" id="sourceChips">
+            <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Thais</button>
+            <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Occidentales</button>
+            <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Español</button>
+            <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
+            <button class="source-chip" id="sourceAsian" onclick="setSource('asian')">🏮 Asiáticas</button>
+            <button class="source-chip" id="sourceAfrican" onclick="setSource('african')">🪘 Africanas</button>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Adaptación</div>
-      <div class="chip-group" id="adaptacionChips"></div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Dónde comprar <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(idioma · tienda · enlace)</span></div>
-      <div id="editionsWrap" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.6rem"></div>
-      <button class="btn small" onclick="addEdition()" type="button">+ Añadir edición</button>
-      <div style="font-size:11px;color:var(--muted);margin-top:.5rem">Ej: ES Español en Amazon · EN English en Book Depository…</div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title" style="color:var(--rose)">🌹 SafiClub</div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-        <input type="checkbox" id="fSafiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('safiCatField').style.display=this.checked?'block':'none'">
-        <label for="fSafiClub" id="safiLbl" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como SafiClub</label>
-      </div>
-      <div id="safiCatField" style="display:none">
-        <div class="safi-club-form">
-          <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
-          <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">Escribe las categorías separadas por coma. Ej: <em>Lectura del mes, Leídas, Favoritas del club</em></div>
+        <div class="form-section">
+          <div class="form-section-title">Portada</div>
+          <div class="cover-row">
+            <div style="flex:1">
+              <div class="form-row" style="margin-bottom:4px">
+                <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="previewCover(this.value)">
+              </div>
+              <div class="cover-hint">Busca en <strong>Goodreads</strong> o <strong>Amazon</strong>, clic derecho en portada → "Copiar dirección de imagen".</div>
+            </div>
+            <img id="coverPreview" class="cover-preview" alt="" onerror="this.style.display='none'">
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="btn-row">
+        <div class="form-section">
+          <div class="form-section-title">Sinopsis</div>
+          <div class="form-row">
+            <textarea id="fSynopsis" placeholder="Descripción del libro…" rows="4"></textarea>
+          </div>
+        </div>
+
+        <div id="sec-spicy" class="form-section">
+          <div class="form-section-title">Nivel Spicy 🌶</div>
+          <div class="spicy-grid" id="spicyGrid"></div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Formato</div>
+          <div class="chip-group" id="formatoChips"></div>
+        </div>
+
+        <div class="form-section" id="sagaSection" style="display:none">
+          <div class="form-section-title">Saga</div>
+          <div class="form-row-half">
+            <div class="form-row" style="margin-bottom:0">
+              <label class="form-label">Nombre de la saga</label>
+              <input type="text" id="fSagaName" placeholder="Ej: WHALE, Caraval…">
+            </div>
+            <div class="form-row" style="margin-bottom:0">
+              <label class="form-label">Número</label>
+              <input type="number" id="fSagaNum" placeholder="1" min="0" step="0.5">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Adaptación</div>
+          <div class="chip-group" id="adaptacionChips"></div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Dónde comprar <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(idioma · tienda · enlace)</span></div>
+          <div id="editionsWrap" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.6rem"></div>
+          <button class="btn small" onclick="addEdition()" type="button">+ Añadir edición</button>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title" style="color:var(--rose)">🌹 SafiClub</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <input type="checkbox" id="fSafiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('safiCatField').style.display=this.checked?'block':'none'">
+            <label for="fSafiClub" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como SafiClub</label>
+          </div>
+          <div id="safiCatField" style="display:none">
+            <div class="safi-club-form">
+              <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
+              <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /col-left -->
+
+      <!-- RIGHT COL: chips -->
+      <div class="modal-col-right" id="modalColRight">
+
+        <div id="sec-genres" class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">🏷 Géneros <span class="chip-section-badge" id="badge-genres" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="genreChips"></div>
+          </div>
+        </div>
+
+        <div class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">🌈 Subgéneros / Temáticas <span class="chip-section-badge" id="badge-subgenres" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="subgenreChips"></div>
+          </div>
+        </div>
+
+        <div id="sec-dinamica" class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">💞 Dinámica de pareja <span class="chip-section-badge" id="badge-dinamicas" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="dinamicaChips"></div>
+          </div>
+        </div>
+
+        <div id="sec-tropes" class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">📖 Tropos narrativos <span class="chip-section-badge" id="badge-tropes" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="tropeChips"></div>
+          </div>
+        </div>
+
+        <div id="sec-characters" class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">🧑 Personajes / Profesiones <span class="chip-section-badge" id="badge-characters" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="characterChips"></div>
+          </div>
+        </div>
+
+        <div class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">🏳‍🌈 Identidad / expresión de género <span class="chip-section-badge" id="badge-identidades" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="identidadChips"></div>
+          </div>
+        </div>
+
+      </div><!-- /col-right -->
+    </div><!-- /modal-body -->
+
+    <div class="modal-footer">
       <button class="btn" onclick="closeModal()">Cancelar</button>
       <button class="btn primary" id="saveBtn" onclick="saveBook()">Guardar libro</button>
     </div>
+
   </div>
 </div>
 
@@ -900,24 +988,74 @@ function levenshtein(a,b){
   return dp[a.length][b.length];
 }
 
-function closeModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';}
+function closeModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';hideAuthorSuggestions();}
 
-/* ── AUTHORS ── */
+/* ── JUMP NAV ── */
+function jumpTo(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  const sec=el.closest('.chip-section');
+  if(sec&&sec.classList.contains('collapsed')) sec.classList.remove('collapsed');
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── CHIP SECTIONS (collapsible) ── */
+function toggleChipSection(hd){hd.closest('.chip-section').classList.toggle('collapsed');}
+
+/* ── AUTHORS with autocomplete ── */
 function handleAuthorInput(e) {
   if(e.key==='Enter'||e.key===','){
     e.preventDefault();
+    const focused=document.querySelector('.author-sug-item.focused');
+    if(focused){pickAuthorSug(focused.textContent.trim());return;}
     const val=e.target.value.trim().replace(/,$/,'').trim();
     if(val&&!authors.includes(val)){authors.push(val);renderAuthorPills();}
     e.target.value='';
+    hideAuthorSuggestions();
   } else if(e.key==='Backspace'&&!e.target.value&&authors.length){
     authors.pop();renderAuthorPills();
-  }
+  } else if(e.key==='ArrowDown'){e.preventDefault();moveSugFocus(1);}
+    else if(e.key==='ArrowUp'){e.preventDefault();moveSugFocus(-1);}
+    else if(e.key==='Escape'){hideAuthorSuggestions();}
+}
+
+function showAuthorSuggestions(val){
+  const box=document.getElementById('authorSuggestions');
+  if(!box) return;
+  const q=val.trim().toLowerCase();
+  if(!q||q.length<2){box.classList.remove('show');return;}
+  const allAuthors=[...new Set(books.flatMap(b=>b.authors||[]))].sort();
+  const matches=allAuthors.filter(a=>a.toLowerCase().includes(q)&&!authors.includes(a)).slice(0,8);
+  if(!matches.length){box.classList.remove('show');return;}
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  box.innerHTML=matches.map(a=>`<div class="author-sug-item" onmousedown="pickAuthorSug('${a.replace(/'/g,"\\'")}')">`+a.replace(re,'<mark>$1</mark>')+`</div>`).join('');
+  box.classList.add('show');
+}
+
+function pickAuthorSug(name){
+  if(name&&!authors.includes(name)){authors.push(name);renderAuthorPills();}
+  const inp=document.getElementById('authorInput');
+  if(inp) inp.value='';
+  hideAuthorSuggestions();
+}
+
+function hideAuthorSuggestions(){
+  setTimeout(()=>{const b=document.getElementById('authorSuggestions');if(b)b.classList.remove('show');},160);
+}
+
+function moveSugFocus(dir){
+  const items=[...document.querySelectorAll('.author-sug-item')];
+  if(!items.length) return;
+  const cur=items.findIndex(el=>el.classList.contains('focused'));
+  items.forEach(el=>el.classList.remove('focused'));
+  const next=(cur+dir+items.length)%items.length;
+  items[next].classList.add('focused');
 }
 
 function renderAuthorPills() {
   const wrap=document.getElementById('authorWrap');
-  const pills=authors.map(a=>`<span class="author-pill">${a}<button onclick="removeAuthor('${a.replace(/'/g,"\\'")}')">×</button></span>`).join('');
-  wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${authors.length?'':'Nombre de la autora…'}" onkeydown="handleAuthorInput(event)">`;
+  const pills=authors.map(a=>`<span class="author-pill">${a}<button type="button" onclick="removeAuthor('${a.replace(/'/g,"\\'")}')">×</button></span>`).join('');
+  wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${authors.length?'':\'Nombre de la autora…\'}" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">`;
 }
 
 function removeAuthor(name){authors=authors.filter(a=>a!==name);renderAuthorPills();}
@@ -936,6 +1074,15 @@ function renderAllChips() {
   renderSingleChips('formatoChips',    FORMATOS,    'formato',    'teal');
   renderSingleChips('adaptacionChips', ADAPTACIONES,'adaptacion', 'lavender');
   renderSpicy();
+  // Update section badges
+  [['badge-genres','genres'],['badge-subgenres','subgenres'],['badge-dinamicas','dinamicas'],
+   ['badge-tropes','tropes'],['badge-characters','characters'],['badge-identidades','identidades']
+  ].forEach(([bid,key])=>{
+    const el=document.getElementById(bid);
+    if(!el) return;
+    const n=Array.isArray(sel[key])?sel[key].length:0;
+    el.textContent=n;el.style.display=n?'':'none';
+  });
 }
 
 function renderChipGroup(cId,list,key,isRose){
