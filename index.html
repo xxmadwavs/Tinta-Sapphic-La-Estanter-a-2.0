@@ -582,6 +582,17 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .section-tab.active-african .tab-count{background:#5ba45b;color:#fff}
 .section-tab .tab-count.hidden{display:none}
 @media(max-width:600px){.section-tabs{gap:.35rem;flex-wrap:wrap}.section-tab{padding:6px 12px;font-size:11.5px;flex:1 1 calc(50% - .35rem);justify-content:center}}
+
+/* FOOTER */
+.site-footer{position:relative;z-index:1;border-top:1px solid var(--border2);background:var(--surface);padding:2.5rem 2rem 1.8rem;margin-top:3rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+.footer-logo{font-family:var(--font-display);font-size:1.3rem;font-weight:300;color:var(--muted);letter-spacing:.04em;text-align:center}
+.footer-logo em{font-style:italic;color:var(--accent);font-weight:600}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem}
+.footer-link{padding:6px 16px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;text-decoration:none;transition:all .18s;letter-spacing:.02em}
+.footer-link:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
+.footer-copy{font-size:11px;color:var(--muted);opacity:.5;letter-spacing:.05em;text-align:center}
+@media(max-width:600px){.site-footer{padding:2rem 1rem 1.5rem}.footer-links{gap:.25rem}.footer-link{font-size:11.5px;padding:5px 12px}}
 </style>
 </head>
 <body>
@@ -2325,7 +2336,6 @@ function renderMisSolicitudes(lista, userId){
   }).join('');
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeBookModal();closeAuthModal();closeAllDD();}});
 document.getElementById('bookModal').addEventListener('click',e=>{if(e.target.id==='bookModal')closeBookModal();});
 document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuthModal();});
 
@@ -2346,5 +2356,20 @@ async function checkSolicitudesNotif(){
 
 init();
 </script>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">TINTA <em>Sapphic</em> ~ La Estantería</div>
+    <nav class="footer-links">
+      <a class="footer-link" href="#">Sobre nosotras</a>
+      <a class="footer-link" href="#">FAQ</a>
+      <a class="footer-link" href="#">Contacto</a>
+      <a class="footer-link" href="#">Política de privacidad</a>
+      <a class="footer-link" href="#">Términos de uso</a>
+    </nav>
+    <div class="footer-copy">© 2026 Tinta Sapphic</div>
+  </div>
+</footer>
+
 </body>
 </html>
