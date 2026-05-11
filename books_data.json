@@ -812,6 +812,7 @@
     "adaptacion": "Tiene serie",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -829,7 +830,14 @@
         "url": "https://www.mebmarket.com/ebook-354792-%E0%B8%A7%E0%B8%B2%E0%B8%94%E0%B8%9D%E0%B8%B1%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B8%B2%E0%B8%AB%E0%B9%8C"
       }
     ],
-    "source": "thais"
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "THAIS"
+    ]
   },
   {
     "id": "b_1777211820815_xrr9v",
@@ -1925,6 +1933,7 @@
     "adaptacion": "Tiene serie",
     "sagaName": "REVERSE WITH ME",
     "sagaNum": 3,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -1937,7 +1946,14 @@
         "url": "https://www.amazon.es/Reverse-Across-Millions-Orbits-English-ebook/dp/B0DJPNBRNN"
       }
     ],
-    "source": "thais"
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "THAIS"
+    ]
   },
   {
     "id": "b_1777226259443_uvbpl",
@@ -2493,6 +2509,7 @@
     "adaptacion": "Tiene serie",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -2500,7 +2517,14 @@
         "url": "https://en.mebmarket.com/ebook-391633-Love-Design-English-Version"
       }
     ],
-    "source": "thais"
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "THAIS"
+    ]
   },
   {
     "id": "b_1777277628161_v63el",
@@ -3166,6 +3190,7 @@
     "adaptacion": "Sin adaptación",
     "sagaName": "BE MINE",
     "sagaNum": 2,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -3173,7 +3198,14 @@
         "url": "https://en.mebmarket.com/?action=book_details&book_id=218843"
       }
     ],
-    "source": "thais"
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "THAIS"
+    ]
   },
   {
     "id": "b_1777282704376_ac0zm",
@@ -7208,7 +7240,9 @@
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Age Gap"
+    ],
     "ambientacion": [],
     "spicy": 4,
     "formato": "Trilogía",
@@ -7216,7 +7250,15 @@
     "sagaName": "Those Who Wait",
     "sagaNum": 1,
     "source": "other",
-    "editions": []
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Age Gap"
+    ]
   },
   {
     "id": "b_1778008143443_v8r9w",
@@ -7626,7 +7668,15 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
-    "editions": []
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Drama"
+    ]
   },
   {
     "id": "b_1778008913163_gpn0t",
@@ -10284,7 +10334,14 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Dark Romance",
+      "Enemies to Lovers"
+    ]
   },
   {
     "id": "b_1778240133922_thkeg",
@@ -11778,7 +11835,13 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Fake Relathionship"
+    ]
   },
   {
     "id": "b_1778318177232_j4f8l",
@@ -11884,11 +11947,24 @@
     "genres": [
       "Romance"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Bullying",
+      "Dark Romance"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forbidden Love",
+      "Secret Relationship"
+    ],
     "ambientacion": [],
     "spicy": 5,
     "formato": null,
@@ -11898,7 +11974,14 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Dark Romance",
+      "Enemies to Lovers"
+    ]
   },
   {
     "id": "b_1778318550867_jhwm6",
@@ -11980,7 +12063,9 @@
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Fake Relationship"
+    ],
     "ambientacion": [],
     "spicy": 4,
     "formato": null,
@@ -11990,7 +12075,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Fake Relationship"
+    ]
   },
   {
     "id": "b_1778319222646_913a5",
@@ -12028,7 +12119,15 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Dark Romance",
+      "Vampiras",
+      "Enemies to Lovers"
+    ]
   },
   {
     "id": "b_1778319398392_tr46p",
@@ -13317,6 +13416,13 @@
     "saficlub": true,
     "safi_categories": [
       "2026"
+    ],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Enemies to Lovers",
+      "Soft"
     ]
   },
   {
@@ -13887,7 +13993,11 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": true,
+    "canal_month": "2026",
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778489492678_pm3ey",
@@ -13978,7 +14088,14 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Enemies to Lovers",
+      "Soft"
+    ]
   },
   {
     "id": "b_1778489593284_ybvly",
