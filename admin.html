@@ -279,6 +279,62 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .safi-club-cats-inp{width:100%;padding:7px 10px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:12.5px;outline:none;border-radius:8px;transition:border-color .2s}
 .safi-club-cats-inp:focus{border-color:var(--rose)}
 
+/* ── CANAL REC admin ── */
+.canal-admin-section{margin-top:1.5rem;background:var(--surface);border:1px solid rgba(91,188,176,0.2);border-radius:var(--radius-lg);position:relative;overflow:hidden}
+.canal-admin-section::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--teal),var(--accent))}
+.canal-admin-head{padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--border)}
+.canal-admin-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;font-style:italic;color:var(--text)}
+.canal-admin-title span{color:var(--teal)}
+.canal-admin-sub{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.canal-admin-body{padding:1rem 1.2rem}
+.canal-month-list{display:flex;flex-direction:column;gap:1rem}
+.canal-month-admin-group{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2)}
+.canal-month-admin-head{display:flex;align-items:center;justify-content:space-between;padding:.6rem .9rem;border-bottom:1px solid var(--border)}
+.canal-month-admin-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--teal)}
+.canal-month-admin-count{font-size:11px;color:var(--muted)}
+.canal-admin-items{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem .9rem}
+.canal-admin-item{display:flex;align-items:center;gap:.5rem;background:var(--surface3);border:1px solid rgba(91,188,176,0.15);border-radius:8px;padding:.35rem .6rem;font-size:12px;color:var(--text)}
+.canal-admin-item img{width:28px;height:42px;object-fit:cover;border-radius:5px;flex-shrink:0;border:1px solid var(--border)}
+.canal-admin-item-ph{width:28px;height:42px;border-radius:5px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--muted)}
+.canal-admin-item-info{flex:1;min-width:0}
+.canal-admin-item-title{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.canal-admin-item-sec{font-size:9.5px;color:var(--muted);margin-top:1px}
+.canal-admin-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:0;transition:color .15s;flex-shrink:0;line-height:1}
+.canal-admin-item-remove:hover{color:var(--rose)}
+.canal-admin-empty{padding:1.5rem;text-align:center;color:var(--muted);font-style:italic;font-size:12.5px}
+
+/* ── MYREC admin ── */
+.myrec-admin-section{margin-top:1.5rem;background:var(--surface);border:1px solid rgba(212,96,122,0.2);border-radius:var(--radius-lg);position:relative;overflow:hidden}
+.myrec-admin-section::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--rose),var(--accent))}
+.myrec-admin-head{padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--border)}
+.myrec-admin-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;font-style:italic;color:var(--text)}
+.myrec-admin-title span{color:var(--rose)}
+.myrec-admin-sub{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.myrec-admin-body{padding:1rem 1.2rem}
+.myrec-cats-list{display:flex;flex-direction:column;gap:1.2rem}
+.myrec-cat-group{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2)}
+.myrec-cat-head{display:flex;align-items:center;justify-content:space-between;padding:.6rem .9rem;border-bottom:1px solid var(--border)}
+.myrec-cat-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#e0909e}
+.myrec-cat-count{font-size:11px;color:var(--muted)}
+.myrec-admin-items{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem .9rem}
+.myrec-admin-item{display:flex;align-items:center;gap:.5rem;background:var(--surface3);border:1px solid rgba(212,96,122,0.15);border-radius:8px;padding:.35rem .6rem;font-size:12px;color:var(--text)}
+.myrec-admin-item img{width:28px;height:42px;object-fit:cover;border-radius:5px;flex-shrink:0;border:1px solid var(--border)}
+.myrec-admin-item-ph{width:28px;height:42px;border-radius:5px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--muted)}
+.myrec-admin-item-info{flex:1;min-width:0}
+.myrec-admin-item-title{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.myrec-admin-item-sec{font-size:9.5px;color:var(--muted);margin-top:1px}
+.myrec-admin-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:0;transition:color .15s;flex-shrink:0;line-height:1}
+.myrec-admin-item-remove:hover{color:var(--rose)}
+.myrec-admin-empty{padding:1.5rem;text-align:center;color:var(--muted);font-style:italic;font-size:12.5px}
+
+/* form fields in modal */
+.canal-club-form,.myrec-club-form{margin-top:8px;padding:10px 12px;border-radius:10px}
+.canal-club-form{background:rgba(91,188,176,0.05);border:1px solid rgba(91,188,176,0.2)}
+.myrec-club-form{background:rgba(212,96,122,0.05);border:1px solid rgba(212,96,122,0.2)}
+.canal-club-inp,.myrec-club-inp{width:100%;padding:7px 10px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:12.5px;outline:none;border-radius:8px;transition:border-color .2s}
+.canal-club-inp:focus{border-color:var(--teal)}
+.myrec-club-inp:focus{border-color:var(--rose)}
+
 </style>
 </head>
 <body>
@@ -349,6 +405,32 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div class="safi-admin-body">
       <div id="safiCatsList"></div>
+    </div>
+  </div>
+
+  <!-- CANAL REC — admin -->
+  <div class="canal-admin-section" id="canalAdminSection">
+    <div class="canal-admin-head">
+      <div>
+        <div class="canal-admin-title">Recomendaciones del <span>Canal</span></div>
+        <div class="canal-admin-sub">Libros recomendados mensualmente · <span id="canalAdminCount">0</span> libro(s)</div>
+      </div>
+    </div>
+    <div class="canal-admin-body">
+      <div id="canalMonthList"></div>
+    </div>
+  </div>
+
+  <!-- MIS REC — admin -->
+  <div class="myrec-admin-section" id="myrecAdminSection">
+    <div class="myrec-admin-head">
+      <div>
+        <div class="myrec-admin-title">Mis <span>Recomendaciones</span></div>
+        <div class="myrec-admin-sub">Recomendaciones personales · <span id="myrecAdminCount">0</span> libro(s)</div>
+      </div>
+    </div>
+    <div class="myrec-admin-body">
+      <div id="myrecCatsList"></div>
     </div>
   </div>
 </div>
@@ -498,6 +580,34 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
             <div class="safi-club-form">
               <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
               <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title" style="color:var(--teal)">📻 Recomendación del Canal</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <input type="checkbox" id="fCanalRec" style="accent-color:var(--teal);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('canalRecField').style.display=this.checked?'block':'none'">
+            <label for="fCanalRec" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Recomendación del Canal</label>
+          </div>
+          <div id="canalRecField" style="display:none">
+            <div class="canal-club-form">
+              <label class="form-label" style="color:var(--teal)">Mes / Período (ej: Enero 2025, Verano 2024)</label>
+              <input type="text" class="canal-club-inp" id="fCanalMonth" placeholder="Ej: Enero 2025">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title" style="color:#e0909e">💌 Mis Recomendaciones</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <input type="checkbox" id="fMyRec" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('myRecField').style.display=this.checked?'block':'none'">
+            <label for="fMyRec" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Mi Recomendación</label>
+          </div>
+          <div id="myRecField" style="display:none">
+            <div class="myrec-club-form">
+              <label class="form-label" style="color:#e0909e">Categorías (separadas por coma)</label>
+              <input type="text" class="myrec-club-inp" id="fMyRecCats" placeholder="Ej: Romántica Intensa, Para llorar, Enemigos a amantes">
             </div>
           </div>
         </div>
@@ -762,6 +872,8 @@ function updateStats() {
   document.getElementById('sAuthors').innerHTML=`<em>${authorSet.size}</em>`;
   document.getElementById('sSafi').innerHTML =`<em>${safiCount}</em>`;
   renderSafiAdmin();
+  renderCanalAdmin();
+  renderMyrecAdmin();
 }
 
 function setAdminFilter(section) {
@@ -921,6 +1033,14 @@ function openEditModal(id) {
   document.getElementById('fSafiClub').checked=!!b.saficlub;
   document.getElementById('safiCatField').style.display=b.saficlub?'block':'none';
   document.getElementById('fSafiCats').value=(b.safi_categories||[]).join(', ');
+  // Canal Rec
+  document.getElementById('fCanalRec').checked=!!b.canal_rec;
+  document.getElementById('canalRecField').style.display=b.canal_rec?'block':'none';
+  document.getElementById('fCanalMonth').value=b.canal_month||'';
+  // My Rec
+  document.getElementById('fMyRec').checked=!!b.my_rec;
+  document.getElementById('myRecField').style.display=b.my_rec?'block':'none';
+  document.getElementById('fMyRecCats').value=(b.my_rec_categories||[]).join(', ');
   renderAuthorPills();
   renderAllChips();
   renderEditions();
@@ -940,6 +1060,12 @@ function clearForm() {
   document.getElementById('fSafiClub').checked=false;
   document.getElementById('safiCatField').style.display='none';
   document.getElementById('fSafiCats').value='';
+  document.getElementById('fCanalRec').checked=false;
+  document.getElementById('canalRecField').style.display='none';
+  document.getElementById('fCanalMonth').value='';
+  document.getElementById('fMyRec').checked=false;
+  document.getElementById('myRecField').style.display='none';
+  document.getElementById('fMyRecCats').value='';
   renderAuthorPills();
   renderAllChips();
   renderEditions();
@@ -1172,6 +1298,16 @@ function saveBook() {
     safi_categories: document.getElementById('fSafiClub').checked
       ? (document.getElementById('fSafiCats').value.split(',').map(s=>s.trim()).filter(Boolean).length
           ? document.getElementById('fSafiCats').value.split(',').map(s=>s.trim()).filter(Boolean)
+          : ['Sin categoría'])
+      : [],
+    canal_rec: document.getElementById('fCanalRec').checked,
+    canal_month: document.getElementById('fCanalRec').checked
+      ? (document.getElementById('fCanalMonth').value.trim()||'Sin fecha')
+      : null,
+    my_rec: document.getElementById('fMyRec').checked,
+    my_rec_categories: document.getElementById('fMyRec').checked
+      ? (document.getElementById('fMyRecCats').value.split(',').map(s=>s.trim()).filter(Boolean).length
+          ? document.getElementById('fMyRecCats').value.split(',').map(s=>s.trim()).filter(Boolean)
           : ['Sin categoría'])
       : [],
   };
@@ -1440,6 +1576,62 @@ function removeFromSafi(id){
   renderSafiAdmin();
   updateStats();
   showToast('Quitado de las SafiClub');
+}
+
+/* ── CANAL ADMIN ── */
+function renderCanalAdmin() {
+  const canalData = books.filter(b=>b.canal_rec);
+  document.getElementById('canalAdminCount').textContent = canalData.length;
+  const list = document.getElementById('canalMonthList');
+  if(!canalData.length){
+    list.innerHTML='<div class="canal-admin-empty">Ningún libro marcado como Recomendación del Canal.<br>Edita un libro y activa la opción.</div>';
+    return;
+  }
+  const monthMap=new Map();
+  canalData.forEach(b=>{const m=b.canal_month||'Sin fecha';if(!monthMap.has(m))monthMap.set(m,[]);monthMap.get(m).push(b);});
+  list.innerHTML=[...monthMap.entries()].map(([month,items])=>{
+    const itemsHtml=items.map(b=>{
+      const cover=b.cover?`<img src="${b.cover}" onerror="this.style.display='none'">`:`<div class="canal-admin-item-ph">📖</div>`;
+      return `<div class="canal-admin-item">${cover}<div class="canal-admin-item-info"><div class="canal-admin-item-title" title="${b.title}">${b.title}</div><div class="canal-admin-item-sec">${(b.authors||[]).join(', ')||'—'}</div></div><button class="canal-admin-item-remove" onclick="removeFromCanal('${b.id}')" title="Quitar">✕</button></div>`;
+    }).join('');
+    return `<div class="canal-month-admin-group"><div class="canal-month-admin-head"><span class="canal-month-admin-name">📻 ${month}</span><span class="canal-month-admin-count">${items.length} libro${items.length!==1?'s':''}</span></div><div class="canal-admin-items">${itemsHtml}</div></div>`;
+  }).join('');
+}
+
+function removeFromCanal(id){
+  const b=books.find(x=>x.id===id);
+  if(!b) return;
+  b.canal_rec=false; b.canal_month=null;
+  renderCanalAdmin(); updateStats();
+  showToast('Quitado de Recomendaciones del Canal');
+}
+
+/* ── MYREC ADMIN ── */
+function renderMyrecAdmin() {
+  const myData = books.filter(b=>b.my_rec);
+  document.getElementById('myrecAdminCount').textContent = myData.length;
+  const list = document.getElementById('myrecCatsList');
+  if(!myData.length){
+    list.innerHTML='<div class="myrec-admin-empty">Ningún libro marcado como Mis Recomendaciones.<br>Edita un libro y activa la opción.</div>';
+    return;
+  }
+  const catMap=new Map();
+  myData.forEach(b=>(b.my_rec_categories||['Sin categoría']).forEach(cat=>{if(!catMap.has(cat))catMap.set(cat,[]);if(!catMap.get(cat).find(x=>x.id===b.id))catMap.get(cat).push(b);}));
+  list.innerHTML=[...catMap.entries()].sort().map(([cat,items])=>{
+    const itemsHtml=items.map(b=>{
+      const cover=b.cover?`<img src="${b.cover}" onerror="this.style.display='none'">`:`<div class="myrec-admin-item-ph">📖</div>`;
+      return `<div class="myrec-admin-item">${cover}<div class="myrec-admin-item-info"><div class="myrec-admin-item-title" title="${b.title}">${b.title}</div><div class="myrec-admin-item-sec">${(b.authors||[]).join(', ')||'—'}</div></div><button class="myrec-admin-item-remove" onclick="removeFromMyrec('${b.id}')" title="Quitar">✕</button></div>`;
+    }).join('');
+    return `<div class="myrec-cat-group"><div class="myrec-cat-head"><span class="myrec-cat-name">${cat}</span><span class="myrec-cat-count">${items.length} libro${items.length!==1?'s':''}</span></div><div class="myrec-admin-items">${itemsHtml}</div></div>`;
+  }).join('');
+}
+
+function removeFromMyrec(id){
+  const b=books.find(x=>x.id===id);
+  if(!b) return;
+  b.my_rec=false; b.my_rec_categories=[];
+  renderMyrecAdmin(); updateStats();
+  showToast('Quitado de Mis Recomendaciones');
 }
 
 checkSession();
