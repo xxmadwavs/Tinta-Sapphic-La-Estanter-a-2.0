@@ -592,7 +592,29 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .footer-link{padding:6px 16px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;text-decoration:none;transition:all .18s;letter-spacing:.02em}
 .footer-link:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
 .footer-copy{font-size:11px;color:var(--muted);opacity:.5;letter-spacing:.05em;text-align:center}
-@media(max-width:600px){.site-footer{padding:2rem 1rem 1.5rem}.footer-links{gap:.25rem}.footer-link{font-size:11.5px;padding:5px 12px}}
+/* INFO MODAL */
+.info-modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.82);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;z-index:400;padding:2rem 1rem;overflow-y:auto}
+.info-modal-bg.open{display:flex}
+.info-modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:680px;margin:auto;box-shadow:0 32px 80px rgba(0,0,0,0.7);position:relative;overflow:hidden}
+.info-modal-header{padding:1.8rem 2rem 1.2rem;border-bottom:1px solid var(--border)}
+.info-modal-title{font-family:var(--font-display);font-size:2rem;font-weight:600;font-style:italic;color:var(--text);line-height:1}
+.info-modal-subtitle{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+.info-modal-body{padding:1.6rem 2rem 2rem;max-height:65vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
+.info-modal-body::-webkit-scrollbar{width:4px}
+.info-modal-body::-webkit-scrollbar-track{background:transparent}
+.info-modal-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.info-section{margin-bottom:1.6rem}
+.info-section:last-child{margin-bottom:0}
+.info-section h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--accent2);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.info-section h3::before{content:'';display:inline-block;width:3px;height:1em;background:var(--accent);border-radius:2px;flex-shrink:0}
+.info-section p,.info-section li{font-size:13.5px;color:var(--muted);line-height:1.75}
+.info-section ul{padding-left:1.2rem;display:flex;flex-direction:column;gap:.3rem}
+.info-section li::marker{color:var(--accent)}
+.info-highlight{background:var(--accent-soft);border:1px solid rgba(192,111,196,0.2);border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1.4rem;font-size:13px;color:var(--text);line-height:1.65}
+.info-highlight em{color:var(--accent2);font-style:italic}
+.info-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
+.info-modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
+@media(max-width:600px){.info-modal-header{padding:1.4rem 1.2rem .9rem}.info-modal-body{padding:1.2rem 1.2rem 1.6rem}.info-modal-title{font-size:1.6rem}}
 </style>
 </head>
 <body>
@@ -2361,15 +2383,178 @@ init();
   <div class="footer-inner">
     <div class="footer-logo">TINTA <em>Sapphic</em> ~ La Estantería</div>
     <nav class="footer-links">
-      <a class="footer-link" href="#">Sobre nosotras</a>
-      <a class="footer-link" href="#">FAQ</a>
-      <a class="footer-link" href="#">Contacto</a>
-      <a class="footer-link" href="#">Política de privacidad</a>
-      <a class="footer-link" href="#">Términos de uso</a>
+      <a class="footer-link" href="#" onclick="openInfoModal('sobre');return false;">Sobre nosotras</a>
+      <a class="footer-link" href="#" onclick="openInfoModal('privacidad');return false;">Política de privacidad</a>
+      <a class="footer-link" href="#" onclick="openInfoModal('terminos');return false;">Términos de uso</a>
     </nav>
     <div class="footer-copy">© 2026 Tinta Sapphic</div>
   </div>
 </footer>
+
+<!-- INFO MODALS -->
+<div id="infoModal" class="info-modal-bg" onclick="if(event.target.id==='infoModal')closeInfoModal()">
+  <div class="info-modal">
+    <button class="info-modal-close" onclick="closeInfoModal()">✕</button>
+    <div class="info-modal-header">
+      <div class="info-modal-title" id="infoModalTitle"></div>
+      <div class="info-modal-subtitle" id="infoModalSub"></div>
+    </div>
+    <div class="info-modal-body" id="infoModalBody"></div>
+  </div>
+</div>
+
+<script>
+const INFO_CONTENT = {
+  sobre: {
+    title: 'Sobre nosotras',
+    sub: 'Quiénes somos · Nuestra misión',
+    body: `
+      <div class="info-highlight">
+        <em>Tinta Sapphic</em> es una estantería digital dedicada exclusivamente a la literatura lésbica y sáfica — un espacio creado por y para lectoras que buscan historias donde ellas también existen.
+      </div>
+      <div class="info-section">
+        <h3>Nuestra misión</h3>
+        <p>Queremos reunir en un solo lugar toda la ficción sáfica que merece ser leída: desde romance contemporáneo hasta fantasía épica, pasando por terror, ciencia ficción y todo lo que hay en medio. Organizamos, catalogamos y ponemos en valor las historias donde las protagonistas son mujeres que aman a mujeres.</p>
+      </div>
+      <div class="info-section">
+        <h3>Qué encontrarás aquí</h3>
+        <ul>
+          <li>Catálogo curado de libros sáficos en español e inglés</li>
+          <li>Valoraciones y reseñas de la comunidad</li>
+          <li>Filtros por género, temática, nivel de contenido adulto y mucho más</li>
+          <li>Sistema de solicitudes para pedir libros que quieras ver añadidos</li>
+          <li>Clasificación por dinámicas, tropos e identidades representadas</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Un proyecto comunitario</h3>
+        <p>Esta estantería se mantiene con mucho amor y tiempo libre. Si encuentras algún error, tienes sugerencias o quieres contribuir con información sobre algún libro, puedes hacérnoslo saber a través del sistema de solicitudes.</p>
+      </div>
+      <div class="info-section">
+        <h3>Sobre el contenido adulto</h3>
+        <p>Algunos libros de nuestro catálogo contienen contenido explícito para adultos. Este contenido está debidamente etiquetado con nuestro sistema de clasificación de picante 🌶️. Eres responsable de filtrar el contenido según tu preferencia.</p>
+      </div>
+    `
+  },
+  privacidad: {
+    title: 'Política de privacidad',
+    sub: 'Cómo tratamos tus datos · Última actualización: 2026',
+    body: `
+      <div class="info-highlight">
+        Tu privacidad es importante para nosotras. Esta política explica qué datos recogemos, cómo los usamos y cuáles son tus derechos.
+      </div>
+      <div class="info-section">
+        <h3>Datos que recogemos al registrarte</h3>
+        <ul>
+          <li><strong style="color:var(--text)">Correo electrónico:</strong> necesario para crear y gestionar tu cuenta, y para enviarte notificaciones sobre tus solicitudes.</li>
+          <li><strong style="color:var(--text)">Contraseña:</strong> almacenada de forma cifrada mediante los sistemas seguros de Supabase. Nunca tenemos acceso a tu contraseña en texto plano.</li>
+          <li><strong style="color:var(--text)">Identificador de usuario:</strong> generado automáticamente para vincular tus valoraciones y solicitudes a tu cuenta.</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Datos que generan al usar la plataforma</h3>
+        <ul>
+          <li>Valoraciones (puntuaciones de 1 a 5 estrellas) que asignas a los libros</li>
+          <li>Solicitudes de libros que envías a través del formulario</li>
+          <li>Preferencias de filtros guardadas localmente en tu navegador</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Cómo usamos tus datos</h3>
+        <ul>
+          <li>Para mostrarte tus valoraciones y solicitudes en tu perfil</li>
+          <li>Para notificarte cuando una solicitud tuya se haya subido al catálogo</li>
+          <li>Para calcular puntuaciones medias de la comunidad</li>
+          <li>Para mejorar el catálogo basándonos en las solicitudes más votadas</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Proveedores de servicio</h3>
+        <p>Utilizamos <strong style="color:var(--text)">Supabase</strong> como proveedor de base de datos y autenticación. Tus datos se almacenan en sus servidores bajo sus propias políticas de seguridad y privacidad, que cumplen con el RGPD europeo.</p>
+      </div>
+      <div class="info-section">
+        <h3>Tus derechos</h3>
+        <ul>
+          <li><strong style="color:var(--text)">Acceso:</strong> puedes consultar qué datos tenemos sobre ti en cualquier momento desde tu perfil.</li>
+          <li><strong style="color:var(--text)">Eliminación:</strong> puedes solicitar que eliminemos tu cuenta y todos tus datos asociados.</li>
+          <li><strong style="color:var(--text)">Portabilidad:</strong> tienes derecho a recibir una copia de tus datos en formato legible.</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Cookies y almacenamiento local</h3>
+        <p>Usamos <strong style="color:var(--text)">localStorage</strong> del navegador únicamente para guardar preferencias de filtros y el estado de notificaciones vistas. No utilizamos cookies de rastreo ni publicidad.</p>
+      </div>
+      <div class="info-section">
+        <h3>Menores de edad</h3>
+        <p>Este sitio no está dirigido a menores de 18 años. Al registrarte confirmas que eres mayor de edad.</p>
+      </div>
+    `
+  },
+  terminos: {
+    title: 'Términos de uso',
+    sub: 'Condiciones de uso · Última actualización: 2026',
+    body: `
+      <div class="info-highlight">
+        Al usar <em>Tinta Sapphic</em> aceptas estos términos. Por favor, léelos con atención antes de crear una cuenta o interactuar con la plataforma.
+      </div>
+      <div class="info-section">
+        <h3>Uso permitido</h3>
+        <ul>
+          <li>Consultar el catálogo libremente sin necesidad de registro</li>
+          <li>Crear una cuenta para valorar libros y enviar solicitudes</li>
+          <li>Solicitar la incorporación de libros sáficos que no estén en el catálogo</li>
+          <li>Compartir el enlace a la estantería con otras lectoras</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Uso prohibido</h3>
+        <ul>
+          <li>Crear cuentas falsas o múltiples cuentas para manipular valoraciones</li>
+          <li>Enviar solicitudes de libros que no sean ficción sáfica</li>
+          <li>Intentar acceder a datos de otras usuarias o al panel de administración sin autorización</li>
+          <li>Usar scrapers o bots para extraer el contenido del catálogo de forma masiva</li>
+          <li>Publicar contenido ofensivo, discriminatorio o que atente contra la comunidad</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h3>Cuentas de usuario</h3>
+        <p>Eres responsable de mantener la confidencialidad de tu contraseña y de toda la actividad realizada desde tu cuenta. Si detectas un acceso no autorizado, debes notificárnoslo de inmediato. Nos reservamos el derecho de suspender o eliminar cuentas que incumplan estos términos.</p>
+      </div>
+      <div class="info-section">
+        <h3>Contenido del catálogo</h3>
+        <p>La información sobre libros (portadas, sinopsis, metadatos) se recopila con fines informativos y de divulgación literaria. Los derechos de autor de cada obra pertenecen a sus respectivas autoras y editoriales. No alojamos ni distribuimos ningún contenido protegido por derechos de autor.</p>
+      </div>
+      <div class="info-section">
+        <h3>Valoraciones y solicitudes</h3>
+        <p>Al enviar una valoración o solicitud, nos concedes permiso para mostrar ese contenido en la plataforma de forma pública. Las solicitudes son visibles para toda la comunidad y pueden ser votadas por otras usuarias.</p>
+      </div>
+      <div class="info-section">
+        <h3>Disponibilidad del servicio</h3>
+        <p>Ofrecemos este servicio de forma gratuita y lo mantenemos con los recursos disponibles. No garantizamos una disponibilidad ininterrumpida y podemos modificar o discontinuar funcionalidades en cualquier momento, avisando siempre que sea posible.</p>
+      </div>
+      <div class="info-section">
+        <h3>Cambios en los términos</h3>
+        <p>Podemos actualizar estos términos ocasionalmente. Los cambios significativos se comunicarán a través de la plataforma. El uso continuado del servicio tras los cambios implica la aceptación de los nuevos términos.</p>
+      </div>
+    `
+  }
+};
+
+function openInfoModal(tipo) {
+  const c = INFO_CONTENT[tipo];
+  if (!c) return;
+  document.getElementById('infoModalTitle').textContent = c.title;
+  document.getElementById('infoModalSub').textContent = c.sub;
+  document.getElementById('infoModalBody').innerHTML = c.body;
+  document.getElementById('infoModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeInfoModal() {
+  document.getElementById('infoModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfoModal(); });
+</script>
 
 </body>
 </html>
