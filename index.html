@@ -125,10 +125,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .book-card-body{padding:.9rem 1rem}
 .book-title{font-family:var(--font-display);font-size:1rem;font-weight:600;line-height:1.25;margin-bottom:.2rem;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .book-author{font-size:11.5px;color:var(--muted);margin-bottom:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.author-link{color:var(--muted);cursor:pointer;transition:color .15s;font-size:inherit;background:none;border:none;padding:0;font-family:inherit;text-decoration:none;display:inline}
-.author-link:hover{color:var(--accent2);text-decoration:underline}
-.modal-author-link{background:none;border:none;padding:0;font-family:inherit;font-size:inherit;color:var(--muted);cursor:pointer;transition:color .15s;text-decoration:none;display:inline}
-.modal-author-link:hover{color:var(--accent2);text-decoration:underline}
 .card-saga-sub{font-size:10.5px;color:var(--teal);margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;font-style:italic;transition:opacity .15s}
 .card-saga-sub:hover{opacity:.75;text-decoration:underline}
 .book-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
@@ -507,7 +503,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .canal-month-name{font-family:var(--font-display);font-size:1.15rem;font-style:italic;font-weight:600;color:var(--accent2);display:flex;align-items:center;gap:.6rem}
 .canal-month-name::before{content:'📻';font-style:normal;font-size:.9rem}
 .canal-month-count{font-size:11px;color:var(--muted)}
-.canal-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.75rem;padding:1.1rem 1.25rem}
+.canal-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;padding:1rem 1.1rem}
 .canal-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .18s;display:flex;flex-direction:column}
 .canal-item:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .canal-item-cover{aspect-ratio:2/3;overflow:hidden;background:var(--surface3);position:relative}
@@ -530,7 +526,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .myrec-section-head{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.4rem;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(212,96,122,0.07) 0%,transparent 100%)}
 .myrec-section-name{font-family:var(--font-display);font-size:1.1rem;font-style:italic;font-weight:600;color:#e0909e;display:flex;align-items:center;gap:.6rem}
 .myrec-section-count{font-size:11px;color:var(--muted)}
-.myrec-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.75rem;padding:1.1rem 1.25rem}
+.myrec-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;padding:1rem 1.1rem}
 .myrec-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .18s;display:flex;flex-direction:column}
 .myrec-item:hover{border-color:rgba(212,96,122,0.35);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .myrec-item-cover{aspect-ratio:2/3;overflow:hidden;background:var(--surface3);position:relative}
@@ -546,7 +542,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .myrec-hero-text h2{font-family:var(--font-display);font-size:1.6rem;font-weight:300;font-style:italic;color:var(--text);margin-bottom:.2rem}
 .myrec-hero-text h2 em{color:var(--rose);font-weight:600}
 .myrec-hero-text p{font-size:13px;color:var(--muted);line-height:1.7}
-@media(max-width:600px){.canal-items,.myrec-items{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}.canal-hero-strip,.myrec-hero-strip{padding:1rem 1.2rem}}
+@media(max-width:600px){.canal-items,.myrec-items{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}.canal-hero-strip,.myrec-hero-strip{padding:1rem 1.2rem}}
 .sol-login-notice{text-align:center;padding:1.5rem;color:var(--muted);font-size:13px}
 .sol-login-notice a{color:var(--accent2);cursor:pointer;background:none;border:none;font:inherit;text-decoration:underline}
 .sol-kanban-locked{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:13px}
@@ -1333,7 +1329,7 @@ function renderGrid(books, total, totalPages){
   let html=`<div class="books-grid">${books.map(b=>{
     const r=ratingsMap[b.id]||{avg:0,count:0};
     const myScore=myRatings[b.id]||0;
-    const authorStr=(b.authors||[]).map(a=>`<span class="author-link" onclick="event.stopPropagation();filterByAuthorDirect(decodeURIComponent('${encodeURIComponent(a)}'))">${a}</span>`).join(', ')||'—';
+    const authorStr=(b.authors||[]).join(', ')||'—';
     const coverEl=b.cover?`<img class="book-cover" src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=book-cover-ph>📖</div>'">`:`<div class="book-cover-ph">📖</div>`;
     const avgBadge=r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
     const spicyEff=effectiveSpicy(b);
@@ -1408,7 +1404,7 @@ function renderBookModal(){
   const b=activeBook;
   const r=ratingsMap[b.id]||{avg:0,count:0};
   const myScore=myRatings[b.id]||0;
-  const authorStr=(b.authors||[]).map(a=>`<button class="modal-author-link" onclick="closeBookModal();filterByAuthorDirect(decodeURIComponent('${encodeURIComponent(a)}'))">${a}</button>`).join(', ')||'—';
+  const authorStr=(b.authors||[]).join(', ')||'—';
   const coverEl=b.cover?`<div class="modal-cover-strip"><img src="${b.cover}" alt="${b.title}"></div>`:`<div class="modal-cover-ph">📖</div>`;
   const stars=avg=>[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
   const communityRating=r.count>0
@@ -1505,21 +1501,6 @@ function attachStarTouch(){
     btn.addEventListener('touchstart',e=>{e.preventDefault();hoverStar(n);},{passive:false});
     btn.addEventListener('touchend',e=>{e.preventDefault();selectStar(n);unhoverStar();},{passive:false});
   });
-}
-
-function filterByAuthorDirect(authorName){
-  closeBookModal();
-  // Switch to estanteria tab if not already there
-  if(activeTab!=='estanteria'){switchTab('estanteria');}
-  // Clear all filters, then set just this author
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[authorName],years:[],spicy:[],spicyUnknown:false,sagas:[],adaptacion:null,valoracion:null};
-  document.getElementById('searchInput').value='';
-  currentPage=1;
-  buildDropdowns();
-  updateDDCounts();
-  renderActivePills();
-  applyFilters(false);
-  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function filterBySagaFromModal(sagaName){
