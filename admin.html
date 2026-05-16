@@ -1961,10 +1961,12 @@ document.addEventListener('keydown', function(e) {
   const tag = document.activeElement.tagName;
   if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
-  // Shift+S → Guardar (exportar JSON)
+  // Shift+S → Guardar libro (solo si el modal está abierto)
   if (e.shiftKey && e.key === 'S') {
     e.preventDefault();
-    exportJSON();
+    if (document.getElementById('bookModal').classList.contains('open')) {
+      saveBook();
+    }
   }
 
   // Shift+A → Abrir ventana añadir libro
