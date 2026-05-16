@@ -1954,6 +1954,25 @@ async function exportarSolicitudesAdmin(){
 }
 
 checkSession();
+
+/* ── ATAJOS DE TECLADO ── */
+document.addEventListener('keydown', function(e) {
+  // Ignorar si el foco está en un input, textarea o select
+  const tag = document.activeElement.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+  // Shift+S → Guardar (exportar JSON)
+  if (e.shiftKey && e.key === 'S') {
+    e.preventDefault();
+    exportJSON();
+  }
+
+  // Shift+A → Abrir ventana añadir libro
+  if (e.shiftKey && e.key === 'A') {
+    e.preventDefault();
+    openAddModal();
+  }
+});
 </script>
 </body>
 </html>
