@@ -1354,6 +1354,21 @@ function renderAuthorPills() {
   const pills=authors.map(a=>`<span class="author-pill">${a}<button type="button" onclick="removeAuthor('${a.replace(/'/g,"\\'")}')" >×</button></span>`).join('');
   const ph=authors.length?'':'Nombre de la autora…';
   wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${ph}" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">`;
+  const inp=document.getElementById('authorInput');
+  if(inp) inp.addEventListener('paste', function(e){
+    e.preventDefault();
+    const pasted=(e.clipboardData||window.clipboardData).getData('text').trim();
+    if(!pasted) return;
+    this.value='';
+    const parts=pasted.split(',').map(s=>s.trim()).filter(Boolean);
+    if(parts.length>1){
+      parts.forEach(p=>{if(!authors.includes(p)) authors.push(p);});
+      renderAuthorPills();
+    } else {
+      this.value=pasted;
+      showAuthorSuggestions(pasted);
+    }
+  });
 }
 
 function removeAuthor(name){authors=authors.filter(a=>a!==name);renderAuthorPills();}
