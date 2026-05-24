@@ -114,6 +114,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .cover-row{display:flex;gap:10px;align-items:flex-start}
 .cover-preview{width:50px;height:74px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);display:none;flex-shrink:0}
 .cover-hint{font-size:11px;color:var(--muted);line-height:1.65;margin-top:4px}
+.cover-upload-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:1px dashed var(--border2);background:transparent;color:var(--muted);font-size:11.5px;font-family:'Instrument Sans',sans-serif;cursor:pointer;transition:all .15s;margin-top:5px}
+.cover-upload-btn:hover{border-color:var(--teal);color:var(--teal)}
+.cover-upload-btn.has-file{border-color:var(--teal);color:var(--teal);background:var(--teal-soft)}
+#fCoverFile{display:none}
 
 /* CHIP SELECTORS */
 .chip-group{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.35rem}
@@ -651,7 +655,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
             <label class="form-label">Autora/s * <span style="color:var(--muted);font-size:10px;text-transform:none">(Enter o coma para añadir varias)</span></label>
             <div class="author-field-wrap">
               <div class="tag-input-wrap" id="authorWrap" onclick="document.getElementById('authorInput').focus()">
-                <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">
+                <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="new-password">
               </div>
               <div class="author-suggestions" id="authorSuggestions"></div>
             </div>
@@ -690,9 +694,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           <div class="cover-row">
             <div style="flex:1">
               <div class="form-row" style="margin-bottom:4px">
-                <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="previewCover(this.value)">
+                <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="onCoverUrlInput(this.value)">
               </div>
-              <div class="cover-hint">Busca en <strong>Goodreads</strong> o <strong>Amazon</strong>, clic derecho en portada → "Copiar dirección de imagen".</div>
+              <div class="cover-hint">Pega una URL <strong>o sube una imagen</strong> desde tu ordenador.</div>
+              <input type="file" id="fCoverFile" accept="image/*" onchange="onCoverFileChange(this)">
+              <label for="fCoverFile" class="cover-upload-btn" id="coverUploadLabel">
+                <span>📁</span> <span id="coverUploadTxt">Subir imagen…</span>
+              </label>
             </div>
             <img id="coverPreview" class="cover-preview" alt="" onerror="this.style.display='none'">
           </div>
@@ -1166,7 +1174,11 @@ function openAddModal() {
   document.getElementById('modalTitle').textContent='Nuevo libro';
   document.getElementById('bookModal').classList.add('open');
   document.body.style.overflow='hidden';
-  setTimeout(()=>document.getElementById('fTitle').focus(),100);
+  setTimeout(()=>{
+    document.getElementById('fTitle').focus();
+    const ai=document.getElementById('authorInput');
+    if(ai) ai.value='';
+  },100);
 }
 
 function openEditModal(id) {
@@ -1182,6 +1194,14 @@ function openEditModal(id) {
   document.getElementById('fPages').value   =b.pages||'';
   document.getElementById('fIsbn').value    =b.isbn||'';
   previewCover(b.cover||'');
+  // If cover is base64, show upload button as "has file"
+  if(b.cover&&b.cover.startsWith('data:')){
+    document.getElementById('coverUploadLabel').classList.add('has-file');
+    document.getElementById('coverUploadTxt').textContent='Imagen subida ✓';
+  } else {
+    document.getElementById('coverUploadLabel').classList.remove('has-file');
+    document.getElementById('coverUploadTxt').textContent='Subir imagen…';
+  }
   authors=[...(b.authors||[])];
   editions=[...(b.editions||[])];
   sel.genres      =[...(b.genres||[])];
@@ -1227,6 +1247,9 @@ function clearForm() {
   sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
+  document.getElementById('fCoverFile').value='';
+  document.getElementById('coverUploadLabel').classList.remove('has-file');
+  document.getElementById('coverUploadTxt').textContent='Subir imagen…';
   document.getElementById('sagaSection').style.display='none';
   document.getElementById('fSafiClub').checked=false;
   document.getElementById('safiCatField').style.display='none';
@@ -1306,8 +1329,8 @@ function handleAuthorInput(e) {
     const focused=document.querySelector('.author-sug-item.focused');
     if(focused){pickAuthorSug(focused.textContent.trim());return;}
     const val=e.target.value.trim().replace(/,$/,'').trim();
-    if(val&&!authors.includes(val)){authors.push(val);renderAuthorPills();}
     e.target.value='';
+    if(val&&!authors.includes(val)){authors.push(val);renderAuthorPills();}
     hideAuthorSuggestions();
   } else if(e.key==='Backspace'&&!e.target.value&&authors.length){
     authors.pop();renderAuthorPills();
@@ -1355,6 +1378,7 @@ function renderAuthorPills() {
   const ph=authors.length?'':'Nombre de la autora…';
   wrap.innerHTML=pills+`<input class="tag-bare-input" id="authorInput" placeholder="${ph}" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="off">`;
   const inp=document.getElementById('authorInput');
+  if(inp) { inp.value=''; inp.setAttribute('autocomplete','new-password'); }
   if(inp) inp.addEventListener('paste', function(e){
     e.preventDefault();
     const pasted=(e.clipboardData||window.clipboardData).getData('text').trim();
@@ -1557,9 +1581,36 @@ async function importJSON(input){
   showToast(`${data.length} libros importados ✓`);
 }
 
+function onCoverUrlInput(url){
+  // If user types a URL, clear any uploaded file
+  if(url){
+    document.getElementById('fCoverFile').value='';
+    document.getElementById('coverUploadLabel').classList.remove('has-file');
+    document.getElementById('coverUploadTxt').textContent='Subir imagen…';
+  }
+  previewCover(url);
+}
+
+function onCoverFileChange(input){
+  const file=input.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const dataUrl=e.target.result;
+    // Store base64 in the URL field so it gets saved normally
+    document.getElementById('fCover').value=dataUrl;
+    const img=document.getElementById('coverPreview');
+    img.src=dataUrl;
+    img.style.display='block';
+    document.getElementById('coverUploadLabel').classList.add('has-file');
+    document.getElementById('coverUploadTxt').textContent=file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
 function previewCover(url){
   const img=document.getElementById('coverPreview');
-  if(url&&url.startsWith('http')){img.src=url;img.style.display='block';}
+  if(url&&(url.startsWith('http')||url.startsWith('data:'))){img.src=url;img.style.display='block';}
   else{img.style.display='none';img.src='';}
 }
 
