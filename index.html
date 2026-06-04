@@ -223,6 +223,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .dd-wrap.auth-only{display:none}
 .dd-wrap.auth-only.visible{display:inline-block}
 
+/* Aviso filtros ocultos */
+.filters-auth-hint{
+  display:inline-flex;align-items:center;gap:.35em;
+  font-size:11px;color:var(--muted);
+  padding:4px 10px;border-radius:20px;
+  border:1px dashed rgba(192,111,196,0.25);
+  background:rgba(192,111,196,0.05);
+  white-space:nowrap;cursor:pointer;
+  transition:color .15s,border-color .15s,background .15s;
+  font-style:italic;
+}
+.filters-auth-hint:hover{color:var(--accent2);border-color:rgba(192,111,196,0.5);background:rgba(192,111,196,0.1)}
+.filters-auth-hint a{color:var(--accent2);text-decoration:underline;cursor:pointer}
+.filters-auth-hint.hidden{display:none}
+
 /* Fila inferior: pills activos + resultados */
 .filter-bottom{
   display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
@@ -330,6 +345,23 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .meta-key{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .meta-val{font-size:13.5px;color:var(--text)}
 .modal-synopsis{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:1.4rem}
+.modal-synopsis-wrap{position:relative;margin-bottom:1.4rem}
+.modal-synopsis-wrap .modal-synopsis{margin-bottom:0}
+.modal-synopsis-wrap.truncated .modal-synopsis{
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.modal-synopsis-wrap.truncated::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2.8em;
+  background:linear-gradient(to bottom,transparent,var(--surface));
+  pointer-events:none;
+}
+.synopsis-login-hint{
+  display:flex;align-items:center;gap:.5em;
+  margin-top:.55rem;
+  font-size:12px;color:var(--muted);font-style:italic;
+}
+.synopsis-login-hint a{color:var(--accent2);text-decoration:underline;cursor:pointer;font-style:normal;font-weight:500}
+.synopsis-login-hint a:hover{opacity:.75}
 .buy-section{margin-bottom:1.2rem}
 .buy-title{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.6rem}
 .buy-links{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -1095,6 +1127,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" id="btnNoValorado" onclick="toggleValoracion('no_valorado')" title="Mostrar libros que aún no he valorado">☆ Sin valorar</button>
       </div>
       <button class="dd-btn" id="btnConSerie" onclick="toggleAdaptacion('serie')" title="Solo libros con serie de televisión">Con serie</button>
+      <span class="filters-auth-hint" id="filtersAuthHint" onclick="openAuthModal()">🔒 Más filtros al <a>registrarte</a></span>
     </div>
     <div class="filter-bottom">
       <div class="active-filters" id="activeFilters"></div>
@@ -1989,7 +2022,10 @@ function renderBookModal(){
         ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
         ${b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''}
       </div>
-      ${b.synopsis?`<p class="modal-synopsis">${b.synopsis}</p>`:''}
+      ${b.synopsis?`<div class="modal-synopsis-wrap${currentUser?'':' truncated'}">
+        <p class="modal-synopsis">${b.synopsis}</p>
+        ${!currentUser?`<div class="synopsis-login-hint">🔒 <a onclick="closeBookModal();openAuthModal()">Regístrate gratis</a> para leer la sinopsis completa</div>`:''}
+      </div>`:''}
       ${b.editions&&b.editions.length?`
       <div class="buy-section">
         <div class="buy-title">Dónde comprarlo</div>
@@ -2332,12 +2368,16 @@ function renderAuthUI(){
     document.getElementById('valoracionFilter').style.display='flex';
     document.getElementById('valoracionFilter').style.gap='.4rem';
     authOnlyFilters.forEach(f=>f.classList.add('visible'));
+    const hint=document.getElementById('filtersAuthHint');
+    if(hint) hint.classList.add('hidden');
   }else{
     el.innerHTML=`<button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>`;
     document.getElementById('valoracionFilter').style.display='none';
     filters.valoracion=null;
     updateValoracionBtns();
     authOnlyFilters.forEach(f=>f.classList.remove('visible'));
+    const hint=document.getElementById('filtersAuthHint');
+    if(hint) hint.classList.remove('hidden');
     // Limpiar filtros restringidos si estaban activos
     filters.spicy=[];filters.spicyUnknown=false;
     filters.dinamicas=[];filters.edad=[];filters.pais_cultura=[];
