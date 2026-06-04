@@ -899,24 +899,29 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .info-modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 @media(max-width:600px){.info-modal-header{padding:1.4rem 1.2rem .9rem}.info-modal-body{padding:1.2rem 1.2rem 1.6rem}.info-modal-title{font-size:1.6rem}}
 
-/* ── READING STATUS PILL ── */
-.reading-status-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:5px 14px;border-radius:20px;
+/* ── READING STATUS PILL (legacy, kept for compat) ── */
+.reading-status-pill{display:none} /* replaced by shelf-btns */
+
+/* ── SHELF BUTTONS (dos botones en modal) ── */
+.shelf-btns{
+  display:flex;gap:.5rem;margin-bottom:1.1rem;flex-wrap:wrap;
+}
+.shelf-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 18px;border-radius:10px;
   border:1px solid var(--border2);
   background:var(--surface2);
-  color:var(--muted);font-size:12px;font-family:var(--font-body);font-weight:500;
-  cursor:pointer;transition:all .18s;user-select:none;
-  margin-bottom:.6rem;
+  color:var(--muted);font-size:13px;font-family:var(--font-body);font-weight:500;
+  cursor:pointer;transition:all .18s;user-select:none;flex:1;justify-content:center;
 }
-.reading-status-pill:hover{border-color:rgba(192,111,196,.4);color:var(--text)}
-.reading-status-pill.want{
-  background:var(--accent-soft);border-color:rgba(192,111,196,.4);color:var(--accent2);
+.shelf-btn:hover{border-color:rgba(192,111,196,.4);color:var(--text);background:var(--surface3)}
+.shelf-btn.want{
+  background:var(--accent-soft);border-color:rgba(192,111,196,.45);color:var(--accent2);
 }
-.reading-status-pill.read{
-  background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.35);color:var(--teal);
+.shelf-btn.read{
+  background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal);
 }
-.reading-status-pill .rs-icon{font-size:13px}
+.shelf-btn .sb-icon{font-size:14px;line-height:1}
 
 /* ── USER DROPDOWN ── */
 .user-chip-wrap{position:relative}
@@ -2087,26 +2092,22 @@ function renderBookModal(){
   if(!currentUser) voteArea=`<p class="login-to-vote"><a onclick="closeBookModal();openAuthModal()">Inicia sesión</a> para valorar este libro.</p>`;
   else voteArea=`<div><p class="vote-prompt">${myScore>0?`Tu valoración: ${'★'.repeat(myScore)} — puedes cambiarla`:'¿Qué te pareció?'}</p><div class="stars-input" id="starInput">${starInput}</div><div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="vote-submit" id="voteBtn" onclick="submitVote()" ${!pendingStar?'disabled':''}>${pendingStar>0?`Guardar ${pendingStar} ★`:myScore>0?'Actualizar':'Guardar'}</button>${myScore>0?`<button class="vote-delete" id="deleteBtn" onclick="deleteVote()">✕ Eliminar mi voto</button>`:''}</div></div>`;
 
+  // Solo géneros y año en el modal simplificado
   const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre tag-clickable" onclick="filterByTagFromModal('genres',decodeURIComponent('${encodeURIComponent(g)}'))">${g}</span>`).join('');
-  const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre tag-clickable" onclick="filterByTagFromModal('subgenres',decodeURIComponent('${encodeURIComponent(s)}'))">${s}</span>`).join('');
-  const dinamicaTags=(b.dinamicas||[]).map(d=>`<span class="tag tag-dinamica tag-clickable" onclick="filterByTagFromModal('dinamicas',decodeURIComponent('${encodeURIComponent(d)}'))">${d}</span>`).join('');
-  const tropeTags=(b.tropes||[]).map(t=>`<span class="tag tag-trope tag-clickable" onclick="filterByTagFromModal('tropes',decodeURIComponent('${encodeURIComponent(t)}'))">${t}</span>`).join('');
-  const identidadTags=(b.identidades||[]).map(i=>`<span class="tag tag-identidad tag-clickable" onclick="filterByTagFromModal('identidades',decodeURIComponent('${encodeURIComponent(i)}'))">${i}</span>`).join('');
-  const characterTags=(b.characters||[]).map(c=>`<span class="tag tag-character tag-clickable" onclick="filterByTagFromModal('characters',decodeURIComponent('${encodeURIComponent(c)}'))">${c}</span>`).join('');
-  const spicyEff=effectiveSpicy(b);
-  const spicyIsUnknown=spicyEff==null;
-  const spicyTag=currentUser
-    ?(spicyIsUnknown
-      ?`<span class="tag" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
-      :(spicyEff>0?`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
-      :`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
-    :`<span class="tag" style="background:rgba(138,120,152,0.1);color:var(--muted);border:1px dashed rgba(138,120,152,0.3);cursor:pointer" onclick="closeBookModal();openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
-  const formatoTag=b.formato&&!['Saga','Dúo','Trilogía'].includes(b.formato)?`<span class="tag tag-formato">${b.formato}</span>`:'';
-  const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
+  const yearTag=b.year?`<span class="tag tag-year">${b.year}</span>`:'';
+
   const sagaName=b.sagaName||(b.formato&&['Saga','Dúo','Trilogía'].includes(b.formato)?getSaga(b):null);
   const sagaNumStr=b.sagaNum!=null?' #'+b.sagaNum:'';
   const sagaSubtitle=sagaName
     ?`<p class="modal-saga-sub"><button class="modal-saga-link" onclick="filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(sagaName)}'))">${sagaName}${sagaNumStr}</button></p>`
+    :'';
+
+  // Botones duales de estantería
+  const shelfButtons=currentUser?buildShelfButtonsHTML(b.id):'';
+
+  // Mi voto inline (compacto, solo estrellas + número)
+  const myVoteInline=currentUser&&myScore>0
+    ?`<span style="display:inline-flex;align-items:center;gap:3px;font-size:12px;color:var(--gold);background:var(--gold-soft);border:1px solid rgba(201,151,90,0.25);padding:3px 10px;border-radius:20px;font-weight:600">${'★'.repeat(myScore)} Mi voto</span>`
     :'';
 
   document.getElementById('bookModalContent').innerHTML=`${coverEl}
@@ -2116,32 +2117,8 @@ function renderBookModal(){
       </div>
       ${sagaSubtitle}
       <p class="modal-author">por ${authorStr}</p>
-      ${currentUser ? `<div style="margin:.35rem 0 .1rem">${buildReadingStatusPillHTML(b.id)}</div>` : ''}
-      <div class="modal-tags">${genreTags}${subgenreTags}${spicyTag}${formatoTag}${adaptTag}</div>
-      ${dinamicaTags?`<div class="modal-tags" style="margin-top:.3rem">${dinamicaTags}</div>`:''}
-      ${(tropeTags||identidadTags||characterTags)?`<div class="modal-tags" style="margin-top:.3rem">${tropeTags}${identidadTags}${characterTags}</div>`:''}
-      <div class="modal-meta-grid">
-        ${b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:''}
-        ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
-        ${b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''}
-      </div>
-      ${b.synopsis?(()=>{
-        const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
-        const full=paras.map(p=>`<p class="modal-synopsis">${p}</p>`).join('');
-        const preview=`<p class="modal-synopsis">${paras[0]||b.synopsis}</p>`;
-        return `<div class="modal-synopsis-wrap">${full}</div>`;
-      })():''}
-      ${b.editions&&b.editions.length?`
-      <div class="buy-section">
-        <div class="buy-title">Dónde comprarlo</div>
-        <div class="buy-links">${b.editions.map(e=>`
-          <a class="buy-link" href="${e.url}" target="_blank" rel="noopener">
-            <span class="buy-lang">${e.lang}</span>
-            <span class="buy-store">${e.store}</span>
-            <span class="buy-arrow">↗</span>
-          </a>`).join('')}
-        </div>
-      </div>`:''}
+      <div class="modal-tags" style="margin-bottom:.85rem">${genreTags}${yearTag}${myVoteInline}</div>
+      ${shelfButtons}
       ${currentUser
         ? `<div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>`
         : `<div class="rating-section" id="modalRatingSection" style="text-align:center;padding:1.4rem">
@@ -2149,8 +2126,6 @@ function renderBookModal(){
             <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;line-height:1.6">Las valoraciones de la comunidad son solo para usuarias registradas.</p>
             <button onclick="closeBookModal();openAuthModal()" style="padding:8px 20px;border-radius:20px;background:var(--accent-soft);border:1px solid rgba(192,111,196,0.35);color:var(--accent2);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body)">Entrar para ver valoraciones</button>
            </div>`}
-      <div id="modalSpicySection">${currentUser?buildSpicySectionHTML():''}</div>
-      <div id="modalCommunityTagsSection">${buildCommunityTagsHTML()}</div>
     </div>`;
 }
 
@@ -4029,28 +4004,31 @@ async function loadMyReadingStatus(){
   (data||[]).forEach(row=>{ myReadingStatus[row.book_id]=row.status; });
 }
 
-function buildReadingStatusPillHTML(bookId){
+function buildShelfButtonsHTML(bookId){
   const s=myReadingStatus[bookId];
-  if(!s){
-    return `<button class="reading-status-pill" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">＋</span> Quiero leer</button>`;
-  } else if(s==='want'){
-    return `<button class="reading-status-pill want" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">＋</span> Quiero leer</button>`;
-  } else {
-    return `<button class="reading-status-pill read" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">✓</span> Leído</button>`;
-  }
+  const wantActive=s==='want';
+  const readActive=s==='read';
+  return `<div class="shelf-btns" id="shelfBtns_${bookId}">
+    <button class="shelf-btn${wantActive?' want':''}" onclick="setReadingStatus('${bookId}','want')" title="${wantActive?'Haz clic para quitar':'Añadir a Quiero leer'}">
+      <span class="sb-icon">＋</span> Quiero leer
+    </button>
+    <button class="shelf-btn${readActive?' read':''}" onclick="setReadingStatus('${bookId}','read')" title="${readActive?'Haz clic para quitar':'Marcar como leído'}">
+      <span class="sb-icon">✓</span> Leído
+    </button>
+  </div>`;
 }
 
-async function cycleReadingStatus(bookId){
+// Legacy — kept so any old references don't break
+function buildReadingStatusPillHTML(bookId){ return ''; }
+
+async function setReadingStatus(bookId, newStatus){
   if(!currentUser) return;
   const current=myReadingStatus[bookId];
-  let next;
-  if(!current) next='want';
-  else if(current==='want') next='read';
-  else next=null; // remove
+  // Toggle: si ya tiene ese estado, lo quita
+  const next = current===newStatus ? null : newStatus;
 
   if(next){
-    const existing=myReadingStatus[bookId];
-    if(existing){
+    if(current){
       await sb.from('reading_status').update({status:next}).eq('user_id',currentUser.id).eq('book_id',bookId);
     } else {
       await sb.from('reading_status').insert({user_id:currentUser.id,book_id:bookId,status:next});
@@ -4063,11 +4041,20 @@ async function cycleReadingStatus(bookId){
     delete myReadingStatus[bookId];
     showToast('Eliminado de tu estantería','success');
   }
-  // Update pill in modal if open
-  const el=document.querySelector('#bookModalContent .reading-status-pill');
-  if(el && activeBook && activeBook.id===bookId){
-    el.outerHTML=buildReadingStatusPillHTML(bookId);
+
+  // Refresh buttons in modal
+  const wrap=document.getElementById('shelfBtns_'+bookId);
+  if(wrap && activeBook && activeBook.id===bookId){
+    wrap.outerHTML=buildShelfButtonsHTML(bookId);
   }
+}
+
+// Keep cycleReadingStatus as alias for backward compat
+async function cycleReadingStatus(bookId){
+  const current=myReadingStatus[bookId];
+  const next = !current?'want':current==='want'?'read':null;
+  if(next) await setReadingStatus(bookId,next);
+  else await setReadingStatus(bookId,current); // will toggle off
 }
 
 /* ── USER DROPDOWN ── */
