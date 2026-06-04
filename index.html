@@ -219,6 +219,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .spicy-dd-item label{cursor:pointer;font-size:12.5px;color:var(--text);display:flex;flex-direction:column;gap:1px}
 .spicy-dd-item label small{font-size:10.5px;color:var(--muted)}
 
+/* ── Filtros solo para usuarias registradas ── */
+.dd-wrap.auth-only{display:none}
+.dd-wrap.auth-only.visible{display:inline-block}
+
 /* Fila inferior: pills activos + resultados */
 .filter-bottom{
   display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
@@ -1050,7 +1054,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" onclick="toggleDD('ddSubgenre')">Temática <span class="dd-count" id="cntSubgenre" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('subgenres','listSubgenre',this.value)"></div><div class="dd-list" id="listSubgenre"></div></div>
       </div>
-      <div class="dd-wrap" id="ddDinamica">
+      <div class="dd-wrap auth-only" id="ddDinamica">
         <button class="dd-btn" onclick="toggleDD('ddDinamica')">Dinámica <span class="dd-count" id="cntDinamica" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('dinamicas','listDinamica',this.value)"></div><div class="dd-list" id="listDinamica"></div></div>
       </div>
@@ -1070,7 +1074,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" onclick="toggleDD('ddYear')">Año <span class="dd-count" id="cntYear" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-list" id="listYear"></div></div>
       </div>
-      <div class="dd-wrap" id="ddSpicy">
+      <div class="dd-wrap auth-only" id="ddSpicy">
         <button class="dd-btn" onclick="toggleDD('ddSpicy')">Spicy <span class="dd-count" id="cntSpicy" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel" id="listSpicy"></div>
       </div>
@@ -1078,11 +1082,11 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" onclick="toggleDD('ddSaga')">Saga <span class="dd-count" id="cntSaga" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('sagas','listSaga',this.value)"></div><div class="dd-list" id="listSaga"></div></div>
       </div>
-      <div class="dd-wrap" id="ddEdad">
+      <div class="dd-wrap auth-only" id="ddEdad">
         <button class="dd-btn" onclick="toggleDD('ddEdad')">Edad <span class="dd-count" id="cntEdad" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-list" id="listEdad"></div></div>
       </div>
-      <div class="dd-wrap" id="ddPais">
+      <div class="dd-wrap auth-only" id="ddPais">
         <button class="dd-btn" onclick="toggleDD('ddPais')">País <span class="dd-count" id="cntPais" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_cultura','listPais',this.value)"></div><div class="dd-list" id="listPais"></div></div>
       </div>
@@ -2321,16 +2325,23 @@ async function removeMyTag(tagType, value, event){
 /* ── AUTH ── */
 function renderAuthUI(){
   const el=document.getElementById('authArea');
+  const authOnlyFilters=document.querySelectorAll('.dd-wrap.auth-only');
   if(currentUser){
     const tg=currentUser.user_metadata?.telegram_username||currentUser.email.split('@')[0];
     el.innerHTML=`<div class="user-chip"><div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div><span class="user-name">@${tg}</span><button class="btn-logout" onclick="logout()">salir</button></div>`;
     document.getElementById('valoracionFilter').style.display='flex';
     document.getElementById('valoracionFilter').style.gap='.4rem';
+    authOnlyFilters.forEach(f=>f.classList.add('visible'));
   }else{
     el.innerHTML=`<button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>`;
     document.getElementById('valoracionFilter').style.display='none';
     filters.valoracion=null;
     updateValoracionBtns();
+    authOnlyFilters.forEach(f=>f.classList.remove('visible'));
+    // Limpiar filtros restringidos si estaban activos
+    filters.spicy=[];filters.spicyUnknown=false;
+    filters.dinamicas=[];filters.edad=[];filters.pais_cultura=[];
+    renderActivePills();applyFilters(false);
   }
 }
 function openAuthModal(){authMode='login';updateAuthUI();document.getElementById('authModal').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('authEmail').focus(),100);}
