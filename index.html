@@ -348,21 +348,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .modal-synopsis:last-of-type{margin-bottom:0}
 .modal-synopsis-wrap{position:relative;margin-bottom:1.4rem}
 .modal-synopsis-wrap .modal-synopsis{margin-bottom:0}
-.modal-synopsis-wrap.truncated .modal-synopsis{
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-}
-.modal-synopsis-wrap.truncated::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2.8em;
-  background:linear-gradient(to bottom,transparent,var(--surface));
-  pointer-events:none;
-}
-.synopsis-login-hint{
-  display:flex;align-items:center;gap:.5em;
-  margin-top:.55rem;
-  font-size:12px;color:var(--muted);font-style:italic;
-}
-.synopsis-login-hint a{color:var(--accent2);text-decoration:underline;cursor:pointer;font-style:normal;font-weight:500}
-.synopsis-login-hint a:hover{opacity:.75}
 .buy-section{margin-bottom:1.2rem}
 .buy-title{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.6rem}
 .buy-links{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -2031,7 +2016,7 @@ function renderBookModal(){
         const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
         const full=paras.map(p=>`<p class="modal-synopsis">${p}</p>`).join('');
         const preview=`<p class="modal-synopsis">${paras[0]||b.synopsis}</p>`;
-        return `<div class="modal-synopsis-wrap${currentUser?'':' truncated'}">${currentUser?full:preview}${!currentUser?`<div class="synopsis-login-hint">🔒 <a onclick="closeBookModal();openAuthModal()">Regístrate gratis</a> para leer la sinopsis completa</div>`:''}</div>`;
+        return `<div class="modal-synopsis-wrap">${full}</div>`;
       })():''}
       ${b.editions&&b.editions.length?`
       <div class="buy-section">
