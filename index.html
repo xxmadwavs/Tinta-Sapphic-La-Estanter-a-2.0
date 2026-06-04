@@ -898,6 +898,83 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .info-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
 .info-modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 @media(max-width:600px){.info-modal-header{padding:1.4rem 1.2rem .9rem}.info-modal-body{padding:1.2rem 1.2rem 1.6rem}.info-modal-title{font-size:1.6rem}}
+
+/* ── READING STATUS PILL ── */
+.reading-status-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 14px;border-radius:20px;
+  border:1px solid var(--border2);
+  background:var(--surface2);
+  color:var(--muted);font-size:12px;font-family:var(--font-body);font-weight:500;
+  cursor:pointer;transition:all .18s;user-select:none;
+  margin-bottom:.6rem;
+}
+.reading-status-pill:hover{border-color:rgba(192,111,196,.4);color:var(--text)}
+.reading-status-pill.want{
+  background:var(--accent-soft);border-color:rgba(192,111,196,.4);color:var(--accent2);
+}
+.reading-status-pill.read{
+  background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.35);color:var(--teal);
+}
+.reading-status-pill .rs-icon{font-size:13px}
+
+/* ── USER DROPDOWN ── */
+.user-chip-wrap{position:relative}
+.user-chip{cursor:pointer;transition:background .15s}
+.user-chip:hover{background:var(--surface3)}
+.user-chip-caret{font-size:9px;color:var(--muted);opacity:.7;margin-left:2px;transition:transform .18s}
+.user-chip-wrap.open .user-chip-caret{transform:rotate(180deg)}
+.user-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;
+  min-width:180px;
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:var(--radius);
+  box-shadow:0 20px 60px rgba(0,0,0,.55),0 4px 20px rgba(0,0,0,.3);
+  z-index:300;display:none;overflow:hidden;
+  animation:ddFadeIn .14s ease;
+}
+.user-chip-wrap.open .user-dropdown{display:block}
+.user-dd-name{
+  padding:.75rem 1rem .5rem;
+  font-size:12px;color:var(--muted);font-weight:500;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.user-dd-item{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.65rem 1rem;cursor:pointer;
+  font-size:13px;color:var(--text);transition:background .12s;
+}
+.user-dd-item:hover{background:var(--surface2)}
+.user-dd-item.danger{color:var(--rose)}
+.user-dd-item.danger:hover{background:var(--rose-soft)}
+.user-dd-sep{height:1px;background:var(--border);margin:.2rem 0}
+
+/* ── BOOKSHELF VIEW ── */
+#shelfView{display:none;position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:2rem 1.5rem 5rem}
+#shelfView.active{display:block}
+.shelf-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:.75rem}
+.shelf-title{font-family:var(--font-display);font-size:2rem;font-weight:300;line-height:1}
+.shelf-title em{font-style:italic;font-weight:600;color:var(--accent)}
+.shelf-back{display:inline-flex;align-items:center;gap:.4em;padding:7px 16px;border-radius:20px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:12.5px;cursor:pointer;font-family:var(--font-body);transition:all .15s}
+.shelf-back:hover{border-color:var(--accent);color:var(--accent2)}
+.shelf-section{margin-bottom:2.5rem}
+.shelf-section-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.shelf-section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:600;font-style:italic;color:var(--text)}
+.shelf-section-count{font-size:11.5px;color:var(--muted);padding:2px 9px;background:var(--surface2);border:1px solid var(--border);border-radius:20px}
+.shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
+.shelf-book{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .22s;position:relative}
+.shelf-book:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.shelf-book-cover{aspect-ratio:2/3;overflow:hidden;background:var(--surface2)}
+.shelf-book-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.shelf-book:hover .shelf-book-cover img{transform:scale(1.04)}
+.shelf-book-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--muted)}
+.shelf-book-body{padding:.6rem .7rem}
+.shelf-book-title{font-size:12px;font-weight:500;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
+.shelf-book-author{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-empty{padding:3rem;text-align:center;color:var(--muted);font-style:italic;font-size:13px;background:var(--surface);border:1px dashed var(--border2);border-radius:var(--radius-lg)}
+.shelf-empty-icon{font-size:2.5rem;margin-bottom:.75rem;display:block}
+@media(max-width:600px){.shelf-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -1362,7 +1439,36 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
 </main>
 
-<!-- BOOK MODAL -->
+<!-- SHELF VIEW -->
+<div id="shelfView">
+  <div class="shelf-header">
+    <div>
+      <div style="font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem">📚 Mi estantería</div>
+      <div class="shelf-title">Mis <em>libros</em></div>
+    </div>
+    <button class="shelf-back" onclick="closeShelf()">← Volver al catálogo</button>
+  </div>
+
+  <!-- Quiero leer -->
+  <div class="shelf-section" id="shelfWantSection">
+    <div class="shelf-section-head">
+      <div class="shelf-section-title">＋ Quiero leer</div>
+      <span class="shelf-section-count" id="shelfWantCount">0</span>
+    </div>
+    <div class="shelf-grid" id="shelfWantGrid"></div>
+  </div>
+
+  <!-- Leídos -->
+  <div class="shelf-section" id="shelfReadSection">
+    <div class="shelf-section-head">
+      <div class="shelf-section-title" style="color:var(--teal)">✓ Leídos</div>
+      <span class="shelf-section-count" id="shelfReadCount">0</span>
+    </div>
+    <div class="shelf-grid" id="shelfReadGrid"></div>
+  </div>
+</div>
+
+
 <div class="modal-bg" id="bookModal">
   <div class="modal">
     <button class="modal-close" onclick="closeBookModal()">✕</button>
@@ -1443,6 +1549,7 @@ const SPICY_UNKNOWN_LABEL = '? Nivel desconocido';
 const SPICY_UNKNOWN_ICON  = '❓';
 
 let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
+let myReadingStatus={}; // bookId -> 'want' | 'read'
 let activeSection='thais';
 let authMode='login', pendingStar=0;
 let spicyMap={}, mySpicy={}, pendingSpicy=0;
@@ -1508,7 +1615,7 @@ async function init(){
   if(session) currentUser=session.user;
   renderAuthUI();
   await loadBooks();
-  if(currentUser) await loadMyRatings();
+  if(currentUser){ await loadMyRatings(); await loadMyReadingStatus(); }
   buildDropdowns();
   loadState();   // restaurar filtros y página desde la URL
   // Pintar visualmente la sección activa restaurada
@@ -1543,10 +1650,15 @@ async function init(){
     currentUser=session?.user||null;
     renderAuthUI();
     debouncedLoadRatings();
+    if(currentUser) loadMyReadingStatus();
+    else myReadingStatus={};
     if(activeTab==='solicitudes') renderSolicitudes();
     if(activeTab==='ruleta') ruletaInit();
   });
-  document.addEventListener('click',e=>{if(!e.target.closest('.dd-wrap')&&!e.target.closest('.ruleta-dd-wrap')){closeAllDD();closeAllRDD();}});
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.dd-wrap')&&!e.target.closest('.ruleta-dd-wrap')){closeAllDD();closeAllRDD();}
+    if(!e.target.closest('.user-chip-wrap')){const w=document.getElementById('userChipWrap');if(w)w.classList.remove('open');}
+  });
 }
 
 async function loadBooks(){
@@ -2004,6 +2116,7 @@ function renderBookModal(){
       </div>
       ${sagaSubtitle}
       <p class="modal-author">por ${authorStr}</p>
+      ${currentUser ? `<div style="margin:.35rem 0 .1rem">${buildReadingStatusPillHTML(b.id)}</div>` : ''}
       <div class="modal-tags">${genreTags}${subgenreTags}${spicyTag}${formatoTag}${adaptTag}</div>
       ${dinamicaTags?`<div class="modal-tags" style="margin-top:.3rem">${dinamicaTags}</div>`:''}
       ${(tropeTags||identidadTags||characterTags)?`<div class="modal-tags" style="margin-top:.3rem">${tropeTags}${identidadTags}${characterTags}</div>`:''}
@@ -2362,7 +2475,19 @@ function renderAuthUI(){
   const authOnlyFilters=document.querySelectorAll('.dd-wrap.auth-only');
   if(currentUser){
     const tg=currentUser.user_metadata?.telegram_username||currentUser.email.split('@')[0];
-    el.innerHTML=`<div class="user-chip"><div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div><span class="user-name">@${tg}</span><button class="btn-logout" onclick="logout()">salir</button></div>`;
+    el.innerHTML=`<div class="user-chip-wrap" id="userChipWrap">
+      <div class="user-chip" onclick="toggleUserDropdown(event)">
+        <div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div>
+        <span class="user-name">@${tg}</span>
+        <span class="user-chip-caret">▾</span>
+      </div>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="user-dd-name">@${tg}</div>
+        <div class="user-dd-item" onclick="openShelf()">📚 Mi estantería</div>
+        <div class="user-dd-sep"></div>
+        <div class="user-dd-item danger" onclick="logout()">Salir</div>
+      </div>
+    </div>`;
     document.getElementById('valoracionFilter').style.display='flex';
     document.getElementById('valoracionFilter').style.gap='.4rem';
     authOnlyFilters.forEach(f=>f.classList.add('visible'));
@@ -3893,6 +4018,124 @@ function ruletaShowResult(book) {
 function ruletaOpenBook() {
   if (!ruletaSelectedBook) return;
   openBook(ruletaSelectedBook.id);
+}
+
+/* ── READING STATUS ── */
+async function loadMyReadingStatus(){
+  if(!currentUser) return;
+  const {data,error}=await sb.from('reading_status').select('book_id,status').eq('user_id',currentUser.id);
+  if(error) return;
+  myReadingStatus={};
+  (data||[]).forEach(row=>{ myReadingStatus[row.book_id]=row.status; });
+}
+
+function buildReadingStatusPillHTML(bookId){
+  const s=myReadingStatus[bookId];
+  if(!s){
+    return `<button class="reading-status-pill" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">＋</span> Quiero leer</button>`;
+  } else if(s==='want'){
+    return `<button class="reading-status-pill want" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">＋</span> Quiero leer</button>`;
+  } else {
+    return `<button class="reading-status-pill read" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">✓</span> Leído</button>`;
+  }
+}
+
+async function cycleReadingStatus(bookId){
+  if(!currentUser) return;
+  const current=myReadingStatus[bookId];
+  let next;
+  if(!current) next='want';
+  else if(current==='want') next='read';
+  else next=null; // remove
+
+  if(next){
+    const existing=myReadingStatus[bookId];
+    if(existing){
+      await sb.from('reading_status').update({status:next}).eq('user_id',currentUser.id).eq('book_id',bookId);
+    } else {
+      await sb.from('reading_status').insert({user_id:currentUser.id,book_id:bookId,status:next});
+    }
+    myReadingStatus[bookId]=next;
+    const label=next==='want'?'Añadido a «Quiero leer» ＋':'Marcado como leído ✓';
+    showToast(label,'success');
+  } else {
+    await sb.from('reading_status').delete().eq('user_id',currentUser.id).eq('book_id',bookId);
+    delete myReadingStatus[bookId];
+    showToast('Eliminado de tu estantería','success');
+  }
+  // Update pill in modal if open
+  const el=document.querySelector('#bookModalContent .reading-status-pill');
+  if(el && activeBook && activeBook.id===bookId){
+    el.outerHTML=buildReadingStatusPillHTML(bookId);
+  }
+}
+
+/* ── USER DROPDOWN ── */
+function toggleUserDropdown(e){
+  e.stopPropagation();
+  const w=document.getElementById('userChipWrap');
+  if(w) w.classList.toggle('open');
+}
+
+/* ── SHELF VIEW ── */
+function openShelf(){
+  // Close user dropdown
+  const w=document.getElementById('userChipWrap');
+  if(w) w.classList.remove('open');
+  // Hide main content
+  document.getElementById('homeView').classList.remove('active');
+  document.body.classList.remove('home-active');
+  document.querySelector('.hero')&&(document.querySelector('.hero').style.display='none');
+  document.querySelector('.main')&&(document.querySelector('.main').style.display='none');
+  document.getElementById('shelfView').classList.add('active');
+  renderShelf();
+}
+
+function closeShelf(){
+  document.getElementById('shelfView').classList.remove('active');
+  document.querySelector('.hero')&&(document.querySelector('.hero').style.display='');
+  document.querySelector('.main')&&(document.querySelector('.main').style.display='');
+  // Go back to catalog view
+  document.getElementById('homeView').classList.remove('active');
+  document.body.classList.remove('home-active');
+}
+
+function renderShelf(){
+  const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
+  const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
+
+  document.getElementById('shelfWantCount').textContent=wantBooks.length;
+  document.getElementById('shelfReadCount').textContent=readBooks.length;
+
+  document.getElementById('shelfWantGrid').innerHTML=wantBooks.length
+    ? wantBooks.map(b=>shelfBookCard(b)).join('')
+    : `<div class="shelf-empty"><span class="shelf-empty-icon">📖</span>Aún no has añadido libros que quieras leer.<br><small>Ábrelos desde el catálogo y haz clic en «＋ Quiero leer».</small></div>`;
+
+  document.getElementById('shelfReadGrid').innerHTML=readBooks.length
+    ? readBooks.map(b=>shelfBookCard(b)).join('')
+    : `<div class="shelf-empty"><span class="shelf-empty-icon">✨</span>Todavía no has marcado ningún libro como leído.</div>`;
+}
+
+function shelfBookCard(b){
+  const coverEl=b.cover
+    ? `<img src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=shelf-book-cover-ph>📖</div>'">`
+    : `<div class="shelf-book-cover-ph">📖</div>`;
+  const authorStr=(b.authors||[]).join(', ')||'—';
+  return `<div class="shelf-book" onclick="openBookFromShelf('${b.id}')">
+    <div class="shelf-book-cover">${coverEl}</div>
+    <div class="shelf-book-body">
+      <div class="shelf-book-title">${b.title}</div>
+      <div class="shelf-book-author">${authorStr}</div>
+    </div>
+  </div>`;
+}
+
+function openBookFromShelf(id){
+  closeShelf();
+  // Show catalog so modal has backdrop
+  document.querySelector('.hero')&&(document.querySelector('.hero').style.display='');
+  document.querySelector('.main')&&(document.querySelector('.main').style.display='');
+  setTimeout(()=>openBook(id),50);
 }
 
 </script>
