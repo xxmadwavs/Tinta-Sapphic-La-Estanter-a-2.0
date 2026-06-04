@@ -1899,7 +1899,7 @@ function renderGrid(books, total, totalPages){
     const coverEl=b.cover?`<img class="book-cover" src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=book-cover-ph>📖</div>'">`:`<div class="book-cover-ph">📖</div>`;
     const avgBadge=currentUser&&r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
     const spicyEff=effectiveSpicy(b);
-    const spicyBadge=(spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:'';
+    const spicyBadge=currentUser?((spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:''):`<div class="spicy-badge" title="Regístrate para ver el nivel spicy" style="opacity:.5;cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒</div>`;
     const genreTags=(b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
     const dinamicaTag=(b.dinamicas||[]).slice(0,1).map(d=>`<span class="tag tag-dinamica">${d}</span>`).join('');
     const tropeTags=!dinamicaTag?(b.tropes||[]).slice(0,1).map(t=>`<span class="tag tag-trope">${t}</span>`).join(''):'';
@@ -1998,10 +1998,12 @@ function renderBookModal(){
   const characterTags=(b.characters||[]).map(c=>`<span class="tag tag-character tag-clickable" onclick="filterByTagFromModal('characters',decodeURIComponent('${encodeURIComponent(c)}'))">${c}</span>`).join('');
   const spicyEff=effectiveSpicy(b);
   const spicyIsUnknown=spicyEff==null;
-  const spicyTag=spicyIsUnknown
-    ?`<span class="tag" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
-    :(spicyEff>0?`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`:
-    `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`);
+  const spicyTag=currentUser
+    ?(spicyIsUnknown
+      ?`<span class="tag" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
+      :(spicyEff>0?`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
+      :`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
+    :`<span class="tag" style="background:rgba(138,120,152,0.1);color:var(--muted);border:1px dashed rgba(138,120,152,0.3);cursor:pointer" onclick="closeBookModal();openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
   const formatoTag=b.formato&&!['Saga','Dúo','Trilogía'].includes(b.formato)?`<span class="tag tag-formato">${b.formato}</span>`:'';
   const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
   const sagaName=b.sagaName||(b.formato&&['Saga','Dúo','Trilogía'].includes(b.formato)?getSaga(b):null);
@@ -2049,7 +2051,7 @@ function renderBookModal(){
             <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;line-height:1.6">Las valoraciones de la comunidad son solo para usuarias registradas.</p>
             <button onclick="closeBookModal();openAuthModal()" style="padding:8px 20px;border-radius:20px;background:var(--accent-soft);border:1px solid rgba(192,111,196,0.35);color:var(--accent2);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body)">Entrar para ver valoraciones</button>
            </div>`}
-      <div id="modalSpicySection">${buildSpicySectionHTML()}</div>
+      <div id="modalSpicySection">${currentUser?buildSpicySectionHTML():''}</div>
       <div id="modalCommunityTagsSection">${buildCommunityTagsHTML()}</div>
     </div>`;
 }
@@ -3885,7 +3887,7 @@ function ruletaShowResult(book) {
     ? `<img class="ruleta-result-cover" src="${book.cover}" alt="${book.title}" onerror="this.outerHTML='<div class=ruleta-result-cover-ph>📖</div>'">`
     : `<div class="ruleta-result-cover-ph">📖</div>`;
   const spicyEff = effectiveSpicy(book);
-  const spicyTag = spicyEff != null && spicyEff > 0
+  const spicyTag = currentUser && spicyEff != null && spicyEff > 0
     ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25);font-size:11px">${SPICY_ICONS[spicyEff]}</span>` : '';
   const genreTags = (book.genres || []).slice(0, 2).map(g => `<span class="tag tag-genre" style="font-size:11px">${g}</span>`).join('');
   const ratingTag = r.count > 0 ? `<span class="tag" style="background:rgba(201,151,90,0.12);color:var(--gold);border:1px solid rgba(201,151,90,0.2);font-size:11px">★ ${r.avg.toFixed(1)} (${r.count})</span>` : '';
