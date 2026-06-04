@@ -344,7 +344,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .meta-item{display:flex;flex-direction:column;gap:1px}
 .meta-key{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .meta-val{font-size:13.5px;color:var(--text)}
-.modal-synopsis{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:1.4rem}
+.modal-synopsis{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:.75rem}
+.modal-synopsis:last-of-type{margin-bottom:0}
 .modal-synopsis-wrap{position:relative;margin-bottom:1.4rem}
 .modal-synopsis-wrap .modal-synopsis{margin-bottom:0}
 .modal-synopsis-wrap.truncated .modal-synopsis{
@@ -1029,7 +1030,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
   <p class="hero-sub">Vota tus favoritos y descubre qué están leyendo las demás. El ranking lo construimos juntas.</p>
   <div class="hero-stats">
     <div class="stat-item"><div class="stat-num" id="statBooks"><em>—</em></div><div class="stat-label">Libros</div></div>
-    <div class="stat-item"><div class="stat-num" id="statVotes"><em>—</em></div><div class="stat-label">Valoraciones</div></div>
+    <div class="stat-item" id="statVotesItem" style="display:none"><div class="stat-num" id="statVotes"><em>—</em></div><div class="stat-label">Valoraciones</div></div>
   </div>
 </section>
 
@@ -1896,7 +1897,7 @@ function renderGrid(books, total, totalPages){
     const myScore=myRatings[b.id]||0;
     const authorStr=(b.authors||[]).join(', ')||'—';
     const coverEl=b.cover?`<img class="book-cover" src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=book-cover-ph>📖</div>'">`:`<div class="book-cover-ph">📖</div>`;
-    const avgBadge=r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
+    const avgBadge=currentUser&&r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
     const spicyEff=effectiveSpicy(b);
     const spicyBadge=(spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:'';
     const genreTags=(b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
@@ -1917,7 +1918,9 @@ function renderGrid(books, total, totalPages){
         <div class="book-author">${authorStr}</div>
         <div class="book-tags">${genreTags}${dinamicaTag}${tropeTags}${yearTag}${formatoTag}${adaptTag}</div>
         <div class="book-footer">
-          ${r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`}
+          ${currentUser
+            ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
+            : `<span class="no-ratings" style="cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒 Regístrate</span>`}
           <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBook('${b.id}')">${voteLabel}</button>
         </div>
       </div>
@@ -2022,10 +2025,12 @@ function renderBookModal(){
         ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
         ${b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''}
       </div>
-      ${b.synopsis?`<div class="modal-synopsis-wrap${currentUser?'':' truncated'}">
-        <p class="modal-synopsis">${b.synopsis}</p>
-        ${!currentUser?`<div class="synopsis-login-hint">🔒 <a onclick="closeBookModal();openAuthModal()">Regístrate gratis</a> para leer la sinopsis completa</div>`:''}
-      </div>`:''}
+      ${b.synopsis?(()=>{
+        const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
+        const full=paras.map(p=>`<p class="modal-synopsis">${p}</p>`).join('');
+        const preview=`<p class="modal-synopsis">${paras[0]||b.synopsis}</p>`;
+        return `<div class="modal-synopsis-wrap${currentUser?'':' truncated'}">${currentUser?full:preview}${!currentUser?`<div class="synopsis-login-hint">🔒 <a onclick="closeBookModal();openAuthModal()">Regístrate gratis</a> para leer la sinopsis completa</div>`:''}</div>`;
+      })():''}
       ${b.editions&&b.editions.length?`
       <div class="buy-section">
         <div class="buy-title">Dónde comprarlo</div>
@@ -2037,7 +2042,13 @@ function renderBookModal(){
           </a>`).join('')}
         </div>
       </div>`:''}
-      <div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>
+      ${currentUser
+        ? `<div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>`
+        : `<div class="rating-section" id="modalRatingSection" style="text-align:center;padding:1.4rem">
+            <div style="font-size:1.5rem;margin-bottom:.5rem">🔒</div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;line-height:1.6">Las valoraciones de la comunidad son solo para usuarias registradas.</p>
+            <button onclick="closeBookModal();openAuthModal()" style="padding:8px 20px;border-radius:20px;background:var(--accent-soft);border:1px solid rgba(192,111,196,0.35);color:var(--accent2);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body)">Entrar para ver valoraciones</button>
+           </div>`}
       <div id="modalSpicySection">${buildSpicySectionHTML()}</div>
       <div id="modalCommunityTagsSection">${buildCommunityTagsHTML()}</div>
     </div>`;
@@ -2370,6 +2381,8 @@ function renderAuthUI(){
     authOnlyFilters.forEach(f=>f.classList.add('visible'));
     const hint=document.getElementById('filtersAuthHint');
     if(hint) hint.classList.add('hidden');
+    const svi=document.getElementById('statVotesItem');
+    if(svi) svi.style.display='';
   }else{
     el.innerHTML=`<button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>`;
     document.getElementById('valoracionFilter').style.display='none';
@@ -2382,6 +2395,8 @@ function renderAuthUI(){
     filters.spicy=[];filters.spicyUnknown=false;
     filters.dinamicas=[];filters.edad=[];filters.pais_cultura=[];
     renderActivePills();applyFilters(false);
+    const svi=document.getElementById('statVotesItem');
+    if(svi) svi.style.display='none';
   }
 }
 function openAuthModal(){authMode='login';updateAuthUI();document.getElementById('authModal').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('authEmail').focus(),100);}
