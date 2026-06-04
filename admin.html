@@ -622,6 +622,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="jnav-btn" onclick="jumpTo('sec-dinamica')">💞 Dinámica</button>
         <button class="jnav-btn" onclick="jumpTo('sec-tropes')">📖 Tropos</button>
         <button class="jnav-btn" onclick="jumpTo('sec-characters')">🧑 Personajes</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-edad')">🎂 Edad</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-pais')">🌍 País</button>
         <button class="jnav-btn" onclick="jumpTo('sec-spicy')">🌶 Spicy</button>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
@@ -855,6 +857,26 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
         </div>
 
+        <div id="sec-edad" class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">🎂 Edad protagonistas <span class="chip-section-badge" id="badge-edad" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="edadChips"></div>
+          </div>
+        </div>
+
+        <div id="sec-pais" class="chip-section">
+          <div class="chip-section-hd" onclick="toggleChipSection(this)">
+            <span class="chip-section-lbl">🌍 País y Cultura <span class="chip-section-badge" id="badge-pais" style="display:none"></span></span>
+            <span class="chip-section-arrow">▾</span>
+          </div>
+          <div class="chip-section-body">
+            <div class="chip-group" id="paisCulturaChips"></div>
+          </div>
+        </div>
+
       </div><!-- /col-right -->
     </div><!-- /modal-body -->
 
@@ -870,106 +892,91 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 <script>
 const SUPABASE_URL = 'https://fteitflirsmabcasmwij.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_2xi9ELv252qAXY_Fx3ADZg_nuWtgcUA';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0ZWl0ZmxpcnNtYWJjYXNtd2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMjM3MzIsImV4cCI6MjA5MjY5OTczMn0.n46OnfB74J8DN_dcDgTc-UmhZYO5SnKUQ69Gz90ybbA';
 const ADMIN_EMAIL  = 'xxalittledreamxx@gmail.com';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── 1. GÉNEROS ──────────────────────────────────────────────────────────
 const GENRES = [
   'Acción','Aventura','Biografía','Ciencia Ficción','Comedia Romántica',
-  'Contemporánea','Dark Academia','Drama','Distopía','Ensayo',
+  'Contemporánea','Dark Academia','Distopía','Drama','Ensayo',
   'Fantasía','Fantasía Urbana','Filosofía','Gótico','Histórica',
-  'Horror','Juvenil','Misterio','No Ficción','New Adult',
+  'Horror','Juvenil','Misterio','New Adult','No Ficción',
   'Paranormal','Psicológico','Romance','Thriller','YA'
 ];
 
 // ── 2. SUBGÉNEROS / TEMÁTICAS ────────────────────────────────────────────
 const SUBGENRES = [
-  // Temáticas identitarias
-  'Autodescubrimiento','Coming of Age','Coming Out','Bisexual','No Binarie','Trans','Queer',
-  // Subgéneros narrativos
-  'Amnesia','BDSM','Bullying','Celebridad','Crimen','Dark Romance','Deporte',
-  'Erótica','Familia','Feminismo','Interracial','Mafia','Mitología','Música',
-  'Navidad','Omegaverse','Poesía','Poliamor','Reality Show','Reencarnación',
-  'Segunda Oportunidad','Small Town','Sobrenatural','Universidad','Viaje en el Tiempo',
-  'WhyChoose',
-  // Orígenes / tradiciones literarias
-  'Baihee 🐉','GL Thai 🇹🇭','Wattpad'
+  'Amnesia','Autodescubrimiento','Baihee 🐉','BDSM','Bisexual','Bullying',
+  'Celebridad','Coming of Age','Coming Out','Crimen','Dark Romance','Deporte',
+  'Erótica','Familia','Feminismo','GL Thai 🇹🇭','Interracial',
+  'Mafia','Magia','Mitología','Música','Navidad','No Binarie',
+  'Omegaverse','Poesía','Poliamor','Queer','Reality Show','Reencarnación',
+  'Segunda Oportunidad','Small Town','Sobrenatural','Trans',
+  'Universidad','Viaje en el Tiempo','Wattpad','WhyChoose'
 ];
 
 // ── 3. PERSONAJES · Profesiones ──────────────────────────────────────────
 const CHARACTERS = [
-  'Abogada','Actriz','Arqueóloga','Artista','Azafata','Bailarina','Bombera',
-  'Cantante','CEO','Chef','Científica','Deportista','Detective','Doctora / Médica',
-  'Editora','Empresaria','Enfermera','Escritora','Estudiante','Farmacéutica',
-  'Florista','Fotógrafa','Futbolista','Granjera','Guardaespaldas','Hacker',
-  'Inspectora','Investigadora','Jardinera','Modelo','Música','Piloto','Pirata',
-  'Policía','Política','Profesora','Psicóloga','Reportera / Periodista',
-  'Tatuadora','Veterinaria',
-  // Paranormal / Fantástico
-  'Ángel','Bruja','Cambiaformas','Demonio','Diosa','Espíritu / Fantasma',
-  'Hada','Mujer Lobo','Sirena','Vampira','Zombie',
-  // Roles vitales
-  'Famosa','Madre Soltera','Millonaria / Billonaria','Realeza'
+  'Abogada','Actriz','Ángel','Arqueóloga','Artista','Azafata',
+  'Bailarina','Bombera','Bruja','Camarera','Cambiaformas','Cantante',
+  'CEO','Chef','Científica','Demonio','Deportista','Detective','Diosa','Doctora / Médica',
+  'Editora','Empresaria','Enfermera','Escritora','Espíritu / Fantasma','Estudiante',
+  'Famosa','Farmacéutica','Florista','Fotógrafa','Futbolista',
+  'Granjera','Guardaespaldas','Hacker','Hada',
+  'Inspectora','Investigadora','Jardinera',
+  'Madre Soltera','Millonaria / Billonaria','Modelo','Mujer Lobo','Música',
+  'Piloto','Pirata','Policía','Política','Profesora','Psicóloga',
+  'Realeza','Reportera / Periodista',
+  'Sirena','Tatuadora','Vampira','Veterinaria','Zombie'
 ];
 
 // ── 4. IDENTIDAD Y EXPRESIÓN DE GÉNERO ──────────────────────────────────
 const IDENTIDADES = [
-  // Expresión de género
-  'Butch','Femme','Masc','Soft Butch','Stud','Chapera / Stem','Andrógina',
-  // Arquetipos de energía
-  'Ice Queen','Nerd','Introvertida','Sunshine','Grumpy','Caos','Control',
-  // Identidades sexuales / de género
-  'Asexual','Bisexual','Lesbiana','No Binarie','Pansexual','Trans','Queer'
+  'Andrógina','Asexual','Bisexual','Butch','Caos','Chapera / Stem','Control',
+  'Femme','Grumpy','Ice Queen','Introvertida','Lesbiana',
+  'Masc','Nerd','No Binarie','Pansexual','Queer',
+  'Soft Butch','Stud','Sunshine','Trans'
 ];
 
 // ── 5. DINÁMICA DE PAREJA ────────────────────────────────────────────────
 const DINAMICAS = [
-  // Por expresión de género
-  'Butch × Femme','Soft Butch × Femme','Butch × Butch','Femme × Femme',
-  'Masc × Femme','Masc × Masc','Masc × Soft Butch',
-  'Stud × Femme','Chapera × Femme','Chapera × Butch',
-  'Andrógina × Femme','Andrógina × Butch','Andrógina × Andrógina',
-  // Por energía / personalidad
-  'Grumpy × Sunshine','Ice Queen × Sunshine','Ice Queen × Softie',
-  'Introvertida × Extrovertida','Dark × Light','Caos × Control',
-  'Nerd × Popular','Nerd × Jock','Seria × Divertida',
-  'Protectora × Delicada','Feroz × Tierna','Fría × Cálida',
-  'Dominante × Sumisa','Top × Bottom','Switch × Switch',
-  // Por poder / estatus
-  'Boss × Employee','Rich × Poor','Famosa × Anónima',
-  'Realeza × Plebeya','Mentora × Aprendiz','Veterana × Novata',
-  'Jefa × Subordinada','Bodyguard × VIP',
-  'Detective × Sospechosa','Cazadora × Presa',
-  // Paranormal / fantástica
-  'Vampira × Humana','Bruja × Mortal','Cazadora × Monstruo',
-  'Diosa × Devota','Hada × Humana','Sirena × Marinera','Alfa × Omega'
+  'Alfa × Omega','Andrógina × Andrógina','Andrógina × Butch','Andrógina × Femme',
+  'Bodyguard × VIP','Boss × Employee','Bruja × Mortal',
+  'Butch × Butch','Butch × Femme',
+  'Caos × Control','Cazadora × Monstruo','Cazadora × Presa',
+  'Chapera × Butch','Chapera × Femme',
+  'Dark × Light','Detective × Sospechosa','Diosa × Devota','Dominante × Sumisa',
+  'Famosa × Anónima','Femme × Femme','Feroz × Tierna','Fría × Cálida',
+  'Grumpy × Sunshine','Hada × Humana',
+  'Ice Queen × Softie','Ice Queen × Sunshine','Introvertida × Extrovertida',
+  'Jefa × Subordinada',
+  'Masc × Femme','Masc × Masc','Masc × Soft Butch','Mentora × Aprendiz',
+  'Nerd × Jock','Nerd × Popular',
+  'Protectora × Delicada','Realeza × Plebeya','Rich × Poor',
+  'Seria × Divertida','Sirena × Marinera','Soft Butch × Femme','Stud × Femme',
+  'Switch × Switch','Top × Bottom',
+  'Vampira × Humana','Veterana × Novata'
 ];
 
 // ── 6. TROPOS NARRATIVOS ─────────────────────────────────────────────────
 const TROPES = [
-  // Cómo se enamoran
-  'Enemies to Lovers','Rivals to Lovers','Friends to Lovers','Friends with Benefits',
-  'Strangers to Lovers','Fake Relationship','Second Chance Romance',
-  'Childhood Friends','Forbidden Love','Slow Burn','Unrequited Love',
-  'One Night Stand → More',
-  // Obstáculos / tensión
-  'Age Gap','Love Triangle','Secret Relationship','Jealousy Trope',
-  'Forbidden Love','Revenge Romance','Opposites Attract',
-  // Situacionales
-  'Forced Proximity','Only One Bed','Roommates','Stranded Together',
-  'Road Trip','Vacation Romance',
-  // Roles / contexto
-  'Workplace Romance','Student × Teacher','Marriage of Convenience',
-  'Arranged Marriage','Bodyguard / VIP','Rich / Poor Romance',
-  // Sapphic específicos
-  'Lesbian Awakening','Bi Awakening','Coming Out tardío',
-  'Toaster Oven','Ice Queen × Toaster Oven','May-December Romance',
-  "Best Friend's Sister",
-  // Vínculos especiales
-  'Found Family','Hurt/Comfort','Soulmates','Destined Lovers',
-  'Conexión Mental / Bond','Reencarnación','Alpha/Beta/Omega',
-  'WhyChoose'
+  'Age Gap','Alpha/Beta/Omega','Arranged Marriage',"Best Friend's Sister",
+  'Bi Awakening','Bodyguard / VIP',
+  'Childhood Friends','Coming Out tardío','Conexión Mental / Bond',
+  'Destined Lovers','Enemies to Lovers',
+  'Fake Relationship','Forbidden Love','Forced Proximity',
+  'Found Family','Friends to Lovers','Friends with Benefits',
+  'Hurt/Comfort','Ice Queen × Toaster Oven',
+  'Jealousy Trope','Lesbian Awakening','Love Triangle',
+  'Marriage of Convenience','May-December Romance',
+  'One Night Stand → More','Only One Bed','Opposites Attract',
+  'Reencarnación','Revenge Romance','Rich / Poor Romance',
+  'Rivals to Lovers','Road Trip','Roommates',
+  'Second Chance Romance','Secret Relationship','Slow Burn','Soulmates',
+  'Stranded Together','Strangers to Lovers','Student × Teacher',
+  'Toaster Oven','Unrequited Love',
+  'Vacation Romance','WhyChoose','Workplace Romance'
 ];
 const SPICY_LEVELS = [
   {v:null,label:'❓ Desconocido',desc:'Sin información',icon:'❓'},
@@ -981,10 +988,30 @@ const SPICY_LEVELS = [
   {v:5,label:'5/5 · Infernal 🔥',desc:'5+ escenas, nonstop',icon:'🌶🌶🌶🌶🌶'},
 ];
 
+// ── 7. EDAD PROTAGONISTAS ────────────────────────────────────────────────
+const EDAD_PROTAGONISTA = [
+  'Young Adult (15–18)',
+  'New Adult (18–24)',
+  '25–39',
+  '+40',
+];
+
+// ── 8. PAÍS Y CULTURA ────────────────────────────────────────────────────
+const PAIS_CULTURA = [
+  'Alemania','Argentina','Australia','Brasil','Canadá','Chile','China',
+  'Colombia','Corea del Sur','España','Estados Unidos','Francia',
+  'India','Italia','Japón','México','Reino Unido','Tailandia',
+  'Taiwán','Vietnam',
+  // Culturas / ambientaciones
+  'Ambientación africana','Ambientación árabe','Ambientación asiática',
+  'Ambientación europea','Ambientación latinoamericana',
+  'Ambientación nórdica','Cultura indígena','Mundo fantástico',
+];
+
 // Books stored in memory (from JSON), votes in Supabase
 let books = [], editingId = null;
 let adminFilterSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian'
-let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
+let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[]};
 let authors = []; // array of strings
 let editions = []; // array of {lang, store, url}
 
@@ -1210,6 +1237,8 @@ function openEditModal(id) {
   sel.characters  =[...(b.characters||[])];
   sel.dinamicas   =[...(b.dinamicas||[])];
   sel.tropes      =[...(b.tropes||[])];
+  sel.edad        =[...(b.edad||[])];
+  sel.pais_cultura=[...(b.pais_cultura||[])];
   sel.spicy     =b.spicy||0;
   sel.formato   =b.formato||null;
   sel.adaptacion=b.adaptacion||null;
@@ -1244,7 +1273,7 @@ function clearForm() {
   document.getElementById('dupWarning').classList.remove('show');
   document.getElementById('dupOk').classList.remove('show');
   authors=[];editions=[];
-  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais'};
+  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[]};
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
   document.getElementById('fCoverFile').value='';
@@ -1408,12 +1437,15 @@ function renderAllChips() {
   renderChipGroup('characterChips',  CHARACTERS,  'characters',  true);
   renderChipGroup('dinamicaChips',   DINAMICAS,   'dinamicas',   false);
   renderChipGroup('tropeChips',      TROPES,      'tropes',      false);
+  renderChipGroup('edadChips',       EDAD_PROTAGONISTA, 'edad',  false);
+  renderChipGroup('paisCulturaChips',PAIS_CULTURA,'pais_cultura',false);
   renderSingleChips('formatoChips',    FORMATOS,    'formato',    'teal');
   renderSingleChips('adaptacionChips', ADAPTACIONES,'adaptacion', 'lavender');
   renderSpicy();
   // Update section badges
   [['badge-genres','genres'],['badge-subgenres','subgenres'],['badge-dinamicas','dinamicas'],
-   ['badge-tropes','tropes'],['badge-characters','characters'],['badge-identidades','identidades']
+   ['badge-tropes','tropes'],['badge-characters','characters'],['badge-identidades','identidades'],
+   ['badge-edad','edad'],['badge-pais','pais_cultura']
   ].forEach(([bid,key])=>{
     const el=document.getElementById(bid);
     if(!el) return;
@@ -1496,6 +1528,8 @@ function saveBook() {
     characters:  [...sel.characters],
     dinamicas:   [...sel.dinamicas],
     tropes:      [...sel.tropes],
+    edad:        [...(sel.edad||[])],
+    pais_cultura:[...(sel.pais_cultura||[])],
     ambientacion:[...(sel.ambientacion||[])],
     spicy:     sel.spicy===null?null:sel.spicy,
     formato:   sel.formato,

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TINTA SAPPHIC ~ La Estantería</title>
 <meta name="sb-url" content="https://fteitflirsmabcasmwij.supabase.co">
-<meta name="sb-key" content="sb_publishable_2xi9ELv252qAXY_Fx3ADZg_nuWtgcUA">
+<meta name="sb-key" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0ZWl0ZmxpcnNtYWJjYXNtd2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMjM3MzIsImV4cCI6MjA5MjY5OTczMn0.n46OnfB74J8DN_dcDgTc-UmhZYO5SnKUQ69Gz90ybbA">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -41,7 +41,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-logout{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:2px 4px;font-family:var(--font-body);transition:color .15s}
 .btn-logout:hover{color:var(--rose)}
 @media(max-width:600px){.topbar{padding:0 1rem}.logo{font-size:17px}.logo-sep,.logo-sub{display:none}}
-@media(max-width:600px){.hero{padding:2.5rem 1rem 2rem}.filter-shell{padding:1rem}.filter-dropdowns{gap:.35rem}.dd-btn{font-size:11.5px;padding:5px 10px}}
+@media(max-width:600px){
+  .hero{padding:2.5rem 1rem 2rem}
+  .filter-top{padding:.85rem 1rem .8rem}
+  .filter-dropdowns{padding:.7rem 1rem .75rem;gap:.3rem}
+  .filter-bottom{padding:.6rem 1rem}
+  .dd-btn{font-size:11px;padding:4px 9px}
+  .search-input{font-size:13px}
+}
 
 .hero{position:relative;z-index:1;padding:4rem 2rem 3rem;text-align:center;overflow:hidden}
 .hero::before{content:'TS';position:absolute;right:-.02em;top:50%;transform:translateY(-52%);font-family:var(--font-display);font-size:clamp(8rem,20vw,15rem);font-weight:800;font-style:italic;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(192,111,196,0.06);pointer-events:none;user-select:none}
@@ -57,55 +64,195 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 .main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:2rem 1.5rem 5rem}
 
-/* FILTERS */
-.filter-shell{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.2rem 1.5rem;margin-bottom:2rem;display:flex;flex-direction:column;gap:.85rem}
-.filter-top{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+/* ── FILTERS – Rediseño elegante ── */
+.filter-shell{
+  background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.95) 100%);
+  border:1px solid var(--border2);
+  border-radius:var(--radius-lg);
+  padding:0;
+  margin-bottom:2rem;
+  display:flex;flex-direction:column;
+  overflow:visible;
+  box-shadow:0 8px 40px rgba(0,0,0,0.35);
+  position:relative;
+}
+.filter-shell::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));
+  opacity:.7;
+}
+
+/* Fila búsqueda + sort */
+.filter-top{
+  display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;
+  padding:1.1rem 1.5rem 1rem;
+  border-bottom:1px solid var(--border);
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  overflow:hidden;
+}
 .search-wrap{position:relative;flex:1;min-width:200px}
-.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
-.search-input{width:100%;padding:9px 14px 9px 36px;border-radius:30px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:var(--font-body);outline:none;transition:border-color .15s}
-.search-input:focus{border-color:var(--accent)}
-.search-input::placeholder{color:var(--muted)}
-.sort-select{padding:8px 14px;border-radius:20px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12.5px;font-family:var(--font-body);cursor:pointer;outline:none}
+.search-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:13px;pointer-events:none;opacity:.7;
+}
+.search-input{
+  width:100%;padding:9px 16px 9px 40px;
+  border-radius:10px;
+  border:1px solid var(--border2);
+  background:var(--surface2);
+  color:var(--text);font-size:13px;font-family:var(--font-body);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  letter-spacing:.01em;
+}
+.search-input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(192,111,196,0.1);
+}
+.search-input::placeholder{color:var(--muted);opacity:.7}
 
-.filter-dropdowns{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
-.filter-label-txt{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.sort-select{
+  padding:8px 32px 8px 14px;
+  border-radius:10px;
+  border:1px solid var(--border2);
+  background:var(--surface2);
+  color:var(--text);font-size:12.5px;font-family:var(--font-body);
+  cursor:pointer;outline:none;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a7898' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:10px;
+  transition:border-color .2s;
+}
+.sort-select:focus{border-color:var(--accent)}
 
-/* DROPDOWN */
+/* Área de dropdowns */
+.filter-dropdowns{
+  display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;
+  padding:.85rem 1.5rem .9rem;
+  border-bottom:1px solid var(--border);
+}
+.filter-label-txt{
+  font-size:9.5px;color:var(--muted);letter-spacing:.14em;
+  text-transform:uppercase;white-space:nowrap;font-weight:600;
+  margin-right:.2rem;opacity:.7;
+}
+
+/* ── DROPDOWN ── */
 .dd-wrap{position:relative;display:inline-block}
-.dd-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;transition:all .15s;white-space:nowrap;user-select:none}
-.dd-btn:hover{border-color:var(--accent);color:var(--accent2)}
-.dd-btn.has-sel{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
-.dd-btn svg{width:10px;height:10px;flex-shrink:0;transition:transform .2s}
+.dd-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 12px;
+  border-radius:8px;
+  border:1px solid transparent;
+  background:var(--surface2);
+  color:var(--muted);
+  font-size:12px;font-family:var(--font-body);
+  cursor:pointer;transition:all .18s;white-space:nowrap;user-select:none;
+  letter-spacing:.01em;
+}
+.dd-btn:hover{
+  border-color:rgba(192,111,196,0.35);
+  color:var(--text);
+  background:var(--surface3);
+}
+.dd-btn.has-sel{
+  background:var(--accent-soft);
+  border-color:rgba(192,111,196,0.4);
+  color:var(--accent2);
+}
+.dd-btn svg{width:9px;height:9px;flex-shrink:0;transition:transform .22s;opacity:.6}
 .dd-wrap.open .dd-btn svg{transform:rotate(180deg)}
-.dd-count{background:var(--accent);color:#fff;border-radius:20px;font-size:10px;font-weight:700;padding:1px 6px}
-.dd-panel{position:absolute;top:calc(100% + 6px);left:0;min-width:190px;max-width:280px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,0.5);z-index:200;display:none;max-height:320px;overflow-y:auto}
+.dd-wrap.open .dd-btn{border-color:rgba(192,111,196,0.4);color:var(--text);background:var(--surface3)}
+
+.dd-count{
+  background:var(--accent);color:#fff;border-radius:20px;
+  font-size:9px;font-weight:700;padding:1px 5px;letter-spacing:0;
+}
+.dd-panel{
+  position:absolute;top:calc(100% + 8px);left:0;
+  min-width:200px;max-width:290px;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:var(--radius);
+  box-shadow:0 20px 60px rgba(0,0,0,0.55),0 4px 20px rgba(0,0,0,0.3);
+  z-index:200;display:none;
+  max-height:320px;overflow-y:auto;
+  animation:ddFadeIn .14s ease;
+}
+@keyframes ddFadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 .dd-wrap.open .dd-panel{display:block}
-.dd-search{padding:.5rem .75rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface)}
-.dd-search input{width:100%;padding:5px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12.5px;font-family:var(--font-body);outline:none}
-.dd-search input::placeholder{color:var(--muted)}
+.dd-search{
+  padding:.55rem .85rem;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+  background:var(--surface);
+  backdrop-filter:blur(8px);
+}
+.dd-search input{
+  width:100%;padding:6px 10px;border-radius:7px;
+  border:1px solid var(--border2);background:var(--surface2);
+  color:var(--text);font-size:12px;font-family:var(--font-body);outline:none;
+  transition:border-color .15s;
+}
+.dd-search input::placeholder{color:var(--muted);opacity:.6}
 .dd-search input:focus{border-color:var(--accent)}
-.dd-list{padding:.4rem 0}
-.dd-item{display:flex;align-items:center;gap:8px;padding:6px 14px;cursor:pointer;transition:background .12s;font-size:13px}
+.dd-list{padding:.35rem 0}
+.dd-item{
+  display:flex;align-items:center;gap:9px;
+  padding:7px 14px;cursor:pointer;transition:background .12s;font-size:12.5px;
+}
 .dd-item:hover{background:var(--surface2)}
-.dd-item input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px;flex-shrink:0;cursor:pointer}
-.dd-item label{cursor:pointer;flex:1;color:var(--text)}
-.dd-empty{padding:10px 14px;font-size:12px;color:var(--muted);font-style:italic}
-.dd-clear{padding:6px 14px;border-bottom:1px solid var(--border);font-size:11.5px;color:var(--rose);cursor:pointer;transition:background .12s}
+.dd-item input[type=checkbox]{
+  accent-color:var(--accent);width:14px;height:14px;flex-shrink:0;cursor:pointer;
+  border-radius:4px;
+}
+.dd-item label{cursor:pointer;flex:1;color:var(--text);line-height:1.4}
+.dd-empty{padding:12px 14px;font-size:12px;color:var(--muted);font-style:italic}
+.dd-clear{
+  padding:7px 14px;border-bottom:1px solid var(--border);
+  font-size:11px;color:var(--rose);cursor:pointer;transition:background .12s;
+  letter-spacing:.04em;font-weight:500;
+}
 .dd-clear:hover{background:var(--rose-soft)}
-.spicy-dd-item{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;transition:background .12s}
+.spicy-dd-item{display:flex;align-items:center;gap:9px;padding:8px 14px;cursor:pointer;transition:background .12s}
 .spicy-dd-item:hover{background:var(--surface2)}
 .spicy-dd-item input[type=checkbox]{accent-color:var(--gold);width:14px;height:14px;flex-shrink:0}
-.spicy-dd-item label{cursor:pointer;font-size:12.5px;color:var(--text);display:flex;flex-direction:column}
+.spicy-dd-item label{cursor:pointer;font-size:12.5px;color:var(--text);display:flex;flex-direction:column;gap:1px}
 .spicy-dd-item label small{font-size:10.5px;color:var(--muted)}
 
-.filter-bottom{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.active-filters{display:flex;flex-wrap:wrap;gap:.35rem}
-.af-pill{display:flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:var(--accent-soft);border:1px solid rgba(192,111,196,0.25);font-size:11.5px;color:var(--accent2)}
-.af-pill button{background:transparent;border:none;color:var(--accent);cursor:pointer;font-size:13px;padding:0;line-height:1;opacity:.7}
+/* Fila inferior: pills activos + resultados */
+.filter-bottom{
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+  padding:.7rem 1.5rem;
+  min-height:42px;
+}
+.active-filters{display:flex;flex-wrap:wrap;gap:.3rem}
+.af-pill{
+  display:flex;align-items:center;gap:5px;
+  padding:3px 10px 3px 11px;
+  border-radius:7px;
+  background:var(--accent-soft);
+  border:1px solid rgba(192,111,196,0.2);
+  font-size:11px;color:var(--accent2);
+  font-weight:500;letter-spacing:.01em;
+}
+.af-pill button{
+  background:transparent;border:none;color:var(--accent);
+  cursor:pointer;font-size:12px;padding:0;line-height:1;opacity:.6;
+  transition:opacity .15s;
+}
 .af-pill button:hover{opacity:1}
-.clear-all-btn{padding:5px 14px;border-radius:30px;border:1px solid rgba(212,96,122,0.3);background:transparent;color:var(--rose);font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .15s;margin-left:auto}
-.clear-all-btn:hover{background:var(--rose-soft)}
-.results-count{font-size:12px;color:var(--muted)}
+.clear-all-btn{
+  padding:4px 12px;border-radius:7px;
+  border:1px solid rgba(212,96,122,0.25);
+  background:transparent;color:var(--rose);
+  font-size:11px;font-family:var(--font-body);font-weight:500;
+  cursor:pointer;transition:all .15s;margin-left:auto;letter-spacing:.02em;
+}
+.clear-all-btn:hover{background:var(--rose-soft);border-color:rgba(212,96,122,0.5)}
+.results-count{
+  font-size:11px;color:var(--muted);letter-spacing:.03em;
+  font-variant-numeric:tabular-nums;
+}
 
 /* GRID */
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
@@ -156,6 +303,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:560px;margin:auto;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative}
 .modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
 .modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
+.modal-share-btn{position:absolute;top:14px;right:54px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
+.modal-share-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 .modal-cover-strip{aspect-ratio:16/7;overflow:hidden;position:relative}
 .modal-cover-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
 .modal-cover-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--surface) 0%,transparent 60%)}
@@ -228,6 +377,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tg-at{padding:10px 4px 10px 14px;font-size:15px;color:var(--accent2);font-weight:600;line-height:1;user-select:none}
 .tg-input-wrap input{flex:1;padding:10px 14px 10px 2px;border:none;background:transparent;color:var(--text);font-size:13.5px;font-family:var(--font-body);outline:none}
 .tg-input-wrap input::placeholder{color:var(--muted)}
+
+/* RESET PASSWORD MODAL */
+.reset-modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:370px;margin:auto;padding:2.5rem 2rem;text-align:center;position:relative}
+.reset-modal .auth-form input{padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:var(--font-body);outline:none;transition:border-color .15s;width:100%}
+.reset-modal .auth-form input:focus{border-color:var(--accent)}
+.reset-modal .auth-form input::placeholder{color:var(--muted)}
+.reset-modal .auth-form{display:flex;flex-direction:column;gap:.6rem;text-align:left;margin-bottom:.5rem}
 
 .toast{position:fixed;bottom:2rem;right:2rem;padding:10px 22px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;transform:translateY(80px);opacity:0;transition:all .25s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
@@ -584,6 +740,100 @@ body.home-active .hero,body.home-active .main{display:none!important}
 @media(max-width:600px){.section-tabs{gap:.35rem;flex-wrap:wrap}.section-tab{padding:6px 12px;font-size:11.5px;flex:1 1 calc(50% - .35rem);justify-content:center}}
 
 /* FOOTER */
+.tab-share-btn{
+  margin-left:auto;
+  display:flex;align-items:center;gap:5px;
+  padding:7px 14px;border-radius:30px;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--muted);font-size:12px;font-family:var(--font-body);
+  cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0;
+}
+.tab-share-btn:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
+.tab-share-btn.copied{border-color:var(--teal);color:var(--teal);background:rgba(91,188,176,0.1)}
+@media(max-width:600px){.tab-share-btn{margin-left:0;flex:1 1 calc(50% - .35rem);justify-content:center}}
+/* ── RULETA FILTROS PROPIOS ── */
+.ruleta-dd-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin-bottom:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
+.ruleta-dd-row-label{font-size:9.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap;opacity:.7;flex-shrink:0;margin-right:.1rem}
+/* dropdown de ruleta — reutiliza estructura .dd-wrap pero con scope propio */
+.ruleta-dd-wrap{position:relative;display:inline-block}
+.ruleta-dd-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:1px solid transparent;background:var(--surface2);color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .18s;white-space:nowrap;user-select:none;letter-spacing:.01em}
+.ruleta-dd-btn:hover{border-color:rgba(192,111,196,0.35);color:var(--text);background:var(--surface3)}
+.ruleta-dd-btn.has-sel{background:var(--accent-soft);border-color:rgba(192,111,196,0.4);color:var(--accent2)}
+.ruleta-dd-btn svg{width:9px;height:9px;flex-shrink:0;transition:transform .22s;opacity:.6}
+.ruleta-dd-wrap.open .ruleta-dd-btn svg{transform:rotate(180deg)}
+.ruleta-dd-btn .rdd-count{background:var(--accent);color:#fff;border-radius:20px;font-size:9px;font-weight:700;padding:1px 5px;letter-spacing:0}
+.ruleta-dd-panel{position:fixed;min-width:210px;max-width:290px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,.55),0 4px 20px rgba(0,0,0,.3);z-index:500;display:none;max-height:300px;overflow-y:auto;animation:ddFadeIn .14s ease}
+.ruleta-dd-wrap.open .ruleta-dd-panel{display:block}
+.ruleta-dd-search{padding:.5rem .8rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px)}
+.ruleta-dd-search input{width:100%;padding:5px 9px;border-radius:7px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12px;font-family:var(--font-body);outline:none;transition:border-color .15s}
+.ruleta-dd-search input::placeholder{color:var(--muted);opacity:.6}
+.ruleta-dd-search input:focus{border-color:var(--accent)}
+.ruleta-dd-list{padding:.3rem 0}
+.ruleta-dd-clear{padding:6px 12px;border-bottom:1px solid var(--border);font-size:11px;color:var(--rose);cursor:pointer;transition:background .12s;letter-spacing:.04em;font-weight:500}
+.ruleta-dd-clear:hover{background:var(--rose-soft)}
+.ruleta-dd-item{display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;transition:background .12s;font-size:12px}
+.ruleta-dd-item:hover{background:var(--surface2)}
+.ruleta-dd-item input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;flex-shrink:0;cursor:pointer}
+.ruleta-dd-item label{cursor:pointer;flex:1;color:var(--text);line-height:1.4}
+.ruleta-dd-empty{padding:10px 12px;font-size:12px;color:var(--muted);font-style:italic}
+/* pills de filtros propios de la ruleta */
+.ruleta-own-pills{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:.5rem;min-height:0}
+.ruleta-own-pill{display:flex;align-items:center;gap:4px;padding:3px 9px 3px 10px;border-radius:7px;background:rgba(192,111,196,0.15);border:1px solid rgba(192,111,196,0.25);font-size:11px;color:var(--accent2);font-weight:500}
+.ruleta-own-pill button{background:transparent;border:none;color:var(--accent);cursor:pointer;font-size:11px;padding:0;line-height:1;opacity:.6;transition:opacity .15s}
+.ruleta-own-pill button:hover{opacity:1}
+/* ── RULETA TIPO SELECTOR ── */
+.ruleta-tipo-row{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-bottom:.75rem}
+.ruleta-tipo-btn{padding:5px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11.5px;font-family:var(--font-body);cursor:pointer;transition:all .18s;white-space:nowrap}
+.ruleta-tipo-btn:hover{border-color:rgba(192,111,196,0.35);color:var(--text);background:var(--surface3)}
+.ruleta-tipo-btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2);font-weight:600}
+@media(max-width:600px){.ruleta-tipo-row{gap:.25rem}.ruleta-tipo-btn{padding:4px 9px;font-size:11px}}
+/* ── RULETA ── */
+.ruleta-wrap{max-width:700px;margin:0 auto;padding-bottom:4rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.ruleta-filtros-card{width:100%;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.95) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,.3);position:relative;overflow:hidden}
+.ruleta-filtros-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.7}
+.ruleta-filtros-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.ruleta-filtros-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.ruleta-filtros-status{font-size:12px;color:var(--accent2);font-weight:600}
+.ruleta-filtros-pills{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.9rem;min-height:24px}
+.ruleta-filtros-row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.ruleta-toggle-btn{display:flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .18s}
+.ruleta-toggle-btn:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
+.ruleta-toggle-btn.active-excl{background:rgba(212,96,122,0.12);border-color:var(--rose);color:#e0909e}
+.ruleta-toggle-btn.active-only{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.ruleta-toggle-icon{font-size:14px}
+.ruleta-clear-btn{padding:6px 14px;border-radius:20px;border:1px solid rgba(212,96,122,0.25);background:transparent;color:var(--rose);font-size:11.5px;font-family:var(--font-body);cursor:pointer;transition:all .15s;margin-left:auto}
+.ruleta-clear-btn:hover{background:var(--rose-soft);border-color:rgba(212,96,122,0.5)}
+.ruleta-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
+.ruleta-arrow-top{color:var(--accent);font-size:22px;line-height:1;filter:drop-shadow(0 0 8px rgba(192,111,196,0.7));animation:ruletaArrowPulse 2s ease-in-out infinite;z-index:10;position:relative}
+@keyframes ruletaArrowPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(192,111,196,0.5));transform:translateY(0)}50%{filter:drop-shadow(0 0 14px rgba(192,111,196,0.9));transform:translateY(3px)}}
+.ruleta-canvas-wrap{position:relative;border-radius:50%;box-shadow:0 0 0 4px rgba(192,111,196,0.2),0 0 40px rgba(192,111,196,0.15),0 20px 60px rgba(0,0,0,0.5);transition:box-shadow .3s;cursor:pointer}
+.ruleta-canvas-wrap:hover{box-shadow:0 0 0 4px rgba(192,111,196,0.35),0 0 60px rgba(192,111,196,0.25),0 20px 60px rgba(0,0,0,0.5)}
+.ruleta-canvas-wrap canvas{border-radius:50%;display:block}
+.ruleta-spin-btn{display:flex;align-items:center;gap:.5rem;padding:13px 40px;border-radius:40px;background:linear-gradient(135deg,var(--accent),var(--rose));border:none;color:#fff;font-family:var(--font-display);font-size:1.2rem;font-style:italic;font-weight:600;cursor:pointer;letter-spacing:.02em;box-shadow:0 8px 30px rgba(192,111,196,0.4);transition:all .22s}
+.ruleta-spin-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(192,111,196,0.55)}
+.ruleta-spin-btn:active{transform:translateY(0)}
+.ruleta-spin-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.ruleta-spin-icon{font-size:1rem}
+.ruleta-result{width:100%;animation:ruletaResultIn .5s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes ruletaResultIn{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:none}}
+.ruleta-result-inner{background:linear-gradient(135deg,rgba(192,111,196,0.1) 0%,rgba(212,96,122,0.06) 100%);border:1px solid rgba(192,111,196,0.3);border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:center;box-shadow:0 8px 40px rgba(192,111,196,0.15)}
+.ruleta-result-label{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:1rem}
+.ruleta-result-book{display:flex;gap:1.25rem;align-items:flex-start;text-align:left;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.1rem}
+.ruleta-result-cover{width:64px;height:96px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.ruleta-result-cover-ph{width:64px;height:96px;border-radius:8px;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+.ruleta-result-info{flex:1;min-width:0}
+.ruleta-result-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;line-height:1.2;margin-bottom:.25rem;color:var(--text)}
+.ruleta-result-author{font-size:12.5px;color:var(--muted);margin-bottom:.5rem}
+.ruleta-result-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.ruleta-result-actions{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.ruleta-action-btn{padding:9px 22px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:13px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s}
+.ruleta-action-btn:hover{border-color:var(--border2);background:var(--surface2);color:var(--text)}
+.ruleta-action-primary{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.ruleta-action-primary:hover{background:rgba(192,111,196,0.22);border-color:var(--accent);color:var(--text)}
+@media(max-width:600px){.ruleta-canvas-wrap canvas{width:300px!important;height:300px!important}.ruleta-filtros-card{padding:1rem}.ruleta-result-inner{padding:1rem}}
+
+/* FOOTER */
 .site-footer{position:relative;z-index:1;border-top:1px solid var(--border2);background:var(--surface);padding:2.5rem 2rem 1.8rem;margin-top:3rem}
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.4rem}
 .footer-logo{font-family:var(--font-display);font-size:1.3rem;font-weight:300;color:var(--muted);letter-spacing:.04em;text-align:center}
@@ -592,6 +842,17 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .footer-link{padding:6px 16px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;text-decoration:none;transition:all .18s;letter-spacing:.02em}
 .footer-link:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
 .footer-copy{font-size:11px;color:var(--muted);opacity:.5;letter-spacing:.05em;text-align:center}
+/* ── COMMUNITY TAGS ── */
+.community-tags-block{margin-top:1rem}
+.ctags-section{margin-bottom:.75rem}
+.ctags-section-header{font-size:10.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem}
+.ctags-tag-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.tag-comm-added{opacity:.85;border-style:dashed!important}
+.tag-comm-dot{font-size:9px;opacity:.65;font-style:italic;font-weight:400}
+.tag-adder-wrap{display:inline-flex}
+.tag-adder-select{background:var(--surface2);border:1px dashed var(--border2);border-radius:20px;color:var(--muted);font-size:11px;padding:3px 9px;cursor:pointer;outline:none;transition:border-color .15s,color .15s;font-family:var(--font-body);max-width:130px}
+.tag-adder-select:hover{border-color:var(--accent);color:var(--accent2)}
+
 /* INFO MODAL */
 .info-modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.82);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;z-index:400;padding:2rem 1rem;overflow-y:auto}
 .info-modal-bg.open{display:flex}
@@ -746,6 +1007,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
     <button class="tab-btn" id="tabCanal" onclick="switchTab('canal')">📻 Recomendaciones del Canal</button>
     <button class="tab-btn" id="tabMyrec" onclick="switchTab('myrec')">💌 Mis Recomendaciones</button>
     <button class="tab-btn" id="tabSolicitudes" onclick="switchTab('solicitudes')">📬 Solicitudes</button>
+    <button class="tab-btn" id="tabRuleta" onclick="switchTab('ruleta')">🎡 Ruleta</button>
+    <button class="tab-share-btn" id="tabShareBtn" onclick="copyTabLink()" title="Copiar enlace a esta sección">🔗 Copiar enlace</button>
   </div>
 
   <!-- PANEL ESTANTERÍA -->
@@ -788,7 +1051,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('subgenres','listSubgenre',this.value)"></div><div class="dd-list" id="listSubgenre"></div></div>
       </div>
       <div class="dd-wrap" id="ddDinamica">
-        <button class="dd-btn" onclick="toggleDD('ddDinamica')">Dinámica 💞 <span class="dd-count" id="cntDinamica" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <button class="dd-btn" onclick="toggleDD('ddDinamica')">Dinámica <span class="dd-count" id="cntDinamica" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('dinamicas','listDinamica',this.value)"></div><div class="dd-list" id="listDinamica"></div></div>
       </div>
       <div class="dd-wrap" id="ddTrope">
@@ -808,18 +1071,26 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <div class="dd-panel"><div class="dd-list" id="listYear"></div></div>
       </div>
       <div class="dd-wrap" id="ddSpicy">
-        <button class="dd-btn" onclick="toggleDD('ddSpicy')">Spicy 🌶 <span class="dd-count" id="cntSpicy" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <button class="dd-btn" onclick="toggleDD('ddSpicy')">Spicy <span class="dd-count" id="cntSpicy" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel" id="listSpicy"></div>
       </div>
       <div class="dd-wrap" id="ddSaga">
-        <button class="dd-btn" onclick="toggleDD('ddSaga')">Saga 📚 <span class="dd-count" id="cntSaga" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <button class="dd-btn" onclick="toggleDD('ddSaga')">Saga <span class="dd-count" id="cntSaga" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('sagas','listSaga',this.value)"></div><div class="dd-list" id="listSaga"></div></div>
+      </div>
+      <div class="dd-wrap" id="ddEdad">
+        <button class="dd-btn" onclick="toggleDD('ddEdad')">Edad <span class="dd-count" id="cntEdad" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-panel"><div class="dd-list" id="listEdad"></div></div>
+      </div>
+      <div class="dd-wrap" id="ddPais">
+        <button class="dd-btn" onclick="toggleDD('ddPais')">País <span class="dd-count" id="cntPais" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_cultura','listPais',this.value)"></div><div class="dd-list" id="listPais"></div></div>
       </div>
       <div id="valoracionFilter" style="display:none">
         <button class="dd-btn" id="btnValorado" onclick="toggleValoracion('valorado')" title="Mostrar solo libros que ya valoré">★ Valorados</button>
         <button class="dd-btn" id="btnNoValorado" onclick="toggleValoracion('no_valorado')" title="Mostrar libros que aún no he valorado">☆ Sin valorar</button>
       </div>
-      <button class="dd-btn" id="btnConSerie" onclick="toggleAdaptacion('serie')" title="Solo libros con serie de televisión">📺 Con serie</button>
+      <button class="dd-btn" id="btnConSerie" onclick="toggleAdaptacion('serie')" title="Solo libros con serie de televisión">Con serie</button>
     </div>
     <div class="filter-bottom">
       <div class="active-filters" id="activeFilters"></div>
@@ -946,12 +1217,133 @@ body.home-active .hero,body.home-active .main{display:none!important}
     </div>
   </div>
 
+  <!-- PANEL RULETA -->
+  <div id="panelRuleta" style="display:none">
+    <div class="ruleta-wrap">
+      <!-- Filtros de la ruleta -->
+      <div class="ruleta-filtros-card">
+        <div class="ruleta-filtros-header">
+          <span class="ruleta-filtros-label">🎯 Filtros activos</span>
+          <div class="ruleta-filtros-status" id="ruletaStatus">Cargando…</div>
+        </div>
+        <!-- Selector de tipo de libros (independiente de la estantería) -->
+        <div class="ruleta-tipo-row" id="ruletaTipoRow">
+          <span style="font-size:9.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap;opacity:.7;flex-shrink:0">Tipo</span>
+          <button class="ruleta-tipo-btn active" data-src="all" onclick="ruletaSetSection('all')">✦ Todos</button>
+          <button class="ruleta-tipo-btn" data-src="thais" onclick="ruletaSetSection('thais')">🌸 Thais</button>
+          <button class="ruleta-tipo-btn" data-src="other" onclick="ruletaSetSection('other')">🌍 Occidentales</button>
+          <button class="ruleta-tipo-btn" data-src="spanish" onclick="ruletaSetSection('spanish')">💜 En Español</button>
+          <button class="ruleta-tipo-btn" data-src="baihee" onclick="ruletaSetSection('baihee')">🐉 Baihee</button>
+          <button class="ruleta-tipo-btn" data-src="asian" onclick="ruletaSetSection('asian')">🏮 Asiáticas</button>
+          <button class="ruleta-tipo-btn" data-src="african" onclick="ruletaSetSection('african')">🪘 Africanas</button>
+        </div>
+        <!-- Filtros propios: Género, Dinámica, Tropo -->
+        <div class="ruleta-dd-row">
+          <span class="ruleta-dd-row-label">Filtrar</span>
+          <!-- Género -->
+          <div class="ruleta-dd-wrap" id="rddGenre">
+            <button class="ruleta-dd-btn" onclick="toggleRDD('rddGenre')">
+              Género <span class="rdd-count" id="rddCntGenre" style="display:none"></span>
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+            </button>
+            <div class="ruleta-dd-panel">
+              <div class="ruleta-dd-search"><input type="text" placeholder="Buscar…" oninput="filterRDD('genres','rddListGenre',this.value)"></div>
+              <div class="ruleta-dd-list" id="rddListGenre"></div>
+            </div>
+          </div>
+          <!-- Dinámica -->
+          <div class="ruleta-dd-wrap" id="rddDinamica">
+            <button class="ruleta-dd-btn" onclick="toggleRDD('rddDinamica')">
+              Dinámica <span class="rdd-count" id="rddCntDinamica" style="display:none"></span>
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+            </button>
+            <div class="ruleta-dd-panel">
+              <div class="ruleta-dd-search"><input type="text" placeholder="Buscar…" oninput="filterRDD('dinamicas','rddListDinamica',this.value)"></div>
+              <div class="ruleta-dd-list" id="rddListDinamica"></div>
+            </div>
+          </div>
+          <!-- Tropo -->
+          <div class="ruleta-dd-wrap" id="rddTrope">
+            <button class="ruleta-dd-btn" onclick="toggleRDD('rddTrope')">
+              Tropo <span class="rdd-count" id="rddCntTrope" style="display:none"></span>
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+            </button>
+            <div class="ruleta-dd-panel">
+              <div class="ruleta-dd-search"><input type="text" placeholder="Buscar…" oninput="filterRDD('tropes','rddListTrope',this.value)"></div>
+              <div class="ruleta-dd-list" id="rddListTrope"></div>
+            </div>
+          </div>
+          <!-- Subgénero -->
+          <div class="ruleta-dd-wrap" id="rddSubgenre">
+            <button class="ruleta-dd-btn" onclick="toggleRDD('rddSubgenre')">
+              Temática <span class="rdd-count" id="rddCntSubgenre" style="display:none"></span>
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+            </button>
+            <div class="ruleta-dd-panel">
+              <div class="ruleta-dd-search"><input type="text" placeholder="Buscar…" oninput="filterRDD('subgenres','rddListSubgenre',this.value)"></div>
+              <div class="ruleta-dd-list" id="rddListSubgenre"></div>
+            </div>
+          </div>
+          <!-- Spicy -->
+          <div class="ruleta-dd-wrap" id="rddSpicy">
+            <button class="ruleta-dd-btn" onclick="toggleRDD('rddSpicy')">
+              Spicy <span class="rdd-count" id="rddCntSpicy" style="display:none"></span>
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+            </button>
+            <div class="ruleta-dd-panel">
+              <div class="ruleta-dd-list" id="rddListSpicy"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Pills de filtros propios de la ruleta -->
+        <div class="ruleta-own-pills" id="ruletaOwnPills"></div>
+        <div class="ruleta-filtros-pills" id="ruletaFiltrosPills"></div>
+        <div class="ruleta-filtros-row">
+          <button class="ruleta-toggle-btn" id="ruletaToggleValorados" onclick="ruletaToggleValorados()">
+            <span class="ruleta-toggle-icon">☆</span>
+            <span>Incluir valorados</span>
+          </button>
+          <button class="ruleta-toggle-btn" id="ruletaToggleSinValorar" onclick="ruletaToggleSinValorar()">
+            <span class="ruleta-toggle-icon">★</span>
+            <span>Solo sin valorar</span>
+          </button>
+          <button class="ruleta-clear-btn" onclick="ruletaClearFilters()">✕ Usar todos los libros</button>
+        </div>
+      </div>
+
+      <!-- Canvas de la ruleta -->
+      <div class="ruleta-stage">
+        <div class="ruleta-arrow-top">▼</div>
+        <div class="ruleta-canvas-wrap" id="ruletaCanvasWrap">
+          <canvas id="ruletaCanvas" width="420" height="420"></canvas>
+        </div>
+        <button class="ruleta-spin-btn" id="ruletaSpinBtn" onclick="ruletaSpin()">
+          <span class="ruleta-spin-icon">✦</span>
+          <span>Girar</span>
+        </button>
+      </div>
+
+      <!-- Resultado -->
+      <div class="ruleta-result" id="ruletaResult" style="display:none">
+        <div class="ruleta-result-inner">
+          <div class="ruleta-result-label">Tu próxima lectura ✨</div>
+          <div class="ruleta-result-book" id="ruletaResultBook"></div>
+          <div class="ruleta-result-actions">
+            <button class="ruleta-action-btn ruleta-action-primary" id="ruletaOpenBtn" onclick="ruletaOpenBook()">Ver ficha del libro</button>
+            <button class="ruleta-action-btn" onclick="ruletaSpin()">Volver a girar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <!-- BOOK MODAL -->
 <div class="modal-bg" id="bookModal">
   <div class="modal">
     <button class="modal-close" onclick="closeBookModal()">✕</button>
+    <button class="modal-share-btn" id="modalShareBtn" onclick="shareBook()" title="Copiar enlace a esta ficha">🔗</button>
     <div id="bookModalContent"></div>
   </div>
 </div>
@@ -975,6 +1367,41 @@ body.home-active .hero,body.home-active .main{display:none!important}
     </div>
     <div class="auth-error" id="authError"></div>
     <p class="auth-toggle" id="authToggle">¿No tienes cuenta? <a onclick="toggleAuthMode()">Regístrate aquí</a></p>
+    <p class="auth-toggle" id="authForgotWrap" style="margin-top:.35rem"><a onclick="handleForgotPassword()">¿Olvidaste tu contraseña?</a></p>
+  </div>
+</div>
+
+<!-- RESET PASSWORD MODAL -->
+<div class="modal-bg" id="resetModal">
+  <div class="reset-modal">
+    <button class="auth-close" onclick="closeResetModal()">✕</button>
+    <div class="auth-logo">Tinta <em>Sapphic</em></div>
+
+    <!-- Paso 1: pedir email -->
+    <div id="resetStep1">
+      <div class="auth-title">Recuperar cuenta</div>
+      <p class="auth-sub">Te enviaremos un código de 8 dígitos a tu email.</p>
+      <div class="auth-form">
+        <input type="email" id="resetEmail" placeholder="Tu email" autocomplete="email" onkeydown="if(event.key==='Enter')handleSendOtp()">
+        <button class="btn-primary" id="resetSendBtn" onclick="handleSendOtp()">Enviar código</button>
+      </div>
+      <div class="auth-error" id="resetError1"></div>
+    </div>
+
+    <!-- Paso 2: introducir código + nueva contraseña -->
+    <div id="resetStep2" style="display:none">
+      <div class="auth-title">Nueva contraseña</div>
+      <p class="auth-sub" id="resetStep2Sub">Introduce el código que te hemos enviado y elige una nueva contraseña.</p>
+      <div class="auth-form">
+        <input type="text" id="resetOtp" placeholder="Código de 8 dígitos" autocomplete="one-time-code" maxlength="8" inputmode="numeric" style="letter-spacing:.2em;font-size:1.3rem;text-align:center" onkeydown="if(event.key==='Enter')handleResetPassword()">
+        <input type="password" id="resetPass" placeholder="Nueva contraseña (mín. 6 caracteres)" autocomplete="new-password" onkeydown="if(event.key==='Enter')handleResetPassword()">
+        <input type="password" id="resetPass2" placeholder="Repite la contraseña" autocomplete="new-password" onkeydown="if(event.key==='Enter')handleResetPassword()">
+        <button class="btn-primary" id="resetBtn" onclick="handleResetPassword()">Guardar contraseña</button>
+      </div>
+      <div class="auth-error" id="resetError"></div>
+      <p class="auth-toggle" style="margin-top:.5rem"><a onclick="showResetStep1()">← Volver</a></p>
+    </div>
+
   </div>
 </div>
 
@@ -987,6 +1414,7 @@ const DATA_URL     = 'books_data.json';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const SPICY_LABELS = ['0/5 Sin Steam','1/5 Mini Steam','2/5 Soft Steam','3/5 Spicy Light','4/5 Spicy','5/5 Infernal 🔥'];
+const EDAD_LABELS = ['Young Adult (15–18)','New Adult (18–24)','25–39','+40'];
 const SPICY_ICONS  = ['','🌶','🌶🌶','🌶🌶🌶','🌶🌶🌶🌶','🌶🌶🌶🌶🌶'];
 const SPICY_UNKNOWN_LABEL = '? Nivel desconocido';
 const SPICY_UNKNOWN_ICON  = '❓';
@@ -995,8 +1423,15 @@ let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
 let activeSection='thais';
 let authMode='login', pendingStar=0;
 let spicyMap={}, mySpicy={}, pendingSpicy=0;
+let communityTagsMap={}, myTags={};
+const VALID_TAGS={
+  trope:['Age Gap','Alpha/Beta/Omega','Arranged Marriage','Childhood Friends','Coming Out tardío','Destined Lovers','Enemies to Lovers','Fake Relationship','Forbidden Love','Forced Proximity','Found Family','Friends to Lovers','Friends with Benefits','Hurt/Comfort','Jealousy Trope','Lesbian Awakening','Love Triangle','Marriage of Convenience','Opposites Attract','Revenge Romance','Rich/Poor Romance','Rivals to Lovers','Road Trip','Second Chance Romance','Secret Relationship','Slow Burn','Strangers to Lovers','Student × Teacher','Toaster Oven','Unrequited Love','Vacation Romance','Workplace Romance'],
+  dinamica:['Bodyguard × VIP','Boss × Employee','Butch × Femme','Dominante × Sumisa','Femme × Femme','Fría × Cálida','Grumpy × Sunshine','Ice Queen × Softie','Ice Queen × Sunshine','Jefa × Subordinada','Masc × Femme','Mentora × Aprendiz','Nerd × Popular','Protectora × Delicada','Realeza × Plebeya','Rich × Poor','Soft Butch × Femme','Switch × Switch','Top × Bottom','Vampira × Humana'],
+  character:['Abogada','Actriz','Arqueóloga','Artista','Azafata','Bailarina','Bruja','CEO','Camarera','Cantante','Chef','Científica','Demonio','Deportista','Doctora / Médica','Empresaria','Escritora','Estudiante','Famosa','Femme','Florista','Futbolista','Granjera','Guardaespaldas','Ice Queen','Investigadora','Madre Soltera','Millonaria / Billonaria','Modelo','Mujer Lobo','Música','Piloto','Pirata','Policía','Política','Profesora','Psicóloga','Realeza','Reportera / Periodista','Sirena','Vampira','Veterinaria','Zombie','Ángel'],
+  identidad:['Asexual','Bisexual','Butch','Femme','Grumpy','Ice Queen','Introvertida','Lesbiana','Masc','Nerd','Queer','Soft Butch','Sunshine']
+};
 const SPICY_MIN_VOTES=2;
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],adaptacion:null,valoracion:null};
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null};
 let currentPage=1;
 const PAGE_SIZE=24;
 
@@ -1007,10 +1442,12 @@ function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()
 function pushState(){
   try{
     const params=new URLSearchParams();
+    // Include active tab so the URL is shareable per section
+    if(activeTab&&activeTab!=='estanteria') params.set('tab',activeTab);
     if(activeSection&&activeSection!=='thais') params.set('section',activeSection);
     if(currentPage>1) params.set('page',currentPage);
     if(filters.q) params.set('q',filters.q);
-    ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas'].forEach(k=>{
+    ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
       if(filters[k].length) params.set(k,filters[k].join('|'));
     });
     if(filters.spicy.length) params.set('spicy',filters.spicy.join('|'));
@@ -1023,10 +1460,11 @@ function pushState(){
 }
 function loadState(){
   const params=new URLSearchParams(location.search);
+  if(params.get('tab')) activeTab=params.get('tab');
   if(params.get('section')) activeSection=params.get('section');
   if(params.get('page')) currentPage=parseInt(params.get('page'))||1;
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
-  ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas'].forEach(k=>{
+  ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
     if(params.get(k)) filters[k]=params.get(k).split('|');
   });
   if(params.get('spicy')) filters.spicy=params.get('spicy').split('|').map(Number);
@@ -1056,7 +1494,10 @@ async function init(){
   Object.entries(_secTabs).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.className='section-tab'+(key===activeSection?' '+_secCls[key]:'');});
   applyFilters(false);
   updateDDCounts();renderActivePills();
-  const savedTab = sessionStorage.getItem('ts_active_tab');
+  // Restore active tab from URL if present, otherwise use sessionStorage or home
+  const urlParams=new URLSearchParams(location.search);
+  const urlTab=urlParams.get('tab');
+  const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
     document.getElementById('homeView').classList.remove('active');
@@ -1072,12 +1513,17 @@ async function init(){
     else{myRatings={};applyFilters(false);}
   },300);
   sb.auth.onAuthStateChange((_e,session)=>{
+    if(_e==='PASSWORD_RECOVERY'){
+      openResetModal();
+      return;
+    }
     currentUser=session?.user||null;
     renderAuthUI();
     debouncedLoadRatings();
     if(activeTab==='solicitudes') renderSolicitudes();
+    if(activeTab==='ruleta') ruletaInit();
   });
-  document.addEventListener('click',e=>{if(!e.target.closest('.dd-wrap'))closeAllDD();});
+  document.addEventListener('click',e=>{if(!e.target.closest('.dd-wrap')&&!e.target.closest('.ruleta-dd-wrap')){closeAllDD();closeAllRDD();}});
 }
 
 async function loadBooks(){
@@ -1113,6 +1559,16 @@ async function loadBooks(){
       spicyMap[id]={avg:Math.round(levels.reduce((a,b)=>a+b,0)/levels.length*10)/10,count:levels.length};
     });
   }
+  const {data:ctData}=await sb.from('community_tags').select('book_id,tag_type,tag_value');
+  communityTagsMap={};
+  if(ctData){
+    ctData.forEach(r=>{
+      if(!communityTagsMap[r.book_id]) communityTagsMap[r.book_id]={};
+      if(!communityTagsMap[r.book_id][r.tag_type]) communityTagsMap[r.book_id][r.tag_type]=[];
+      if(!communityTagsMap[r.book_id][r.tag_type].includes(r.tag_value))
+        communityTagsMap[r.book_id][r.tag_type].push(r.tag_value);
+    });
+  }
   updateStats();
 }
 
@@ -1124,6 +1580,15 @@ async function loadMyRatings(){
   const {data:sv}=await sb.from('spicy_votes').select('book_id,level').eq('user_id',currentUser.id);
   mySpicy={};
   if(sv) sv.forEach(r=>mySpicy[r.book_id]=r.level);
+  const {data:myCtData}=await sb.from('community_tags').select('book_id,tag_type,tag_value').eq('user_id',currentUser.id);
+  myTags={};
+  if(myCtData){
+    myCtData.forEach(r=>{
+      if(!myTags[r.book_id]) myTags[r.book_id]={};
+      if(!myTags[r.book_id][r.tag_type]) myTags[r.book_id][r.tag_type]=[];
+      myTags[r.book_id][r.tag_type].push(r.tag_value);
+    });
+  }
 }
 
 function updateStats(){
@@ -1140,22 +1605,40 @@ function uniqVals(key){
   if(key==='authors') return [...new Set(sectionBooks.flatMap(b=>b.authors||[]))].sort();
   if(key==='years')   return [...new Set(sectionBooks.map(b=>b.year).filter(Boolean))].sort((a,z)=>z-a).map(String);
   if(key==='sagas')   return [...new Set(sectionBooks.map(b=>getSaga(b)).filter(Boolean))].sort();
+  const tagTypeMap={tropes:'trope',dinamicas:'dinamica',characters:'character',identidades:'identidad'};
+  if(tagTypeMap[key]){
+    const tagType=tagTypeMap[key];
+    const fromJson=sectionBooks.flatMap(b=>b[key]||[]);
+    const fromComm=sectionBooks.flatMap(b=>(communityTagsMap[b.id]||{})[tagType]||[]);
+    return [...new Set([...fromJson,...fromComm])].sort();
+  }
   return [...new Set(sectionBooks.flatMap(b=>b[key]||[]))].sort();
 }
 
 const DD_MAP = {
   genres:'listGenre', subgenres:'listSubgenre', dinamicas:'listDinamica',
   tropes:'listTrope', characters:'listCharacter', authors:'listAuthor',
-  years:'listYear', sagas:'listSaga'
+  years:'listYear', sagas:'listSaga', edad:'listEdad', pais_cultura:'listPais'
 };
 
 function buildDropdowns(){
   Object.entries(DD_MAP).forEach(([key,listId])=>{
     if(listId==='listYear') buildDDList(listId, uniqVals('years'), 'years');
+    else if(listId==='listEdad') buildEdadDD();
     else buildDDList(listId, uniqVals(key), key);
   });
   buildSpicyDD();
   updateDDCounts();
+}
+
+function buildEdadDD(){
+  const el=document.getElementById('listEdad');
+  if(!el) return;
+  el.innerHTML=(filters.edad.length?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
+    EDAD_LABELS.map(v=>{
+      const sid='dd_edad_'+v.replace(/\W/g,'_');
+      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters.edad.includes(v)?'checked':''} onchange="toggleDDFilter('edad','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
+    }).join('');
 }
 
 function buildDDList(listId,values,key,search=''){
@@ -1188,6 +1671,7 @@ function toggleDDFilter(key,val){
   const arr=filters[key],idx=arr.indexOf(val);
   idx>=0?arr.splice(idx,1):arr.push(val);
   if(key==='spicy') buildSpicyDD();
+  else if(key==='edad') buildEdadDD();
   else buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
@@ -1202,6 +1686,7 @@ function clearDDFilter(key){
   filters[key]=[];
   if(key==='spicy') filters.spicyUnknown=false;
   if(key==='spicy') buildSpicyDD();
+  else if(key==='edad') buildEdadDD();
   else buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
@@ -1209,7 +1694,7 @@ function clearDDFilter(key){
 function updateDDCounts(){
   [['Genre','genres'],['Subgenre','subgenres'],['Dinamica','dinamicas'],
    ['Trope','tropes'],['Character','characters'],['Author','authors'],
-   ['Year','years'],['Saga','sagas']].forEach(([k,fk])=>{
+   ['Year','years'],['Saga','sagas'],['Edad','edad'],['Pais','pais_cultura']].forEach(([k,fk])=>{
     const cnt=document.getElementById('cnt'+k);
     const btn=document.querySelector('#dd'+k+' .dd-btn');
     if(!cnt||!btn) return;
@@ -1267,7 +1752,7 @@ function renderActivePills(){
   const labelMap={
     genres:'Género', subgenres:'Temática', dinamicas:'Dinámica',
     tropes:'Tropo', characters:'Personaje', authors:'Autora',
-    years:'Año', spicy:'Spicy', sagas:'Saga'
+    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País'
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
@@ -1294,7 +1779,7 @@ function renderActivePills(){
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],adaptacion:null,valoracion:null};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null};
   document.getElementById('searchInput').value='';
   updateValoracionBtns();
   updateAdaptacionBtn();
@@ -1310,9 +1795,9 @@ function applyFilters(resetPage=true){
   if(filters.q) books=books.filter(b=>(b.title+' '+(b.authors||[]).join(' ')+(getSaga(b)||'')).toLowerCase().includes(filters.q));
   if(filters.genres.length)    books=books.filter(b=>filters.genres.every(g=>(b.genres||[]).includes(g)));
   if(filters.subgenres.length) books=books.filter(b=>filters.subgenres.every(s=>(b.subgenres||[]).includes(s)));
-  if(filters.dinamicas.length) books=books.filter(b=>filters.dinamicas.every(d=>(b.dinamicas||[]).includes(d)));
-  if(filters.tropes.length)    books=books.filter(b=>filters.tropes.every(t=>(b.tropes||[]).includes(t)));
-  if(filters.characters.length) books=books.filter(b=>filters.characters.every(c=>(b.characters||[]).includes(c)));
+  if(filters.dinamicas.length) books=books.filter(b=>filters.dinamicas.every(d=>[...(b.dinamicas||[]),...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
+  if(filters.tropes.length)    books=books.filter(b=>filters.tropes.every(t=>[...(b.tropes||[]),...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
+  if(filters.characters.length) books=books.filter(b=>filters.characters.every(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
   if(filters.authors.length)   books=books.filter(b=>filters.authors.some(a=>(b.authors||[]).includes(a)));
   if(filters.years.length)     books=books.filter(b=>filters.years.includes(String(b.year)));
   if(filters.spicy.length||filters.spicyUnknown){
@@ -1325,6 +1810,8 @@ function applyFilters(resetPage=true){
     });
   }
   if(filters.sagas.length)     books=books.filter(b=>filters.sagas.includes(getSaga(b)));
+  if(filters.edad.length)       books=books.filter(b=>filters.edad.every(e=>(b.edad||[]).includes(e)));
+  if(filters.pais_cultura.length) books=books.filter(b=>filters.pais_cultura.every(p=>(b.pais_cultura||[]).includes(p)));
   if(filters.adaptacion==='serie') books=books.filter(b=>b.adaptacion==='Tiene serie');
   if(filters.valoracion==='valorado') books=books.filter(b=>!!myRatings[b.id]);
   if(filters.valoracion==='no_valorado') books=books.filter(b=>!myRatings[b.id]);
@@ -1428,7 +1915,7 @@ function goToPage(n){
 }
 
 /* ── BOOK MODAL ── */
-function openBook(id){
+function openBook(id, pushState=true){
   activeBook=allBooks.find(b=>b.id===id);
   if(!activeBook) return;
   pendingStar=myRatings[id]||0;
@@ -1438,8 +1925,13 @@ function openBook(id){
   _attachSpicyEvents();
   document.getElementById('bookModal').classList.add('open');
   document.body.style.overflow='hidden';
+  if(pushState) history.pushState({bookId:id},'',`#libro/${id}`);
 }
-function closeBookModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';}
+function closeBookModal(){
+  document.getElementById('bookModal').classList.remove('open');
+  document.body.style.overflow='';
+  if(location.hash.startsWith('#libro/')) history.pushState({},'',location.pathname+location.search);
+}
 
 function renderBookModal(){
   const b=activeBook;
@@ -1507,6 +1999,7 @@ function renderBookModal(){
       </div>`:''}
       <div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>
       <div id="modalSpicySection">${buildSpicySectionHTML()}</div>
+      <div id="modalCommunityTagsSection">${buildCommunityTagsHTML()}</div>
     </div>`;
 }
 
@@ -1738,6 +2231,93 @@ async function deleteSpicyVote(){
   applyFilters(false);renderSpicySection();
 }
 
+/* ── COMMUNITY TAGS ── */
+function getEffectiveTags(book, tagType){
+  const jsonKey={trope:'tropes',dinamica:'dinamicas',character:'characters',identidad:'identidades'}[tagType];
+  const official=book[jsonKey]||[];
+  const community=(communityTagsMap[book.id]||{})[tagType]||[];
+  const merged=[...new Set([...official,...community])];
+  return {official,community,merged};
+}
+
+function buildCommunityTagsHTML(){
+  const b=activeBook;
+  if(!b) return '';
+  const sections=[
+    {type:'trope',    label:'Tropos',      emoji:'🎭', filterKey:'tropes'},
+    {type:'dinamica', label:'Dinámicas',   emoji:'💫', filterKey:'dinamicas'},
+    {type:'character',label:'Personajes',  emoji:'👤', filterKey:'characters'},
+    {type:'identidad',label:'Identidades', emoji:'🏳️‍🌈', filterKey:'identidades'}
+  ];
+  const sectionHTMLs=sections.map(({type,label,emoji,filterKey})=>{
+    const {official,community,merged}=getEffectiveTags(b,type);
+    const myVotedHere=(myTags[b.id]||{})[type]||[];
+    if(!currentUser&&merged.length===0) return '';
+    const tagList=merged.map(tag=>{
+      const isOfficial=official.includes(tag);
+      const isCommunity=!isOfficial&&community.includes(tag);
+      const isMyVote=myVotedHere.includes(tag);
+      const baseClass=isOfficial?'tag-'+type.replace('dinamica','dinamica').replace('character','character').replace('identidad','identidad'):''
+      const extraStyle=isCommunity?';border-style:dashed':'';
+      const tagClass=type==='trope'?'tag-trope':type==='dinamica'?'tag-dinamica':type==='character'?'tag-character':'tag-identidad';
+      const removeBtn=isMyVote?`<button onclick="removeMyTag('${type}','${tag.replace(/'/g,"\\'")}',event)" style="background:transparent;border:none;color:inherit;cursor:pointer;font-size:10px;padding:0 0 0 3px;opacity:.6;line-height:1" title="Quitar mi voto">×</button>`:'';
+      return `<span class="tag ${tagClass}${isCommunity?' tag-comm-added':''}" style="cursor:pointer${extraStyle}" onclick="filterByTagFromModal('${filterKey}',decodeURIComponent('${encodeURIComponent(tag)}'))">${tag}${isCommunity?`<span class="tag-comm-dot"> ·com</span>`:''}${removeBtn}</span>`;
+    }).join('');
+    const addSection=currentUser?buildTagAdderHTML(b.id,type,merged):'';
+    return `<div class="ctags-section">
+      <div class="ctags-section-header">${emoji} ${label}</div>
+      <div class="ctags-tag-row">${tagList||`<span style="color:var(--muted);font-size:11.5px;font-style:italic">Sin datos aún</span>`}${addSection}</div>
+    </div>`;
+  }).filter(Boolean).join('');
+  if(!sectionHTMLs) return '';
+  return `<div class="community-tags-block" style="margin-top:1rem">
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem">
+      <div class="rating-title">Tags de la comunidad</div>
+      ${sectionHTMLs}
+      ${!currentUser?`<p style="font-size:11.5px;color:var(--muted);margin-top:.5rem;font-style:italic"><a onclick="closeBookModal();openAuthModal()" style="cursor:pointer;color:var(--accent2)">Inicia sesión</a> para añadir tags.</p>`:''}
+    </div>
+  </div>`;
+}
+
+function buildTagAdderHTML(bookId, tagType, alreadyPresent){
+  const available=VALID_TAGS[tagType].filter(t=>!alreadyPresent.includes(t));
+  if(!available.length) return '';
+  const opts=available.map(t=>`<option value="${t.replace(/"/g,'&quot;')}">${t}</option>`).join('');
+  return `<span class="tag-adder-wrap"><select class="tag-adder-select" onchange="handleTagAdderChange('${tagType}',this)"><option value="">+ Añadir</option>${opts}</select></span>`;
+}
+
+async function handleTagAdderChange(tagType, selectEl){
+  const value=selectEl.value;
+  if(!value||!currentUser||!activeBook) return;
+  selectEl.value='';
+  const bookId=activeBook.id;
+  const myVotedHere=(myTags[bookId]||{})[tagType]||[];
+  if(myVotedHere.includes(value)) return;
+  const {error}=await sb.from('community_tags').insert({user_id:currentUser.id,book_id:bookId,tag_type:tagType,tag_value:value});
+  if(error){showToast('Error al añadir tag','error');return;}
+  if(!myTags[bookId]) myTags[bookId]={};
+  if(!myTags[bookId][tagType]) myTags[bookId][tagType]=[];
+  myTags[bookId][tagType].push(value);
+  if(!communityTagsMap[bookId]) communityTagsMap[bookId]={};
+  if(!communityTagsMap[bookId][tagType]) communityTagsMap[bookId][tagType]=[];
+  if(!communityTagsMap[bookId][tagType].includes(value)) communityTagsMap[bookId][tagType].push(value);
+  document.getElementById('modalCommunityTagsSection').innerHTML=buildCommunityTagsHTML();
+  showToast('Tag añadido ✓','success');
+}
+
+async function removeMyTag(tagType, value, event){
+  event.stopPropagation();
+  if(!currentUser||!activeBook) return;
+  const bookId=activeBook.id;
+  const {error}=await sb.from('community_tags').delete()
+    .eq('user_id',currentUser.id).eq('book_id',bookId).eq('tag_type',tagType).eq('tag_value',value);
+  if(error){showToast('Error al eliminar tag','error');return;}
+  if(myTags[bookId]?.[tagType]) myTags[bookId][tagType]=myTags[bookId][tagType].filter(t=>t!==value);
+  if(communityTagsMap[bookId]?.[tagType]) communityTagsMap[bookId][tagType]=communityTagsMap[bookId][tagType].filter(t=>t!==value);
+  document.getElementById('modalCommunityTagsSection').innerHTML=buildCommunityTagsHTML();
+  showToast('Tag eliminado','success');
+}
+
 /* ── AUTH ── */
 function renderAuthUI(){
   const el=document.getElementById('authArea');
@@ -1763,7 +2343,39 @@ function updateAuthUI(){
   document.getElementById('authTelegramWrap').style.display=isReg?'flex':'none';
   document.getElementById('authBtn').textContent=isReg?'Registrarse':'Entrar';
   document.getElementById('authToggle').innerHTML=isReg?'¿Ya tienes cuenta? <a onclick="toggleAuthMode()">Inicia sesión</a>':'¿No tienes cuenta? <a onclick="toggleAuthMode()">Regístrate aquí</a>';
+  document.getElementById('authForgotWrap').style.display=isReg?'none':'block';
   document.getElementById('authError').textContent='';
+}
+async function handleForgotPassword(){
+  closeAuthModal();
+  showResetStep1();
+  document.getElementById('resetModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function showResetStep1(){
+  document.getElementById('resetStep1').style.display='';
+  document.getElementById('resetStep2').style.display='none';
+  document.getElementById('resetError1').textContent='';
+  setTimeout(()=>document.getElementById('resetEmail').focus(),100);
+}
+async function handleSendOtp(){
+  const email=document.getElementById('resetEmail').value.trim();
+  const btn=document.getElementById('resetSendBtn');
+  const err=document.getElementById('resetError1');
+  if(!email){err.textContent='Escribe tu email.';return;}
+  btn.disabled=true;btn.textContent='Enviando…';
+  const {error}=await sb.auth.resetPasswordForEmail(email);
+  btn.disabled=false;btn.textContent='Enviar código';
+  if(error){err.textContent=error.message;return;}
+  document.getElementById('resetStep2Sub').textContent='Código enviado a '+email+'. Revisa tu bandeja de entrada.';
+  document.getElementById('resetStep1').style.display='none';
+  document.getElementById('resetStep2').style.display='';
+  document.getElementById('resetOtp').value='';
+  document.getElementById('resetPass').value='';
+  document.getElementById('resetPass2').value='';
+  document.getElementById('resetError').textContent='';
+  setTimeout(()=>document.getElementById('resetOtp').focus(),100);
+  window._resetEmail=email;
 }
 async function handleAuth(){
   const email=document.getElementById('authEmail').value.trim();
@@ -1789,7 +2401,84 @@ async function handleAuth(){
 function setAuthError(msg){document.getElementById('authError').textContent=msg;}
 async function logout(){await sb.auth.signOut();myRatings={};showToast('Hasta pronto 🌹','success');applyFilters();}
 
+/* ── RESET PASSWORD ── */
+function openResetModal(){
+  showResetStep1();
+  document.getElementById('resetModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeResetModal(){
+  document.getElementById('resetModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+async function handleResetPassword(){
+  const otp=document.getElementById('resetOtp').value.trim();
+  const pass=document.getElementById('resetPass').value;
+  const pass2=document.getElementById('resetPass2').value;
+  const btn=document.getElementById('resetBtn');
+  const err=document.getElementById('resetError');
+  if(!otp||otp.length<8){err.textContent='Introduce el código de 8 dígitos.';return;}
+  if(!pass||pass.length<6){err.textContent='Mínimo 6 caracteres.';return;}
+  if(pass!==pass2){err.textContent='Las contraseñas no coinciden.';return;}
+  btn.disabled=true;btn.textContent='Guardando…';
+  // Verificar OTP y establecer sesión
+  // Verificar OTP
+  err.textContent='Verificando código…';
+  let otpData, otpErr;
+  ({data:otpData,error:otpErr}=await sb.auth.verifyOtp({email:window._resetEmail,token:otp,type:'recovery'}));
+  if(otpErr){
+    err.textContent='[recovery] '+otpErr.message+' — probando email…';
+    ({data:otpData,error:otpErr}=await sb.auth.verifyOtp({email:window._resetEmail,token:otp,type:'email'}));
+  }
+  if(otpErr){
+    err.textContent='Error OTP: '+otpErr.message;
+    btn.disabled=false;btn.textContent='Guardar contraseña';
+    return;
+  }
+  err.textContent='Código OK. Estableciendo sesión…';
+  if(otpData?.session){
+    const {error:sessErr}=await sb.auth.setSession({access_token:otpData.session.access_token,refresh_token:otpData.session.refresh_token});
+    if(sessErr){err.textContent='Error sesión: '+sessErr.message;btn.disabled=false;btn.textContent='Guardar contraseña';return;}
+  }
+  err.textContent='Sesión lista. Guardando contraseña…';
+  let updateError=null;
+  try{
+    const updatePromise=sb.auth.updateUser({password:pass});
+    const timeoutPromise=new Promise((_,rej)=>setTimeout(()=>rej(new Error('Tiempo agotado (10s).')),10000));
+    const {error}=await Promise.race([updatePromise,timeoutPromise]);
+    updateError=error;
+  }catch(e){
+    updateError=e;
+  }
+  if(updateError){
+    err.textContent='Error al guardar: '+( updateError.message||JSON.stringify(updateError));
+    btn.disabled=false;btn.textContent='Guardar contraseña';
+  }else{
+    err.textContent='';
+    closeResetModal();
+    showToast('¡Contraseña actualizada! 🌹','success');
+  }
+}
+document.getElementById('resetModal').addEventListener('click',e=>{if(e.target.id==='resetModal')closeResetModal();});
+
 function showToast(msg,type='success'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast ${type}`;setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>t.classList.remove('show'),3200);}
+
+function copyTabLink(){
+  try{
+    navigator.clipboard.writeText(location.href).then(()=>{
+      showToast('¡Enlace copiado! 🔗','success');
+      const btn=document.getElementById('tabShareBtn');
+      if(btn){btn.classList.add('copied');btn.textContent='✓ Enlace copiado';setTimeout(()=>{btn.classList.remove('copied');btn.textContent='🔗 Copiar enlace';},2200);}
+    });
+  }catch(e){
+    // fallback
+    const ta=document.createElement('textarea');
+    ta.value=location.href;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('¡Enlace copiado! 🔗','success');
+  }
+}
 
 /* ── TABS ── */
 let activeTab='estanteria';
@@ -1802,17 +2491,27 @@ function switchTab(tab){
   document.getElementById('tabCanal').classList.toggle('active',tab==='canal');
   document.getElementById('tabMyrec').classList.toggle('active',tab==='myrec');
   document.getElementById('tabSolicitudes').classList.toggle('active',tab==='solicitudes');
+  document.getElementById('tabRuleta').classList.toggle('active',tab==='ruleta');
   document.getElementById('panelEstanteria').style.display=tab==='estanteria'?'':'none';
   document.getElementById('panelTop10').style.display=tab==='top10'?'':'none';
   document.getElementById('panelSafi').style.display=tab==='safi'?'':'none';
   document.getElementById('panelCanal').style.display=tab==='canal'?'':'none';
   document.getElementById('panelMyrec').style.display=tab==='myrec'?'':'none';
   document.getElementById('panelSolicitudes').style.display=tab==='solicitudes'?'':'none';
+  document.getElementById('panelRuleta').style.display=tab==='ruleta'?'':'none';
   if(tab==='top10') renderTop10();
   if(tab==='safi') renderSafi();
   if(tab==='canal') renderCanal();
   if(tab==='myrec') renderMyrec();
   if(tab==='solicitudes') renderSolicitudes();
+  if(tab==='ruleta') ruletaInit();
+  // Update URL so the tab is shareable
+  try{
+    const params=new URLSearchParams(location.search);
+    if(tab==='estanteria') params.delete('tab'); else params.set('tab',tab);
+    const url=params.toString()?'?'+params.toString():location.pathname;
+    history.replaceState(null,'',url);
+  }catch(e){}
 }
 
 /* ── HOME VIEW ── */
@@ -2359,6 +3058,49 @@ function renderMisSolicitudes(lista, userId){
 }
 
 document.getElementById('bookModal').addEventListener('click',e=>{if(e.target.id==='bookModal')closeBookModal();});
+
+/* ── URL HASH ROUTING per libro ── */
+function shareBook(){
+  if(!activeBook) return;
+  const url = location.origin + location.pathname + '#libro/' + activeBook.id;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(()=>showToast('Enlace copiado 🔗','success')).catch(()=>{prompt('Copia este enlace:',url);});
+  } else {
+    prompt('Copia este enlace:',url);
+  }
+}
+
+function tryOpenFromHash(){
+  const hash = location.hash;
+  if(!hash.startsWith('#libro/')) return;
+  const id = hash.slice(7);
+  if(!id) return;
+  if(allBooks.length){
+    openBook(id, false);
+  } else {
+    // Esperar a que los libros carguen
+    const waitFor = setInterval(()=>{
+      if(allBooks.length){
+        clearInterval(waitFor);
+        openBook(id, false);
+      }
+    },100);
+    setTimeout(()=>clearInterval(waitFor),8000);
+  }
+}
+
+window.addEventListener('popstate', ()=>{
+  if(location.hash.startsWith('#libro/')){
+    const id = location.hash.slice(7);
+    openBook(id, false);
+  } else {
+    document.getElementById('bookModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+});
+
+// Intentar al cargar la página
+tryOpenFromHash();
 document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuthModal();});
 
 async function checkSolicitudesNotif(){
@@ -2554,6 +3296,552 @@ function closeInfoModal() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfoModal(); });
+
+/* ══════════════════════════════════════════
+   RULETA LECTORA
+══════════════════════════════════════════ */
+let ruletaPool = [];
+let ruletaSpinning = false;
+let ruletaSelectedBook = null;
+let ruletaAngle = 0;
+let ruletaExcludeValorados = false;
+let ruletaOnlyPendientes = false;
+let ruletaSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian' | 'african'
+
+// Filtros propios de la ruleta (independientes de los de la estantería)
+const ruletaFilters = { genres: [], dinamicas: [], tropes: [], subgenres: [], spicy: [], spicyUnknown: false };
+
+/* ── RULETA DD HELPERS ── */
+function rddUniqVals(key) {
+  // Pool base: todos los libros (o los de la sección si está activa)
+  let base = ruletaSection === 'all' ? [...allBooks] : allBooks.filter(b => b.source === ruletaSection);
+  const tagTypeMap = { tropes: 'trope', dinamicas: 'dinamica' };
+  if (tagTypeMap[key]) {
+    const tagType = tagTypeMap[key];
+    const fromJson = base.flatMap(b => b[key] || []);
+    const fromComm = base.flatMap(b => (communityTagsMap[b.id] || {})[tagType] || []);
+    return [...new Set([...fromJson, ...fromComm])].sort();
+  }
+  return [...new Set(base.flatMap(b => b[key] || []))].sort();
+}
+
+function buildRDDList(listId, key, search = '') {
+  const el = document.getElementById(listId);
+  if (!el) return;
+  const all = rddUniqVals(key);
+  const vals = search ? all.filter(v => v.toLowerCase().includes(search.toLowerCase())) : all;
+  if (!vals.length) { el.innerHTML = '<div class="ruleta-dd-empty">Sin resultados</div>'; return; }
+  const sel = ruletaFilters[key];
+  el.innerHTML = (sel.length ? `<div class="ruleta-dd-clear" onclick="clearRDDFilter('${key}')">✕ Limpiar selección</div>` : '') +
+    vals.map(v => {
+      const sid = 'rdd_' + key + '_' + v.replace(/\W/g, '_');
+      return `<div class="ruleta-dd-item"><input type="checkbox" id="${sid}" ${sel.includes(v) ? 'checked' : ''} onchange="toggleRDDFilter('${key}','${v.replace(/'/g, "\\'")}')"><label for="${sid}">${v}</label></div>`;
+    }).join('');
+}
+
+function filterRDD(key, listId, search) { buildRDDList(listId, key, search); }
+
+function toggleRDD(id) {
+  const wrap = document.getElementById(id);
+  const wasOpen = wrap.classList.contains('open');
+  closeAllRDD();
+  closeAllDD();
+  if (!wasOpen) {
+    wrap.classList.add('open');
+    // Posicionar el panel con fixed relativo al botón
+    const btn = wrap.querySelector('.ruleta-dd-btn');
+    const panel = wrap.querySelector('.ruleta-dd-panel');
+    const rect = btn.getBoundingClientRect();
+    panel.style.top = (rect.bottom + 8) + 'px';
+    panel.style.left = rect.left + 'px';
+    // Ajustar si se sale por la derecha
+    requestAnimationFrame(() => {
+      const panelRect = panel.getBoundingClientRect();
+      if (panelRect.right > window.innerWidth - 8) {
+        panel.style.left = (window.innerWidth - panelRect.width - 8) + 'px';
+      }
+    });
+  }
+}
+function closeAllRDD() { document.querySelectorAll('.ruleta-dd-wrap.open').forEach(w => w.classList.remove('open')); }
+
+function toggleRDDFilter(key, val) {
+  if (key === 'spicy') val = parseInt(val);
+  const arr = ruletaFilters[key], idx = arr.indexOf(val);
+  idx >= 0 ? arr.splice(idx, 1) : arr.push(val);
+  updateRDDCounts();
+  renderRuletaOwnPills();
+  const listMap = { genres: 'rddListGenre', dinamicas: 'rddListDinamica', tropes: 'rddListTrope', subgenres: 'rddListSubgenre' };
+  if (listMap[key]) buildRDDList(listMap[key], key);
+  else if (key === 'spicy') buildRDDSpicyList();
+  ruletaUpdateUI();
+}
+
+function clearRDDFilter(key) {
+  ruletaFilters[key] = [];
+  if (key === 'spicy') ruletaFilters.spicyUnknown = false;
+  updateRDDCounts();
+  renderRuletaOwnPills();
+  const listMap = { genres: 'rddListGenre', dinamicas: 'rddListDinamica', tropes: 'rddListTrope', subgenres: 'rddListSubgenre' };
+  if (listMap[key]) buildRDDList(listMap[key], key);
+  else if (key === 'spicy') buildRDDSpicyList();
+  ruletaUpdateUI();
+}
+
+function updateRDDCounts() {
+  [['Genre','genres'],['Dinamica','dinamicas'],['Trope','tropes'],['Subgenre','subgenres']].forEach(([k, fk]) => {
+    const cnt = document.getElementById('rddCnt' + k);
+    const btn = document.querySelector('#rdd' + k + ' .ruleta-dd-btn');
+    if (!cnt || !btn) return;
+    const n = ruletaFilters[fk].length;
+    cnt.textContent = n; cnt.style.display = n ? '' : 'none';
+    btn.classList.toggle('has-sel', n > 0);
+  });
+  // Spicy especial
+  const cntS = document.getElementById('rddCntSpicy');
+  const btnS = document.querySelector('#rddSpicy .ruleta-dd-btn');
+  if (cntS && btnS) {
+    const n = ruletaFilters.spicy.length + (ruletaFilters.spicyUnknown ? 1 : 0);
+    cntS.textContent = n; cntS.style.display = n ? '' : 'none';
+    btnS.classList.toggle('has-sel', n > 0);
+  }
+}
+
+function renderRuletaOwnPills() {
+  const el = document.getElementById('ruletaOwnPills');
+  if (!el) return;
+  const labelMap = { genres: 'Género', dinamicas: 'Dinámica', tropes: 'Tropo', subgenres: 'Temática' };
+  const pills = [];
+  ['genres','dinamicas','tropes','subgenres'].forEach(key => {
+    ruletaFilters[key].forEach(v => {
+      pills.push(`<span class="ruleta-own-pill">${labelMap[key]}: ${v}<button onclick="toggleRDDFilter('${key}','${v.replace(/'/g, "\\'")}')">×</button></span>`);
+    });
+  });
+  ruletaFilters.spicy.forEach(v => {
+    pills.push(`<span class="ruleta-own-pill">Spicy: ${SPICY_LABELS[v]}<button onclick="toggleRDDFilter('spicy',${v})">×</button></span>`);
+  });
+  if (ruletaFilters.spicyUnknown) {
+    pills.push(`<span class="ruleta-own-pill">Spicy: ${SPICY_UNKNOWN_LABEL}<button onclick="ruletaToggleSpicyUnknown()">×</button></span>`);
+  }
+  el.innerHTML = pills.join('');
+  el.style.display = pills.length ? '' : 'none';
+}
+
+function buildRDDSpicyList() {
+  const el = document.getElementById('rddListSpicy');
+  if (!el) return;
+  const hasSel = ruletaFilters.spicy.length || ruletaFilters.spicyUnknown;
+  el.innerHTML = (hasSel ? `<div class="ruleta-dd-clear" onclick="clearRDDFilter('spicy')">✕ Limpiar</div>` : '') +
+    `<div class="ruleta-dd-item"><input type="checkbox" id="rddsp_unk" ${ruletaFilters.spicyUnknown ? 'checked' : ''} onchange="ruletaToggleSpicyUnknown()"><label for="rddsp_unk">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</label></div>` +
+    SPICY_LABELS.map((lbl, i) => {
+      const sid = 'rddsp_' + i;
+      const icon = SPICY_ICONS[i] ? SPICY_ICONS[i] + ' ' : '';
+      return `<div class="ruleta-dd-item"><input type="checkbox" id="${sid}" ${ruletaFilters.spicy.includes(i) ? 'checked' : ''} onchange="toggleRDDFilter('spicy',${i})"><label for="${sid}">${icon}${lbl}</label></div>`;
+    }).join('');
+}
+
+function ruletaToggleSpicyUnknown() {
+  ruletaFilters.spicyUnknown = !ruletaFilters.spicyUnknown;
+  buildRDDSpicyList();
+  updateRDDCounts();
+  renderRuletaOwnPills();
+  ruletaUpdateUI();
+}
+
+function buildRDDDropdowns() {
+  buildRDDList('rddListGenre', 'genres');
+  buildRDDList('rddListDinamica', 'dinamicas');
+  buildRDDList('rddListTrope', 'tropes');
+  buildRDDList('rddListSubgenre', 'subgenres');
+  buildRDDSpicyList();
+  updateRDDCounts();
+}
+
+/* ── fin RULETA DD HELPERS ── */
+
+// Colores de los segmentos (paleta oscura con acentos del tema)
+const RULETA_COLORS = [
+  '#2a1f36','#221930','#1e1428','#261d33',
+  '#2c1e38','#1f1630','#251c30','#2e2040',
+  '#201530','#281e35','#1d142a','#2a1d38'
+];
+const RULETA_ACCENT_COLORS = [
+  'rgba(192,111,196,0.45)','rgba(212,96,122,0.4)','rgba(91,188,176,0.4)',
+  'rgba(192,111,196,0.3)','rgba(212,96,122,0.3)','rgba(201,151,90,0.35)',
+  'rgba(192,111,196,0.4)','rgba(91,188,176,0.35)','rgba(212,96,122,0.45)',
+  'rgba(201,151,90,0.3)','rgba(192,111,196,0.35)','rgba(212,96,122,0.35)'
+];
+
+function getFilteredBooksForRuleta() {
+  let books = [...allBooks];
+  // Apply all current filters exactly as applyFilters does
+  if (filters.q) books = books.filter(b => (b.title + ' ' + (b.authors||[]).join(' ') + (getSaga(b)||'')).toLowerCase().includes(filters.q));
+  if (filters.genres.length)    books = books.filter(b => filters.genres.every(g => (b.genres||[]).includes(g)));
+  if (filters.subgenres.length) books = books.filter(b => filters.subgenres.every(s => (b.subgenres||[]).includes(s)));
+  if (filters.dinamicas.length) books = books.filter(b => filters.dinamicas.every(d => [...(b.dinamicas||[]), ...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
+  if (filters.tropes.length)    books = books.filter(b => filters.tropes.every(t => [...(b.tropes||[]), ...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
+  if (filters.characters.length) books = books.filter(b => filters.characters.every(c => [...(b.characters||[]), ...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
+  if (filters.authors.length)   books = books.filter(b => filters.authors.some(a => (b.authors||[]).includes(a)));
+  if (filters.years.length)     books = books.filter(b => filters.years.includes(String(b.year)));
+  if (filters.spicy.length || filters.spicyUnknown) {
+    books = books.filter(b => {
+      const s = effectiveSpicy(b);
+      if (filters.spicyUnknown && s == null) return true;
+      if (filters.spicy.length && s != null && filters.spicy.includes(s)) return true;
+      return false;
+    });
+  }
+  if (filters.sagas.length)     books = books.filter(b => filters.sagas.includes(getSaga(b)));
+  if (filters.edad.length)      books = books.filter(b => filters.edad.every(e => (b.edad||[]).includes(e)));
+  if (filters.pais_cultura.length) books = books.filter(b => filters.pais_cultura.every(p => (b.pais_cultura||[]).includes(p)));
+  if (filters.adaptacion === 'serie') books = books.filter(b => b.adaptacion === 'Tiene serie');
+  // section filter — la ruleta tiene su propio selector, independiente de la estantería
+  if (ruletaSection !== 'all') {
+    books = books.filter(b => b.source === ruletaSection);
+  }
+  // filtros propios de la ruleta (géneros, dinámicas, tropos, subgéneros, spicy)
+  if (ruletaFilters.genres.length)    books = books.filter(b => ruletaFilters.genres.every(g => (b.genres||[]).includes(g)));
+  if (ruletaFilters.subgenres.length) books = books.filter(b => ruletaFilters.subgenres.every(s => (b.subgenres||[]).includes(s)));
+  if (ruletaFilters.dinamicas.length) books = books.filter(b => ruletaFilters.dinamicas.every(d => [...(b.dinamicas||[]), ...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
+  if (ruletaFilters.tropes.length)    books = books.filter(b => ruletaFilters.tropes.every(t => [...(b.tropes||[]), ...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
+  if (ruletaFilters.spicy.length || ruletaFilters.spicyUnknown) {
+    books = books.filter(b => {
+      const s = effectiveSpicy(b);
+      if (ruletaFilters.spicyUnknown && s == null) return true;
+      if (ruletaFilters.spicy.length && s != null && ruletaFilters.spicy.includes(s)) return true;
+      return false;
+    });
+  }
+  // valorados toggle
+  if (ruletaOnlyPendientes) books = books.filter(b => !myRatings[b.id]);
+  else if (ruletaExcludeValorados) books = books.filter(b => !myRatings[b.id]);
+  return books;
+}
+
+function ruletaInit() {
+  ruletaSelectedBook = null;
+  document.getElementById('ruletaResult').style.display = 'none';
+  // Sincronizar botones de tipo con el estado actual
+  document.querySelectorAll('.ruleta-tipo-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.src === ruletaSection);
+  });
+  buildRDDDropdowns();
+  renderRuletaOwnPills();
+  ruletaPool = getFilteredBooksForRuleta();
+  ruletaUpdateUI();
+  ruletaDraw();
+
+  // Mostrar/ocultar aviso de login
+  let loginNotice = document.getElementById('ruletaLoginNotice');
+  const spinBtn = document.getElementById('ruletaSpinBtn');
+  if (!currentUser) {
+    if (!loginNotice) {
+      loginNotice = document.createElement('div');
+      loginNotice.id = 'ruletaLoginNotice';
+      loginNotice.style.cssText = 'width:100%;text-align:center;padding:1rem 1.5rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);font-size:13.5px;color:var(--muted);';
+      loginNotice.innerHTML = '🔒 <strong style="color:var(--text)">Inicia sesión para usar la ruleta.</strong><br><br><button onclick="openAuthModal()" style="padding:9px 24px;border-radius:20px;background:var(--accent);border:none;color:#fff;font-size:13px;font-weight:600;font-family:var(--font-body);cursor:pointer;margin-top:.5rem">Entrar / Registrarse 🌹</button>';
+      const wrap = document.querySelector('.ruleta-wrap');
+      if (wrap) wrap.appendChild(loginNotice);
+    }
+    loginNotice.style.display = '';
+    if (spinBtn) spinBtn.disabled = true;
+  } else {
+    if (loginNotice) loginNotice.style.display = 'none';
+  }
+}
+
+function ruletaUpdateUI() {
+  ruletaPool = getFilteredBooksForRuleta();
+  const status = document.getElementById('ruletaStatus');
+  const spinBtn = document.getElementById('ruletaSpinBtn');
+  status.textContent = ruletaPool.length === 0 ? 'Sin libros con estos filtros' : `${ruletaPool.length} libro${ruletaPool.length !== 1 ? 's' : ''} en la ruleta`;
+  if (spinBtn) spinBtn.disabled = ruletaPool.length === 0 || ruletaSpinning;
+  renderRuletaOwnPills();
+  // Render active filter pills (from estantería)
+  const pillsEl = document.getElementById('ruletaFiltrosPills');
+  if (!pillsEl) return;
+  const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País' };
+  const pills = [];
+  Object.entries(filters).forEach(([key, arr]) => {
+    if (key === 'q' || key === 'valoracion' || key === 'adaptacion') return;
+    if (!arr.length) return;
+    arr.forEach(v => {
+      const display = key === 'spicy' ? SPICY_LABELS[v] : v;
+      pills.push(`<span class="af-pill">${labelMap[key]}: ${display}</span>`);
+    });
+  });
+  if (filters.q) pills.push(`<span class="af-pill">🔍 "${filters.q}"</span>`);
+  if (filters.adaptacion === 'serie') pills.push(`<span class="af-pill">📺 Con serie</span>`);
+  if (filters.spicyUnknown) pills.push(`<span class="af-pill">Spicy: desconocido</span>`);
+  if (pills.length === 0 && ruletaSection === 'all') pills.push(`<span style="font-size:12px;color:var(--muted);font-style:italic">Ningún filtro aplicado — se usan todos los libros</span>`);
+  else if (pills.length === 0) pills.push(`<span style="font-size:12px;color:var(--muted);font-style:italic">Solo filtro de tipo activo</span>`);
+  pillsEl.innerHTML = pills.join('');
+  // Toggle buttons
+  const btnExcl = document.getElementById('ruletaToggleValorados');
+  const btnOnly = document.getElementById('ruletaToggleSinValorar');
+  if (btnExcl) {
+    btnExcl.className = 'ruleta-toggle-btn' + (ruletaExcludeValorados ? ' active-excl' : '');
+    btnExcl.querySelector('span:last-child').textContent = ruletaExcludeValorados ? 'Excluir valorados ✓' : 'Excluir valorados';
+  }
+  if (btnOnly) {
+    btnOnly.className = 'ruleta-toggle-btn' + (ruletaOnlyPendientes ? ' active-only' : '');
+    btnOnly.querySelector('span:last-child').textContent = ruletaOnlyPendientes ? 'Solo sin valorar ✓' : 'Solo sin valorar';
+  }
+  ruletaDraw();
+}
+
+function ruletaSetSection(src) {
+  ruletaSection = src;
+  document.querySelectorAll('.ruleta-tipo-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.src === src);
+  });
+  // Limpiar filtros propios que ya no tienen sentido en la nueva sección
+  ruletaFilters.genres    = ruletaFilters.genres.filter(v => rddUniqVals('genres').includes(v));
+  ruletaFilters.dinamicas = ruletaFilters.dinamicas.filter(v => rddUniqVals('dinamicas').includes(v));
+  ruletaFilters.tropes    = ruletaFilters.tropes.filter(v => rddUniqVals('tropes').includes(v));
+  ruletaFilters.subgenres = ruletaFilters.subgenres.filter(v => rddUniqVals('subgenres').includes(v));
+  // spicy y spicyUnknown son independientes de la sección, no se limpian
+  buildRDDDropdowns();
+  renderRuletaOwnPills();
+  ruletaUpdateUI();
+}
+
+function ruletaToggleValorados() {
+  if (!currentUser) { showToast('Inicia sesión para usar esta opción', 'error'); return; }
+  ruletaExcludeValorados = !ruletaExcludeValorados;
+  if (ruletaExcludeValorados) ruletaOnlyPendientes = false;
+  ruletaUpdateUI();
+}
+function ruletaToggleSinValorar() {
+  if (!currentUser) { showToast('Inicia sesión para usar esta opción', 'error'); return; }
+  ruletaOnlyPendientes = !ruletaOnlyPendientes;
+  if (ruletaOnlyPendientes) ruletaExcludeValorados = false;
+  ruletaUpdateUI();
+}
+function ruletaClearFilters() {
+  ruletaExcludeValorados = false;
+  ruletaOnlyPendientes = false;
+  ruletaFilters.genres = [];
+  ruletaFilters.dinamicas = [];
+  ruletaFilters.tropes = [];
+  ruletaFilters.subgenres = [];
+  ruletaFilters.spicy = [];
+  ruletaFilters.spicyUnknown = false;
+  updateRDDCounts();
+  renderRuletaOwnPills();
+  buildRDDDropdowns();
+  ruletaUpdateUI();
+}
+
+function ruletaDraw(highlightIdx = -1) {
+  const canvas = document.getElementById('ruletaCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const R = W / 2 - 4;
+  ctx.clearRect(0, 0, W, H);
+
+  const pool = ruletaPool;
+  const n = pool.length;
+
+  if (n === 0) {
+    // Empty state
+    ctx.fillStyle = '#1e1924';
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(192,111,196,0.3)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(138,120,152,0.5)';
+    ctx.font = `bold 14px 'Instrument Sans', sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('Sin libros', cx, cy - 8);
+    ctx.font = `12px 'Instrument Sans', sans-serif`;
+    ctx.fillText('Ajusta los filtros', cx, cy + 12);
+    return;
+  }
+
+  // Draw segments
+  const segCount = Math.min(n, 24); // max 24 visual segments
+  const anglePerSeg = (Math.PI * 2) / segCount;
+
+  for (let i = 0; i < segCount; i++) {
+    const startAngle = ruletaAngle + i * anglePerSeg - Math.PI / 2;
+    const endAngle = startAngle + anglePerSeg;
+    const isHighlight = i === highlightIdx;
+
+    // Fill
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, R, startAngle, endAngle);
+    ctx.closePath();
+    ctx.fillStyle = isHighlight ? RULETA_ACCENT_COLORS[i % RULETA_ACCENT_COLORS.length].replace(/0\.\d+\)/, '0.8)') : RULETA_COLORS[i % RULETA_COLORS.length];
+    ctx.fill();
+
+    // Accent border inner glow
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, R, startAngle, endAngle);
+    ctx.closePath();
+    ctx.strokeStyle = RULETA_ACCENT_COLORS[i % RULETA_ACCENT_COLORS.length];
+    ctx.lineWidth = isHighlight ? 2 : 1;
+    ctx.stroke();
+
+    // Decorative dot
+    const midAngle = startAngle + anglePerSeg / 2;
+    const dotR = R * 0.72;
+    const dotX = cx + Math.cos(midAngle) * dotR;
+    const dotY = cy + Math.sin(midAngle) * dotR;
+    ctx.beginPath();
+    ctx.arc(dotX, dotY, isHighlight ? 5 : 3, 0, Math.PI * 2);
+    ctx.fillStyle = isHighlight ? 'rgba(255,255,255,0.9)' : RULETA_ACCENT_COLORS[i % RULETA_ACCENT_COLORS.length].replace(/,\s*[\d.]+\)/, ', 0.7)');
+    ctx.fill();
+
+    // Small decorative marks at R * 0.88
+    if (n <= 12) {
+      const markR = R * 0.87;
+      const markX = cx + Math.cos(midAngle) * markR;
+      const markY = cy + Math.sin(midAngle) * markR;
+      ctx.save();
+      ctx.translate(markX, markY);
+      ctx.rotate(midAngle + Math.PI / 2);
+      ctx.font = `bold ${isHighlight ? 12 : 10}px serif`;
+      ctx.fillStyle = isHighlight ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('✦', 0, 0);
+      ctx.restore();
+    }
+  }
+
+  // Divider lines
+  for (let i = 0; i < segCount; i++) {
+    const angle = ruletaAngle + i * anglePerSeg - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(angle) * R, cy + Math.sin(angle) * R);
+    ctx.strokeStyle = 'rgba(14,11,16,0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // Outer ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(192,111,196,0.4)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Inner decorative ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, R * 0.18, 0, Math.PI * 2);
+  ctx.fillStyle = '#0e0b10';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(192,111,196,0.5)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Center gem
+  ctx.beginPath();
+  ctx.arc(cx, cy, R * 0.08, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(192,111,196,0.8)';
+  ctx.fill();
+
+  // Count text in center
+  ctx.font = `bold 11px 'Instrument Sans', sans-serif`;
+  ctx.fillStyle = 'rgba(240,234,245,0.8)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  if (n <= 99) ctx.fillText(n, cx, cy);
+}
+
+function ruletaSpin() {
+  if (!currentUser) {
+    showToast('Inicia sesión para usar la ruleta 🌹', 'error');
+    openAuthModal();
+    return;
+  }
+  const pool = getFilteredBooksForRuleta();
+  if (pool.length === 0 || ruletaSpinning) return;
+  ruletaPool = pool;
+  ruletaSpinning = true;
+  document.getElementById('ruletaResult').style.display = 'none';
+  document.getElementById('ruletaSpinBtn').disabled = true;
+
+  // Pick random book
+  const winner = pool[Math.floor(Math.random() * pool.length)];
+  const segCount = Math.min(pool.length, 24);
+  const winnerIdx = pool.indexOf(winner) % segCount;
+  const anglePerSeg = (Math.PI * 2) / segCount;
+
+  // Calculate target angle so winner segment lands under top (pointer)
+  // The pointer is at top (-PI/2). Segment i starts at ruletaAngle + i*anglePerSeg - PI/2
+  // We want the midpoint of segment winnerIdx to end at 0 (top after rotation)
+  // target = -(winnerIdx + 0.5) * anglePerSeg
+  const spins = 5 + Math.floor(Math.random() * 4); // 5-8 full spins
+  const targetAngleInWheel = -(winnerIdx + 0.5) * anglePerSeg;
+  const totalRotation = spins * Math.PI * 2 + targetAngleInWheel - (ruletaAngle % (Math.PI * 2));
+  const duration = 4000 + Math.random() * 1500;
+  const startAngle = ruletaAngle;
+  const startTime = performance.now();
+
+  function easeOut(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animate(now) {
+    const elapsed = now - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    const easedT = easeOut(t);
+    ruletaAngle = startAngle + totalRotation * easedT;
+    ruletaDraw();
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      ruletaAngle = startAngle + totalRotation;
+      ruletaSpinning = false;
+      ruletaSelectedBook = winner;
+      ruletaDraw(winnerIdx);
+      document.getElementById('ruletaSpinBtn').disabled = false;
+      ruletaShowResult(winner);
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function ruletaShowResult(book) {
+  const el = document.getElementById('ruletaResult');
+  const bookEl = document.getElementById('ruletaResultBook');
+  const r = ratingsMap[book.id] || { avg: 0, count: 0 };
+  const myScore = myRatings[book.id] || 0;
+  const authorStr = (book.authors || []).join(', ') || '—';
+  const coverEl = book.cover
+    ? `<img class="ruleta-result-cover" src="${book.cover}" alt="${book.title}" onerror="this.outerHTML='<div class=ruleta-result-cover-ph>📖</div>'">`
+    : `<div class="ruleta-result-cover-ph">📖</div>`;
+  const spicyEff = effectiveSpicy(book);
+  const spicyTag = spicyEff != null && spicyEff > 0
+    ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25);font-size:11px">${SPICY_ICONS[spicyEff]}</span>` : '';
+  const genreTags = (book.genres || []).slice(0, 2).map(g => `<span class="tag tag-genre" style="font-size:11px">${g}</span>`).join('');
+  const ratingTag = r.count > 0 ? `<span class="tag" style="background:rgba(201,151,90,0.12);color:var(--gold);border:1px solid rgba(201,151,90,0.2);font-size:11px">★ ${r.avg.toFixed(1)} (${r.count})</span>` : '';
+  const myTag = myScore > 0 ? `<span class="tag" style="background:var(--accent-soft);color:var(--accent2);border:1px solid rgba(192,111,196,0.2);font-size:11px">${'★'.repeat(myScore)} Mi voto</span>` : '';
+  bookEl.innerHTML = `${coverEl}<div class="ruleta-result-info">
+    <div class="ruleta-result-title">${book.title}</div>
+    <div class="ruleta-result-author">por ${authorStr}</div>
+    <div class="ruleta-result-tags">${genreTags}${spicyTag}${ratingTag}${myTag}</div>
+  </div>`;
+  el.style.display = '';
+  // re-trigger animation
+  el.classList.remove('ruleta-result');
+  void el.offsetWidth;
+  el.classList.add('ruleta-result');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function ruletaOpenBook() {
+  if (!ruletaSelectedBook) return;
+  openBook(ruletaSelectedBook.id);
+}
+
 </script>
 
 </body>
