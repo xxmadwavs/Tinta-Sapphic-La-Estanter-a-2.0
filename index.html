@@ -2024,28 +2024,25 @@ function renderGrid(books, total, totalPages){
     const spicyEff=effectiveSpicy(b);
     const spicyBadge=currentUser?((spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:''):`<div class="spicy-badge" title="Regístrate para ver el nivel spicy" style="opacity:.5;cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒</div>`;
     const genreTags=(b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
-    const dinamicaTag=(b.dinamicas||[]).slice(0,1).map(d=>`<span class="tag tag-dinamica">${d}</span>`).join('');
-    const tropeTags=!dinamicaTag?(b.tropes||[]).slice(0,1).map(t=>`<span class="tag tag-trope">${t}</span>`).join(''):'';
-    const yearTag=b.year?`<span class="tag tag-year">${b.year}</span>`:'';
-    const formatoTag=b.formato&&!['Saga','Dúo','Trilogía'].includes(b.formato)?`<span class="tag tag-formato">${b.formato}</span>`:'';
-    const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
     const cardSagaName=getSaga(b);
     const cardSagaNum=b.sagaNum!=null?' #'+b.sagaNum:'';
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${cardSagaName}${cardSagaNum}</div>`:'';
     const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
+    const shelfBtns=currentUser?buildCardShelfBtnsHTML(b.id):'';
     return `<div class="book-card" onclick="openBook('${b.id}')">
       <div class="book-cover-wrap">${spicyBadge}${coverEl}${avgBadge}</div>
       <div class="book-card-body">
         <div class="book-title">${b.title}</div>
         ${cardSagaSub}
         <div class="book-author">${authorStr}</div>
-        <div class="book-tags">${genreTags}${dinamicaTag}${tropeTags}${yearTag}${formatoTag}${adaptTag}</div>
+        <div class="book-tags">${genreTags}</div>
         <div class="book-footer">
           ${currentUser
             ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
             : `<span class="no-ratings" style="cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒 Regístrate</span>`}
           <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBook('${b.id}')">${voteLabel}</button>
         </div>
+        ${shelfBtns}
       </div>
     </div>`;
   }).join('')}</div>`;
@@ -4085,18 +4082,9 @@ async function setReadingStatus(bookId, newStatus){
   const next=current===newStatus?null:newStatus; // clic en activo = quitar
 
   if(next){
-    let error;
-    if(current){
-      // Ya existe fila → UPDATE
-      ({error}=await sb.from('reading_status')
-        .update({status:next})
-        .eq('user_id',currentUser.id)
-        .eq('book_id',bookId));
-    } else {
-      // No existe → INSERT
-      ({error}=await sb.from('reading_status')
-        .insert({user_id:currentUser.id, book_id:bookId, status:next}));
-    }
+    // Upsert: inserta o actualiza en un solo paso
+    const {error}=await sb.from('reading_status')
+      .upsert({user_id:currentUser.id, book_id:bookId, status:next}, {onConflict:'user_id,book_id'});
     if(error){ showToast('Error al guardar 😞','error'); console.error(error); return; }
     myReadingStatus[bookId]=next;
     showToast(next==='want'?'Añadido a «Quiero leer» ＋':'Marcado como leído ✓','success');
