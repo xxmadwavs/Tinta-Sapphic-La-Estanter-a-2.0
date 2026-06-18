@@ -924,11 +924,13 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
 
 /* ── SHELF BUTTONS (tarjeta) ── */
-.card-shelf-btns{display:flex;gap:.3rem;margin-top:.5rem}
-.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;flex:1;padding:4px 0;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--muted);font-size:10.5px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s;user-select:none;letter-spacing:.02em;opacity:.55}
-.card-shelf-btn:hover{border-color:rgba(192,111,196,.3);color:var(--text);background:var(--surface2);opacity:1}
-.card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.35);color:var(--accent2);opacity:1}
-.card-shelf-btn.read{background:rgba(91,188,176,.1);border-color:rgba(91,188,176,.35);color:var(--teal);opacity:1}
+.card-shelf-btns{display:flex;gap:.4rem;margin-top:.6rem}
+.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;padding:6px 4px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .2s;user-select:none;letter-spacing:.01em}
+.card-shelf-btn:hover{border-color:rgba(192,111,196,.5);color:var(--accent2);background:var(--accent-soft)}
+.card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.5);color:var(--accent2)}
+.card-shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.45);color:var(--teal)}
+.card-shelf-btn.read:hover{background:rgba(91,188,176,.2);border-color:rgba(91,188,176,.65);color:var(--teal)}
+.card-shelf-icon{font-size:12px;line-height:1}
 .card-shelf-icon{font-size:11px;line-height:1}
 
 /* ── SHELF VIEW ── */
@@ -993,6 +995,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
   </a>
   <div class="topbar-right" style="display:flex;align-items:center;gap:8px">
     <button class="home-nav-btn" id="homeNavBtn" onclick="showHome()">⌂ Inicio</button>
+    <button class="home-nav-btn" id="shelfNavBtn" onclick="openShelf()" style="display:none">📚 Estantería</button>
     <div id="authArea">
       <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
     </div>
@@ -2577,6 +2580,8 @@ function renderAuthUI(){
     if(hint) hint.classList.add('hidden');
     const svi=document.getElementById('statVotesItem');
     if(svi) svi.style.display='';
+    const snb=document.getElementById('shelfNavBtn');
+    if(snb) snb.style.display='';
   }else{
     el.innerHTML=`<button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>`;
     document.getElementById('valoracionFilter').style.display='none';
@@ -2591,6 +2596,8 @@ function renderAuthUI(){
     renderActivePills();applyFilters(false);
     const svi=document.getElementById('statVotesItem');
     if(svi) svi.style.display='none';
+    const snb=document.getElementById('shelfNavBtn');
+    if(snb) snb.style.display='none';
   }
 }
 function openAuthModal(){authMode='login';updateAuthUI();document.getElementById('authModal').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('authEmail').focus(),100);}
