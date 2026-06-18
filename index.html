@@ -40,6 +40,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .user-name{font-size:12.5px;color:var(--text);font-weight:500;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .btn-logout{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:2px 4px;font-family:var(--font-body);transition:color .15s}
 .btn-logout:hover{color:var(--rose)}
+.btn-shelf{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:15px;padding:2px 4px;transition:opacity .15s;line-height:1}
+.btn-shelf:hover{opacity:.75}
 @media(max-width:600px){.topbar{padding:0 1rem}.logo{font-size:17px}.logo-sep,.logo-sub{display:none}}
 @media(max-width:600px){
   .hero{padding:2.5rem 1rem 2rem}
@@ -301,6 +303,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tag-identidad{background:rgba(155,130,201,0.14);color:#c8b8f0;border:1px solid rgba(155,130,201,0.3)}
 .tag-subgenre{background:rgba(91,188,176,0.1);color:var(--teal);border:1px solid rgba(91,188,176,0.22)}
 .tag-character{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
+.tag-warning{background:#8b1a2a;color:#ffd0d8;border:1px solid rgba(255,100,120,0.35);font-size:10.5px;font-weight:600;letter-spacing:.02em}
 .tag-year{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
 .tag-formato{background:rgba(91,188,176,0.12);color:var(--teal);border:1px solid rgba(91,188,176,0.25)}
 .tag-adaptacion{background:rgba(155,130,201,0.12);color:#c4b0e8;border:1px solid rgba(155,130,201,0.3)}
@@ -365,7 +368,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .avg-votes{font-size:12px;color:var(--muted)}
 .vote-prompt{font-size:12.5px;color:var(--muted);margin-bottom:.5rem}
 .stars-input{display:flex;gap:.2rem;margin-bottom:.6rem}
-.star-btn{background:transparent;border:none;cursor:pointer;font-size:1.9rem;color:var(--surface3);transition:color .1s;padding:0;line-height:1}
+.star-btn{background:transparent;border:none;cursor:pointer;font-size:1.9rem;color:var(--surface3);transition:color .1s;padding:6px;min-width:44px;min-height:44px;line-height:1}
 .star-btn.lit,.star-btn.selected{color:var(--gold)}
 .vote-submit{padding:8px 22px;border-radius:20px;background:var(--accent);border:none;color:#fff;font-size:12.5px;font-weight:600;font-family:var(--font-body);cursor:pointer;transition:all .18s}
 .vote-submit:hover{background:var(--accent2)}
@@ -517,6 +520,9 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .hv-jp{font-size:11px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.6rem;opacity:.7}
 .hv-desc{max-width:480px;margin:0 auto 2.8rem;font-size:15px;color:var(--muted);line-height:1.8}
 .hv-ctas{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.hv-url-row{margin-top:1.2rem;text-align:center}
+.hv-url-link{font-family:var(--font-body);font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.03em;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+.hv-url-link:hover{color:var(--accent2);border-bottom-color:var(--accent2)}
 .hv-cta{display:inline-flex;align-items:center;gap:.45em;padding:13px 28px;border-radius:30px;font-size:13.5px;font-weight:600;font-family:var(--font-body);border:none;cursor:pointer;text-decoration:none;transition:all .22s}
 .hv-cta-main{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(192,111,196,.25)}
 .hv-cta-main:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(192,111,196,.38)}
@@ -899,90 +905,24 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .info-modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 @media(max-width:600px){.info-modal-header{padding:1.4rem 1.2rem .9rem}.info-modal-body{padding:1.2rem 1.2rem 1.6rem}.info-modal-title{font-size:1.6rem}}
 
-/* ── READING STATUS PILL ── */
-.reading-status-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:5px 14px;border-radius:20px;
-  border:1px solid var(--border2);
-  background:var(--surface2);
-  color:var(--muted);font-size:12px;font-family:var(--font-body);font-weight:500;
-  cursor:pointer;transition:all .18s;user-select:none;
-  margin-bottom:.6rem;
-}
-.reading-status-pill:hover{border-color:rgba(192,111,196,.4);color:var(--text)}
-.reading-status-pill.want{
-  background:var(--accent-soft);border-color:rgba(192,111,196,.4);color:var(--accent2);
-}
-.reading-status-pill.read{
-  background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.35);color:var(--teal);
-}
-.reading-status-pill .rs-icon{font-size:13px}
-
 /* ── SHELF BUTTONS (modal) ── */
 .shelf-btns{display:flex;gap:.5rem;margin:.4rem 0 1rem;flex-wrap:wrap}
-.shelf-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:5px;
-  flex:1;padding:8px 0;border-radius:10px;
-  border:1px solid var(--border2);background:var(--surface2);
-  color:var(--muted);font-size:12.5px;font-family:var(--font-body);font-weight:500;
-  cursor:pointer;transition:all .18s;user-select:none;
-}
+.shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;padding:8px 0;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:12.5px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s;user-select:none}
 .shelf-btn:hover{border-color:rgba(192,111,196,.4);color:var(--text);background:var(--surface3)}
 .shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.45);color:var(--accent2)}
 .shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
 
 /* ── SHELF BUTTONS (tarjeta) ── */
 .card-shelf-btns{display:flex;gap:.3rem;margin-top:.4rem}
-.card-shelf-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:3px;
-  flex:1;padding:5px 0;border-radius:8px;
-  border:1px solid var(--border2);background:transparent;
-  color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;
-  cursor:pointer;transition:all .15s;user-select:none;
-}
+.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:3px;flex:1;padding:5px 0;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .15s;user-select:none}
 .card-shelf-btn:hover{border-color:rgba(192,111,196,.4);color:var(--text);background:var(--surface3)}
 .card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.4);color:var(--accent2)}
 .card-shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
 
-/* ── USER DROPDOWN ── */
-.user-chip-wrap{position:relative}
-.user-chip{cursor:pointer;transition:background .15s}
-.user-chip:hover{background:var(--surface3)}
-.user-chip-caret{font-size:9px;color:var(--muted);opacity:.7;margin-left:2px;transition:transform .18s}
-.user-chip-wrap.open .user-chip-caret{transform:rotate(180deg)}
-.user-dropdown{
-  position:absolute;top:calc(100% + 8px);right:0;
-  min-width:180px;
-  background:var(--surface);border:1px solid var(--border2);
-  border-radius:var(--radius);
-  box-shadow:0 20px 60px rgba(0,0,0,.55),0 4px 20px rgba(0,0,0,.3);
-  z-index:300;display:none;overflow:hidden;
-  animation:ddFadeIn .14s ease;
-}
-.user-chip-wrap.open .user-dropdown{display:block}
-.user-dd-name{
-  padding:.75rem 1rem .5rem;
-  font-size:12px;color:var(--muted);font-weight:500;
-  border-bottom:1px solid var(--border);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.user-dd-item{
-  display:flex;align-items:center;gap:.55rem;
-  padding:.65rem 1rem;cursor:pointer;
-  font-size:13px;color:var(--text);transition:background .12s;
-}
-.user-dd-item:hover{background:var(--surface2)}
-.user-dd-item.danger{color:var(--rose)}
-.user-dd-item.danger:hover{background:var(--rose-soft)}
-.user-dd-sep{height:1px;background:var(--border);margin:.2rem 0}
-
-/* ── BOOKSHELF VIEW ── */
+/* ── SHELF VIEW ── */
 #shelfView{display:none;position:relative;z-index:1;padding:0 0 5rem}
 #shelfView.active{display:block}
-
 .shelf-layout{display:grid;grid-template-columns:220px 1fr;gap:0;max-width:1200px;margin:0 auto;min-height:80vh}
-
-/* Sidebar */
 .shelf-sidebar{border-right:1px solid var(--border2);padding:2rem 0;position:sticky;top:62px;height:calc(100vh - 62px);overflow-y:auto}
 .shelf-sidebar-header{padding:0 1.5rem 1.2rem;border-bottom:1px solid var(--border)}
 .shelf-sidebar-name{font-family:var(--font-display);font-size:1.4rem;font-weight:600;font-style:italic;color:var(--text);line-height:1.1}
@@ -996,8 +936,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-nav-item.active .shelf-nav-count{background:rgba(192,111,196,.2);color:var(--accent2)}
 .shelf-back-link{display:flex;align-items:center;gap:.4em;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:12.5px;cursor:pointer;font-family:var(--font-body);background:transparent;border:none;width:100%;transition:all .15s;margin-top:.5rem}
 .shelf-back-link:hover{color:var(--accent2)}
-
-/* Main content */
 .shelf-main{padding:2rem 2rem 4rem;min-width:0}
 .shelf-main-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem}
 .shelf-main-title{font-family:var(--font-display);font-size:1.6rem;font-weight:600;font-style:italic;color:var(--text)}
@@ -1007,8 +945,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-view-btn:hover{color:var(--text)}
 .shelf-view-btn.active{background:var(--surface);color:var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .shelf-view-btn svg{width:15px;height:15px}
-
-/* Grid mode */
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
 .shelf-book{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .22s}
 .shelf-book:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.5)}
@@ -1019,8 +955,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-book .shelf-book-body{padding:.6rem .7rem}
 .shelf-book .shelf-book-title{font-size:12px;font-weight:500;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
 .shelf-book .shelf-book-author{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* List mode */
 .shelf-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
 .shelf-list-item{display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:center;padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--surface);cursor:pointer;transition:background .15s}
 .shelf-list-item:last-child{border-bottom:none}
@@ -1030,23 +964,11 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-list-info{min-width:0}
 .shelf-list-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .shelf-list-author{font-size:12px;color:var(--muted);margin-bottom:.4rem}
-.shelf-list-tags{display:flex;gap:.3rem;flex-wrap:wrap}
 .shelf-list-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;flex-shrink:0}
-.shelf-list-score{font-family:var(--font-display);font-size:1.3rem;font-weight:300;color:var(--text);line-height:1}
-.shelf-list-stars{color:var(--gold);font-size:10px;letter-spacing:1px}
-.shelf-list-novotes{font-size:11px;color:var(--muted);font-style:italic}
-
-.shelf-empty{padding:3rem;text-align:center;color:var(--muted);font-style:italic;font-size:13px;background:var(--surface);border:1px dashed var(--border2);border-radius:var(--radius-lg)}
-.shelf-empty-icon{font-size:2.5rem;margin-bottom:.75rem;display:block}
-
-@media(max-width:820px){
-  .shelf-layout{grid-template-columns:1fr}
-  .shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}
-  .shelf-sidebar-header{padding:0 1rem .75rem}
-  .shelf-sidebar-section{padding:.5rem 1rem .3rem}
-  .shelf-main{padding:1.25rem 1rem 3rem}
-}
-@media(max-width:600px){.shelf-grid{grid-template-columns:repeat(2,1fr)}}
+.shelf-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;color:var(--muted);text-align:center;gap:.75rem}
+.shelf-empty-icon{font-size:2.5rem;opacity:.5}
+.shelf-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
+@media(max-width:700px){.shelf-layout{grid-template-columns:1fr}.shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}.shelf-sidebar-header{padding:0 1rem .75rem}.shelf-sidebar-section{padding:.5rem 1rem .3rem}.shelf-main{padding:1.25rem 1rem 3rem}}
 </style>
 </head>
 <body>
@@ -1080,6 +1002,9 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <button class="hv-cta hv-cta-main" onclick="showCatalog()">✦ Ver la estantería</button>
       <button class="hv-cta hv-cta-reads" onclick="showCatalog('safi')">🌹 SafiClub</button>
       <button class="hv-cta hv-cta-sec" onclick="showCatalog('top10')">🏆 Top 10</button>
+    </div>
+    <div class="hv-url-row">
+      <a class="hv-url-link" href="https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria" target="_blank">xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria</a>
     </div>
   </div>
 
@@ -1262,6 +1187,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" id="btnNoValorado" onclick="toggleValoracion('no_valorado')" title="Mostrar libros que aún no he valorado">☆ Sin valorar</button>
       </div>
       <button class="dd-btn" id="btnConSerie" onclick="toggleAdaptacion('serie')" title="Solo libros con serie de televisión">Con serie</button>
+      <div class="dd-wrap" id="ddPages">
+        <button class="dd-btn" id="btnPages" onclick="toggleDD('ddPages')">Páginas <span class="dd-count" id="cntPages" style="display:none">1</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-panel"><div class="dd-list" id="listPages"></div></div>
+      </div>
       <span class="filters-auth-hint" id="filtersAuthHint" onclick="openAuthModal()">🔒 Más filtros al <a>registrarte</a></span>
     </div>
     <div class="filter-bottom">
@@ -1514,8 +1443,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
 <!-- SHELF VIEW -->
 <div id="shelfView">
   <div class="shelf-layout">
-
-    <!-- Sidebar -->
     <aside class="shelf-sidebar">
       <div class="shelf-sidebar-header">
         <div class="shelf-sidebar-name">Mi estantería</div>
@@ -1540,8 +1467,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="shelf-back-link" onclick="closeShelf()">← Volver al catálogo</button>
       </div>
     </aside>
-
-    <!-- Main -->
     <div class="shelf-main">
       <div class="shelf-main-header">
         <div class="shelf-main-title" id="shelfMainTitle">Todos los libros <span id="shelfMainCount"></span></div>
@@ -1556,11 +1481,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
       </div>
       <div id="shelfBooksContainer"></div>
     </div>
-
   </div>
 </div>
 
-
+<!-- BOOK MODAL -->
 <div class="modal-bg" id="bookModal">
   <div class="modal">
     <button class="modal-close" onclick="closeBookModal()">✕</button>
@@ -1642,18 +1566,20 @@ const SPICY_UNKNOWN_ICON  = '❓';
 
 let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
 let myReadingStatus={}; // bookId -> 'want' | 'read'
+let shelfFilter='all'; // 'all' | 'want' | 'read'
+let shelfViewMode='grid'; // 'grid' | 'list'
 let activeSection='thais';
 let authMode='login', pendingStar=0;
 let spicyMap={}, mySpicy={}, pendingSpicy=0;
 let communityTagsMap={}, myTags={};
 const VALID_TAGS={
-  trope:['Age Gap','Alpha/Beta/Omega','Arranged Marriage','Childhood Friends','Coming Out tardío','Destined Lovers','Enemies to Lovers','Fake Relationship','Forbidden Love','Forced Proximity','Found Family','Friends to Lovers','Friends with Benefits','Hurt/Comfort','Jealousy Trope','Lesbian Awakening','Love Triangle','Marriage of Convenience','Opposites Attract','Revenge Romance','Rich/Poor Romance','Rivals to Lovers','Road Trip','Second Chance Romance','Secret Relationship','Slow Burn','Strangers to Lovers','Student × Teacher','Toaster Oven','Unrequited Love','Vacation Romance','Workplace Romance'],
+  trope:['Age Gap','Alpha/Beta/Omega','Arranged Marriage','Childhood Friends','Coming Out tardío','Destined Lovers','Enemies to Lovers','Fake Relationship','Forbidden Love','Forced Proximity','Found Family','Friends to Lovers','Friends with Benefits','Hurt/Comfort','Jealousy Trope','Lesbian Awakening','Love Triangle','Marriage of Convenience','Opposites Attract','Revenge Romance','Rich/Poor Romance','Rivals to Lovers','Road Trip','Second Chance Romance','Secret Relationship','Sex Toys / Juguetes Sexuales','Slow Burn','Strangers to Lovers','Student × Teacher','Toaster Oven','Unrequited Love','Vacation Romance','Workplace Romance'],
   dinamica:['Bodyguard × VIP','Boss × Employee','Butch × Femme','Dominante × Sumisa','Femme × Femme','Fría × Cálida','Grumpy × Sunshine','Ice Queen × Softie','Ice Queen × Sunshine','Jefa × Subordinada','Masc × Femme','Mentora × Aprendiz','Nerd × Popular','Protectora × Delicada','Realeza × Plebeya','Rich × Poor','Soft Butch × Femme','Switch × Switch','Top × Bottom','Vampira × Humana'],
   character:['Abogada','Actriz','Arqueóloga','Artista','Azafata','Bailarina','Bruja','CEO','Camarera','Cantante','Chef','Científica','Demonio','Deportista','Doctora / Médica','Empresaria','Escritora','Estudiante','Famosa','Femme','Florista','Futbolista','Granjera','Guardaespaldas','Ice Queen','Investigadora','Madre Soltera','Millonaria / Billonaria','Modelo','Mujer Lobo','Música','Piloto','Pirata','Policía','Política','Profesora','Psicóloga','Realeza','Reportera / Periodista','Sirena','Vampira','Veterinaria','Zombie','Ángel'],
   identidad:['Asexual','Bisexual','Butch','Femme','Grumpy','Ice Queen','Introvertida','Lesbiana','Masc','Nerd','Queer','Soft Butch','Sunshine']
 };
 const SPICY_MIN_VOTES=2;
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null};
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null};
 let currentPage=1;
 const PAGE_SIZE=24;
 
@@ -1661,12 +1587,13 @@ const PAGE_SIZE=24;
 function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms);};}
 
 /* ── URL STATE ── */
-function pushState(){
+function pushState(addEntry){
   try{
+    // Don't touch URL if home is active
+    if(sessionStorage.getItem('ts_active_tab')==='home') return;
     const params=new URLSearchParams();
-    // Include active tab so the URL is shareable per section
     if(activeTab&&activeTab!=='estanteria') params.set('tab',activeTab);
-    if(activeSection&&activeSection!=='thais') params.set('section',activeSection);
+    if(activeSection) params.set('section',activeSection);
     if(currentPage>1) params.set('page',currentPage);
     if(filters.q) params.set('q',filters.q);
     ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
@@ -1676,8 +1603,10 @@ function pushState(){
     if(filters.spicyUnknown) params.set('spicyUnknown','1');
     if(filters.adaptacion) params.set('adaptacion',filters.adaptacion);
     if(filters.valoracion) params.set('valoracion',filters.valoracion);
+    if(filters.pages) params.set('pages',filters.pages);
     const url=params.toString()?'?'+params.toString():location.pathname;
-    history.replaceState(null,'',url);
+    if(addEntry) history.pushState(null,'',url);
+    else history.replaceState(null,'',url);
   }catch(e){}
 }
 function loadState(){
@@ -1693,6 +1622,7 @@ function loadState(){
   if(params.get('spicyUnknown')) filters.spicyUnknown=true;
   if(params.get('adaptacion')) filters.adaptacion=params.get('adaptacion');
   if(params.get('valoracion')) filters.valoracion=params.get('valoracion');
+  if(params.get('pages')) filters.pages=params.get('pages');
 }
 
 // Extract saga name from book
@@ -1707,7 +1637,8 @@ async function init(){
   if(session) currentUser=session.user;
   renderAuthUI();
   await loadBooks();
-  if(currentUser){ await loadMyRatings(); await loadMyReadingStatus(); }
+  if(currentUser) await loadMyRatings();
+  if(currentUser) await loadMyReadingStatus();
   buildDropdowns();
   loadState();   // restaurar filtros y página desde la URL
   // Pintar visualmente la sección activa restaurada
@@ -1716,23 +1647,31 @@ async function init(){
   Object.entries(_secTabs).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.className='section-tab'+(key===activeSection?' '+_secCls[key]:'');});
   applyFilters(false);
   updateDDCounts();renderActivePills();
+  if(filters.pages){const _cp=document.getElementById('cntPages');if(_cp)_cp.style.display='';}
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','spicy','spicyUnknown','adaptacion','valoracion','pages'].some(k=>urlParams.has(k));
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
     document.getElementById('homeView').classList.remove('active');
     document.body.classList.remove('home-active');
     document.getElementById('homeNavBtn').classList.remove('active');
-    switchTab(savedTab === 'estanteria' ? 'estanteria' : savedTab);
+    switchTab(savedTab === 'estanteria' ? 'estanteria' : savedTab, true);
+  } else if(hasCatalogParams) {
+    // URL compartida con section/filtros pero sin ?tab — abrir catálogo en estantería
+    document.getElementById('homeView').classList.remove('active');
+    document.body.classList.remove('home-active');
+    document.getElementById('homeNavBtn').classList.remove('active');
+    switchTab('estanteria', true);
   } else {
     // primera visita o venía del home
     showHome();
   }
   const debouncedLoadRatings=debounce(()=>{
     if(currentUser) loadMyRatings().then(()=>{applyFilters(false);if(activeBook)renderBookModal();checkSolicitudesNotif();});
-    else{myRatings={};applyFilters(false);}
+    else{myRatings={};myReadingStatus={};applyFilters(false);}
   },300);
   sb.auth.onAuthStateChange((_e,session)=>{
     if(_e==='PASSWORD_RECOVERY'){
@@ -1742,15 +1681,10 @@ async function init(){
     currentUser=session?.user||null;
     renderAuthUI();
     debouncedLoadRatings();
-    if(currentUser) loadMyReadingStatus();
-    else myReadingStatus={};
     if(activeTab==='solicitudes') renderSolicitudes();
     if(activeTab==='ruleta') ruletaInit();
   });
-  document.addEventListener('click',e=>{
-    if(!e.target.closest('.dd-wrap')&&!e.target.closest('.ruleta-dd-wrap')){closeAllDD();closeAllRDD();}
-    if(!e.target.closest('.user-chip-wrap')){const w=document.getElementById('userChipWrap');if(w)w.classList.remove('open');}
-  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.dd-wrap')&&!e.target.closest('.ruleta-dd-wrap')){closeAllDD();closeAllRDD();}});
 }
 
 async function loadBooks(){
@@ -1958,6 +1892,34 @@ function updateAdaptacionBtn(){
   if(btn) btn.classList.toggle('has-sel', filters.adaptacion==='serie');
 }
 
+const PAGE_RANGES=[
+  {key:'0-100',   label:'0 – 100',   min:0,   max:100},
+  {key:'101-200', label:'101 – 200', min:101, max:200},
+  {key:'201-300', label:'201 – 300', min:201, max:300},
+  {key:'301-400', label:'301 – 400', min:301, max:400},
+  {key:'401-500', label:'401 – 500', min:401, max:500},
+  {key:'500+',    label:'+ 500',     min:501, max:Infinity},
+];
+function buildPagesDD(){
+  const el=document.getElementById('listPages');
+  if(!el) return;
+  const clearBtn=filters.pages?'<div class="dd-clear" onclick="togglePagesFilter(null)">\u2715 Limpiar</div>':'';
+  const items=PAGE_RANGES.map(r=>{
+    const checked=filters.pages===r.key?'checked':'';
+    return '<div class="dd-item"><input type="radio" name="pagesRange" id="pr_'+r.key+'" '+checked+' onchange="togglePagesFilter(\'' +r.key+ '\')"><label for="pr_'+r.key+'">'+r.label+'</label></div>';
+  }).join('');
+  el.innerHTML=clearBtn+items;
+}
+function togglePagesFilter(key){
+  filters.pages=(filters.pages===key)?null:key;
+  const cnt=document.getElementById('cntPages');
+  if(cnt) cnt.style.display=filters.pages?'':'none';
+  buildPagesDD();
+  renderActivePills();
+  applyFilters();
+  if(!key) closeAllDD();
+}
+
 function updateValoracionBtns(){
   const bV=document.getElementById('btnValorado');
   const bN=document.getElementById('btnNoValorado');
@@ -1970,7 +1932,7 @@ function toggleDD(id){
   const wrap=document.getElementById(id);
   const wasOpen=wrap.classList.contains('open');
   closeAllDD();
-  if(!wasOpen) wrap.classList.add('open');
+  if(!wasOpen){ wrap.classList.add('open'); if(id==='ddPages') buildPagesDD(); }
 }
 function closeAllDD(){document.querySelectorAll('.dd-wrap.open').forEach(w=>w.classList.remove('open'));}
 
@@ -1983,7 +1945,7 @@ function renderActivePills(){
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
-    if(key==='q'||key==='valoracion'||key==='adaptacion') return;
+    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages') return;
     if(!arr.length) return;
     arr.forEach(v=>{
       const display=key==='spicy'?SPICY_LABELS[v]:v;
@@ -2001,13 +1963,18 @@ function renderActivePills(){
   if(filters.adaptacion==='serie'){
     pills.push(`<span class="af-pill">📺 Con serie<button onclick="toggleAdaptacion('serie')">×</button></span>`);
   }
+  if(filters.pages){
+    const r=PAGE_RANGES.find(x=>x.key===filters.pages);
+    if(r) pills.push(`<span class="af-pill">📄 ${r.label} págs<button onclick="togglePagesFilter(null)">×</button></span>`);
+  }
   af.innerHTML=pills.join('');
   document.getElementById('clearAllBtn').style.display=(pills.length||filters.q)?'':'none';
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null};
   document.getElementById('searchInput').value='';
+  const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
   updateAdaptacionBtn();
   buildDropdowns();renderActivePills();applyFilters();
@@ -2040,6 +2007,10 @@ function applyFilters(resetPage=true){
   if(filters.edad.length)       books=books.filter(b=>filters.edad.every(e=>(b.edad||[]).includes(e)));
   if(filters.pais_cultura.length) books=books.filter(b=>filters.pais_cultura.every(p=>(b.pais_cultura||[]).includes(p)));
   if(filters.adaptacion==='serie') books=books.filter(b=>b.adaptacion==='Tiene serie');
+  if(filters.pages){
+    const r=PAGE_RANGES.find(x=>x.key===filters.pages);
+    if(r) books=books.filter(b=>b.pages!=null&&b.pages>=r.min&&b.pages<=r.max);
+  }
   if(filters.valoracion==='valorado') books=books.filter(b=>!!myRatings[b.id]);
   if(filters.valoracion==='no_valorado') books=books.filter(b=>!myRatings[b.id]);
   const sort=document.getElementById('sortSel').value;
@@ -2090,25 +2061,29 @@ function renderGrid(books, total, totalPages){
     const spicyEff=effectiveSpicy(b);
     const spicyBadge=currentUser?((spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:''):`<div class="spicy-badge" title="Regístrate para ver el nivel spicy" style="opacity:.5;cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒</div>`;
     const genreTags=(b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
+    const dinamicaTag=(b.dinamicas||[]).slice(0,1).map(d=>`<span class="tag tag-dinamica">${d}</span>`).join('');
+    const tropeTags=!dinamicaTag?(b.tropes||[]).slice(0,1).map(t=>`<span class="tag tag-trope">${t}</span>`).join(''):'';
+    const yearTag=b.year?`<span class="tag tag-year">${b.year}</span>`:'';
+    const formatoTag=b.formato&&!['Saga','Dúo','Trilogía'].includes(b.formato)?`<span class="tag tag-formato">${b.formato}</span>`:'';
+    const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
     const cardSagaName=getSaga(b);
     const cardSagaNum=b.sagaNum!=null?' #'+b.sagaNum:'';
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${cardSagaName}${cardSagaNum}</div>`:'';
     const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
-    const shelfBtns=currentUser?buildCardShelfBtnsHTML(b.id):'';
     return `<div class="book-card" onclick="openBook('${b.id}')">
       <div class="book-cover-wrap">${spicyBadge}${coverEl}${avgBadge}</div>
       <div class="book-card-body">
         <div class="book-title">${b.title}</div>
         ${cardSagaSub}
         <div class="book-author">${authorStr}</div>
-        <div class="book-tags">${genreTags}</div>
+        <div class="book-tags">${genreTags}${dinamicaTag}${tropeTags}${yearTag}${formatoTag}${adaptTag}</div>
         <div class="book-footer">
           ${currentUser
             ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
             : `<span class="no-ratings" style="cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒 Regístrate</span>`}
           <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBook('${b.id}')">${voteLabel}</button>
         </div>
-        ${shelfBtns}
+        ${currentUser?buildCardShelfBtnsHTML(b.id):''}
       </div>
     </div>`;
   }).join('')}</div>`;
@@ -2205,7 +2180,7 @@ function renderBookModal(){
       </div>
       ${sagaSubtitle}
       <p class="modal-author">por ${authorStr}</p>
-      ${currentUser ? `<div style="margin:.35rem 0 .1rem">${buildReadingStatusPillHTML(b.id)}</div>` : ''}
+      ${currentUser?buildShelfButtonsHTML(b.id):''}
       <div class="modal-tags">${genreTags}${subgenreTags}${spicyTag}${formatoTag}${adaptTag}</div>
       ${dinamicaTags?`<div class="modal-tags" style="margin-top:.3rem">${dinamicaTags}</div>`:''}
       ${(tropeTags||identidadTags||characterTags)?`<div class="modal-tags" style="margin-top:.3rem">${tropeTags}${identidadTags}${characterTags}</div>`:''}
@@ -2213,7 +2188,13 @@ function renderBookModal(){
         ${b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:''}
         ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
         ${b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''}
+        ${(b.ship&&b.ship.length)?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${b.ship.join(' · ')}</span></div>`:''}
       </div>
+      ${(b.content_warnings&&b.content_warnings.length)?`
+      <div class="modal-warnings-block" style="margin-bottom:1rem">
+        <div style="font-size:10px;font-weight:600;color:#ff6b6b;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem">⚠️ Advertencias de contenido</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem">${b.content_warnings.map(w=>`<span class="tag tag-warning">⚠ ${w}</span>`).join('')}</div>
+      </div>`:''}
       ${b.synopsis?(()=>{
         const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
         const full=paras.map(p=>`<p class="modal-synopsis">${p}</p>`).join('');
@@ -2274,8 +2255,7 @@ function attachStarTouch(){
     btn.addEventListener('mouseover',()=>hoverStar(n));
     btn.addEventListener('mouseout',()=>unhoverStar());
     btn.addEventListener('click',()=>selectStar(n));
-    btn.addEventListener('touchstart',e=>{e.preventDefault();hoverStar(n);},{passive:false});
-    btn.addEventListener('touchend',e=>{e.preventDefault();selectStar(n);unhoverStar();},{passive:false});
+    btn.addEventListener('touchend',e=>{e.preventDefault();selectStar(n);},{passive:false});
   });
 }
 
@@ -2378,13 +2358,12 @@ function buildSpicySectionHTML(){
     voteInput=`<p style="font-size:12.5px;color:var(--muted);margin-top:.4rem"><a style="color:var(--accent);cursor:pointer" onclick="closeBookModal();openAuthModal()">Inicia sesión</a> para votar el nivel spicy.</p>`;
   } else {
     const active=pendingSpicy>0?pendingSpicy:(myVote!=null?myVote:-1);
-    const btn0sel=active===0;
     const chileButtons=
-      `<button class="spicy-vote-btn" data-s="0" title="${SPICY_LABELS[0]}" style="background:transparent;border:none;cursor:pointer;font-size:1.4rem;padding:2px 5px;color:${btn0sel?'#e05050':'#444'};transition:color .12s">🚫</button>`+
-      [1,2,3,4,5].map(i=>`<button class="spicy-chile-btn" data-s="${i}" title="${SPICY_LABELS[i]}" style="background:transparent;border:none;cursor:pointer;font-size:1.4rem;padding:2px 2px;color:${active>=i?'#e05050':'#444'};transition:color .1s;line-height:1">🌶</button>`).join('');
+      `<button class="spicy-vote-btn" data-s="0" title="${SPICY_LABELS[0]}" style="background:transparent;border:none;cursor:pointer;font-size:1.25rem;padding:6px 8px;min-width:44px;min-height:44px;opacity:0.3;transition:opacity .12s">🚫</button>`+
+      [1,2,3,4,5].map(i=>`<button class="spicy-chile-btn" data-s="${i}" title="${SPICY_LABELS[i]}" style="background:transparent;border:none;cursor:pointer;font-size:1.6rem;padding:6px 6px;min-width:44px;min-height:44px;opacity:0.3;transition:opacity .1s;line-height:1">🌶</button>`).join('');
     voteInput=`<div style="margin-top:.6rem">
       <p style="font-size:11px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;font-weight:600;margin-bottom:.4rem">${myVote!=null?'Tu voto — puedes cambiarlo':'¿Cuál es el nivel spicy?'}</p>
-      <div id="spicyChileInput" style="display:flex;align-items:center;gap:0;margin-bottom:.6rem">${chileButtons}</div>
+      <div id="spicyChileInput" style="display:flex;align-items:center;gap:4px;margin-bottom:.6rem">${chileButtons}</div>
       <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center">
         <button class="vote-submit" id="spicyVoteBtn" onclick="submitSpicyVote()" ${active<0?'disabled':''} style="font-size:12px;padding:7px 18px">Guardar 🌶</button>
         ${myVote!=null?`<button class="vote-delete" id="spicyDeleteBtn" onclick="deleteSpicyVote()" style="font-size:12px;padding:7px 14px">✕ Quitar mi voto</button>`:''}
@@ -2402,6 +2381,9 @@ function renderSpicySection(){
   if(!el) return;
   el.innerHTML=buildSpicySectionHTML();
   _attachSpicyEvents();
+  // Paint existing vote state after render (so grey on first open, red if already voted)
+  const existing=pendingSpicy>0?pendingSpicy:(mySpicy[activeBook?.id]!=null?mySpicy[activeBook.id]:-1);
+  if(existing>=0) _paintChiles(existing);
 }
 
 function selectSpicy(n){
@@ -2413,9 +2395,9 @@ function selectSpicy(n){
 function _paintChiles(upTo){
   const wrap=document.getElementById('spicyChileInput');
   if(!wrap) return;
-  wrap.querySelector('.spicy-vote-btn').style.color=upTo===0?'#e05050':'#444';
+  wrap.querySelector('.spicy-vote-btn').style.opacity=upTo===0?'1':'0.3';
   wrap.querySelectorAll('.spicy-chile-btn').forEach(b=>{
-    b.style.color=parseInt(b.dataset.s)<=upTo?'#e05050':'#444';
+    b.style.opacity=parseInt(b.dataset.s)<=upTo?'1':'0.3';
   });
 }
 function _attachSpicyEvents(){
@@ -2432,7 +2414,7 @@ function _attachSpicyEvents(){
     b.addEventListener('click',()=>selectSpicy(n));
     b.addEventListener('mouseover',()=>_paintChiles(n));
     b.addEventListener('mouseout',()=>_paintChiles(pendingSpicy>0?pendingSpicy:mySpicy[activeBook?.id]??-1));
-    b.addEventListener('touchstart',e=>{e.preventDefault();selectSpicy(n);},{passive:false});
+    b.addEventListener('touchend',e=>{e.preventDefault();selectSpicy(n);},{passive:false});
   });
 }
 
@@ -2564,19 +2546,7 @@ function renderAuthUI(){
   const authOnlyFilters=document.querySelectorAll('.dd-wrap.auth-only');
   if(currentUser){
     const tg=currentUser.user_metadata?.telegram_username||currentUser.email.split('@')[0];
-    el.innerHTML=`<div class="user-chip-wrap" id="userChipWrap">
-      <div class="user-chip" onclick="toggleUserDropdown(event)">
-        <div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div>
-        <span class="user-name">@${tg}</span>
-        <span class="user-chip-caret">▾</span>
-      </div>
-      <div class="user-dropdown" id="userDropdown">
-        <div class="user-dd-name">@${tg}</div>
-        <div class="user-dd-item" onclick="openShelf()">📚 Mi estantería</div>
-        <div class="user-dd-sep"></div>
-        <div class="user-dd-item danger" onclick="logout()">Salir</div>
-      </div>
-    </div>`;
+    el.innerHTML=`<div class="user-chip"><div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div><span class="user-name">@${tg}</span><button class="btn-shelf" onclick="openShelf()" title="Mi estantería">📚</button><button class="btn-logout" onclick="logout()">salir</button></div>`;
     document.getElementById('valoracionFilter').style.display='flex';
     document.getElementById('valoracionFilter').style.gap='.4rem';
     authOnlyFilters.forEach(f=>f.classList.add('visible'));
@@ -2660,7 +2630,7 @@ async function handleAuth(){
     if(!error){closeAuthModal();showToast('¡Cuenta creada! Revisa tu email 🌹','success');}
   }else{
     ({error}=await sb.auth.signInWithPassword({email,password:pass}));
-    if(!error){await loadMyRatings();closeAuthModal();showToast('¡Bienvenida de vuelta! 🌹','success');applyFilters();}
+    if(!error){await Promise.all([loadMyRatings(),loadMyReadingStatus()]);closeAuthModal();showToast('¡Bienvenida de vuelta! 🌹','success');applyFilters();}
   }
   if(error) setAuthError(error.message==='Invalid login credentials'?'Email o contraseña incorrectos.':error.message);
   btn.disabled=false;btn.textContent=authMode==='register'?'Registrarse':'Entrar';
@@ -2749,7 +2719,7 @@ function copyTabLink(){
 
 /* ── TABS ── */
 let activeTab='estanteria';
-function switchTab(tab){
+function switchTab(tab, silent){
   activeTab=tab;
   sessionStorage.setItem('ts_active_tab', tab);
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
@@ -2772,12 +2742,12 @@ function switchTab(tab){
   if(tab==='myrec') renderMyrec();
   if(tab==='solicitudes') renderSolicitudes();
   if(tab==='ruleta') ruletaInit();
-  // Update URL so the tab is shareable
-  try{
+  // Update URL so the tab is shareable and the back button works
+  if(!silent) try{
     const params=new URLSearchParams(location.search);
     if(tab==='estanteria') params.delete('tab'); else params.set('tab',tab);
     const url=params.toString()?'?'+params.toString():location.pathname;
-    history.replaceState(null,'',url);
+    history.pushState({tab},'',url);
   }catch(e){}
 }
 
@@ -2788,6 +2758,8 @@ function showHome(){
   document.body.classList.add('home-active');
   document.getElementById('homeNavBtn').classList.add('active');
   updateHomeStats();
+  // Clean URL — home has no params
+  try{ history.replaceState(null,'',location.pathname); }catch(e){}
 }
 function showCatalog(tab){
   const t = tab || 'estanteria';
@@ -2954,9 +2926,16 @@ function recVerMas(groupId, btn){
   btn.closest('.rec-ver-mas-wrap').remove();
 }
 
-function switchSection(section){
+function switchSection(section,silent){
   activeSection=section;
   currentPage=1;
+  if(!silent) try{
+    const params=new URLSearchParams(location.search);
+    params.set('section',section);
+    params.delete('page');
+    const url=params.toString()?'?'+params.toString():location.pathname;
+    history.pushState({section},'',url);
+  }catch(e){}
   filters.authors=[];
   filters.sagas=[];
   const sectionBooks=allBooks.filter(b=>b.source===section);
@@ -3360,9 +3339,51 @@ window.addEventListener('popstate', ()=>{
   if(location.hash.startsWith('#libro/')){
     const id = location.hash.slice(7);
     openBook(id, false);
-  } else {
-    document.getElementById('bookModal').classList.remove('open');
-    document.body.style.overflow='';
+    return;
+  }
+  // Close book modal if open
+  document.getElementById('bookModal').classList.remove('open');
+  document.body.style.overflow='';
+  // Restore tab and section from URL
+  const params=new URLSearchParams(location.search);
+  const tab=params.get('tab')||'estanteria';
+  const section=params.get('section')||'thais';
+  // Switch tab without pushing a new history entry (we're already restoring)
+  activeTab=tab;
+  sessionStorage.setItem('ts_active_tab', tab);
+  document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
+  document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
+  document.getElementById('tabSafi').classList.toggle('active',tab==='safi');
+  document.getElementById('tabCanal').classList.toggle('active',tab==='canal');
+  document.getElementById('tabMyrec').classList.toggle('active',tab==='myrec');
+  document.getElementById('tabSolicitudes').classList.toggle('active',tab==='solicitudes');
+  document.getElementById('tabRuleta').classList.toggle('active',tab==='ruleta');
+  document.getElementById('panelEstanteria').style.display=tab==='estanteria'?'':'none';
+  document.getElementById('panelTop10').style.display=tab==='top10'?'':'none';
+  document.getElementById('panelSafi').style.display=tab==='safi'?'':'none';
+  document.getElementById('panelCanal').style.display=tab==='canal'?'':'none';
+  document.getElementById('panelMyrec').style.display=tab==='myrec'?'':'none';
+  document.getElementById('panelSolicitudes').style.display=tab==='solicitudes'?'':'none';
+  document.getElementById('panelRuleta').style.display=tab==='ruleta'?'':'none';
+  if(tab==='top10') renderTop10();
+  if(tab==='safi') renderSafi();
+  if(tab==='canal') renderCanal();
+  if(tab==='myrec') renderMyrec();
+  if(tab==='solicitudes') renderSolicitudes();
+  if(tab==='ruleta') ruletaInit();
+  // If on estantería, restore section without pushing history
+  if(tab==='estanteria' && section!==activeSection){
+    activeSection=section;
+    currentPage=parseInt(params.get('page'))||1;
+    const tabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee',asian:'tabAsian',african:'tabAfrican'};
+    const cls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian',african:'active-african'};
+    Object.entries(tabs).forEach(([key,id])=>{
+      const el=document.getElementById(id);
+      if(el) el.className='section-tab'+(key===section?' '+cls[key]:'');
+    });
+    buildDropdowns();
+    renderActivePills();
+    applyFilters(false);
   }
 });
 
@@ -4109,56 +4130,32 @@ function ruletaOpenBook() {
   openBook(ruletaSelectedBook.id);
 }
 
-/* ── READING STATUS ── */
+/* ══════════════════════════════════
+   READING STATUS & ESTANTERÍA
+══════════════════════════════════ */
+
 async function loadMyReadingStatus(){
   if(!currentUser) return;
   const {data,error}=await sb.from('reading_status').select('book_id,status').eq('user_id',currentUser.id);
-  if(error) return;
+  if(error){ console.error('reading_status load error:',error); return; }
   myReadingStatus={};
   (data||[]).forEach(row=>{ myReadingStatus[row.book_id]=row.status; });
 }
 
-function buildReadingStatusPillHTML(bookId){
-  const s=myReadingStatus[bookId];
-  if(!s){
-    return `<button class="reading-status-pill" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">＋</span> Quiero leer</button>`;
-  } else if(s==='want'){
-    return `<button class="reading-status-pill want" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">＋</span> Quiero leer</button>`;
-  } else {
-    return `<button class="reading-status-pill read" onclick="cycleReadingStatus('${bookId}')"><span class="rs-icon">✓</span> Leído</button>`;
-  }
-}
-
-async function cycleReadingStatus(bookId){
-  // alias por compatibilidad — ya no se usa directamente
-  const current=myReadingStatus[bookId];
-  const next=!current?'want':current==='want'?'read':null;
-  if(next) await setReadingStatus(bookId,next);
-  else {
-    await sb.from('reading_status').delete().eq('user_id',currentUser.id).eq('book_id',bookId);
-    delete myReadingStatus[bookId];
-    showToast('Eliminado de tu estantería','success');
-    _refreshShelfUI(bookId);
-  }
-}
-
 async function setReadingStatus(bookId, newStatus){
-  if(!currentUser) return;
+  if(!currentUser){ openAuthModal(); return; }
   const current=myReadingStatus[bookId];
-  const next=current===newStatus?null:newStatus; // clic en activo = quitar
+  const next=current===newStatus?null:newStatus; // clic en el activo = quitar
 
   if(next){
-    // Upsert: inserta o actualiza en un solo paso
     const {error}=await sb.from('reading_status')
-      .upsert({user_id:currentUser.id, book_id:bookId, status:next}, {onConflict:'user_id,book_id'});
+      .upsert({user_id:currentUser.id, book_id:bookId, status:next},{onConflict:'user_id,book_id'});
     if(error){ showToast('Error al guardar 😞','error'); console.error(error); return; }
     myReadingStatus[bookId]=next;
     showToast(next==='want'?'Añadido a «Quiero leer» ＋':'Marcado como leído ✓','success');
   } else {
     const {error}=await sb.from('reading_status')
-      .delete()
-      .eq('user_id',currentUser.id)
-      .eq('book_id',bookId);
+      .delete().eq('user_id',currentUser.id).eq('book_id',bookId);
     if(error){ showToast('Error al eliminar 😞','error'); console.error(error); return; }
     delete myReadingStatus[bookId];
     showToast('Eliminado de tu estantería','success');
@@ -4173,18 +4170,15 @@ function _refreshShelfUI(bookId){
   // Botones en tarjeta
   const cardWrap=document.getElementById('cardShelf_'+bookId);
   if(cardWrap) cardWrap.outerHTML=buildCardShelfBtnsHTML(bookId);
-  // Pill legacy (por si acaso)
-  const pill=document.querySelector('#bookModalContent .reading-status-pill');
-  if(pill && activeBook && activeBook.id===bookId) pill.outerHTML=buildReadingStatusPillHTML(bookId);
+  // Si el shelf está abierto, refrescar contadores
+  if(document.getElementById('shelfView').classList.contains('active')) renderShelf();
 }
-
-function buildReadingStatusPillHTML(bookId){ return buildShelfButtonsHTML(bookId); }
 
 function buildShelfButtonsHTML(bookId){
   const s=myReadingStatus[bookId];
   return `<div class="shelf-btns" id="shelfBtns_${bookId}">
-    <button class="shelf-btn${s==='want'?' want':''}" onclick="setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
-    <button class="shelf-btn${s==='read'?' read':''}" onclick="setReadingStatus('${bookId}','read')">✓ Leído</button>
+    <button class="shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
+    <button class="shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">✓ Leído</button>
   </div>`;
 }
 
@@ -4196,60 +4190,23 @@ function buildCardShelfBtnsHTML(bookId){
   </div>`;
 }
 
-/* ── USER DROPDOWN ── */
-function toggleUserDropdown(e){
-  e.stopPropagation();
-  const w=document.getElementById('userChipWrap');
-  if(w) w.classList.toggle('open');
-}
-
-/* ── SHELF VIEW ── */
+/* ── Vista estantería ── */
 function openShelf(){
-  // Close user dropdown
-  const w=document.getElementById('userChipWrap');
-  if(w) w.classList.remove('open');
-  // Hide main content
-  document.getElementById('homeView').classList.remove('active');
-  document.body.classList.remove('home-active');
-  document.querySelector('.hero')&&(document.querySelector('.hero').style.display='none');
-  document.querySelector('.main')&&(document.querySelector('.main').style.display='none');
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('shelfView').classList.add('active');
   renderShelf();
 }
 
 function closeShelf(){
   document.getElementById('shelfView').classList.remove('active');
-  document.querySelector('.hero')&&(document.querySelector('.hero').style.display='');
-  document.querySelector('.main')&&(document.querySelector('.main').style.display='');
-  // Go back to catalog view
-  document.getElementById('homeView').classList.remove('active');
-  document.body.classList.remove('home-active');
-}
-
-/* ── SHELF STATE ── */
-let shelfFilter='all'; // 'all' | 'want' | 'read'
-let shelfViewMode='grid'; // 'grid' | 'list'
-
-function renderShelf(){
-  const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
-  const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
-  const allShelfBooks=[...wantBooks,...readBooks];
-
-  document.getElementById('shelfWantCount').textContent=wantBooks.length;
-  document.getElementById('shelfReadCount').textContent=readBooks.length;
-  document.getElementById('shelfCountAll').textContent=allShelfBooks.length;
-
-  _renderShelfBooks();
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='');
 }
 
 function switchShelf(filter){
   shelfFilter=filter;
-  ['all','want','read'].forEach(f=>{
-    document.getElementById('shelfNav'+f.charAt(0).toUpperCase()+f.slice(1))
-      ?.classList.toggle('active', f===filter);
-  });
-  const titles={all:'Todos los libros',want:'＋ Quiero leer',read:'✓ Leídos'};
-  document.getElementById('shelfMainTitle').innerHTML=titles[filter]+' <span id="shelfMainCount"></span>';
+  document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
+  const map={all:'shelfNavAll',want:'shelfNavWant',read:'shelfNavRead'};
+  document.getElementById(map[filter])?.classList.add('active');
   _renderShelfBooks();
 }
 
@@ -4260,76 +4217,60 @@ function setShelfView(mode){
   _renderShelfBooks();
 }
 
+function renderShelf(){
+  const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
+  const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
+  document.getElementById('shelfCountAll').textContent=wantBooks.length+readBooks.length;
+  document.getElementById('shelfWantCount').textContent=wantBooks.length;
+  document.getElementById('shelfReadCount').textContent=readBooks.length;
+  _renderShelfBooks();
+}
+
 function _renderShelfBooks(){
   const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
   const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
   let books=shelfFilter==='want'?wantBooks:shelfFilter==='read'?readBooks:[...wantBooks,...readBooks];
-
-  const countEl=document.getElementById('shelfMainCount');
-  if(countEl) countEl.textContent=books.length?`(${books.length})`:'';
-
+  const titleMap={all:'Todos los libros',want:'Quiero leer',read:'Leídos'};
+  document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>(${books.length})</span>`;
   const container=document.getElementById('shelfBooksContainer');
   if(!books.length){
-    const msgs={all:'Tu estantería está vacía. Añade libros desde el catálogo.',want:'Aún no tienes libros en «Quiero leer».',read:'Aún no has marcado ningún libro como leído.'};
-    container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':'📖'}</span>${msgs[shelfFilter]}</div>`;
+    const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',read:'Aún no has marcado ningún libro como leído.'};
+    container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
     return;
   }
-
   if(shelfViewMode==='grid'){
-    container.innerHTML=`<div class="shelf-grid">${books.map(b=>shelfBookCardGrid(b)).join('')}</div>`;
+    container.innerHTML=`<div class="shelf-grid">${books.map(b=>{
+      const cov=b.cover?`<img src="${b.cover}" alt="${b.title}" loading="lazy">`:`<div class="shelf-book-cover-ph">📖</div>`;
+      const auth=(b.authors||[]).join(', ');
+      return `<div class="shelf-book" onclick="openBook('${b.id}')">
+        <div class="shelf-book-cover">${cov}</div>
+        <div class="shelf-book-body">
+          <div class="shelf-book-title">${b.title}</div>
+          <div class="shelf-book-author">${auth}</div>
+        </div>
+      </div>`;
+    }).join('')}</div>`;
   } else {
-    container.innerHTML=`<div class="shelf-list">${books.map(b=>shelfBookCardList(b)).join('')}</div>`;
+    container.innerHTML=`<div class="shelf-list">${books.map(b=>{
+      const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${b.title}" loading="lazy">`:`<div class="shelf-list-cover-ph">📖</div>`;
+      const auth=(b.authors||[]).join(', ');
+      const r=ratingsMap[b.id]||{avg:0,count:0};
+      const badge=myReadingStatus[b.id]==='want'
+        ?`<span style="font-size:11px;color:var(--accent2)">＋ Quiero leer</span>`
+        :`<span style="font-size:11px;color:var(--teal)">✓ Leído</span>`;
+      return `<div class="shelf-list-item" onclick="openBook('${b.id}')">
+        ${cov}
+        <div class="shelf-list-info">
+          <div class="shelf-list-title">${b.title}</div>
+          <div class="shelf-list-author">${auth}</div>
+          ${badge}
+        </div>
+        <div class="shelf-list-right">
+          ${r.count>0?`<span style="color:var(--gold);font-size:1.1rem;font-weight:300">★ ${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">${r.count} votos</span>`:''}
+        </div>
+      </div>`;
+    }).join('')}</div>`;
   }
-}
-
-function shelfBookCardGrid(b){
-  const coverEl=b.cover
-    ? `<img src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=shelf-book-cover-ph>📖</div>'">`
-    : `<div class="shelf-book-cover-ph">📖</div>`;
-  const authorStr=(b.authors||[]).join(', ')||'—';
-  return `<div class="shelf-book" onclick="openBookFromShelf('${b.id}')">
-    <div class="shelf-book-cover">${coverEl}</div>
-    <div class="shelf-book-body">
-      <div class="shelf-book-title">${b.title}</div>
-      <div class="shelf-book-author">${authorStr}</div>
-    </div>
-  </div>`;
-}
-
-function shelfBookCardList(b){
-  const r=ratingsMap[b.id]||{avg:0,count:0};
-  const myScore=myRatings[b.id]||0;
-  const coverEl=b.cover
-    ? `<img class="shelf-list-cover" src="${b.cover}" alt="${b.title}" onerror="this.classList.add('hidden');this.nextElementSibling.style.display='flex'">`
-    : '';
-  const coverPh=`<div class="shelf-list-cover-ph" ${b.cover?'style="display:none"':''}>📖</div>`;
-  const authorStr=(b.authors||[]).join(', ')||'—';
-  const genreTags=(b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
-  const statusBadge=myReadingStatus[b.id]==='want'
-    ? `<span style="font-size:10.5px;color:var(--accent2)">＋ Quiero leer</span>`
-    : `<span style="font-size:10.5px;color:var(--teal)">✓ Leído</span>`;
-  const scoreHtml=r.count>0
-    ? `<div class="shelf-list-score">${r.avg.toFixed(1)}</div><div class="shelf-list-stars">${'★'.repeat(Math.round(r.avg))}${'☆'.repeat(5-Math.round(r.avg))}</div>`
-    : `<div class="shelf-list-novotes">Sin votos</div>`;
-  const myVote=myScore>0?`<div style="font-size:10.5px;color:var(--gold)">${'★'.repeat(myScore)} Mi voto</div>`:'';
-  return `<div class="shelf-list-item" onclick="openBookFromShelf('${b.id}')">
-    <div style="flex-shrink:0">${coverEl}${coverPh}</div>
-    <div class="shelf-list-info">
-      <div class="shelf-list-title">${b.title}</div>
-      <div class="shelf-list-author">${authorStr}</div>
-      <div class="shelf-list-tags">${genreTags}</div>
-      <div style="margin-top:.4rem">${statusBadge}</div>
-    </div>
-    <div class="shelf-list-right">${scoreHtml}${myVote}</div>
-  </div>`;
-}
-
-function openBookFromShelf(id){
-  closeShelf();
-  // Show catalog so modal has backdrop
-  document.querySelector('.hero')&&(document.querySelector('.hero').style.display='');
-  document.querySelector('.main')&&(document.querySelector('.main').style.display='');
-  setTimeout(()=>openBook(id),50);
 }
 
 </script>
