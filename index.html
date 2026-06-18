@@ -35,7 +35,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .topbar-right{display:flex;align-items:center;gap:10px}
 .btn-login{padding:7px 18px;border-radius:30px;background:var(--accent-soft);border:1px solid var(--border2);color:var(--accent2);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body);transition:all .18s}
 .btn-login:hover{background:rgba(192,111,196,0.22);border-color:var(--accent)}
-.user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:30px;background:var(--surface2);border:1px solid var(--border2)}
+.user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:30px;background:var(--surface2);border:1px solid var(--border2);cursor:pointer;transition:background .15s;user-select:none}
+.user-chip:hover{background:var(--surface3)}
+.user-chip-caret{font-size:9px;color:var(--muted);opacity:.6;margin-left:-2px;transition:transform .18s}
+.user-chip-wrap{position:relative}
+.user-chip-wrap.open .user-chip-caret{transform:rotate(180deg)}
+.user-dropdown{position:absolute;top:calc(100% + 8px);right:0;min-width:170px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,.55),0 4px 20px rgba(0,0,0,.3);z-index:300;display:none;overflow:hidden;animation:ddFadeIn .14s ease}
+.user-chip-wrap.open .user-dropdown{display:block}
+.user-dd-item{display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:13px;color:var(--text);cursor:pointer;transition:background .12s;font-family:var(--font-body);border:none;background:none;width:100%;text-align:left}
+.user-dd-item:hover{background:var(--surface2)}
+.user-dd-item.danger{color:var(--rose)}
+.user-dd-item.danger:hover{background:var(--rose-soft)}
+.user-dd-sep{height:1px;background:var(--border);margin:3px 0}
 .user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--rose));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0}
 .user-name{font-size:12.5px;color:var(--text);font-weight:500;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .btn-logout{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:2px 4px;font-family:var(--font-body);transition:color .15s}
@@ -2547,7 +2558,18 @@ function renderAuthUI(){
   const authOnlyFilters=document.querySelectorAll('.dd-wrap.auth-only');
   if(currentUser){
     const tg=currentUser.user_metadata?.telegram_username||currentUser.email.split('@')[0];
-    el.innerHTML=`<div class="user-chip"><div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div><span class="user-name">@${tg}</span><button class="btn-shelf" onclick="openShelf()" title="Mi estantería">📚</button><button class="btn-logout" onclick="logout()">salir</button></div>`;
+    el.innerHTML=`<div class="user-chip-wrap" id="userChipWrap">
+      <div class="user-chip" onclick="toggleUserDropdown()">
+        <div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div>
+        <span class="user-name">@${tg}</span>
+        <span class="user-chip-caret">▾</span>
+      </div>
+      <div class="user-dropdown">
+        <button class="user-dd-item" onclick="toggleUserDropdown();openShelf()">📚 Mi estantería</button>
+        <div class="user-dd-sep"></div>
+        <button class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
+      </div>
+    </div>`;
     document.getElementById('valoracionFilter').style.display='flex';
     document.getElementById('valoracionFilter').style.gap='.4rem';
     authOnlyFilters.forEach(f=>f.classList.add('visible'));
@@ -2637,7 +2659,18 @@ async function handleAuth(){
   btn.disabled=false;btn.textContent=authMode==='register'?'Registrarse':'Entrar';
 }
 function setAuthError(msg){document.getElementById('authError').textContent=msg;}
-async function logout(){await sb.auth.signOut();myRatings={};showToast('Hasta pronto 🌹','success');applyFilters();}
+async function logout(){await sb.auth.signOut();myRatings={};myReadingStatus={};showToast('Hasta pronto 🌹','success');applyFilters();}
+
+function toggleUserDropdown(){
+  const wrap=document.getElementById('userChipWrap');
+  if(!wrap) return;
+  wrap.classList.toggle('open');
+}
+// Cerrar dropdown al clicar fuera
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('userChipWrap');
+  if(wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
+});
 
 /* ── RESET PASSWORD ── */
 function openResetModal(){
@@ -4189,7 +4222,6 @@ function buildCardShelfBtnsHTML(bookId){
     <button class="card-shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')"><span class="card-shelf-icon">${s==='want'?'♥':'♡'}</span> Quiero leer</button>
     <button class="card-shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')"><span class="card-shelf-icon">${s==='read'?'✓':'○'}</span> Leído</button>
   </div>`;
-}
 }
 
 /* ── Vista estantería ── */
