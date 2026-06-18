@@ -1161,7 +1161,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" onclick="toggleDD('ddSubgenre')">Temática <span class="dd-count" id="cntSubgenre" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('subgenres','listSubgenre',this.value)"></div><div class="dd-list" id="listSubgenre"></div></div>
       </div>
-      <div class="dd-wrap auth-only" id="ddDinamica">
+      <div class="dd-wrap" id="ddDinamica">
         <button class="dd-btn" onclick="toggleDD('ddDinamica')">Dinámica <span class="dd-count" id="cntDinamica" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('dinamicas','listDinamica',this.value)"></div><div class="dd-list" id="listDinamica"></div></div>
       </div>
@@ -1660,6 +1660,7 @@ async function init(){
   const _secTabs={thais:'tabThais',other:'tabOther',spanish:'tabSpanish',baihee:'tabBaihee',asian:'tabAsian',african:'tabAfrican'};
   const _secCls={thais:'active-thais',other:'active-other',spanish:'active-spanish',baihee:'active-baihee',asian:'active-asian',african:'active-african'};
   Object.entries(_secTabs).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.className='section-tab'+(key===activeSection?' '+_secCls[key]:'');});
+  renderAuthUI(); // re-aplicar estado auth tras cargar dropdowns
   applyFilters(false);
   updateDDCounts();renderActivePills();
   if(filters.pages){const _cp=document.getElementById('cntPages');if(_cp)_cp.style.display='';}
@@ -2592,7 +2593,7 @@ function renderAuthUI(){
     if(hint) hint.classList.remove('hidden');
     // Limpiar filtros restringidos si estaban activos
     filters.spicy=[];filters.spicyUnknown=false;
-    filters.dinamicas=[];filters.edad=[];filters.pais_cultura=[];
+    filters.edad=[];filters.pais_cultura=[];
     renderActivePills();applyFilters(false);
     const svi=document.getElementById('statVotesItem');
     if(svi) svi.style.display='none';
