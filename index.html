@@ -219,6 +219,19 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   border-radius:4px;
 }
 .dd-item label{cursor:pointer;flex:1;color:var(--text);line-height:1.4}
+.dd-tri{
+  width:16px;height:16px;flex-shrink:0;border-radius:5px;
+  border:1.5px solid var(--border2);background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .15s;position:relative;
+}
+.dd-tri svg{width:10px;height:10px;display:none}
+.dd-item.tri-include .dd-tri{background:var(--accent);border-color:var(--accent)}
+.dd-item.tri-include .dd-tri svg.tri-check{display:block}
+.dd-item.tri-exclude .dd-tri{background:var(--rose);border-color:var(--rose)}
+.dd-item.tri-exclude .dd-tri svg.tri-x{display:block}
+.dd-item.tri-exclude label{color:var(--rose);text-decoration:line-through;text-decoration-color:rgba(212,96,122,0.5)}
+.dd-tri svg{stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .dd-empty{padding:12px 14px;font-size:12px;color:var(--muted);font-style:italic}
 .dd-clear{
   padding:7px 14px;border-bottom:1px solid var(--border);
@@ -273,6 +286,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   transition:opacity .15s;
 }
 .af-pill button:hover{opacity:1}
+.af-pill-exclude{background:rgba(212,96,122,0.1);border-color:rgba(212,96,122,0.3);color:var(--rose)}
+.af-pill-exclude button{color:var(--rose)}
 .clear-all-btn{
   padding:4px 12px;border-radius:7px;
   border:1px solid rgba(212,96,122,0.25);
@@ -1594,7 +1609,9 @@ const VALID_TAGS={
   identidad:['Asexual','Bisexual','Butch','Femme','Grumpy','Ice Queen','Introvertida','Lesbiana','Masc','Nerd','Queer','Soft Butch','Sunshine']
 };
 const SPICY_MIN_VOTES=2;
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null};
+const MULTI_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'];
+function emptyExclude(){const o={};MULTI_KEYS.forEach(k=>o[k]=[]);return o;}
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,exclude:emptyExclude()};
 let currentPage=1;
 const PAGE_SIZE=24;
 
@@ -1613,6 +1630,7 @@ function pushState(addEntry){
     if(filters.q) params.set('q',filters.q);
     ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
       if(filters[k].length) params.set(k,filters[k].join('|'));
+      if(filters.exclude[k].length) params.set('x_'+k,filters.exclude[k].join('|'));
     });
     if(filters.spicy.length) params.set('spicy',filters.spicy.join('|'));
     if(filters.spicyUnknown) params.set('spicyUnknown','1');
@@ -1632,6 +1650,7 @@ function loadState(){
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
   ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
     if(params.get(k)) filters[k]=params.get(k).split('|');
+    if(params.get('x_'+k)) filters.exclude[k]=params.get('x_'+k).split('|');
   });
   if(params.get('spicy')) filters.spicy=params.get('spicy').split('|').map(Number);
   if(params.get('spicyUnknown')) filters.spicyUnknown=true;
@@ -1667,7 +1686,7 @@ async function init(){
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
-  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','spicy','spicyUnknown','adaptacion','valoracion','pages'].some(k=>urlParams.has(k));
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','spicy','spicyUnknown','adaptacion','valoracion','pages'].some(k=>urlParams.has(k)||urlParams.has('x_'+k));
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
@@ -1811,21 +1830,27 @@ function buildDropdowns(){
 function buildEdadDD(){
   const el=document.getElementById('listEdad');
   if(!el) return;
-  el.innerHTML=(filters.edad.length?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
+  const hasSel=filters.edad.length||filters.exclude.edad.length;
+  el.innerHTML=(hasSel?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
     EDAD_LABELS.map(v=>{
       const sid='dd_edad_'+v.replace(/\W/g,'_');
-      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters.edad.includes(v)?'checked':''} onchange="toggleDDFilter('edad','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
+      const state=filters.edad.includes(v)?'tri-include':filters.exclude.edad.includes(v)?'tri-exclude':'';
+      return `<div class="dd-item ${state}" id="${sid}" onclick="toggleDDFilter('edad',decodeURIComponent('${encodeURIComponent(v)}'))">${TRI_SVG}<label>${v}</label></div>`;
     }).join('');
 }
 
+const TRI_SVG=`<span class="dd-tri"><svg class="tri-check" viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg><svg class="tri-x" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></span>`;
 function buildDDList(listId,values,key,search=''){
   const el=document.getElementById(listId);
   const filtered=search?values.filter(v=>v.toLowerCase().includes(search.toLowerCase())):values;
   if(!filtered.length){el.innerHTML='<div class="dd-empty">Sin resultados</div>';return;}
-  el.innerHTML=(filters[key].length?`<div class="dd-clear" onclick="clearDDFilter('${key}')">✕ Limpiar selección</div>`:'')+
+  const hasSel=filters[key].length||(filters.exclude[key]&&filters.exclude[key].length);
+  el.innerHTML=(hasSel?`<div class="dd-clear" onclick="clearDDFilter('${key}')">✕ Limpiar selección</div>`:'')+
     filtered.map(v=>{
       const sid='dd_'+key+'_'+v.replace(/\W/g,'_');
-      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters[key].includes(v)?'checked':''} onchange="toggleDDFilter('${key}','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
+      const isExc=filters.exclude[key]&&filters.exclude[key].includes(v);
+      const state=filters[key].includes(v)?'tri-include':isExc?'tri-exclude':'';
+      return `<div class="dd-item ${state}" id="${sid}" onclick="toggleDDFilter('${key}',decodeURIComponent('${encodeURIComponent(v)}'))">${TRI_SVG}<label>${v}</label></div>`;
     }).join('');
 }
 
@@ -1845,8 +1870,34 @@ function filterDD(key,listId,search){
 
 function toggleDDFilter(key,val){
   if(key==='spicy') val=parseInt(val);
-  const arr=filters[key],idx=arr.indexOf(val);
-  idx>=0?arr.splice(idx,1):arr.push(val);
+  const inc=filters[key], exc=filters.exclude[key];
+  const incIdx=inc.indexOf(val), excIdx=exc.indexOf(val);
+  if(incIdx>=0){
+    // estaba incluido -> pasa a excluido
+    inc.splice(incIdx,1);
+    if(key!=='spicy') exc.push(val);
+  } else if(excIdx>=0){
+    // estaba excluido -> vuelve a neutral
+    exc.splice(excIdx,1);
+  } else {
+    // estaba neutral -> pasa a incluido
+    inc.push(val);
+  }
+  if(key==='spicy') buildSpicyDD();
+  else if(key==='edad') buildEdadDD();
+  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  updateDDCounts();renderActivePills();applyFilters();
+}
+
+function setDDFilterState(key,val,state){
+  // state: 'include' | 'exclude' | 'none'
+  if(key==='spicy') val=parseInt(val);
+  const inc=filters[key], exc=filters.exclude[key];
+  const incIdx=inc.indexOf(val), excIdx=exc.indexOf(val);
+  if(incIdx>=0) inc.splice(incIdx,1);
+  if(excIdx>=0) exc.splice(excIdx,1);
+  if(state==='include') inc.push(val);
+  else if(state==='exclude'&&key!=='spicy') exc.push(val);
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
   else buildDDList(DD_MAP[key], uniqVals(key), key);
@@ -1861,6 +1912,7 @@ function toggleSpicyUnknown(){
 
 function clearDDFilter(key){
   filters[key]=[];
+  if(filters.exclude[key]) filters.exclude[key]=[];
   if(key==='spicy') filters.spicyUnknown=false;
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
@@ -1875,7 +1927,7 @@ function updateDDCounts(){
     const cnt=document.getElementById('cnt'+k);
     const btn=document.querySelector('#dd'+k+' .dd-btn');
     if(!cnt||!btn) return;
-    const n=filters[fk].length;
+    const n=filters[fk].length+(filters.exclude[fk]?filters.exclude[fk].length:0);
     cnt.textContent=n;cnt.style.display=n?'':'none';
     btn.classList.toggle('has-sel',n>0);
   });
@@ -1961,12 +2013,19 @@ function renderActivePills(){
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
-    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages') return;
-    if(!arr.length) return;
+    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages'||key==='exclude'||key==='spicyUnknown') return;
+    if(!Array.isArray(arr)||!arr.length) return;
     arr.forEach(v=>{
       const display=key==='spicy'?SPICY_LABELS[v]:v;
-      const removeCall=key==='spicy'?`toggleDDFilter('spicy',${v})`:`toggleDDFilter('${key}','${v.replace(/'/g,"\\'")}')`;
+      const removeCall=key==='spicy'?`toggleDDFilter('spicy',${v})`:`toggleDDFilter('${key}',decodeURIComponent('${encodeURIComponent(v)}'))`;
       pills.push(`<span class="af-pill">${labelMap[key]}: ${display}<button onclick="${removeCall}">×</button></span>`);
+    });
+  });
+  Object.entries(filters.exclude||{}).forEach(([key,arr])=>{
+    if(!arr.length) return;
+    arr.forEach(v=>{
+      const removeCall=`toggleDDFilter('${key}',decodeURIComponent('${encodeURIComponent(v)}'))`;
+      pills.push(`<span class="af-pill af-pill-exclude">${labelMap[key]}: NO ${v}<button onclick="${removeCall}">×</button></span>`);
     });
   });
   if(filters.valoracion){
@@ -1988,7 +2047,7 @@ function renderActivePills(){
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,exclude:emptyExclude()};
   document.getElementById('searchInput').value='';
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
@@ -2029,6 +2088,18 @@ function applyFilters(resetPage=true){
   }
   if(filters.valoracion==='valorado') books=books.filter(b=>!!myRatings[b.id]);
   if(filters.valoracion==='no_valorado') books=books.filter(b=>!myRatings[b.id]);
+  // Exclusiones (filtro tri-state: NO debe tener ninguno de estos valores)
+  const ex=filters.exclude;
+  if(ex.genres.length)    books=books.filter(b=>!ex.genres.some(g=>(b.genres||[]).includes(g)));
+  if(ex.subgenres.length) books=books.filter(b=>!ex.subgenres.some(s=>(b.subgenres||[]).includes(s)));
+  if(ex.dinamicas.length) books=books.filter(b=>!ex.dinamicas.some(d=>[...(b.dinamicas||[]),...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
+  if(ex.tropes.length)    books=books.filter(b=>!ex.tropes.some(t=>[...(b.tropes||[]),...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
+  if(ex.characters.length) books=books.filter(b=>!ex.characters.some(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
+  if(ex.authors.length)   books=books.filter(b=>!ex.authors.some(a=>(b.authors||[]).includes(a)));
+  if(ex.years.length)     books=books.filter(b=>!ex.years.includes(String(b.year)));
+  if(ex.sagas.length)     books=books.filter(b=>!ex.sagas.includes(getSaga(b)));
+  if(ex.edad.length)      books=books.filter(b=>!ex.edad.some(e=>(b.edad||[]).includes(e)));
+  if(ex.pais_cultura.length) books=books.filter(b=>!ex.pais_cultura.some(p=>(b.pais_cultura||[]).includes(p)));
   const sort=document.getElementById('sortSel').value;
   if(sort==='nuevo') books.sort((a,b)=>b.id.localeCompare(a.id));
   else if(sort==='top'){
@@ -2205,6 +2276,7 @@ function renderBookModal(){
         ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
         ${b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''}
         ${(b.ship&&b.ship.length)?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${b.ship.join(' · ')}</span></div>`:''}
+        ${(b.edad&&b.edad.length)?`<div class="meta-item"><span class="meta-key">Edad personajes</span><span class="meta-val">${b.edad.join(' · ')}</span></div>`:''}
       </div>
       ${(b.content_warnings&&b.content_warnings.length)?`
       <div class="modal-warnings-block" style="margin-bottom:1rem">
@@ -2278,6 +2350,7 @@ function attachStarTouch(){
 function filterBySagaFromModal(sagaName){
   closeBookModal();
   if(!filters.sagas.includes(sagaName)) filters.sagas=[sagaName];
+  filters.exclude.sagas=filters.exclude.sagas.filter(v=>v!==sagaName);
   currentPage=1;
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
@@ -2286,6 +2359,7 @@ function filterByAuthorFromModal(author){
   closeBookModal();
   switchTab('estanteria');
   filters.authors=[author];
+  filters.exclude.authors=filters.exclude.authors.filter(v=>v!==author);
   currentPage=1;
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
@@ -2294,6 +2368,7 @@ function filterByTagFromModal(filterKey, value){
   closeBookModal();
   switchTab('estanteria');
   filters[filterKey]=[value];
+  if(filters.exclude[filterKey]) filters.exclude[filterKey]=filters.exclude[filterKey].filter(v=>v!==value);
   currentPage=1;
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
@@ -3825,6 +3900,18 @@ function getFilteredBooksForRuleta() {
   if (filters.edad.length)      books = books.filter(b => filters.edad.every(e => (b.edad||[]).includes(e)));
   if (filters.pais_cultura.length) books = books.filter(b => filters.pais_cultura.every(p => (b.pais_cultura||[]).includes(p)));
   if (filters.adaptacion === 'serie') books = books.filter(b => b.adaptacion === 'Tiene serie');
+  // Exclusiones del filtro principal (tri-state)
+  const exR=filters.exclude;
+  if (exR.genres.length)    books = books.filter(b => !exR.genres.some(g => (b.genres||[]).includes(g)));
+  if (exR.subgenres.length) books = books.filter(b => !exR.subgenres.some(s => (b.subgenres||[]).includes(s)));
+  if (exR.dinamicas.length) books = books.filter(b => !exR.dinamicas.some(d => [...(b.dinamicas||[]), ...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
+  if (exR.tropes.length)    books = books.filter(b => !exR.tropes.some(t => [...(b.tropes||[]), ...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
+  if (exR.characters.length) books = books.filter(b => !exR.characters.some(c => [...(b.characters||[]), ...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
+  if (exR.authors.length)   books = books.filter(b => !exR.authors.some(a => (b.authors||[]).includes(a)));
+  if (exR.years.length)     books = books.filter(b => !exR.years.includes(String(b.year)));
+  if (exR.sagas.length)     books = books.filter(b => !exR.sagas.includes(getSaga(b)));
+  if (exR.edad.length)      books = books.filter(b => !exR.edad.some(e => (b.edad||[]).includes(e)));
+  if (exR.pais_cultura.length) books = books.filter(b => !exR.pais_cultura.some(p => (b.pais_cultura||[]).includes(p)));
   // section filter — la ruleta tiene su propio selector, independiente de la estantería
   if (ruletaSection !== 'all') {
     books = books.filter(b => b.source === ruletaSection);
@@ -3893,12 +3980,16 @@ function ruletaUpdateUI() {
   const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País' };
   const pills = [];
   Object.entries(filters).forEach(([key, arr]) => {
-    if (key === 'q' || key === 'valoracion' || key === 'adaptacion') return;
-    if (!arr.length) return;
+    if (key === 'q' || key === 'valoracion' || key === 'adaptacion' || key === 'exclude' || key === 'pages' || key === 'spicyUnknown') return;
+    if (!Array.isArray(arr) || !arr.length) return;
     arr.forEach(v => {
       const display = key === 'spicy' ? SPICY_LABELS[v] : v;
       pills.push(`<span class="af-pill">${labelMap[key]}: ${display}</span>`);
     });
+  });
+  Object.entries(filters.exclude || {}).forEach(([key, arr]) => {
+    if (!arr.length) return;
+    arr.forEach(v => pills.push(`<span class="af-pill af-pill-exclude">${labelMap[key]}: NO ${v}</span>`));
   });
   if (filters.q) pills.push(`<span class="af-pill">🔍 "${filters.q}"</span>`);
   if (filters.adaptacion === 'serie') pills.push(`<span class="af-pill">📺 Con serie</span>`);
