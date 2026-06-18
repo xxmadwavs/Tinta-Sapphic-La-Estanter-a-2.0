@@ -913,11 +913,12 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
 
 /* ── SHELF BUTTONS (tarjeta) ── */
-.card-shelf-btns{display:flex;gap:.3rem;margin-top:.4rem}
-.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:3px;flex:1;padding:5px 0;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .15s;user-select:none}
-.card-shelf-btn:hover{border-color:rgba(192,111,196,.4);color:var(--text);background:var(--surface3)}
-.card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.4);color:var(--accent2)}
-.card-shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
+.card-shelf-btns{display:flex;gap:.3rem;margin-top:.5rem}
+.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;flex:1;padding:4px 0;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--muted);font-size:10.5px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s;user-select:none;letter-spacing:.02em;opacity:.55}
+.card-shelf-btn:hover{border-color:rgba(192,111,196,.3);color:var(--text);background:var(--surface2);opacity:1}
+.card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.35);color:var(--accent2);opacity:1}
+.card-shelf-btn.read{background:rgba(91,188,176,.1);border-color:rgba(91,188,176,.35);color:var(--teal);opacity:1}
+.card-shelf-icon{font-size:11px;line-height:1}
 
 /* ── SHELF VIEW ── */
 #shelfView{display:none;position:relative;z-index:1;padding:0 0 5rem}
@@ -2076,7 +2077,7 @@ function renderGrid(books, total, totalPages){
         <div class="book-title">${b.title}</div>
         ${cardSagaSub}
         <div class="book-author">${authorStr}</div>
-        <div class="book-tags">${genreTags}${dinamicaTag}${tropeTags}${yearTag}${formatoTag}${adaptTag}</div>
+        <div class="book-tags">${genreTags}${yearTag}</div>
         <div class="book-footer">
           ${currentUser
             ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
@@ -4185,9 +4186,10 @@ function buildShelfButtonsHTML(bookId){
 function buildCardShelfBtnsHTML(bookId){
   const s=myReadingStatus[bookId];
   return `<div class="card-shelf-btns" id="cardShelf_${bookId}">
-    <button class="card-shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
-    <button class="card-shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">✓ Leído</button>
+    <button class="card-shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')"><span class="card-shelf-icon">${s==='want'?'♥':'♡'}</span> Quiero leer</button>
+    <button class="card-shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')"><span class="card-shelf-icon">${s==='read'?'✓':'○'}</span> Leído</button>
   </div>`;
+}
 }
 
 /* ── Vista estantería ── */
