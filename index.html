@@ -1068,7 +1068,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
   </a>
   <div class="topbar-right" style="display:flex;align-items:center;gap:8px">
     <button class="home-nav-btn" id="homeNavBtn" onclick="showHome()">⌂ Inicio</button>
-    <button class="home-nav-btn" id="shelfNavBtn" onclick="openShelf()" style="display:none">📚 Estantería</button>
+    <button class="home-nav-btn" id="shelfNavBtn" onclick="window.open('https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanter-a-2.0/?section=thais','_blank')" style="display:none">📚 Estantería</button>
     <div id="authArea">
       <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
     </div>
@@ -2661,7 +2661,7 @@ function renderAuthUI(){
         <span class="user-chip-caret">▾</span>
       </div>
       <div class="user-dropdown">
-        <button class="user-dd-item" onclick="toggleUserDropdown();openShelf()">📚 Mi estantería</button>
+        <button class="user-dd-item" onclick="toggleUserDropdown();window.open('https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanter-a-2.0/?section=thais','_blank')">📚 Mi estantería</button>
         <div class="user-dd-sep"></div>
         <button class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
       </div>
@@ -4310,6 +4310,19 @@ async function setReadingStatus(bookId, newStatus){
   _refreshShelfUI(bookId);
 }
 
+async function updateReadDate(bookId, dateValue){
+  if(!currentUser) return;
+  // dateValue es "YYYY-MM-DD", convertimos a ISO con hora mediodía para evitar desfases de zona horaria
+  const isoDate=new Date(dateValue+'T12:00:00').toISOString();
+  const {error}=await sb.from('reading_status')
+    .update({read_at:isoDate})
+    .eq('user_id',currentUser.id).eq('book_id',bookId);
+  if(error){ showToast('Error al guardar la fecha 😞','error'); return; }
+  myReadingReadAt[bookId]=isoDate;
+  _refreshShelfUI(bookId);
+  showToast('Fecha de lectura actualizada 📅','success');
+}
+
 function _refreshShelfUI(bookId){
   // Botones en modal
   const modalWrap=document.getElementById('shelfBtns_'+bookId);
@@ -4323,9 +4336,21 @@ function _refreshShelfUI(bookId){
 
 function buildShelfButtonsHTML(bookId){
   const s=myReadingStatus[bookId];
+  const ra=myReadingReadAt[bookId];
+  const readDateStr=ra?new Date(ra).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'}):'';
+  const todayISO=new Date().toISOString().slice(0,10);
+  const currentDateISO=ra?new Date(ra).toISOString().slice(0,10):todayISO;
+  const readDatePicker=s==='read'?`
+    <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--teal);display:flex;align-items:center;gap:.3em">📅 Leído el ${readDateStr||'—'}</span>
+      <input type="date" id="readDateInput_${bookId}" value="${currentDateISO}" max="${todayISO}"
+        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
+        onchange="updateReadDate('${bookId}',this.value)" onclick="event.stopPropagation()">
+    </div>`:'';
   return `<div class="shelf-btns" id="shelfBtns_${bookId}">
     <button class="shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
     <button class="shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">✓ Leído</button>
+    ${readDatePicker}
   </div>`;
 }
 
@@ -4404,7 +4429,11 @@ function _renderShelfBooks(){
       const r=ratingsMap[b.id]||{avg:0,count:0};
       const badge=myReadingStatus[b.id]==='want'
         ?`<span style="font-size:11px;color:var(--accent2)">＋ Quiero leer</span>`
-        :`<span style="font-size:11px;color:var(--teal)">✓ Leído</span>`;
+        :(()=>{
+          const ra=myReadingReadAt[b.id];
+          const dateStr=ra?new Date(ra).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'}):'';
+          return `<span style="font-size:11px;color:var(--teal)">✓ Leído${dateStr?' · '+dateStr:''}</span>`;
+        })();
       return `<div class="shelf-list-item" onclick="openBook('${b.id}')">
         ${cov}
         <div class="shelf-list-info">
