@@ -1068,7 +1068,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
   </a>
   <div class="topbar-right" style="display:flex;align-items:center;gap:8px">
     <button class="home-nav-btn" id="homeNavBtn" onclick="showHome()">⌂ Inicio</button>
-    <button class="home-nav-btn" id="shelfNavBtn" onclick="window.open('https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanter-a-2.0/?section=thais','_blank')" style="display:none">📚 Estantería</button>
+    <button class="home-nav-btn" id="shelfNavBtn" onclick="location.href='https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanter-a-2.0/?section=thais'" style="display:none">📚 Estantería</button>
     <div id="authArea">
       <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
     </div>
@@ -2661,7 +2661,7 @@ function renderAuthUI(){
         <span class="user-chip-caret">▾</span>
       </div>
       <div class="user-dropdown">
-        <button class="user-dd-item" onclick="toggleUserDropdown();window.open('https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanter-a-2.0/?section=thais','_blank')">📚 Mi estantería</button>
+        <button class="user-dd-item" onclick="toggleUserDropdown();openShelf()">📚 Mi estantería</button>
         <div class="user-dd-sep"></div>
         <button class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
       </div>
