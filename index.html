@@ -212,6 +212,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .dd-item{
   display:flex;align-items:center;gap:9px;
   padding:7px 14px;cursor:pointer;transition:background .12s;font-size:12.5px;
+  user-select:none;
 }
 .dd-item:hover{background:var(--surface2)}
 .dd-item input[type=checkbox]{
@@ -220,6 +221,22 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 }
 .dd-item label{cursor:pointer;flex:1;color:var(--text);line-height:1.4}
 .dd-empty{padding:12px 14px;font-size:12px;color:var(--muted);font-style:italic}
+.dd-hint{padding:5px 14px 8px;font-size:10px;color:var(--muted);font-style:italic;line-height:1.4;border-bottom:1px solid var(--border)}
+/* Estado de 3 vías: vacío → incluir (✓) → excluir (✕) → vacío */
+.dd-state-icon{
+  width:15px;height:15px;border-radius:5px;flex-shrink:0;
+  border:1.5px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;line-height:1;color:#fff;font-weight:700;
+  transition:all .15s;
+}
+.dd-item-label{flex:1;color:var(--text);line-height:1.4}
+.dd-item.state-include .dd-state-icon{background:var(--accent);border-color:var(--accent)}
+.dd-item.state-include .dd-state-icon::before{content:'✓'}
+.dd-item.state-exclude{background:rgba(212,96,122,0.06)}
+.dd-item.state-exclude .dd-state-icon{background:var(--rose);border-color:var(--rose)}
+.dd-item.state-exclude .dd-state-icon::before{content:'✕'}
+.dd-item.state-exclude .dd-item-label{color:var(--rose);text-decoration:line-through;text-decoration-color:rgba(212,96,122,0.5)}
 .dd-clear{
   padding:7px 14px;border-bottom:1px solid var(--border);
   font-size:11px;color:var(--rose);cursor:pointer;transition:background .12s;
@@ -273,6 +290,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   transition:opacity .15s;
 }
 .af-pill button:hover{opacity:1}
+.af-pill.excluded{background:rgba(212,96,122,0.1);border-color:rgba(212,96,122,0.3);color:var(--rose)}
+.af-pill.excluded button{color:var(--rose)}
 .clear-all-btn{
   padding:4px 12px;border-radius:7px;
   border:1px solid rgba(212,96,122,0.25);
@@ -1685,7 +1704,7 @@ const VALID_TAGS={
   identidad:['Asexual','Bisexual','Butch','Femme','Grumpy','Ice Queen','Introvertida','Lesbiana','Masc','Nerd','Queer','Soft Butch','Sunshine']
 };
 const SPICY_MIN_VOTES=2;
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null};
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,excluded:{genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[]}};
 let currentPage=1;
 const PAGE_SIZE=24;
 
@@ -1704,6 +1723,7 @@ function pushState(addEntry){
     if(filters.q) params.set('q',filters.q);
     ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
       if(filters[k].length) params.set(k,filters[k].join('|'));
+      if(filters.excluded[k]&&filters.excluded[k].length) params.set('x_'+k,filters.excluded[k].join('|'));
     });
     if(filters.spicy.length) params.set('spicy',filters.spicy.join('|'));
     if(filters.spicyUnknown) params.set('spicyUnknown','1');
@@ -1723,6 +1743,7 @@ function loadState(){
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
   ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
     if(params.get(k)) filters[k]=params.get(k).split('|');
+    if(params.get('x_'+k)) filters.excluded[k]=params.get('x_'+k).split('|');
   });
   if(params.get('spicy')) filters.spicy=params.get('spicy').split('|').map(Number);
   if(params.get('spicyUnknown')) filters.spicyUnknown=true;
@@ -1903,10 +1924,12 @@ function buildDropdowns(){
 function buildEdadDD(){
   const el=document.getElementById('listEdad');
   if(!el) return;
-  el.innerHTML=(filters.edad.length?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
+  const hasSel=filters.edad.length||filters.excluded.edad.length;
+  el.innerHTML='<div class="dd-hint">Toca una vez para incluir, dos para excluir</div>'+
+    (hasSel?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
     EDAD_LABELS.map(v=>{
-      const sid='dd_edad_'+v.replace(/\W/g,'_');
-      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters.edad.includes(v)?'checked':''} onchange="toggleDDFilter('edad','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
+      const state=filters.edad.includes(v)?'state-include':(filters.excluded.edad.includes(v)?'state-exclude':'');
+      return `<div class="dd-item ${state}" onclick="cycleDDFilter('edad','${v.replace(/'/g,"\\'")}')"><span class="dd-state-icon"></span><span class="dd-item-label">${v}</span></div>`;
     }).join('');
 }
 
@@ -1914,10 +1937,12 @@ function buildDDList(listId,values,key,search=''){
   const el=document.getElementById(listId);
   const filtered=search?values.filter(v=>v.toLowerCase().includes(search.toLowerCase())):values;
   if(!filtered.length){el.innerHTML='<div class="dd-empty">Sin resultados</div>';return;}
-  el.innerHTML=(filters[key].length?`<div class="dd-clear" onclick="clearDDFilter('${key}')">✕ Limpiar selección</div>`:'')+
+  const hasSel=filters[key].length||filters.excluded[key].length;
+  el.innerHTML='<div class="dd-hint">Toca una vez para incluir, dos para excluir</div>'+
+    (hasSel?`<div class="dd-clear" onclick="clearDDFilter('${key}')">✕ Limpiar selección</div>`:'')+
     filtered.map(v=>{
-      const sid='dd_'+key+'_'+v.replace(/\W/g,'_');
-      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters[key].includes(v)?'checked':''} onchange="toggleDDFilter('${key}','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
+      const state=filters[key].includes(v)?'state-include':(filters.excluded[key].includes(v)?'state-exclude':'');
+      return `<div class="dd-item ${state}" onclick="cycleDDFilter('${key}','${v.replace(/'/g,"\\'")}')"><span class="dd-state-icon"></span><span class="dd-item-label">${v}</span></div>`;
     }).join('');
 }
 
@@ -1936,11 +1961,24 @@ function filterDD(key,listId,search){
 }
 
 function toggleDDFilter(key,val){
+  // Usado solo para 'spicy' (2 estados: vacío / incluir)
   if(key==='spicy') val=parseInt(val);
   const arr=filters[key],idx=arr.indexOf(val);
   idx>=0?arr.splice(idx,1):arr.push(val);
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
+  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  updateDDCounts();renderActivePills();applyFilters();
+}
+
+function cycleDDFilter(key,val){
+  // 3 estados: vacío → incluir (✓) → excluir (✕) → vacío
+  const inc=filters[key], exc=filters.excluded[key];
+  const incIdx=inc.indexOf(val), excIdx=exc.indexOf(val);
+  if(incIdx>=0){ inc.splice(incIdx,1); exc.push(val); }
+  else if(excIdx>=0){ exc.splice(excIdx,1); }
+  else{ inc.push(val); }
+  if(key==='edad') buildEdadDD();
   else buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
@@ -1953,9 +1991,30 @@ function toggleSpicyUnknown(){
 
 function clearDDFilter(key){
   filters[key]=[];
+  if(filters.excluded[key]) filters.excluded[key]=[];
   if(key==='spicy') filters.spicyUnknown=false;
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
+  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  updateDDCounts();renderActivePills();applyFilters();
+}
+
+function removeInclude(key,val){
+  if(key==='spicy'){ toggleDDFilter('spicy',val); return; }
+  const inc=filters[key];
+  const idx=inc.indexOf(val);
+  if(idx>=0) inc.splice(idx,1);
+  if(key==='edad') buildEdadDD();
+  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  updateDDCounts();renderActivePills();applyFilters();
+}
+
+function removeExcluded(key,val){
+  if(key==='spicy') val=parseInt(val);
+  const exc=filters.excluded[key];
+  const idx=exc.indexOf(val);
+  if(idx>=0) exc.splice(idx,1);
+  if(key==='edad') buildEdadDD();
   else buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
@@ -1967,7 +2026,7 @@ function updateDDCounts(){
     const cnt=document.getElementById('cnt'+k);
     const btn=document.querySelector('#dd'+k+' .dd-btn');
     if(!cnt||!btn) return;
-    const n=filters[fk].length;
+    const n=filters[fk].length+(filters.excluded[fk]?filters.excluded[fk].length:0);
     cnt.textContent=n;cnt.style.display=n?'':'none';
     btn.classList.toggle('has-sel',n>0);
   });
@@ -2053,12 +2112,18 @@ function renderActivePills(){
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
-    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages') return;
+    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages'||key==='excluded') return;
     if(!arr.length) return;
     arr.forEach(v=>{
       const display=key==='spicy'?SPICY_LABELS[v]:v;
-      const removeCall=key==='spicy'?`toggleDDFilter('spicy',${v})`:`toggleDDFilter('${key}','${v.replace(/'/g,"\\'")}')`;
+      const removeCall=key==='spicy'?`toggleDDFilter('spicy',${v})`:`removeInclude('${key}','${v.replace(/'/g,"\\'")}')`;
       pills.push(`<span class="af-pill">${labelMap[key]}: ${display}<button onclick="${removeCall}">×</button></span>`);
+    });
+  });
+  Object.entries(filters.excluded).forEach(([key,arr])=>{
+    if(!arr.length) return;
+    arr.forEach(v=>{
+      pills.push(`<span class="af-pill excluded">🚫 ${labelMap[key]}: ${v}<button onclick="removeExcluded('${key}','${String(v).replace(/'/g,"\\'")}')">×</button></span>`);
     });
   });
   if(filters.valoracion){
@@ -2080,7 +2145,7 @@ function renderActivePills(){
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,excluded:{genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[]}};
   document.getElementById('searchInput').value='';
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
@@ -2096,12 +2161,19 @@ function applyFilters(resetPage=true){
   let books=[...allBooks];
   if(filters.q) books=books.filter(b=>(b.title+' '+(b.authors||[]).join(' ')+(getSaga(b)||'')).toLowerCase().includes(filters.q));
   if(filters.genres.length)    books=books.filter(b=>filters.genres.every(g=>(b.genres||[]).includes(g)));
+  if(filters.excluded.genres.length) books=books.filter(b=>!filters.excluded.genres.some(g=>(b.genres||[]).includes(g)));
   if(filters.subgenres.length) books=books.filter(b=>filters.subgenres.every(s=>(b.subgenres||[]).includes(s)));
+  if(filters.excluded.subgenres.length) books=books.filter(b=>!filters.excluded.subgenres.some(s=>(b.subgenres||[]).includes(s)));
   if(filters.dinamicas.length) books=books.filter(b=>filters.dinamicas.every(d=>[...(b.dinamicas||[]),...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
+  if(filters.excluded.dinamicas.length) books=books.filter(b=>!filters.excluded.dinamicas.some(d=>[...(b.dinamicas||[]),...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
   if(filters.tropes.length)    books=books.filter(b=>filters.tropes.every(t=>[...(b.tropes||[]),...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
+  if(filters.excluded.tropes.length) books=books.filter(b=>!filters.excluded.tropes.some(t=>[...(b.tropes||[]),...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
   if(filters.characters.length) books=books.filter(b=>filters.characters.every(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
+  if(filters.excluded.characters.length) books=books.filter(b=>!filters.excluded.characters.some(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
   if(filters.authors.length)   books=books.filter(b=>filters.authors.some(a=>(b.authors||[]).includes(a)));
+  if(filters.excluded.authors.length) books=books.filter(b=>!filters.excluded.authors.some(a=>(b.authors||[]).includes(a)));
   if(filters.years.length)     books=books.filter(b=>filters.years.includes(String(b.year)));
+  if(filters.excluded.years.length) books=books.filter(b=>!filters.excluded.years.includes(String(b.year)));
   if(filters.spicy.length||filters.spicyUnknown){
     books=books.filter(b=>{
       const s=effectiveSpicy(b);
@@ -2112,8 +2184,11 @@ function applyFilters(resetPage=true){
     });
   }
   if(filters.sagas.length)     books=books.filter(b=>filters.sagas.includes(getSaga(b)));
+  if(filters.excluded.sagas.length) books=books.filter(b=>!filters.excluded.sagas.includes(getSaga(b)));
   if(filters.edad.length)       books=books.filter(b=>filters.edad.every(e=>(b.edad||[]).includes(e)));
+  if(filters.excluded.edad.length) books=books.filter(b=>!filters.excluded.edad.some(e=>(b.edad||[]).includes(e)));
   if(filters.pais_cultura.length) books=books.filter(b=>filters.pais_cultura.every(p=>(b.pais_cultura||[]).includes(p)));
+  if(filters.excluded.pais_cultura.length) books=books.filter(b=>!filters.excluded.pais_cultura.some(p=>(b.pais_cultura||[]).includes(p)));
   if(filters.adaptacion==='serie') books=books.filter(b=>b.adaptacion==='Tiene serie');
   if(filters.pages){
     const r=PAGE_RANGES.find(x=>x.key===filters.pages);
