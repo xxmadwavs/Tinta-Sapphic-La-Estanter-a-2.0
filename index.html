@@ -212,7 +212,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .dd-item{
   display:flex;align-items:center;gap:9px;
   padding:7px 14px;cursor:pointer;transition:background .12s;font-size:12.5px;
-  user-select:none;
 }
 .dd-item:hover{background:var(--surface2)}
 .dd-item input[type=checkbox]{
@@ -221,22 +220,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 }
 .dd-item label{cursor:pointer;flex:1;color:var(--text);line-height:1.4}
 .dd-empty{padding:12px 14px;font-size:12px;color:var(--muted);font-style:italic}
-.dd-hint{padding:5px 14px 8px;font-size:10px;color:var(--muted);font-style:italic;line-height:1.4;border-bottom:1px solid var(--border)}
-/* Estado de 3 vías: vacío → incluir (✓) → excluir (✕) → vacío */
-.dd-state-icon{
-  width:15px;height:15px;border-radius:5px;flex-shrink:0;
-  border:1.5px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;line-height:1;color:#fff;font-weight:700;
-  transition:all .15s;
-}
-.dd-item-label{flex:1;color:var(--text);line-height:1.4}
-.dd-item.state-include .dd-state-icon{background:var(--accent);border-color:var(--accent)}
-.dd-item.state-include .dd-state-icon::before{content:'✓'}
-.dd-item.state-exclude{background:rgba(212,96,122,0.06)}
-.dd-item.state-exclude .dd-state-icon{background:var(--rose);border-color:var(--rose)}
-.dd-item.state-exclude .dd-state-icon::before{content:'✕'}
-.dd-item.state-exclude .dd-item-label{color:var(--rose);text-decoration:line-through;text-decoration-color:rgba(212,96,122,0.5)}
 .dd-clear{
   padding:7px 14px;border-bottom:1px solid var(--border);
   font-size:11px;color:var(--rose);cursor:pointer;transition:background .12s;
@@ -252,6 +235,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* ── Filtros solo para usuarias registradas ── */
 .dd-wrap.auth-only{display:none}
 .dd-wrap.auth-only.visible{display:inline-block}
+.fp-section.auth-only{display:none}
+.fp-section.auth-only.visible{display:block}
+#leidoFilter{display:none}
 
 /* Aviso filtros ocultos */
 .filters-auth-hint{
@@ -267,6 +253,38 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .filters-auth-hint:hover{color:var(--accent2);border-color:rgba(192,111,196,0.5);background:rgba(192,111,196,0.1)}
 .filters-auth-hint a{color:var(--accent2);text-decoration:underline;cursor:pointer}
 .filters-auth-hint.hidden{display:none}
+
+/* ── "+ Filtros" panel — acordeón desplegable en listado ── */
+.more-filters-btn{font-weight:600}
+.more-filters-btn .dd-count{margin-left:2px}
+.more-filters-panel{
+  left:auto;right:0;
+  width:min(400px,92vw);min-width:min(340px,92vw);max-width:none;
+  max-height:min(72vh,600px);
+  padding:0;
+}
+.fp-body{max-height:min(72vh,600px);overflow-y:auto}
+.fp-section{border-bottom:1px solid var(--border)}
+.fp-section:last-child{border-bottom:none}
+.fp-sec-label{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:11px 14px;cursor:pointer;user-select:none;
+  font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--text);
+  transition:color .15s;
+}
+.fp-sec-label:hover{color:var(--accent2)}
+.fp-sec-left{display:flex;align-items:center;gap:7px;min-width:0}
+.fp-sec-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);display:none;flex-shrink:0}
+.fp-section.has-active .fp-sec-dot{display:block}
+.fp-sec-chevron{font-size:9px;opacity:.5;transition:transform .18s;flex-shrink:0}
+.fp-section.collapsed .fp-sec-chevron{transform:rotate(-90deg)}
+.fp-section.collapsed .fp-sec-body{display:none}
+.fp-section.no-accordion .fp-sec-chevron{display:none}
+.fp-section.no-accordion .fp-sec-label{cursor:default}
+.fp-sec-body{padding-bottom:8px}
+.fp-sec-body .dd-search{position:static;background:transparent;backdrop-filter:none}
+.fp-sec-body .dd-list{max-height:210px;overflow-y:auto}
+.fp-toggle-row{display:flex;gap:.4rem;flex-wrap:wrap;padding:0 14px 10px}
 
 /* Fila inferior: pills activos + resultados */
 .filter-bottom{
@@ -290,8 +308,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   transition:opacity .15s;
 }
 .af-pill button:hover{opacity:1}
-.af-pill.excluded{background:rgba(212,96,122,0.1);border-color:rgba(212,96,122,0.3);color:var(--rose)}
-.af-pill.excluded button{color:var(--rose)}
 .clear-all-btn{
   padding:4px 12px;border-radius:7px;
   border:1px solid rgba(212,96,122,0.25);
@@ -337,6 +353,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tag-year{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
 .tag-formato{background:rgba(91,188,176,0.12);color:var(--teal);border:1px solid rgba(91,188,176,0.25)}
 .tag-adaptacion{background:rgba(155,130,201,0.12);color:#c4b0e8;border:1px solid rgba(155,130,201,0.3)}
+.tag-edad{background:rgba(201,151,90,0.12);color:var(--gold);border:1px solid rgba(201,151,90,0.3)}
 .book-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem}
 .vote-mini-btn{padding:4px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;font-family:var(--font-body);cursor:pointer;transition:all .18s}
 .vote-mini-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
@@ -760,6 +777,31 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .myrec-hero-text h2{font-family:var(--font-display);font-size:1.6rem;font-weight:300;font-style:italic;color:var(--text);margin-bottom:.2rem}
 .myrec-hero-text h2 em{color:var(--rose);font-weight:600}
 .myrec-hero-text p{font-size:13px;color:var(--muted);line-height:1.7}
+.myrec-chip-grid{display:flex;flex-wrap:wrap;gap:.6rem}
+.myrec-chip{display:flex;align-items:center;gap:.55rem;background:var(--surface);border:1px solid var(--border2);border-radius:30px;padding:.4rem .9rem .4rem .4rem;cursor:pointer;transition:all .18s;font-family:var(--font-body);color:var(--text);max-width:100%}
+.myrec-chip:hover{border-color:rgba(212,96,122,0.45);background:var(--surface2);transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.myrec-chip-thumb{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--surface3);display:flex;align-items:center;justify-content:center}
+.myrec-chip-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.myrec-chip-ph{font-size:15px;color:var(--muted)}
+.myrec-chip-label{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
+.myrec-chip-count{font-size:10.5px;color:var(--muted);background:var(--surface3);border-radius:20px;padding:1px 7px;flex-shrink:0}
+.myrec-detail-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem}
+.myrec-back-btn{background:transparent;border:1px solid var(--border2);border-radius:30px;color:var(--muted);font-size:12.5px;font-family:var(--font-body);padding:7px 16px;cursor:pointer;transition:all .18s}
+.myrec-back-btn:hover{border-color:rgba(212,96,122,0.45);color:#e0909e;background:var(--accent-soft)}
+.myrec-detail-title{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+@media(max-width:600px){.myrec-chip-label{max-width:140px}}
+.similar-section{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.similar-title{font-family:var(--font-display);font-size:1.05rem;font-style:italic;font-weight:600;color:#e0909e;margin-bottom:.8rem}
+.similar-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.6rem}
+.similar-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .18s;display:flex;flex-direction:column}
+.similar-item:hover{border-color:rgba(212,96,122,0.35);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.similar-item-cover{aspect-ratio:2/3;overflow:hidden;background:var(--surface3);position:relative}
+.similar-item-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.similar-item:hover .similar-item-cover img{transform:scale(1.04)}
+.similar-item-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--muted)}
+.similar-item-body{padding:.5rem .6rem}
+.similar-item-title{font-size:11.5px;font-weight:500;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
+.similar-item-author{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:600px){.canal-items,.myrec-items{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}.canal-hero-strip,.myrec-hero-strip{padding:1rem 1.2rem}}
 .rec-ver-mas-wrap{padding:.6rem 1.1rem 1rem;text-align:center}
 .rec-ver-mas-btn{background:transparent;border:1px solid var(--border2);border-radius:30px;color:var(--muted);font-size:12px;font-family:var(--font-body);padding:6px 20px;cursor:pointer;transition:all .18s}
@@ -1043,7 +1085,12 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-back-link{display:flex;align-items:center;gap:.4em;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:12.5px;cursor:pointer;font-family:var(--font-body);background:transparent;border:none;width:100%;transition:all .15s;margin-top:.5rem}
 .shelf-back-link:hover{color:var(--accent2)}
 .shelf-main{padding:2rem 2rem 4rem;min-width:0}
-.shelf-main-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem}
+.shelf-main-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.75rem}
+.shelf-toolbar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem}
+.shelf-toolbar .search-wrap{flex:1;min-width:180px}
+.shelf-toolbar .sort-select{max-width:200px}
+.shelf-clear-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:10px;padding:8px 12px;font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .15s;white-space:nowrap}
+.shelf-clear-btn:hover{border-color:var(--accent);color:var(--accent2)}
 .shelf-main-title{font-family:var(--font-display);font-size:1.6rem;font-weight:600;font-style:italic;color:var(--text)}
 .shelf-main-title span{color:var(--muted);font-weight:300;font-size:1.1rem;margin-left:.4rem}
 .shelf-view-toggle{display:flex;gap:2px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:3px}
@@ -1250,22 +1297,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" onclick="toggleDD('ddGenre')">Género <span class="dd-count" id="cntGenre" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('genres','listGenre',this.value)"></div><div class="dd-list" id="listGenre"></div></div>
       </div>
-      <div class="dd-wrap" id="ddSubgenre">
-        <button class="dd-btn" onclick="toggleDD('ddSubgenre')">Temática <span class="dd-count" id="cntSubgenre" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('subgenres','listSubgenre',this.value)"></div><div class="dd-list" id="listSubgenre"></div></div>
-      </div>
-      <div class="dd-wrap" id="ddDinamica">
-        <button class="dd-btn" onclick="toggleDD('ddDinamica')">Dinámica <span class="dd-count" id="cntDinamica" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('dinamicas','listDinamica',this.value)"></div><div class="dd-list" id="listDinamica"></div></div>
-      </div>
-      <div class="dd-wrap" id="ddTrope">
-        <button class="dd-btn" onclick="toggleDD('ddTrope')">Tropo <span class="dd-count" id="cntTrope" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('tropes','listTrope',this.value)"></div><div class="dd-list" id="listTrope"></div></div>
-      </div>
-      <div class="dd-wrap" id="ddCharacter">
-        <button class="dd-btn" onclick="toggleDD('ddCharacter')">Personaje <span class="dd-count" id="cntCharacter" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('characters','listCharacter',this.value)"></div><div class="dd-list" id="listCharacter"></div></div>
-      </div>
       <div class="dd-wrap" id="ddAuthor">
         <button class="dd-btn" onclick="toggleDD('ddAuthor')">Autora <span class="dd-count" id="cntAuthor" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('authors','listAuthor',this.value)"></div><div class="dd-list" id="listAuthor"></div></div>
@@ -1278,26 +1309,72 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="dd-btn" onclick="toggleDD('ddSpicy')">Spicy <span class="dd-count" id="cntSpicy" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel" id="listSpicy"></div>
       </div>
-      <div class="dd-wrap" id="ddSaga">
-        <button class="dd-btn" onclick="toggleDD('ddSaga')">Saga <span class="dd-count" id="cntSaga" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('sagas','listSaga',this.value)"></div><div class="dd-list" id="listSaga"></div></div>
+      <div id="leidoFilter">
+        <button class="dd-btn" id="btnNoLeido" onclick="toggleNoLeido()" title="Mostrar libros que aún no he marcado como leídos">📖 No leído</button>
       </div>
-      <div class="dd-wrap auth-only" id="ddEdad">
-        <button class="dd-btn" onclick="toggleDD('ddEdad')">Edad <span class="dd-count" id="cntEdad" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-list" id="listEdad"></div></div>
-      </div>
-      <div class="dd-wrap auth-only" id="ddPais">
-        <button class="dd-btn" onclick="toggleDD('ddPais')">País <span class="dd-count" id="cntPais" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_cultura','listPais',this.value)"></div><div class="dd-list" id="listPais"></div></div>
-      </div>
-      <div id="valoracionFilter" style="display:none">
-        <button class="dd-btn" id="btnValorado" onclick="toggleValoracion('valorado')" title="Mostrar solo libros que ya valoré">★ Valorados</button>
-        <button class="dd-btn" id="btnNoValorado" onclick="toggleValoracion('no_valorado')" title="Mostrar libros que aún no he valorado">☆ Sin valorar</button>
-      </div>
-      <button class="dd-btn" id="btnConSerie" onclick="toggleAdaptacion('serie')" title="Solo libros con serie de televisión">Con serie</button>
-      <div class="dd-wrap" id="ddPages">
-        <button class="dd-btn" id="btnPages" onclick="toggleDD('ddPages')">Páginas <span class="dd-count" id="cntPages" style="display:none">1</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-list" id="listPages"></div></div>
+
+      <!-- + Filtros: acordeón desplegable con el resto de filtros, en listado -->
+      <div class="dd-wrap" id="ddMoreFilters">
+        <button class="dd-btn more-filters-btn" onclick="toggleDD('ddMoreFilters')">+ Filtros <span class="dd-count" id="cntMoreFilters" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-panel more-filters-panel">
+          <div class="fp-body" id="fpBody">
+            <!-- Temática -->
+            <div class="fp-section collapsed" data-field="subgenres">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Temática <span class="dd-count" id="cntSubgenre" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('subgenres','listSubgenre',this.value)"></div><div class="dd-list" id="listSubgenre"></div></div>
+            </div>
+            <!-- Dinámica -->
+            <div class="fp-section collapsed" data-field="dinamicas">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Dinámica <span class="dd-count" id="cntDinamica" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('dinamicas','listDinamica',this.value)"></div><div class="dd-list" id="listDinamica"></div></div>
+            </div>
+            <!-- Tropo -->
+            <div class="fp-section collapsed" data-field="tropes">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Tropo <span class="dd-count" id="cntTrope" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('tropes','listTrope',this.value)"></div><div class="dd-list" id="listTrope"></div></div>
+            </div>
+            <!-- Personaje -->
+            <div class="fp-section collapsed" data-field="characters">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Personaje <span class="dd-count" id="cntCharacter" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('characters','listCharacter',this.value)"></div><div class="dd-list" id="listCharacter"></div></div>
+            </div>
+            <!-- Saga -->
+            <div class="fp-section collapsed" data-field="sagas">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Saga <span class="dd-count" id="cntSaga" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('sagas','listSaga',this.value)"></div><div class="dd-list" id="listSaga"></div></div>
+            </div>
+            <!-- Edad (solo registradas) -->
+            <div class="fp-section collapsed auth-only" data-field="edad">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Edad <span class="dd-count" id="cntEdad" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-list" id="listEdad"></div></div>
+            </div>
+            <!-- País (solo registradas) -->
+            <div class="fp-section collapsed auth-only" data-field="pais_cultura">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País <span class="dd-count" id="cntPais" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_cultura','listPais',this.value)"></div><div class="dd-list" id="listPais"></div></div>
+            </div>
+            <!-- Valoración (solo registradas) -->
+            <div class="fp-section no-accordion auth-only" id="secValoracion" data-field="valoracion">
+              <div class="fp-sec-label"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Valoración</span></div>
+              <div class="fp-sec-body"><div class="fp-toggle-row" id="valoracionFilter">
+                <button class="dd-btn" id="btnValorado" onclick="toggleValoracion('valorado')" title="Mostrar solo libros que ya valoré">★ Valorados</button>
+                <button class="dd-btn" id="btnNoValorado" onclick="toggleValoracion('no_valorado')" title="Mostrar libros que aún no he valorado">☆ Sin valorar</button>
+              </div></div>
+            </div>
+            <!-- Adaptación -->
+            <div class="fp-section no-accordion" data-field="adaptacion">
+              <div class="fp-sec-label"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Adaptación</span></div>
+              <div class="fp-sec-body"><div class="fp-toggle-row">
+                <button class="dd-btn" id="btnConSerie" onclick="toggleAdaptacion('serie')" title="Solo libros con serie de televisión">📺 Con serie</button>
+              </div></div>
+            </div>
+            <!-- Páginas -->
+            <div class="fp-section collapsed" data-field="pages">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Páginas <span class="dd-count" id="cntPages" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-list" id="listPages"></div></div>
+            </div>
+          </div>
+        </div>
       </div>
       <span class="filters-auth-hint" id="filtersAuthHint" onclick="openAuthModal()">🔒 Más filtros al <a>registrarte</a></span>
     </div>
@@ -1594,6 +1671,24 @@ body.home-active .hero,body.home-active .main{display:none!important}
           </button>
         </div>
       </div>
+      <div class="shelf-toolbar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input class="search-input" id="shelfSearchInput" type="search" placeholder="Buscar por título o autora…" oninput="shelfApplyFilters()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        <select class="sort-select" id="shelfGenreSelect" onchange="shelfApplyFilters()">
+          <option value="">Todos los géneros</option>
+        </select>
+        <select class="sort-select" id="shelfSortSelect" onchange="shelfApplyFilters()">
+          <option value="recent">✨ Recién añadidos</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+          <option value="author">Autora (A → Z)</option>
+          <option value="year_desc">Año: más recientes</option>
+          <option value="year_asc">Año: más antiguos</option>
+        </select>
+        <button class="shelf-clear-btn" onclick="shelfClearFilters()">✕ Limpiar</button>
+      </div>
       <div id="shelfBooksContainer"></div>
     </div>
   </div>
@@ -1689,9 +1784,15 @@ const SPICY_UNKNOWN_ICON  = '❓';
 
 let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
 let myReadingStatus={}; // bookId -> 'want' | 'read'
-let myReadingReadAt={}; // bookId -> fecha ISO en que se marcó como leído
+let myReadingReadAt={}; // bookId -> fecha ISO de la lectura MÁS RECIENTE (derivado de myReadingLog, para compatibilidad)
+let myReadingLog={}; // bookId -> [{id, read_at}, ...] historial completo de lecturas, ordenado ascendente
 let shelfFilter='all'; // 'all' | 'want' | 'read'
 let shelfViewMode='grid'; // 'grid' | 'list'
+let shelfSearch='';
+let shelfGenreFilter='';
+let shelfSort='recent';
+let shelfPage=1;
+const SHELF_PAGE_SIZE=18;
 let bingoChallenges=[], bingoActiveChallengeId=null, bingoProgress=[], bingoActiveCellIdx=null, bingoLinkMode='catalogo', bingoPendingBookId=null, bingoPendingBookTitle=null, bingoPendingBookCover=null, bingoManualConfirmed=false;
 let activeSection='thais';
 let authMode='login', pendingStar=0;
@@ -1704,7 +1805,7 @@ const VALID_TAGS={
   identidad:['Asexual','Bisexual','Butch','Femme','Grumpy','Ice Queen','Introvertida','Lesbiana','Masc','Nerd','Queer','Soft Butch','Sunshine']
 };
 const SPICY_MIN_VOTES=2;
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,excluded:{genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[]}};
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,leido:null};
 let currentPage=1;
 const PAGE_SIZE=24;
 
@@ -1723,13 +1824,13 @@ function pushState(addEntry){
     if(filters.q) params.set('q',filters.q);
     ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
       if(filters[k].length) params.set(k,filters[k].join('|'));
-      if(filters.excluded[k]&&filters.excluded[k].length) params.set('x_'+k,filters.excluded[k].join('|'));
     });
     if(filters.spicy.length) params.set('spicy',filters.spicy.join('|'));
     if(filters.spicyUnknown) params.set('spicyUnknown','1');
     if(filters.adaptacion) params.set('adaptacion',filters.adaptacion);
     if(filters.valoracion) params.set('valoracion',filters.valoracion);
     if(filters.pages) params.set('pages',filters.pages);
+    if(filters.leido) params.set('leido',filters.leido);
     const url=params.toString()?'?'+params.toString():location.pathname;
     if(addEntry) history.pushState(null,'',url);
     else history.replaceState(null,'',url);
@@ -1739,17 +1840,38 @@ function loadState(){
   const params=new URLSearchParams(location.search);
   if(params.get('tab')) activeTab=params.get('tab');
   if(params.get('section')) activeSection=params.get('section');
+  if(params.get('cat')) activeMyrecCat=params.get('cat');
   if(params.get('page')) currentPage=parseInt(params.get('page'))||1;
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
   ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
     if(params.get(k)) filters[k]=params.get(k).split('|');
-    if(params.get('x_'+k)) filters.excluded[k]=params.get('x_'+k).split('|');
   });
   if(params.get('spicy')) filters.spicy=params.get('spicy').split('|').map(Number);
   if(params.get('spicyUnknown')) filters.spicyUnknown=true;
   if(params.get('adaptacion')) filters.adaptacion=params.get('adaptacion');
   if(params.get('valoracion')) filters.valoracion=params.get('valoracion');
   if(params.get('pages')) filters.pages=params.get('pages');
+  if(params.get('leido')) filters.leido=params.get('leido');
+}
+
+/* ── URL de la estantería personal (Mi estantería: todos/quiero leer/leídos) ── */
+function shelfUrlSync(filter,addEntry){
+  try{
+    const params=new URLSearchParams(location.search);
+    params.set('myshelf',filter);
+    const url='?'+params.toString();
+    if(addEntry) history.pushState({myshelf:filter},'',url);
+    else history.replaceState({myshelf:filter},'',url);
+  }catch(e){}
+}
+function shelfUrlClear(addEntry){
+  try{
+    const params=new URLSearchParams(location.search);
+    params.delete('myshelf');
+    const url=params.toString()?'?'+params.toString():location.pathname;
+    if(addEntry) history.pushState(null,'',url);
+    else history.replaceState(null,'',url);
+  }catch(e){}
 }
 
 // Extract saga name from book
@@ -1775,11 +1897,12 @@ async function init(){
   renderAuthUI(); // re-aplicar estado auth tras cargar dropdowns
   applyFilters(false);
   updateDDCounts();renderActivePills();
+  updateValoracionBtns();updateAdaptacionBtn();updateLeidoBtn();
   if(filters.pages){const _cp=document.getElementById('cntPages');if(_cp)_cp.style.display='';}
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
-  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','spicy','spicyUnknown','adaptacion','valoracion','pages'].some(k=>urlParams.has(k));
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k));
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
@@ -1797,9 +1920,22 @@ async function init(){
     // primera visita o venía del home
     showHome();
   }
+  // Si la URL trae ?myshelf=all|want|read, abrir directamente esa vista de "Mi estantería".
+  // Nota: showHome()/switchTab() de arriba pueden haber limpiado la query string,
+  // así que reaplicamos el parámetro myshelf sobre la URL resultante antes de abrir.
+  const _shelfParam=urlParams.get('myshelf');
+  if(_shelfParam && ['all','want','read'].includes(_shelfParam)){
+    if(currentUser){
+      shelfUrlSync(_shelfParam,false);
+      openShelf(_shelfParam, true);
+    } else {
+      // Sin sesión no podemos mostrar la estantería personal: limpiamos el parámetro
+      shelfUrlClear(false);
+    }
+  }
   const debouncedLoadRatings=debounce(()=>{
     if(currentUser) loadMyRatings().then(()=>{applyFilters(false);if(activeBook)renderBookModal();checkSolicitudesNotif();});
-    else{myRatings={};myReadingStatus={};myReadingReadAt={};applyFilters(false);}
+    else{myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};applyFilters(false);}
   },300);
   sb.auth.onAuthStateChange((_e,session)=>{
     if(_e==='PASSWORD_RECOVERY'){
@@ -1918,18 +2054,17 @@ function buildDropdowns(){
     else buildDDList(listId, uniqVals(key), key);
   });
   buildSpicyDD();
+  buildPagesDD();
   updateDDCounts();
 }
 
 function buildEdadDD(){
   const el=document.getElementById('listEdad');
   if(!el) return;
-  const hasSel=filters.edad.length||filters.excluded.edad.length;
-  el.innerHTML='<div class="dd-hint">Toca una vez para incluir, dos para excluir</div>'+
-    (hasSel?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
+  el.innerHTML=(filters.edad.length?`<div class="dd-clear" onclick="clearDDFilter('edad')">✕ Limpiar selección</div>`:'')+
     EDAD_LABELS.map(v=>{
-      const state=filters.edad.includes(v)?'state-include':(filters.excluded.edad.includes(v)?'state-exclude':'');
-      return `<div class="dd-item ${state}" onclick="cycleDDFilter('edad','${v.replace(/'/g,"\\'")}')"><span class="dd-state-icon"></span><span class="dd-item-label">${v}</span></div>`;
+      const sid='dd_edad_'+v.replace(/\W/g,'_');
+      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters.edad.includes(v)?'checked':''} onchange="toggleDDFilter('edad','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
     }).join('');
 }
 
@@ -1937,12 +2072,10 @@ function buildDDList(listId,values,key,search=''){
   const el=document.getElementById(listId);
   const filtered=search?values.filter(v=>v.toLowerCase().includes(search.toLowerCase())):values;
   if(!filtered.length){el.innerHTML='<div class="dd-empty">Sin resultados</div>';return;}
-  const hasSel=filters[key].length||filters.excluded[key].length;
-  el.innerHTML='<div class="dd-hint">Toca una vez para incluir, dos para excluir</div>'+
-    (hasSel?`<div class="dd-clear" onclick="clearDDFilter('${key}')">✕ Limpiar selección</div>`:'')+
+  el.innerHTML=(filters[key].length?`<div class="dd-clear" onclick="clearDDFilter('${key}')">✕ Limpiar selección</div>`:'')+
     filtered.map(v=>{
-      const state=filters[key].includes(v)?'state-include':(filters.excluded[key].includes(v)?'state-exclude':'');
-      return `<div class="dd-item ${state}" onclick="cycleDDFilter('${key}','${v.replace(/'/g,"\\'")}')"><span class="dd-state-icon"></span><span class="dd-item-label">${v}</span></div>`;
+      const sid='dd_'+key+'_'+v.replace(/\W/g,'_');
+      return `<div class="dd-item"><input type="checkbox" id="${sid}" ${filters[key].includes(v)?'checked':''} onchange="toggleDDFilter('${key}','${v.replace(/'/g,"\\'")}')"><label for="${sid}">${v}</label></div>`;
     }).join('');
 }
 
@@ -1961,24 +2094,11 @@ function filterDD(key,listId,search){
 }
 
 function toggleDDFilter(key,val){
-  // Usado solo para 'spicy' (2 estados: vacío / incluir)
   if(key==='spicy') val=parseInt(val);
   const arr=filters[key],idx=arr.indexOf(val);
   idx>=0?arr.splice(idx,1):arr.push(val);
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
-  else buildDDList(DD_MAP[key], uniqVals(key), key);
-  updateDDCounts();renderActivePills();applyFilters();
-}
-
-function cycleDDFilter(key,val){
-  // 3 estados: vacío → incluir (✓) → excluir (✕) → vacío
-  const inc=filters[key], exc=filters.excluded[key];
-  const incIdx=inc.indexOf(val), excIdx=exc.indexOf(val);
-  if(incIdx>=0){ inc.splice(incIdx,1); exc.push(val); }
-  else if(excIdx>=0){ exc.splice(excIdx,1); }
-  else{ inc.push(val); }
-  if(key==='edad') buildEdadDD();
   else buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
@@ -1991,7 +2111,6 @@ function toggleSpicyUnknown(){
 
 function clearDDFilter(key){
   filters[key]=[];
-  if(filters.excluded[key]) filters.excluded[key]=[];
   if(key==='spicy') filters.spicyUnknown=false;
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
@@ -1999,34 +2118,13 @@ function clearDDFilter(key){
   updateDDCounts();renderActivePills();applyFilters();
 }
 
-function removeInclude(key,val){
-  if(key==='spicy'){ toggleDDFilter('spicy',val); return; }
-  const inc=filters[key];
-  const idx=inc.indexOf(val);
-  if(idx>=0) inc.splice(idx,1);
-  if(key==='edad') buildEdadDD();
-  else buildDDList(DD_MAP[key], uniqVals(key), key);
-  updateDDCounts();renderActivePills();applyFilters();
-}
-
-function removeExcluded(key,val){
-  if(key==='spicy') val=parseInt(val);
-  const exc=filters.excluded[key];
-  const idx=exc.indexOf(val);
-  if(idx>=0) exc.splice(idx,1);
-  if(key==='edad') buildEdadDD();
-  else buildDDList(DD_MAP[key], uniqVals(key), key);
-  updateDDCounts();renderActivePills();applyFilters();
-}
-
 function updateDDCounts(){
-  [['Genre','genres'],['Subgenre','subgenres'],['Dinamica','dinamicas'],
-   ['Trope','tropes'],['Character','characters'],['Author','authors'],
-   ['Year','years'],['Saga','sagas'],['Edad','edad'],['Pais','pais_cultura']].forEach(([k,fk])=>{
+  // Género / Autora / Año / Spicy — dropdowns rápidos que siguen visibles
+  [['Genre','genres'],['Author','authors'],['Year','years']].forEach(([k,fk])=>{
     const cnt=document.getElementById('cnt'+k);
     const btn=document.querySelector('#dd'+k+' .dd-btn');
     if(!cnt||!btn) return;
-    const n=filters[fk].length+(filters.excluded[fk]?filters.excluded[fk].length:0);
+    const n=filters[fk].length;
     cnt.textContent=n;cnt.style.display=n?'':'none';
     btn.classList.toggle('has-sel',n>0);
   });
@@ -2038,11 +2136,59 @@ function updateDDCounts(){
     spicyCnt.textContent=n;spicyCnt.style.display=n?'':'none';
     spicyBtn.classList.toggle('has-sel',n>0);
   }
+  // Filtros que viven dentro del panel "+ Filtros"
+  [['Subgenre','subgenres'],['Dinamica','dinamicas'],['Trope','tropes'],
+   ['Character','characters'],['Saga','sagas'],['Edad','edad'],['Pais','pais_cultura']].forEach(([k,fk])=>{
+    const cnt=document.getElementById('cnt'+k);
+    const sec=document.querySelector('.fp-section[data-field="'+fk+'"]');
+    if(!cnt) return;
+    const n=filters[fk].length;
+    cnt.textContent=n;cnt.style.display=n?'':'none';
+    if(sec) sec.classList.toggle('has-active',n>0);
+  });
+  updateMoreFiltersBadge();
+}
+
+// Badge del botón "+ Filtros" + puntos activos de Valoración/Adaptación/Páginas
+function updateMoreFiltersBadge(){
+  const n=filters.subgenres.length+filters.dinamicas.length+filters.tropes.length+
+    filters.characters.length+filters.sagas.length+filters.edad.length+filters.pais_cultura.length+
+    (filters.valoracion?1:0)+(filters.adaptacion==='serie'?1:0)+(filters.pages?1:0);
+  const cnt=document.getElementById('cntMoreFilters');
+  const btn=document.querySelector('#ddMoreFilters .dd-btn');
+  if(cnt) { cnt.textContent=n; cnt.style.display=n?'':'none'; }
+  if(btn) btn.classList.toggle('has-sel', n>0);
+  const secVal=document.getElementById('secValoracion');
+  if(secVal) secVal.classList.toggle('has-active', !!filters.valoracion);
+  const secPages=document.querySelector('.fp-section[data-field="pages"]');
+  if(secPages) secPages.classList.toggle('has-active', !!filters.pages);
+  const secAdapt=document.querySelector('.fp-section[data-field="adaptacion"]');
+  if(secAdapt) secAdapt.classList.toggle('has-active', filters.adaptacion==='serie');
+}
+
+// Acordeón del panel "+ Filtros": expande/colapsa una sección al pulsar su título
+function toggleFpSection(labelEl){
+  const sec=labelEl.closest('.fp-section');
+  if(!sec||sec.classList.contains('no-accordion')) return;
+  sec.classList.toggle('collapsed');
+}
+
+// Toggle "No leído" (requiere sesión iniciada)
+function toggleNoLeido(){
+  filters.leido = filters.leido==='no_leido' ? null : 'no_leido';
+  updateLeidoBtn();
+  renderActivePills();
+  applyFilters();
+}
+function updateLeidoBtn(){
+  const b=document.getElementById('btnNoLeido');
+  if(b) b.classList.toggle('has-sel', filters.leido==='no_leido');
 }
 
 function toggleValoracion(val){
   filters.valoracion = filters.valoracion===val ? null : val;
   updateValoracionBtns();
+  updateMoreFiltersBadge();
   renderActivePills();
   applyFilters();
 }
@@ -2050,6 +2196,7 @@ function toggleValoracion(val){
 function toggleAdaptacion(val){
   filters.adaptacion = filters.adaptacion===val ? null : val;
   updateAdaptacionBtn();
+  updateMoreFiltersBadge();
   renderActivePills();
   applyFilters();
 }
@@ -2082,6 +2229,7 @@ function togglePagesFilter(key){
   const cnt=document.getElementById('cntPages');
   if(cnt) cnt.style.display=filters.pages?'':'none';
   buildPagesDD();
+  updateMoreFiltersBadge();
   renderActivePills();
   applyFilters();
   if(!key) closeAllDD();
@@ -2099,7 +2247,7 @@ function toggleDD(id){
   const wrap=document.getElementById(id);
   const wasOpen=wrap.classList.contains('open');
   closeAllDD();
-  if(!wasOpen){ wrap.classList.add('open'); if(id==='ddPages') buildPagesDD(); }
+  if(!wasOpen){ wrap.classList.add('open'); }
 }
 function closeAllDD(){document.querySelectorAll('.dd-wrap.open').forEach(w=>w.classList.remove('open'));}
 
@@ -2112,18 +2260,12 @@ function renderActivePills(){
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
-    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages'||key==='excluded') return;
+    if(key==='q'||key==='valoracion'||key==='adaptacion'||key==='pages'||key==='leido') return;
     if(!arr.length) return;
     arr.forEach(v=>{
       const display=key==='spicy'?SPICY_LABELS[v]:v;
-      const removeCall=key==='spicy'?`toggleDDFilter('spicy',${v})`:`removeInclude('${key}','${v.replace(/'/g,"\\'")}')`;
+      const removeCall=key==='spicy'?`toggleDDFilter('spicy',${v})`:`toggleDDFilter('${key}','${v.replace(/'/g,"\\'")}')`;
       pills.push(`<span class="af-pill">${labelMap[key]}: ${display}<button onclick="${removeCall}">×</button></span>`);
-    });
-  });
-  Object.entries(filters.excluded).forEach(([key,arr])=>{
-    if(!arr.length) return;
-    arr.forEach(v=>{
-      pills.push(`<span class="af-pill excluded">🚫 ${labelMap[key]}: ${v}<button onclick="removeExcluded('${key}','${String(v).replace(/'/g,"\\'")}')">×</button></span>`);
     });
   });
   if(filters.valoracion){
@@ -2140,16 +2282,20 @@ function renderActivePills(){
     const r=PAGE_RANGES.find(x=>x.key===filters.pages);
     if(r) pills.push(`<span class="af-pill">📄 ${r.label} págs<button onclick="togglePagesFilter(null)">×</button></span>`);
   }
+  if(filters.leido==='no_leido'){
+    pills.push(`<span class="af-pill">📖 No leído<button onclick="toggleNoLeido()">×</button></span>`);
+  }
   af.innerHTML=pills.join('');
   document.getElementById('clearAllBtn').style.display=(pills.length||filters.q)?'':'none';
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,excluded:{genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[]}};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,leido:null};
   document.getElementById('searchInput').value='';
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
   updateAdaptacionBtn();
+  updateLeidoBtn();
   buildDropdowns();renderActivePills();applyFilters();
 }
 
@@ -2161,19 +2307,12 @@ function applyFilters(resetPage=true){
   let books=[...allBooks];
   if(filters.q) books=books.filter(b=>(b.title+' '+(b.authors||[]).join(' ')+(getSaga(b)||'')).toLowerCase().includes(filters.q));
   if(filters.genres.length)    books=books.filter(b=>filters.genres.every(g=>(b.genres||[]).includes(g)));
-  if(filters.excluded.genres.length) books=books.filter(b=>!filters.excluded.genres.some(g=>(b.genres||[]).includes(g)));
   if(filters.subgenres.length) books=books.filter(b=>filters.subgenres.every(s=>(b.subgenres||[]).includes(s)));
-  if(filters.excluded.subgenres.length) books=books.filter(b=>!filters.excluded.subgenres.some(s=>(b.subgenres||[]).includes(s)));
   if(filters.dinamicas.length) books=books.filter(b=>filters.dinamicas.every(d=>[...(b.dinamicas||[]),...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
-  if(filters.excluded.dinamicas.length) books=books.filter(b=>!filters.excluded.dinamicas.some(d=>[...(b.dinamicas||[]),...((communityTagsMap[b.id]||{}).dinamica||[])].includes(d)));
   if(filters.tropes.length)    books=books.filter(b=>filters.tropes.every(t=>[...(b.tropes||[]),...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
-  if(filters.excluded.tropes.length) books=books.filter(b=>!filters.excluded.tropes.some(t=>[...(b.tropes||[]),...((communityTagsMap[b.id]||{}).trope||[])].includes(t)));
   if(filters.characters.length) books=books.filter(b=>filters.characters.every(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
-  if(filters.excluded.characters.length) books=books.filter(b=>!filters.excluded.characters.some(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
   if(filters.authors.length)   books=books.filter(b=>filters.authors.some(a=>(b.authors||[]).includes(a)));
-  if(filters.excluded.authors.length) books=books.filter(b=>!filters.excluded.authors.some(a=>(b.authors||[]).includes(a)));
   if(filters.years.length)     books=books.filter(b=>filters.years.includes(String(b.year)));
-  if(filters.excluded.years.length) books=books.filter(b=>!filters.excluded.years.includes(String(b.year)));
   if(filters.spicy.length||filters.spicyUnknown){
     books=books.filter(b=>{
       const s=effectiveSpicy(b);
@@ -2184,11 +2323,8 @@ function applyFilters(resetPage=true){
     });
   }
   if(filters.sagas.length)     books=books.filter(b=>filters.sagas.includes(getSaga(b)));
-  if(filters.excluded.sagas.length) books=books.filter(b=>!filters.excluded.sagas.includes(getSaga(b)));
   if(filters.edad.length)       books=books.filter(b=>filters.edad.every(e=>(b.edad||[]).includes(e)));
-  if(filters.excluded.edad.length) books=books.filter(b=>!filters.excluded.edad.some(e=>(b.edad||[]).includes(e)));
   if(filters.pais_cultura.length) books=books.filter(b=>filters.pais_cultura.every(p=>(b.pais_cultura||[]).includes(p)));
-  if(filters.excluded.pais_cultura.length) books=books.filter(b=>!filters.excluded.pais_cultura.some(p=>(b.pais_cultura||[]).includes(p)));
   if(filters.adaptacion==='serie') books=books.filter(b=>b.adaptacion==='Tiene serie');
   if(filters.pages){
     const r=PAGE_RANGES.find(x=>x.key===filters.pages);
@@ -2196,6 +2332,7 @@ function applyFilters(resetPage=true){
   }
   if(filters.valoracion==='valorado') books=books.filter(b=>!!myRatings[b.id]);
   if(filters.valoracion==='no_valorado') books=books.filter(b=>!myRatings[b.id]);
+  if(filters.leido==='no_leido') books=books.filter(b=>myReadingStatus[b.id]!=='read');
   const sort=document.getElementById('sortSel').value;
   if(sort==='nuevo') books.sort((a,b)=>b.id.localeCompare(a.id));
   else if(sort==='top'){
@@ -2299,9 +2436,11 @@ function goToPage(n){
 }
 
 /* ── BOOK MODAL ── */
+let _scrollBeforeModal=0;
 function openBook(id, pushState=true){
   activeBook=allBooks.find(b=>b.id===id);
   if(!activeBook) return;
+  _scrollBeforeModal=window.scrollY;
   pendingStar=myRatings[id]||0;
   pendingSpicy=mySpicy[id]!=null?mySpicy[id]:0;
   renderBookModal();
@@ -2315,6 +2454,7 @@ function closeBookModal(){
   document.getElementById('bookModal').classList.remove('open');
   document.body.style.overflow='';
   if(location.hash.startsWith('#libro/')) history.pushState({},'',location.pathname+location.search);
+  window.scrollTo(0,_scrollBeforeModal);
 }
 
 function renderBookModal(){
@@ -2340,6 +2480,7 @@ function renderBookModal(){
   const tropeTags=(b.tropes||[]).map(t=>`<span class="tag tag-trope tag-clickable" onclick="filterByTagFromModal('tropes',decodeURIComponent('${encodeURIComponent(t)}'))">${t}</span>`).join('');
   const identidadTags=(b.identidades||[]).map(i=>`<span class="tag tag-identidad tag-clickable" onclick="filterByTagFromModal('identidades',decodeURIComponent('${encodeURIComponent(i)}'))">${i}</span>`).join('');
   const characterTags=(b.characters||[]).map(c=>`<span class="tag tag-character tag-clickable" onclick="filterByTagFromModal('characters',decodeURIComponent('${encodeURIComponent(c)}'))">${c}</span>`).join('');
+  const edadTags=(b.edad||[]).map(e=>`<span class="tag tag-edad tag-clickable" onclick="filterByTagFromModal('edad',decodeURIComponent('${encodeURIComponent(e)}'))">🎂 ${e}</span>`).join('');
   const spicyEff=effectiveSpicy(b);
   const spicyIsUnknown=spicyEff==null;
   const spicyTag=currentUser
@@ -2366,7 +2507,7 @@ function renderBookModal(){
       ${currentUser?buildShelfButtonsHTML(b.id):''}
       <div class="modal-tags">${genreTags}${subgenreTags}${spicyTag}${formatoTag}${adaptTag}</div>
       ${dinamicaTags?`<div class="modal-tags" style="margin-top:.3rem">${dinamicaTags}</div>`:''}
-      ${(tropeTags||identidadTags||characterTags)?`<div class="modal-tags" style="margin-top:.3rem">${tropeTags}${identidadTags}${characterTags}</div>`:''}
+      ${(tropeTags||identidadTags||characterTags||edadTags)?`<div class="modal-tags" style="margin-top:.3rem">${tropeTags}${identidadTags}${characterTags}${edadTags}</div>`:''}
       <div class="modal-meta-grid">
         ${b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:''}
         ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
@@ -2404,7 +2545,42 @@ function renderBookModal(){
            </div>`}
       <div id="modalSpicySection">${currentUser?buildSpicySectionHTML():''}</div>
       <div id="modalCommunityTagsSection">${buildCommunityTagsHTML()}</div>
+      ${buildSimilarBooksHTML(b)}
     </div>`;
+}
+
+/* ── SI TE GUSTÓ ESTE LIBRO… (recomendaciones dinámicas por género/trope) ── */
+function getSimilarBooks(book, limit){
+  limit=limit||6;
+  const baseTropes=new Set([...(book.tropes||[]),...((communityTagsMap[book.id]||{}).trope||[])]);
+  const baseGenres=new Set(book.genres||[]);
+  if(!baseTropes.size && !baseGenres.size) return [];
+  const scored=[];
+  allBooks.forEach(function(other){
+    if(other.id===book.id) return;
+    const otherTropes=[...(other.tropes||[]),...((communityTagsMap[other.id]||{}).trope||[])];
+    const otherGenres=other.genres||[];
+    let tropeMatches=0, genreMatches=0;
+    otherTropes.forEach(function(t){ if(baseTropes.has(t)) tropeMatches++; });
+    otherGenres.forEach(function(g){ if(baseGenres.has(g)) genreMatches++; });
+    const score=tropeMatches*2+genreMatches*1;
+    if(score>0) scored.push({book:other,score:score});
+  });
+  scored.sort(function(a,b){ return b.score-a.score; });
+  return scored.slice(0,limit).map(function(s){ return s.book; });
+}
+
+function buildSimilarBooksHTML(book){
+  const similar=getSimilarBooks(book,6);
+  if(!similar.length) return '';
+  const cards=similar.map(function(sb){
+    const r=ratingsMap[sb.id];
+    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
+    const cov=sb.cover?'<img src="'+sb.cover+'" alt="'+sb.title+'" onerror="this.outerHTML=\'<div class=similar-item-ph>📖</div>\'">':'<div class="similar-item-ph">📖</div>';
+    const auth=(sb.authors||[]).join(', ')||'—';
+    return '<div class="similar-item" onclick="openBook(\''+sb.id+'\')"><div class="similar-item-cover">'+cov+ab+'</div><div class="similar-item-body"><div class="similar-item-title">'+sb.title+'</div><div class="similar-item-author">'+auth+'</div></div></div>';
+  }).join('');
+  return '<div class="similar-section"><div class="similar-title">💕 Si te gustó este libro…</div><div class="similar-items">'+cards+'</div></div>';
 }
 
 /* Actualiza solo el bloque de valoración sin rerenderizar todo el modal */
@@ -2726,7 +2902,7 @@ async function removeMyTag(tagType, value, event){
 /* ── AUTH ── */
 function renderAuthUI(){
   const el=document.getElementById('authArea');
-  const authOnlyFilters=document.querySelectorAll('.dd-wrap.auth-only');
+  const authOnlyFilters=document.querySelectorAll('.dd-wrap.auth-only, .fp-section.auth-only');
   if(currentUser){
     const tg=currentUser.user_metadata?.telegram_username||currentUser.email.split('@')[0];
     el.innerHTML=`<div class="user-chip-wrap" id="userChipWrap">
@@ -2743,6 +2919,7 @@ function renderAuthUI(){
     </div>`;
     document.getElementById('valoracionFilter').style.display='flex';
     document.getElementById('valoracionFilter').style.gap='.4rem';
+    document.getElementById('leidoFilter').style.display='inline-block';
     authOnlyFilters.forEach(f=>f.classList.add('visible'));
     const hint=document.getElementById('filtersAuthHint');
     if(hint) hint.classList.add('hidden');
@@ -2753,8 +2930,11 @@ function renderAuthUI(){
   }else{
     el.innerHTML=`<button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>`;
     document.getElementById('valoracionFilter').style.display='none';
+    document.getElementById('leidoFilter').style.display='none';
     filters.valoracion=null;
+    filters.leido=null;
     updateValoracionBtns();
+    updateLeidoBtn();
     authOnlyFilters.forEach(f=>f.classList.remove('visible'));
     const hint=document.getElementById('filtersAuthHint');
     if(hint) hint.classList.remove('hidden');
@@ -2767,6 +2947,7 @@ function renderAuthUI(){
     const snb=document.getElementById('shelfNavBtn');
     if(snb) snb.style.display='none';
   }
+  updateDDCounts();
 }
 function openAuthModal(){authMode='login';updateAuthUI();document.getElementById('authModal').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('authEmail').focus(),100);}
 function closeAuthModal(){document.getElementById('authModal').classList.remove('open');document.body.style.overflow='';document.getElementById('authError').textContent='';}
@@ -2834,7 +3015,7 @@ async function handleAuth(){
   btn.disabled=false;btn.textContent=authMode==='register'?'Registrarse':'Entrar';
 }
 function setAuthError(msg){document.getElementById('authError').textContent=msg;}
-async function logout(){await sb.auth.signOut();myRatings={};myReadingStatus={};myReadingReadAt={};showToast('Hasta pronto 🌹','success');applyFilters();}
+async function logout(){await sb.auth.signOut();myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};showToast('Hasta pronto 🌹','success');applyFilters();}
 
 function toggleUserDropdown(){
   const wrap=document.getElementById('userChipWrap');
@@ -2928,8 +3109,10 @@ function copyTabLink(){
 
 /* ── TABS ── */
 let activeTab='estanteria';
+let activeMyrecCat=null;
 function switchTab(tab, silent){
   activeTab=tab;
+  if(!silent) activeMyrecCat=null;
   sessionStorage.setItem('ts_active_tab', tab);
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
   document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
@@ -2958,6 +3141,7 @@ function switchTab(tab, silent){
   if(!silent) try{
     const params=new URLSearchParams(location.search);
     if(tab==='estanteria') params.delete('tab'); else params.set('tab',tab);
+    params.delete('cat');
     const url=params.toString()?'?'+params.toString():location.pathname;
     history.pushState({tab},'',url);
   }catch(e){}
@@ -3105,30 +3289,79 @@ function renderCanal(){
 }
 
 /* ── MIS RECOMENDACIONES ── */
-function renderMyrec(){
-  const c=document.getElementById('myrecContainer');
+function myrecCatSlug(cat){ return cat.replace(/\s+/g,'-').replace(/\//g,'_'); }
+
+function getMyrecCatMap(){
   const myData=allBooks.filter(function(b){return b.my_rec;});
-  const hero='<div class="myrec-hero-strip"><div class="myrec-hero-icon">💌</div><div class="myrec-hero-text"><h2>Mis <em>Recomendaciones</em></h2><p>Libros que recomiendo personalmente, organizados por género y estilo.</p></div></div>';
-  if(!myData.length){c.innerHTML=hero+'<div class="myrec-empty">Aún no hay recomendaciones personales. 💌<br><br>Márcalos desde el admin para añadirlos.</div>';return;}
   const catMap=new Map();
   myData.forEach(function(b){(b.my_rec_categories||['Sin categoría']).forEach(function(cat){if(!catMap.has(cat))catMap.set(cat,[]);if(!catMap.get(cat).find(function(x){return x.id===b.id;}))catMap.get(cat).push(b);});});
-  let html=hero;
-  const MYREC_LIMIT=7;
+  return catMap;
+}
+
+function renderMyrec(){
+  const c=document.getElementById('myrecContainer');
+  const catMap=getMyrecCatMap();
+  const hero='<div class="myrec-hero-strip"><div class="myrec-hero-icon">💌</div><div class="myrec-hero-text"><h2>Mis <em>Recomendaciones</em></h2><p>Libros que recomiendo personalmente, organizados por género y estilo.</p></div></div>';
+  if(!catMap.size){c.innerHTML=hero+'<div class="myrec-empty">Aún no hay recomendaciones personales. 💌<br><br>Márcalos desde el admin para añadirlos.</div>';return;}
+
+  // Resolve which category (if any) matches activeMyrecCat
+  let matchedCat=null;
+  if(activeMyrecCat){
+    for(const cat of catMap.keys()){ if(myrecCatSlug(cat)===activeMyrecCat){ matchedCat=cat; break; } }
+  }
+
+  if(matchedCat){
+    renderMyrecCatDetail(c,hero,catMap,matchedCat);
+  } else {
+    renderMyrecChips(c,hero,catMap);
+  }
+}
+
+function renderMyrecChips(c,hero,catMap){
+  let chips='<div class="myrec-chip-grid">';
   catMap.forEach(function(items,cat){
-    const gid='myrec-g-'+cat.replace(/\s+/g,'_');
-    let itemsHtml='';
-    items.forEach(function(b,i){
-      const r=ratingsMap[b.id];
-      const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
-      const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" onerror="this.outerHTML=\'<div class=myrec-item-ph>📖</div>\'">'+'':'<div class="myrec-item-ph">📖</div>';
-      const auth=(b.authors||[]).join(', ')||'—';
-      const hideCls=i>=MYREC_LIMIT?' rec-item-hidden':'';
-      itemsHtml+='<div class="myrec-item'+hideCls+'" onclick="openBook(\''+b.id+'\')"><div class="myrec-item-cover">'+cov+ab+'</div><div class="myrec-item-body"><div class="myrec-item-title">'+b.title+'</div><div class="myrec-item-author">'+auth+'</div></div></div>';
-    });
-    const verMas=items.length>MYREC_LIMIT?'<div class="rec-ver-mas-wrap"><button class="rec-ver-mas-btn" onclick="recVerMas(\''+gid+'\',this)">Ver más ('+(items.length-MYREC_LIMIT)+' libros)</button></div>':'';
-    html+='<div class="myrec-section-group" id="'+gid+'"><div class="myrec-section-head"><span class="myrec-section-name">'+cat+'</span><span class="myrec-section-count">'+items.length+' libro'+(items.length!==1?'s':'')+'</span></div><div class="myrec-items">'+itemsHtml+'</div>'+verMas+'</div>';
+    const cover=items.find(function(b){return b.cover;});
+    const thumb=cover?'<img src="'+cover.cover+'" alt="">':'<span class="myrec-chip-ph">📖</span>';
+    chips+='<button class="myrec-chip" onclick="openMyrecCat(\''+myrecCatSlug(cat).replace(/'/g,"\\'")+'\')"><span class="myrec-chip-thumb">'+thumb+'</span><span class="myrec-chip-label">'+cat+'</span><span class="myrec-chip-count">'+items.length+'</span></button>';
   });
-  c.innerHTML=html;
+  chips+='</div>';
+  c.innerHTML=hero+chips;
+}
+
+function renderMyrecCatDetail(c,hero,catMap,cat){
+  const items=catMap.get(cat)||[];
+  let itemsHtml='';
+  items.forEach(function(b){
+    const r=ratingsMap[b.id];
+    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
+    const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" onerror="this.outerHTML=\'<div class=myrec-item-ph>📖</div>\'">'+'':'<div class="myrec-item-ph">📖</div>';
+    const auth=(b.authors||[]).join(', ')||'—';
+    itemsHtml+='<div class="myrec-item" onclick="openBook(\''+b.id+'\')"><div class="myrec-item-cover">'+cov+ab+'</div><div class="myrec-item-body"><div class="myrec-item-title">'+b.title+'</div><div class="myrec-item-author">'+auth+'</div></div></div>';
+  });
+  const head='<div class="myrec-detail-head"><button class="myrec-back-btn" onclick="closeMyrecCat()">← Todas las categorías</button><div class="myrec-detail-title"><span class="myrec-section-name">'+cat+'</span><span class="myrec-section-count">'+items.length+' libro'+(items.length!==1?'s':'')+'</span></div></div>';
+  c.innerHTML=hero+head+'<div class="myrec-items">'+itemsHtml+'</div>';
+}
+
+function openMyrecCat(slug){
+  activeMyrecCat=slug;
+  renderMyrec();
+  try{
+    const params=new URLSearchParams(location.search);
+    params.set('tab','myrec');
+    params.set('cat',slug);
+    history.pushState({tab:'myrec',cat:slug},'',location.pathname+'?'+params.toString());
+  }catch(e){}
+}
+
+function closeMyrecCat(){
+  activeMyrecCat=null;
+  renderMyrec();
+  try{
+    const params=new URLSearchParams(location.search);
+    params.delete('cat');
+    const url=params.toString()?'?'+params.toString():location.pathname;
+    history.pushState({tab:'myrec'},'',url);
+  }catch(e){}
 }
 
 function recVerMas(groupId, btn){
@@ -3556,12 +3789,22 @@ window.addEventListener('popstate', ()=>{
   // Close book modal if open
   document.getElementById('bookModal').classList.remove('open');
   document.body.style.overflow='';
+  window.scrollTo(0,_scrollBeforeModal);
+  // Restaurar (o cerrar) la estantería personal según la URL
+  const shelfParam=new URLSearchParams(location.search).get('myshelf');
+  if(shelfParam && currentUser && ['all','want','read'].includes(shelfParam)){
+    openShelf(shelfParam, true);
+    return;
+  } else if(document.getElementById('shelfView').classList.contains('active')){
+    closeShelf(true);
+  }
   // Restore tab and section from URL
   const params=new URLSearchParams(location.search);
   const tab=params.get('tab')||'estanteria';
   const section=params.get('section')||'thais';
   // Switch tab without pushing a new history entry (we're already restoring)
   activeTab=tab;
+  activeMyrecCat=tab==='myrec'?params.get('cat'):null;
   sessionStorage.setItem('ts_active_tab', tab);
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
   document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
@@ -4066,7 +4309,7 @@ function ruletaUpdateUI() {
   const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País' };
   const pills = [];
   Object.entries(filters).forEach(([key, arr]) => {
-    if (key === 'q' || key === 'valoracion' || key === 'adaptacion') return;
+    if (key === 'q' || key === 'valoracion' || key === 'adaptacion' || key === 'pages' || key === 'leido') return;
     if (!arr.length) return;
     arr.forEach(v => {
       const display = key === 'spicy' ? SPICY_LABELS[v] : v;
@@ -4357,7 +4600,18 @@ async function loadMyReadingStatus(){
   myReadingReadAt={};
   (data||[]).forEach(row=>{
     myReadingStatus[row.book_id]=row.status;
-    if(row.read_at) myReadingReadAt[row.book_id]=row.read_at;
+  });
+  const {data:logData,error:logError}=await sb.from('reading_log').select('id,book_id,read_at').eq('user_id',currentUser.id).order('read_at',{ascending:true});
+  if(logError){ console.error('reading_log load error:',logError); }
+  myReadingLog={};
+  (logData||[]).forEach(row=>{
+    if(!myReadingLog[row.book_id]) myReadingLog[row.book_id]=[];
+    myReadingLog[row.book_id].push({id:row.id,read_at:row.read_at});
+  });
+  // myReadingReadAt se mantiene como atajo a la lectura MÁS RECIENTE de cada libro (compatibilidad con el resto del código)
+  Object.keys(myReadingLog).forEach(bookId=>{
+    const entries=myReadingLog[bookId];
+    if(entries.length) myReadingReadAt[bookId]=entries[entries.length-1].read_at;
   });
 }
 
@@ -4367,35 +4621,55 @@ async function setReadingStatus(bookId, newStatus){
   const next=current===newStatus?null:newStatus; // clic en el activo = quitar
 
   if(next){
-    const payload={user_id:currentUser.id, book_id:bookId, status:next, read_at: next==='read' ? new Date().toISOString() : null};
+    const payload={user_id:currentUser.id, book_id:bookId, status:next};
     const {error}=await sb.from('reading_status')
       .upsert(payload,{onConflict:'user_id,book_id'});
     if(error){ showToast('Error al guardar 😞','error'); console.error(error); return; }
     myReadingStatus[bookId]=next;
-    if(next==='read') myReadingReadAt[bookId]=payload.read_at; else delete myReadingReadAt[bookId];
-    showToast(next==='want'?'Añadido a «Quiero leer» ＋':'Marcado como leído ✓','success');
+    const tieneFechas=(myReadingLog[bookId]||[]).length>0;
+    showToast(next==='want'?'Añadido a «Quiero leer» ＋':(tieneFechas?'Marcado como leído ✓':'Marcado como leído ✓ — indica la fecha en que lo terminaste'),'success');
   } else {
     const {error}=await sb.from('reading_status')
       .delete().eq('user_id',currentUser.id).eq('book_id',bookId);
     if(error){ showToast('Error al eliminar 😞','error'); console.error(error); return; }
     delete myReadingStatus[bookId];
-    delete myReadingReadAt[bookId];
+    // El historial de lecturas (reading_log) NO se borra: si vuelve a marcarlo como leído, conserva sus fechas anteriores.
     showToast('Eliminado de tu estantería','success');
   }
   _refreshShelfUI(bookId);
 }
 
-async function updateReadDate(bookId, dateValue){
+async function addReadLogEntry(bookId, dateValue){
   if(!currentUser) return;
+  if(!dateValue){ showToast('Elige una fecha primero 📅','error'); return; }
   // dateValue es "YYYY-MM-DD", convertimos a ISO con hora mediodía para evitar desfases de zona horaria
   const isoDate=new Date(dateValue+'T12:00:00').toISOString();
-  const {error}=await sb.from('reading_status')
-    .update({read_at:isoDate})
-    .eq('user_id',currentUser.id).eq('book_id',bookId);
-  if(error){ showToast('Error al guardar la fecha 😞','error'); return; }
-  myReadingReadAt[bookId]=isoDate;
+  const {data,error}=await sb.from('reading_log')
+    .insert({user_id:currentUser.id, book_id:bookId, read_at:isoDate})
+    .select('id,read_at').single();
+  if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
+  if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
+  myReadingLog[bookId].push({id:data.id, read_at:data.read_at});
+  myReadingLog[bookId].sort((a,b)=>new Date(a.read_at)-new Date(b.read_at));
+  myReadingReadAt[bookId]=myReadingLog[bookId][myReadingLog[bookId].length-1].read_at;
+  // Si el libro no estaba ya marcado como "Leído", lo marcamos automáticamente al guardar una fecha.
+  if(myReadingStatus[bookId]!=='read'){
+    await sb.from('reading_status').upsert({user_id:currentUser.id, book_id:bookId, status:'read'},{onConflict:'user_id,book_id'});
+    myReadingStatus[bookId]='read';
+  }
   _refreshShelfUI(bookId);
-  showToast('Fecha de lectura actualizada 📅','success');
+  showToast(myReadingLog[bookId].length>1?'Relectura añadida 📅':'Fecha de lectura guardada 📅','success');
+}
+
+async function deleteReadLogEntry(bookId, logId){
+  if(!currentUser) return;
+  const {error}=await sb.from('reading_log').delete().eq('id',logId).eq('user_id',currentUser.id);
+  if(error){ showToast('Error al borrar la fecha 😞','error'); console.error(error); return; }
+  myReadingLog[bookId]=(myReadingLog[bookId]||[]).filter(e=>e.id!==logId);
+  if(myReadingLog[bookId].length) myReadingReadAt[bookId]=myReadingLog[bookId][myReadingLog[bookId].length-1].read_at;
+  else delete myReadingReadAt[bookId];
+  _refreshShelfUI(bookId);
+  showToast('Fecha eliminada','success');
 }
 
 function _refreshShelfUI(bookId){
@@ -4411,16 +4685,28 @@ function _refreshShelfUI(bookId){
 
 function buildShelfButtonsHTML(bookId){
   const s=myReadingStatus[bookId];
-  const ra=myReadingReadAt[bookId];
-  const readDateStr=ra?new Date(ra).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'}):'';
+  const log=myReadingLog[bookId]||[];
   const todayISO=new Date().toISOString().slice(0,10);
-  const currentDateISO=ra?new Date(ra).toISOString().slice(0,10):todayISO;
+  const historyHtml=log.map(entry=>{
+    const dStr=new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+    return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal)">
+      <span>📅 ${dStr}</span>
+      <button title="Eliminar esta fecha" onclick="event.stopPropagation();deleteReadLogEntry('${bookId}','${entry.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0;line-height:1">✕</button>
+    </div>`;
+  }).join('');
+  const addLabel=log.length?'+ Añadir relectura':'Guardar fecha';
+  const pickerHint=log.length?'':'<span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>';
   const readDatePicker=s==='read'?`
-    <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--teal);display:flex;align-items:center;gap:.3em">📅 Leído el ${readDateStr||'—'}</span>
-      <input type="date" id="readDateInput_${bookId}" value="${currentDateISO}" max="${todayISO}"
-        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
-        onchange="updateReadDate('${bookId}',this.value)" onclick="event.stopPropagation()">
+    <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
+      ${historyHtml}
+      <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+        ${pickerHint}
+        <input type="date" id="readDateInput_${bookId}" max="${todayISO}"
+          style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
+          onclick="event.stopPropagation()">
+        <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
+          onclick="event.stopPropagation();addReadLogEntry('${bookId}',document.getElementById('readDateInput_${bookId}').value)">${addLabel}</button>
+      </div>
     </div>`:'';
   return `<div class="shelf-btns" id="shelfBtns_${bookId}">
     <button class="shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
@@ -4438,23 +4724,32 @@ function buildCardShelfBtnsHTML(bookId){
 }
 
 /* ── Vista estantería ── */
-function openShelf(){
+function openShelf(filter,silent){
+  shelfFilter=filter||shelfFilter||'all';
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('shelfView').classList.add('active');
+  document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
+  const map={all:'shelfNavAll',want:'shelfNavWant',read:'shelfNavRead'};
+  document.getElementById(map[shelfFilter])?.classList.add('active');
   renderShelf();
+  if(!silent) shelfUrlSync(shelfFilter,true);
 }
 
-function closeShelf(){
+function closeShelf(silent){
   document.getElementById('shelfView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='');
+  if(!silent) shelfUrlClear(true);
 }
 
-function switchShelf(filter){
+function switchShelf(filter,silent){
   shelfFilter=filter;
+  shelfPage=1;
   document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
   const map={all:'shelfNavAll',want:'shelfNavWant',read:'shelfNavRead'};
   document.getElementById(map[filter])?.classList.add('active');
+  shelfPopulateGenres();
   _renderShelfBooks();
+  if(!silent) shelfUrlSync(filter,true);
 }
 
 function setShelfView(mode){
@@ -4464,29 +4759,88 @@ function setShelfView(mode){
   _renderShelfBooks();
 }
 
+function shelfBaseBooks(){
+  const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
+  const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
+  return shelfFilter==='want'?wantBooks:shelfFilter==='read'?readBooks:[...wantBooks,...readBooks];
+}
+
+function shelfPopulateGenres(){
+  const base=shelfBaseBooks();
+  const genres=[...new Set(base.flatMap(b=>b.genres||[]))].sort((a,b)=>a.localeCompare(b,'es'));
+  const sel=document.getElementById('shelfGenreSelect');
+  if(!genres.includes(shelfGenreFilter)) shelfGenreFilter='';
+  sel.innerHTML='<option value="">Todos los géneros</option>'+genres.map(g=>`<option value="${g}" ${g===shelfGenreFilter?'selected':''}>${g}</option>`).join('');
+}
+
+function shelfApplyFilters(){
+  shelfPage=1;
+  shelfSearch=document.getElementById('shelfSearchInput').value.toLowerCase().trim();
+  shelfGenreFilter=document.getElementById('shelfGenreSelect').value;
+  shelfSort=document.getElementById('shelfSortSelect').value;
+  _renderShelfBooks();
+}
+
+function shelfClearFilters(){
+  shelfSearch='';shelfGenreFilter='';shelfSort='recent';shelfPage=1;
+  document.getElementById('shelfSearchInput').value='';
+  document.getElementById('shelfGenreSelect').value='';
+  document.getElementById('shelfSortSelect').value='recent';
+  _renderShelfBooks();
+}
+
+function shelfGoToPage(n){
+  shelfPage=n;
+  _renderShelfBooks();
+  document.querySelector('.shelf-main')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
 function renderShelf(){
   const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
   const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
   document.getElementById('shelfCountAll').textContent=wantBooks.length+readBooks.length;
   document.getElementById('shelfWantCount').textContent=wantBooks.length;
   document.getElementById('shelfReadCount').textContent=readBooks.length;
+  shelfPopulateGenres();
   _renderShelfBooks();
 }
 
 function _renderShelfBooks(){
-  const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
-  const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
-  let books=shelfFilter==='want'?wantBooks:shelfFilter==='read'?readBooks:[...wantBooks,...readBooks];
   const titleMap={all:'Todos los libros',want:'Quiero leer',read:'Leídos'};
+  let books=shelfBaseBooks();
+  const hadBooksBeforeFilters=books.length>0;
+
+  if(shelfSearch) books=books.filter(b=>(b.title+' '+(b.authors||[]).join(' ')).toLowerCase().includes(shelfSearch));
+  if(shelfGenreFilter) books=books.filter(b=>(b.genres||[]).includes(shelfGenreFilter));
+
+  if(shelfSort==='az') books=[...books].sort((a,b)=>a.title.localeCompare(b.title,'es'));
+  else if(shelfSort==='za') books=[...books].sort((a,b)=>b.title.localeCompare(a.title,'es'));
+  else if(shelfSort==='author') books=[...books].sort((a,b)=>((a.authors||[])[0]||'').localeCompare((b.authors||[])[0]||'','es'));
+  else if(shelfSort==='year_desc') books=[...books].sort((a,b)=>(b.year||0)-(a.year||0));
+  else if(shelfSort==='year_asc') books=[...books].sort((a,b)=>(a.year||0)-(b.year||0));
+  else books=[...books].sort((a,b)=>b.id.localeCompare(a.id));
+
   document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>(${books.length})</span>`;
   const container=document.getElementById('shelfBooksContainer');
+
   if(!books.length){
-    const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',read:'Aún no has marcado ningún libro como leído.'};
-    container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
+    if(hadBooksBeforeFilters){
+      container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">🔍</span><p>Ningún libro coincide con tu búsqueda o filtro.</p></div>`;
+    } else {
+      const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',read:'Aún no has marcado ningún libro como leído.'};
+      container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
+    }
     return;
   }
+
+  const totalPages=Math.max(1,Math.ceil(books.length/SHELF_PAGE_SIZE));
+  if(shelfPage>totalPages) shelfPage=totalPages;
+  const start=(shelfPage-1)*SHELF_PAGE_SIZE;
+  const pageBooks=books.slice(start,start+SHELF_PAGE_SIZE);
+
+  let html='';
   if(shelfViewMode==='grid'){
-    container.innerHTML=`<div class="shelf-grid">${books.map(b=>{
+    html=`<div class="shelf-grid">${pageBooks.map(b=>{
       const cov=b.cover?`<img src="${b.cover}" alt="${b.title}" loading="lazy">`:`<div class="shelf-book-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
       return `<div class="shelf-book" onclick="openBook('${b.id}')">
@@ -4498,7 +4852,7 @@ function _renderShelfBooks(){
       </div>`;
     }).join('')}</div>`;
   } else {
-    container.innerHTML=`<div class="shelf-list">${books.map(b=>{
+    html=`<div class="shelf-list">${pageBooks.map(b=>{
       const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${b.title}" loading="lazy">`:`<div class="shelf-list-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
       const r=ratingsMap[b.id]||{avg:0,count:0};
@@ -4506,8 +4860,10 @@ function _renderShelfBooks(){
         ?`<span style="font-size:11px;color:var(--accent2)">＋ Quiero leer</span>`
         :(()=>{
           const ra=myReadingReadAt[b.id];
+          const n=(myReadingLog[b.id]||[]).length;
           const dateStr=ra?new Date(ra).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'}):'';
-          return `<span style="font-size:11px;color:var(--teal)">✓ Leído${dateStr?' · '+dateStr:''}</span>`;
+          const vecesStr=n>1?` · ${n} veces`:'';
+          return `<span style="font-size:11px;color:${ra?'var(--teal)':'var(--gold)'}">✓ Leído${dateStr?' · '+dateStr:' · falta fecha'}${vecesStr}</span>`;
         })();
       return `<div class="shelf-list-item" onclick="openBook('${b.id}')">
         ${cov}
@@ -4522,22 +4878,40 @@ function _renderShelfBooks(){
       </div>`;
     }).join('')}</div>`;
   }
+
+  if(totalPages>1){
+    const p=shelfPage;
+    const show=new Set([1,totalPages,p,p-1,p+1].filter(n=>n>=1&&n<=totalPages));
+    const sorted=[...show].sort((a,b)=>a-b);
+    let btns='';let prev=-1;
+    for(const n of sorted){
+      if(prev!==-1&&n-prev>1) btns+=`<span class="pg-dots">…</span>`;
+      btns+=`<button class="pg-btn${n===p?' active':''}" onclick="shelfGoToPage(${n})">${n}</button>`;
+      prev=n;
+    }
+    html+=`<p class="pg-info">Página ${p} de ${totalPages} · ${books.length} libros</p>
+    <div class="pagination">
+      <button class="pg-btn pg-arrow" onclick="shelfGoToPage(${p-1})" ${p<=1?'disabled':''}>‹</button>
+      ${btns}
+      <button class="pg-btn pg-arrow" onclick="shelfGoToPage(${p+1})" ${p>=totalPages?'disabled':''}>›</button>
+    </div>`;
+  }
+
+  container.innerHTML=html;
 }
 
 /* ══════════════════════════ BINGO DE LECTURA ══════════════════════════ */
 
-function bingoCurrentYear(){
-  return new Date().getFullYear();
-}
+// Fecha mínima de lectura para que un libro cuente en el bingo (inclusive)
+const BINGO_FECHA_MINIMA=new Date('2026-06-01T00:00:00');
 
-// Libros que cuentan para el bingo: marcados como "Leído" Y leídos durante el año en curso
+// Libros que cuentan para el bingo: marcados como "Leído" Y con AL MENOS UNA fecha de lectura
+// (de la lectura original o de una relectura) a partir del 1 de junio de 2026
 function bingoEligibleBooks(){
-  const year=bingoCurrentYear();
   return allBooks.filter(b=>{
     if(myReadingStatus[b.id]!=='read') return false;
-    const ra=myReadingReadAt[b.id];
-    if(!ra) return false;
-    return new Date(ra).getFullYear()===year;
+    const log=myReadingLog[b.id]||[];
+    return log.some(entry=>new Date(entry.read_at)>=BINGO_FECHA_MINIMA);
   });
 }
 
@@ -4620,6 +4994,7 @@ function bingoRender(){
   const marked=markedIdx.size;
   const pct=total?Math.round(marked/total*100):0;
   const hasLine=bingoCheckLine(casillas,markedIdx);
+  const hasBingo=total>0&&marked===total;
 
   let selectorHtml='';
   if(bingoChallenges.length>1){
@@ -4641,7 +5016,8 @@ function bingoRender(){
         <div class="bingo-progress-pill"><b>${marked}/${total}</b><span>casillas</span></div>
       </div>
       <div class="bingo-progress-bar"><div class="bingo-progress-fill" style="width:${pct}%"></div></div>
-      <div class="bingo-line-badge ${hasLine?'show':''}">✨ ¡Línea completada!</div>
+      <div class="bingo-line-badge ${hasBingo?'show':''}" style="${hasBingo?'background:var(--gold-soft);border-color:rgba(201,151,90,0.5);color:var(--gold)':''}">🎉 ¡BINGO! Cartón completo</div>
+      <div class="bingo-line-badge ${(hasLine&&!hasBingo)?'show':''}">✨ ¡Línea completada!</div>
     </div>`;
 
   const sizeClass=total===16?'size-16':'';
@@ -4662,7 +5038,7 @@ function bingoRender(){
   }).join('')+'</div>';
 
   wrap.innerHTML=selectorHtml+headerHtml+gridHtml+
-    `<p style="font-size:11px;color:var(--muted);text-align:center;margin-top:.5rem">🟢 = esta casilla puede sugerirte libros leídos en ${bingoCurrentYear()} que la cumplen · solo cuentan libros leídos este año</p>`;
+    `<p style="font-size:11px;color:var(--muted);text-align:center;margin-top:.5rem">🟢 = esta casilla puede sugerirte libros que la cumplen · solo cuentan libros marcados como leídos a partir del 1 de junio de 2026</p>`;
 }
 
 // Comprueba si hay alguna fila/columna/diagonal completa (solo aplica a grids cuadradas 5x5 o 4x4)
@@ -4748,14 +5124,14 @@ function renderBingoCellModal(){
 
   const matches=casilla.tipo==='auto' ? bingoMatchBooks(casilla.filtro).slice(0,8) : [];
   const suggestedHtml=matches.length?`
-    <div class="bingo-book-suggested-tag">🟢 Libros leídos en ${bingoCurrentYear()} que cumplen esta casilla</div>
+    <div class="bingo-book-suggested-tag">🟢 Libros que cumplen esta casilla</div>
     <div class="bingo-book-results" style="margin-bottom:1rem">
       ${matches.map(b=>bingoBookResultHtml(b)).join('')}
     </div>` : '';
 
   body.innerHTML=`
     <div class="bingo-cell-modal-label">${label}</div>
-    <p class="bingo-cell-modal-hint">Elige el libro con el que cumples esta casilla. Solo cuentan libros leídos en ${bingoCurrentYear()}.</p>
+    <p class="bingo-cell-modal-hint">Elige el libro con el que cumples esta casilla. Solo cuentan libros marcados como leídos a partir del 1 de junio de 2026.</p>
     <div class="bingo-link-tabs">
       <button class="bingo-link-tab ${bingoLinkMode==='catalogo'?'active':''}" onclick="bingoSetLinkMode('catalogo')">📚 Buscar en catálogo</button>
       <button class="bingo-link-tab ${bingoLinkMode==='manual'?'active':''}" onclick="bingoSetLinkMode('manual')">✍️ Escribir título</button>
@@ -4795,14 +5171,14 @@ function bingoRenderLinkModeContent(){
   if(bingoLinkMode==='catalogo'){
     el.innerHTML=`
       <div class="bingo-book-search">
-        <input type="text" id="bingoBookSearchInput" placeholder="Busca entre tus libros leídos en ${bingoCurrentYear()}…" oninput="bingoSearchBooks(this.value)" autocomplete="off">
+        <input type="text" id="bingoBookSearchInput" placeholder="Busca entre tus libros leídos desde el 1 de junio…" oninput="bingoSearchBooks(this.value)" autocomplete="off">
       </div>
       <div class="bingo-book-results" id="bingoBookSearchResults"></div>`;
   }else{
     el.innerHTML=`<input type="text" class="bingo-manual-input" id="bingoManualTitle" placeholder="Título del libro (no está en el catálogo)" oninput="bingoManualTitleChanged(this.value)">
       <label class="bingo-manual-confirm">
         <input type="checkbox" id="bingoManualConfirm" onchange="bingoManualConfirmChanged(this.checked)">
-        <span>Confirmo que he terminado de leer este libro en ${bingoCurrentYear()}. Las lecturas de años anteriores no cuentan para este bingo.</span>
+        <span>Confirmo que he terminado de leer este libro a partir del 1 de junio de 2026. Las lecturas anteriores a esa fecha no cuentan para este bingo.</span>
       </label>`;
   }
 }
@@ -4816,7 +5192,7 @@ function bingoSearchBooks(q){
     b.title.toLowerCase().includes(query) || (b.authors||[]).some(a=>a.toLowerCase().includes(query))
   ).slice(0,8);
   resEl.innerHTML=results.length?results.map(b=>bingoBookResultHtml(b)).join('')
-    :`<p style="font-size:12px;color:var(--muted);padding:.5rem">Sin resultados entre tus libros marcados como leídos en ${bingoCurrentYear()}. Si lo has leído este año y no aparece, márcalo como «Leído ✓» desde su ficha primero.</p>`;
+    :`<p style="font-size:12px;color:var(--muted);padding:.5rem">Sin resultados entre tus libros marcados como leídos a partir del 1 de junio de 2026. Si lo has leído en esas fechas y no aparece, márcalo como «Leído ✓» desde su ficha primero.</p>`;
 }
 
 function bingoPickBook(bookId){

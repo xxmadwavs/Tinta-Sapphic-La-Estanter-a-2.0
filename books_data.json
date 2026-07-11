@@ -1380,8 +1380,8 @@
     ],
     "saficlub": false,
     "safi_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
+    "canal_rec": true,
+    "canal_month": "2026",
     "my_rec": false,
     "my_rec_categories": []
   },
@@ -49169,10 +49169,10 @@
       "Abuso Sexual"
     ],
     "spicy": 5,
-    "formato": null,
+    "formato": "Saga",
     "adaptacion": null,
-    "sagaName": null,
-    "sagaNum": null,
+    "sagaName": "The Girl Who Bit Me",
+    "sagaNum": 1,
     "source": "other",
     "editions": [],
     "saficlub": false,
@@ -52489,7 +52489,7 @@
       "Meg Jones"
     ],
     "year": 2026,
-    "cover": "https://s3.amazonaws.com/romance.io/books/large/6a23f36c47ba351f5febabd4.jpg",
+    "cover": "https://m.media-amazon.com/images/I/81r9MX6Ex4L._UF1000,1000_QL80_.jpg",
     "synopsis": "Inés Costa, antigua reina del tenis, está a punto de perderlo todo. Su ruina tiene nombre: Chloe Murphy, la nueva estrella que le arrebató sus patrocinadores y es famosa por su temperamento explosivo. Con su cuenta bancaria al límite, Inés acepta una propuesta inesperada de su archirrival.\n\nChloe financiará su camino al US Open si Inés es su entrenadora y mentora emocional. Lo que empieza como un negocio se transforma en la pista. Entre sets y viajes, la rivalidad se vuelve una tensión insoportable. Con el trofeo en juego, ambas deberán decidir si arriesgarlo todo por un amor que desafía el marcador.",
     "pages": 384,
     "isbn": null,
@@ -54701,6 +54701,2279 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782031127376_je32y",
+    "title": "Juntas en Barcelona",
+    "authors": [
+      "Libertad Brezo"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1772474936i/248899157.jpg",
+    "synopsis": "España, 1961.En un tiempo marcado por las apariencias y el silencio, Inés, la de la Corte, directora de un poderoso imperio textil, inicia un amor prohibido con Lina, una joven decidida que sabe exactamente lo que quiere… o eso cree.Barcelona se presenta como la promesa de una vida nueva, lejos de la familia y de todo lo conocido. Pero pronto descubren que empezar de cero no es tan sencillo como imaginaban, y que incluso la libertad puede traer dudas, miedos y grietas inesperadas.La llegada de una tercera figura, quebrará el frágil equilibrio entre ambas y abrirá la puerta a un mundo oculto, habitado por quienes aman en la sombra, obligando a Lina a cuestionarse si el miedo debe seguir marcando su manera de vivir y de amar.Porque no todas las formas de amor conducen al mismo destino… y algunas decisiones lo cambian todo.",
+    "pages": 534,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Abuso de Poder",
+      "Abuso Emocional / Gaslighting",
+      "Alcohol",
+      "Ansiedad / Ataques de Pánico",
+      "Clasismo",
+      "Conflictos Familiares",
+      "Crímenes de Odio",
+      "Drogas / Consumo de Sustancias",
+      "Homofobia",
+      "Queerofobia / LGTBfobia",
+      "Lesbofobia",
+      "Infidelidad",
+      "Manipulación Psicológica",
+      "Maltrato Físico",
+      "Misoginia",
+      "Muerte",
+      "Sin Consentimiento (Non-Con)",
+      "Vergüenza Sexual (Slut Shaming)"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782031368185_2n9kq",
+    "title": "Tan cerca de ti",
+    "authors": [
+      "Esther Durand"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1779278901i/252473769.jpg",
+    "synopsis": "Seraphina Chapman tiene la vida perfecta dentro de la élite sanitaria de Má un marido influyente, dos hijos y una reputación impecable. Sin embargo, bajo esa superficie se esconde un secreto que lleva años consumiéndola a puerta Nerissa Ashcombe.\n\nNerissa es brillante, impulsiva y el único cabo suelto que Seraphina jamás ha podido controlar. Tras seis meses de un distanciamiento que prometía ser el definitivo, un nuevo encuentro reactiva una dinámica tan adictiva como destructiva. Volver a caer es inevitable; el problema es que las reglas del juego han cambiado.\n\nMientras Seraphina lucha desesperadamente por proteger a su familia y mantener intacta su fachada, Nerissa empieza a cansarse de los hoteles discretos y los encuentros esporádicos. En un mundo donde las apariencias lo son todo, prolongar un romance clandestino ya no es una opción. Y esta vez, el precio de la verdad no solo destruirá un matrimonio... porque cuando el estatus social empiezan a asfixiarlas, amar a la persona \"equivocada\" deja de ser un pacto privado.",
+    "pages": 236,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Infidelidad",
+      "Conflictos Familiares",
+      "Manipulación Psicológica",
+      "Outing (revelar orientación sin consentimiento)",
+      "Alcohol",
+      "Ansiedad / Ataques de Pánico"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782031602774_y09lo",
+    "title": "Mapas en la piel",
+    "authors": [
+      "Lorena Murién"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1779025570i/252333719.jpg",
+    "synopsis": "Irune lleva años viviendo entre aeropuertos, hoteles impersonales y vuelos interminables. Como jefa de cabina, su vida está perfectamente organizada: cumplir su trabajo, cambiar de ciudad y no dejar que nadie se quede el tiempo suficiente como para complicarlo todo. Las escalas son temporales. Las personas también.\n\nHasta que Maia aparece en su vida.\n\nTras una noche en la que no llegan a más; Maia entra a formar parte de la tripulación como una turbulencia inesperada. Italiana, intensa y demasiado directa para el gusto de Irune, la atracción entre ellas es inmediata. Física e imposible de ignorar. Y lo que comienza como encuentros sin reglas alrededor del mundo, pronto se convierte en algo que ninguna de las dos había planeado sentir. Porque Irune sigue queriendo vivir entre escalas, pero Maia está dispuesta a enamorarla.",
+    "pages": 285,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [
+      "Abuso de Poder",
+      "Manipulación Psicológica",
+      "Conflictos Familiares",
+      "Distanciamiento Familiar / Rechazo",
+      "Ansiedad / Ataques de Pánico",
+      "Alcohol"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782032180409_yu4pt",
+    "title": "Palabra de Alaska",
+    "authors": [
+      "Lola Z Navarro"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1779521646i/252599365.jpg",
+    "synopsis": "Eva María se alejó de su familia y de su amiga de la infancia, Yolanda, por decisión propia y sin mirar atrás.\nAños después, regresa a su humilde barrio y se reencuentra con esa parte de su pasado no resuelto al que debe, y quiere, hacer frente.\n\nSolo sabe que necesita volver a sus raíces para encontrarse. Y, también, que sigue enamorada de la que una vez fue su amiga.\n\nDe la mano de Andrea, una vecina que siempre las quiso a ambas como a hijas, emprenden un viaje emocional donde el pasado y el presente se entrelazan, obligándolas a replantearse quiénes fueron y quiénes quieren ser.\n\nUn vestido azul turquesa, un esmoquin y una noche loca sellarán la amistad de estas tres mujeres para siempre, dejando una huella imborrable.\n\nAhora es cuando Eva María y Yolanda deben decidir si quieren luchar por ellas y por su amor.",
+    "pages": 297,
+    "isbn": null,
+    "ship": [],
+    "genres": [],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Muerte"
+    ],
+    "spicy": 2,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782032357294_cmlpf",
+    "title": "The Unwedding",
+    "authors": [
+      "Olivia Lucas"
+    ],
+    "year": 2026,
+    "cover": "https://s3.amazonaws.com/romance.io/books/large/6a33aaac6a6cb39bc11a5ff9.jpg",
+    "synopsis": "Huyó de su boda… y se topó con su siguiente problema.\n\nCuando Ella Franklin descubre que su prometido ya tiene prometida, hace lo que cualquier mujer racional haría: roba una bicicleta y se escapa.\n\nPor desgracia, la libertad trae consigo complicaciones. Principalmente, ser atropellada por un coche y caer de bruces en un montón de nieve.\n\n ¿La conductora? Kristen Mackenzie: guapísima, malhumorada y profundamente indiferente a la existencia de Ella.\n\nCon una ventisca acercándose, Kristen, a regañadientes, le ofrece el rescate menos entusiasta del mundo: una noche en un motel de carretera y luego no tendrán que volver a verse jamás. Así de simple.\n\nPronto Ella se ve envuelta en la caótica vida rural, un círculo social lésbico demasiado entrometido, animales descarriados y una mujer taciturna de la que es demasiado fácil enamorarse.\n\nLo cual es malo,\n\nporque enamorarse de la mujer que la atropelló parece una pésima decisión.\n\nPor desgracia, Ella quiere hacerlo de todos modos.",
+    "pages": 328,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Contemporánea",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme",
+      "Lesbiana"
+    ],
+    "characters": [
+      "Abogada",
+      "Enfermera"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Opposites Attract",
+      "Rich / Poor Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Muerte de un Ser Querido"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": true,
+    "my_rec_categories": [
+      "Rich/Poor",
+      "Forced Proximity",
+      "Opposites Attrack"
+    ]
+  },
+  {
+    "id": "b_1782032804130_rt59u",
+    "title": "The Delicate Things We Make",
+    "authors": [
+      "Milena McKay"
+    ],
+    "year": 2021,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1611032965i/56749251.jpg",
+    "synopsis": "En la jungla de asfalto de Manhattan, la periodista de investigación Jamie Walker toca fondo y consigue el trabajo de su vida: encontrar al artista más esquivo de su generación, quien ha cautivado al mundo del arte y la moda durante más de una década.\nSe supone que este trabajo será su pasaporte a la fama y la fortuna periodísticas. Sin embargo, la búsqueda resulta ser difícil, ya que, hasta el momento, nadie ha logrado descubrir la verdadera identidad del legendario DeVor.\nA medida que Jamie profundiza en los misterios que rodean al enigmático artista, intentando rescatar su estancada carrera, corre el riesgo de verse superada por la situación y perder el corazón en el proceso.",
+    "pages": 327,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Contemporánea",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Bisexual",
+      "Ice Queen"
+    ],
+    "characters": [
+      "Artista",
+      "Escritora",
+      "Famosa"
+    ],
+    "dinamicas": [
+      "Grumpy × Sunshine",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Opposites Attract",
+      "Rich / Poor Romance"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782033088205_q84y3",
+    "title": "sWitch",
+    "authors": [
+      "Kat Blackthorne"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1725967550i/218586686.jpg",
+    "synopsis": "JUGADORA UNO: REMY\n\nObjetivo:\n\nrobarle la novia a mi hermano,\ntrabajar en la tienda de tatuajes,\nperforar, patinar, tocar la batería,\nser el gemelo más sexy. \n\nJUGADORA DOS: FAUNA \n\nObjetivo: comer bocadillos, vestirse de rosa, sobresalir en tu juego de rol favorito, jugar con gatitos, vencer a V de Valin. Switch es una comedia romántica sáfica oscura contemporánea donde un masculino ama a una femenina. \n\n¿Comenzar juego?",
+    "pages": 201,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Dark Romance"
+    ],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [
+      "Grumpy × Sunshine",
+      "Dominante × Sumisa"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Fake Relationship",
+      "Secret Relationship"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Infidelidad",
+      "Abuso Sexual"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782033328741_bnuoq",
+    "title": "The Other Side of Forever",
+    "authors": [
+      "Kel McCord"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1758592257i/241948013.jpg",
+    "synopsis": "La cantautora Kenzie McCall vive de la libertad: escribe lo que quiere, cuando quiere, para quien quiere, sin ataduras. ¿Plazos de entrega? No es lo suyo. ¿Compromiso? Menos aún. Pero cuando un estudio de cine le ofrece a su mejor amiga, la estrella del pop Braxton, un papel protagonista si Kenzie compone la canción principal, acepta a regañadientes. Solo hay una condición: la canción tiene que ser sobre el amor, y Kenzie nunca se ha enamorado de verdad.\n\nRachel tiene una vida ideal: casa con jardín, dos hijos, un perro y un matrimonio lleno de pasión, y está decidida a encontrar a alguien que desee el mismo futuro. Cuando Rachel escucha cantar a Kenzie por primera vez, la conexión es instantánea, eléctrica e imposible de ignorar. Pero, ¿cómo puede planear un futuro con alguien cuya vida es cualquier cosa menos estable? Kenzie viaja constantemente para reunirse con famosos, y el apacible sueño suburbano de Rachel se convierte en la peor pesadilla de Kenzie. \n\n¿Podrán escribir su historia de amor juntas o están destinadas a finales diferentes?",
+    "pages": 242,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [
+      "Cantante"
+    ],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": null,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782033626727_ja2kj",
+    "title": "Libro de sangre y rosas",
+    "authors": [
+      "Annie Summerlee"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780336542i/252953899.jpg",
+    "synopsis": "En medio de las Tierras Altas de Escocia, hay una universidad donde vampiros y humanos estudian juntos.\n\nRebecca Charity es una cazadora encubierta. Necesita hallar el misterioso Libro de Sangre y Rosas, un compendio perdido de formas de matar vampiros, porque con él estará un paso más cerca de vengar a sus padres.\n\nAliz Astra es descendiente de una de las familias de vampiros más poderosas... y la nueva compañera de cuarto de Rebecca. Ridículamente hermosa, es todo lo que la cazadora siempre ha odiado. Y también deseado.\n\nAhora la chica no sabe qué ansía más. Si matarla o besarla.\n\nPero cuando Aliz la rescate de un ataque vampírico y accidentalmente la convierta en su familiar, deberán trabajar juntas para romper la maldición. Sin embargo, acercarse para resolver el problema puede ser peligroso...\n¿Puede una cazadora amar a una vampira?",
+    "pages": 454,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Paranormal",
+      "Fantasía Urbana",
+      "Fantasía"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [
+      "Vampira"
+    ],
+    "dinamicas": [],
+    "tropes": [
+      "Slow Burn",
+      "Forced Proximity",
+      "Forbidden Love"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Ambientación europea",
+      "Reino Unido"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Muerte"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782033839579_tatiy",
+    "title": "Rottenheart",
+    "authors": [
+      "Kat Dunn"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1773949719i/246554055.jpg",
+    "synopsis": "Vengadme. Porque me han asesinado…\n\nOdette y Cecilia son dos jóvenes que viven entre sus grandes casas en Hampstead y la imponente y antigua Herne House en Suffolk. Aunque la madre artista de Odette, Lydia, la controla con mano de hierro, ella y su amada Cecilia suelen tener libertad para vagar, aprender y amar.\n\nPero cuando Lydia enferma y muere inexplicablemente, un velo oscuro se cierne sobre ellas. Mientras se celebran los ritos funerarios, la tía de Odette, la fría e implacable Claudine, toma cada vez más el control de la casa, mientras su padre se retira a su estudio. Odette, sumida en el dolor, desaparece entre las sombras.\n\nPero cuando Claudine es anunciada como la nueva madrastra de Odette, una presencia siniestra se hace notar en la casa. Para su horror, Odette se da cuenta de que, a pesar de su muerte, Lydia nunca se fue del todo. Y ahora quiere venganza…\n\nInspirada en Hamlet , la tragedia de venganza por excelencia, Rottenheart es la impactante nueva novela gótica de terror lésbico de Kat Dunn, la aclamada autora de Hungerstone y Bitterthorn . Ambientada en la década de 1890, esta es una historia de amor y dolor, madres e hijas, muerte y locura.",
+    "pages": 320,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Horror",
+      "Histórica"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": null,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782034130870_kd7g7",
+    "title": "Trillest",
+    "authors": [
+      "Timemachine"
+    ],
+    "year": 2023,
+    "cover": "https://cdn-local.mebmarket.com/meb/server1/264349/Thumbnail/book_detail_large.gif?2",
+    "synopsis": "El mundo no gira a mi alrededor, porque yo soy mi propio universo.",
+    "pages": 1094,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia",
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Infidelidad",
+      "Manipulación Psicológica",
+      "Abuso de Poder",
+      "Clasismo",
+      "Alcohol",
+      "Acoso / Hostigamiento"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "thais",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782547916528_xi482",
+    "title": "Tú te lo pierdes",
+    "authors": [
+      "Astrix Borges"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780645289i/253141535.jpg",
+    "synopsis": "Sienna Cole conquistó el mundo.\nMillones de discos vendidos, estadios llenos, premios, fama y una vida tan rota que está a punto de costarle la suya.\nTras sufrir un colapso en pleno concierto, la estrella internacional necesita una operación cardíaca que podría salvarle la vida. Su única esperanza tiene nombre y Emma Mitchell.\nLa misma Emma a la que amó.\nLa misma Emma a la que perdió.\nAhora convertida en una prestigiosa cardióloga de Londres, Emma no quiere volver a saber nada de la mujer que destruyó su corazón años atrás, pero negarse no es una opción.\nMientras Sienna lucha por recuperarse y Emma intenta mantener una distancia profesional imposible, los recuerdos regresan, las viejas heridas se abren y la verdad sobre su ruptura amenaza con cambiarlo todo.",
+    "pages": 279,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [
+      "Música"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Cantante"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Reino Unido",
+      "Francia",
+      "España"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Drogas / Consumo de Sustancias",
+      "Alcohol",
+      "Ansiedad / Ataques de Pánico",
+      "Infidelidad",
+      "Abuso de Poder",
+      "Relación Tóxica",
+      "PTSD / Trauma"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782548104006_4mxrr",
+    "title": "Hora feliz para dos",
+    "authors": [
+      "Iris Blythe Grey"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/717tSXoS77L._SL1500_.jpg",
+    "synopsis": "Una semana en México. Seis horas felices. Una bartender de la que Olivia Hart definitivamente no debería enamorarse.\n\nOlivia vino al Blue Tide Resort con un plan simple: olvidar su ruptura, ignorar su bandeja de entrada y recordar cómo relajarse.\n\nHasta ahora, fracasa en las tres.\n\nEntonces encuentra The Sandbar.\n\nCon sus vistas al océano, consejos cuestionables en la pizarra y cócteles que nunca llega a pedir, el bar de playa debería ser solo una parada más de vacaciones. En cambio, viene con Sofía Reyes: cálida, divertida, imposible de ignorar y demasiado buena descifrando la vida cuidadosamente controlada de Olivia.\n\nLo que comienza como una charla inofensiva en la hora feliz se convierte en conversaciones al atardecer, miradas robadas y un beso que ninguna de las dos puede fingir que fue casual.\n\nPero el vuelo de Olivia de regreso a Boston ya está reservado.\n\nY se supone que los romances de vacaciones terminan.\n\n¿O no?",
+    "pages": 86,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "México"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Conflictos Familiares"
+    ],
+    "spicy": 1,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Temporada de coqueteo",
+    "sagaNum": 1,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782549588416_0edhu",
+    "title": "Una tarde cualquiera",
+    "authors": [
+      "Mia J. Hart"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780637036i/253135051.jpg",
+    "synopsis": "A los cuarenta y tres años, Corinne Ashford hace algo que nunca había hecho: elegir. Tras vender la empresa logística que dirigió durante dos décadas, llega a Austin dispuesta a descubrir quién es cuando deja de ser una ejecutiva. El plan es sencillo: un trabajo sin peso, una vida sin urgencias. Lo que no estaba en el plan es Vivienne Hartwell.\nVivienne tiene cuarenta y seis años, una empresa tecnológica que fundó con sus propias manos y la certeza de que el éxito lo justifica todo. Hasta que conoce a su nueva asistente administrativa y descubre que hay personas que no puede leer a la primera.\nLo que empieza como atracción se convierte rápidamente en algo más difícil de gestionar: amor. El problema es que Corinne guarda un secreto que no es una mentira, pero que cuando salga a la luz lo cambiará todo.\nPorque hay una diferencia entre conocer a alguien y saber quién es. Y Vivienne está a punto de descubrirla.",
+    "pages": 198,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Conflictos Familiares",
+      "Muerte de un Ser Querido",
+      "Abuso de Poder"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782549981805_zenml",
+    "title": "Un desastre perfecto",
+    "authors": [
+      "Verónica Espinosa",
+      "Lorena Murién"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780762769i/253504681.jpg",
+    "synopsis": "Helen Müller tiene tres reglas para sobrevivir trabajando en un crucero: cumplir con las normativas de seguridad, tener todo perfectamente anotado y mantener las emociones bajo control. Pero cuando el nombre de Maika Aranda aparece en la lista de tripulantes de la nueva ruta, no habrá regla que pueda evitar el desastre.\n\nDesordenada, atrevida y con una sonrisa capaz de sacarle de quicio en menos de treinta segundos. Maika llega al Marine IV para convertir cada jornada laboral en un evento inolvidable. Su historia empezó y terminó hace tres años, cuando un malentendido —y el silencio de Maika— provocó que la atracción se convirtiera en un desengaño profundo.\n\nHelen no ha olvidado lo que hizo. Pero Maika está dispuesta a conseguirlo. Porque el rencor es muy difícil de mantener cuando la única persona que consigue hacerte reír también es capaz de acelerarte el corazón. Y Helen y Maika descubrirán que entre las cenizas, siempre quedan chispas. Aunque eso signifique naufragar juntas.",
+    "pages": 341,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Comedia Romántica"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Slow Burn",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Ambientación europea"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Conflictos Familiares"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782552447579_ngo95",
+    "title": "Liar Liar",
+    "authors": [
+      "Olivia Lucas"
+    ],
+    "year": 2025,
+    "cover": "https://s3.amazonaws.com/romance.io/books/large/68245a56bf1035312adff606.jpg",
+    "synopsis": "Año nuevo, mismo desastre.\n\nMis propósitos eran mentira. Poner mi vida en orden. Quizás dejar de humillarme en público.\nEs febrero, y de alguna manera estoy peor que cuando empecé. Perdí mi trabajo, mi novia (no pregunten) y cualquier dignidad que me quedaba. ¿Las mentiras? Siguen presentes. Mentiras inofensivas, en su mayoría, hasta que un viaje en avión de pesadilla, demasiados cócteles y un desconocido atractivo me llevan a compartir demasiada información accidentalmente en algún lugar sobre Ohio.\n\nDe vuelta en casa y desesperada por empezar de cero, mi hermana me convence para que la sustituya en su trabajo en una agencia de publicidad. Parece la oportunidad perfecta para empezar de nuevo… hasta que conozco a mi nueva jefa, Ashley Morgan, que no está nada contenta.\n\nA continuación, encuentros fortuitos, un viaje de trabajo inesperado, pasos de baile lamentables y un enamoramiento del que no puedo librarme con mentiras.\n\nResulta que la aventura no ha terminado, sino que apenas comienza.",
+    "pages": 329,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "CEO"
+    ],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Boss × Employee",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Forced Proximity",
+      "Fake Relationship"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782552853452_mbb46",
+    "title": "Back in Your Arms",
+    "authors": [
+      "Monica McCallan"
+    ],
+    "year": 2021,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1634562327i/59396385.jpg",
+    "synopsis": "Hace diecisiete años, Quinn McKinley dejó su pequeño pueblo de Kingsford en busca de una vida mejor. Ahora, convertida en una exitosa agente inmobiliaria en la ciudad de Nueva York, regresa a su pueblo natal por encargo de un cliente, aceptando a regañadientes su vuelta para cerrar el negocio de su vida.\n\nSu regreso le abre puertas que ha intentado mantener cerradas durante todos estos años, concretamente, las relacionadas con sus sentimientos hacia su mejor amigo de la infancia, Sawyer Kent.\n\nSawyer ha pasado toda su vida en Kingsford, trabajando en la tienda de antigüedades de su familia e intentando complacer a todos. El regreso de Quinn es inesperado y trastoca su rutina. Aún le frustra cómo Quinn dejó las cosas entre ellas, y aunque tenga sentimientos encontrados, ahora mismo tiene problemas más importantes de los que preocuparse.",
+    "pages": 288,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Contemporánea",
+      "Romance"
+    ],
+    "subgenres": [
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Rich / Poor Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782553087790_t5vqg",
+    "title": "Unexpected Harmony",
+    "authors": [
+      "Violet Morley"
+    ],
+    "year": 2024,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1731386697i/221442713.jpg",
+    "synopsis": "Tras una desastrosa propuesta de matrimonio transmitida en directo, la cantante Aspen Lake regresa cojeando a su cabaña frente al mar en Malibú para tomarse un merecido descanso y reevaluar su vida. Desafortunadamente, ni siquiera la calma del océano logra devolverle la música que antes resonaba en su mente.\n\nZoey Estrada proviene de una familia con talento musical, pero siempre ha tenido que esforzarse mucho para conseguirlo. Cuando se ve obligada a dejar la universidad y volver a casa, se debate sobre qué rumbo tomar en su vida. Por suerte, su madre le da algunas indicaciones al convencerla de trabajar en su empresa de jardinería.\n\nUn encuentro inesperado da lugar a algo para lo que ninguna de las dos está preparada. A medida que Aspen y Zoey se acercan, deben intentar descifrar qué les depara el futuro. ¿Podrán seguir creciendo juntas o están destinadas a ser una canción inacabada?",
+    "pages": 275,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Famosa"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Age Gap"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Enfermedad Mental"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782553680260_0asvb",
+    "title": "Jiao Huan Ying Hou",
+    "authors": [
+      "君sola"
+    ],
+    "year": 2014,
+    "cover": "https://cdn.anime-planet.com/manga/primary/after-exchanging-shadows-novel-1.jpg?t=1625872585",
+    "synopsis": "Ruan Yesheng era una estrella pasada de moda; mientras que Xi Mo, que había alcanzado la fama en el mismo período, era ahora como la diosa del pueblo. Así fue, hasta que un horrible ataque inesperado ocurrió en la conferencia. Tú que tanto admiraste a esa persona, hasta que un día te convertiste en ella. – Después de un tiempo de conmoción, Ruan Yesheng se sintió secretamente feliz durante los siguientes tres días. Tú que odiaste tanto a esa persona, hasta que un día te convertiste en ella. – Xi Mo solo sintió el impulso de matar.",
+    "pages": 964,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Actriz"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Fría × Cálida",
+      "Ice Queen × Sunshine"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Slow Burn",
+      "Unrequited Love",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Muerte de un Ser Querido",
+      "Violencia Gráfica",
+      "Violencia sobre Personajes Secundarios",
+      "Conflictos Familiares",
+      "Abuso de Poder",
+      "PTSD / Trauma",
+      "Manipulación Psicológica"
+    ],
+    "spicy": 0,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "baihee",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782554274672_vlhbc",
+    "title": "Vetted Further",
+    "authors": [
+      "K'Anne Meinel"
+    ],
+    "year": 2018,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1530241649i/40666333.jpg",
+    "synopsis": "Fiona Herriot y su esposa, Allyssa, siguen cultivando y expandiendo la clínica veterinaria de animales grandes que Fiona fundó en su rancho. Desde un accidente casi fatal hasta un sueño hecho realidad, han superado todas las dificultades, apoyándose mutuamente en cada paso del camino. Pero cuando uno de sus sueños se desmorona y casi destruye su matrimonio, ¿lograrán sobrevivir a las consecuencias? Perros, gatos, caballos, gallinas e incluso llamas forman parte de esta encantadora historia. Acompañe a Fiona y Allyssa en la saga de dos mujeres, un rancho y la próspera clínica veterinaria que construyen con amor en las altas llanuras de Oregón.",
+    "pages": 295,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": null,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Herriots aka Vetted",
+    "sagaNum": 4,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782554549854_4rvpl",
+    "title": "Then & Now",
+    "authors": [
+      "Monica McCallan"
+    ],
+    "year": 2020,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1581865931i/51328082.jpg",
+    "synopsis": "Lily Connor ha dedicado toda su energía a convertirse en una exitosa organizadora de bodas, y después de cinco años, está a punto de asumir más responsabilidades en Southerland Wedding Company. Cuando finalmente se presenta la oportunidad, viene acompañada de una complicación que jamás habría imaginado. Con los novios fuera durante un mes, Lily necesita trabajar con la mejor amiga de la novia, Bennett Burke, una mujer que nunca pensó volver a ver.\n\nFue solo por unos meses, una experiencia de estudios en el extranjero que parecía sacada de esos mismos sueños convertidos en pesadillas, pero Bennett ha regresado, y Lily no quiere saber nada de ella. Bennett le rompió el corazón la primera vez, y Lily juró que jamás permitiría que algo así volviera a suceder.\n\nTrabajar juntas es inevitable, ¿pero enamorarse? Lily necesita evitarlo a toda costa, incluso si eso implica sacrificar su propia felicidad.",
+    "pages": 289,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme",
+      "Sunshine"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Rich / Poor Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1782555011824_oopvb",
+    "title": "My Sassy Bodyguard",
+    "authors": [
+      "Nongnart"
+    ],
+    "year": 2025,
+    "cover": "https://cdn-local.mebmarket.com/meb/server1/413114/Thumbnail/book_detail_large.gif?3",
+    "synopsis": "De repente, mi temperamental jefa —a quien ni siquiera conocía en persona— fue emboscada y recibió un disparo.\nEso me obligó a ayudarla a escapar y esconderla en un lugar secreto.\nY, entre el peligro y el silencio de aquel escondite, comenzó a nacer algo que ninguna de las dos esperaba: una relación prohibida.\n\n\n============\n\n\nEsta es la historia de Keta, una ex doble de acción al borde de la ruina que acepta la propuesta de una amiga cercana para trabajar como asistente especial y guardaespaldas secreta de Punyisa, una CEO hermosa, decidida y de carácter explosivo… justo el tipo de mujer que más la desarma.\n\n\n\nEl problema es que la atractiva tía de su amiga no quiere tener ningún tipo de cercanía con Keta.\nAsí, su trabajo juntas empieza a la fuerza: entre discusiones, choques de temperamento y una tensión imposible de ignorar.\nPero, poco a poco, Keta termina enamorándose de su jefa.",
+    "pages": 575,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "CEO",
+      "Guardaespaldas"
+    ],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Boss × Employee",
+      "Bodyguard × VIP",
+      "Masc × Femme",
+      "Grumpy × Sunshine",
+      "Rich × Poor",
+      "Seria × Divertida"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Bodyguard / VIP",
+      "Rich / Poor Romance",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Stranded Together",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Violencia Gráfica",
+      "Clasismo",
+      "Violencia sobre Personajes Secundarios",
+      "Secuestro / Cautiverio",
+      "Abuso de Poder"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "thais",
+    "editions": [
+      {
+        "lang": "ES",
+        "store": "MEB",
+        "url": "https://en.mebmarket.com/?action=book_details&book_id=413114"
+      }
+    ],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783148284207_4yrj6",
+    "title": "Portada falsa",
+    "authors": [
+      "Mónica Benítez"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780379645i/252972637.jpg",
+    "synopsis": "Brynn Mitchell no cree en las segundas oportunidades. Como periodista mordaz, vive de señalar las mentiras de quienes construyen su imagen sobre medias verdades.\nCuando una de sus columnas destroza públicamente a la actriz más intocable del momento, no se imagina que está firmando lo que puede ser el fin de su carrera.\n\nCameron Felton ha convertido el control en su única defensa. Fría, perfecta e inalcanzable… todo en ella está controlado, pero un escándalo amenaza con derrumbar la carrera que ha construido a base de silencios. Y la única forma de salvarlo implica acercarse demasiado a la mujer que más la ha expuesto.\n\nUn contrato. Tres meses. Una relación falsa para convencer al mundo.\nLo que empieza como estrategia pronto se convierte en algo más peligroso.\nPorque fingir es fácil. Lo difícil es saber cuándo dejar de hacerlo.",
+    "pages": 243,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Abuso de Poder",
+      "Alcohol",
+      "Ansiedad / Ataques de Pánico",
+      "Conflictos Familiares"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783148650057_3edb0",
+    "title": "Atrevidas",
+    "authors": [
+      "Eva Gonzay"
+    ],
+    "year": 2022,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1656666621i/61376524.jpg",
+    "synopsis": "Un ataque de rebeldía, un poco de tequila y una mala decisión. Esa desastrosa combinación hará que los caminos de Abigail y Gretel se crucen en el momento menos oportuno.\nLa primera está cansada de hacer siempre lo correcto, la segunda ha sido la mujer perfecta para un marido capullo que la ha abandonado por otra.\nLa casualidad hace que ambas decidan ahogar las penas en el mismo bar. Una se convierte en el pañuelo de la otra y viceversa y, al final, algo perjudicadas por el alcohol, concluyen que ha llegado el momento de rebelarse y hacer una travesura que las haga sentirse vivas.\nSu pequeña fechoría consistirá en robar un coche, nada grave, piensan ellas. Lo robarán, se darán una vuelta y lo dejarán aparcado en un lugar seguro. A su modo de ver, nada puede salir mal. Enseguida eligen a su víctima y elaboran un pequeño plan de distracción hasta que consiguen su objetivo.\nTodo va sobre ruedas y las dos mujeres se sienten eufóricas por haberlo logrado, hasta que descubren que no viajan solas.",
+    "pages": 220,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [
+      "Abuso de Poder",
+      "Ansiedad / Ataques de Pánico",
+      "Alcohol"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783148830629_n75ga",
+    "title": "Te traeré a casa",
+    "authors": [
+      "Raquel Arbeteta García"
+    ],
+    "year": 2021,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1614022952i/57175803.jpg",
+    "synopsis": "Dikê está muerta. Murió el día de su boda.\n\nEs lo único que sabe Lyra, de lo único que canta cada noche en el Ragweed. Al menos, hasta que uno de los Doce le dice la verdad:\n\nDikê está viva. Se la llevaron a Inferno.\n\nAsí que allí irá, a recuperarla. Más allá de las mentiras y amenazas de la mafia de los Doce, más allá de las sucias calles de la capital, más allá del C.A.N., más allá de la muerte. Armada con una guitarra y el recuerdo del oro en los labios de su esposa, Lyra compone una nueva canción:\n\nDikê está viva.\n\nY la traerá a casa.",
+    "pages": 171,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Ciencia Ficción",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Andrógina",
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Andrógina × Femme"
+    ],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Ansiedad / Ataques de Pánico",
+      "Depresión",
+      "Muerte",
+      "Enfermedad Terminal",
+      "Guerra / Conflicto Armado"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783149503443_pf00i",
+    "title": "Tú en mi corazón",
+    "authors": [
+      "L. Farinelli"
+    ],
+    "year": 2021,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1618504008i/57747536.jpg",
+    "synopsis": "El amor mueve al mundo, eso dicen; pero para María Fernanda, el amor no ha sido más que dolor, amargura e incomprensión. Para escapar de su sufrimiento, se aleja de todo lo que ha sido su vida, dispuesta a encontrar un poco de sosiego. ¿Encontrará lo que busca? ¿Se olvidará de ese amor que le causó tanto dolor? ¿Hallará a la mujer perfecta? ¿Será Valeria, su compañera de cuarto, quien le muestre que el amor no es solo dolor? Al final, será su corazón quien le muestre el camino.",
+    "pages": 296,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [
+      "Ansiedad / Ataques de Pánico",
+      "Homofobia",
+      "Conflictos Familiares",
+      "Depresión"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783150254774_e341q",
+    "title": "A Rising Tide",
+    "authors": [
+      "Haley J. Munroe"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1776613858i/251202194.jpg",
+    "synopsis": "Ella rompió la maldición, solo para convertirse en prisionera de la mujer que ama .\n\nTras romper la maldición, Briar se encuentra en un barco rumbo a la fortaleza de la Corte de la Tierra.\n\nAl llegar, se topa con las mujeres que ha buscado durante la última década: su tripulación. Pero hay un problema: la culpan de todo.\n\nA medida que se acerca su ejecución, el castillo es atacado por una horda de wyverns que, según los rumores, se extinguieron con la caída de la Corte del Fuego. En medio del caos, una integrante de la tripulación de Briar es secuestrada, junto con la esmeralda de la Corte de la Tierra, su fuente de poder. Tras chantajear a Kressa para que la acoja, Briar se embarca en una misión para encontrar a su compañera desaparecida. Sin embargo, una vez en alta mar y cerca unas de otras, Briar y Kressa no pueden negar el vínculo que crece entre ellas.\n\nY cuando Briar recibe correspondencia secreta de Isolde pidiéndole ayuda, Briar debe decidir si ayudará a la mujer a la que está unida por el destino o a aquella a la que prometió su vida.",
+    "pages": 448,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Fantasía",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Ends of the Earth",
+    "sagaNum": 2,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783242403788_sk70e",
+    "title": "The Echoes of Her Silence",
+    "authors": [
+      "Skye Von Triessen"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1745535543i/231924784.jpg",
+    "synopsis": "Para el mundo, Dominique Fournier es la mujer perfecta, casada con un hombre poderoso, rodeada de riqueza y con una vida que muchos envidiarían. Pero a puerta cerrada, su mundo dista mucho de ser idílico. Atrapada en un matrimonio asfixiante y sin amor, cada día es una pesadilla cuidadosamente oculta, hasta que la persona menos esperada acude en su ayuda.\n\nCuando Robyn Diamont acepta un trabajo con la enigmática señora Fournier, jamás imagina que aquella mujer tranquila y elegante ocupará todos sus pensamientos. Desearla es peligroso, pero cuanto más vislumbra Robyn la verdad tras la impecable apariencia de Dominique, más difícil le resulta ignorarla, o su creciente atracción.\n\nEntonces, en un día fatídico, Robyn lo arriesga todo por Dominique. Pero ante las consecuencias, ¿luchará Dominique con la misma intensidad por ella? ¿O acaso ese momento de sacrificio es todo lo que les depara el futuro?\nAlgunas historias de amor arden con intensidad. Otras dejan cicatrices imborrables.",
+    "pages": 469,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Friends to Lovers"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [
+      "Canadá"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783242883764_r1m2c",
+    "title": "Not Exactly Tenants",
+    "authors": [
+      "Giny Morales"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1761084959i/243016902.jpg",
+    "synopsis": "Cuando la perfección se encuentra con el caos, saltan chispas... y se rompen corazones.\n\nKate Sullivan ha construido la vida perfecta dentro de su casa impecable. Cada objeto colocado con precisión, cada habitación meticulosamente controlada, cada visitante cuidadosamente atendido. La exitosa diseñadora de interiores trata su hogar como un santuario y un museo a la vez, manteniendo al mundo —y a su corazón— a una distancia prudencial.\n\nLo que no sabe es que... lleva semanas compartiéndolo.\n\nGina Moore es una estafadora reformada con un don para el engaño y un talento para justificar lo injustificable. Cuando lo pierde todo de la forma más ridícula imaginable, decide que el ala sin usar de Kate simplemente se está desperdiciando... y se muda allí. En silencio.\n\nAhora, hace malabares con el encanto, la culpa y una creciente pila de secretos. Porque decir la verdad es fácil. ¿Enamorarse? Esa es la verdadera estafa.",
+    "pages": 309,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": null,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783243061627_4h2de",
+    "title": "Not Until Her",
+    "authors": [
+      "Miranda Melanie"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1718843135i/213782019.jpg",
+    "synopsis": "La nueva vecina de Reya Barry es insoportable.\n\nEs grosera, egoísta y grita a todo pulmón a todas horas de la noche.\n\nAdemás, es esquiva, lo que hace casi imposible que hablen cara a cara sobre sus problemas.\n\nHasta que, de repente, aparece una noche,\n\ny Reya se siente irresistiblemente atraída por ella.\n\nEl sentimiento es mutuo, y sus encuentros nocturnos se convierten en algo habitual. Lo que empieza como una extraña incapacidad para mantenerse alejadas la una de la otra, poco a poco se transforma en un proceso de desvelamiento de todo lo que ambas creían saber sobre sí mismas.\n\nPero Reya se da cuenta demasiado tarde de que cuando algo parece demasiado bueno para ser verdad, probablemente lo sea. No podría haberse preparado para la terrible verdad y todo el daño que causa al salir a la luz.",
+    "pages": 372,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Contemporánea",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [
+      "Madre Soltera"
+    ],
+    "dinamicas": [],
+    "tropes": [
+      "Enemies to Lovers"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": null,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783243851089_28731",
+    "title": "The Goodmans",
+    "authors": [
+      "Clare Ashton"
+    ],
+    "year": 2018,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1527977889i/40365200.jpg",
+    "synopsis": "La encantadora doctora Abby Hart vive en la casa de sus sueños en Ludbury, un típico pueblo fronterizo inglés, hogar de los Goodman.\n\nMaggie Goodman, llena de fuego y pasión, es como una segunda madre para ella; el afable Richard, su pilar; y Celia, una chica de los 60, la abuela que nunca tuvo.\n\nPero Abby guarda un secreto. Su mejor amigo, Jude Goodman, es el amor de su vida, y muy, muy heterosexual. Incluso si Jude alguna vez se hubiera fijado en una mujer, estaría el pequeño problema de Maggie: sin duda, no lo aprobaría.\n\nPero los secretos siempre acaban saliendo a la luz, y Abby no es la única que tiene algo que ocultar. La vida está a punto de volverse muy interesante para los Goodman.\n\nLas cosas ya no son como antes, pero ¿podrían ser aún mejores?",
+    "pages": 376,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Drama"
+    ],
+    "subgenres": [
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Profesora"
+    ],
+    "dinamicas": [],
+    "tropes": [
+      "Friends to Lovers",
+      "Second Chance Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "Reino Unido",
+      "Ambientación europea"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Queerofobia / LGTBfobia"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783244944393_irsf2",
+    "title": "Interitus",
+    "authors": [
+      "Ruby Roe"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1779635366i/241552078.jpg",
+    "synopsis": "Cuatro almas condenadas, dos pactos imposibles y un romance lo suficientemente poderoso como para derrocar los reinos.\n\nMercedes Midnight debería estar muerta.\n\nSu año ha terminado, su deuda está saldada, pero aquí está: viva, maldita y crepitante con magia demoníaca que no sabe cómo manejar.\n\nLucy Corvine, la hija rota del diablo, se abrió paso a duras penas para liberarse de un contrato que nunca debió romperse. Ahora es algo para lo que el inframundo no tiene nombre. Algo que su padre destrozará el reino por encontrar.\n\nCuando dos ángeles se estrellan en Ora City, las reglas cambian de la noche a la mañana.\n\nUno quiere ver arder los reinos.\nEl otro quiere salvarlos.\nNadie está a salvo.\n\nReunidos y huyendo, Midnight y Lucy sellan un nuevo pacto: confiar el uno en el otro, sin importar lo que surja de la oscuridad. Pero la confianza es frágil. Y cada beso en bibliotecas a la luz de las velas esconde una traición que podría condenarlos a ambos de nuevo.\n\nSolo queda una verdad… alguien está mintiendo.\n\nDescubre quién es, antes de que pierdan su ciudad, su mundo y sus corazones.\n\nTres reinos. Dos corazones malditos. Una cosecha final. Este es el segundo (y último) libro de una oscura y muy apasionante novela romántica lésbica sobre demonios, con hombres masculinos dominantes, pactos para segar almas, ángeles caídos, estética dark academia, batallas góticas, una familia elegida, heroínas moralmente ambiguas, traición, obsesión sáfica y un amor capaz de arrasar ciudades. Solo para mayores de 18 años.",
+    "pages": 355,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Fantasía Urbana",
+      "Fantasía"
+    ],
+    "subgenres": [
+      "Dark Romance"
+    ],
+    "identidades": [
+      "Femme",
+      "Butch"
+    ],
+    "characters": [
+      "Demonio"
+    ],
+    "dinamicas": [],
+    "tropes": [
+      "Age Gap"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Guerra / Conflicto Armado",
+      "Muerte",
+      "Muerte de un Ser Querido",
+      "Violencia Gráfica"
+    ],
+    "spicy": 5,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Deals of Dark Desire",
+    "sagaNum": 2,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783245588760_7xfwv",
+    "title": "FAN THIP (SUCCESS IN 7 DAYS)",
+    "authors": [
+      "Madam Fer"
+    ],
+    "year": 2026,
+    "cover": "https://cdn-local.mebmarket.com/meb/server1/426560/Thumbnail/book_detail_large.gif?2",
+    "synopsis": "¿Qué pasa cuando una mujer soltera (a regañadientes) supersticiosa reza a la deidad local por un novio, solo para que le envíen a 'ella misma' como su novio imaginario?!\n=============================\nCuando una oración 'premium' por un novio\nllega accidentalmente a los oídos de la 'hermosa y genial' deidad local del condominio,\n¡comienza una misión para que su discípula se case en 7 días!\nPero, ¿por qué, cuanto más enseña y más se acerca,\neste reacio Cupido quiere 'abandonar' su misión?\n\"Recuerda esto, idiota... ¡nadie es tan premium como yo!\"\n=============================\nUna novela Yuri para sentirse bien que te mostrará... ¡\nla deidad más hermosa y genial del mundo! ¡\nEstá justo enfrente del condominio!",
+    "pages": 122,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea",
+      "Fantasía Urbana"
+    ],
+    "subgenres": [
+      "Autodescubrimiento",
+      "Magia",
+      "Mitología"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Diosa",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Diosa × Devota",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Fake Relationship",
+      "Forced Proximity",
+      "Secret Relationship"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 1,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "thais",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783770751381_5pqur",
+    "title": "Me prohíbo mirarte así",
+    "authors": [
+      "Eva Gonzay",
+      "Julia C. Brown"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1781091479i/253700241.jpg",
+    "synopsis": "Juliette Baxter lleva cincuenta años sobreviviendo detrás de una fachada de ejecutiva implacable, especialista en recortes de personal y experta en mantener a todo el mundo a distancia. Ha viajado a Nueva York a hacer lo que mejor sabe despedir gente, mantenerse fría y volver a Chicago antes de que los fantasmas del pasado vuelvan a alcanzarla.\nVivianne Fox dirige la oficina de Axis en Nueva York y no piensa entregar a su equipo sin luchar. Acostumbrada a controlar cualquier crisis, lo último que necesita es a una mujer arrogante, insoportablemente atractiva y capaz de desarmarla con una sola mirada entrando en su despacho.\nPorque Juliette no solo amenaza su trabajo. Amenaza todo lo que Vivianne creía saber sobre sí misma.\nTres semanas, un beso que jamás debió ocurrir y dos ejecutivas con carácter atrapadas en un despacho demasiado pequeño. Las dos tendrán que decidir si siguen escondiéndose detrás de sus fachadas profesionales o si se atreven a admitir lo que ya no pueden negar.",
+    "pages": 191,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Masc × Femme",
+      "Boss × Employee",
+      "Jefa × Subordinada"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Rivals to Lovers",
+      "Age Gap",
+      "Forbidden Love"
+    ],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Abandono",
+      "Misoginia",
+      "Gordofobia / Fobia Corporal"
+    ],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783775996949_fhz0h",
+    "title": "Akademie Vítek",
+    "authors": [
+      "Hurley Kent"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1778003081i/251856575.jpg",
+    "synopsis": "En la Akademie Vitek, las normas no se cuestionan.\nY quien las rompe, paga el precio.\nSadie Novák ha aprendido a sobrevivir en internados de élite sin dejar que nadie la controle, pero en Praga todo cambia cuando cruza la mirada con Margaret Blazek, la jefa de estudios: brillante, implacable e imposible de desafiar. Nadie sale indemne de su radar.\nExcepto Sadie.\nUn año después, tras un lago viaje que debía marcar un nuevo comienzo, Sadie descubre que hay decisiones —y personas— que no se quedan atrás.\nY que algunas historias solo empiezan cuando crees que han terminado.",
+    "pages": 176,
+    "isbn": null,
+    "ship": [],
+    "genres": [],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Profesora",
+      "Estudiante"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Student × Teacher",
+      "Slow Burn",
+      "Secret Relationship",
+      "Hurt/Comfort"
+    ],
+    "edad": [
+      "25–39",
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Ambientación europea"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Adulto con Menor (relación)",
+      "Grooming",
+      "Abuso de Poder"
+    ],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783776369704_8piwu",
+    "title": "Lo que dicen las tormentas",
+    "authors": [
+      "Lorena Murién"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1782043243i/254387014.jpg",
+    "synopsis": "Camila Bennet se gana la vida persiguiendo tormentas, pero su regreso al pueblo de su infancia la va a meter de lleno en el ojo del huracán. Enviada a investigar un inusual y peligroso patrón eléctrico en un valle de Australia, su base de operaciones resulta ser el mismísimo Birdsong Hills, el lugar donde creció... y donde dejó atrás su antigua vida y un matrimonio roto con el hermano de Darana Calloway.\n\nDarana es ahora la jefa indiscutible de la extensión, una mujer de armas tomar con alergia a las explicaciones científicas y cero ganas de aguantar a su excuñada. No quería a Camila de vuelta, y mucho menos instalando aparatos científicos en sus tierras. Para ella, es la personificación de un pasado incómodo y de unos sentimientos que nunca reveló.\n\nObligadas a convivir, la fricción entre la meticulosa meteoróloga y la testaruda terrateniente se vuelve inevitable. Ambas han cambiado. Ambas han perdido. Sin embargo, bajo la amenaza de la tormenta y los recuerdos que no terminan de morir, renace algo que siempre estuvo ahí: una peligrosa electricidad que no está en las nubes, sino entre ellas.",
+    "pages": 312,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme",
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Rivals to Lovers",
+      "Second Chance Romance",
+      "Childhood Friends",
+      "Slow Burn",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Australia"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Muerte de un Ser Querido"
+    ],
+    "spicy": 4,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Birdsong Hills",
+    "sagaNum": 1,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783776656443_dlkod",
+    "title": "Despertar en Los Hamptons",
+    "authors": [
+      "Martha Reagan"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1778799527i/252232549.jpg",
+    "synopsis": "Harper Delaney lo tiene todo: un prometido perfecto, un futuro asegurado en la alta sociedad neoyorquina y una boda de ensueño a la vuelta de la esquina. Sin embargo, bajo esa fachada de éxito, Harper siente que se ahoga en una jaula de cristal, atada a un hombre que la exhibe como un trofeo y a un mundo al que no pertenece.\n\nCuando viaja a la imponente mansión de los Vance en los Hamptons para ultimar los preparativos del enlace, se encuentra a solas con la última persona a la que desearía enfrentarse: Victoria Vance. Su futura suegra no solo es la viuda implacable y CEO de un imperio tecnológico; es una mujer fría, dominante y peligrosamente perspicaz que parece capaz de leer cada una de sus inseguridades.\n\nLo que comienza como un cruce de miradas afiladas y una tensa convivencia se transforma en un juego psicológico que ninguna de las dos puede controlar. Aisladas durante una tormenta, la armadura de hielo de Victoria se resquebraja, dando paso a una pasión abrasadora, clandestina y absolutamente prohibida.\n\nA escasos días de caminar hacia el altar, Harper deberá enfrentarse a la decisión más difícil de su vida: cumplir el contrato social que asegura su futuro, o dejarse devorar por un incendio que amenaza con reducirlas a ambas a cenizas.",
+    "pages": 312,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme",
+      "Rich × Poor",
+      "Dominante × Sumisa",
+      "Ice Queen × Softie"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Rich / Poor Romance",
+      "Forbidden Love",
+      "Secret Relationship",
+      "Hurt/Comfort"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Infidelidad",
+      "Abuso Emocional / Gaslighting",
+      "Clasismo"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783777126645_wnx86",
+    "title": "Sitio para tres",
+    "authors": [
+      "Clara Ann Simons"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1782239211i/254485132.jpg",
+    "synopsis": "Cuando Natalia Costa Oliveira llega a Seattle, cree que solo está de paso: una cláusula obligatoria para lavar su imagen y un nuevo club donde todavía nadie sabe quién es de verdad.\nHasta que conoce a Holland Callow.\nCalma, control y una mirada que le roba el aire… Un choque. Un acuerdo. Un beso que lo cambia todo. Y, de pronto, Seattle amenaza con no ser algo temporal.\nPero cuando Holland debe luchar por la custodia de su hija y Natalia recibe una gran oferta desde Europa, el “para siempre” deja de ser un sueño. Se convierte en una elección que hay que construir cada día.",
+    "pages": null,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [
+      "Deporte"
+    ],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Futbolista"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Seattle Emerals",
+    "sagaNum": 4,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783778083902_76nf8",
+    "title": "Where the heart is",
+    "authors": [
+      "Roslyn Sinclair"
+    ],
+    "year": 2024,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1759361899i/242296497.jpg",
+    "synopsis": "La magnate editorial Vivian tiene una carrera exitosa, una hija pequeña feliz y a su adorada amante, Jules. Lo único que le falta es la aprobación familiar. ¿Podrá Vivian reconciliarse con su familia durante un tenso viaje al Medio Oeste con Jules?\n\nUn relato corto lésbico de la serie Carlisle, con una diferencia de edad considerable, que plantea la pregunta de si realmente se puede volver a casa.",
+    "pages": 47,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Bisexual"
+    ],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [
+      "Age Gap"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 2,
+    "formato": "Trilogía",
+    "adaptacion": null,
+    "sagaName": "Carlisle",
+    "sagaNum": 3,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783778469063_s09qt",
+    "title": "She's My Eternity",
+    "authors": [
+      "Valerie Hunter"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1781385821i/248973248.jpg",
+    "synopsis": "Yasmine Sokolov ha construido una vida envidiable. Es la vampira más rica del planeta, profesora con financiación casi ilimitada para su investigación y dueña de una mansión frente a Central Park. ¿\n\nLo único que no ha conseguido en mil años? Una novia estable.\n\nTras mudarse a Nueva York para ayudar a Sylvia y Aster a adaptarse a la inesperada paternidad, Yasmine vuelve a usar VampireMatch, donde una docena de citas decepcionantes la convencen de que su destino podría ser pasar otros mil años sola.\n\nHasta que conoce a alguien de quien no puede enamorarse: la deslumbrantemente bella y, a la vez, deslumbrantemente humana barista, Bella Dragomir.\n\nPero a medida que una serie de asesinatos vampíricos se extienden por Nueva York —asesinatos que parecen acercarse cada vez más a la propia Bella— Yasmine empieza a preguntarse si la verdad es más compleja de lo que quiere creer. Sobre todo cuando se trata de Bella.",
+    "pages": 385,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Fantasía"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Vampira"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Roommates",
+      "Forced Proximity",
+      "Slow Burn"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [
+      "Secuestro / Cautiverio"
+    ],
+    "spicy": 3,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "The Girl Who Bit Me",
+    "sagaNum": 2,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783779684326_ws6ss",
+    "title": "No Rings Attached",
+    "authors": [
+      "Rachel Lacey"
+    ],
+    "year": 2022,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1633624423i/58957683.jpg",
+    "synopsis": "Lia Harris está harta de ser la oveja negra. Nunca ha encajado del todo con su estricta familia, y ahora que sus compañeras de piso han encontrado el amor, empieza a sentirse como la tercera rueda en su propio apartamento. Harta de la constante intromisión de su madre en su vida amorosa, Lia insinúa que tiene novia. Pero con la boda de su hermano en Londres cada vez más cerca, necesita encontrar pareja para salvar las apariencias. Lia recurre a su mejor amiga, Rosie, en busca de ayuda, y Rosie cumple: con la divertida y guapísima Grace Poston.\n\nA Grace le encanta pasarlo bien, ocultando sus inseguridades tras una sonrisa radiante. Su reciente mudanza a Londres le ha proporcionado un nuevo comienzo muy necesario. Grace no busca el amor y odia las bodas, pues ha sufrido más de un desengaño amoroso. Las amistades son diferentes, así que, por el bien de Rosie, acepta a regañadientes hacerse pasar por la novia devota de Lia durante las celebraciones de la boda.\n\nTanto Grace como Lia están preparadas para un fin de semana incómodo, con familiares entrometidos y una habitación de invitados con una sola cama. Resulta que se llevan de maravilla, de hecho, de forma espectacular. Sin darse cuenta, la química que fingen se siente demasiado real. Pero, ¿será su fin de semana de bodas una actuación fugaz o el ensayo de un amor destinado a durar?",
+    "pages": 315,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [
+      "Fake Relationship",
+      "Forced Proximity"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Ms. Right",
+    "sagaNum": 2,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783780667175_3687t",
+    "title": "A Game of Love and Hate",
+    "authors": [
+      "Ruby Roe"
+    ],
+    "year": 2023,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1676562066i/122496760.jpg",
+    "synopsis": "Descubre cómo Scarlett Grey conoció a Quinn Adams. Cómo surgió su odio mutuo. Y todas las peleas y encuentros sexuales que llevaron al primer libro de la serie Girl Games: Un juego de corazones y robos.",
+    "pages": 61,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Fantasía"
+    ],
+    "subgenres": [
+      "Magia"
+    ],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [
+      "Enemies to Lovers"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Girl Games",
+    "sagaNum": 0.5,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783780982096_isxi2",
+    "title": "A Game of Proposals and Parties",
+    "authors": [
+      "Ruby Roe"
+    ],
+    "year": 2023,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1676656895i/122752671.jpg",
+    "synopsis": "Un epílogo apasionante para «Juego de corazones y robos». Descubre cómo Scarlett y Quinn se comprometen.",
+    "pages": 18,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Fantasía",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [],
+    "dinamicas": [],
+    "tropes": [
+      "Enemies to Lovers"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Girl Games",
+    "sagaNum": 1.5,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1783782287465_7mzwu",
+    "title": "Beauty and The Bike",
+    "authors": [
+      "Lawliet30101979"
+    ],
+    "year": 2026,
+    "cover": "https://cdn-local.mebmarket.com/meb/server1/448449/Thumbnail/book_detail_large.gif?5",
+    "synopsis": "De repente, Ingdao, una joven hermosa y dulce, se ve envuelta en una fuerte discusión con su familia, tan intensa que huye de casa. ¿El motivo? Algo que nadie esperaría. Sueña con convertirse en novelista erótica, un camino que su familia se niega rotundamente a aceptar. Decidida a demostrar su valía, abandona su lujosa vida para perseguir ese sueño. \n\nPero la realidad resulta ser mucho más difícil de lo que imaginaba, empezando por alquilar una casa con un pasado dudoso, lidiar con cortes de luz e incluso una invasión de geckos. \n\nEn medio de todo el caos, aparece Earth, una motera genial y cautivadora, que siempre está ahí para ayudarla. Sin embargo, justo cuando Ingdao empieza a sentirse tranquila, se encuentra constantemente siendo objeto de burlas, mientras presiente que algo se esconde tras la sonrisa despreocupada de Earth. \n\nCon alguien tan impredecible, ¿se convertirá en el mayor apoyo de Ingdao o en la causante de sus problemas?",
+    "pages": 449,
+    "isbn": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Escritora"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Conflictos Familiares",
+      "Distanciamiento Familiar / Rechazo",
+      "Acoso Cibernético",
+      "Clasismo",
+      "Ansiedad / Ataques de Pánico"
+    ],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": "Tiene serie",
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "thais",
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
