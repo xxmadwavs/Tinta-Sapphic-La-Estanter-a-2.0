@@ -259,32 +259,108 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .more-filters-btn .dd-count{margin-left:2px}
 .more-filters-panel{
   left:auto;right:0;
-  width:min(400px,92vw);min-width:min(340px,92vw);max-width:none;
+  width:min(360px,92vw);min-width:min(320px,92vw);max-width:none;
   max-height:min(72vh,600px);
   padding:0;
+  border-radius:16px;
+  overflow:hidden;
+  flex-direction:column;
 }
-.fp-body{max-height:min(72vh,600px);overflow-y:auto}
+.dd-wrap.open .more-filters-panel{display:flex}
+
+.fp-panel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 16px;
+  border-bottom:1px solid var(--border2);
+  background:linear-gradient(180deg,var(--surface2),var(--surface));
+  flex-shrink:0;
+}
+.fp-panel-title{
+  font-family:var(--font-display);font-size:17px;font-weight:600;
+  color:var(--text);letter-spacing:.01em;
+}
+.fp-panel-clear{
+  font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--rose);cursor:pointer;background:none;border:none;
+  padding:4px 8px;border-radius:6px;transition:background .12s;font-family:var(--font-body);
+}
+.fp-panel-clear:hover{background:var(--rose-soft)}
+
+.fp-body{overflow-y:auto;flex:1;min-height:0}
 .fp-section{border-bottom:1px solid var(--border)}
 .fp-section:last-child{border-bottom:none}
 .fp-sec-label{
-  display:flex;align-items:center;justify-content:space-between;gap:8px;
-  padding:11px 14px;cursor:pointer;user-select:none;
-  font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--text);
-  transition:color .15s;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 16px;cursor:pointer;user-select:none;
+  font-size:12.5px;font-weight:600;letter-spacing:.02em;color:var(--text);
+  transition:background .12s,color .15s;
 }
-.fp-sec-label:hover{color:var(--accent2)}
-.fp-sec-left{display:flex;align-items:center;gap:7px;min-width:0}
-.fp-sec-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);display:none;flex-shrink:0}
+.fp-sec-label:hover{background:var(--surface2);color:var(--accent2)}
+.fp-section.collapsed .fp-sec-label:hover{background:var(--surface2)}
+.fp-sec-left{display:flex;align-items:center;gap:8px;min-width:0}
+.fp-sec-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 3px var(--rose-soft);display:none;flex-shrink:0}
 .fp-section.has-active .fp-sec-dot{display:block}
-.fp-sec-chevron{font-size:9px;opacity:.5;transition:transform .18s;flex-shrink:0}
+.fp-section.has-active .fp-sec-label{color:var(--accent2)}
+.fp-sec-chevron{font-size:9px;opacity:.4;transition:transform .18s;flex-shrink:0;color:var(--accent2)}
 .fp-section.collapsed .fp-sec-chevron{transform:rotate(-90deg)}
 .fp-section.collapsed .fp-sec-body{display:none}
 .fp-section.no-accordion .fp-sec-chevron{display:none}
 .fp-section.no-accordion .fp-sec-label{cursor:default}
-.fp-sec-body{padding-bottom:8px}
-.fp-sec-body .dd-search{position:static;background:transparent;backdrop-filter:none}
-.fp-sec-body .dd-list{max-height:210px;overflow-y:auto}
-.fp-toggle-row{display:flex;gap:.4rem;flex-wrap:wrap;padding:0 14px 10px}
+.fp-section.no-accordion .fp-sec-label:hover{background:none;color:var(--text)}
+.fp-sec-body{padding-bottom:10px;animation:ddFadeIn .16s ease}
+.fp-sec-body .dd-search{position:static;background:transparent;backdrop-filter:none;padding:0 16px 8px}
+.fp-sec-body .dd-list{max-height:200px;overflow-y:auto;padding:0 6px}
+.fp-toggle-row{display:flex;gap:.4rem;flex-wrap:wrap;padding:0 16px 4px}
+
+/* Filas de lista con checkbox/radio totalmente personalizados */
+.fp-sec-body .dd-item, .fp-sec-body .spicy-dd-item{
+  margin:1px 0;padding:8px 10px;border-radius:9px;gap:10px;
+}
+.fp-sec-body .dd-item:hover, .fp-sec-body .spicy-dd-item:hover{background:var(--surface2)}
+.fp-sec-body .dd-item:has(input:checked), .fp-sec-body .spicy-dd-item:has(input:checked){
+  background:var(--accent-soft);
+}
+.fp-sec-body .dd-item:has(input:checked) label,
+.fp-sec-body .spicy-dd-item:has(input:checked) label{color:var(--accent2);font-weight:600}
+.fp-sec-body input[type=checkbox],.fp-sec-body input[type=radio]{
+  appearance:none;-webkit-appearance:none;
+  width:16px;height:16px;flex-shrink:0;margin:0;
+  border:1.5px solid var(--border2);border-radius:5px;
+  background:var(--surface2);cursor:pointer;position:relative;
+  transition:border-color .15s,background .15s;
+}
+.fp-sec-body input[type=radio]{border-radius:50%}
+.fp-sec-body input[type=checkbox]:hover,.fp-sec-body input[type=radio]:hover{border-color:var(--accent)}
+.fp-sec-body input[type=checkbox]:checked,.fp-sec-body input[type=radio]:checked{
+  background:var(--accent);border-color:var(--accent);
+}
+.fp-sec-body input[type=checkbox]:checked::after{
+  content:'';position:absolute;left:5px;top:2px;width:4px;height:8px;
+  border:solid var(--bg);border-width:0 2px 2px 0;transform:rotate(38deg);
+}
+.fp-sec-body input[type=radio]:checked::after{
+  content:'';position:absolute;left:4px;top:4px;width:6px;height:6px;border-radius:50%;background:var(--bg);
+}
+.fp-sec-body .dd-clear{margin:2px 6px 4px;border-radius:8px;border-bottom:none;background:var(--surface2)}
+.fp-sec-body .dd-empty{padding:10px 16px}
+
+/* ── Mobile: el panel se centra en pantalla en vez de anclarse al botón ── */
+@media (max-width:600px){
+  .more-filters-panel{
+    position:fixed !important;
+    top:50% !important;left:50% !important;right:auto !important;
+    transform:translate(-50%,-50%);
+    width:92vw;max-width:400px;
+    max-height:80vh;
+  }
+  .fp-body{max-height:calc(80vh - 54px)}
+}
+.mf-backdrop{
+  display:none;position:fixed;inset:0;background:rgba(10,7,12,0.6);
+  backdrop-filter:blur(2px);z-index:199;
+}
+.mf-backdrop.open{display:block}
+
 
 /* Fila inferior: pills activos + resultados */
 .filter-bottom{
@@ -1317,6 +1393,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <div class="dd-wrap" id="ddMoreFilters">
         <button class="dd-btn more-filters-btn" onclick="toggleDD('ddMoreFilters')">+ Filtros <span class="dd-count" id="cntMoreFilters" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-panel more-filters-panel">
+          <div class="fp-panel-header">
+            <span class="fp-panel-title">Filtros</span>
+            <button class="fp-panel-clear" onclick="clearMoreFilters()">✕ Limpiar</button>
+          </div>
           <div class="fp-body" id="fpBody">
             <!-- Temática -->
             <div class="fp-section collapsed" data-field="subgenres">
@@ -1378,6 +1458,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
       </div>
       <span class="filters-auth-hint" id="filtersAuthHint" onclick="openAuthModal()">🔒 Más filtros al <a>registrarte</a></span>
     </div>
+    <div class="mf-backdrop" id="mfBackdrop" onclick="closeAllDD()"></div>
     <div class="filter-bottom">
       <div class="active-filters" id="activeFilters"></div>
       <button class="clear-all-btn" id="clearAllBtn" onclick="clearAllFilters()" style="display:none">✕ Limpiar todo</button>
@@ -2174,6 +2255,18 @@ function toggleFpSection(labelEl){
 }
 
 // Toggle "No leído" (requiere sesión iniciada)
+// Limpia solo los filtros que viven dentro del panel "+ Filtros"
+// (deja intactos Género, Autora, Año, Spicy y No leído, que están fuera)
+function clearMoreFilters(){
+  filters.subgenres=[];filters.dinamicas=[];filters.tropes=[];filters.characters=[];
+  filters.sagas=[];filters.edad=[];filters.pais_cultura=[];
+  filters.valoracion=null;filters.adaptacion=null;filters.pages=null;
+  const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
+  updateValoracionBtns();
+  updateAdaptacionBtn();
+  buildDropdowns();renderActivePills();applyFilters();
+}
+
 function toggleNoLeido(){
   filters.leido = filters.leido==='no_leido' ? null : 'no_leido';
   updateLeidoBtn();
@@ -2247,9 +2340,19 @@ function toggleDD(id){
   const wrap=document.getElementById(id);
   const wasOpen=wrap.classList.contains('open');
   closeAllDD();
-  if(!wasOpen){ wrap.classList.add('open'); }
+  if(!wasOpen){
+    wrap.classList.add('open');
+    if(id==='ddMoreFilters'){
+      const bd=document.getElementById('mfBackdrop');
+      if(bd) bd.classList.add('open');
+    }
+  }
 }
-function closeAllDD(){document.querySelectorAll('.dd-wrap.open').forEach(w=>w.classList.remove('open'));}
+function closeAllDD(){
+  document.querySelectorAll('.dd-wrap.open').forEach(w=>w.classList.remove('open'));
+  const bd=document.getElementById('mfBackdrop');
+  if(bd) bd.classList.remove('open');
+}
 
 function renderActivePills(){
   const af=document.getElementById('activeFilters');
