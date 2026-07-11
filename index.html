@@ -55,12 +55,24 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-shelf:hover{opacity:.75}
 @media(max-width:600px){.topbar{padding:0 1rem}.logo{font-size:17px}.logo-sep,.logo-sub{display:none}}
 @media(max-width:600px){
-  .hero{padding:2.5rem 1rem 2rem}
-  .filter-top{padding:.85rem 1rem .8rem}
-  .filter-dropdowns{padding:.7rem 1rem .75rem;gap:.3rem}
-  .filter-bottom{padding:.6rem 1rem}
+  .hero{padding:1.6rem 1rem 1.2rem}
+  .hero-eyebrow{margin-bottom:.5rem;font-size:9.5px}
+  .hero-title{font-size:2.1rem;margin-bottom:.3rem}
+  .hero-sub{display:none}
+  .hero-stats{gap:1.5rem}
+  .stat-num{font-size:1.5rem}
+  .stat-label{font-size:9.5px}
+  .main{padding-top:1rem}
+  .filter-shell{margin-bottom:1rem}
+  .filter-top{padding:.65rem .85rem .6rem;gap:.5rem;flex-wrap:nowrap}
+  .search-wrap{min-width:0}
+  .search-input{padding:7px 10px 7px 34px;font-size:12.5px}
+  .search-icon{left:11px;font-size:12px}
+  .sort-select{padding:7px 26px 7px 10px;font-size:11.5px;background-position:right 8px center;flex-shrink:0}
+  .filter-dropdowns{padding:.55rem .85rem .6rem;gap:.3rem}
+  .filter-label-txt{display:none}
+  .filter-bottom{padding:.5rem .85rem}
   .dd-btn{font-size:11px;padding:4px 9px}
-  .search-input{font-size:13px}
 }
 
 .hero{position:relative;z-index:1;padding:4rem 2rem 3rem;text-align:center;overflow:hidden}
@@ -913,7 +925,15 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .section-tab.active-asian .tab-count{background:var(--gold);color:var(--bg)}
 .section-tab.active-african .tab-count{background:#5ba45b;color:#fff}
 .section-tab .tab-count.hidden{display:none}
-@media(max-width:600px){.section-tabs{gap:.35rem;flex-wrap:wrap}.section-tab{padding:6px 12px;font-size:11.5px;flex:1 1 calc(50% - .35rem);justify-content:center}}
+@media(max-width:600px){
+  .section-tabs{
+    gap:.35rem;flex-wrap:nowrap;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding-bottom:2px;margin-bottom:.6rem;
+  }
+  .section-tabs::-webkit-scrollbar{display:none}
+  .section-tab{padding:6px 14px;font-size:11.5px;flex:0 0 auto}
+}
 
 /* FOOTER */
 .tab-share-btn{
