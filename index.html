@@ -53,7 +53,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-logout:hover{color:var(--rose)}
 .btn-shelf{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:15px;padding:2px 4px;transition:opacity .15s;line-height:1}
 .btn-shelf:hover{opacity:.75}
-@media(max-width:600px){.topbar{padding:0 1rem}.logo{font-size:17px}.logo-sep,.logo-sub{display:none}}
+@media(max-width:600px){
+  .topbar{padding:0 .75rem;height:56px}
+  .logo{font-size:15px}
+  .logo-sep,.logo-sub{display:none}
+  .home-nav-btn{padding:5px 9px;font-size:10.5px}
+  .btn-login{padding:5px 11px;font-size:10.5px}
+  .user-chip{padding:3px 7px 3px 3px;gap:5px}
+  .user-avatar{width:22px;height:22px;font-size:10px}
+  .user-name{max-width:64px;font-size:11px}
+  .user-chip-caret{display:none}
+}
 @media(max-width:600px){
   .hero{padding:1.6rem 1rem 1.2rem}
   .hero-eyebrow{margin-bottom:.5rem;font-size:9.5px}
@@ -361,12 +371,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   .more-filters-panel{
     position:fixed !important;
     top:50% !important;left:50% !important;right:auto !important;
-    transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%) !important;
+    animation:mfFadeIn .16s ease !important;
     width:92vw;max-width:400px;
     max-height:80vh;
   }
   .fp-body{max-height:calc(80vh - 54px)}
 }
+@keyframes mfFadeIn{from{opacity:0}to{opacity:1}}
 .mf-backdrop{
   display:none;position:fixed;inset:0;background:rgba(10,7,12,0.6);
   backdrop-filter:blur(2px);z-index:199;
