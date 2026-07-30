@@ -436,6 +436,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .book-cover{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .book-card:hover .book-cover{transform:scale(1.04)}
 .book-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:2.5rem}
+
+/* Tratamiento uniforme de portadas (crop consistente ya lo daba aspect-ratio+object-fit;
+   aquí añadimos viñeta + filtro compartido para que el grid se sienta un catálogo curado
+   y no un collage de fuentes distintas — se aplica a estantería, SafiClub, similares y Mi estantería) */
+.book-cover-wrap::after,.safi-item-cover::after,.similar-item-cover::after,.shelf-book .shelf-book-cover::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 45%,rgba(10,8,12,0) 55%,rgba(10,8,12,.32) 100%),
+             linear-gradient(180deg,rgba(10,8,12,0) 76%,rgba(10,8,12,.38) 100%);
+}
+.book-cover,.safi-item-cover img,.similar-item-cover img,.shelf-book .shelf-book-cover img{
+  filter:saturate(1.08) contrast(1.04) brightness(.97);
+}
 .rank-badge{position:absolute;top:10px;left:10px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;z-index:2}
 .rank-1{background:linear-gradient(135deg,#c9975a,#f0c070);color:#2a1800}
 .rank-2{background:linear-gradient(135deg,#8a9aaa,#b8c8d8);color:#1a2530}
@@ -1316,7 +1328,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
 .shelf-book{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .22s}
 .shelf-book:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.5)}
-.shelf-book .shelf-book-cover{aspect-ratio:2/3;overflow:hidden;background:var(--surface2)}
+.shelf-book .shelf-book-cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--surface2)}
 .shelf-book .shelf-book-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .shelf-book:hover .shelf-book-cover img{transform:scale(1.04)}
 .shelf-book-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--muted)}
