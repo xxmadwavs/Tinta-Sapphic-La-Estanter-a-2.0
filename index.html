@@ -1347,6 +1347,11 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .cartas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.8rem;justify-items:center}
 .cartas-empty{color:var(--muted);font-size:13px;padding:2rem 0;text-align:center;grid-column:1/-1}
 
+.cartas-groups{display:flex;flex-direction:column;gap:2.6rem}
+.cartas-group-header{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)}
+.cartas-group-header-label{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--text);letter-spacing:.01em}
+.cartas-group-header-count{font-size:11.5px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:2px 10px}
+
 .cc-scene{perspective:1600px;width:200px;height:325px}
 .cc-card{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1);cursor:pointer}
 .cc-scene.flipped .cc-card{transform:rotateY(180deg)}
@@ -2186,6 +2191,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <input type="text" class="cartas-search" id="cartasSearch" placeholder="Buscar autora…" oninput="renderCartasGrid()">
       <button class="cartas-filter-btn active" data-cf="all" onclick="setCartasFilter('all')">Todas</button>
       <button class="cartas-filter-btn" data-cf="collected" onclick="setCartasFilter('collected')">Coleccionadas</button>
+      <button class="cartas-filter-btn" data-cf="inprogress" onclick="setCartasFilter('inprogress')">En proceso</button>
       <button class="cartas-filter-btn" data-cf="locked" onclick="setCartasFilter('locked')">Por desbloquear</button>
     </div>
 
@@ -5830,18 +5836,25 @@ function computeAuthorsCollection(){
     .filter(a=>a.books.length>3)
     .map(a=>{
       const readBooks = currentUser ? a.books.filter(b=>myReadingStatus[b.id]==='read') : [];
+      const readCount = readBooks.length;
+      const count = a.books.length;
+      const locked = readCount===0;           // Por desbloquear · 0 leídos
+      const collected = readCount===count;    // Coleccionada · completa
+      const inProgress = !locked && !collected; // En proceso · parcial
       return {
         name:a.name,
-        count:a.books.length,
+        count,
         books:a.books,
-        readCount:readBooks.length,
-        collected:readBooks.length>0,
+        readCount,
+        locked,
+        collected,
+        inProgress,
         genre:(a.books[0].genres||[])[0]||'Romance',
         trope:(a.books.flatMap(b=>b.tropes||[])[0])||null,
         covers:a.books.filter(b=>b.cover).slice(0,3).map(b=>b.cover)
       };
     })
-    .sort((a,b)=> (b.collected-a.collected) || b.count-a.count || a.name.localeCompare(b.name));
+    .sort((a,b)=> (b.collected-a.collected) || (b.inProgress-a.inProgress) || b.count-a.count || a.name.localeCompare(b.name));
 }
 
 function setCartasFilter(f){
@@ -5858,76 +5871,108 @@ function renderCartasProgress(authors){
   document.getElementById('cartasProgressFill').style.width=pct+'%';
 }
 
+function cc_cardHTML(a){
+  const seed=cc_hashStr(a.name);
+  const rng=cc_mulberry32(seed);
+  const tier=cc_tierFor(a.count);
+  const isLocked=a.locked;
+  const coversHTML=a.covers.map(u=>`<img src="${u}" loading="lazy" alt="">`).join('');
+  const nextThreshold = a.count>=20?null:(a.count>=12?20:(a.count>=7?12:7));
+  const prevThreshold = a.count>=20?20:(a.count>=12?12:(a.count>=7?7:4));
+  const pct = nextThreshold ? Math.min(100, Math.round((a.count-prevThreshold)/(nextThreshold-prevThreshold)*100)) : 100;
+  const readPct = a.count ? Math.round(a.readCount/a.count*100) : 0;
+
+  const titlesHTML=a.books.map(b=>{
+    const isRead = currentUser && myReadingStatus[b.id]==='read';
+    return `<li class="${isRead?'read':''}">${escHtml(b.title)}</li>`;
+  }).join('');
+
+  const backContent = isLocked
+    ? `<div class="cc-back-head"><div class="cc-back-name">${escHtml(a.name)}</div>${cc_sealSVG(tier)}</div>
+       <div class="cc-locked-msg">${currentUser?'Aún no has leído ningún libro de esta autora. Marca uno como leído para desbloquear su carta.':'Inicia sesión y marca un libro suyo como leído para desbloquear esta carta.'}</div>
+       <div class="cc-flip-hint">Toca para volver</div>`
+    : `<div class="cc-back-head"><div class="cc-back-name">${escHtml(a.name)}</div>${cc_sealSVG(tier)}</div>
+       <ul class="cc-back-titles">${titlesHTML}</ul>
+       <div class="cc-back-progress-label"><span>Has leído</span><span>${a.readCount}/${a.count}</span></div>
+       <div class="cc-back-progress2"><div class="cc-back-progress2-fill" style="width:${readPct}%"></div></div>
+       ${nextThreshold ? `
+       <div class="cc-back-progress-label"><span>Rango: ${tierFor_cc_next(nextThreshold)}</span><span>${a.count}/${nextThreshold}</span></div>
+       <div class="cc-back-progress"><div class="cc-back-progress-fill" style="width:${pct}%"></div></div>
+       ` : `<div class="cc-back-progress-label"><span>Rango máximo alcanzado</span><span>✦</span></div>`}
+       <div class="cc-flip-hint">Toca para volver</div>`;
+
+  return `
+  <div class="cc-scene ${tier.key} ${isLocked?'locked':''} ${a.inProgress?'inprogress':''}"
+       style="--tier-c1:${tier.c1};--tier-c2:${tier.c2};--tier-text:${tier.text};--tier-bgtop:${tier.bgtop}"
+       onclick="this.classList.toggle('flipped')">
+    <div class="cc-card">
+      <div class="cc-face cc-front">
+        <div class="cc-constellation">
+          ${cc_buildConstellation(rng, a.count, tier)}
+          <div class="cc-count">${a.count} libros</div>
+          <div class="cc-gem">${cc_gemSVG(tier)}</div>
+          ${isLocked?`<div class="cc-lock">${cc_lockSVG()}</div>`:''}
+        </div>
+        <div class="cc-namewrap">
+          <div class="cc-name">${escHtml(a.name)}</div>
+          <div class="cc-tier">${tier.label}</div>
+          ${!isLocked?`<div class="cc-read-badge">${a.readCount}/${a.count} leídos${a.inProgress?' · en proceso':''}</div>`:''}
+        </div>
+        <div class="cc-chips">
+          <span class="cc-chip">${escHtml(a.genre)}</span>
+          ${a.trope?`<span class="cc-chip">${escHtml(a.trope)}</span>`:''}
+        </div>
+        <div class="cc-covers">${coversHTML}</div>
+      </div>
+      <div class="cc-face cc-back">${backContent}</div>
+    </div>
+  </div>`;
+}
+function tierFor_cc_next(count){ return cc_tierFor(count).label; }
+
 function renderCartasGrid(){
   const authors=cartasAuthorsCache||[];
   const q=(document.getElementById('cartasSearch')?.value||'').trim().toLowerCase();
   let list=authors;
-  if(cartasFilter==='collected') list=list.filter(a=>a.collected);
-  else if(cartasFilter==='locked') list=list.filter(a=>!a.collected);
   if(q) list=list.filter(a=>a.name.toLowerCase().includes(q));
 
   const grid=document.getElementById('cartasGrid');
-  if(!list.length){ grid.innerHTML='<div class="cartas-empty">No hay autoras que coincidan con este filtro.</div>'; return; }
 
-  grid.innerHTML=list.map(a=>{
-    const seed=cc_hashStr(a.name);
-    const rng=cc_mulberry32(seed);
-    const tier=cc_tierFor(a.count);
-    const locked=!a.collected;
-    const coversHTML=a.covers.map(u=>`<img src="${u}" loading="lazy" alt="">`).join('');
-    const nextThreshold = a.count>=20?null:(a.count>=12?20:(a.count>=7?12:7));
-    const prevThreshold = a.count>=20?20:(a.count>=12?12:(a.count>=7?7:4));
-    const pct = nextThreshold ? Math.min(100, Math.round((a.count-prevThreshold)/(nextThreshold-prevThreshold)*100)) : 100;
-    const readPct = a.count ? Math.round(a.readCount/a.count*100) : 0;
+  if(cartasFilter==='all'){
+    const groups=[
+      {key:'collected',  label:'Coleccionadas',    items:list.filter(a=>a.collected)},
+      {key:'inprogress', label:'En proceso',       items:list.filter(a=>a.inProgress)},
+      {key:'locked',     label:'Por desbloquear',  items:list.filter(a=>a.locked)}
+    ].filter(g=>g.items.length);
 
-    const titlesHTML=a.books.map(b=>{
-      const isRead = currentUser && myReadingStatus[b.id]==='read';
-      return `<li class="${isRead?'read':''}">${escHtml(b.title)}</li>`;
-    }).join('');
+    if(!groups.length){
+      grid.className='cartas-grid';
+      grid.innerHTML='<div class="cartas-empty">No hay autoras que coincidan con este filtro.</div>';
+      return;
+    }
 
-    const backContent = locked
-      ? `<div class="cc-back-head"><div class="cc-back-name">${escHtml(a.name)}</div>${cc_sealSVG(tier)}</div>
-         <div class="cc-locked-msg">${currentUser?'Aún no has leído ningún libro de esta autora. Marca uno como leído para desbloquear su carta.':'Inicia sesión y marca un libro suyo como leído para desbloquear esta carta.'}</div>
-         <div class="cc-flip-hint">Toca para volver</div>`
-      : `<div class="cc-back-head"><div class="cc-back-name">${escHtml(a.name)}</div>${cc_sealSVG(tier)}</div>
-         <ul class="cc-back-titles">${titlesHTML}</ul>
-         <div class="cc-back-progress-label"><span>Has leído</span><span>${a.readCount}/${a.count}</span></div>
-         <div class="cc-back-progress2"><div class="cc-back-progress2-fill" style="width:${readPct}%"></div></div>
-         ${nextThreshold ? `
-         <div class="cc-back-progress-label"><span>Rango: ${tierFor_cc_next(nextThreshold)}</span><span>${a.count}/${nextThreshold}</span></div>
-         <div class="cc-back-progress"><div class="cc-back-progress-fill" style="width:${pct}%"></div></div>
-         ` : `<div class="cc-back-progress-label"><span>Rango máximo alcanzado</span><span>✦</span></div>`}
-         <div class="cc-flip-hint">Toca para volver</div>`;
-
-    return `
-    <div class="cc-scene ${tier.key} ${locked?'locked':''}"
-         style="--tier-c1:${tier.c1};--tier-c2:${tier.c2};--tier-text:${tier.text};--tier-bgtop:${tier.bgtop}"
-         onclick="this.classList.toggle('flipped')">
-      <div class="cc-card">
-        <div class="cc-face cc-front">
-          <div class="cc-constellation">
-            ${cc_buildConstellation(rng, a.count, tier)}
-            <div class="cc-count">${a.count} libros</div>
-            <div class="cc-gem">${cc_gemSVG(tier)}</div>
-            ${locked?`<div class="cc-lock">${cc_lockSVG()}</div>`:''}
-          </div>
-          <div class="cc-namewrap">
-            <div class="cc-name">${escHtml(a.name)}</div>
-            <div class="cc-tier">${tier.label}</div>
-            ${a.collected?`<div class="cc-read-badge">${a.readCount}/${a.count} leídos</div>`:''}
-          </div>
-          <div class="cc-chips">
-            <span class="cc-chip">${escHtml(a.genre)}</span>
-            ${a.trope?`<span class="cc-chip">${escHtml(a.trope)}</span>`:''}
-          </div>
-          <div class="cc-covers">${coversHTML}</div>
+    grid.className='cartas-groups';
+    grid.innerHTML=groups.map(g=>`
+      <div class="cartas-group">
+        <div class="cartas-group-header">
+          <span class="cartas-group-header-label">${g.label}</span>
+          <span class="cartas-group-header-count">${g.items.length}</span>
         </div>
-        <div class="cc-face cc-back">${backContent}</div>
+        <div class="cartas-grid">${g.items.map(cc_cardHTML).join('')}</div>
       </div>
-    </div>`;
-  }).join('');
+    `).join('');
+    return;
+  }
+
+  let filtered=list;
+  if(cartasFilter==='collected') filtered=filtered.filter(a=>a.collected);
+  else if(cartasFilter==='inprogress') filtered=filtered.filter(a=>a.inProgress);
+  else if(cartasFilter==='locked') filtered=filtered.filter(a=>a.locked);
+
+  grid.className='cartas-grid';
+  if(!filtered.length){ grid.innerHTML='<div class="cartas-empty">No hay autoras que coincidan con este filtro.</div>'; return; }
+  grid.innerHTML=filtered.map(cc_cardHTML).join('');
 }
-function tierFor_cc_next(count){ return cc_tierFor(count).label; }
 
 async function openCartasModal(){
   if(!currentUser){ openAuthModal(); return; }
