@@ -5747,6 +5747,8 @@ async function openLogrosModal(){
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
   document.getElementById('shelfView').classList.remove('active');
+  document.getElementById('statsView').classList.remove('active');
+  document.getElementById('cartasView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('logrosView').classList.add('active');
   window.scrollTo({top:0});
@@ -5779,6 +5781,8 @@ async function openStatsModal(){
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
   document.getElementById('shelfView').classList.remove('active');
+  document.getElementById('logrosView').classList.remove('active');
+  document.getElementById('cartasView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('statsView').classList.add('active');
   window.scrollTo({top:0});
@@ -5993,6 +5997,8 @@ async function openCartasModal(){
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
   document.getElementById('shelfView').classList.remove('active');
+  document.getElementById('logrosView').classList.remove('active');
+  document.getElementById('statsView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('cartasView').classList.add('active');
   window.scrollTo({top:0});
