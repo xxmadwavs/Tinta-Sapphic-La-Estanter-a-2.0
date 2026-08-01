@@ -1723,6 +1723,11 @@ body.home-active .hero,body.home-active .main{display:none!important}
               <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País <span class="dd-count" id="cntPais" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
               <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_cultura','listPais',this.value)"></div><div class="dd-list" id="listPais"></div></div>
             </div>
+            <!-- País de origen (solo registradas) -->
+            <div class="fp-section collapsed auth-only" data-field="pais_origen">
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País de origen <span class="dd-count" id="cntPaisOrigen" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_origen','listPaisOrigen',this.value)"></div><div class="dd-list" id="listPaisOrigen"></div></div>
+            </div>
             <!-- Valoración (solo registradas) -->
             <div class="fp-section no-accordion auth-only" id="secValoracion" data-field="valoracion">
               <div class="fp-sec-label"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Valoración</span></div>
@@ -2265,9 +2270,9 @@ const VALID_TAGS={
   identidad:['Asexual','Bisexual','Butch','Femme','Grumpy','Ice Queen','Introvertida','Lesbiana','Masc','Nerd','Queer','Soft Butch','Sunshine']
 };
 const SPICY_MIN_VOTES=2;
-function emptyExcl(){return {genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[]};}
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
-const EXCL_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'];
+function emptyExcl(){return {genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[],pais_origen:[]};}
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+const EXCL_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'];
 let currentPage=1;
 const PAGE_SIZE=24;
 
@@ -2284,7 +2289,7 @@ function pushState(addEntry){
     if(activeSection) params.set('section',activeSection);
     if(currentPage>1) params.set('page',currentPage);
     if(filters.q) params.set('q',filters.q);
-    ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
+    ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'].forEach(k=>{
       if(filters[k].length) params.set(k,filters[k].join('|'));
       if(filters.excl[k]&&filters.excl[k].length) params.set('x_'+k,filters.excl[k].join('|'));
     });
@@ -2306,7 +2311,7 @@ function loadState(){
   if(params.get('cat')) activeMyrecCat=params.get('cat');
   if(params.get('page')) currentPage=parseInt(params.get('page'))||1;
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
-  ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura'].forEach(k=>{
+  ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'].forEach(k=>{
     if(params.get(k)) filters[k]=params.get(k).split('|');
     if(params.get('x_'+k)) filters.excl[k]=params.get('x_'+k).split('|');
   });
@@ -2367,7 +2372,7 @@ async function init(){
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
-  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k));
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k));
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
@@ -2510,7 +2515,7 @@ function uniqVals(key){
 const DD_MAP = {
   genres:'listGenre', subgenres:'listSubgenre', dinamicas:'listDinamica',
   tropes:'listTrope', characters:'listCharacter', authors:'listAuthor',
-  years:'listYear', sagas:'listSaga', edad:'listEdad', pais_cultura:'listPais'
+  years:'listYear', sagas:'listSaga', edad:'listEdad', pais_cultura:'listPais', pais_origen:'listPaisOrigen'
 };
 
 function buildDropdowns(){
@@ -2628,7 +2633,7 @@ function updateDDCounts(){
   }
   // Filtros que viven dentro del panel "+ Filtros"
   [['Subgenre','subgenres'],['Dinamica','dinamicas'],['Trope','tropes'],
-   ['Character','characters'],['Saga','sagas'],['Edad','edad'],['Pais','pais_cultura']].forEach(([k,fk])=>{
+   ['Character','characters'],['Saga','sagas'],['Edad','edad'],['Pais','pais_cultura'],['PaisOrigen','pais_origen']].forEach(([k,fk])=>{
     const cnt=document.getElementById('cnt'+k);
     const sec=document.querySelector('.fp-section[data-field="'+fk+'"]');
     if(!cnt) return;
@@ -2642,9 +2647,9 @@ function updateDDCounts(){
 // Badge del botón "+ Filtros" + puntos activos de Valoración/Adaptación/Páginas
 function updateMoreFiltersBadge(){
   const n=filters.subgenres.length+filters.dinamicas.length+filters.tropes.length+
-    filters.characters.length+filters.sagas.length+filters.edad.length+filters.pais_cultura.length+
+    filters.characters.length+filters.sagas.length+filters.edad.length+filters.pais_cultura.length+filters.pais_origen.length+
     filters.excl.subgenres.length+filters.excl.dinamicas.length+filters.excl.tropes.length+
-    filters.excl.characters.length+filters.excl.sagas.length+filters.excl.edad.length+filters.excl.pais_cultura.length+
+    filters.excl.characters.length+filters.excl.sagas.length+filters.excl.edad.length+filters.excl.pais_cultura.length+filters.excl.pais_origen.length+
     (filters.valoracion?1:0)+(filters.adaptacion==='serie'?1:0)+(filters.pages?1:0);
   const cnt=document.getElementById('cntMoreFilters');
   const btn=document.querySelector('#ddMoreFilters .dd-btn');
@@ -2670,9 +2675,9 @@ function toggleFpSection(labelEl){
 // (deja intactos Género, Autora, Año, Spicy y No leído, que están fuera)
 function clearMoreFilters(){
   filters.subgenres=[];filters.dinamicas=[];filters.tropes=[];filters.characters=[];
-  filters.sagas=[];filters.edad=[];filters.pais_cultura=[];
+  filters.sagas=[];filters.edad=[];filters.pais_cultura=[];filters.pais_origen=[];
   filters.excl.subgenres=[];filters.excl.dinamicas=[];filters.excl.tropes=[];filters.excl.characters=[];
-  filters.excl.sagas=[];filters.excl.edad=[];filters.excl.pais_cultura=[];
+  filters.excl.sagas=[];filters.excl.edad=[];filters.excl.pais_cultura=[];filters.excl.pais_origen=[];
   filters.valoracion=null;filters.adaptacion=null;filters.pages=null;
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
@@ -2772,7 +2777,7 @@ function renderActivePills(){
   const labelMap={
     genres:'Género', subgenres:'Temática', dinamicas:'Dinámica',
     tropes:'Tropo', characters:'Personaje', authors:'Autora',
-    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País'
+    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País', pais_origen:'País de origen'
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
@@ -2812,7 +2817,7 @@ function renderActivePills(){
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
   document.getElementById('searchInput').value='';
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
@@ -2847,6 +2852,7 @@ function applyFilters(resetPage=true){
   if(filters.sagas.length)     books=books.filter(b=>filters.sagas.includes(getSaga(b)));
   if(filters.edad.length)       books=books.filter(b=>filters.edad.every(e=>(b.edad||[]).includes(e)));
   if(filters.pais_cultura.length) books=books.filter(b=>filters.pais_cultura.every(p=>(b.pais_cultura||[]).includes(p)));
+  if(filters.pais_origen.length) books=books.filter(b=>filters.pais_origen.includes(b.pais_origen));
   // Exclusiones: fuera cualquier libro que tenga alguno de estos valores marcados como "no quiero verlo"
   const ex=filters.excl;
   if(ex.genres.length)     books=books.filter(b=>!ex.genres.some(g=>(b.genres||[]).includes(g)));
@@ -2859,6 +2865,7 @@ function applyFilters(resetPage=true){
   if(ex.sagas.length)      books=books.filter(b=>!ex.sagas.includes(getSaga(b)));
   if(ex.edad.length)       books=books.filter(b=>!ex.edad.some(e=>(b.edad||[]).includes(e)));
   if(ex.pais_cultura.length) books=books.filter(b=>!ex.pais_cultura.some(p=>(b.pais_cultura||[]).includes(p)));
+  if(ex.pais_origen.length) books=books.filter(b=>!ex.pais_origen.includes(b.pais_origen));
   if(filters.adaptacion==='serie') books=books.filter(b=>b.adaptacion==='Tiene serie');
   if(filters.pages){
     const r=PAGE_RANGES.find(x=>x.key===filters.pages);
@@ -4793,6 +4800,7 @@ function getFilteredBooksForRuleta() {
   if (filters.sagas.length)     books = books.filter(b => filters.sagas.includes(getSaga(b)));
   if (filters.edad.length)      books = books.filter(b => filters.edad.every(e => (b.edad||[]).includes(e)));
   if (filters.pais_cultura.length) books = books.filter(b => filters.pais_cultura.every(p => (b.pais_cultura||[]).includes(p)));
+  if (filters.pais_origen.length) books = books.filter(b => filters.pais_origen.includes(b.pais_origen));
   if (filters.adaptacion === 'serie') books = books.filter(b => b.adaptacion === 'Tiene serie');
   // section filter — la ruleta tiene su propio selector, independiente de la estantería
   if (ruletaSection !== 'all') {
@@ -4859,7 +4867,7 @@ function ruletaUpdateUI() {
   // Render active filter pills (from estantería)
   const pillsEl = document.getElementById('ruletaFiltrosPills');
   if (!pillsEl) return;
-  const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País' };
+  const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País', pais_origen:'País de origen' };
   const pills = [];
   Object.entries(filters).forEach(([key, arr]) => {
     if (key === 'q' || key === 'valoracion' || key === 'adaptacion' || key === 'pages' || key === 'leido') return;

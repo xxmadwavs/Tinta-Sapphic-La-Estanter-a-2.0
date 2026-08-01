@@ -127,6 +127,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .chip-opt.rose.active{background:var(--rose-soft);border-color:var(--rose);color:#e0909e}
 .chip-opt.teal.active{background:rgba(91,188,176,0.15);border-color:var(--teal);color:var(--teal)}
 .chip-opt.lavender.active{background:rgba(155,130,201,0.15);border-color:#9b82c9;color:#c4b0e8}
+.chip-opt.gold.active{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
+.chip-opt.chip-custom{border-style:dashed}
+.chip-custom-add{display:flex;gap:6px;margin-top:8px}
+.chip-custom-add input{flex:1;min-width:0;padding:6px 12px;border-radius:20px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12px;font-family:'Instrument Sans',sans-serif;outline:none}
+.chip-custom-add input:focus{border-color:var(--accent)}
+.chip-custom-btn{padding:6px 14px;border-radius:20px;border:1px dashed var(--border2);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;white-space:nowrap;transition:all .14s;flex-shrink:0}
+.chip-custom-btn:hover{border-color:var(--accent);color:var(--accent2)}
 
 /* Collapsible chip section */
 .chip-section{margin-bottom:1.1rem}
@@ -768,6 +775,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         </div>
 
         <div class="form-section">
+          <div class="form-section-title">País de origen <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(dónde se escribió/publicó, no la ambientación)</span></div>
+          <div class="chip-group" id="paisOrigenChips"></div>
+          <div class="chip-custom-add"><input type="text" id="customPaisOrigen" placeholder="Añadir otro país…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomSingle('pais_origen','customPaisOrigen','gold');}"><button type="button" class="chip-custom-btn" onclick="addCustomSingle('pais_origen','customPaisOrigen','gold')">+ Añadir</button></div>
+        </div>
+
+        <div class="form-section">
           <div class="form-section-title">Portada</div>
           <div class="cover-row">
             <div style="flex:1">
@@ -880,6 +893,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="genreChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customGenres" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('genres','customGenres',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('genres','customGenres',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -890,6 +904,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="subgenreChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customSubgenres" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('subgenres','customSubgenres',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('subgenres','customSubgenres',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -900,6 +915,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="dinamicaChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customDinamicas" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('dinamicas','customDinamicas',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('dinamicas','customDinamicas',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -910,6 +926,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="tropeChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customTropes" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('tropes','customTropes',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('tropes','customTropes',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -920,6 +937,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="characterChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customCharacters" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('characters','customCharacters',true);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('characters','customCharacters',true)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -930,6 +948,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="identidadChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customIdentidades" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('identidades','customIdentidades',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('identidades','customIdentidades',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -940,6 +959,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="edadChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customEdad" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('edad','customEdad',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('edad','customEdad',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -950,6 +970,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           </div>
           <div class="chip-section-body">
             <div class="chip-group" id="paisCulturaChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customPaisCultura" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('pais_cultura','customPaisCultura',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('pais_cultura','customPaisCultura',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -961,6 +982,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           <div class="chip-section-body">
             <p style="font-size:11px;color:var(--muted);margin-bottom:.6rem;line-height:1.5">Marca las advertencias relevantes para ayudar a las lectoras a tomar decisiones informadas.</p>
             <div class="chip-group" id="warningChips"></div>
+            <div class="chip-custom-add"><input type="text" id="customWarnings" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('content_warnings','customWarnings',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('content_warnings','customWarnings',false)">+ Añadir</button></div>
           </div>
         </div>
 
@@ -1096,6 +1118,15 @@ const PAIS_CULTURA = [
   'Ambientación nórdica','Cultura indígena','Mundo fantástico',
 ];
 
+// ── 8b. PAÍS DE ORIGEN (dónde se publicó / escribió originalmente el libro) ──
+const PAIS_ORIGEN = [
+  'Tailandia','Corea del Sur','Japón','China','Taiwán','Vietnam','Filipinas',
+  'España','Estados Unidos','Reino Unido','Canadá','Australia',
+  'Francia','Alemania','Italia','Países Bajos',
+  'Brasil','México','Argentina','Chile','Colombia',
+  'India','Otro',
+];
+
 // ── 9. ADVERTENCIAS DE CONTENIDO ─────────────────────────────────────────
 const CONTENT_WARNINGS = [
   'Abandono',
@@ -1187,7 +1218,7 @@ const CONTENT_WARNINGS = [
 // Books stored in memory (from JSON), votes in Supabase
 let books = [], editingId = null;
 let adminFilterSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian'
-let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],content_warnings:[]};
+let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:null,content_warnings:[]};
 let authors = []; // array of strings
 let editions = []; // array of {lang, store, url}
 
@@ -1418,6 +1449,7 @@ function openEditModal(id) {
   sel.tropes      =[...(b.tropes||[])];
   sel.edad        =[...(b.edad||[])];
   sel.pais_cultura=[...(b.pais_cultura||[])];
+  sel.pais_origen=b.pais_origen||null;
   sel.content_warnings=[...(b.content_warnings||[])];
   sel.spicy     =b.spicy||0;
   sel.formato   =b.formato||null;
@@ -1453,7 +1485,7 @@ function clearForm() {
   document.getElementById('dupWarning').classList.remove('show');
   document.getElementById('dupOk').classList.remove('show');
   authors=[];editions=[];
-  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],content_warnings:[]};
+  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:null,content_warnings:[]};
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
   document.getElementById('fCoverFile').value='';
@@ -1622,6 +1654,7 @@ function renderAllChips() {
   renderChipGroup('warningChips',CONTENT_WARNINGS,'content_warnings',false);
   renderSingleChips('formatoChips',    FORMATOS,    'formato',    'teal');
   renderSingleChips('adaptacionChips', ADAPTACIONES,'adaptacion', 'lavender');
+  renderSingleChips('paisOrigenChips', PAIS_ORIGEN,'pais_origen', 'gold');
   renderSpicy();
   // Update section badges
   [['badge-genres','genres'],['badge-subgenres','subgenres'],['badge-dinamicas','dinamicas'],
@@ -1636,17 +1669,23 @@ function renderAllChips() {
 }
 
 function renderChipGroup(cId,list,key,isRose){
-  document.getElementById(cId).innerHTML=list.map(v=>{
+  const custom=(sel[key]||[]).filter(v=>!list.includes(v));
+  const allVals=[...list,...custom];
+  document.getElementById(cId).innerHTML=allVals.map(v=>{
     const active=sel[key].includes(v);
-    const cls=active?(isRose?'chip-opt rose active':'chip-opt active'):'chip-opt';
-    return `<button class="${cls}" onclick="toggleChip('${key}','${v.replace(/'/g,"\\'")}',${isRose})">${v}</button>`;
+    const isCustom=!list.includes(v);
+    const cls=(active?(isRose?'chip-opt rose active':'chip-opt active'):'chip-opt')+(isCustom?' chip-custom':'');
+    return `<button class="${cls}" onclick="toggleChip('${key}','${v.replace(/'/g,"\\'")}',${isRose})">${isCustom?'✎ ':''}${v}</button>`;
   }).join('');
 }
 
 function renderSingleChips(cId,list,key,color){
-  document.getElementById(cId).innerHTML=list.map(v=>{
+  const custom=(sel[key]&&!list.includes(sel[key]))?[sel[key]]:[];
+  const allVals=[...list,...custom];
+  document.getElementById(cId).innerHTML=allVals.map(v=>{
     const active=sel[key]===v;
-    return `<button class="chip-opt${active?' active '+color:''}" onclick="toggleSingle('${key}','${v.replace(/'/g,"\\'")}','${color}')">${v}</button>`;
+    const isCustom=!list.includes(v);
+    return `<button class="chip-opt${active?' active '+color:''}${isCustom?' chip-custom':''}" onclick="toggleSingle('${key}','${v.replace(/'/g,"\\'")}','${color}')">${isCustom?'✎ ':''}${v}</button>`;
   }).join('');
 }
 
@@ -1654,6 +1693,27 @@ function toggleSingle(key,val){
   sel[key]=sel[key]===val?null:val;
   if(key==='formato') updateSagaSection();
   renderAllChips();
+}
+
+function addCustomChip(key,inputId,isRose){
+  const inp=document.getElementById(inputId);
+  const v=inp.value.trim();
+  if(!v) return;
+  if(!sel[key]) sel[key]=[];
+  if(!sel[key].includes(v)) sel[key].push(v);
+  inp.value='';
+  renderAllChips();
+  inp.focus();
+}
+
+function addCustomSingle(key,inputId,color){
+  const inp=document.getElementById(inputId);
+  const v=inp.value.trim();
+  if(!v) return;
+  sel[key]=v;
+  inp.value='';
+  renderAllChips();
+  if(key==='formato') updateSagaSection();
 }
 
 function updateSagaSection(){
@@ -1716,6 +1776,7 @@ function saveBook() {
     tropes:      [...sel.tropes],
     edad:        [...(sel.edad||[])],
     pais_cultura:[...(sel.pais_cultura||[])],
+    pais_origen:sel.pais_origen||null,
     ambientacion:[...(sel.ambientacion||[])],
     content_warnings:[...(sel.content_warnings||[])],
     spicy:     sel.spicy===null?null:sel.spicy,
