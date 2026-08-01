@@ -3663,6 +3663,18 @@ function copyTabLink(){
 /* ── TABS ── */
 let activeTab='estanteria';
 let activeMyrecCat=null;
+// Cierra todas las vistas especiales (home, estantería, logros, estadísticas, cartas)
+// para que abrir una nueva vista nunca deje otra apilada debajo.
+function closeAllSpecialViews(){
+  document.getElementById('homeView')?.classList.remove('active');
+  document.body.classList.remove('home-active');
+  document.getElementById('homeNavBtn')?.classList.remove('active');
+  document.getElementById('shelfView')?.classList.remove('active');
+  document.getElementById('logrosView')?.classList.remove('active');
+  document.getElementById('statsView')?.classList.remove('active');
+  document.getElementById('cartasView')?.classList.remove('active');
+}
+
 function switchTab(tab, silent){
   activeTab=tab;
   if(!silent) activeMyrecCat=null;
@@ -3706,6 +3718,7 @@ function switchTab(tab, silent){
 /* ── HOME VIEW ── */
 function showHome(){
   sessionStorage.setItem('ts_active_tab', 'home');
+  closeAllSpecialViews();
   document.getElementById('homeView').classList.add('active');
   document.body.classList.add('home-active');
   document.getElementById('homeNavBtn').classList.add('active');
@@ -3716,9 +3729,7 @@ function showHome(){
 function showCatalog(tab){
   const t = tab || 'estanteria';
   sessionStorage.setItem('ts_active_tab', t);
-  document.getElementById('homeView').classList.remove('active');
-  document.body.classList.remove('home-active');
-  document.getElementById('homeNavBtn').classList.remove('active');
+  closeAllSpecialViews();
   switchTab(t);
 }
 
@@ -5293,6 +5304,7 @@ function buildCardShelfBtnsHTML(bookId){
 /* ── Vista estantería ── */
 function openShelf(filter,silent){
   shelfFilter=filter||shelfFilter||'all';
+  closeAllSpecialViews();
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('shelfView').classList.add('active');
   document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
