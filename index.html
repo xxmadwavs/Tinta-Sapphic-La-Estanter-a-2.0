@@ -3679,6 +3679,9 @@ function switchTab(tab, silent){
   activeTab=tab;
   if(!silent) activeMyrecCat=null;
   sessionStorage.setItem('ts_active_tab', tab);
+  // Restaura cualquier hijo directo de <main> (p.ej. la barra de pestañas)
+  // que se haya quedado oculto al pasar por Logros/Estadísticas/Cartas.
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='');
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
   document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
   document.getElementById('tabSafi').classList.toggle('active',tab==='safi');
@@ -5317,7 +5320,7 @@ function openShelf(filter,silent){
 
 function closeShelf(silent){
   document.getElementById('shelfView').classList.remove('active');
-  document.querySelectorAll('main > *').forEach(el=>el.style.display='');
+  switchTab(activeTab, true);
   if(!silent) shelfUrlClear(true);
 }
 
