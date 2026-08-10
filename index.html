@@ -2148,6 +2148,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <div class="shelf-main-title">Mis logros</div>
     </div>
     <p class="logros-modal-sub">Cada insignia marca un paso en tu camino como lectora: tus valoraciones, tus casillas de bingo, tu paso por la comunidad. Línea y bingo quedan guardados por edición para siempre — si los consigues en una temporada pasada, ahí se quedan, aunque llegue una nueva.</p>
+    <div class="logros-section-label">Logros de lectura</div>
+    <div class="logros-general-grid" id="logrosLecturaGrid"><div class="logros-empty">Cargando…</div></div>
     <div class="logros-section-label">Insignias</div>
     <div class="logros-general-grid" id="logrosGeneralGrid"><div class="logros-empty">Cargando…</div></div>
     <div class="logros-section-label">Bingo por edición</div>
@@ -5735,19 +5737,20 @@ async function checkNewLogros(){
 
 function renderLogrosGeneralGrid(){
   const grid=document.getElementById('logrosGeneralGrid');
-  if(!grid) return;
-  if(!logrosCatalog.length){
-    grid.innerHTML='<div class="logros-empty">Todavía no hay insignias disponibles.</div>';
-    return;
-  }
-  grid.innerHTML=logrosCatalog.map(l=>{
+  const gridLectura=document.getElementById('logrosLecturaGrid');
+  if(!grid||!gridLectura) return;
+  const badgeHtml=l=>{
     const got=userLogros.some(ul=>ul.logro_id===l.id);
     const tip=got?(l.descripcion||l.nombre):'Aún no conseguido';
     return `<div class="logros-general-badge ${got?'':'locked'}" title="${escHtml(tip)}">
       <div class="logros-general-badge-imgbox"><img src="assets/logros/${l.icono}" alt="${escHtml(l.nombre)}"></div>
       <div class="logros-general-badge-name">${escHtml(l.nombre)}</div>
     </div>`;
-  }).join('');
+  };
+  const lectura=logrosCatalog.filter(l=>l.categoria==='lectura');
+  const resto=logrosCatalog.filter(l=>l.categoria!=='lectura');
+  gridLectura.innerHTML=lectura.length?lectura.map(badgeHtml).join(''):'<div class="logros-empty">Todavía no hay insignias de lectura disponibles.</div>';
+  grid.innerHTML=resto.length?resto.map(badgeHtml).join(''):'<div class="logros-empty">Todavía no hay insignias disponibles.</div>';
 }
 
 let _logrosPrevState=null;
@@ -5767,6 +5770,7 @@ async function openLogrosModal(){
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('logrosView').classList.add('active');
   window.scrollTo({top:0});
+  document.getElementById('logrosLecturaGrid').innerHTML='<div class="logros-empty">Cargando…</div>';
   document.getElementById('logrosGeneralGrid').innerHTML='<div class="logros-empty">Cargando…</div>';
   document.getElementById('logrosModalBody').innerHTML='<div class="logros-empty">Cargando…</div>';
   await Promise.all([bingoLoadHitos(), bingoLoadAllChallenges(), loadLogrosCatalog(), loadUserLogros()]);
