@@ -525,8 +525,45 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .modal-title{font-family:var(--font-display);font-size:2rem;font-weight:600;line-height:1.1;margin-bottom:.1rem}
 .modal-title-row{margin-bottom:0}
 .modal-saga-sub{margin-bottom:.2rem}
+.modal-saga-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 .modal-saga-link{background:none;border:none;padding:0;font-size:12.5px;color:var(--muted);font-family:var(--font-body);cursor:pointer;transition:color .15s;font-style:italic}
 .modal-saga-link:hover{color:var(--teal);text-decoration:underline}
+.saga-map-trigger{background:none;border:1px solid var(--border2);border-radius:20px;padding:2px 10px 2px 8px;font-size:10.5px;color:var(--teal);font-family:var(--font-body);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all .15s;white-space:nowrap}
+.saga-map-trigger:hover{background:rgba(91,188,176,0.12);border-color:var(--teal)}
+
+/* ── SAGA MAP (constelación de orden de lectura) ── */
+.sagamap-modal{max-width:480px;overflow:visible}
+.sagamap-body{padding:1.7rem 1.3rem 2rem}
+.sagamap-header{text-align:center;margin-bottom:.3rem}
+.sagamap-eyebrow{font-size:9.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.sagamap-title{font-family:var(--font-display);font-size:1.7rem;font-weight:300;margin:.2rem 0 .15rem}
+.sagamap-title em{font-style:italic;font-weight:600;color:var(--accent)}
+.sagamap-sub{font-size:11.5px;color:var(--muted)}
+.sagamap-legend{display:flex;gap:1rem;justify-content:center;margin:.8rem 0 1.3rem;font-size:10px;color:var(--muted)}
+.sagamap-legend span{display:inline-flex;align-items:center;gap:5px}
+.sm-leg-line{width:16px;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal));display:inline-block}
+.sm-leg-line.dashed{background:none;border-top:2px dashed var(--gold)}
+.sagamap-map{position:relative;width:100%}
+.sagamap-map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.sagamap-map svg path{fill:none;stroke-width:2}
+.sm-path-main{stroke:url(#smLineGrad)}
+.sm-path-branch{stroke:var(--gold);stroke-dasharray:4 5;opacity:.7}
+.sm-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.3rem;cursor:pointer;z-index:2;width:92px}
+.sm-node-ring{width:58px;height:58px;border-radius:50%;padding:2.5px;background:conic-gradient(from 180deg,var(--accent),var(--rose),var(--teal),var(--accent));box-shadow:0 0 16px rgba(192,111,196,.25);transition:transform .15s,box-shadow .15s}
+.sm-node.branch .sm-node-ring{width:42px;height:42px;background:conic-gradient(from 180deg,var(--gold),rgba(201,151,90,.4));box-shadow:0 0 12px rgba(201,151,90,.2)}
+.sm-node-ring-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid var(--surface);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.sm-node-ring-inner img{width:100%;height:100%;object-fit:cover;display:block}
+.sm-node:hover .sm-node-ring,.sm-node.active .sm-node-ring{transform:scale(1.08);box-shadow:0 0 22px rgba(192,111,196,.45)}
+.sm-node-num{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:11.5px;color:var(--accent2);background:rgba(14,11,16,.8);border:1px solid var(--border2);border-radius:20px;padding:1px 7px}
+.sm-node.branch .sm-node-num{color:var(--gold);font-size:10px}
+.sm-node-label{font-size:9.5px;color:var(--muted);text-align:center;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:600px){
+  .sm-node{width:76px}
+  .sm-node-ring{width:50px;height:50px}
+  .sm-node.branch .sm-node-ring{width:37px;height:37px}
+  .sm-node-label{font-size:9px}
+  .sagamap-body{padding:1.4rem 1rem 1.8rem}
+}
 .modal-author{font-size:13px;color:var(--muted);margin-bottom:1rem}
 .modal-author-link{background:none;border:none;font:inherit;color:var(--muted);cursor:pointer;padding:0;transition:color .15s}
 .modal-author-link:hover{color:var(--accent2);text-decoration:underline}
@@ -1476,6 +1513,45 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-empty-icon{font-size:2.5rem;opacity:.5}
 .shelf-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
 @media(max-width:700px){.shelf-layout{grid-template-columns:1fr}.shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}.shelf-sidebar-header{padding:0 1rem .75rem}.shelf-sidebar-section{padding:.5rem 1rem .3rem}.shelf-main{padding:1.25rem 1rem 3rem}#logrosView{padding:1.25rem 1rem 3rem}#statsView{padding:1.25rem 1rem 3rem}}
+
+/* ══════════════════════════════════════════════════════════════
+   FIX MÓVIL — ventanas que no se cortan + proporciones uniformes
+   Este bloque va al final a propósito, para ganar en la cascada
+   a las reglas dispersas de arriba sin tener que tocarlas todas.
+   ══════════════════════════════════════════════════════════════ */
+@media(max-width:600px){
+
+  /* -- Modales: siempre dentro de la pantalla y con scroll propio -- */
+  .modal-bg,.info-modal-bg{padding:.6rem .5rem;align-items:flex-start}
+  .modal,.info-modal{
+    max-width:100%;
+    max-height:calc(100vh - 1.2rem);
+    max-height:calc(100dvh - 1.2rem);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:16px;
+  }
+  .modal-cover-strip,.modal-cover-ph{border-radius:16px 16px 0 0}
+  .info-modal-body{max-height:48vh;max-height:48dvh}
+  .hito-modal-bg{align-items:flex-start;padding:2.5rem .75rem;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .hito-card{margin:auto;width:100%;max-width:260px}
+
+  /* -- El modal de ficha de libro: mismo tamaño de letra que el resto -- */
+  .modal-title{font-size:1.55rem;line-height:1.1}
+  .modal-body{padding:1.1rem 1.1rem 1.5rem}
+  .modal-synopsis{font-size:12.5px}
+  .modal-meta-grid{gap:.5rem .6rem;margin-bottom:1.1rem}
+  .modal-tags{margin-bottom:.9rem}
+
+  /* -- Tarjetas/cajas que solían salirse del ancho o verse desiguales -- */
+  .bingo-login-card{padding:1.6rem 1.1rem;max-width:100%}
+  .filter-shell{border-radius:14px}
+  .info-highlight{padding:.8rem 1rem;font-size:12.5px}
+
+  /* -- Nada debe generar scroll horizontal -- */
+  .main,.hero{overflow-x:hidden}
+  img{max-width:100%}
+}
 </style>
 </head>
 <body>
@@ -2080,6 +2156,14 @@ body.home-active .hero,body.home-active .main{display:none!important}
     <button class="modal-close" onclick="closeBookModal()">✕</button>
     <button class="modal-share-btn" id="modalShareBtn" onclick="shareBook()" title="Copiar enlace a esta ficha">🔗</button>
     <div id="bookModalContent"></div>
+  </div>
+</div>
+
+<!-- SAGA MAP MODAL (constelación de orden de lectura) -->
+<div class="modal-bg" id="sagaModal">
+  <div class="modal sagamap-modal">
+    <button class="modal-close" onclick="closeSagaModal()">✕</button>
+    <div class="sagamap-body" id="sagaMapBody"></div>
   </div>
 </div>
 
@@ -3043,8 +3127,12 @@ function renderBookModal(){
   const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
   const sagaName=b.sagaName||(b.formato&&['Saga','Dúo','Trilogía'].includes(b.formato)?getSaga(b):null);
   const sagaNumStr=b.sagaNum!=null?' #'+b.sagaNum:'';
+  const sagaSiblingCount=b.sagaName?allBooks.filter(x=>x.sagaName===b.sagaName&&x.sagaNum!=null).length:0;
+  const sagaMapBtn=sagaSiblingCount>1
+    ?`<button class="saga-map-trigger" onclick="openSagaMap(decodeURIComponent('${encodeURIComponent(b.sagaName)}'))">✦ orden de lectura</button>`
+    :'';
   const sagaSubtitle=sagaName
-    ?`<p class="modal-saga-sub"><button class="modal-saga-link" onclick="filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(sagaName)}'))">${sagaName}${sagaNumStr}</button></p>`
+    ?`<p class="modal-saga-sub"><span class="modal-saga-row"><button class="modal-saga-link" onclick="filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(sagaName)}'))">${sagaName}${sagaNumStr}</button>${sagaMapBtn}</span></p>`
     :'';
 
   document.getElementById('bookModalContent').innerHTML=`${coverEl}
@@ -3174,6 +3262,77 @@ function filterBySagaFromModal(sagaName){
   currentPage=1;
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── SAGA MAP: constelación de orden de lectura de una saga ── */
+function openSagaMap(sagaName){
+  const books=allBooks.filter(b=>b.sagaName===sagaName&&b.sagaNum!=null).sort((a,b)=>a.sagaNum-b.sagaNum);
+  if(books.length<2){ filterBySagaFromModal(sagaName); return; } // fallback si no hay suficientes datos
+  closeBookModal();
+  renderSagaMap(sagaName,books);
+  document.getElementById('sagaModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSagaModal(){
+  document.getElementById('sagaModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('sagaModal').addEventListener('click',e=>{if(e.target.id==='sagaModal')closeSagaModal();});
+
+function renderSagaMap(sagaName,books){
+  // camino principal = números enteros (1,2,3…); "ramas" = especiales/precuelas (7.5, 0.5…)
+  let mainChain=books.filter(b=>Number.isInteger(b.sagaNum));
+  let branches=books.filter(b=>!Number.isInteger(b.sagaNum));
+  if(mainChain.length===0){ mainChain=books; branches=[]; } // si la saga es toda decimales, no separamos ramas
+
+  const xPattern=[50,78,24,68,18,60,32,74,14,54,86,10,42,64];
+  mainChain.forEach((b,i)=>{ b._x=xPattern[i%xPattern.length]; b._y=55+i*95; });
+  branches.forEach(b=>{
+    let attach=mainChain[0];
+    mainChain.forEach(m=>{ if(m.sagaNum<=b.sagaNum) attach=m; });
+    b._attach=attach;
+    b._x=Math.min(90,Math.max(10,attach._x+(attach._x<50?28:-28)));
+    b._y=attach._y+50;
+  });
+
+  const allY=[...mainChain,...branches].map(b=>b._y);
+  const H=Math.max(...allY)+55;
+
+  const coverHtml=b=>b.cover?`<img src="${b.cover}" alt="">`:'📖';
+  const nodeHtml=b=>`<div class="sm-node${b._attach?' branch':''}" style="left:${b._x}%;top:${b._y}px" onclick="openSagaBook('${b.id}')">
+      <div class="sm-node-ring"><div class="sm-node-ring-inner">${coverHtml(b)}</div></div>
+      <div class="sm-node-num">${b.sagaNum}</div>
+      <div class="sm-node-label">${escHtml(b.title)}</div>
+    </div>`;
+  const curve=(a,b)=>{const mx=(a._x+b._x)/2,my=(a._y+b._y)/2;return `M ${a._x} ${a._y} Q ${mx} ${my} ${b._x} ${b._y}`;};
+
+  let linesSvg='';
+  for(let i=0;i<mainChain.length-1;i++){
+    linesSvg+=`<path class="sm-path-main" d="${curve(mainChain[i],mainChain[i+1])}" vector-effect="non-scaling-stroke"/>`;
+  }
+  branches.forEach(b=>{
+    linesSvg+=`<path class="sm-path-branch" d="${curve(b._attach,b)}" vector-effect="non-scaling-stroke"/>`;
+  });
+
+  document.getElementById('sagaMapBody').innerHTML=`
+    <div class="sagamap-header">
+      <div class="sagamap-eyebrow">Orden de lectura</div>
+      <h2 class="sagamap-title">Saga <em>${escHtml(sagaName)}</em></h2>
+      <div class="sagamap-sub">${books.length} libro${books.length!==1?'s':''} · toca cada estrella para ver la ficha</div>
+    </div>
+    ${branches.length?`<div class="sagamap-legend"><span><i class="sm-leg-line"></i> orden principal</span><span><i class="sm-leg-line dashed"></i> especial / precuela</span></div>`:''}
+    <div class="sagamap-map" style="height:${H}px">
+      <svg viewBox="0 0 100 ${H}" preserveAspectRatio="none">
+        <defs><linearGradient id="smLineGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c06fc4"/><stop offset="100%" stop-color="#5bbcb0"/></linearGradient></defs>
+        ${linesSvg}
+      </svg>
+      ${mainChain.map(nodeHtml).join('')}
+      ${branches.map(nodeHtml).join('')}
+    </div>`;
+}
+function openSagaBook(id){
+  closeSagaModal();
+  openBook(id);
 }
 function filterByAuthorFromModal(author){
   closeBookModal();
