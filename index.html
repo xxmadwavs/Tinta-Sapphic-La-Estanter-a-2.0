@@ -532,37 +532,38 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .saga-map-trigger:hover{background:rgba(91,188,176,0.12);border-color:var(--teal)}
 
 /* ── SAGA MAP (constelación de orden de lectura) ── */
-.sagamap-modal{max-width:480px;overflow:visible}
-.sagamap-body{padding:1.7rem 1.3rem 2rem}
+.sagamap-modal{max-width:600px;overflow:visible}
+.sagamap-body{padding:1.8rem 1.5rem 2.2rem}
 .sagamap-header{text-align:center;margin-bottom:.3rem}
-.sagamap-eyebrow{font-size:9.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.sagamap-title{font-family:var(--font-display);font-size:1.7rem;font-weight:300;margin:.2rem 0 .15rem}
+.sagamap-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.sagamap-title{font-family:var(--font-display);font-size:1.9rem;font-weight:300;margin:.2rem 0 .15rem}
 .sagamap-title em{font-style:italic;font-weight:600;color:var(--accent)}
-.sagamap-sub{font-size:11.5px;color:var(--muted)}
-.sagamap-legend{display:flex;gap:1rem;justify-content:center;margin:.8rem 0 1.3rem;font-size:10px;color:var(--muted)}
-.sagamap-legend span{display:inline-flex;align-items:center;gap:5px}
-.sm-leg-line{width:16px;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal));display:inline-block}
+.sagamap-sub{font-size:12.5px;color:var(--muted)}
+.sagamap-legend{display:flex;gap:1.2rem;justify-content:center;margin:.9rem 0 1.4rem;font-size:11px;color:var(--muted)}
+.sagamap-legend span{display:inline-flex;align-items:center;gap:6px}
+.sm-leg-line{width:18px;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal));display:inline-block}
 .sm-leg-line.dashed{background:none;border-top:2px dashed var(--gold)}
 .sagamap-map{position:relative;width:100%}
 .sagamap-map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.sagamap-map svg path{fill:none;stroke-width:2}
+.sagamap-map svg path{fill:none;stroke-width:2.5}
 .sm-path-main{stroke:url(#smLineGrad)}
-.sm-path-branch{stroke:var(--gold);stroke-dasharray:4 5;opacity:.7}
-.sm-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.3rem;cursor:pointer;z-index:2;width:92px}
-.sm-node-ring{width:58px;height:58px;border-radius:50%;padding:2.5px;background:conic-gradient(from 180deg,var(--accent),var(--rose),var(--teal),var(--accent));box-shadow:0 0 16px rgba(192,111,196,.25);transition:transform .15s,box-shadow .15s}
-.sm-node.branch .sm-node-ring{width:42px;height:42px;background:conic-gradient(from 180deg,var(--gold),rgba(201,151,90,.4));box-shadow:0 0 12px rgba(201,151,90,.2)}
-.sm-node-ring-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid var(--surface);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.sm-path-branch{stroke:var(--gold);stroke-dasharray:5 6;opacity:.75}
+.sm-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;z-index:2;width:128px}
+.sm-node-ring{width:84px;height:84px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,var(--accent),var(--rose),var(--teal),var(--accent));box-shadow:0 0 20px rgba(192,111,196,.3);transition:transform .15s,box-shadow .15s}
+.sm-node.branch .sm-node-ring{width:62px;height:62px;background:conic-gradient(from 180deg,var(--gold),rgba(201,151,90,.4));box-shadow:0 0 15px rgba(201,151,90,.22)}
+.sm-node-ring-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid var(--surface);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:1.6rem}
 .sm-node-ring-inner img{width:100%;height:100%;object-fit:cover;display:block}
-.sm-node:hover .sm-node-ring,.sm-node.active .sm-node-ring{transform:scale(1.08);box-shadow:0 0 22px rgba(192,111,196,.45)}
-.sm-node-num{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:11.5px;color:var(--accent2);background:rgba(14,11,16,.8);border:1px solid var(--border2);border-radius:20px;padding:1px 7px}
-.sm-node.branch .sm-node-num{color:var(--gold);font-size:10px}
-.sm-node-label{font-size:9.5px;color:var(--muted);text-align:center;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sm-node:hover .sm-node-ring,.sm-node.active .sm-node-ring{transform:scale(1.08);box-shadow:0 0 26px rgba(192,111,196,.5)}
+.sm-node-num{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:13.5px;color:var(--accent2);background:rgba(14,11,16,.85);border:1px solid var(--border2);border-radius:20px;padding:2px 9px}
+.sm-node.branch .sm-node-num{color:var(--gold);font-size:12px}
+.sm-node-label{font-size:11.5px;color:var(--muted);text-align:center;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media(max-width:600px){
-  .sm-node{width:76px}
-  .sm-node-ring{width:50px;height:50px}
-  .sm-node.branch .sm-node-ring{width:37px;height:37px}
-  .sm-node-label{font-size:9px}
-  .sagamap-body{padding:1.4rem 1rem 1.8rem}
+  .sm-node{width:100px}
+  .sm-node-ring{width:68px;height:68px}
+  .sm-node.branch .sm-node-ring{width:50px;height:50px}
+  .sm-node-label{font-size:10.5px}
+  .sagamap-title{font-size:1.6rem}
+  .sagamap-body{padding:1.5rem 1rem 1.9rem}
 }
 .modal-author{font-size:13px;color:var(--muted);margin-bottom:1rem}
 .modal-author-link{background:none;border:none;font:inherit;color:var(--muted);cursor:pointer;padding:0;transition:color .15s}
@@ -1329,6 +1330,9 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .logros-general-badge.locked img{opacity:.3;filter:grayscale(1)}
 .logros-general-badge-name{font-size:12px;font-weight:500;color:var(--text);line-height:1.35}
 .logros-general-badge.locked .logros-general-badge-name{color:var(--muted);opacity:.7}
+.logros-badge-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:2rem;opacity:.55}
+.logros-general-badge.locked .logros-badge-fallback{opacity:.22;filter:grayscale(1)}
+.hito-pin-fallback{display:none;font-size:3.4rem;text-align:center;line-height:1;filter:drop-shadow(0 10px 24px rgba(0,0,0,.55))}
 @media(max-width:600px){
   .logros-general-grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:.6rem}
   .logros-general-badge{padding:1.1rem .6rem .9rem}
@@ -2305,7 +2309,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
     <div class="hito-halo"></div>
     <div class="hito-sweep" id="hitoSweep"></div>
     <div class="hito-confetti" id="hitoConfetti"></div>
-    <div class="hito-pin-wrap"><img id="hitoPinImg" src="" alt=""></div>
+    <div class="hito-pin-wrap"><img id="hitoPinImg" src="" alt="" onerror="this.style.display='none';document.getElementById('hitoPinFallback').style.display='flex'"><div id="hitoPinFallback" class="hito-pin-fallback">🏅</div></div>
     <h3 id="hitoTitle"></h3>
     <p id="hitoSubtitle"></p>
   </div>
@@ -3285,18 +3289,31 @@ function renderSagaMap(sagaName,books){
   let branches=books.filter(b=>!Number.isInteger(b.sagaNum));
   if(mainChain.length===0){ mainChain=books; branches=[]; } // si la saga es toda decimales, no separamos ramas
 
-  const xPattern=[50,78,24,68,18,60,32,74,14,54,86,10,42,64];
-  mainChain.forEach((b,i)=>{ b._x=xPattern[i%xPattern.length]; b._y=55+i*95; });
+  const xPattern=[50,78,22,70,16,58,30,74,12,54,86,8,42,64];
+  mainChain.forEach((b,i)=>{ b._x=xPattern[i%xPattern.length]; b._y=60+i*130; });
+
+  // agrupamos las ramas por a qué libro principal "cuelgan", para poder
+  // separarlas cuando dos especiales caen sobre el mismo hueco (p.ej. 0.5 y 1.5
+  // ambos antes del libro 1) y no se dibujen una encima de otra.
+  const groups=new Map();
   branches.forEach(b=>{
     let attach=mainChain[0];
     mainChain.forEach(m=>{ if(m.sagaNum<=b.sagaNum) attach=m; });
     b._attach=attach;
-    b._x=Math.min(90,Math.max(10,attach._x+(attach._x<50?28:-28)));
-    b._y=attach._y+50;
+    if(!groups.has(attach)) groups.set(attach,[]);
+    groups.get(attach).push(b);
+  });
+  groups.forEach(group=>{
+    group.forEach((b,gi)=>{
+      const dir=gi%2===0?1:-1;
+      const step=Math.floor(gi/2);
+      b._x=Math.min(92,Math.max(8,b._attach._x+dir*(34+step*8)));
+      b._y=b._attach._y+62+step*72;
+    });
   });
 
   const allY=[...mainChain,...branches].map(b=>b._y);
-  const H=Math.max(...allY)+55;
+  const H=Math.max(...allY)+70;
 
   const coverHtml=b=>b.cover?`<img src="${b.cover}" alt="">`:'📖';
   const nodeHtml=b=>`<div class="sm-node${b._attach?' branch':''}" style="left:${b._x}%;top:${b._y}px" onclick="openSagaBook('${b.id}')">
@@ -5736,12 +5753,20 @@ const HITO_CONFIG={
   }
 };
 
+function resetHitoPinImg(src){
+  const img=document.getElementById('hitoPinImg');
+  const fb=document.getElementById('hitoPinFallback');
+  img.style.display='';
+  fb.style.display='none';
+  img.src=src;
+}
+
 function showHitoModal(tipo){
   const cfg=HITO_CONFIG[tipo];
   const card=document.getElementById('hitoCard');
   card.className='hito-card '+tipo; // resetea clases
   document.getElementById('hitoRibbon').textContent=cfg.ribbon;
-  document.getElementById('hitoPinImg').src=cfg.img;
+  resetHitoPinImg(cfg.img);
   document.getElementById('hitoTitle').textContent=cfg.title;
   document.getElementById('hitoSubtitle').textContent=cfg.subtitle;
 
@@ -5851,7 +5876,7 @@ function showLogroHitoModal(logro){
   const card=document.getElementById('hitoCard');
   card.className='hito-card logro';
   document.getElementById('hitoRibbon').textContent='🏅 ¡Nuevo logro!';
-  document.getElementById('hitoPinImg').src='assets/logros/'+logro.icono;
+  resetHitoPinImg('assets/logros/'+logro.icono);
   document.getElementById('hitoTitle').textContent=logro.nombre;
   document.getElementById('hitoSubtitle').textContent=logro.descripcion||'Insignia conseguida';
   document.getElementById('hitoConfetti').innerHTML='';
@@ -5902,7 +5927,7 @@ function renderLogrosGeneralGrid(){
     const got=userLogros.some(ul=>ul.logro_id===l.id);
     const tip=got?(l.descripcion||l.nombre):'Aún no conseguido';
     return `<div class="logros-general-badge ${got?'':'locked'}" title="${escHtml(tip)}">
-      <div class="logros-general-badge-imgbox"><img src="assets/logros/${l.icono}" alt="${escHtml(l.nombre)}"></div>
+      <div class="logros-general-badge-imgbox"><img src="assets/logros/${l.icono}" alt="${escHtml(l.nombre)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logros-badge-fallback">🏅</span></div>
       <div class="logros-general-badge-name">${escHtml(l.nombre)}</div>
     </div>`;
   };
