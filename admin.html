@@ -407,6 +407,72 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .main-panel{display:none}
 .main-panel.active{display:block}
 
+/* ── TOP 10 (admin) ── */
+.top10-source-chips{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.top10-source-chip{padding:7px 18px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12.5px;font-family:'Instrument Sans',sans-serif;font-weight:500;cursor:pointer;transition:all .15s}
+.top10-source-chip:hover{border-color:var(--accent);color:var(--accent2)}
+.top10-source-chip.active-other{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.top10-source-chip.active-spanish{background:rgba(212,96,122,0.15);border-color:var(--rose);color:var(--rose)}
+.top10-wrap{display:flex;flex-direction:column;gap:1.25rem;max-width:780px}
+
+/* Puesto 1 — grande y centrado */
+.top10-gold{background:linear-gradient(135deg,rgba(201,151,90,0.18) 0%,rgba(201,151,90,0.06) 100%);border:1.5px solid rgba(201,151,90,0.45);border-radius:var(--radius-lg);padding:2rem;display:flex;gap:1.75rem;align-items:flex-start;position:relative;overflow:hidden}
+.top10-gold::before{content:'1';position:absolute;right:-.02em;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(6rem,14vw,10rem);font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:2px rgba(201,151,90,0.12);pointer-events:none;line-height:1}
+.top10-gold .t10-cover{width:90px;height:136px;border-radius:10px;object-fit:cover;border:2px solid rgba(201,151,90,0.4);flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.top10-gold .t10-cover-ph{width:90px;height:136px;border-radius:10px;background:var(--surface3);border:2px solid rgba(201,151,90,0.3);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0}
+.top10-gold .t10-body{flex:1;min-width:0;position:relative;z-index:1}
+.top10-gold .t10-pos{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.top10-gold .t10-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,4vw,2.2rem);font-weight:600;line-height:1.1;margin-bottom:.3rem;cursor:pointer}
+.top10-gold .t10-title:hover{color:var(--accent2)}
+.top10-gold .t10-author{font-size:13px;color:var(--muted);margin-bottom:.75rem}
+.top10-gold .t10-score{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.5rem}
+.top10-gold .t10-avg{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--gold);line-height:1}
+.top10-gold .t10-stars{font-size:16px;color:var(--gold);letter-spacing:1px}
+.top10-gold .t10-votes{font-size:12px;color:var(--muted)}
+.top10-gold .t10-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem}
+
+/* Puestos 2-3 — medios en fila */
+.top10-silver-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.top10-silver{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;position:relative;overflow:hidden;transition:border-color .18s;cursor:pointer}
+.top10-silver:hover{border-color:var(--accent)}
+.top10-silver::before{content:attr(data-pos);position:absolute;right:-.01em;bottom:-.1em;font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1.5px rgba(180,120,200,0.1);pointer-events:none;line-height:1}
+.top10-silver .t10-cover{width:58px;height:88px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);flex-shrink:0}
+.top10-silver .t10-cover-ph{width:58px;height:88px;border-radius:8px;background:var(--surface3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.top10-silver .t10-body{flex:1;min-width:0;position:relative;z-index:1}
+.top10-silver .t10-pos{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.top10-silver .t10-pos.pos2{color:#c0c8d0}
+.top10-silver .t10-pos.pos3{color:#b08060}
+.top10-silver .t10-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;line-height:1.2;margin-bottom:.2rem}
+.top10-silver .t10-author{font-size:11.5px;color:var(--muted);margin-bottom:.4rem}
+.top10-silver .t10-score{display:flex;align-items:baseline;gap:.3rem}
+.top10-silver .t10-avg{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--text)}
+.top10-silver .t10-stars{font-size:11px;color:var(--gold)}
+.top10-silver .t10-votes{font-size:11px;color:var(--muted)}
+
+/* Puestos 4-10 — filas compactas */
+.top10-rest{display:flex;flex-direction:column;gap:.5rem}
+.top10-row{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1.1rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:all .15s}
+.top10-row:hover{border-color:var(--border2);background:var(--surface2)}
+.top10-row .t10-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--muted);width:28px;text-align:center;flex-shrink:0;font-style:italic}
+.top10-row .t10-cover{width:36px;height:54px;border-radius:6px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.top10-row .t10-cover-ph{width:36px;height:54px;border-radius:6px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.top10-row .t10-info{flex:1;min-width:0}
+.top10-row .t10-title{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top10-row .t10-author{font-size:12px;color:var(--muted);margin-top:1px}
+.top10-row .t10-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+.top10-row .t10-avg{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--text);line-height:1}
+.top10-row .t10-votes{font-size:11px;color:var(--muted)}
+
+.top10-divider{height:1px;background:var(--border);margin:.25rem 0}
+.top10-empty{text-align:center;padding:3rem;color:var(--muted);font-style:italic}
+
+@media(max-width:600px){
+  .top10-silver-row{grid-template-columns:1fr}
+  .top10-gold{flex-direction:column;align-items:center;text-align:center}
+  .top10-gold .t10-tags{justify-content:center}
+  .top10-gold .t10-score{justify-content:center}
+}
+
 </style>
 </head>
 <body>
@@ -451,6 +517,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <button class="main-tab-btn active" id="tabBtnLibros" onclick="switchMainTab('libros')">📚 Libros</button>
     <button class="main-tab-btn" id="tabBtnSolicitudes" onclick="switchMainTab('solicitudes')">📬 Solicitudes <span class="tab-badge" id="tabBadgeSol">—</span></button>
     <button class="main-tab-btn" id="tabBtnBingo" onclick="switchMainTab('bingo')">🎲 Bingo</button>
+    <button class="main-tab-btn" id="tabBtnTop10" onclick="switchMainTab('top10')">🏆 Top 10</button>
   </div>
 
   <!-- ── PANEL LIBROS ── -->
@@ -643,6 +710,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
 
   </div><!-- /panelBingo -->
+
+  <!-- PANEL TOP 10 -->
+  <div class="main-panel" id="panelTop10">
+    <div class="card">
+      <div class="card-title">🏆 Top 10 por valoración</div>
+      <div class="top10-source-chips">
+        <button class="top10-source-chip active-other" id="t10ChipOther" onclick="setAdminTop10Source('other')">🌍 Occidentales</button>
+        <button class="top10-source-chip" id="t10ChipSpanish" onclick="setAdminTop10Source('spanish')">💜 Español</button>
+      </div>
+      <div id="adminTop10Container"><div class="empty">Cargando…</div></div>
+    </div>
+  </div><!-- /panelTop10 -->
 
   <!-- MODAL NUEVO/EDITAR BINGO -->
   <div class="modal-bg" id="bingoModal" style="display:none;align-items:flex-start;justify-content:center">
@@ -1265,14 +1344,140 @@ function saveBooks() {
   // Books live in memory only - export to JSON to persist
 }
 
+let adminRatingsMap = {};
+let adminTop10Source = 'other';
+
 async function loadVoteStats() {
-  const {data} = await sb.from('ratings').select('book_id');
+  const {data} = await sb.from('ratings').select('book_id,score');
   const counts = {};
-  if(data) data.forEach(r=>{counts[r.book_id]=(counts[r.book_id]||0)+1;});
+  const grouped = {};
+  if(data) data.forEach(r=>{
+    counts[r.book_id]=(counts[r.book_id]||0)+1;
+    if(!grouped[r.book_id]) grouped[r.book_id]=[];
+    grouped[r.book_id].push(r.score);
+  });
   window._voteCounts = counts;
+  adminRatingsMap = {};
+  Object.entries(grouped).forEach(([id,scores])=>{
+    adminRatingsMap[id]={avg:Math.round(scores.reduce((a,b)=>a+b,0)/scores.length*10)/10,count:scores.length};
+  });
   const total = Object.values(counts).reduce((a,b)=>a+b,0);
   document.getElementById('sVotes').innerHTML=`<em>${total}</em>`;
   renderBookList();
+  renderAdminTop10();
+}
+
+function setAdminTop10Source(source){
+  adminTop10Source = source;
+  document.getElementById('t10ChipOther').className='top10-source-chip'+(source==='other'?' active-other':'');
+  document.getElementById('t10ChipSpanish').className='top10-source-chip'+(source==='spanish'?' active-spanish':'');
+  renderAdminTop10();
+}
+
+function renderAdminTop10(){
+  const c=document.getElementById('adminTop10Container');
+  if(!c) return;
+  const source=adminTop10Source;
+  // Media ponderada bayesiana (fórmula IMDb):
+  // score = (v/(v+m)) × R + (m/(v+m)) × C
+  const rated=[...books].filter(b=>b.source===source && adminRatingsMap[b.id]?.count>0);
+  if(!rated.length){
+    c.innerHTML=`<div class="top10-empty">Aún no hay valoraciones en esta sección.</div>`;
+    return;
+  }
+  const allCounts=rated.map(b=>adminRatingsMap[b.id].count).sort((a,b)=>a-b);
+  const C=rated.reduce((s,b)=>s+adminRatingsMap[b.id].avg,0)/rated.length;
+  const m=Math.max(3, allCounts[Math.floor(allCounts.length*0.25)]||3);
+  function weightedScore(b){
+    const {avg:R,count:v}=adminRatingsMap[b.id];
+    return (v/(v+m))*R + (m/(v+m))*C;
+  }
+  const ranked=rated.sort((a,b)=>weightedScore(b)-weightedScore(a)).slice(0,10);
+
+  function coverEl(b,cls){
+    return b.cover
+      ?`<img class="${cls}" src="${b.cover}" alt="${b.title}" onerror="this.outerHTML='<div class=\\'${cls}-ph\\'>📖</div>'">`
+      :`<div class="${cls}-ph">📖</div>`;
+  }
+  function starsHtml(avg){
+    return [1,2,3,4,5].map(i=>i<=Math.round(avg)?'★':'☆').join('');
+  }
+  function tags(b){
+    return (b.genres||[]).slice(0,2).map(g=>`<span class="badge badge-genre">${g}</span>`).join('')
+      +((b.dinamicas||[]).slice(0,1).map(d=>`<span class="badge badge-genre">${d}</span>`).join(''));
+  }
+
+  let html='<div class="top10-wrap">';
+
+  if(ranked[0]){
+    const b=ranked[0],r=adminRatingsMap[b.id];
+    html+=`<div class="top10-gold">
+      ${coverEl(b,'t10-cover')}
+      <div class="t10-body">
+        <div class="t10-pos">🥇 Primer puesto</div>
+        <div class="t10-title" onclick="openEditModal('${b.id}')">${b.title}</div>
+        <div class="t10-author">${(b.authors||[]).join(', ')||'—'}</div>
+        <div class="t10-score">
+          <span class="t10-avg">${r.avg.toFixed(1)}</span>
+          <span class="t10-stars">${starsHtml(r.avg)}</span>
+          <span class="t10-votes">${r.count} voto${r.count!==1?'s':''}</span>
+        </div>
+        <div class="t10-tags">${tags(b)}</div>
+      </div>
+    </div>`;
+  }
+
+  const p2=ranked[1],p3=ranked[2];
+  if(p2||p3){
+    html+=`<div class="top10-silver-row">`;
+    [p2,p3].forEach((b,i)=>{
+      if(!b) return;
+      const pos=i+2,r=adminRatingsMap[b.id];
+      const medal=pos===2?'🥈':'🥉';
+      const posClass=pos===2?'pos2':'pos3';
+      html+=`<div class="top10-silver" data-pos="${pos}" onclick="openEditModal('${b.id}')">
+        ${coverEl(b,'t10-cover')}
+        <div class="t10-body">
+          <div class="t10-pos ${posClass}">${medal} Puesto ${pos}</div>
+          <div class="t10-title">${b.title}</div>
+          <div class="t10-author">${(b.authors||[]).join(', ')||'—'}</div>
+          <div class="t10-score">
+            <span class="t10-avg">${r.avg.toFixed(1)}</span>
+            <span class="t10-stars">${starsHtml(r.avg)}</span>
+          </div>
+          <div class="t10-votes">${r.count} voto${r.count!==1?'s':''}</div>
+        </div>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  const groups=[[3,4],[5,6],[7,8,9]];
+  groups.forEach(idxs=>{
+    const slice=idxs.map(i=>ranked[i]).filter(Boolean);
+    if(!slice.length) return;
+    html+=`<div class="top10-rest">`;
+    slice.forEach((b,gi)=>{
+      const pos=idxs[gi]+1,r=adminRatingsMap[b.id];
+      html+=`<div class="top10-row" onclick="openEditModal('${b.id}')">
+        <div class="t10-num">${pos}</div>
+        ${coverEl(b,'t10-cover')}
+        <div class="t10-info">
+          <div class="t10-title">${b.title}</div>
+          <div class="t10-author">${(b.authors||[]).join(', ')||'—'}</div>
+        </div>
+        <div class="t10-right">
+          <div class="t10-avg">${r.avg.toFixed(1)} <span style="color:var(--gold);font-size:13px">★</span></div>
+          <div class="t10-votes">${r.count} voto${r.count!==1?'s':''}</div>
+        </div>
+      </div>`;
+      if(gi<slice.length-1) html+=`<div class="top10-divider"></div>`;
+    });
+    html+=`</div>`;
+  });
+
+  html+=`</div>`;
+  c.innerHTML=html;
 }
 
 function updateStats() {
@@ -2163,6 +2368,7 @@ function switchMainTab(tab) {
   document.getElementById('panel' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
   if (tab === 'solicitudes') renderAdminSolicitudes();
   if (tab === 'bingo') cargarBingosAdmin();
+  if (tab === 'top10') renderAdminTop10();
 }
 
 function admSelChip(groupId, btn){
@@ -2306,6 +2512,34 @@ async function exportarSolicitudesAdmin(){
 
 let bingoAdminChallenges = [];
 let bingoEditingId = null; // null = nuevo, uuid = editar
+
+// Índice book_id → título, para mostrar el nombre real del libro en el
+// progreso de bingo en vez del id en bruto. Si ya tienes el catálogo
+// cargado en el editor (variable `books`), lo reutiliza; si no, lo trae
+// directamente de books_data.json (no toca ni pisa `books`).
+let bingoBooksIndex = null;
+async function getBingoBooksIndex(){
+  if(bingoBooksIndex) return bingoBooksIndex;
+  bingoBooksIndex = new Map();
+  try{
+    if(books && books.length){
+      books.forEach(b => bingoBooksIndex.set(b.id, b.title));
+    }else{
+      const r = await fetch('books_data.json');
+      if(r.ok){
+        const data = await r.json();
+        data.forEach(b => bingoBooksIndex.set(b.id, b.title));
+      }
+    }
+  }catch(e){ /* si falla, se queda vacío y hacemos fallback al id */ }
+  return bingoBooksIndex;
+}
+function fmtFechaBingo(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'}) + ' · ' +
+         d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+}
 
 async function cargarBingosAdmin(){
   const list = document.getElementById('bingoAdminList');
@@ -2497,6 +2731,9 @@ async function cargarProgresoUsuarias(){
   const {data:progreso, error:pErr} = await sb.from('bingo_progreso').select('*').eq('challenge_id', challengeId);
   if(pErr){ list.innerHTML='<div class="empty" style="color:var(--rose)">Error al cargar progreso.</div>'; return; }
 
+  const bIdx = await getBingoBooksIndex();
+  const nombreLibro = e => e.book_title_manual || (e.book_id ? (bIdx.get(e.book_id) || 'ID: '+e.book_id.slice(0,8)+'…') : '—');
+
   // Cargar info de usuarias
   const userIds = [...new Set((progreso||[]).map(p=>p.user_id))];
   if(!userIds.length){ list.innerHTML='<div class="empty">Ninguna usuaria ha empezado este bingo.</div>'; return; }
@@ -2537,10 +2774,9 @@ async function cargarProgresoUsuarias(){
       // Grid 5x5 mini del bingo
       const gridCells = casillas.map((cas, i) => {
         const marcada = entradas.find(e=>e.casilla_index===i);
-        const libroStr = marcada
-          ? (marcada.book_id ? marcada.book_id.slice(0,6)+'…' : (marcada.book_title_manual||'Manual'))
-          : '';
-        return `<div title="${cas.label}${marcada?'\n📖 '+libroStr:''}" style="width:100%;aspect-ratio:1;border-radius:4px;font-size:8px;display:flex;align-items:center;justify-content:center;border:1px solid ${marcada?'rgba(91,188,176,0.5)':'var(--border)'};background:${marcada?'rgba(91,188,176,0.15)':'var(--surface3)'};color:${marcada?'var(--teal)':'var(--muted)'};cursor:default;overflow:hidden;text-align:center;padding:1px;line-height:1.1">${marcada?'✓':''}</div>`;
+        const libroStr = marcada ? nombreLibro(marcada) : '';
+        const fechaStr = marcada ? fmtFechaBingo(marcada.created_at) : '';
+        return `<div title="${cas.label}${marcada?'\n📖 '+libroStr+(fechaStr?'\n🗓 '+fechaStr:''):''}" style="width:100%;aspect-ratio:1;border-radius:4px;font-size:8px;display:flex;align-items:center;justify-content:center;border:1px solid ${marcada?'rgba(91,188,176,0.5)':'var(--border)'};background:${marcada?'rgba(91,188,176,0.15)':'var(--surface3)'};color:${marcada?'var(--teal)':'var(--muted)'};cursor:default;overflow:hidden;text-align:center;padding:1px;line-height:1.1">${marcada?'✓':''}</div>`;
       });
 
       return `<div class="book-item" style="flex-direction:column;align-items:stretch;gap:.75rem;cursor:default">
@@ -2560,11 +2796,13 @@ async function cargarProgresoUsuarias(){
           <div style="margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
             ${entradas.sort((a,b)=>a.casilla_index-b.casilla_index).map(e=>{
               const cas = casillas[e.casilla_index];
-              const libro = e.book_title_manual || (e.book_id ? 'ID: '+e.book_id.slice(0,12)+'…' : '—');
-              return `<div style="display:flex;gap:.5rem;padding:4px 8px;border-radius:8px;background:var(--surface2)">
+              const libro = nombreLibro(e);
+              const fecha = fmtFechaBingo(e.created_at);
+              return `<div style="display:flex;gap:.5rem;padding:4px 8px;border-radius:8px;background:var(--surface2);flex-wrap:wrap">
                 <span style="color:var(--teal);flex-shrink:0">[${e.casilla_index+1}]</span>
-                <span style="flex:1">${escH(cas?.label||'?')}</span>
+                <span style="flex:1;min-width:120px">${escH(cas?.label||'?')}</span>
                 <span style="color:var(--muted)">📖 ${escH(libro)}</span>
+                ${fecha?`<span style="color:var(--muted);flex-shrink:0">🗓 ${fecha}</span>`:''}
               </div>`;
             }).join('')}
           </div>
