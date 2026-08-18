@@ -5466,10 +5466,11 @@ async function setReadingStatus(bookId, newStatus){
   _refreshShelfUI(bookId);
 }
 
-async function setLogStartDate(bookId, dateValue){
+async function setLogStartDate(bookId, entryId, dateValue){
   if(!currentUser || !dateValue) return;
   const isoDate=new Date(dateValue+'T09:00:00').toISOString();
-  let entry=getOpenLogEntry(bookId);
+  const log=myReadingLog[bookId]||[];
+  let entry=entryId?log.find(e=>e.id===entryId):getOpenLogEntry(bookId);
   if(entry){
     const {error}=await sb.from('reading_log').update({started_at:isoDate}).eq('id',entry.id).eq('user_id',currentUser.id);
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
@@ -5555,23 +5556,30 @@ function buildShelfButtonsHTML(bookId){
   const todayISO=new Date().toISOString().slice(0,10);
   const historyHtml=completedLog.map(entry=>{
     const dStr=new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
-    const startStr=entry.started_at?new Date(entry.started_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'})+' → ':'';
-    return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal)">
-      <span>📅 ${startStr}${dStr}</span>
+    const startVal=entry.started_at?new Date(entry.started_at).toISOString().slice(0,10):'';
+    return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal);flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:.3em">📖
+        <input type="date" max="${todayISO}" value="${startVal}"
+          title="Fecha en que empezaste esta lectura"
+          style="padding:2px 6px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
+          onclick="event.stopPropagation()"
+          onchange="event.stopPropagation();setLogStartDate('${bookId}','${entry.id}',this.value)">
+      </span>
+      <span>→ 📅 ${dStr}</span>
       <button title="Eliminar esta fecha" onclick="event.stopPropagation();deleteReadLogEntry('${bookId}','${entry.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0;line-height:1">✕</button>
     </div>`;
   }).join('');
   const addLabel=completedLog.length?'+ Añadir relectura':'Guardar fecha';
   const pickerHint=completedLog.length?'':'<span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>';
-  // Fecha de inicio editable mientras el libro está "Leyendo" (o hay una lectura abierta sin terminar)
-  const startDateBlock=(s==='reading'||openEntry)?`
+  // Fecha de inicio editable mientras hay una lectura abierta sin terminar ("Leyendo")
+  const startDateBlock=openEntry?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
       <input type="date" id="startDateInput_${bookId}" max="${todayISO}"
         value="${openEntry?.started_at?new Date(openEntry.started_at).toISOString().slice(0,10):''}"
         style="padding:4px 8px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
         onclick="event.stopPropagation()"
-        onchange="event.stopPropagation();setLogStartDate('${bookId}',this.value)">
+        onchange="event.stopPropagation();setLogStartDate('${bookId}','${openEntry.id}',this.value)">
     </div>`:'';
   const readDatePicker=(s==='read'||s==='reading')?`
     <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
