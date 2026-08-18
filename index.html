@@ -1392,8 +1392,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
 
 /* ── SHELF BUTTONS (tarjeta) ── */
-.card-shelf-btns{display:flex;gap:.4rem;margin-top:.6rem}
-.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;padding:6px 4px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .2s;user-select:none;letter-spacing:.01em}
+.card-shelf-btns{display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap}
+.card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1 1 calc(50% - .2rem);padding:6px 4px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .2s;user-select:none;letter-spacing:.01em}
 .card-shelf-btn:hover{border-color:rgba(192,111,196,.5);color:var(--accent2);background:var(--accent-soft)}
 .card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.5);color:var(--accent2)}
 .card-shelf-btn.reading{background:var(--gold-soft);border-color:rgba(201,151,90,.5);color:var(--gold)}
@@ -5466,8 +5466,21 @@ async function setReadingStatus(bookId, newStatus){
   _refreshShelfUI(bookId);
 }
 
+function _isCompleteDateStr(v){
+  // El <input type="date"> dispara "change" en cuanto pierde el foco, aunque el año
+  // no esté completo (p.ej. "2" se rellena como "0002"). Exigimos año de 4 dígitos y razonable.
+  if(!v) return false;
+  const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+  if(!m) return false;
+  const year=parseInt(m[1],10);
+  if(year<1900||year>2100) return false;
+  const d=new Date(v+'T00:00:00');
+  return !isNaN(d.getTime());
+}
+
 async function setLogStartDate(bookId, entryId, dateValue){
   if(!currentUser || !dateValue) return;
+  if(!_isCompleteDateStr(dateValue)) return; // año incompleto todavía, esperamos a que termine de escribir
   const isoDate=new Date(dateValue+'T09:00:00').toISOString();
   const log=myReadingLog[bookId]||[];
   let entry=entryId?log.find(e=>e.id===entryId):getOpenLogEntry(bookId);
@@ -5490,6 +5503,7 @@ async function setLogStartDate(bookId, entryId, dateValue){
 async function addReadLogEntry(bookId, dateValue){
   if(!currentUser) return;
   if(!dateValue){ showToast('Elige una fecha primero 📅','error'); return; }
+  if(!_isCompleteDateStr(dateValue)){ showToast('Completa el año de la fecha 📅','error'); return; }
   // dateValue es "YYYY-MM-DD", convertimos a ISO con hora mediodía para evitar desfases de zona horaria
   const isoDate=new Date(dateValue+'T12:00:00').toISOString();
   const openEntry=getOpenLogEntry(bookId);
