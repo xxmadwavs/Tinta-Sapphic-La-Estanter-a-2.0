@@ -1306,7 +1306,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .cal-today-btn:hover{color:var(--text);border-color:rgba(192,111,196,.4)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .cal-weekday{text-align:center;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding-bottom:6px}
-.cal-day{min-height:118px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);padding:6px;cursor:default;display:flex;flex-direction:column;gap:4px;transition:all .15s}
+.cal-day{min-height:132px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);padding:6px;cursor:default;display:flex;flex-direction:column;gap:4px;transition:all .15s}
 .cal-day.has-books{cursor:pointer;border-color:rgba(192,111,196,.25)}
 .cal-day.has-books:hover{border-color:rgba(192,111,196,.55);background:var(--surface3)}
 .cal-day.is-today{border-color:rgba(201,151,90,.6);box-shadow:0 0 0 1px rgba(201,151,90,.3) inset}
@@ -1314,11 +1314,11 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .cal-day.empty-cell{background:transparent;border:none}
 .cal-day-num{font-size:12px;color:var(--muted);font-weight:500}
 .cal-day.is-today .cal-day-num{color:var(--gold);font-weight:700}
-.cal-day-covers{display:flex;flex-wrap:wrap;gap:3px;align-items:flex-end}
-.cal-cover-thumb{width:32px;height:46px;border-radius:4px;object-fit:cover;flex-shrink:0;border:1.5px solid transparent;display:block;background:var(--surface3)}
+.cal-day-covers{display:flex;flex-wrap:wrap;gap:3px;align-items:flex-end;flex:1}
+.cal-cover-thumb{width:44px;height:62px;border-radius:5px;object-fit:cover;flex-shrink:0;border:2px solid transparent;display:block;background:var(--surface3)}
 .cal-cover-thumb.dot-reading{border-color:var(--gold)}
 .cal-cover-thumb.dot-read{border-color:var(--teal)}
-.cal-cover-ph{width:32px;height:46px;border-radius:4px;flex-shrink:0;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:12px;border:1.5px solid transparent}
+.cal-cover-ph{width:44px;height:62px;border-radius:5px;flex-shrink:0;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:16px;border:2px solid transparent}
 .cal-cover-ph.dot-reading{border-color:var(--gold)}
 .cal-cover-ph.dot-read{border-color:var(--teal)}
 .cal-day-more{font-size:9px;color:var(--muted);align-self:flex-end;padding-bottom:2px}
