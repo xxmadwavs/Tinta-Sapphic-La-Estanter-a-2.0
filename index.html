@@ -1295,6 +1295,47 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
 /* badges de logros en "Mi estantería" */
 .shelf-badges-row{display:flex;gap:.6rem;flex-wrap:wrap;padding:.2rem 0}
+
+/* ── Calendario de lecturas ── */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;gap:.75rem;flex-wrap:wrap}
+.cal-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--text);text-transform:capitalize}
+.cal-nav{display:flex;align-items:center;gap:.5rem}
+.cal-nav-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
+.cal-nav-btn:hover{background:var(--surface3);border-color:rgba(192,111,196,.4)}
+.cal-today-btn{padding:6px 12px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:12px;cursor:pointer;font-family:var(--font-body);transition:all .15s}
+.cal-today-btn:hover{color:var(--text);border-color:rgba(192,111,196,.4)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-weekday{text-align:center;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding-bottom:6px}
+.cal-day{min-height:96px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);padding:6px;cursor:default;display:flex;flex-direction:column;gap:4px;transition:all .15s}
+.cal-day.has-books{cursor:pointer;border-color:rgba(192,111,196,.25)}
+.cal-day.has-books:hover{border-color:rgba(192,111,196,.55);background:var(--surface3)}
+.cal-day.is-today{border-color:rgba(201,151,90,.6);box-shadow:0 0 0 1px rgba(201,151,90,.3) inset}
+.cal-day.is-selected{border-color:var(--accent2);background:var(--accent-soft)}
+.cal-day.empty-cell{background:transparent;border:none}
+.cal-day-num{font-size:12px;color:var(--muted);font-weight:500}
+.cal-day.is-today .cal-day-num{color:var(--gold);font-weight:700}
+.cal-day-covers{display:flex;flex-wrap:wrap;gap:3px;align-items:flex-end}
+.cal-cover-thumb{width:22px;height:32px;border-radius:4px;object-fit:cover;flex-shrink:0;border:1.5px solid transparent;display:block;background:var(--surface3)}
+.cal-cover-thumb.dot-reading{border-color:var(--gold)}
+.cal-cover-thumb.dot-read{border-color:var(--teal)}
+.cal-cover-ph{width:22px;height:32px;border-radius:4px;flex-shrink:0;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:10px;border:1.5px solid transparent}
+.cal-cover-ph.dot-reading{border-color:var(--gold)}
+.cal-cover-ph.dot-read{border-color:var(--teal)}
+.cal-day-more{font-size:9px;color:var(--muted);align-self:flex-end;padding-bottom:2px}
+.cal-legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin:1rem 0 1.5rem;font-size:12px;color:var(--muted)}
+.cal-legend span{display:inline-flex;align-items:center;gap:.4rem}
+.cal-legend .cal-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.cal-legend .cal-dot.dot-reading{background:var(--gold)}
+.cal-legend .cal-dot.dot-read{background:var(--teal)}
+.cal-day-panel{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.cal-day-panel-title{font-family:var(--font-display);font-size:1.15rem;color:var(--text);margin-bottom:.8rem}
+.cal-panel-book{display:flex;align-items:center;gap:.7rem;padding:.5rem;border-radius:10px;cursor:pointer;transition:background .15s}
+.cal-panel-book:hover{background:var(--surface2)}
+.cal-panel-cover{width:36px;height:52px;border-radius:5px;object-fit:cover;flex-shrink:0;background:var(--surface3)}
+.cal-panel-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cal-panel-title{font-size:13px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-panel-range{font-size:11px;color:var(--muted)}
+.cal-empty-msg{text-align:center;color:var(--muted);padding:2.5rem 0;font-size:13px}
 .shelf-badge{width:52px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
 .shelf-badge.locked{opacity:.25;filter:grayscale(1)}
 .shelf-badges-more{background:none;border:none;color:var(--accent2);font-size:11.5px;font-family:var(--font-body);cursor:pointer;padding:.3rem 0;text-align:left;width:100%}
@@ -1347,6 +1388,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;padding:8px 0;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:12.5px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s;user-select:none}
 .shelf-btn:hover{border-color:rgba(192,111,196,.4);color:var(--text);background:var(--surface3)}
 .shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.45);color:var(--accent2)}
+.shelf-btn.reading{background:var(--gold-soft);border-color:rgba(201,151,90,.45);color:var(--gold)}
 .shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
 
 /* ── SHELF BUTTONS (tarjeta) ── */
@@ -1354,6 +1396,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .card-shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;padding:6px 4px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .2s;user-select:none;letter-spacing:.01em}
 .card-shelf-btn:hover{border-color:rgba(192,111,196,.5);color:var(--accent2);background:var(--accent-soft)}
 .card-shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.5);color:var(--accent2)}
+.card-shelf-btn.reading{background:var(--gold-soft);border-color:rgba(201,151,90,.5);color:var(--gold)}
+.card-shelf-btn.reading:hover{background:rgba(201,151,90,.2);border-color:rgba(201,151,90,.65);color:var(--gold)}
 .card-shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.45);color:var(--teal)}
 .card-shelf-btn.read:hover{background:rgba(91,188,176,.2);border-color:rgba(91,188,176,.65);color:var(--teal)}
 .card-shelf-icon{font-size:12px;line-height:1}
@@ -2107,9 +2151,16 @@ body.home-active .hero,body.home-active .main{display:none!important}
           <span>＋ Quiero leer</span>
           <span class="shelf-nav-count" id="shelfWantCount">0</span>
         </button>
+        <button class="shelf-nav-item" id="shelfNavReading" onclick="switchShelf('reading')">
+          <span>📖 Leyendo</span>
+          <span class="shelf-nav-count" id="shelfReadingCount">0</span>
+        </button>
         <button class="shelf-nav-item" id="shelfNavRead" onclick="switchShelf('read')">
           <span>✓ Leídos</span>
           <span class="shelf-nav-count" id="shelfReadCount">0</span>
+        </button>
+        <button class="shelf-nav-item" id="shelfNavCalendar" onclick="switchShelf('calendar')">
+          <span>📅 Calendario</span>
         </button>
       </div>
       <div class="shelf-sidebar-section">
@@ -2132,7 +2183,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
           </button>
         </div>
       </div>
-      <div class="shelf-toolbar">
+      <div class="shelf-toolbar" id="shelfToolbar">
         <div class="search-wrap">
           <span class="search-icon">🔍</span>
           <input class="search-input" id="shelfSearchInput" type="search" placeholder="Buscar por título o autora…" oninput="shelfApplyFilters()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -2151,6 +2202,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
         <button class="shelf-clear-btn" onclick="shelfClearFilters()">✕ Limpiar</button>
       </div>
       <div id="shelfBooksContainer"></div>
+      <div id="shelfCalendarContainer" style="display:none"></div>
     </div>
   </div>
 </div>
@@ -2341,14 +2393,17 @@ const SPICY_UNKNOWN_ICON  = '❓';
 let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
 let myReadingStatus={}; // bookId -> 'want' | 'read'
 let myReadingReadAt={}; // bookId -> fecha ISO de la lectura MÁS RECIENTE (derivado de myReadingLog, para compatibilidad)
-let myReadingLog={}; // bookId -> [{id, read_at}, ...] historial completo de lecturas, ordenado ascendente
-let shelfFilter='all'; // 'all' | 'want' | 'read'
+let myReadingLog={}; // bookId -> [{id, started_at, read_at}, ...] historial completo de lecturas, ordenado ascendente. read_at null = lectura en curso
+let shelfFilter='all'; // 'all' | 'want' | 'reading' | 'read' | 'calendar'
 let shelfViewMode='grid'; // 'grid' | 'list'
 let shelfSearch='';
 let shelfGenreFilter='';
 let shelfSort='recent';
 let shelfPage=1;
 const SHELF_PAGE_SIZE=18;
+let calYear=new Date().getFullYear();
+let calMonth=new Date().getMonth(); // 0-11
+let calSelectedDay=null; // 'YYYY-MM-DD'
 let bingoChallenges=[], bingoActiveChallengeId=null, bingoProgress=[], bingoActiveCellIdx=null, bingoLinkMode='catalogo', bingoPendingBookId=null, bingoPendingBookTitle=null, bingoPendingBookCover=null, bingoManualConfirmed=false, bingoHitos=[];
 let activeSection='thais';
 let authMode='login', pendingStar=0;
@@ -2485,7 +2540,7 @@ async function init(){
   // Nota: showHome()/switchTab() de arriba pueden haber limpiado la query string,
   // así que reaplicamos el parámetro myshelf sobre la URL resultante antes de abrir.
   const _shelfParam=urlParams.get('myshelf');
-  if(_shelfParam && ['all','want','read'].includes(_shelfParam)){
+  if(_shelfParam && ['all','want','reading','read','calendar'].includes(_shelfParam)){
     if(currentUser){
       shelfUrlSync(_shelfParam,false);
       openShelf(_shelfParam, true);
@@ -5355,18 +5410,22 @@ async function loadMyReadingStatus(){
   (data||[]).forEach(row=>{
     myReadingStatus[row.book_id]=row.status;
   });
-  const {data:logData,error:logError}=await sb.from('reading_log').select('id,book_id,read_at').eq('user_id',currentUser.id).order('read_at',{ascending:true});
+  const {data:logData,error:logError}=await sb.from('reading_log').select('id,book_id,started_at,read_at').eq('user_id',currentUser.id).order('read_at',{ascending:true,nullsFirst:false});
   if(logError){ console.error('reading_log load error:',logError); }
   myReadingLog={};
   (logData||[]).forEach(row=>{
     if(!myReadingLog[row.book_id]) myReadingLog[row.book_id]=[];
-    myReadingLog[row.book_id].push({id:row.id,read_at:row.read_at});
+    myReadingLog[row.book_id].push({id:row.id,started_at:row.started_at,read_at:row.read_at});
   });
-  // myReadingReadAt se mantiene como atajo a la lectura MÁS RECIENTE de cada libro (compatibilidad con el resto del código)
+  // myReadingReadAt se mantiene como atajo a la lectura MÁS RECIENTE (completada) de cada libro (compatibilidad con el resto del código)
   Object.keys(myReadingLog).forEach(bookId=>{
-    const entries=myReadingLog[bookId];
-    if(entries.length) myReadingReadAt[bookId]=entries[entries.length-1].read_at;
+    const completed=myReadingLog[bookId].filter(e=>e.read_at);
+    if(completed.length) myReadingReadAt[bookId]=completed[completed.length-1].read_at;
   });
+}
+
+function getOpenLogEntry(bookId){
+  return (myReadingLog[bookId]||[]).find(e=>!e.read_at);
 }
 
 async function setReadingStatus(bookId, newStatus){
@@ -5380,8 +5439,22 @@ async function setReadingStatus(bookId, newStatus){
       .upsert(payload,{onConflict:'user_id,book_id'});
     if(error){ showToast('Error al guardar 😞','error'); console.error(error); return; }
     myReadingStatus[bookId]=next;
-    const tieneFechas=(myReadingLog[bookId]||[]).length>0;
-    showToast(next==='want'?'Añadido a «Quiero leer» ＋':(tieneFechas?'Marcado como leído ✓':'Marcado como leído ✓ — indica la fecha en que lo terminaste'),'success');
+    // Al marcar "Leyendo", abrimos automáticamente una entrada de lectura con fecha de inicio hoy (si no hay ya una en curso)
+    if(next==='reading' && !getOpenLogEntry(bookId)){
+      const todayISO=new Date().toISOString().slice(0,10)+'T12:00:00.000Z';
+      const {data,error:logErr}=await sb.from('reading_log')
+        .insert({user_id:currentUser.id, book_id:bookId, started_at:new Date().toISOString()})
+        .select('id,started_at,read_at').single();
+      if(!logErr && data){
+        if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
+        myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
+      } else if(logErr) console.error('reading_log start error:',logErr);
+    }
+    const tieneFechas=(myReadingLog[bookId]||[]).some(e=>e.read_at);
+    const msg=next==='want'?'Añadido a «Quiero leer» ＋'
+      :next==='reading'?'Marcado como «Leyendo» 📖'
+      :(tieneFechas?'Marcado como leído ✓':'Marcado como leído ✓ — indica la fecha en que lo terminaste');
+    showToast(msg,'success');
   } else {
     const {error}=await sb.from('reading_status')
       .delete().eq('user_id',currentUser.id).eq('book_id',bookId);
@@ -5393,34 +5466,65 @@ async function setReadingStatus(bookId, newStatus){
   _refreshShelfUI(bookId);
 }
 
+async function setLogStartDate(bookId, dateValue){
+  if(!currentUser || !dateValue) return;
+  const isoDate=new Date(dateValue+'T09:00:00').toISOString();
+  let entry=getOpenLogEntry(bookId);
+  if(entry){
+    const {error}=await sb.from('reading_log').update({started_at:isoDate}).eq('id',entry.id).eq('user_id',currentUser.id);
+    if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
+    entry.started_at=isoDate;
+  } else {
+    const {data,error}=await sb.from('reading_log')
+      .insert({user_id:currentUser.id, book_id:bookId, started_at:isoDate})
+      .select('id,started_at,read_at').single();
+    if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
+    if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
+    myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
+  }
+  _refreshShelfUI(bookId);
+  showToast('Fecha de inicio guardada 📅','success');
+}
+
 async function addReadLogEntry(bookId, dateValue){
   if(!currentUser) return;
   if(!dateValue){ showToast('Elige una fecha primero 📅','error'); return; }
   // dateValue es "YYYY-MM-DD", convertimos a ISO con hora mediodía para evitar desfases de zona horaria
   const isoDate=new Date(dateValue+'T12:00:00').toISOString();
-  const {data,error}=await sb.from('reading_log')
-    .insert({user_id:currentUser.id, book_id:bookId, read_at:isoDate})
-    .select('id,read_at').single();
-  if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
-  if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
-  myReadingLog[bookId].push({id:data.id, read_at:data.read_at});
-  myReadingLog[bookId].sort((a,b)=>new Date(a.read_at)-new Date(b.read_at));
-  myReadingReadAt[bookId]=myReadingLog[bookId][myReadingLog[bookId].length-1].read_at;
+  const openEntry=getOpenLogEntry(bookId);
+  if(openEntry){
+    // Completa la lectura en curso (conserva la fecha de inicio ya guardada)
+    const {error}=await sb.from('reading_log').update({read_at:isoDate}).eq('id',openEntry.id).eq('user_id',currentUser.id);
+    if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
+    openEntry.read_at=isoDate;
+  } else {
+    const {data,error}=await sb.from('reading_log')
+      .insert({user_id:currentUser.id, book_id:bookId, read_at:isoDate})
+      .select('id,started_at,read_at').single();
+    if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
+    if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
+    myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
+  }
+  myReadingLog[bookId].sort((a,b)=>new Date(a.read_at||a.started_at)-new Date(b.read_at||b.started_at));
+  const completed=myReadingLog[bookId].filter(e=>e.read_at);
+  myReadingReadAt[bookId]=completed[completed.length-1].read_at;
   // Si el libro no estaba ya marcado como "Leído", lo marcamos automáticamente al guardar una fecha.
   if(myReadingStatus[bookId]!=='read'){
     await sb.from('reading_status').upsert({user_id:currentUser.id, book_id:bookId, status:'read'},{onConflict:'user_id,book_id'});
     myReadingStatus[bookId]='read';
   }
   _refreshShelfUI(bookId);
-  showToast(myReadingLog[bookId].length>1?'Relectura añadida 📅':'Fecha de lectura guardada 📅','success');
+  showToast(completed.length>1?'Relectura añadida 📅':'Fecha de lectura guardada 📅','success');
 }
+
 
 async function deleteReadLogEntry(bookId, logId){
   if(!currentUser) return;
   const {error}=await sb.from('reading_log').delete().eq('id',logId).eq('user_id',currentUser.id);
   if(error){ showToast('Error al borrar la fecha 😞','error'); console.error(error); return; }
   myReadingLog[bookId]=(myReadingLog[bookId]||[]).filter(e=>e.id!==logId);
-  if(myReadingLog[bookId].length) myReadingReadAt[bookId]=myReadingLog[bookId][myReadingLog[bookId].length-1].read_at;
+  const completed=myReadingLog[bookId].filter(e=>e.read_at);
+  if(completed.length) myReadingReadAt[bookId]=completed[completed.length-1].read_at;
   else delete myReadingReadAt[bookId];
   _refreshShelfUI(bookId);
   showToast('Fecha eliminada','success');
@@ -5433,8 +5537,8 @@ function _refreshShelfUI(bookId){
   // Botones en tarjeta
   const cardWrap=document.getElementById('cardShelf_'+bookId);
   if(cardWrap) cardWrap.outerHTML=buildCardShelfBtnsHTML(bookId);
-  // Si el shelf está abierto, refrescar contadores
-  if(document.getElementById('shelfView').classList.contains('active')) renderShelf();
+  // Si el shelf está abierto, refrescar contadores/listado (o calendario si esa es la vista activa)
+  if(document.getElementById('shelfView').classList.contains('active')) _shelfRenderCurrent();
   // Si la vista de Cartas de Autora está abierta, refrescar colección (puede haberse desbloqueado una carta)
   if(document.getElementById('cartasView')?.classList.contains('active')){
     cartasAuthorsCache=computeAuthorsCollection();
@@ -5446,18 +5550,32 @@ function _refreshShelfUI(bookId){
 function buildShelfButtonsHTML(bookId){
   const s=myReadingStatus[bookId];
   const log=myReadingLog[bookId]||[];
+  const completedLog=log.filter(e=>e.read_at);
+  const openEntry=getOpenLogEntry(bookId);
   const todayISO=new Date().toISOString().slice(0,10);
-  const historyHtml=log.map(entry=>{
+  const historyHtml=completedLog.map(entry=>{
     const dStr=new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+    const startStr=entry.started_at?new Date(entry.started_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'})+' → ':'';
     return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal)">
-      <span>📅 ${dStr}</span>
+      <span>📅 ${startStr}${dStr}</span>
       <button title="Eliminar esta fecha" onclick="event.stopPropagation();deleteReadLogEntry('${bookId}','${entry.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0;line-height:1">✕</button>
     </div>`;
   }).join('');
-  const addLabel=log.length?'+ Añadir relectura':'Guardar fecha';
-  const pickerHint=log.length?'':'<span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>';
-  const readDatePicker=s==='read'?`
+  const addLabel=completedLog.length?'+ Añadir relectura':'Guardar fecha';
+  const pickerHint=completedLog.length?'':'<span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>';
+  // Fecha de inicio editable mientras el libro está "Leyendo" (o hay una lectura abierta sin terminar)
+  const startDateBlock=(s==='reading'||openEntry)?`
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
+      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
+      <input type="date" id="startDateInput_${bookId}" max="${todayISO}"
+        value="${openEntry?.started_at?new Date(openEntry.started_at).toISOString().slice(0,10):''}"
+        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
+        onclick="event.stopPropagation()"
+        onchange="event.stopPropagation();setLogStartDate('${bookId}',this.value)">
+    </div>`:'';
+  const readDatePicker=(s==='read'||s==='reading')?`
     <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
+      ${startDateBlock}
       ${historyHtml}
       <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
         ${pickerHint}
@@ -5465,11 +5583,12 @@ function buildShelfButtonsHTML(bookId){
           style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
           onclick="event.stopPropagation()">
         <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-          onclick="event.stopPropagation();addReadLogEntry('${bookId}',document.getElementById('readDateInput_${bookId}').value)">${addLabel}</button>
+          onclick="event.stopPropagation();addReadLogEntry('${bookId}',document.getElementById('readDateInput_${bookId}').value)">${s==='reading'?'✓ Marcar como terminado':addLabel}</button>
       </div>
     </div>`:'';
   return `<div class="shelf-btns" id="shelfBtns_${bookId}">
     <button class="shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
+    <button class="shelf-btn${s==='reading'?' reading':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')">📖 Leyendo</button>
     <button class="shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">✓ Leído</button>
     ${readDatePicker}
   </div>`;
@@ -5479,6 +5598,7 @@ function buildCardShelfBtnsHTML(bookId){
   const s=myReadingStatus[bookId];
   return `<div class="card-shelf-btns" id="cardShelf_${bookId}">
     <button class="card-shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')"><span class="card-shelf-icon">${s==='want'?'♥':'♡'}</span> Quiero leer</button>
+    <button class="card-shelf-btn${s==='reading'?' reading':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')"><span class="card-shelf-icon">📖</span> Leyendo</button>
     <button class="card-shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')"><span class="card-shelf-icon">${s==='read'?'✓':'○'}</span> Leído</button>
   </div>`;
 }
@@ -5490,9 +5610,9 @@ function openShelf(filter,silent){
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('shelfView').classList.add('active');
   document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
-  const map={all:'shelfNavAll',want:'shelfNavWant',read:'shelfNavRead'};
+  const map={all:'shelfNavAll',want:'shelfNavWant',reading:'shelfNavReading',read:'shelfNavRead',calendar:'shelfNavCalendar'};
   document.getElementById(map[shelfFilter])?.classList.add('active');
-  renderShelf();
+  _shelfRenderCurrent();
   renderShelfBadges();
   if(!silent) shelfUrlSync(shelfFilter,true);
 }
@@ -5507,11 +5627,26 @@ function switchShelf(filter,silent){
   shelfFilter=filter;
   shelfPage=1;
   document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
-  const map={all:'shelfNavAll',want:'shelfNavWant',read:'shelfNavRead'};
+  const map={all:'shelfNavAll',want:'shelfNavWant',reading:'shelfNavReading',read:'shelfNavRead',calendar:'shelfNavCalendar'};
   document.getElementById(map[filter])?.classList.add('active');
-  shelfPopulateGenres();
-  _renderShelfBooks();
+  _shelfRenderCurrent();
   if(!silent) shelfUrlSync(filter,true);
+}
+
+function _shelfRenderCurrent(){
+  const isCal=shelfFilter==='calendar';
+  document.getElementById('shelfToolbar').style.display=isCal?'none':'';
+  document.querySelector('.shelf-view-toggle').style.display=isCal?'none':'';
+  document.getElementById('shelfBooksContainer').style.display=isCal?'none':'';
+  document.getElementById('shelfCalendarContainer').style.display=isCal?'':'none';
+  renderShelfCounts();
+  if(isCal){
+    document.getElementById('shelfMainTitle').innerHTML='Calendario de lecturas';
+    renderReadingCalendar();
+  } else {
+    shelfPopulateGenres();
+    _renderShelfBooks();
+  }
 }
 
 function setShelfView(mode){
@@ -5523,8 +5658,12 @@ function setShelfView(mode){
 
 function shelfBaseBooks(){
   const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
+  const readingBooks=allBooks.filter(b=>myReadingStatus[b.id]==='reading');
   const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
-  return shelfFilter==='want'?wantBooks:shelfFilter==='read'?readBooks:[...wantBooks,...readBooks];
+  if(shelfFilter==='want') return wantBooks;
+  if(shelfFilter==='reading') return readingBooks;
+  if(shelfFilter==='read') return readBooks;
+  return [...wantBooks,...readingBooks,...readBooks];
 }
 
 function shelfPopulateGenres(){
@@ -5557,18 +5696,18 @@ function shelfGoToPage(n){
   document.querySelector('.shelf-main')?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function renderShelf(){
+function renderShelfCounts(){
   const wantBooks=allBooks.filter(b=>myReadingStatus[b.id]==='want');
+  const readingBooks=allBooks.filter(b=>myReadingStatus[b.id]==='reading');
   const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
-  document.getElementById('shelfCountAll').textContent=wantBooks.length+readBooks.length;
+  document.getElementById('shelfCountAll').textContent=wantBooks.length+readingBooks.length+readBooks.length;
   document.getElementById('shelfWantCount').textContent=wantBooks.length;
+  document.getElementById('shelfReadingCount').textContent=readingBooks.length;
   document.getElementById('shelfReadCount').textContent=readBooks.length;
-  shelfPopulateGenres();
-  _renderShelfBooks();
 }
 
 function _renderShelfBooks(){
-  const titleMap={all:'Todos los libros',want:'Quiero leer',read:'Leídos'};
+  const titleMap={all:'Todos los libros',want:'Quiero leer',reading:'Leyendo',read:'Leídos'};
   let books=shelfBaseBooks();
   const hadBooksBeforeFilters=books.length>0;
 
@@ -5589,7 +5728,7 @@ function _renderShelfBooks(){
     if(hadBooksBeforeFilters){
       container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">🔍</span><p>Ningún libro coincide con tu búsqueda o filtro.</p></div>`;
     } else {
-      const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',read:'Aún no has marcado ningún libro como leído.'};
+      const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',reading:'Aún no tienes libros marcados como «Leyendo».',read:'Aún no has marcado ningún libro como leído.'};
       container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
     }
     return;
@@ -5620,9 +5759,11 @@ function _renderShelfBooks(){
       const r=ratingsMap[b.id]||{avg:0,count:0};
       const badge=myReadingStatus[b.id]==='want'
         ?`<span style="font-size:11px;color:var(--accent2)">＋ Quiero leer</span>`
+        :myReadingStatus[b.id]==='reading'
+        ?`<span style="font-size:11px;color:var(--gold)">📖 Leyendo</span>`
         :(()=>{
           const ra=myReadingReadAt[b.id];
-          const n=(myReadingLog[b.id]||[]).length;
+          const n=(myReadingLog[b.id]||[]).filter(e=>e.read_at).length;
           const dateStr=ra?new Date(ra).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'}):'';
           const vecesStr=n>1?` · ${n} veces`:'';
           return `<span style="font-size:11px;color:${ra?'var(--teal)':'var(--gold)'}">✓ Leído${dateStr?' · '+dateStr:' · falta fecha'}${vecesStr}</span>`;
@@ -5660,6 +5801,126 @@ function _renderShelfBooks(){
   }
 
   container.innerHTML=html;
+}
+
+/* ══════════════════════════ CALENDARIO DE LECTURAS ══════════════════════════ */
+
+// Construye la lista de "periodos de lectura": un tramo start→end por cada entrada de reading_log con datos.
+// Si la lectura sigue en curso (sin read_at), el tramo se extiende hasta hoy.
+function buildReadingPeriods(){
+  const periods=[];
+  const todayISO=new Date().toISOString().slice(0,10);
+  Object.keys(myReadingLog).forEach(bookId=>{
+    const book=allBooks.find(b=>b.id===bookId);
+    if(!book) return;
+    (myReadingLog[bookId]||[]).forEach(entry=>{
+      const startISO=entry.started_at?entry.started_at.slice(0,10):(entry.read_at?entry.read_at.slice(0,10):null);
+      if(!startISO) return;
+      const ongoing=!entry.read_at;
+      const endISO=ongoing?todayISO:entry.read_at.slice(0,10);
+      periods.push({bookId,title:book.title,cover:book.cover,start:startISO,end:endISO,ongoing});
+    });
+  });
+  return periods;
+}
+
+function _calCoverThumbHTML(p){
+  const cls=p.ongoing?'dot-reading':'dot-read';
+  const t=p.title.replace(/"/g,'&quot;');
+  return p.cover
+    ?`<img class="cal-cover-thumb ${cls}" src="${p.cover}" alt="" title="${t}" loading="lazy">`
+    :`<div class="cal-cover-ph ${cls}" title="${t}">📖</div>`;
+}
+
+function renderReadingCalendar(){
+  const periods=buildReadingPeriods();
+  const container=document.getElementById('shelfCalendarContainer');
+  const monthNames=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const first=new Date(calYear,calMonth,1);
+  const startWeekday=(first.getDay()+6)%7; // lunes=0
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const todayISO=new Date().toISOString().slice(0,10);
+
+  let cells='';
+  for(let i=0;i<startWeekday;i++) cells+=`<div class="cal-day empty-cell"></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const active=periods.filter(p=>p.start<=dateStr && dateStr<=p.end);
+    const isToday=dateStr===todayISO;
+    const isSelected=dateStr===calSelectedDay;
+    const covers=active.slice(0,3).map(p=>_calCoverThumbHTML(p)).join('');
+    const more=active.length>3?`<span class="cal-day-more">+${active.length-3}</span>`:'';
+    cells+=`<div class="cal-day${active.length?' has-books':''}${isToday?' is-today':''}${isSelected?' is-selected':''}" ${active.length?`onclick="calSelectDay('${dateStr}')"`:''}>
+      <span class="cal-day-num">${d}</span>
+      <div class="cal-day-covers">${covers}${more}</div>
+    </div>`;
+  }
+
+  const monthLabel=`${monthNames[calMonth]} ${calYear}`;
+
+  let panelHtml='';
+  if(calSelectedDay){
+    const active=periods.filter(p=>p.start<=calSelectedDay && calSelectedDay<=p.end);
+    if(active.length){
+      const dStr=new Date(calSelectedDay+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+      panelHtml=`<div class="cal-day-panel">
+        <div class="cal-day-panel-title">${dStr}</div>
+        ${active.map(p=>{
+          const rangeStr=`${new Date(p.start+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})} → ${p.ongoing?'ahora':new Date(p.end+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})}`;
+          const cov=p.cover?`<img class="cal-panel-cover" src="${p.cover}" alt="">`:`<div class="cal-panel-cover" style="display:flex;align-items:center;justify-content:center">📖</div>`;
+          return `<div class="cal-panel-book" onclick="openBook('${p.bookId}')">
+            ${cov}
+            <div class="cal-panel-info">
+              <div class="cal-panel-title">${p.title}</div>
+              <div class="cal-panel-range">${rangeStr}</div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`;
+    }
+  }
+
+  container.innerHTML=`
+    <div class="cal-header">
+      <div class="cal-title">${monthLabel}</div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calChangeMonth(-1)">‹</button>
+        <button class="cal-today-btn" onclick="calGoToday()">Hoy</button>
+        <button class="cal-nav-btn" onclick="calChangeMonth(1)">›</button>
+      </div>
+    </div>
+    <div class="cal-legend">
+      <span><span class="cal-dot dot-reading"></span> Leyendo</span>
+      <span><span class="cal-dot dot-read"></span> Terminado</span>
+    </div>
+    <div class="cal-grid">
+      <div class="cal-weekday">L</div><div class="cal-weekday">M</div><div class="cal-weekday">X</div><div class="cal-weekday">J</div><div class="cal-weekday">V</div><div class="cal-weekday">S</div><div class="cal-weekday">D</div>
+      ${cells}
+    </div>
+    ${panelHtml}
+    ${periods.length===0?`<p class="cal-empty-msg">Aún no hay lecturas registradas. Marca un libro como «Leyendo» o añade una fecha de lectura para verlo aquí 📖</p>`:''}
+  `;
+}
+
+function calChangeMonth(delta){
+  calMonth+=delta;
+  if(calMonth<0){calMonth=11;calYear--;}
+  if(calMonth>11){calMonth=0;calYear++;}
+  calSelectedDay=null;
+  renderReadingCalendar();
+}
+
+function calGoToday(){
+  const now=new Date();
+  calYear=now.getFullYear();
+  calMonth=now.getMonth();
+  calSelectedDay=now.toISOString().slice(0,10);
+  renderReadingCalendar();
+}
+
+function calSelectDay(dateStr){
+  calSelectedDay=(calSelectedDay===dateStr)?null:dateStr;
+  renderReadingCalendar();
 }
 
 /* ══════════════════════════ BINGO DE LECTURA ══════════════════════════ */
