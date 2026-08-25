@@ -1524,6 +1524,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-nav-item.active .shelf-nav-count{background:rgba(192,111,196,.2);color:var(--accent2)}
 .shelf-back-link{display:flex;align-items:center;gap:.4em;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:12.5px;cursor:pointer;font-family:var(--font-body);background:transparent;border:none;width:100%;transition:all .15s;margin-top:.5rem}
 .shelf-back-link:hover{color:var(--accent2)}
+.shelf-progress-item{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;margin-bottom:2px;border:1px solid rgba(201,151,90,.3);background:rgba(201,151,90,.07);cursor:pointer;transition:all .15s;width:100%;text-align:left;font-family:var(--font-body);color:var(--text)}
+.shelf-progress-item:hover{background:rgba(201,151,90,.14);border-color:rgba(201,151,90,.5)}
+.shelf-progress-item-label{font-size:13px;display:flex;align-items:center;gap:6px}
+.shelf-progress-arrow{font-size:11px;color:#c9975a;white-space:nowrap;display:flex;align-items:center;gap:4px}
 .shelf-main{padding:2rem 2rem 4rem;min-width:0}
 .shelf-main-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.75rem}
 .shelf-toolbar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem}
@@ -2159,13 +2163,21 @@ body.home-active .hero,body.home-active .main{display:none!important}
           <span>✓ Leídos</span>
           <span class="shelf-nav-count" id="shelfReadCount">0</span>
         </button>
-        <button class="shelf-nav-item" id="shelfNavCalendar" onclick="switchShelf('calendar')">
-          <span>📅 Calendario</span>
-        </button>
       </div>
       <div class="shelf-sidebar-section">
-        <div class="shelf-sidebar-label">Logros</div>
-        <div class="shelf-badges-row" id="shelfBadgesRow"><!-- se rellena por JS --></div>
+        <div class="shelf-sidebar-label">Tu progreso</div>
+        <button class="shelf-progress-item" id="shelfNavCalendar" onclick="switchShelf('calendar')">
+          <span class="shelf-progress-item-label">📅 Calendario</span>
+          <span class="shelf-progress-arrow">→</span>
+        </button>
+        <button class="shelf-progress-item" onclick="openLogrosModal()">
+          <span class="shelf-progress-item-label">🏅 Logros</span>
+          <span class="shelf-progress-arrow">→</span>
+        </button>
+        <button class="shelf-progress-item" onclick="openStatsModal()">
+          <span class="shelf-progress-item-label">📊 Estadísticas</span>
+          <span class="shelf-progress-arrow">→</span>
+        </button>
       </div>
       <div class="shelf-sidebar-section" style="margin-top:auto;padding-top:1.5rem">
         <button class="shelf-back-link" onclick="closeShelf()">← Volver al catálogo</button>
