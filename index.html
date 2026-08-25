@@ -1496,11 +1496,20 @@ body.home-active .hero,body.home-active .main{display:none!important}
 @media(max-width:700px){.mystat-row{grid-template-columns:repeat(2,1fr)}}
 
 .ryear-chart{display:flex;align-items:flex-end;gap:1.1rem;padding:1.5rem 1rem .5rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow-x:auto}
-.ryear-col{display:flex;flex-direction:column;align-items:center;gap:.6rem;min-width:38px}
+.ryear-col{display:flex;flex-direction:column;align-items:center;gap:.5rem;min-width:38px}
+.ryear-bar-n{font-size:12px;font-weight:700;color:var(--text);line-height:1}
 .ryear-bar-track{width:30px;height:140px;display:flex;align-items:flex-end;background:var(--surface2);border-radius:8px;overflow:hidden}
-.ryear-bar-fill{width:100%;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:8px 8px 0 0;position:relative;display:flex;justify-content:center;transition:height .5s ease}
-.ryear-bar-n{position:absolute;top:-20px;font-size:11px;font-weight:600;color:var(--text)}
+.ryear-bar-fill{width:100%;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:8px 8px 0 0;transition:height .5s ease}
 .ryear-year{font-size:11px;color:var(--muted);letter-spacing:.02em}
+.ryear-year.is-best{color:var(--accent2);font-weight:600}
+.stats-block-note{font-size:11.5px;color:var(--muted);margin-top:.6rem}
+.curio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+@media(max-width:700px){.curio-grid{grid-template-columns:1fr}}
+.curio-card{padding:1.1rem 1rem;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,.85) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:.3rem}
+.curio-icon{font-size:1.1rem}
+.curio-label{font-size:10px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+.curio-value{font-family:var(--font-display);font-size:1.15rem;color:var(--text);font-style:italic;line-height:1.25}
+.curio-sub{font-size:11.5px;color:var(--muted)}
 
 .rtag-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 @media(max-width:700px){.rtag-grid{grid-template-columns:1fr}}
@@ -2324,6 +2333,17 @@ body.home-active .hero,body.home-active .main{display:none!important}
     <div class="stats-block">
       <div class="logros-section-label">Libros leídos por año</div>
       <div id="statsYearChart"></div>
+      <div class="stats-block-note" id="statsYearNote"></div>
+    </div>
+
+    <div class="stats-block">
+      <div class="logros-section-label">Tu racha de lectura</div>
+      <div class="mystat-row" id="statsStreakRow"></div>
+    </div>
+
+    <div class="stats-block">
+      <div class="logros-section-label">Curiosidades de tu estantería</div>
+      <div class="curio-grid" id="statsCurioGrid"></div>
     </div>
 
     <div class="stats-block">
@@ -6552,8 +6572,39 @@ function computeReadingStats(){
   const topTropes=Object.entries(tropeCounts).sort((a,b)=>b[1]-a[1]).slice(0,6);
   const topDin=Object.entries(dinCounts).sort((a,b)=>b[1]-a[1]).slice(0,6);
 
-  return {readBooks,perYear,totalPages,avgRating,avgSpicy,topTropes,topDin};
+  // Ritmo de lectura por mes: para el mes récord y la racha de meses consecutivos leyendo
+  const perMonth={};
+  Object.values(myReadingLog).flat().forEach(entry=>{
+    const d=new Date(entry.read_at);
+    if(isNaN(d)) return;
+    const key=d.getFullYear()*12+d.getMonth(); // índice absoluto de mes, para detectar consecutivos
+    perMonth[key]=(perMonth[key]||0)+1;
+  });
+  const monthKeys=Object.keys(perMonth).map(Number).sort((a,b)=>a-b);
+  let bestMonth=null;
+  monthKeys.forEach(k=>{ if(!bestMonth || perMonth[k]>perMonth[bestMonth]) bestMonth=k; });
+  let longestStreak=0,curRun=0,prevK=null;
+  monthKeys.forEach(k=>{
+    curRun=(prevK!==null && k===prevK+1)?curRun+1:1;
+    longestStreak=Math.max(longestStreak,curRun);
+    prevK=k;
+  });
+
+  // Curiosidades: autora más leída, libro más largo y más corto leídos
+  const authorCounts={};
+  readBooks.forEach(b=>(b.authors||[]).forEach(a=>authorCounts[a]=(authorCounts[a]||0)+1));
+  const topAuthorEntry=Object.entries(authorCounts).sort((a,b)=>b[1]-a[1])[0]||null;
+  const withPages=readBooks.filter(b=>b.pages>0);
+  const longestBook=withPages.length?withPages.reduce((a,b)=>b.pages>a.pages?b:a):null;
+  const shortestBook=withPages.length?withPages.reduce((a,b)=>b.pages<a.pages?b:a):null;
+
+  return {readBooks,perYear,totalPages,avgRating,avgSpicy,topTropes,topDin,
+    bestMonth,bestMonthCount:bestMonth!=null?perMonth[bestMonth]:0,longestStreak,
+    topAuthorEntry,longestBook,shortestBook};
 }
+
+const MONTH_NAMES_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function fmtMonthIdx(idx){ return `${MONTH_NAMES_ES[idx%12]} de ${Math.floor(idx/12)}`; }
 
 function renderStatsView(){
   const s=computeReadingStats();
@@ -6566,17 +6617,46 @@ function renderStatsView(){
   `;
 
   const yearsEl=document.getElementById('statsYearChart');
+  const yearNoteEl=document.getElementById('statsYearNote');
   const years=Object.keys(s.perYear).map(Number).sort((a,b)=>a-b);
   if(!years.length){
     yearsEl.innerHTML='<div class="logros-empty">Aún no tienes fechas de lectura registradas. Añádelas desde "Mi estantería" al marcar un libro como leído.</div>';
+    yearNoteEl.innerHTML='';
   }else{
     const max=Math.max(...years.map(y=>s.perYear[y]));
+    const bestYear=years.reduce((a,b)=>s.perYear[b]>s.perYear[a]?b:a);
     yearsEl.innerHTML=`<div class="ryear-chart">${years.map(y=>`
       <div class="ryear-col">
-        <div class="ryear-bar-track"><div class="ryear-bar-fill" style="height:${Math.max(8,(s.perYear[y]/max)*100)}%"><span class="ryear-bar-n">${s.perYear[y]}</span></div></div>
-        <div class="ryear-year">${y}</div>
+        <span class="ryear-bar-n">${s.perYear[y]}</span>
+        <div class="ryear-bar-track"><div class="ryear-bar-fill" style="height:${Math.max(8,(s.perYear[y]/max)*100)}%"></div></div>
+        <div class="ryear-year ${y===bestYear?'is-best':''}">${y}</div>
       </div>`).join('')}</div>`;
+    const totalLogged=years.reduce((a,y)=>a+s.perYear[y],0);
+    yearNoteEl.innerHTML=`Tu año más lector fue <strong style="color:var(--accent2)">${bestYear}</strong>, con ${s.perYear[bestYear]} libro${s.perYear[bestYear]===1?'':'s'}. Total registrado: ${totalLogged} lectura${totalLogged===1?'':'s'} desde ${years[0]}.`;
   }
+
+  const streakEl=document.getElementById('statsStreakRow');
+  if(s.bestMonth==null){
+    streakEl.innerHTML='<div class="logros-empty">Aún no hay suficientes fechas de lectura para calcular tu ritmo.</div>';
+  }else{
+    streakEl.innerHTML=`
+      <div class="mystat"><div class="mystat-n">${fmtMonthIdx(s.bestMonth)}</div><div class="mystat-l">Tu mes récord (${s.bestMonthCount} libro${s.bestMonthCount===1?'':'s'})</div></div>
+      <div class="mystat"><div class="mystat-n">${s.longestStreak} mes${s.longestStreak===1?'':'es'}</div><div class="mystat-l">Racha más larga leyendo sin parar</div></div>
+    `;
+  }
+
+  const curioEl=document.getElementById('statsCurioGrid');
+  const curioCards=[];
+  if(s.topAuthorEntry){
+    curioCards.push(`<div class="curio-card"><span class="curio-icon">✍️</span><div class="curio-label">Autora más leída</div><div class="curio-value">${escHtml(s.topAuthorEntry[0])}</div><div class="curio-sub">${s.topAuthorEntry[1]} libro${s.topAuthorEntry[1]===1?'':'s'} leído${s.topAuthorEntry[1]===1?'':'s'}</div></div>`);
+  }
+  if(s.longestBook){
+    curioCards.push(`<div class="curio-card"><span class="curio-icon">📚</span><div class="curio-label">El más largo que leíste</div><div class="curio-value">${escHtml(s.longestBook.title)}</div><div class="curio-sub">${s.longestBook.pages.toLocaleString('es-ES')} páginas</div></div>`);
+  }
+  if(s.shortestBook && s.shortestBook!==s.longestBook){
+    curioCards.push(`<div class="curio-card"><span class="curio-icon">🪶</span><div class="curio-label">El más corto que leíste</div><div class="curio-value">${escHtml(s.shortestBook.title)}</div><div class="curio-sub">${s.shortestBook.pages.toLocaleString('es-ES')} páginas</div></div>`);
+  }
+  curioEl.innerHTML=curioCards.length?curioCards.join(''):'<div class="logros-empty">Aún no hay suficientes datos para calcular curiosidades.</div>';
 
   const tagsEl=document.getElementById('statsTagsGrid');
   const buildBars=(arr,color)=>{
