@@ -14351,35 +14351,67 @@
     "synopsis": "Érase una vez, un vampiro corrompió a un cazador.\n\nOctavia Beaumont, una de las vampiras originales, quiere gobernar la ciudad.\n\nRed, una cazadora letal, busca vengar a su hermana, convertida en vampiro.\n\nCuando ambas se ven obligadas a participar en unas pruebas mortales por el control de la ciudad, deben aliarse a pesar de las traiciones del pasado… traiciones que Red no recuerda.\n\nAlguien miente. Todos esconden algo.\nY lo último que quieren es enamorarse.\n\nPero los corazones recuerdan lo que la mente olvida.\n\nPara sobrevivir y ganar, Red y Octavia deberán enfrentar secretos que las destruirán, recordar un pasado que las romperá… y luchar en una guerra que lo cambiará todo.\n\nTres pruebas. Tres decisiones. Tres sacrificios.\n¿Están dispuestas a pagar el precio?",
     "pages": 432,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Paranormal"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Dark Romance",
+      "Magia",
+      "Venganza",
+      "BDSM",
+      "Queer",
+      "Sobrenatural"
     ],
     "identidades": [
-      "Lesbiana"
+      "Lesbiana",
+      "Femme",
+      "Masc"
     ],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Empresaria",
+      "Cazadora",
+      "Profesora",
+      "Jefa de seguridad"
     ],
     "dinamicas": [
-      "Rich × Poor"
+      "Rich × Poor",
+      "Dominante × Sumisa",
+      "Masc × Femme"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Forced Proximity",
       "Rich / Poor Romance",
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Sex Toys / Juguetes Sexuales",
+      "Exhibicionismo",
+      "Diferencia de altura",
+      "Age Gap",
+      "Forbidden Love",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Rivals to Lovers"
     ],
-    "edad": [],
+    "edad": [
+      "1000",
+      "25–39"
+    ],
     "pais_cultura": [
-      "Mundo fantástico"
+      "Reino Unido"
     ],
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [
+      "Queerofobia / LGTBfobia",
+      "Violencia Gráfica"
+    ],
+    "spicy": 5,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Kingdom of Immortal Lovers",
@@ -14408,29 +14440,62 @@
     "synopsis": "Érase una vez, un vampiro se enamoró de un cazador…\n\nLos juicios por el control de la ciudad han comenzado.\n\nRed, una cazadora marcada por secretos, lucha contra su hambre de sangre y su verdadera identidad.\nOctavia Beaumont, una vampira original, hará lo que sea para ganar.\n\nEntre desafíos mortales, alianzas peligrosas y recuerdos robados, Red y Octavia deben enfrentarse a un pasado lleno de mentiras… y a una atracción que podría destruirlas.\n\nEl amor y el odio se confunden.\nLos enemigos están en todas partes.\nY solo una puede gobernar.",
     "pages": 387,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Romance"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "BDSM",
+      "Dark Romance",
+      "Sobrenatural",
+      "Queer",
+      "Magia"
     ],
     "identidades": [
-      "Lesbiana"
+      "Lesbiana",
+      "Femme",
+      "Masc"
     ],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Empresaria",
+      "Cazadora",
+      "Jefa de seguridad",
+      "Profesora"
     ],
     "dinamicas": [
-      "Rich × Poor"
+      "Rich × Poor",
+      "Masc × Femme",
+      "Dominante × Sumisa"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Second Chance Romance",
-      "Rich / Poor Romance"
+      "Rich / Poor Romance",
+      "Exhibicionismo",
+      "Age Gap",
+      "Forced Proximity",
+      "Forbidden Love",
+      "Opposites Attract",
+      "Rivals to Lovers",
+      "Hurt/Comfort"
     ],
+    "edad": [
+      "25–39",
+      "1000"
+    ],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [
+      "Violencia Gráfica",
+      "Queerofobia / LGTBfobia"
+    ],
     "spicy": 5,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -14449,13 +14514,14 @@
     "id": "b_1778319467774_gt45s",
     "title": "Don't Stop Me",
     "authors": [
-      "Ruby Roe"
+      "Eden Emory"
     ],
     "year": 2022,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1661323748i/62069043.jpg",
     "synopsis": "Ella era todo lo que siempre quise.\nInteligente. Hermosa. Apasionada.\nMe obsesioné con ella, o al menos con quien creía que era.\nY entonces, me mostró su verdadera naturaleza al aparecer en mi puerta como la novia de mi hijo.\nEra algo inaccesible.\nPero no podía negar que una parte de mí todavía la deseaba, y por la mirada en sus ojos...\nElla tampoco.\nGracias Roo Bugin por la contribución",
     "pages": 316,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -14469,7 +14535,11 @@
     "tropes": [
       "Age Gap"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -14488,13 +14558,14 @@
     "id": "b_1778319516016_uij17",
     "title": "Don't Leave Me",
     "authors": [
-      "Ruby Roe"
+      "Eden Emory"
     ],
     "year": 2023,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1669144531i/63590066.jpg",
     "synopsis": "Soy una mentirosa profesional.\nPero no porque me guste mentir...\nporque a la gente no le gusta la verdad.\nHice lo que tenía que hacer para sobrevivir, pero una vez hice una promesa.\nHabía una sola persona en este mundo a la que jamás podría mentirle.\nMi hermanastra, Lillian.\nEl problema es que, con el tiempo,\nempecé a mentirme a mí misma.\nSoy una buena persona.\nEstoy feliz con mi vida.\nY por último... no estoy enamorado de Lilian.\nHan pasado nueve años desde la última vez que la vi y doce desde que le confesé mi amor.\n¿Esta vez finalmente me creerá?\nGracias Roo Bugin por la contribución",
     "pages": 292,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Romance",
       "Contemporánea"
@@ -14507,7 +14578,11 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -14526,13 +14601,14 @@
     "id": "b_1778319570640_o93fw",
     "title": "Don't Forget Me",
     "authors": [
-      "Ruby Roe"
+      "Eden Emory"
     ],
     "year": 2023,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1674850667i/88415523.jpg",
     "synopsis": "He estado escondida casi toda mi vida, y lo último en lo que pensaba era en amor.\nPero ¿cómo podía negarme cuando la persona que tanto anhelaba se me entregó en bandeja de plata?\nPlaneaba pasar desapercibida en el Club Pétale, quizá divertirme un poco de paso, pero después de conocerla, mis planes cambiaron.\nAhora no me detendré ante nada hasta que sea mía, aunque eso signifique volver a la escuela.\nHasta pronto, profesor Evens.\nEspero que no te hayas olvidado de mí todavía.\nGracias Roo Bugin por la contribución",
     "pages": 340,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -14544,7 +14620,11 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -14553,19 +14633,24 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778319651474_i7oi5",
     "title": "Don't Hate Me",
     "authors": [
-      "Ruby Roe"
+      "Eden Emory"
     ],
     "year": 2023,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1690861239i/195474691.jpg",
     "synopsis": "Han pasado años desde mi primer asesinato. Tengo mi proceso dominado por completo.\nY quizás a veces incluso me permito disfrutarlo.\nPero cuando me piden infiltrarme en el Club Pétale para acercarme a un objetivo, nunca imaginé cómo cambiaría mi vida.\nBlake. Un blanco fácil.\nO al menos se suponía que lo sería.\nNunca he sentido amor, pero cuando sus ojos verdes me miraron con tanta calidez, me gustaría creer que sentí algo así.\nPero un trabajo es un trabajo, y pase lo que pase, vería el fin de esto.\nGracias Roo Bugin por la contribución",
     "pages": 360,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -14577,7 +14662,11 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -14586,7 +14675,11 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778319954978_114jg",
@@ -15055,6 +15148,7 @@
     "synopsis": "Esta es la emocionante conclusión del tórrido romance vampírico de Red y Octavia. Averigua qué ocurre y si Érase una vez termina con un felices para siempre...",
     "pages": 396,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -15063,17 +15157,41 @@
     "subgenres": [
       "Erótica"
     ],
-    "identidades": [],
+    "identidades": [
+      "Lesbiana",
+      "Femme",
+      "Masc"
+    ],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Empresaria",
+      "Cazadora"
     ],
     "dinamicas": [
       "Femme × Femme"
     ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Age Gap",
+      "Sex Toys / Juguetes Sexuales",
+      "Rivals to Lovers",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Forbidden Love",
+      "Second Chance Romance"
     ],
+    "edad": [
+      "25–39",
+      "1000"
+    ],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [
+      "Violencia Gráfica",
+      "Queerofobia / LGTBfobia"
+    ],
     "spicy": 5,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -15099,22 +15217,47 @@
     "synopsis": "Dos enemigos, un objetivo: robarse mutuamente el corazón.\n\nScarlett Grey, asesina caída en desgracia, está decidida a vengarse.\n\nQuinn Adams, médico convertido en envenenador a sueldo, es su rival más mortífero.\n\nDurante años se han robado mutuamente los clientes, se han saboteado los negocios y, en ocasiones... se han acostado.\n\nCuando la Reina Maga ofrece un trato irresistible, Scarlett y Quinn se ven obligadas a trabajar juntas. Pero no se trata de un trabajo sencillo.\n\nCon un atraco imposible por delante, van a tener que confiar el uno en el otro...\n\nY eso no es fácil cuando ambas tienen secretos que ocultar.\n\nMás difícil aún cuando esos secretos traicionarán a sus seres queridos.\n\nAhora ninguna de las dos está segura de si lo que quiere ganar es un atraco o un corazón.",
     "pages": 319,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Romance"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Erótica",
+      "Magia",
+      "BDSM",
+      "Dark Romance"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Asesina",
+      "Doctora / Médica"
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Masc × Femme",
+      "Caos × Control",
+      "Dominante × Sumisa",
+      "Feroz × Tierna",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Enemies to Lovers",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Rivals to Lovers",
+      "Slow Burn",
+      "Sex Toys / Juguetes Sexuales"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -15140,6 +15283,7 @@
     "synopsis": "¿Puede el amor ser el arma más poderosa en un juego de poder?\n\nStirling Grey, una hábil negociadora con el corazón roto, y Morrigan Lee, una princesa oculta con un oscuro secreto, compartieron un amor prohibido... hasta que el destino las separó.\n\nAños después, una amenaza pone en peligro el reino y la Reina las obliga a trabajar juntas. Su misión: proteger la corona o perderlo todo.\n\nCon el pasado lleno de traiciones y los sentimientos aún latentes, deberán decidir si luchan por el trono... o por el amor que creían perdido.\n\nUn reino en juego. Dos corazones enfrentados. Un romance que podría ser su ruina... o su redención.",
     "pages": 340,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -15147,18 +15291,38 @@
     ],
     "subgenres": [
       "Erótica",
-      "Dark Romance"
+      "Dark Romance",
+      "Magia",
+      "BDSM",
+      "Crimen"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
     "characters": [],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Caos × Control",
+      "Fría × Cálida",
+      "Feroz × Tierna",
+      "Masc × Femme"
     ],
     "tropes": [
       "Enemies to Lovers",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Sex Toys / Juguetes Sexuales",
+      "Rivals to Lovers",
+      "Opposites Attract",
+      "Unrequited Love"
     ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -15184,6 +15348,7 @@
     "synopsis": "¿Puede sobrevivir el amor cuando la confianza es la magia más rara de todas?\n\nBella Blythe, maestra de la magia rúnica, está decidida a ganar los Juegos Rúnicos... Si tan solo su mayor rival, Remy Reid, se apartara de su camino.\n\nDurante años se han enfrentado en competiciones, trabajos y aprendizajes...\n\nHasta que un simple beso lo cambió todo.\n\nCon la mayor competición de sus vidas por delante, tendrán que confiar el uno en el otro...\n\nUna tarea inútil cuando ambos albergan secretos llenos de traición...\n\nCon una reputación y una relación en peligro, se encuentran ante una elección imposible:\n\n¿Quieren ganar un concurso o un corazón?\n\nDos mujeres, dos traiciones y un romance que reescribirá su destino.",
     "pages": 368,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -15191,18 +15356,41 @@
     ],
     "subgenres": [
       "Dark Romance",
-      "Erótica"
+      "Erótica",
+      "BDSM",
+      "Magia",
+      "Crimen"
     ],
-    "identidades": [],
-    "characters": [],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Hacker",
+      "Empresaria"
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Masc × Femme",
+      "Caos × Control",
+      "Dominante × Sumisa",
+      "Feroz × Tierna",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Enemies to Lovers",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Sex Toys / Juguetes Sexuales",
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Secret Relationship"
     ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -25567,27 +25755,54 @@
     "synopsis": "Dos mujeres, dos contratos malditos y un deseo capaz de condenarlas.\n\nMercedes Midnight, una parca endeudada, sólo tiene un año antes de que el infierno reclame su alma. Lucy Corvine, hija del diablo y brillante profesora, está atrapada en un pacto que nunca eligió.\n\nUnidas por un acuerdo peligroso en la Academia Finis, deberán enfrentarse a conspiraciones, secretos y una inminente guerra celestial… mientras luchan contra la atracción prohibida que podría costarles la libertad.\n\nUn año. Un alma. Una elección imposible.ire",
     "pages": 420,
     "isbn": null,
+    "ship": [],
     "genres": [
       "Paranormal",
-      "Romance"
+      "Romance",
+      "Gótico"
     ],
     "subgenres": [
-      "Dark Romance"
+      "Dark Romance",
+      "Erótica",
+      "BDSM"
     ],
     "identidades": [
-      "Butch"
+      "Butch",
+      "Femme",
+      "Masc"
     ],
     "characters": [
-      "Demonio"
+      "Demonio",
+      "Parca",
+      "Profesora"
     ],
     "dinamicas": [
-      "Butch × Femme"
+      "Butch × Femme",
+      "Masc × Femme",
+      "Caos × Control",
+      "Dominante × Sumisa",
+      "Feroz × Tierna",
+      "Fría × Cálida"
     ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Forbidden Love",
+      "Secret Relationship",
+      "Enemies to Lovers",
+      "Opposites Attract",
+      "Sex Toys / Juguetes Sexuales"
     ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Deals of Dark Desire",
@@ -47474,20 +47689,45 @@
       "Romance",
       "Paranormal"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Erótica",
+      "Magia",
+      "BDSM",
+      "Dark Romance",
+      "Sobrenatural"
+    ],
     "identidades": [],
     "characters": [
-      "Bruja",
-      "Vampira"
+      "Vampira",
+      "Realeza",
+      "Guardaespaldas"
     ],
-    "dinamicas": [],
+    "dinamicas": [
+      "Masc × Femme",
+      "Dominante × Sumisa",
+      "Protectora × Delicada",
+      "Caos × Control",
+      "Feroz × Tierna",
+      "Fría × Cálida"
+    ],
     "tropes": [
       "Age Gap",
       "Enemies to Lovers",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Slow Burn",
+      "Secret Relationship"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "500"
+    ],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -56495,25 +56735,42 @@
       "Fantasía"
     ],
     "subgenres": [
-      "Dark Romance"
+      "Dark Romance",
+      "Erótica",
+      "BDSM",
+      "Magia"
     ],
     "identidades": [
       "Femme",
       "Butch"
     ],
     "characters": [
-      "Demonio"
+      "Demonio",
+      "Parca",
+      "Profesora"
     ],
-    "dinamicas": [],
+    "dinamicas": [
+      "Butch × Femme"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Destined Lovers",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Secret Relationship",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [
-      "25–39"
+      "25–39",
+      "+40"
     ],
     "pais_cultura": [
       "Mundo fantástico"
     ],
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Guerra / Conflicto Armado",
@@ -57033,16 +57290,34 @@
       "Fantasía"
     ],
     "subgenres": [
-      "Magia"
+      "Magia",
+      "Erótica",
+      "BDSM"
     ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Asesina",
+      "Farmacéutica"
+    ],
+    "dinamicas": [
+      "Dominante × Sumisa",
+      "Masc × Femme",
+      "Caos × Control",
+      "Feroz × Tierna",
+      "Seria × Divertida"
+    ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Sex Toys / Juguetes Sexuales",
+      "Forced Proximity",
+      "Found Family",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Rivals to Lovers"
     ],
     "edad": [],
     "pais_cultura": [],
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -57073,17 +57348,43 @@
     "ship": [],
     "genres": [
       "Fantasía",
-      "Romance"
+      "Romance",
+      "Paranormal",
+      "Fantasía Urbana"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Erótica",
+      "BDSM",
+      "Magia",
+      "Sobrenatural"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Masc × Femme",
+      "Caos × Control",
+      "Dominante × Sumisa",
+      "Feroz × Tierna",
+      "Fría × Cálida"
+    ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Sex Toys / Juguetes Sexuales",
+      "Found Family",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Rivals to Lovers",
+      "Secret Relationship"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -61259,6 +61560,602 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "thais",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788599001645_tb616",
+    "title": "Freak In You",
+    "authors": [
+      "weekendlustt"
+    ],
+    "year": 2025,
+    "cover": "https://cdn.thestorygraph.com/fnw9f7zb6f2pdhiov9epv48y3dpj",
+    "synopsis": "\"No follo con chicas que no saben escuchar\", susurró con cuidado, apartándose para calibrar mi reacción entrecerrada antes de continuar: \"Quizá la próxima vez sé una buena chica\".\n\nY sin más, fue a apartarse.\n\nBueno, eso fue antes de que yo rodeara su torso con mis tonificadas piernas y la atrajera bruscamente hacia mí.\n\nDe nuevo, odio que me digan que no.\n\n♱ ♱ ♱ ♱ ♱\n\nTras relacionarse con Noa Vitali, un capo de la mafia del que su hermano mayor fue subjefe, Lunden Spade se ve envuelta en un trato explícito que despierta el interés de ambos.\n\n¿Encontrará Lunden que sus límites están siendo llevados demasiado lejos para su gusto? Y lo que es más importante...\n\n¿Le gustará?",
+    "pages": 344,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [
+      "Traducción mecánica",
+      "Mafia",
+      "BDSM",
+      "Celebridad",
+      "Erótica",
+      "Dark Romance"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Modelo",
+      "Capo",
+      "Famosa"
+    ],
+    "dinamicas": [
+      "Masc × Femme",
+      "Caos × Control",
+      "Feroz × Tierna",
+      "Fría × Cálida",
+      "Dominante × Sumisa",
+      "Protectora × Delicada"
+    ],
+    "tropes": [
+      "One Night Stand → More",
+      "Enemies to Lovers",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Secret Relationship",
+      "Sex Toys / Juguetes Sexuales"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [
+      "Contenido Adulto (R18)",
+      "Drogas / Consumo de Sustancias",
+      "Sobredosis"
+    ],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788599235735_efzfh",
+    "title": "Amalgama",
+    "authors": [
+      "Agata P. Lambert"
+    ],
+    "year": 2022,
+    "cover": "https://m.media-amazon.com/images/I/61jZ549miXL._AC_UF1000,1000_QL80_.jpg",
+    "synopsis": "Una limonada derramada en su blusa.\n\nAsí es como Irina conoce a Louisa: con un pequeño accidente.\n\nUn encuentro fortuito que deja de serlo cuando Irina descubre que la camarera que arruinó su atuendo es nada más y nada menos que una de sus nuevas alumnas. Y no solo eso: es una de las peores del curso, cuyo único interés parece ser llenarla de preguntas, no darle ninguna respuesta a cambio; y revolotear a su alrededor con el mero propósito de volverla completamente loca.\n\nIrina odia los juegos y con Louisa, se encuentra jugando uno en el que no conoce las reglas. Solo hay una: \"no involucrarse con sus estudiantes\". Y la está rompiendo.\n\nHasta que un día, Louisa desaparece dejando tras ella problemas y desastres.\n\nLouisa no ha olvidado todo lo sucedido. Ha vivido su vida creyendo que luego del accidente, su deuda con el karma ha sido saldada.\n\nSin embargo, el destino la pone cara a cara con su antigua profesora y sus mundos vuelven a ponerse patas arriba.\n\nPero esta vez, Louisa no puede huir y aunque quisiera, decide no hacerlo. El problema es que no sabe si Irina la mirará con los mismos ojos... O si será capaz de hacerlo.",
+    "pages": 442,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Universidad",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Profesora",
+      "Estudiante"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Mentora × Aprendiz",
+      "Fría × Cálida",
+      "Seria × Divertida",
+      "Caos × Control",
+      "Feroz × Tierna"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Student × Teacher",
+      "Forbidden Love",
+      "Second Chance Romance",
+      "Hurt/Comfort",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Unrequited Love",
+      "Jealousy Trope"
+    ],
+    "edad": [
+      "25–39",
+      "+40",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788599642734_q0ham",
+    "title": "El arte de ceder",
+    "authors": [
+      "Agata P. Lambert"
+    ],
+    "year": 2017,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1710706542i/210094750.jpg",
+    "synopsis": "Ava Huxley. Jinete y entrenadora.\n\nAudaz como cualquier hombre, maneja su estancia con una pasión sin igual.\nHabiendo vivido en el campo toda su vida y gracias a su padre y a Alfred Harlowe, su socio, Ava aprendió a manejar el establo a temprana edad y dedicó su vida a sus caballos, al cuidado de su hogar y sus empleados. Gracias a su belleza e ingenio es capaz de conseguir cualquier cosa. Su carácter, sin embargo, es igual al de su madre: feroz, territorial, tenaz.\nIndomable.\n\nPor eso, cuando alguien llega desde Londres a reclamar aquello que le pertenece, Ava no se molesta en sosegar su naturaleza salvaje.\n\nEn un parpadeo, todo se pone patas para arriba en Nomansland, Devon, y lo que comienza como una batalla de egos y control, pronto se convierte en algo más. Dominar el arte de ceder será todo un desafío pero traerá cosas que nadie imagina.",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Deporte"
+    ],
+    "identidades": [
+      "Masc",
+      "Butch"
+    ],
+    "characters": [
+      "Empresaria",
+      "Deportista",
+      "Entrenadora"
+    ],
+    "dinamicas": [
+      "Caos × Control",
+      "Protectora × Delicada"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39",
+      "26",
+      "34"
+    ],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788599952914_bib0g",
+    "title": "La distancia entre nosotras",
+    "authors": [
+      "Agata P. Lambert"
+    ],
+    "year": 2021,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1662731103i/62342003.jpg",
+    "synopsis": "Incapaz de soportar el dolor de su corazón roto, Vanessa decide aceptar un empleo en la remota ciudad de Erie, Pennsylvania, donde espera recuperarse de los estragos emocionales producto de su fallida relación con Amanda.\nPero sus esperanzas de no volver a caer en las trampas del amor se desvanecen en el momento que conoce a Elise.\n\nReservada, carismática y creativa, Elise no está dispuesta a darle la bienvenida a la mujer que ha venido a sacudir las estructuras y a poner su trabajo de cabeza, mucho menos a dejarla entrar en su vida. Ya tiene demasiadas cosas de qué ocuparse como para distraerse con la muchachita recién llegada de Chicago.\n\nCuando sus caminos se cruzan, inmediatamente las chispas vuelan entre ellas acercándolas en formas que ninguna imaginó. Sin embargo, Vanessa y Elise deberán aprender que el pasado también puede separarlas pero que la distancia entre ellas también puede desvanecerse si luchan por ello.",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [],
+    "characters": [
+      "Consultora",
+      "Diseñora"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "25–39",
+      "27",
+      "38-39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788600401601_c8xfk",
+    "title": "Flores para Virginia",
+    "authors": [
+      "Agata P. Lambert"
+    ],
+    "year": 2022,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1662787051i/62347678.jpg",
+    "synopsis": "La vida de Virginia Hara es ajetreada pero satisfactoria. Su empleo como trabajadora social la llena de energía, sus alumnos la respetan por su experiencia y sus colegas por su determinación.\nSin embargo, la llegada de una molesta rubia amenaza con quitarle todo por lo que ha trabajado.\n\nIsabella Flores, no tiene miedo de lanzarse por lo que quiere o necesita. Como arquitecta, ha aprendido que se atraen más moscas con miel que con hiel, pero cuando conoce a Virginia Hara entiende de inmediato que la morocha será un dolor de cabeza.\n\nUna batalla de egos se desata cuando ambas se encuentran. Los demonios que ambas creían dormidos, despiertan y ninguna sospecha que necesitarán de la otra para derrotarlos.",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Arquitecta",
+      "Trabajadora Social",
+      "Profesora"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Slow Burn",
+      "Opposites Attract",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "25–39",
+      "29",
+      "32"
+    ],
+    "pais_cultura": [
+      "Argentina"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788600818038_99dtx",
+    "title": "Jaque Mate (Camren)",
+    "authors": [
+      "camilipstick"
+    ],
+    "year": 2018,
+    "cover": "https://img.wattpad.com/cover/91318685-288-k247452.jpg",
+    "synopsis": "Un juego peligroso, lleno de trampas. Una disputa de poder, dinero y deseo. De un lado del tablero, la Oficial Lauren Jauregui, por el otro, la esposa de un magnate, Karla Camila Cabello. En este juego, sólo uno caerá. ¿Quién tendrá la mejor estrategia? ¿Quién sabrá jugar mejor? ¿Quién dará el jaque mate? Hagan sus apuestas, el juego está por comenzar.",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Fanfic",
+      "Camren",
+      "Fifth Harmony"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria",
+      "Policía"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Bodyguard × VIP"
+    ],
+    "tropes": [
+      "Bodyguard / VIP",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Forbidden Love"
+    ],
+    "edad": [
+      "25–39",
+      "30",
+      "31"
+    ],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Suiza",
+      "México",
+      "Cuba"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788601003698_6muy9",
+    "title": "La justiciera (Camren)",
+    "authors": [
+      "Cxmrenlifexx"
+    ],
+    "year": 2015,
+    "cover": "https://img.wattpad.com/cover/46143881-256-k609749.jpg",
+    "synopsis": "¿Que pasaría si un día cualquiera entran en tu oficina dos agentes del FBI? \n\nLauren Jauregui se encontraba en un día laboral más, recién habia terminado de atender a su último paciente cuando le avisan que dos agentes del FBI querían hablar con ella.\n\n¿Que pasaría si esos agentes le piden a Lauren dejar su vida para ir detrás de un delincuente? ¿Que pensará Lauren cuando le avisen que tiene que preparar el perfil de un delincuente que no es delincuente?",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Fanfic",
+      "Camren",
+      "Fifth Harmony"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Psicóloga",
+      "Doctora / Médica",
+      "Cirujana"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Forced Proximity",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39",
+      "25",
+      "34"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788601232587_34kdq",
+    "title": "Symbolism (Jinx x Caitlyn)",
+    "authors": [
+      "AndreaPLancer"
+    ],
+    "year": 2022,
+    "cover": "https://img.wattpad.com/cover/136435880-256-k830415.jpg",
+    "synopsis": "En su afán por detener a Jinx de volar todo el museo de la ciudad, Vi y Caitlyn despiertan el antiguo poder de un despiadado aparato Hextech que tomara a las tres por sorpresa y cambiara el rumbo de sus vidas, acabando con la de una de ellas para siempre.",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Acción",
+      "Aventura",
+      "Ciencia Ficción"
+    ],
+    "subgenres": [
+      "Fanfic",
+      "Jinx x Caitlyn",
+      "Crimen"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Sheriff",
+      "Policía",
+      "Criminal",
+      "Terrorista"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Hurt/Comfort"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1788601806589_apopj",
+    "title": "Corrupted",
+    "authors": [
+      "weekendlustt"
+    ],
+    "year": 2025,
+    "cover": "https://img.wattpad.com/cover/369455286-256-k414115.jpg",
+    "synopsis": "Milena Azhari es una abogada defensora que lucha por mantener su vida en orden en Miami hasta que un favor desesperado la enreda en la red de Tazmin Moretti, un peligroso líder de una banda con secretos muy profundos.\n\nSe llega a un acuerdo que arrastra a Milena a un mundo de poder, control y obsesión.\n\nCuanto más se resiste, más se refuerza el control de Tazmin, difuminando la línea entre el deseo y la autodestrucción.\n\nEn este mundo, la confianza es una vulnerabilidad, el amor se convierte en un arma, y ninguno de los dos sale indemne de este acuerdo sin verse corrompido.",
+    "pages": 668,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [
+      "Traducción mecánica",
+      "Dark Romance"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "CEO",
+      "Abogada",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Forbidden Love",
+      "Opposites Attract",
+      "Jealousy Trope"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39",
+      "24",
+      "27"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "wattpad",
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
