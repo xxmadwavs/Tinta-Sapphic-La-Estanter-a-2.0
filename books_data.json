@@ -1184,6 +1184,7 @@
     "synopsis": "Cuando la escort del club nocturno número uno, apodada \"El Ángel\", se le asigna un trabajo importante a una empresaria condescendiente y despreciada, las circunstancias inesperadamente los llevan a la cama juntas. ¿Cómo\nterminará esta relación tan íntima...?\n\n¿ Podemos amar?\n\nEs la misma pregunta, formulada en diferentes contextos. Pakinee pregunta porque no está segura de si una mujer como Panapsorn podría sentar cabeza con ella, mientras que Panapsorn pregunta porque no sabe si alguien de su bajo estatus tiene derecho a amar a otra persona ...",
     "pages": 427,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LenaMiu"
     ],
@@ -1195,7 +1196,9 @@
     ],
     "identidades": [],
     "characters": [
-      "CEO"
+      "CEO",
+      "Escort",
+      "Prostituta de lujo"
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
@@ -1209,6 +1212,9 @@
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -1244,10 +1250,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777211908582_gbplw",
@@ -1738,6 +1741,7 @@
     "synopsis": "“Si no vienes a verme esta noche, no esperes dormir en paz.”\n\n*****\n\nEncaje tatuado en su pecho y encaje metálico en su vestido;\n\nTodo para cautivar y hechizar, para que su amor por ella sea su fe.\n\nEn su flanco, dos urracas y un loto moran,\n\nRealzando su encanto, reinando sobre cualquier hombre y mujer.\n\nLoto celestial oculto bajo su ombligo.\n\nSu nombre: Mae Kru Bulan.\n\n*****\n\nLa policía… estaba a punto de perder la fe en la bondad porque la ley no podía castigar a los practicantes de magia, lo que casi la hizo perder a otra persona que amaba.",
     "pages": 419,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "BintPui"
     ],
@@ -1747,7 +1751,10 @@
     ],
     "subgenres": [],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Policía",
+      "Chamana"
+    ],
     "dinamicas": [
       "Grumpy × Sunshine"
     ],
@@ -1756,10 +1763,19 @@
       "Opposites Attract",
       "Slow Burn"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "content_warnings": [],
+    "content_warnings": [
+      "Violencia Gráfica"
+    ],
     "spicy": 2,
     "formato": "Único",
     "adaptacion": "Tiene serie",
@@ -1788,10 +1804,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777216733646_mpnxr",
@@ -65741,6 +65754,215 @@
     "sagaNum": 2,
     "source": "other",
     "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1789110820780_97z7s",
+    "title": "Cuando la marea diga tu nombre",
+    "authors": [
+      "Lúa Silente"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1788894207i/258583267.jpg",
+    "synopsis": "Clara Ríos solo pretende pasar una semana en Moural: inventariar la casa de su abuela, ponerla a la venta y regresar a una vida que sabe mantener bajo control. Pero un aviso de demolición, unas marcas ocultas en el mural del comedor y un registro de mareas alterado la obligan a mirar de frente la desaparición de su madre, ocurrida veinticinco años atrás.\nVera Aranda, bióloga marina y antigua rival de veranos adolescentes, lleva años documentando los cambios de la ensenada. Su investigación puede detener una obra capaz de dañar la costa, pero también amenaza con sacar a la luz los silencios de su propia familia. Trabajar juntas resulta inevitable. Volver a desearse, no.\nMientras la bajamar descubre un acceso que alguien quiso borrar, Clara y Vera tendrán que decidir cuánta verdad se deben, qué significa cuidar sin elegir por la otra y si el futuro puede construirse sin negar las marcas del pasado.\nCuando la marea diga tu nombre es un romance sáfico contemporáneo sobre la memoria, el deseo y las segundas oportunidades, envuelto en un misterio costero donde cada hallazgo tiene un precio.",
+    "pages": 226,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Misterio"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Restauradora",
+      "Bióloga marina",
+      "Bióloga"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Childhood Friends",
+      "Rivals to Lovers",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39",
+      "34",
+      "36"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 1,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1789111268569_jko2n",
+    "title": "Hired Help",
+    "authors": [
+      "Harper Bliss"
+    ],
+    "year": 2012,
+    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1339722693i/15705090.jpg",
+    "synopsis": "La novia de Olivia la dejó hace meses y está deseando tener algo de acción. Su mejor amiga le recomienda contratar a alguien.",
+    "pages": 30,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance"
+    ],
+    "subgenres": [
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "CEO",
+      "Prostituta de lujo",
+      "Escort"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "One Night Stand → More",
+      "Sex Toys / Juguetes Sexuales",
+      "Strangers to Lovers"
+    ],
+    "edad": [
+      "25–39",
+      "28"
+    ],
+    "pais_cultura": [
+      "Francia"
+    ],
+    "pais_origen": [
+      "Países Bajos"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Contenido Adulto (R18)",
+      "Prostitución / Trabajo Sexual"
+    ],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1789112496113_ham5x",
+    "title": "Juliet and Juliet",
+    "authors": [
+      "Freaky"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/A1t59C-lDeL._SL1500_.jpg",
+    "synopsis": "Blue sueña con estudiar pintura en la universidad de arte más prestigiosa de Tailandia y convertirse en una artista conocida en todo el mundo.\nEse sueño hace que su camino se cruce con el de Tokyo, la hija de uno de los hombres más influyentes de la provincia, una chica que se refugia en el mundo idílico de los cuentos de hadas para escapar de la violencia de la vida real.\nSu amor secreto madura, dulce como el fruto prohibido. Como dos pajaritos, anhelan desplegar sus alas y escapar de las jaulas doradas que se han construido a su alrededor.\nPero si el precio del amor y la libertad es la muerte, quizá solo la luna y Dios lo sepan. ¿Correrán estas dos Julietas el mismo destino que Romeo y Julieta, los amantes de los que una vez se burlaron?",
+    "pages": 359,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [
+      "MingmingNepjune"
+    ],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Juvenil",
+      "Drama"
+    ],
+    "subgenres": [
+      "Secundaria",
+      "GL Thai 🇹🇭",
+      "Mafia",
+      "Small Town",
+      "Queer",
+      "Crimen"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Opposites Attract",
+      "Secret Relationship",
+      "Jealousy Trope",
+      "Rivals to Lovers"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "pais_origen": [
+      "Tailandia"
+    ],
+    "ambientacion": [],
+    "content_warnings": [
+      "Violencia Gráfica",
+      "Conflictos Familiares",
+      "Acoso / Hostigamiento",
+      "Muerte de un Ser Querido",
+      "Bullying"
+    ],
+    "spicy": 2,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "thais",
+    "editions": [
+      {
+        "lang": "EN",
+        "store": "Amazon",
+        "url": "https://a.co/d/0dbUnP15"
+      }
+    ],
     "saficlub": false,
     "safi_categories": [],
     "canal_rec": false,
