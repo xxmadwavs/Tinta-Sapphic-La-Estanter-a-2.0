@@ -72,28 +72,11 @@ body.halloween-mode::before{
 }
 body.halloween-mode{background:var(--hw-bg) radial-gradient(ellipse at 50% -10%,rgba(60,17,25,.35) 0%,transparent 60%) fixed}
 
-/* 0-b) Viñeta + grano de papel viejo sobre TODA la página — es lo que más cambia
-   la sensación general de "misma web con detalles encima" a "edición distinta" */
-body.halloween-mode::after{
-  content:'';position:fixed;inset:0;z-index:110;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 42%,transparent 38%,rgba(0,0,0,.5) 100%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/></svg>");
-  mix-blend-mode:overlay;opacity:.55;
-}
-
-/* 0-c) Tratamiento sepia/duotono en TODAS las portadas — el cambio con más
-   superficie visible en pantalla, unifica la sensación de "edición de octubre" */
-body.halloween-mode img{filter:sepia(.16) saturate(.75) contrast(1.06) brightness(.94)}
-
 /* Tipografía: serif editorial en todas partes (ya es la base del sitio).
    La blackletter se reserva para un único acento decorativo — nunca la interfaz. */
 body.halloween-mode .hw-blackletter{font-family:var(--hw-font-display);font-style:normal;font-weight:400;letter-spacing:.01em}
 body.halloween-mode .logo em{color:var(--hw-copper2);font-style:italic;font-weight:600}
 body.halloween-mode .hv-h1 em,body.halloween-mode .hero-title em,body.halloween-mode .hw-hero-strip h2 em{color:var(--hw-copper2)}
-body.halloween-mode .hero-title,body.halloween-mode .hv-h1{text-shadow:0 0 44px rgba(181,98,47,.22)}
-body.halloween-mode .tab-btn.active{background:transparent;border-color:transparent;border-bottom:1px solid var(--hw-copper);border-radius:0;color:var(--hw-copper2)}
-body.halloween-mode .tab-btn:hover{border-color:transparent;border-bottom:1px solid var(--hw-border2)}
 
 /* 2) Visibilidad de elementos exclusivos de octubre */
 .hw-only{display:none}
@@ -105,7 +88,7 @@ body.halloween-mode .hw-hide{display:none}
 body.halloween-mode .hw-decor{display:block}
 
 /* 3) Navegación — más oscura, bordes finos, cobre/borgoña, menos "pill" moderno */
-body.halloween-mode .topbar{background:rgba(10,7,7,.92);border-bottom:1px solid var(--hw-copper);box-shadow:0 1px 12px rgba(181,98,47,.1)}
+body.halloween-mode .topbar{background:rgba(10,7,7,.92);border-bottom:1px solid var(--hw-border2)}
 body.halloween-mode .btn-login{background:transparent;border:1px solid var(--hw-copper);color:var(--hw-copper2);border-radius:2px}
 body.halloween-mode .btn-login:hover{background:var(--hw-copper-soft);border-color:var(--hw-copper2)}
 body.halloween-mode .home-nav-btn{border-radius:2px;border-color:var(--hw-border2)}
@@ -166,7 +149,7 @@ body.halloween-mode .hw-motif{opacity:.4;transform:translateY(0) scale(1)}
 
 /* 7) Decoración — telaraña de esquina (sutil, fija) */
 .hw-cobweb{position:fixed;top:0;left:0;width:84px;height:84px;color:var(--hw-moon);opacity:0;pointer-events:none;z-index:150;transition:opacity .8s ease}
-body.halloween-mode .hw-cobweb{opacity:.35}
+body.halloween-mode .hw-cobweb{opacity:.22}
 
 /* 8) Decoración — araña colgando de un hilo, descenso muy lento */
 .hw-spider{position:fixed;top:0;right:6vw;width:26px;opacity:0;pointer-events:none;z-index:150;transition:opacity 1s ease;transform-origin:top center}
@@ -181,7 +164,7 @@ body.halloween-mode .hw-spider{opacity:.5;animation:hwSpiderDrop 16s ease-in-out
 
 /* 9) Decoración — polillas nocturnas flotando muy despacio */
 .hw-moth{position:absolute;width:20px;height:20px;color:var(--hw-moon);opacity:0;pointer-events:none;transition:opacity .8s ease}
-body.halloween-mode .hw-moth{opacity:.5}
+body.halloween-mode .hw-moth{opacity:.35}
 body.halloween-mode .hw-moth-a{animation:hwMothFloat 9s ease-in-out infinite}
 body.halloween-mode .hw-moth-b{animation:hwMothFloat 11s ease-in-out infinite 1.5s}
 body.halloween-mode .hw-moth-c{animation:hwMothFloat 8s ease-in-out infinite 3s}
@@ -194,18 +177,18 @@ body.halloween-mode .hw-moth-c{animation:hwMothFloat 8s ease-in-out infinite 3s}
 
 /* 10) Decoración — ramas oscuras muy finas en los extremos del hero */
 .hw-branch{position:absolute;color:var(--hw-wine-bright);opacity:0;pointer-events:none;transition:opacity 1s ease}
-body.halloween-mode .hw-branch{opacity:.6}
+body.halloween-mode .hw-branch{opacity:.4}
 
 /* 11) Decoración — luna grande y sutil tras el título del hero */
 .hw-moon-orb{position:absolute;top:-8%;left:50%;transform:translateX(-50%);width:min(64vw,520px);height:min(64vw,520px);border-radius:50%;
-  background:radial-gradient(circle at 42% 38%,rgba(232,221,191,.22) 0%,rgba(232,221,191,.1) 34%,transparent 68%);
+  background:radial-gradient(circle at 42% 38%,rgba(232,221,191,.14) 0%,rgba(232,221,191,.06) 34%,transparent 68%);
   opacity:0;pointer-events:none;z-index:0;transition:opacity 1.2s ease}
 body.halloween-mode .hw-moon-orb{opacity:1;animation:hwMoonPulse 8s ease-in-out infinite}
 @keyframes hwMoonPulse{0%,100%{opacity:.85}50%{opacity:1}}
 
 /* 12) Decoración — pequeñas manchas de tinta (sustituyen a la sangre) */
 .hw-ink-stain{position:absolute;width:70px;height:70px;color:var(--hw-wine);opacity:0;pointer-events:none;transition:opacity .8s ease .1s;z-index:1}
-body.halloween-mode .hw-ink-stain{opacity:.55}
+body.halloween-mode .hw-ink-stain{opacity:.4}
 .hw-ink-stain-left{bottom:.5rem;left:1.5rem;transform:rotate(-8deg)}
 .hw-ink-stain-right{top:1rem;right:4rem;transform:rotate(14deg) scale(.8)}
 
