@@ -6,7 +6,7 @@
 <title>TINTA SAPPHIC ~ La Estantería</title>
 <meta name="sb-url" content="https://fteitflirsmabcasmwij.supabase.co">
 <meta name="sb-key" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0ZWl0ZmxpcnNtYWJjYXNtd2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMjM3MzIsImV4cCI6MjA5MjY5OTczMn0.n46OnfB74J8DN_dcDgTc-UmhZYO5SnKUQ69Gz90ybbA">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
@@ -24,6 +24,7 @@
   --hw-pumpkin:#c97a42;--hw-pumpkin-soft:rgba(201,122,66,0.14);
   --hw-wine:#7a2f3f;--hw-wine-soft:rgba(122,47,63,0.28);
   --hw-moon:#e4d9b8;
+  --hw-font-display:'UnifrakturMaguntia',var(--font-display);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -39,7 +40,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* ══════════ ESPECIAL DE OCTUBRE — todo el modo Halloween vive aquí, bajo body.halloween-mode.
    Para quitarlo en noviembre: borrar este bloque + el bloque JS que añade la clase. ══════════ */
 body.halloween-mode::before{background:radial-gradient(ellipse at 15% 0%,rgba(201,122,66,0.14) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(122,47,63,0.2) 0%,transparent 55%)}
-body.halloween-mode .logo em{color:var(--hw-pumpkin)}
+body.halloween-mode .logo em{color:var(--hw-pumpkin);font-family:var(--hw-font-display);font-style:normal}
 body.halloween-mode .btn-login{background:var(--hw-pumpkin-soft);border-color:var(--hw-pumpkin);color:var(--hw-pumpkin)}
 body.halloween-mode .hv-hero{background:radial-gradient(ellipse at 50% 0%,rgba(201,122,66,0.12) 0%,transparent 65%)}
 body.halloween-mode .hv-hero::before{-webkit-text-stroke-color:rgba(122,47,63,0.22)}
@@ -48,7 +49,10 @@ body.halloween-mode .filter-shell::before{background:linear-gradient(90deg,var(-
 .hw-hero-strip{background:linear-gradient(135deg,rgba(201,122,66,0.12) 0%,rgba(122,47,63,0.1) 100%)!important}
 .hw-hero-strip h2 em{color:var(--hw-pumpkin)!important}
 body.halloween-mode .hv-eyebrow::before,body.halloween-mode .hv-eyebrow::after{background:linear-gradient(90deg,var(--hw-pumpkin),var(--hw-wine))}
-body.halloween-mode .hv-h1 em{color:var(--hw-pumpkin)}
+body.halloween-mode .hv-h1 em,body.halloween-mode .hero-title em{color:var(--hw-pumpkin)}
+body.halloween-mode .hv-h1 em,body.halloween-mode .hero-title em,body.halloween-mode .hw-hero-strip h2 em{
+  font-family:var(--hw-font-display);font-style:normal;font-weight:400;letter-spacing:.01em;
+}
 body.halloween-mode .hv-cta-main{background:var(--hw-pumpkin);box-shadow:0 4px 20px rgba(201,122,66,.3)}
 body.halloween-mode .hv-cta-reads{background:var(--hw-wine-soft);color:var(--hw-moon);border-color:var(--hw-wine)}
 .hw-only{display:none}
@@ -4264,10 +4268,12 @@ function animateCount(el, target){
 }
 
 // Especial de Octubre: qué cuenta como libro "Halloween", automático por tags existentes
-const HW_GENRES=['Fantasía','Horror','Paranormal','Thriller'];
-const HW_SUBGENRES=['Sobrenatural','Dark Romance','Crimen'];
+const HW_GENRES=['Horror','Paranormal'];
+const HW_SUBGENRES=['Sobrenatural'];
 const HW_CHARACTERS=['Bruja','Mujer Lobo','Vampira','Demonio','Zombie','Cambiaformas','Espíritu / Fantasma','Fantasma','Chamana','Monstruo'];
 function isHalloweenBook(b){
+  if(b.halloween_override===false) return false;
+  if(b.halloween_override===true) return true;
   const chars=[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])];
   return (b.genres||[]).some(g=>HW_GENRES.includes(g))
       || (b.subgenres||[]).some(s=>HW_SUBGENRES.includes(s))

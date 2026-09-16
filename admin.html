@@ -521,6 +521,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <button class="main-tab-btn" id="tabBtnSolicitudes" onclick="switchMainTab('solicitudes')">📬 Solicitudes <span class="tab-badge" id="tabBadgeSol">—</span></button>
     <button class="main-tab-btn" id="tabBtnBingo" onclick="switchMainTab('bingo')">🎲 Bingo</button>
     <button class="main-tab-btn" id="tabBtnTop10" onclick="switchMainTab('top10')">🏆 Top 10</button>
+    <button class="main-tab-btn" id="tabBtnHalloween" onclick="switchMainTab('halloween')">🎃 Especial Halloween</button>
   </div>
 
   <!-- ── PANEL LIBROS ── -->
@@ -726,6 +727,20 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div id="adminTop10Container"><div class="empty">Cargando…</div></div>
     </div>
   </div><!-- /panelTop10 -->
+
+  <!-- ESPECIAL HALLOWEEN -->
+  <div class="main-panel" id="panelHalloween">
+    <div class="card">
+      <div class="card-title">🎃 Colección de Octubre</div>
+      <p style="font-size:12.5px;color:var(--muted);margin:-.3rem 0 1rem;line-height:1.6">
+        Se calcula sola por género/subgénero/personaje (esto es una aproximación — en la web real también cuenta alguna etiqueta que añade la comunidad).
+        Si algún libro no pega o falta alguno, quítalo o añádelo aquí a mano. Como con todo lo demás: cuando termines, exporta el JSON y súbelo.
+      </p>
+      <input type="text" id="hwAddSearch" placeholder="Buscar un libro para añadirlo a mano…" oninput="renderHwAddResults(this.value)" style="width:100%;margin-bottom:.4rem">
+      <div id="hwAddResults"></div>
+      <div id="hwList" style="margin-top:1rem"><div class="empty">Cargando…</div></div>
+    </div>
+  </div><!-- /panelHalloween -->
 
   <!-- MODAL NUEVO/EDITAR BINGO -->
   <div class="modal-bg" id="bingoModal" style="display:none;align-items:flex-start;justify-content:center">
@@ -2742,6 +2757,75 @@ function removeFromMyrec(id){
 
 /* ── SOLICITUDES ADMIN ── */
 
+/* ── ESPECIAL HALLOWEEN ── */
+const HW_GENRES=['Horror','Paranormal'];
+const HW_SUBGENRES=['Sobrenatural'];
+const HW_CHARACTERS=['Bruja','Mujer Lobo','Vampira','Demonio','Zombie','Cambiaformas','Espíritu / Fantasma','Fantasma','Chamana','Monstruo'];
+function isHalloweenAuto(b){
+  return (b.genres||[]).some(g=>HW_GENRES.includes(g))
+      || (b.subgenres||[]).some(s=>HW_SUBGENRES.includes(s))
+      || (b.characters||[]).some(c=>HW_CHARACTERS.includes(c));
+}
+function hwRow(b, actionHtml){
+  const cover=b.cover?`<img class="book-thumb" src="${b.cover}" alt="" onerror="this.outerHTML='<div class=book-thumb-ph>🎃</div>'">`:`<div class="book-thumb-ph">🎃</div>`;
+  const authorStr=(b.authors||[]).join(', ')||'—';
+  return `<div class="book-item">
+    ${cover}
+    <div class="book-info">
+      <div class="book-name">${b.title}</div>
+      <div class="book-meta">${authorStr}</div>
+    </div>
+    <div class="book-actions">${actionHtml}</div>
+  </div>`;
+}
+function renderAdminHalloween(){
+  const c=document.getElementById('hwList');
+  if(!books.length){c.innerHTML='<div class="empty">Carga primero el JSON de libros.</div>';return;}
+  const included=books.filter(b=>b.halloween_override===true || (isHalloweenAuto(b) && b.halloween_override!==false));
+  const excluded=books.filter(b=>isHalloweenAuto(b) && b.halloween_override===false);
+  let html=`<div style="font-size:12.5px;color:var(--muted);margin-bottom:.6rem">${included.length} libro${included.length!==1?'s':''} en la colección</div>`;
+  html+=included.length
+    ? included.map(b=>hwRow(b, `<button class="btn small danger" onclick="hwExclude('${b.id}')">Quitar</button>`)).join('')
+    : '<div class="empty">Nada por ahora.</div>';
+  if(excluded.length){
+    html+=`<div class="section-sep"></div><div style="font-size:12.5px;color:var(--muted);margin-bottom:.6rem">Quitados a mano (${excluded.length})</div>`;
+    html+=excluded.map(b=>hwRow(b, `<button class="btn small" onclick="hwRemoveOverride('${b.id}')">Volver a incluir</button>`)).join('');
+  }
+  c.innerHTML=html;
+}
+function hwExclude(id){
+  const b=books.find(x=>x.id===id); if(!b) return;
+  b.halloween_override=false;
+  renderAdminHalloween();
+  showToast('Quitado de la Colección de Octubre — recuerda exportar el JSON');
+}
+function hwRemoveOverride(id){
+  const b=books.find(x=>x.id===id); if(!b) return;
+  delete b.halloween_override;
+  renderAdminHalloween();
+  showToast('Restaurado — recuerda exportar el JSON');
+}
+function hwAddManual(id){
+  const b=books.find(x=>x.id===id); if(!b) return;
+  b.halloween_override=true;
+  document.getElementById('hwAddSearch').value='';
+  document.getElementById('hwAddResults').innerHTML='';
+  renderAdminHalloween();
+  showToast('Añadido a la Colección de Octubre — recuerda exportar el JSON');
+}
+function renderHwAddResults(q){
+  const box=document.getElementById('hwAddResults');
+  q=(q||'').trim().toLowerCase();
+  if(q.length<2){box.innerHTML='';return;}
+  const matches=books.filter(b=>
+    !(b.halloween_override===true || (isHalloweenAuto(b) && b.halloween_override!==false))
+    && (b.title+' '+(b.authors||[]).join(' ')).toLowerCase().includes(q)
+  ).slice(0,8);
+  box.innerHTML=matches.length
+    ? matches.map(b=>hwRow(b, `<button class="btn small primary" onclick="hwAddManual('${b.id}')">Añadir</button>`)).join('')
+    : '<div class="empty" style="padding:.6rem 0">Sin resultados (o ya está en la colección).</div>';
+}
+
 /* ── MAIN TABS ── */
 function switchMainTab(tab) {
   document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
@@ -2751,6 +2835,7 @@ function switchMainTab(tab) {
   if (tab === 'solicitudes') renderAdminSolicitudes();
   if (tab === 'bingo') cargarBingosAdmin();
   if (tab === 'top10') renderAdminTop10();
+  if (tab === 'halloween') renderAdminHalloween();
 }
 
 function admSelChip(groupId, btn){
