@@ -1731,187 +1731,6 @@ body.home-active .hero,body.home-active .main{display:none!important}
   .main,.hero{overflow-x:hidden}
   img{max-width:100%}
 }
-
-/* ═══════════════════════════════════════════════════════════════
-   HALLOWEEN 2026 — dirección artística: biblioteca gótica editorial
-   Todo queda aislado bajo body.halloween-mode y desaparece fuera de octubre.
-   ═══════════════════════════════════════════════════════════════ */
-body.halloween-mode{
-  --bg:#0a0709;
-  --surface:#120d10;
-  --surface2:#191114;
-  --surface3:#21161a;
-  --border:rgba(201,122,66,.12);
-  --border2:rgba(201,122,66,.28);
-  --text:#eee6df;
-  --muted:#927f80;
-  --accent:#b96a35;
-  --accent2:#d8955c;
-  --accent-soft:rgba(185,106,53,.11);
-  --rose:#9b4354;
-  --rose-soft:rgba(155,67,84,.12);
-  --gold:#c9a06a;
-  --teal:#6d9b92;
-  background:
-    radial-gradient(ellipse at 50% -20%,rgba(122,47,63,.18),transparent 48%),
-    radial-gradient(ellipse at 8% 35%,rgba(185,106,53,.045),transparent 38%),
-    #0a0709;
-}
-body.halloween-mode::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
-  opacity:.035;mix-blend-mode:screen;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-}
-body.halloween-mode .topbar{
-  background:rgba(10,7,9,.86);border-bottom:1px solid rgba(201,122,66,.22);
-  box-shadow:0 8px 35px rgba(0,0,0,.28);
-}
-body.halloween-mode .topbar::after{
-  content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--hw-wine),var(--hw-pumpkin),var(--hw-wine),transparent);opacity:.7;
-}
-body.halloween-mode .logo em{color:#c97a42;font-family:var(--hw-font-display);font-style:normal;font-size:1.02em}
-body.halloween-mode .logo-tinta{letter-spacing:.14em}
-body.halloween-mode .home-nav-btn{border-color:rgba(201,122,66,.16);color:#877577;border-radius:5px}
-body.halloween-mode .home-nav-btn:hover{border-color:rgba(201,122,66,.5);color:#d8955c;background:rgba(201,122,66,.05)}
-body.halloween-mode .btn-login{border-radius:5px;background:rgba(185,106,53,.08);border-color:rgba(201,122,66,.35);color:#d8955c}
-
-body.halloween-mode .hv-hero{
-  min-height:650px;padding:6.5rem 2rem 5rem;
-  background:
-    radial-gradient(circle at 50% 23%,rgba(201,122,66,.075),transparent 22%),
-    radial-gradient(ellipse at 50% 100%,rgba(122,47,63,.18),transparent 58%),
-    linear-gradient(180deg,#0b080a 0%,#10090d 70%,#0b080a 100%);
-}
-body.halloween-mode .hv-hero::before{
-  content:'TS';right:-1%;top:51%;font-size:clamp(10rem,25vw,22rem);
-  font-style:normal;font-weight:300;-webkit-text-stroke:1px rgba(201,122,66,.045);
-}
-body.halloween-mode .hv-hero::after{
-  background-image:
-    radial-gradient(1px 1px at 13% 27%,rgba(228,217,184,.8),transparent 60%),
-    radial-gradient(1px 1px at 83% 20%,rgba(201,122,66,.75),transparent 60%),
-    radial-gradient(1px 1px at 25% 64%,rgba(228,217,184,.65),transparent 60%),
-    radial-gradient(1px 1px at 76% 70%,rgba(201,122,66,.6),transparent 60%),
-    radial-gradient(1px 1px at 91% 47%,rgba(228,217,66,.55),transparent 60%),
-    radial-gradient(1px 1px at 42% 11%,rgba(228,217,184,.65),transparent 60%);
-  animation:hwFlicker 6s ease-in-out infinite;opacity:.28;
-}
-body.halloween-mode .hv-eyebrow{color:#927f80;letter-spacing:.34em}
-body.halloween-mode .hv-eyebrow::before,body.halloween-mode .hv-eyebrow::after{background:#8b3d4d;width:48px}
-body.halloween-mode .hv-h1{font-size:clamp(4rem,10vw,7.8rem);letter-spacing:-.035em;position:relative;z-index:2}
-body.halloween-mode .hv-h1 em{
-  color:#c97a42;font-family:var(--hw-font-display);font-style:normal;font-weight:400;
-  letter-spacing:.015em;text-shadow:0 0 35px rgba(201,122,66,.13);
-}
-body.halloween-mode .hv-jp{color:#6e5b5d;letter-spacing:.3em}
-body.halloween-mode .hv-desc{color:#8f7e80;max-width:520px}
-body.halloween-mode .hv-desc strong{color:#ddd1cb!important}
-body.halloween-mode .hv-cta{border-radius:4px;letter-spacing:.035em;text-transform:uppercase;font-size:11px;padding:12px 21px}
-body.halloween-mode .hv-cta-main{background:#a85c2d;box-shadow:0 8px 30px rgba(168,92,45,.2)}
-body.halloween-mode .hv-cta-main:hover{background:#c97a42;box-shadow:0 12px 35px rgba(168,92,45,.32)}
-body.halloween-mode .hv-cta-reads{background:rgba(122,47,63,.14);color:#c9959f;border-color:rgba(155,67,84,.42)}
-body.halloween-mode .hv-cta-sec{border-color:rgba(201,122,66,.2);color:#887577}
-body.halloween-mode .hv-cta-sec:hover{border-color:#a85c2d;color:#d8955c}
-body.halloween-mode .hv-url-link{color:#5e4e50}
-
-/* Luna, ramas y vela: decoración de ilustración, no stickers */
-.hw-moon-orbit{display:none}
-body.halloween-mode .hw-moon-orbit{display:block;position:absolute;left:50%;top:82px;width:260px;height:260px;transform:translateX(-50%);border:1px solid rgba(228,217,184,.035);border-radius:50%;pointer-events:none;z-index:0}
-body.halloween-mode .hw-moon-orbit::before{content:'';position:absolute;left:50%;top:50%;width:156px;height:156px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 32%,rgba(228,217,184,.18),rgba(228,217,184,.05) 48%,transparent 70%);box-shadow:0 0 70px rgba(201,122,66,.06)}
-.hw-branch{display:none}
-body.halloween-mode .hw-branch{display:block;position:absolute;bottom:18px;width:270px;height:150px;color:#2a1a1e;opacity:.9;pointer-events:none;z-index:1}
-.hw-branch-left{left:-30px}.hw-branch-right{right:-30px;transform:scaleX(-1)}
-.hw-candle{display:none}
-body.halloween-mode .hw-candle{display:block;position:absolute;right:8%;bottom:48px;width:22px;height:68px;background:linear-gradient(90deg,#d7c9ae,#9f917d 55%,#6e6256);border-radius:2px 2px 1px 1px;box-shadow:0 15px 35px rgba(201,122,66,.08);z-index:2;opacity:.65}
-body.halloween-mode .hw-candle::before{content:'';position:absolute;left:50%;top:-13px;width:7px;height:16px;transform:translateX(-50%);border-radius:50% 50% 45% 45%;background:#d8955c;box-shadow:0 0 16px 5px rgba(201,122,66,.22);animation:hwFlame 2.2s ease-in-out infinite}
-body.halloween-mode .hw-candle::after{content:'';position:absolute;left:50%;top:-1px;width:1px;height:7px;transform:translateX(-50%);background:#3a2923}
-@keyframes hwFlame{0%,100%{transform:translateX(-50%) scale(.9) rotate(-2deg);opacity:.72}50%{transform:translateX(-50%) scale(1.12) rotate(2deg);opacity:1}}
-
-/* Ocultar la decoración que hacía que pareciera un Halloween de plantilla */
-body.halloween-mode .hw-blood-drip,
-body.halloween-mode .hw-splatter,
-body.halloween-mode .hw-cobweb{display:none!important}
-body.halloween-mode .hw-motif{display:none}
-
-/* Separador editorial */
-.hw-editorial-rule{display:none}
-body.halloween-mode .hw-editorial-rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:-1.2rem auto 0;color:#735d5f;position:relative;z-index:4}
-body.halloween-mode .hw-editorial-rule::before,body.halloween-mode .hw-editorial-rule::after{content:'';height:1px;width:min(160px,18vw);background:linear-gradient(90deg,transparent,rgba(155,67,84,.55))}
-body.halloween-mode .hw-editorial-rule::after{background:linear-gradient(90deg,rgba(155,67,84,.55),transparent)}
-.hw-editorial-rule span{font-family:var(--font-display);font-size:17px;color:#a66b50}
-
-/* Bloque especial de lectura */
-.hw-reading-room{display:none}
-body.halloween-mode .hw-reading-room{display:block;max-width:1100px;margin:3.8rem auto 0;padding:0 2rem;position:relative}
-.hw-reading-card{position:relative;overflow:hidden;border:1px solid rgba(201,122,66,.18);background:linear-gradient(120deg,rgba(30,17,20,.96),rgba(16,10,12,.98));padding:2.2rem 2.4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;box-shadow:0 24px 70px rgba(0,0,0,.28)}
-.hw-reading-card::before{content:'✦';position:absolute;right:28%;top:-28px;font-family:var(--font-display);font-size:12rem;color:transparent;-webkit-text-stroke:1px rgba(201,122,66,.035);line-height:1}
-.hw-reading-kicker{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#9b4354;margin-bottom:.55rem}
-.hw-reading-title{font-family:var(--font-display);font-size:2.4rem;font-weight:300;color:#eee6df;line-height:1.05;margin-bottom:.45rem}
-.hw-reading-title em{font-family:var(--hw-font-display);font-style:normal;color:#c97a42;font-weight:400}
-.hw-reading-copy{font-size:12.5px;line-height:1.75;color:#8f7e80;max-width:560px}
-.hw-reading-actions{display:flex;gap:.55rem;align-items:center;justify-content:flex-end;flex-wrap:wrap;position:relative;z-index:2}
-.hw-reading-btn{padding:10px 15px;border:1px solid rgba(201,122,66,.25);background:transparent;color:#c9a06a;font-family:var(--font-body);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.2s}
-.hw-reading-btn:hover{background:rgba(201,122,66,.08);border-color:#c97a42;color:#e1ad7b}
-.hw-reading-btn.primary{background:#7a2f3f;border-color:#7a2f3f;color:#eee6df}
-.hw-reading-btn.primary:hover{background:#963b4e}
-.hw-picker-result{display:none;margin-top:1.2rem;border-top:1px solid rgba(201,122,66,.12);padding-top:1.2rem;grid-column:1/-1;position:relative;z-index:2}
-.hw-picker-result.open{display:flex;align-items:center;gap:1rem}
-.hw-picker-cover{width:58px;height:86px;object-fit:cover;border:1px solid rgba(201,122,66,.25);box-shadow:0 8px 25px rgba(0,0,0,.35);flex-shrink:0}
-.hw-picker-cover-ph{width:58px;height:86px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,122,66,.25);color:#a66b50;background:#191114;flex-shrink:0}
-.hw-picker-meta{min-width:0}.hw-picker-label{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:#9b4354}.hw-picker-title{font-family:var(--font-display);font-size:1.35rem;color:#eee6df}.hw-picker-author{font-size:11px;color:#8f7e80}
-
-body.halloween-mode .hv-stats-band{margin-top:3rem;background:#0d090b;border-color:rgba(201,122,66,.12);padding:2rem;}
-body.halloween-mode .hv-stats-band::before{background:linear-gradient(90deg,transparent,#7a2f3f,#c97a42,#7a2f3f,transparent);opacity:.75}
-body.halloween-mode .hv-stats-band::after{opacity:.35;background-size:28px 28px}
-body.halloween-mode .hv-stat{border-color:rgba(201,122,66,.1)}
-body.halloween-mode .hv-stat-icon{color:#a66b50}
-body.halloween-mode .hv-stat-n{text-shadow:0 0 28px rgba(201,122,66,.1)}
-body.halloween-mode .hv-stat-n em{color:#c97a42}
-
-body.halloween-mode .hv-features{background:rgba(201,122,66,.08);gap:1px;padding-top:4rem}
-body.halloween-mode .hv-feat-card{background:#100b0d}
-body.halloween-mode .hv-feat-card:hover{background:#160f12}
-body.halloween-mode .hv-feat-card::before{-webkit-text-stroke-color:rgba(201,122,66,.055)}
-body.halloween-mode .hv-feat-icon{border-color:rgba(201,122,66,.14);background:radial-gradient(circle,rgba(201,122,66,.08),transparent 72%)}
-body.halloween-mode .hv-feat-icon svg{color:#b9784d}
-body.halloween-mode .hv-feat-card[data-n="02"] .hv-feat-icon{background:radial-gradient(circle,rgba(155,67,84,.1),transparent 72%)}
-body.halloween-mode .hv-feat-card[data-n="02"] .hv-feat-icon svg{color:#b56b78}
-body.halloween-mode .hv-feat-card[data-n="03"] .hv-feat-icon{background:radial-gradient(circle,rgba(109,155,146,.08),transparent 72%)}
-body.halloween-mode .hv-feat-card[data-n="03"] .hv-feat-icon svg{color:#6d9b92}
-body.halloween-mode .hv-feat-link{color:#c97a42}
-
-body.halloween-mode .hv-safi-block{background:#100b0d}
-body.halloween-mode .hv-safi-block::before{background:linear-gradient(90deg,#7a2f3f,#c97a42,#6d9b92)}
-body.halloween-mode .hv-safi-eyebrow{color:#9b4354}
-body.halloween-mode .hv-safi-badge{border-radius:3px;background:rgba(155,67,84,.08);border-color:rgba(155,67,84,.3)}
-body.halloween-mode .hv-safi-h2 em{color:#c97a42}
-
-/* En el catálogo también cambia el acabado, pero sin tocar la funcionalidad */
-body.halloween-mode .filter-shell{border-radius:3px;background:#110c0f;border-color:rgba(201,122,66,.17);box-shadow:0 12px 45px rgba(0,0,0,.35)}
-body.halloween-mode .filter-shell::before{background:linear-gradient(90deg,transparent,#7a2f3f,#c97a42,#e4d9b8,#7a2f3f,transparent)}
-body.halloween-mode .search-input,body.halloween-mode .sort-select,body.halloween-mode .dd-btn{border-radius:4px;background:#181014}
-body.halloween-mode .book-card{border-radius:3px;background:#110c0f;border-color:rgba(201,122,66,.11)}
-body.halloween-mode .book-card:hover{border-color:rgba(201,122,66,.45);box-shadow:0 18px 50px rgba(75,24,34,.3)}
-body.halloween-mode .tag{border-radius:3px}
-
-@media(max-width:700px){
-  body.halloween-mode .hv-hero{min-height:590px;padding:5rem 1.1rem 3.5rem}
-  body.halloween-mode .hv-h1{font-size:clamp(3.3rem,16vw,5.4rem)}
-  body.halloween-mode .hv-eyebrow{letter-spacing:.2em}
-  body.halloween-mode .hv-eyebrow::before,body.halloween-mode .hv-eyebrow::after{width:20px}
-  body.halloween-mode .hw-moon-orbit{width:210px;height:210px;top:78px}
-  body.halloween-mode .hw-candle{right:4%;bottom:28px;transform:scale(.75);transform-origin:bottom}
-  body.halloween-mode .hw-branch{width:180px;height:110px;bottom:5px}
-  body.halloween-mode .hw-reading-room{padding:0 1rem;margin-top:2.6rem}
-  body.halloween-mode .hw-reading-card{grid-template-columns:1fr;padding:1.6rem 1.3rem;gap:1.1rem}
-  body.halloween-mode .hw-reading-title{font-size:2rem}
-  body.halloween-mode .hw-reading-actions{justify-content:flex-start}
-  body.halloween-mode .hv-stats-band{margin-top:2rem;padding:1.5rem .5rem}
-  body.halloween-mode .hv-stat{padding:.2rem 1.1rem;min-width:45%}
-  body.halloween-mode .hv-stat:nth-child(2){border-right:none}
-}
-
 </style>
 </head>
 <body>
@@ -1949,11 +1768,6 @@ body.halloween-mode .tag{border-radius:3px}
 <div id="homeView">
 
   <div class="hv-hero">
-    <div class="hw-moon-orbit" aria-hidden="true"></div>
-    <div class="hw-candle" aria-hidden="true"></div>
-    <svg class="hw-branch hw-branch-left" viewBox="0 0 300 170" fill="none" aria-hidden="true"><path d="M-10 165C50 125 88 88 132 28M48 126C54 101 45 84 27 70M79 97C83 72 98 58 120 48M106 64C129 65 151 77 166 95M132 29C153 26 174 33 190 47" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M32 75c-7-13-16-20-28-24M51 103c-13-1-24-6-34-16M95 75c10-12 21-17 35-18M112 56c4-13 12-22 24-29M145 55c16-2 27 2 39 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-    <svg class="hw-branch hw-branch-right" viewBox="0 0 300 170" fill="none" aria-hidden="true"><path d="M-10 165C50 125 88 88 132 28M48 126C54 101 45 84 27 70M79 97C83 72 98 58 120 48M106 64C129 65 151 77 166 95M132 29C153 26 174 33 190 47" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M32 75c-7-13-16-20-28-24M51 103c-13-1-24-6-34-16M95 75c10-12 21-17 35-18M112 56c4-13 12-22 24-29M145 55c16-2 27 2 39 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-    <div class="hw-splatter hw-splatter-left"><svg viewBox="0 0 120 120" fill="currentColor"><ellipse cx="60" cy="55" rx="22" ry="16" transform="rotate(-15 60 55)"/><ellipse cx="40" cy="75" rx="9" ry="6" transform="rotate(10 40 75)"/><circle cx="82" cy="40" r="5"/><circle cx="90" cy="30" r="3"/><circle cx="30" cy="50" r="3"/><path d="M60 70 q-2 15 -4 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>
     <div class="hw-splatter hw-splatter-left"><svg viewBox="0 0 120 120" fill="currentColor"><ellipse cx="60" cy="55" rx="22" ry="16" transform="rotate(-15 60 55)"/><ellipse cx="40" cy="75" rx="9" ry="6" transform="rotate(10 40 75)"/><circle cx="82" cy="40" r="5"/><circle cx="90" cy="30" r="3"/><circle cx="30" cy="50" r="3"/><path d="M60 70 q-2 15 -4 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>
     <div class="hw-motif"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M40 10a16 16 0 1 0 14 23 13 13 0 0 1-14-23Z"/><path d="M12 46c3-5 6-7 9-7M17 41c2-3 4-4.5 6.5-5M9 51c4-6 8-8 12-8"/></svg></div>
     <div class="hv-eyebrow">
@@ -1976,23 +1790,6 @@ body.halloween-mode .tag{border-radius:3px}
       <a class="hv-url-link" href="https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria" target="_blank">xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria</a>
     </div>
   </div>
-
-  <div class="hw-editorial-rule" aria-hidden="true"><span>✦</span></div>
-
-  <section class="hw-reading-room" aria-label="Especial de Halloween">
-    <div class="hw-reading-card">
-      <div>
-        <div class="hw-reading-kicker">Edición especial · octubre</div>
-        <h2 class="hw-reading-title">La estantería <em>prohibida</em></h2>
-        <p class="hw-reading-copy">Historias para leer cuando ya no queda nadie despierto. Brujas, vampiras, fantasmas y otras criaturas de la estantería sapphic.</p>
-      </div>
-      <div class="hw-reading-actions">
-        <button class="hw-reading-btn primary" onclick="showCatalog('halloween')">Abrir colección</button>
-        <button class="hw-reading-btn" onclick="pickHalloweenBook()">Elegir por mí</button>
-      </div>
-      <div class="hw-picker-result" id="hwPickerResult"></div>
-    </div>
-  </section>
 
   <div class="hv-stats-band">
     <div class="hv-stat">
@@ -4498,22 +4295,6 @@ function isHalloweenBook(b){
   return (b.genres||[]).some(g=>HW_GENRES.includes(g))
       || (b.subgenres||[]).some(s=>HW_SUBGENRES.includes(s))
       || chars.some(c=>HW_CHARACTERS.includes(c));
-}
-
-function pickHalloweenBook(){
-  const pool=allBooks.filter(isHalloweenBook);
-  const result=document.getElementById('hwPickerResult');
-  if(!result) return;
-  if(!pool.length){
-    result.classList.add('open');
-    result.innerHTML='<div class="hw-picker-cover-ph">✦</div><div class="hw-picker-meta"><div class="hw-picker-label">Esta noche</div><div class="hw-picker-title">La estantería está en silencio</div><div class="hw-picker-author">Aún no hay libros etiquetados para Halloween.</div></div>';
-    return;
-  }
-  const b=pool[Math.floor(Math.random()*pool.length)];
-  const cover=b.cover?'<img class="hw-picker-cover" src="'+b.cover+'" alt="'+escHtml(b.title)+'" onerror="this.outerHTML=\'<div class=hw-picker-cover-ph>✦</div>\'">':'<div class="hw-picker-cover-ph">✦</div>';
-  const author=(b.authors||[]).join(', ')||'Autora no especificada';
-  result.classList.add('open');
-  result.innerHTML=cover+'<div class="hw-picker-meta"><div class="hw-picker-label">Esta noche lees…</div><div class="hw-picker-title">'+escHtml(b.title)+'</div><div class="hw-picker-author">'+escHtml(author)+'</div></div>';
 }
 
 function updateHomeStats(){
