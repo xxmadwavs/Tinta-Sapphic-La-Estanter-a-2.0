@@ -20,11 +20,16 @@
   --radius:14px;--radius-lg:20px;
   --font-display:'Cormorant Garamond',Georgia,serif;
   --font-body:'Instrument Sans',system-ui,sans-serif;
-  /* ── Especial de Octubre: paleta derivada de la base, sin naranja/negro de cómic ── */
-  --hw-pumpkin:#c97a42;--hw-pumpkin-soft:rgba(201,122,66,0.14);
-  --hw-wine:#7a2f3f;--hw-wine-soft:rgba(122,47,63,0.28);
-  --hw-moon:#e4d9b8;
-  --hw-blood:#a3182a;
+  /* ── Especial de Octubre: biblioteca gótica editorial — negros cálidos, borgoña, cobre, marfil ── */
+  --hw-bg:#0a0707;--hw-bg2:#140d0c;
+  --hw-surface:#170f10;--hw-surface2:#1e1315;--hw-surface3:#261619;
+  --hw-border:rgba(158,86,46,0.14);--hw-border2:rgba(158,86,46,0.32);
+  --hw-copper:#b5622f;--hw-copper2:#d1863f;--hw-copper-soft:rgba(181,98,47,0.14);
+  --hw-wine:#3c1119;--hw-wine-bright:#7d2a3d;--hw-wine-soft:rgba(125,42,61,0.24);
+  --hw-blood:#7c1620;
+  --hw-ivory:#ece2ce;--hw-muted:#a3907c;
+  --hw-moon:#e8ddbf;
+  --hw-purple:#2a1f38;--hw-purple-soft:rgba(90,68,120,0.2);
   --hw-font-display:'UnifrakturMaguntia',var(--font-display);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -38,65 +43,217 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 0%,rgba(192,111,196,0.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(91,188,176,0.06) 0%,transparent 55%);pointer-events:none;z-index:0;transition:background .8s}
 
-/* ══════════ ESPECIAL DE OCTUBRE — todo el modo Halloween vive aquí, bajo body.halloween-mode.
-   Para quitarlo en noviembre: borrar este bloque + el bloque JS que añade la clase. ══════════ */
-body.halloween-mode::before{background:radial-gradient(ellipse at 15% 0%,rgba(201,122,66,0.14) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(122,47,63,0.2) 0%,transparent 55%)}
-body.halloween-mode .logo em{color:var(--hw-pumpkin);font-family:var(--hw-font-display);font-style:normal}
-body.halloween-mode .btn-login{background:var(--hw-pumpkin-soft);border-color:var(--hw-pumpkin);color:var(--hw-pumpkin)}
-body.halloween-mode .hv-hero{background:radial-gradient(ellipse at 50% 0%,rgba(201,122,66,0.12) 0%,transparent 65%)}
-body.halloween-mode .hv-hero::before{-webkit-text-stroke-color:rgba(122,47,63,0.22)}
-body.halloween-mode .hero::before{-webkit-text-stroke-color:rgba(122,47,63,0.22)}
-body.halloween-mode .filter-shell::before{background:linear-gradient(90deg,var(--hw-pumpkin),var(--hw-wine),var(--hw-moon))}
-.hw-hero-strip{background:linear-gradient(135deg,rgba(201,122,66,0.12) 0%,rgba(122,47,63,0.1) 100%)!important}
-.hw-hero-strip h2 em{color:var(--hw-pumpkin)!important}
-body.halloween-mode .hv-eyebrow::before,body.halloween-mode .hv-eyebrow::after{background:linear-gradient(90deg,var(--hw-pumpkin),var(--hw-wine))}
-body.halloween-mode .hv-h1 em,body.halloween-mode .hero-title em{color:var(--hw-pumpkin)}
-body.halloween-mode .hv-h1 em,body.halloween-mode .hero-title em,body.halloween-mode .hw-hero-strip h2 em{
-  font-family:var(--hw-font-display);font-style:normal;font-weight:400;letter-spacing:.01em;
+/* ══════════════════════════════════════════════════════════════════════════
+   ESPECIAL DE OCTUBRE — "Biblioteca gótica" — todo vive bajo body.halloween-mode.
+   Para desactivarlo en noviembre: quitar la clase .halloween-mode del <body>
+   (ver el bloque JS que la añade automáticamente durante octubre, o el
+   parámetro ?halloween=1). No hace falta tocar nada más: toda la skin,
+   estructura y datos originales quedan intactos debajo.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1) Reasignación de variables base → reskin coherente de TODA la interfaz
+      (nav, botones, tarjetas, modales, filtros…) sin tocar su estructura. */
+body.halloween-mode{
+  --bg:var(--hw-bg);
+  --surface:var(--hw-surface);--surface2:var(--hw-surface2);--surface3:var(--hw-surface3);
+  --border:var(--hw-border);--border2:var(--hw-border2);
+  --text:var(--hw-ivory);--muted:var(--hw-muted);
+  --accent:var(--hw-copper);--accent2:var(--hw-copper2);--accent-soft:var(--hw-copper-soft);
+  --rose:var(--hw-wine-bright);--rose-soft:var(--hw-wine-soft);
+  --gold:#c9a35a;--gold-soft:rgba(201,163,90,0.14);
+  --teal:#5f7d6a;
+  --radius:4px;--radius-lg:6px;
 }
-body.halloween-mode .hv-cta-main{background:var(--hw-pumpkin);box-shadow:0 4px 20px rgba(201,122,66,.3)}
-body.halloween-mode .hv-cta-reads{background:var(--hw-wine-soft);color:var(--hw-moon);border-color:var(--hw-wine)}
+body.halloween-mode::before{
+  background:
+    radial-gradient(ellipse at 12% -6%,rgba(181,98,47,0.09) 0%,transparent 50%),
+    radial-gradient(ellipse at 88% 8%,rgba(125,42,61,0.14) 0%,transparent 55%),
+    radial-gradient(ellipse at 50% 100%,rgba(90,68,120,0.08) 0%,transparent 60%);
+}
+body.halloween-mode{background:var(--hw-bg) radial-gradient(ellipse at 50% -10%,rgba(60,17,25,.35) 0%,transparent 60%) fixed}
+
+/* Tipografía: serif editorial en todas partes (ya es la base del sitio).
+   La blackletter se reserva para un único acento decorativo — nunca la interfaz. */
+body.halloween-mode .hw-blackletter{font-family:var(--hw-font-display);font-style:normal;font-weight:400;letter-spacing:.01em}
+body.halloween-mode .logo em{color:var(--hw-copper2);font-style:italic;font-weight:600}
+body.halloween-mode .hv-h1 em,body.halloween-mode .hero-title em,body.halloween-mode .hw-hero-strip h2 em{color:var(--hw-copper2)}
+
+/* 2) Visibilidad de elementos exclusivos de octubre */
 .hw-only{display:none}
 body.halloween-mode .hw-only{display:inline-flex}
+.hw-only-block{display:none}
+body.halloween-mode .hw-only-block{display:block}
 body.halloween-mode .hw-hide{display:none}
-.hw-motif{position:absolute;top:2.2rem;right:3rem;width:64px;height:64px;opacity:0;transform:translateY(-6px) scale(.9);transition:opacity .6s ease .15s,transform .6s ease .15s;pointer-events:none;color:var(--hw-moon)}
-body.halloween-mode .hw-motif{opacity:.55;transform:translateY(0) scale(1)}
-body.halloween-mode .book-card:hover{border-color:var(--hw-pumpkin);box-shadow:0 16px 48px rgba(122,47,63,.35)}
+.hw-decor{display:none}
+body.halloween-mode .hw-decor{display:block}
 
-/* goteo de sangre bajo la barra superior */
-.hw-blood-drip{position:absolute;top:100%;left:0;width:100%;height:34px;color:var(--hw-blood);opacity:0;pointer-events:none;transition:opacity .8s ease}
-body.halloween-mode .hw-blood-drip{opacity:.65}
+/* 3) Navegación — más oscura, bordes finos, cobre/borgoña, menos "pill" moderno */
+body.halloween-mode .topbar{background:rgba(10,7,7,.92);border-bottom:1px solid var(--hw-border2)}
+body.halloween-mode .btn-login{background:transparent;border:1px solid var(--hw-copper);color:var(--hw-copper2);border-radius:2px}
+body.halloween-mode .btn-login:hover{background:var(--hw-copper-soft);border-color:var(--hw-copper2)}
+body.halloween-mode .home-nav-btn{border-radius:2px;border-color:var(--hw-border2)}
+body.halloween-mode .home-nav-btn:hover,body.halloween-mode .home-nav-btn.active{border-color:var(--hw-copper);color:var(--hw-copper2);background:var(--hw-copper-soft)}
+body.halloween-mode .user-chip{border-radius:2px}
+body.halloween-mode .user-dropdown{border-radius:4px}
 
-/* manchas de sangre en los heroes */
-.hw-splatter{position:absolute;width:90px;height:90px;color:var(--hw-blood);opacity:0;pointer-events:none;transition:opacity .8s ease .1s;z-index:3;filter:drop-shadow(0 0 10px rgba(138,22,32,.45))}
-body.halloween-mode .hw-splatter{opacity:.85}
-.hw-splatter-left{bottom:.5rem;left:1.5rem;transform:rotate(-8deg)}
-.hw-splatter-right{top:1rem;right:4rem;transform:rotate(14deg) scale(.85)}
+/* 4) Botones — bordes finos, esquinas casi rectas, detalle ornamental ✦ en el CTA principal */
+body.halloween-mode .hv-cta,
+body.halloween-mode .tab-btn,
+body.halloween-mode .section-tab,
+body.halloween-mode .rec-ver-mas-btn{border-radius:2px}
+body.halloween-mode .tab-btn.active{border-color:var(--hw-border2)}
+body.halloween-mode .hv-hero{background:radial-gradient(ellipse at 50% 0%,rgba(181,98,47,0.1) 0%,transparent 65%)}
+body.halloween-mode .hv-hero::before{-webkit-text-stroke-color:rgba(125,42,61,0.2)}
+body.halloween-mode .hero::before{-webkit-text-stroke-color:rgba(125,42,61,0.2)}
+body.halloween-mode .filter-shell::before{background:linear-gradient(90deg,var(--hw-copper),var(--hw-wine-bright),var(--hw-moon))}
+body.halloween-mode .filter-shell{border-color:var(--hw-border2)}
+.hw-hero-strip{background:linear-gradient(150deg,rgba(60,17,25,.55) 0%,rgba(20,13,12,.7) 100%)!important;border-color:var(--hw-border2)!important;position:relative;overflow:hidden}
+.hw-hero-strip::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+    radial-gradient(1.5px 1.5px at 10% 20%,var(--hw-moon) 0%,transparent 60%),
+    radial-gradient(1.5px 1.5px at 90% 30%,var(--hw-moon) 0%,transparent 60%),
+    radial-gradient(1px 1px at 40% 80%,var(--hw-moon) 0%,transparent 60%),
+    radial-gradient(1px 1px at 70% 65%,var(--hw-moon) 0%,transparent 60%);
+  opacity:.4}
+body.halloween-mode .hv-eyebrow::before,body.halloween-mode .hv-eyebrow::after{background:linear-gradient(90deg,var(--hw-copper),var(--hw-wine-bright))}
 
-/* telaraña de esquina, fija, siempre presente en modo Halloween */
-.hw-cobweb{position:fixed;top:0;left:0;width:92px;height:92px;color:var(--hw-moon);opacity:0;pointer-events:none;z-index:150;transition:opacity .8s ease}
-body.halloween-mode .hw-cobweb{opacity:.28}
-
-/* chispas / luciérnagas flotando en el hero, parpadeo lento */
-body.halloween-mode .hv-hero::after,body.halloween-mode .hero::after{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
-  background-image:
-    radial-gradient(2px 2px at 12% 22%, var(--hw-moon) 0%, transparent 60%),
-    radial-gradient(2px 2px at 85% 18%, var(--hw-pumpkin) 0%, transparent 60%),
-    radial-gradient(1.5px 1.5px at 28% 68%, var(--hw-moon) 0%, transparent 60%),
-    radial-gradient(2px 2px at 72% 58%, var(--hw-pumpkin) 0%, transparent 60%),
-    radial-gradient(1.5px 1.5px at 92% 72%, var(--hw-moon) 0%, transparent 60%),
-    radial-gradient(1.5px 1.5px at 45% 12%, var(--hw-pumpkin) 0%, transparent 60%);
-  opacity:.35;animation:hwFlicker 4.5s ease-in-out infinite;
+body.halloween-mode .hv-cta-main{
+  background:transparent;color:var(--hw-ivory);border:1px solid var(--hw-copper);
+  box-shadow:none;text-transform:uppercase;letter-spacing:.13em;font-size:11.5px;border-radius:2px;
 }
-@keyframes hwFlicker{0%,100%{opacity:.2}50%{opacity:.55}}
+body.halloween-mode .hv-cta-main::before{content:'✦';margin-right:.6em;color:var(--hw-blood);font-size:.8em;opacity:.85}
+body.halloween-mode .hv-cta-main::after{content:'✦';margin-left:.6em;color:var(--hw-blood);font-size:.8em;opacity:.85}
+body.halloween-mode .hv-cta-main:hover{background:var(--hw-wine-soft);border-color:var(--hw-copper2);box-shadow:0 0 26px rgba(181,98,47,.2);transform:translateY(-2px)}
+body.halloween-mode .hv-cta-reads{background:transparent;color:var(--hw-ivory);border:1px solid var(--hw-wine-bright)}
+body.halloween-mode .hv-cta-reads:hover{background:var(--hw-wine-soft)}
+body.halloween-mode .hv-cta-sec{border-color:var(--hw-border2)}
+body.halloween-mode .hv-cta-sec:hover{border-color:var(--hw-copper);color:var(--hw-copper2)}
 
-/* brillo con pulso de vela en el CTA principal y aviso en la pestaña nueva */
-body.halloween-mode .hv-cta-main{animation:hwGlow 2.6s ease-in-out infinite}
-@keyframes hwGlow{0%,100%{box-shadow:0 4px 20px rgba(201,122,66,.3)}50%{box-shadow:0 4px 30px rgba(201,122,66,.6)}}
+/* Matices por sección (mantiene distinción visual sin colores de disfraz) */
+body.halloween-mode .section-tab.active-other{background:rgba(95,125,106,.16);border-color:#5f7d6a;color:#a8c4b2}
+body.halloween-mode .section-tab.active-other .tab-count{background:#5f7d6a;color:#0a0707}
+body.halloween-mode .section-tab.active-spanish{background:var(--hw-purple-soft);border-color:#5a4478;color:#bfa3d9}
+body.halloween-mode .section-tab.active-spanish .tab-count{background:#5a4478;color:var(--hw-ivory)}
+body.halloween-mode .section-tab.active-baihee{background:var(--hw-wine-soft);border-color:var(--hw-wine-bright);color:#d99cab}
+body.halloween-mode .section-tab.active-baihee .tab-count{background:var(--hw-wine-bright);color:var(--hw-ivory)}
+body.halloween-mode .section-tab.active-wattpad{background:var(--hw-copper-soft);border-color:var(--hw-copper);color:var(--hw-copper2)}
+body.halloween-mode .section-tab.active-wattpad .tab-count{background:var(--hw-copper);color:#0a0707}
+
+/* 5) Tarjetas de libro — sombras profundas, reflejo borgoña/cobre en hover */
+body.halloween-mode .book-card{border-color:var(--hw-border)}
+body.halloween-mode .book-card:hover{border-color:var(--hw-wine-bright);box-shadow:0 20px 54px rgba(60,17,25,.5),0 0 0 1px rgba(181,98,47,.14)}
+body.halloween-mode .canal-item:hover{border-color:var(--hw-wine-bright);box-shadow:0 10px 28px rgba(60,17,25,.4)}
+
+/* 6) Motivo de luna menguante en la cabecera (ya existente, recoloreado y más sutil) */
+.hw-motif{position:absolute;top:2.2rem;right:3rem;width:60px;height:60px;opacity:0;transform:translateY(-6px) scale(.9);transition:opacity .6s ease .15s,transform .6s ease .15s;pointer-events:none;color:var(--hw-moon)}
+body.halloween-mode .hw-motif{opacity:.4;transform:translateY(0) scale(1)}
+
+/* 7) Decoración — telaraña de esquina (sutil, fija) */
+.hw-cobweb{position:fixed;top:0;left:0;width:84px;height:84px;color:var(--hw-moon);opacity:0;pointer-events:none;z-index:150;transition:opacity .8s ease}
+body.halloween-mode .hw-cobweb{opacity:.22}
+
+/* 8) Decoración — araña colgando de un hilo, descenso muy lento */
+.hw-spider{position:fixed;top:0;right:6vw;width:26px;opacity:0;pointer-events:none;z-index:150;transition:opacity 1s ease;transform-origin:top center}
+body.halloween-mode .hw-spider{opacity:.5;animation:hwSpiderDrop 16s ease-in-out infinite}
+.hw-spider .hw-thread{stroke:var(--hw-moon);stroke-width:1;opacity:.4}
+.hw-spider .hw-body-shape{fill:var(--hw-wine-bright)}
+@keyframes hwSpiderDrop{
+  0%,8%{transform:translateY(-4px)}
+  45%,55%{transform:translateY(38px)}
+  92%,100%{transform:translateY(-4px)}
+}
+
+/* 9) Decoración — polillas nocturnas flotando muy despacio */
+.hw-moth{position:absolute;width:20px;height:20px;color:var(--hw-moon);opacity:0;pointer-events:none;transition:opacity .8s ease}
+body.halloween-mode .hw-moth{opacity:.35}
+body.halloween-mode .hw-moth-a{animation:hwMothFloat 9s ease-in-out infinite}
+body.halloween-mode .hw-moth-b{animation:hwMothFloat 11s ease-in-out infinite 1.5s}
+body.halloween-mode .hw-moth-c{animation:hwMothFloat 8s ease-in-out infinite 3s}
+@keyframes hwMothFloat{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  25%{transform:translate(6px,-10px) rotate(4deg)}
+  50%{transform:translate(-4px,-4px) rotate(-3deg)}
+  75%{transform:translate(4px,6px) rotate(2deg)}
+}
+
+/* 10) Decoración — ramas oscuras muy finas en los extremos del hero */
+.hw-branch{position:absolute;color:var(--hw-wine-bright);opacity:0;pointer-events:none;transition:opacity 1s ease}
+body.halloween-mode .hw-branch{opacity:.4}
+
+/* 11) Decoración — luna grande y sutil tras el título del hero */
+.hw-moon-orb{position:absolute;top:-8%;left:50%;transform:translateX(-50%);width:min(64vw,520px);height:min(64vw,520px);border-radius:50%;
+  background:radial-gradient(circle at 42% 38%,rgba(232,221,191,.14) 0%,rgba(232,221,191,.06) 34%,transparent 68%);
+  opacity:0;pointer-events:none;z-index:0;transition:opacity 1.2s ease}
+body.halloween-mode .hw-moon-orb{opacity:1;animation:hwMoonPulse 8s ease-in-out infinite}
+@keyframes hwMoonPulse{0%,100%{opacity:.85}50%{opacity:1}}
+
+/* 12) Decoración — pequeñas manchas de tinta (sustituyen a la sangre) */
+.hw-ink-stain{position:absolute;width:70px;height:70px;color:var(--hw-wine);opacity:0;pointer-events:none;transition:opacity .8s ease .1s;z-index:1}
+body.halloween-mode .hw-ink-stain{opacity:.4}
+.hw-ink-stain-left{bottom:.5rem;left:1.5rem;transform:rotate(-8deg)}
+.hw-ink-stain-right{top:1rem;right:4rem;transform:rotate(14deg) scale(.8)}
+
+/* 13) Decoración — vela con llama sutil (usada en el widget "Sorpréndeme") */
+.hw-candle-flame{transform-origin:center bottom}
+body.halloween-mode .hw-candle-flame{animation:hwFlameFlicker 3.2s ease-in-out infinite}
+@keyframes hwFlameFlicker{
+  0%,100%{transform:scaleY(1) scaleX(1) rotate(0deg);opacity:.9}
+  30%{transform:scaleY(1.06) scaleX(.96) rotate(-1deg);opacity:1}
+  60%{transform:scaleY(.95) scaleX(1.02) rotate(1deg);opacity:.85}
+}
+
+/* 14) Chispas/estrellas muy tenues flotando en los heroes (parpadeo lento) */
+body.halloween-mode .hv-hero::after,body.halloween-mode .hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%, var(--hw-moon) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 85% 18%, var(--hw-copper2) 0%, transparent 60%),
+    radial-gradient(1px 1px at 28% 68%, var(--hw-moon) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 72% 58%, var(--hw-wine-bright) 0%, transparent 60%),
+    radial-gradient(1px 1px at 92% 72%, var(--hw-moon) 0%, transparent 60%),
+    radial-gradient(1px 1px at 45% 12%, var(--hw-copper2) 0%, transparent 60%);
+  opacity:.3;animation:hwFlicker 6s ease-in-out infinite;
+}
+@keyframes hwFlicker{0%,100%{opacity:.18}50%{opacity:.42}}
+
+/* 15) Brillo de vela muy suave en el CTA principal y aviso discreto en la pestaña nueva */
+body.halloween-mode .hv-cta-main{animation:hwCandleGlow 4.5s ease-in-out infinite}
+@keyframes hwCandleGlow{0%,100%{box-shadow:0 0 14px rgba(181,98,47,.14)}50%{box-shadow:0 0 22px rgba(181,98,47,.28)}}
 body.halloween-mode #tabHalloween{position:relative}
-body.halloween-mode #tabHalloween::after{content:'';position:absolute;top:5px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--hw-pumpkin);animation:hwDot 1.8s ease-in-out infinite}
-@keyframes hwDot{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+body.halloween-mode #tabHalloween::after{content:'';position:absolute;top:5px;right:5px;width:5px;height:5px;border-radius:50%;background:var(--hw-copper2);animation:hwDot 2.4s ease-in-out infinite}
+@keyframes hwDot{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+
+/* 17) Icono de "La estantería prohibida" (sustituye al emoji de calabaza) */
+.hw-shelf-icon{color:var(--hw-copper2);opacity:.85}
+.hw-shelf-icon svg{width:42px;height:42px;display:block}
+
+/* 18) Widget "¿Qué vas a leer esta noche?" — Sorpréndeme */
+.hw-surprise{
+  display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;
+  background:linear-gradient(150deg,rgba(60,17,25,.4) 0%,rgba(20,13,12,.6) 100%);
+  border:1px solid var(--hw-border2);border-radius:6px;
+  padding:1.4rem 1.7rem;margin-bottom:1.5rem;position:relative;overflow:hidden;
+}
+.hw-candle-icon{width:34px;height:52px;flex-shrink:0}
+.hw-surprise-text{flex:1;min-width:200px}
+.hw-surprise-text h3{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:1.25rem;color:var(--hw-ivory);margin-bottom:.25rem}
+.hw-surprise-text p{font-size:12.5px;color:var(--hw-muted);margin-bottom:.9rem;line-height:1.6}
+.hw-surprise-result{min-width:220px;transition:opacity .25s ease}
+.hw-surprise-empty{font-size:12.5px;color:var(--hw-muted);font-style:italic}
+.hw-surprise-pick{display:flex;align-items:center;gap:.8rem;cursor:pointer;padding:.5rem;border:1px solid var(--hw-border2);border-radius:4px;background:rgba(10,7,7,.35);transition:border-color .18s,background .18s}
+.hw-surprise-pick:hover{border-color:var(--hw-copper);background:var(--hw-copper-soft)}
+.hw-surprise-cover{width:44px;height:66px;flex-shrink:0;border-radius:2px;overflow:hidden;background:var(--hw-surface3)}
+.hw-surprise-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.hw-surprise-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.hw-surprise-info{min-width:0}
+.hw-surprise-title{font-size:12.5px;font-weight:500;color:var(--hw-ivory);line-height:1.3;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hw-surprise-author{font-size:11px;color:var(--hw-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+.hw-surprise-cta{font-size:10.5px;color:var(--hw-copper2);margin-top:3px;letter-spacing:.04em}
+@media(max-width:600px){.hw-surprise{padding:1.1rem 1.2rem;gap:1rem}}
+
+/* 16) Accesibilidad — respeta prefers-reduced-motion: apaga toda animación de octubre */
+@media (prefers-reduced-motion: reduce){
+  body.halloween-mode *{animation:none!important;transition-duration:.01ms!important}
+}
 
 .topbar{position:sticky;top:0;z-index:100;background:rgba(14,11,16,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
 .logo{font-family:var(--font-display);font-size:21px;font-weight:300;color:var(--text);display:flex;align-items:baseline;gap:.3em;text-decoration:none}
@@ -1758,9 +1915,17 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
     </div>
   </div>
-  <!-- Especial de Octubre: goteo de sangre pegado al borde inferior de la barra -->
-  <svg class="hw-blood-drip" viewBox="0 0 1440 60" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">
-    <path d="M0 0 H1440 V6 C1400 6 1390 34 1376 34 C1362 34 1358 6 1340 6 C1322 6 1318 22 1306 22 C1296 22 1293 6 1280 6 H860 C850 6 847 46 835 46 C823 46 820 6 808 6 H420 C408 6 405 26 393 26 C381 26 378 6 366 6 H120 C108 6 104 40 92 40 C80 40 77 6 65 6 H0 Z"/>
+  <!-- Especial de Octubre: araña que desciende muy lentamente desde la barra -->
+  <svg class="hw-spider" viewBox="0 0 40 70" fill="none" aria-hidden="true">
+    <line class="hw-thread" x1="20" y1="0" x2="20" y2="26"/>
+    <g class="hw-body-shape">
+      <ellipse cx="20" cy="36" rx="6" ry="7.5"/>
+      <circle cx="20" cy="26" r="4"/>
+    </g>
+    <g stroke="var(--hw-wine-bright)" stroke-width="1" stroke-linecap="round" opacity=".8">
+      <path d="M15 33 L6 29M15 36 L5 37M15 39 L7 45"/>
+      <path d="M25 33 L34 29M25 36 L35 37M25 39 L33 45"/>
+    </g>
   </svg>
 </nav>
 
@@ -1768,7 +1933,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 <div id="homeView">
 
   <div class="hv-hero">
-    <div class="hw-splatter hw-splatter-left"><svg viewBox="0 0 120 120" fill="currentColor"><ellipse cx="60" cy="55" rx="22" ry="16" transform="rotate(-15 60 55)"/><ellipse cx="40" cy="75" rx="9" ry="6" transform="rotate(10 40 75)"/><circle cx="82" cy="40" r="5"/><circle cx="90" cy="30" r="3"/><circle cx="30" cy="50" r="3"/><path d="M60 70 q-2 15 -4 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>
+    <div class="hw-ink-stain hw-ink-stain-left"><svg viewBox="0 0 120 120" fill="currentColor"><ellipse cx="60" cy="55" rx="20" ry="14" transform="rotate(-15 60 55)"/><ellipse cx="38" cy="72" rx="7" ry="5" transform="rotate(10 38 72)"/><circle cx="80" cy="38" r="3.5"/><circle cx="88" cy="30" r="2"/></svg></div>
     <div class="hw-motif"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M40 10a16 16 0 1 0 14 23 13 13 0 0 1-14-23Z"/><path d="M12 46c3-5 6-7 9-7M17 41c2-3 4-4.5 6.5-5M9 51c4-6 8-8 12-8"/></svg></div>
     <div class="hv-eyebrow">
       <span class="hw-hide">Libros Sapphic · F/F · SafiClub</span>
@@ -1784,7 +1949,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <button class="hv-cta hv-cta-main" onclick="showCatalog()"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M12 3l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8L12 3Z"/></svg></span> Ver la estantería</button>
       <button class="hv-cta hv-cta-reads" onclick="showCatalog('safi')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span> SafiClub</button>
       <button class="hv-cta hv-cta-sec" onclick="showCatalog('top10')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span> Top 10</button>
-      <button class="hv-cta hv-cta-reads hw-only" onclick="showCatalog('halloween')">🕯️ Colección de Octubre</button>
+      <button class="hv-cta hv-cta-reads hw-only" onclick="showCatalog('halloween')">🕯️ La Estantería Prohibida</button>
     </div>
     <div class="hv-url-row">
       <a class="hv-url-link" href="https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria" target="_blank">xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria</a>
@@ -1879,11 +2044,35 @@ body.home-active .hero,body.home-active .main{display:none!important}
 </div><!-- /#homeView -->
 
 <section class="hero">
-  <div class="hw-splatter hw-splatter-right"><svg viewBox="0 0 120 120" fill="currentColor"><ellipse cx="60" cy="55" rx="20" ry="15" transform="rotate(20 60 55)"/><ellipse cx="82" cy="72" rx="8" ry="5" transform="rotate(-10 82 72)"/><circle cx="35" cy="42" r="4.5"/><circle cx="26" cy="32" r="3"/><circle cx="92" cy="52" r="3"/><path d="M62 72 q3 14 6 24" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>
-  <div class="hero-eyebrow"><span class="hw-hide">📚 Libros Sapphic · F/F</span><span class="hw-only">🎃 Edición de Octubre · Relatos con colmillos</span></div>
-  <h1 class="hero-title">Nuestra<br><em>estantería</em></h1>
-  <p class="hero-sub">Vota tus favoritos y descubre qué están leyendo las demás. El ranking lo construimos juntas.</p>
-  <div class="hero-stats">
+  <div class="hw-ink-stain hw-ink-stain-right"><svg viewBox="0 0 120 120" fill="currentColor"><ellipse cx="60" cy="55" rx="18" ry="13" transform="rotate(20 60 55)"/><ellipse cx="80" cy="70" rx="6" ry="4" transform="rotate(-10 80 70)"/><circle cx="33" cy="40" r="3"/></svg></div>
+
+  <!-- Especial de Octubre: luna grande y sutil tras el título -->
+  <div class="hw-moon-orb" aria-hidden="true"></div>
+
+  <!-- Especial de Octubre: ramas finas y oscuras en los extremos del hero -->
+  <svg class="hw-branch" viewBox="0 0 160 220" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" aria-hidden="true" style="left:-18px;bottom:-10px;width:130px;height:190px;transform:scaleX(1)">
+    <path d="M10 220 C 8 170 30 150 24 100 C 20 66 44 40 40 0"/>
+    <path d="M24 140 C 44 130 54 112 50 90"/>
+    <path d="M22 100 C 6 92 -2 74 4 56"/>
+    <path d="M34 60 C 50 52 56 36 50 20"/>
+  </svg>
+  <svg class="hw-branch" viewBox="0 0 160 220" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" aria-hidden="true" style="right:-18px;bottom:-10px;width:130px;height:190px;transform:scaleX(-1)">
+    <path d="M10 220 C 8 170 30 150 24 100 C 20 66 44 40 40 0"/>
+    <path d="M24 140 C 44 130 54 112 50 90"/>
+    <path d="M22 100 C 6 92 -2 74 4 56"/>
+    <path d="M34 60 C 50 52 56 36 50 20"/>
+  </svg>
+
+  <!-- Especial de Octubre: polillas nocturnas flotando muy despacio -->
+  <svg class="hw-moth hw-moth-a" style="left:14%;top:28%" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 8c-3-6-12-8-14-3 3-1 9 0 12 5-5-1-11 2-11 7 0 4 4 6 7 4 2-1 3-4 4-7 1 3 2 6 4 7 3 2 7 0 7-4 0-5-6-8-11-7 3-5 9-6 12-5-2-5-11-3-14 3-1 1-2 1-3 0Z"/></svg>
+  <svg class="hw-moth hw-moth-b" style="right:16%;top:16%" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 8c-3-6-12-8-14-3 3-1 9 0 12 5-5-1-11 2-11 7 0 4 4 6 7 4 2-1 3-4 4-7 1 3 2 6 4 7 3 2 7 0 7-4 0-5-6-8-11-7 3-5 9-6 12-5-2-5-11-3-14 3-1 1-2 1-3 0Z"/></svg>
+  <svg class="hw-moth hw-moth-c" style="left:44%;top:58%" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 8c-3-6-12-8-14-3 3-1 9 0 12 5-5-1-11 2-11 7 0 4 4 6 7 4 2-1 3-4 4-7 1 3 2 6 4 7 3 2 7 0 7-4 0-5-6-8-11-7 3-5 9-6 12-5-2-5-11-3-14 3-1 1-2 1-3 0Z"/></svg>
+
+  <div class="hero-eyebrow"><span class="hw-hide">📚 Libros Sapphic · F/F</span><span class="hw-only">Edición de Octubre · Historias oscuras y peligrosas</span></div>
+  <h1 class="hero-title" style="position:relative;z-index:2">Nuestra<br><em>estantería</em></h1>
+  <p class="hero-sub hw-hide" style="position:relative;z-index:2">Vota tus favoritos y descubre qué están leyendo las demás. El ranking lo construimos juntas.</p>
+  <p class="hero-sub hw-only-block" style="position:relative;z-index:2;color:var(--hw-muted)">Una estantería para historias oscuras, secretos y un poco de peligro.</p>
+  <div class="hero-stats" style="position:relative;z-index:2">
     <div class="stat-item"><div class="stat-num" id="statBooks"><em>—</em></div><div class="stat-label">Libros</div></div>
     <div class="stat-item" id="statVotesItem" style="display:none"><div class="stat-num" id="statVotes"><em>—</em></div><div class="stat-label">Valoraciones</div></div>
   </div>
@@ -1894,7 +2083,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
   <!-- TABS -->
   <div class="tab-bar">
     <button class="tab-btn active" id="tabEstanteria" onclick="switchTab('estanteria')">Estantería</button>
-    <button class="tab-btn hw-only" id="tabHalloween" onclick="switchTab('halloween')">🎃 Especial de Octubre</button>
+    <button class="tab-btn hw-only" id="tabHalloween" onclick="switchTab('halloween')">🕯️ La Estantería Prohibida</button>
     <button class="tab-btn" id="tabTop10" onclick="switchTab('top10')">Top 10 Thais</button>
     <button class="tab-btn" id="tabSafi" onclick="switchTab('safi')">SafiClub</button>
     <button class="tab-btn" id="tabCanal" onclick="switchTab('canal')">Recomendaciones del Canal</button>
@@ -4406,23 +4595,60 @@ function renderCanal(){
   c.innerHTML=html;
 }
 
+const HW_SHELF_ICON='<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10c4-2.5 8-2.5 12 0v20c-4-2.5-8-2.5-12 0V10Z"/><path d="M32 10c-4-2.5-8-2.5-12 0v20c4-2.5 8-2.5 12 0V10Z"/><path d="M27 5.5a6 6 0 1 0 5.3 8.6 4.9 4.9 0 0 1-5.3-8.6Z" transform="translate(-1 -2)"/></svg>';
+
 function renderHalloween(){
   const c=document.getElementById('halloweenContainer');
   const items=allBooks.filter(isHalloweenBook);
-  const hero='<div class="canal-hero-strip hw-hero-strip"><div class="canal-hero-icon">🎃</div><div class="canal-hero-text"><h2>Colección de <em>Octubre</em></h2><p>Brujas, vampiras, mujeres lobo y algún fantasma con mal genio — terror, paranormal y dark romance sapphic, sacado directamente del catálogo.</p></div></div>';
-  if(!items.length){c.innerHTML=hero+'<div class="canal-empty">Aún no hay libros con etiquetas de terror/paranormal en el catálogo. 🎃</div>';return;}
+  const hero='<div class="canal-hero-strip hw-hero-strip"><div class="canal-hero-icon hw-shelf-icon">'+HW_SHELF_ICON+'</div><div class="canal-hero-text"><h2>La estantería <em class="hw-blackletter">prohibida</em></h2><p>Historias que quizá no deberías leer después de medianoche.</p></div></div>';
+  const surprise=hwSurpriseWidgetHtml();
+  if(!items.length){c.innerHTML=hero+surprise+'<div class="canal-empty">Aún no hay libros con etiquetas de terror/paranormal en el catálogo. 🕯️</div>';return;}
   const HW_LIMIT=18;
   let itemsHtml='';
   items.forEach(function(b,i){
     const r=ratingsMap[b.id];
     const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
-    const cov=b.cover?'<img src="'+b.cover+'" alt="'+escHtml(b.title)+'" onerror="this.outerHTML=\'<div class=canal-item-ph>🎃</div>\'">':'<div class="canal-item-ph">🎃</div>';
+    const cov=b.cover?'<img src="'+b.cover+'" alt="'+escHtml(b.title)+'" onerror="this.outerHTML=\'<div class=canal-item-ph>📖</div>\'">':'<div class="canal-item-ph">📖</div>';
     const auth=(b.authors||[]).join(', ')||'—';
     const hideCls=i>=HW_LIMIT?' rec-item-hidden':'';
     itemsHtml+='<div class="canal-item'+hideCls+'" onclick="openBook(\''+b.id+'\')"><div class="canal-item-cover">'+cov+ab+'</div><div class="canal-item-body"><div class="canal-item-title">'+escHtml(b.title)+'</div><div class="canal-item-author">'+escHtml(auth)+'</div></div></div>';
   });
   const verMas=items.length>HW_LIMIT?'<div class="rec-ver-mas-wrap"><button class="rec-ver-mas-btn" onclick="recVerMas(\'hw-group\',this)">Ver más ('+(items.length-HW_LIMIT)+' libros)</button></div>':'';
-  c.innerHTML=hero+'<div class="canal-month-group" id="hw-group"><div class="canal-items">'+itemsHtml+'</div>'+verMas+'</div>';
+  c.innerHTML=hero+surprise+'<div class="canal-month-group" id="hw-group"><div class="canal-items">'+itemsHtml+'</div>'+verMas+'</div>';
+}
+
+/* ── "¿Qué vas a leer esta noche?" — elige un libro al azar del catálogo existente ── */
+function hwSurpriseWidgetHtml(){
+  return '<div class="hw-surprise">'
+    +'<svg class="hw-candle-icon" viewBox="0 0 40 60" fill="none" aria-hidden="true">'
+      +'<path class="hw-candle-flame" d="M20 6c3 5 5 8 5 12a5 5 0 1 1-10 0c0-4 2-7 5-12Z" fill="var(--hw-copper2)"/>'
+      +'<rect x="14" y="20" width="12" height="30" rx="1.5" fill="var(--hw-ivory)" opacity=".85"/>'
+      +'<rect x="10" y="49" width="20" height="5" rx="1" fill="var(--hw-wine-bright)"/>'
+    +'</svg>'
+    +'<div class="hw-surprise-text">'
+      +'<h3>¿Qué vas a leer esta noche?</h3>'
+      +'<p>No elijas tú. Deja que la estantería decida.</p>'
+      +'<button class="hv-cta hv-cta-main" onclick="hwSurpriseMe()">Sorpréndeme</button>'
+    +'</div>'
+    +'<div id="hwSurpriseResult" class="hw-surprise-result"></div>'
+  +'</div>';
+}
+function hwSurpriseMe(){
+  const resultEl=document.getElementById('hwSurpriseResult');
+  if(!resultEl) return;
+  const pool=allBooks.filter(isHalloweenBook).length?allBooks.filter(isHalloweenBook):allBooks;
+  if(!pool.length){resultEl.innerHTML='<p class="hw-surprise-empty">Aún no hay libros en el catálogo.</p>';return;}
+  const winner=pool[Math.floor(Math.random()*pool.length)];
+  const cov=winner.cover?'<img src="'+winner.cover+'" alt="'+escHtml(winner.title)+'" onerror="this.outerHTML=\'<div class=hw-surprise-cover-ph>📖</div>\'">':'<div class="hw-surprise-cover-ph">📖</div>';
+  const auth=(winner.authors||[]).join(', ')||'—';
+  resultEl.style.opacity='0';
+  setTimeout(function(){
+    resultEl.innerHTML='<div class="hw-surprise-pick" onclick="openBook(\''+winner.id+'\')">'
+      +'<div class="hw-surprise-cover">'+cov+'</div>'
+      +'<div class="hw-surprise-info"><div class="hw-surprise-title">'+escHtml(winner.title)+'</div><div class="hw-surprise-author">'+escHtml(auth)+'</div><div class="hw-surprise-cta">→ Abrir esta noche</div></div>'
+    +'</div>';
+    resultEl.style.opacity='1';
+  },160);
 }
 
 /* ── MIS RECOMENDACIONES ── */
