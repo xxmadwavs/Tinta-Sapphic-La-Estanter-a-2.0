@@ -38,7 +38,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 /* ══════════ ESPECIAL DE OCTUBRE — todo el modo Halloween vive aquí, bajo body.halloween-mode.
    Para quitarlo en noviembre: borrar este bloque + el bloque JS que añade la clase. ══════════ */
-body.halloween-mode::before{background:radial-gradient(ellipse at 15% 0%,rgba(201,122,66,0.10) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(122,47,63,0.14) 0%,transparent 55%)}
+body.halloween-mode::before{background:radial-gradient(ellipse at 15% 0%,rgba(201,122,66,0.14) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(122,47,63,0.2) 0%,transparent 55%)}
 body.halloween-mode .logo em{color:var(--hw-pumpkin)}
 body.halloween-mode .btn-login{background:var(--hw-pumpkin-soft);border-color:var(--hw-pumpkin);color:var(--hw-pumpkin)}
 body.halloween-mode .hv-hero{background:radial-gradient(ellipse at 50% 0%,rgba(201,122,66,0.12) 0%,transparent 65%)}
@@ -56,6 +56,32 @@ body.halloween-mode .hw-only{display:inline-flex}
 body.halloween-mode .hw-hide{display:none}
 .hw-motif{position:absolute;top:2.2rem;right:3rem;width:64px;height:64px;opacity:0;transform:translateY(-6px) scale(.9);transition:opacity .6s ease .15s,transform .6s ease .15s;pointer-events:none;color:var(--hw-moon)}
 body.halloween-mode .hw-motif{opacity:.55;transform:translateY(0) scale(1)}
+body.halloween-mode .book-card:hover{border-color:var(--hw-pumpkin);box-shadow:0 16px 48px rgba(122,47,63,.35)}
+
+/* telaraña de esquina, fija, siempre presente en modo Halloween */
+.hw-cobweb{position:fixed;top:0;left:0;width:92px;height:92px;color:var(--hw-moon);opacity:0;pointer-events:none;z-index:150;transition:opacity .8s ease}
+body.halloween-mode .hw-cobweb{opacity:.28}
+
+/* chispas / luciérnagas flotando en el hero, parpadeo lento */
+body.halloween-mode .hv-hero::after,body.halloween-mode .hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:
+    radial-gradient(2px 2px at 12% 22%, var(--hw-moon) 0%, transparent 60%),
+    radial-gradient(2px 2px at 85% 18%, var(--hw-pumpkin) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 28% 68%, var(--hw-moon) 0%, transparent 60%),
+    radial-gradient(2px 2px at 72% 58%, var(--hw-pumpkin) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 92% 72%, var(--hw-moon) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 45% 12%, var(--hw-pumpkin) 0%, transparent 60%);
+  opacity:.35;animation:hwFlicker 4.5s ease-in-out infinite;
+}
+@keyframes hwFlicker{0%,100%{opacity:.2}50%{opacity:.55}}
+
+/* brillo con pulso de vela en el CTA principal y aviso en la pestaña nueva */
+body.halloween-mode .hv-cta-main{animation:hwGlow 2.6s ease-in-out infinite}
+@keyframes hwGlow{0%,100%{box-shadow:0 4px 20px rgba(201,122,66,.3)}50%{box-shadow:0 4px 30px rgba(201,122,66,.6)}}
+body.halloween-mode #tabHalloween{position:relative}
+body.halloween-mode #tabHalloween::after{content:'';position:absolute;top:5px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--hw-pumpkin);animation:hwDot 1.8s ease-in-out infinite}
+@keyframes hwDot{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
 
 .topbar{position:sticky;top:0;z-index:100;background:rgba(14,11,16,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
 .logo{font-family:var(--font-display);font-size:21px;font-weight:300;color:var(--text);display:flex;align-items:baseline;gap:.3em;text-decoration:none}
@@ -1693,6 +1719,16 @@ body.home-active .hero,body.home-active .main{display:none!important}
 </style>
 </head>
 <body>
+
+<!-- Especial de Octubre: telaraña fija de esquina, solo visible en halloween-mode -->
+<svg class="hw-cobweb" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+  <path d="M0 0 L38 14 M0 0 L22 34 M0 0 L8 44 M0 0 L0 30"/>
+  <path d="M38 14 C30 18 24 24 22 34"/>
+  <path d="M22 34 C15 38 10 41 8 44"/>
+  <path d="M0 30 C4 32 6 34 8 44"/>
+  <path d="M6 8 C12 10 16 14 18 20"/>
+  <path d="M3 18 C8 20 12 24 13 30"/>
+</svg>
 
 <nav class="topbar">
   <a class="logo" href="#" onclick="showHome();return false;" style="text-decoration:none">
