@@ -250,6 +250,18 @@ body.halloween-mode #tabHalloween::after{content:'';position:absolute;top:5px;ri
 .hw-surprise-cta{font-size:10.5px;color:var(--hw-copper2);margin-top:3px;letter-spacing:.04em}
 @media(max-width:600px){.hw-surprise{padding:1.1rem 1.2rem;gap:1rem}}
 
+
+/* ── Textos editoriales añadidos para la edición de Octubre ── */
+.hw-collection-intro{text-align:center;padding:1.1rem 1rem .9rem;margin:.2rem 0 .35rem}
+.hw-collection-rule{font-family:var(--font-display);color:var(--hw-copper2);font-size:14px;letter-spacing:.18em;opacity:.72;margin-bottom:.45rem}
+.hw-collection-intro h3{font-family:var(--font-display);font-size:1.25rem;font-weight:500;font-style:italic;color:var(--hw-ivory);margin-bottom:.12rem}
+.hw-collection-intro p{font-size:11.5px;color:var(--hw-muted);line-height:1.6}
+.hw-section-head{background:linear-gradient(150deg,rgba(60,17,25,.32),rgba(20,13,12,.45));border:1px solid var(--hw-border2);padding:1.15rem 1.35rem;margin-bottom:1.25rem;text-align:center}
+.hw-section-head h2{font-family:var(--font-display);font-size:1.55rem;font-weight:400;font-style:italic;color:var(--hw-ivory);margin-bottom:.18rem}
+.hw-section-head h2 em{color:var(--hw-copper2);font-weight:600}
+.hw-section-head p{font-size:12px;color:var(--hw-muted);line-height:1.65}
+.top10-hw-head{margin-bottom:.25rem}
+
 /* 16) Accesibilidad — respeta prefers-reduced-motion: apaga toda animación de octubre */
 @media (prefers-reduced-motion: reduce){
   body.halloween-mode *{animation:none!important;transition-duration:.01ms!important}
@@ -1947,9 +1959,9 @@ body.home-active .hero,body.home-active .main{display:none!important}
     </p>
     <div class="hv-ctas">
       <button class="hv-cta hv-cta-main" onclick="showCatalog()"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M12 3l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8L12 3Z"/></svg></span> Ver la estantería</button>
-      <button class="hv-cta hv-cta-reads" onclick="showCatalog('safi')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span> SafiClub</button>
-      <button class="hv-cta hv-cta-sec" onclick="showCatalog('top10')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span> Top 10</button>
-      <button class="hv-cta hv-cta-reads hw-only" onclick="showCatalog('halloween')">🕯️ La Estantería Prohibida</button>
+      <button class="hv-cta hv-cta-reads" onclick="showCatalog('safi')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span> <span class="hw-hide">SafiClub</span><span class="hw-only">El aquelarre Safi</span></button>
+      <button class="hv-cta hv-cta-sec" onclick="showCatalog('top10')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span> <span class="hw-hide">Top 10</span><span class="hw-only">Las 10 de la noche</span></button>
+      <button class="hv-cta hv-cta-reads hw-only" onclick="showCatalog('halloween')">🕯️ La colección de octubre</button>
     </div>
     <div class="hv-url-row">
       <a class="hv-url-link" href="https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria" target="_blank">xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria</a>
@@ -2000,10 +2012,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
   <div class="hv-safi-block" onclick="showCatalog('safi')" style="max-width:1100px;margin:1px auto 0">
     <div class="hv-safi-inner">
       <div class="hv-safi-left">
-        <div class="hv-safi-eyebrow">Club de lectura <span class="hv-safi-badge">SafiClub</span></div>
-        <h2 class="hv-safi-h2">Leemos<br><em>juntas</em></h2>
-        <p class="hv-safi-p">Las lecturas del club de Tinta Sapphic, organizadas por categoría. Descubre qué hemos leído y qué viene a continuación.</p>
-        <button class="hv-feat-link rose" onclick="event.stopPropagation();showCatalog('safi')">→ Ver todo el SafiClub</button>
+        <div class="hv-safi-eyebrow">Club de lectura <span class="hw-hide hv-safi-badge">SafiClub</span><span class="hw-only hv-safi-badge">El aquelarre Safi</span></div>
+        <h2 class="hv-safi-h2"><span class="hw-hide">Leemos<br><em>juntas</em></span><span class="hw-only">Nos reunimos<br><em>para leer</em></span></h2>
+        <p class="hv-safi-p"><span class="hw-hide">Las lecturas del club de Tinta Sapphic, organizadas por categoría. Descubre qué hemos leído y qué viene a continuación.</span><span class="hw-only">Las lecturas reunidas por el aquelarre de Tinta Sapphic. Descubre qué historias hemos compartido y cuáles esperan su turno.</span></p>
+        <button class="hv-feat-link rose" onclick="event.stopPropagation();showCatalog('safi')"><span class="hw-hide">→ Ver todo el SafiClub</span><span class="hw-only">→ Entrar en el aquelarre</span></button>
         <div class="hv-safi-covers" id="hvSafiCovers" style="margin-top:1.5rem"></div>
       </div>
       <div class="hv-safi-right">
@@ -2068,10 +2080,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
   <svg class="hw-moth hw-moth-b" style="right:16%;top:16%" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 8c-3-6-12-8-14-3 3-1 9 0 12 5-5-1-11 2-11 7 0 4 4 6 7 4 2-1 3-4 4-7 1 3 2 6 4 7 3 2 7 0 7-4 0-5-6-8-11-7 3-5 9-6 12-5-2-5-11-3-14 3-1 1-2 1-3 0Z"/></svg>
   <svg class="hw-moth hw-moth-c" style="left:44%;top:58%" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 8c-3-6-12-8-14-3 3-1 9 0 12 5-5-1-11 2-11 7 0 4 4 6 7 4 2-1 3-4 4-7 1 3 2 6 4 7 3 2 7 0 7-4 0-5-6-8-11-7 3-5 9-6 12-5-2-5-11-3-14 3-1 1-2 1-3 0Z"/></svg>
 
-  <div class="hero-eyebrow"><span class="hw-hide">📚 Libros Sapphic · F/F</span><span class="hw-only">Edición de Octubre · Historias oscuras y peligrosas</span></div>
+  <div class="hero-eyebrow"><span class="hw-hide">📚 Libros Sapphic · F/F</span><span class="hw-only">Edición de Octubre · Historias para leer a la luz de las velas</span></div>
   <h1 class="hero-title" style="position:relative;z-index:2">Nuestra<br><em>estantería</em></h1>
   <p class="hero-sub hw-hide" style="position:relative;z-index:2">Vota tus favoritos y descubre qué están leyendo las demás. El ranking lo construimos juntas.</p>
-  <p class="hero-sub hw-only-block" style="position:relative;z-index:2;color:var(--hw-muted)">Una estantería para historias oscuras, secretos y un poco de peligro.</p>
+  <p class="hero-sub hw-only-block" style="position:relative;z-index:2;color:var(--hw-muted)">Una estantería para historias oscuras, secretos y un poco de misterio.</p>
   <div class="hero-stats" style="position:relative;z-index:2">
     <div class="stat-item"><div class="stat-num" id="statBooks"><em>—</em></div><div class="stat-label">Libros</div></div>
     <div class="stat-item" id="statVotesItem" style="display:none"><div class="stat-num" id="statVotes"><em>—</em></div><div class="stat-label">Valoraciones</div></div>
@@ -2082,15 +2094,15 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
   <!-- TABS -->
   <div class="tab-bar">
-    <button class="tab-btn active" id="tabEstanteria" onclick="switchTab('estanteria')">Estantería</button>
-    <button class="tab-btn hw-only" id="tabHalloween" onclick="switchTab('halloween')">🕯️ La Estantería Prohibida</button>
-    <button class="tab-btn" id="tabTop10" onclick="switchTab('top10')">Top 10 Thais</button>
-    <button class="tab-btn" id="tabSafi" onclick="switchTab('safi')">SafiClub</button>
-    <button class="tab-btn" id="tabCanal" onclick="switchTab('canal')">Recomendaciones del Canal</button>
-    <button class="tab-btn" id="tabMyrec" onclick="switchTab('myrec')">Mis Recomendaciones</button>
-    <button class="tab-btn" id="tabSolicitudes" onclick="switchTab('solicitudes')">Solicitudes</button>
-    <button class="tab-btn" id="tabRuleta" onclick="switchTab('ruleta')">Ruleta</button>
-    <button class="tab-btn" id="tabBingo" onclick="switchTab('bingo')">Bingo</button>
+    <button class="tab-btn active" id="tabEstanteria" onclick="switchTab('estanteria')"><span class="hw-hide">Estantería</span><span class="hw-only">Nuestra estantería</span></button>
+    <button class="tab-btn hw-only" id="tabHalloween" onclick="switchTab('halloween')">🕯️ La colección de octubre</button>
+    <button class="tab-btn" id="tabTop10" onclick="switchTab('top10')"><span class="hw-hide">Top 10 Thais</span><span class="hw-only">Las 10 de la noche en Tailandia</span></button>
+    <button class="tab-btn" id="tabSafi" onclick="switchTab('safi')"><span class="hw-hide">SafiClub</span><span class="hw-only">El aquelarre Safi</span></button>
+    <button class="tab-btn" id="tabCanal" onclick="switchTab('canal')"><span class="hw-hide">Recomendaciones del Canal</span><span class="hw-only">El rincón de la bruja</span></button>
+    <button class="tab-btn" id="tabMyrec" onclick="switchTab('myrec')"><span class="hw-hide">Mis Recomendaciones</span><span class="hw-only">Mi grimorio</span></button>
+    <button class="tab-btn" id="tabSolicitudes" onclick="switchTab('solicitudes')"><span class="hw-hide">Solicitudes</span><span class="hw-only">Invoca un libro</span></button>
+    <button class="tab-btn" id="tabRuleta" onclick="switchTab('ruleta')"><span class="hw-hide">Ruleta</span><span class="hw-only">La ruleta maldita</span></button>
+    <button class="tab-btn" id="tabBingo" onclick="switchTab('bingo')"><span class="hw-hide">Bingo</span><span class="hw-only">Bingo de Halloween</span></button>
     <button class="tab-share-btn" id="tabShareBtn" onclick="copyTabLink()" title="Copiar enlace a esta sección">🔗 Copiar enlace</button>
   </div>
 
@@ -2285,16 +2297,16 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <div>
         <!-- Aviso si no hay sesión -->
         <div class="sol-form-card" id="solLoginNotice">
-          <div class="sol-form-title">Solicitar un título</div>
-          <p class="sol-form-sub">Para enviar una solicitud necesitas tener cuenta.</p>
-          <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.7">Las solicitudes están vinculadas a tu usuario de Telegram. Inicia sesión o regístrate para poder pedirlas.</p>
+          <div class="sol-form-title"><span class="hw-hide">Solicitar un título</span><span class="hw-only">Invoca un libro</span></div>
+          <p class="sol-form-sub"><span class="hw-hide">Para enviar una solicitud necesitas tener cuenta.</span><span class="hw-only">Para invocar una lectura necesitas tener cuenta.</span></p>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.7"><span class="hw-hide">Las solicitudes están vinculadas a tu usuario de Telegram. Inicia sesión o regístrate para poder pedirlas.</span><span class="hw-only">Tus invocaciones quedan vinculadas a tu usuario de Telegram. Inicia sesión o regístrate para poder pedirlas.</span></p>
           <button class="sol-submit" onclick="openAuthModal()">Iniciar sesión 🌹</button>
         </div>
 
         <!-- Formulario real (solo con sesión) -->
         <div class="sol-form-card" id="solFormReal" style="display:none">
-          <div class="sol-form-title">Solicitar un título</div>
-          <p class="sol-form-sub" id="solFormSub">¿Quieres ver algo en la estantería? Pídelo aquí.</p>
+          <div class="sol-form-title"><span class="hw-hide">Solicitar un título</span><span class="hw-only">Invoca un libro</span></div>
+          <p class="sol-form-sub" id="solFormSub"><span class="hw-hide">¿Quieres ver algo en la estantería? Pídelo aquí.</span><span class="hw-only">¿Quieres ver una historia en nuestra estantería? Invócala aquí.</span></p>
           <div class="sol-fields">
 
             <div class="sol-field">
@@ -2347,14 +2359,14 @@ body.home-active .hero,body.home-active .main{display:none!important}
               </div>
             </div>
 
-            <button class="sol-submit" onclick="enviarSolicitud()">Enviar solicitud 🌹</button>
+            <button class="sol-submit" onclick="enviarSolicitud()"><span class="hw-hide">Enviar solicitud 🌹</span><span class="hw-only">Invocar libro 🌹</span></button>
             <div class="sol-msg" id="solMsg"></div>
           </div>
         </div>
 
         <!-- MIS SOLICITUDES -->
         <div class="sol-mis-card" id="solMisCard" style="display:none">
-          <div class="sol-mis-title">Mis solicitudes</div>
+          <div class="sol-mis-title"><span class="hw-hide">Mis solicitudes</span><span class="hw-only">Mis invocaciones</span></div>
           <div id="solMisLista"></div>
         </div>
       </div>
@@ -2373,7 +2385,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
       <!-- Filtros de la ruleta -->
       <div class="ruleta-filtros-card">
         <div class="ruleta-filtros-header">
-          <span class="ruleta-filtros-label">🎯 Filtros activos</span>
+          <span class="ruleta-filtros-label"><span class="hw-hide">🎯 Filtros activos</span><span class="hw-only">✦ La ruleta maldita · filtros</span></span>
           <div class="ruleta-filtros-status" id="ruletaStatus">Cargando…</div>
         </div>
         <!-- Selector de tipo de libros (independiente de la estantería) -->
@@ -2470,18 +2482,18 @@ body.home-active .hero,body.home-active .main{display:none!important}
         </div>
         <button class="ruleta-spin-btn" id="ruletaSpinBtn" onclick="ruletaSpin()">
           <span class="ruleta-spin-icon">✦</span>
-          <span>Girar</span>
+          <span class="hw-hide">Girar</span><span class="hw-only">Invocar</span>
         </button>
       </div>
 
       <!-- Resultado -->
       <div class="ruleta-result" id="ruletaResult" style="display:none">
         <div class="ruleta-result-inner">
-          <div class="ruleta-result-label">Tu próxima lectura ✨</div>
+          <div class="ruleta-result-label"><span class="hw-hide">Tu próxima lectura ✨</span><span class="hw-only">Tu lectura invocada ✨</span></div>
           <div class="ruleta-result-book" id="ruletaResultBook"></div>
           <div class="ruleta-result-actions">
             <button class="ruleta-action-btn ruleta-action-primary" id="ruletaOpenBtn" onclick="ruletaOpenBook()">Ver ficha del libro</button>
-            <button class="ruleta-action-btn" onclick="ruletaSpin()">Volver a girar</button>
+            <button class="ruleta-action-btn" onclick="ruletaSpin()"><span class="hw-hide">Volver a girar</span><span class="hw-only">Invocar otra</span></button>
           </div>
         </div>
       </div>
@@ -2491,7 +2503,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
   <!-- PANEL BINGO -->
   <div id="panelBingo" style="display:none">
     <div class="bingo-wrap" id="bingoWrap">
-      <div class="loading"><div class="spinner"></div>Cargando bingo…</div>
+      <div class="loading"><div class="spinner"></div><span class="hw-hide">Cargando bingo…</span><span class="hw-only">Preparando el bingo de Halloween…</span></div>
     </div>
   </div>
 
@@ -4533,8 +4545,9 @@ function updateHomeStats(){
 function renderSafi(){
   const c=document.getElementById('safiContainer');
   const safiData=allBooks.filter(b=>b.saficlub);
+  const octoberHead=document.body.classList.contains('halloween-mode')?'<div class="hw-section-head"><h2>El aquelarre <em>Safi</em></h2><p>Las lecturas que hemos reunido para compartir esta temporada.</p></div>':'';
   if(!safiData.length){
-    c.innerHTML=`<div class="safi-empty">Aún no hay libros en el SafiClub. 🌹<br><br>Edítalos desde el admin para añadirlos.</div>`;
+    c.innerHTML=octoberHead+`<div class="safi-empty">Aún no hay libros en el SafiClub. 🌹<br><br>Edítalos desde el admin para añadirlos.</div>`;
     return;
   }
   const catMap=new Map();
@@ -4542,7 +4555,7 @@ function renderSafi(){
     if(!catMap.has(cat)) catMap.set(cat,[]);
     if(!catMap.get(cat).find(x=>x.id===b.id)) catMap.get(cat).push(b);
   }));
-  c.innerHTML=[...catMap.entries()].map(([cat,items])=>`
+  c.innerHTML=octoberHead+[...catMap.entries()].map(([cat,items])=>`
     <div class="safi-section-group">
       <div class="safi-section-head">
         <span class="safi-section-name">${cat}</span>
@@ -4572,7 +4585,8 @@ function renderSafi(){
 function renderCanal(){
   const c=document.getElementById('canalContainer');
   const canalData=allBooks.filter(function(b){return b.canal_rec;});
-  const hero='<div class="canal-hero-strip"><div class="canal-hero-icon">📻</div><div class="canal-hero-text"><h2>Recomendaciones del <em>Canal</em></h2><p>Los libros que recomendamos mensualmente en el canal, organizados por mes.</p></div></div>';
+  const october=document.body.classList.contains('halloween-mode');
+  const hero=october?'<div class="canal-hero-strip hw-hero-strip"><div class="canal-hero-icon">🕯️</div><div class="canal-hero-text"><h2>El rincón <em>de la bruja</em></h2><p>Recomendaciones reunidas entre secretos, descubrimientos y lecturas para la noche.</p></div></div>':'<div class="canal-hero-strip"><div class="canal-hero-icon">📻</div><div class="canal-hero-text"><h2>Recomendaciones del <em>Canal</em></h2><p>Los libros que recomendamos mensualmente en el canal, organizados por mes.</p></div></div>';
   if(!canalData.length){c.innerHTML=hero+'<div class="canal-empty">Aún no hay recomendaciones del canal. 📻<br><br>Márcalos desde el admin para añadirlos.</div>';return;}
   const monthMap=new Map();
   canalData.forEach(function(b){const month=b.canal_month||'Sin fecha';if(!monthMap.has(month))monthMap.set(month,[]);if(!monthMap.get(month).find(function(x){return x.id===b.id;}))monthMap.get(month).push(b);});
@@ -4600,8 +4614,9 @@ const HW_SHELF_ICON='<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" 
 function renderHalloween(){
   const c=document.getElementById('halloweenContainer');
   const items=allBooks.filter(isHalloweenBook);
-  const hero='<div class="canal-hero-strip hw-hero-strip"><div class="canal-hero-icon hw-shelf-icon">'+HW_SHELF_ICON+'</div><div class="canal-hero-text"><h2>La estantería <em class="hw-blackletter">prohibida</em></h2><p>Historias que quizá no deberías leer después de medianoche.</p></div></div>';
+  const hero='<div class="canal-hero-strip hw-hero-strip"><div class="canal-hero-icon hw-shelf-icon">'+HW_SHELF_ICON+'</div><div class="canal-hero-text"><h2>La colección <em class="hw-blackletter">de octubre</em></h2><p>Historias para perderse entre secretos, sombras y noches interminables.</p></div></div>';
   const surprise=hwSurpriseWidgetHtml();
+  const collectionIntro='<div class="hw-collection-intro"><div class="hw-collection-rule">✦ · · · ☾ · · · ✦</div><h3>Los libros de esta noche</h3><p>Una selección de historias reunidas para la noche de octubre.</p></div>';
   if(!items.length){c.innerHTML=hero+surprise+'<div class="canal-empty">Aún no hay libros con etiquetas de terror/paranormal en el catálogo. 🕯️</div>';return;}
   const HW_LIMIT=18;
   let itemsHtml='';
@@ -4614,7 +4629,7 @@ function renderHalloween(){
     itemsHtml+='<div class="canal-item'+hideCls+'" onclick="openBook(\''+b.id+'\')"><div class="canal-item-cover">'+cov+ab+'</div><div class="canal-item-body"><div class="canal-item-title">'+escHtml(b.title)+'</div><div class="canal-item-author">'+escHtml(auth)+'</div></div></div>';
   });
   const verMas=items.length>HW_LIMIT?'<div class="rec-ver-mas-wrap"><button class="rec-ver-mas-btn" onclick="recVerMas(\'hw-group\',this)">Ver más ('+(items.length-HW_LIMIT)+' libros)</button></div>':'';
-  c.innerHTML=hero+surprise+'<div class="canal-month-group" id="hw-group"><div class="canal-items">'+itemsHtml+'</div>'+verMas+'</div>';
+  c.innerHTML=hero+surprise+collectionIntro+'<div class="canal-month-group" id="hw-group"><div class="canal-items">'+itemsHtml+'</div>'+verMas+'</div>';
 }
 
 /* ── "¿Qué vas a leer esta noche?" — elige un libro al azar del catálogo existente ── */
@@ -4626,9 +4641,9 @@ function hwSurpriseWidgetHtml(){
       +'<rect x="10" y="49" width="20" height="5" rx="1" fill="var(--hw-wine-bright)"/>'
     +'</svg>'
     +'<div class="hw-surprise-text">'
-      +'<h3>¿Qué vas a leer esta noche?</h3>'
+      +'<h3>¿Qué historia te espera esta noche?</h3>'
       +'<p>No elijas tú. Deja que la estantería decida.</p>'
-      +'<button class="hv-cta hv-cta-main" onclick="hwSurpriseMe()">Sorpréndeme</button>'
+      +'<button class="hv-cta hv-cta-main" onclick="hwSurpriseMe()">Invocar una lectura</button>'
     +'</div>'
     +'<div id="hwSurpriseResult" class="hw-surprise-result"></div>'
   +'</div>';
@@ -4645,7 +4660,7 @@ function hwSurpriseMe(){
   setTimeout(function(){
     resultEl.innerHTML='<div class="hw-surprise-pick" onclick="openBook(\''+winner.id+'\')">'
       +'<div class="hw-surprise-cover">'+cov+'</div>'
-      +'<div class="hw-surprise-info"><div class="hw-surprise-title">'+escHtml(winner.title)+'</div><div class="hw-surprise-author">'+escHtml(auth)+'</div><div class="hw-surprise-cta">→ Abrir esta noche</div></div>'
+      +'<div class="hw-surprise-info"><div class="hw-surprise-title">'+escHtml(winner.title)+'</div><div class="hw-surprise-author">'+escHtml(auth)+'</div><div class="hw-surprise-cta">→ Abrir esta lectura</div></div>'
     +'</div>';
     resultEl.style.opacity='1';
   },160);
@@ -4664,7 +4679,8 @@ function getMyrecCatMap(){
 function renderMyrec(){
   const c=document.getElementById('myrecContainer');
   const catMap=getMyrecCatMap();
-  const hero='<div class="myrec-hero-strip"><div class="myrec-hero-icon">💌</div><div class="myrec-hero-text"><h2>Mis <em>Recomendaciones</em></h2><p>Libros que recomiendo personalmente, organizados por género y estilo.</p></div></div>';
+  const october=document.body.classList.contains('halloween-mode');
+  const hero=october?'<div class="myrec-hero-strip hw-hero-strip"><div class="myrec-hero-icon">📖</div><div class="myrec-hero-text"><h2>Mi <em>grimorio</em></h2><p>Las historias que has ido reuniendo, una a una.</p></div></div>':'<div class="myrec-hero-strip"><div class="myrec-hero-icon">💌</div><div class="myrec-hero-text"><h2>Mis <em>Recomendaciones</em></h2><p>Libros que recomiendo personalmente, organizados por género y estilo.</p></div></div>';
   if(!catMap.size){c.innerHTML=hero+'<div class="myrec-empty">Aún no hay recomendaciones personales. 💌<br><br>Márcalos desde el admin para añadirlos.</div>';return;}
 
   // Resolve which category (if any) matches activeMyrecCat
@@ -4797,7 +4813,7 @@ function renderTop10(){
       +((b.dinamicas||[]).slice(0,1).map(d=>`<span class="tag tag-dinamica">${d}</span>`).join(''));
   }
 
-  let html='<div class="top10-wrap">';
+  let html='<div class="top10-wrap">'+(document.body.classList.contains('halloween-mode')?'<div class="hw-section-head top10-hw-head"><h2>Las 10 de la noche <em>en Tailandia</em></h2><p>Las diez lecturas tailandesas que han llegado más alto en nuestro ranking.</p></div>':'');
 
   // ── PUESTO 1 ──
   if(ranked[0]){
@@ -4922,7 +4938,7 @@ async function enviarSolicitud(){
     .select('id').eq('user_id', currentUser.id).ilike('titulo', titulo).limit(1);
   if(dup?.length){msg.className='sol-msg err';msg.textContent='Ya tienes una solicitud para este título.';return;}
 
-  btnSub.disabled=true; btnSub.textContent='Enviando…';
+  btnSub.disabled=true; btnSub.textContent='Invocando…';
 
   const {error} = await sb.from('solicitudes').insert({
     id: 's_'+Date.now()+'_'+Math.random().toString(36).slice(2,5),
@@ -4933,7 +4949,7 @@ async function enviarSolicitud(){
     fecha_disponible: fechaDisp
   });
 
-  btnSub.disabled=false; btnSub.textContent='Enviar solicitud 🌹';
+  btnSub.disabled=false; btnSub.textContent=document.body.classList.contains('halloween-mode')?'Invocar libro 🌹':'Enviar solicitud 🌹';
 
   if(error){msg.className='sol-msg err';msg.textContent='Error al enviar: '+error.message;return;}
 
@@ -4961,7 +4977,7 @@ async function renderSolicitudes(){
   document.getElementById('solFormReal').style.display = loggedIn ? '' : 'none';
 
   if(loggedIn && tg){
-    document.getElementById('solFormSub').textContent = 'Solicitando como @'+tg+'. ¿Quieres ver algo en la estantería?';
+    document.getElementById('solFormSub').innerHTML = document.body.classList.contains('halloween-mode') ? 'Invocando como @'+tg+'. ¿Qué historia quieres traer a la estantería?' : 'Solicitando como @'+tg+'. ¿Quieres ver algo en la estantería?';
   }
 
   if(!loggedIn){
@@ -7431,7 +7447,7 @@ function bingoRender(){
       <div class="bingo-login-card">
         <div style="font-size:2rem;margin-bottom:.5rem">🎲</div>
         <div class="bingo-title" style="font-size:1.3rem">${escHtml(challenge.nombre)}</div>
-        <p>Inicia sesión para empezar a marcar casillas y seguir tu progreso en este bingo de lectura.</p>
+        <p>${document.body.classList.contains('halloween-mode')?'Inicia sesión para comenzar a marcar casillas y seguir tu recorrido en este bingo de Halloween.':'Inicia sesión para empezar a marcar casillas y seguir tu progreso en este bingo de lectura.'}</p>
         <button class="sol-submit" onclick="openAuthModal()">Iniciar sesión 🌹</button>
       </div>`;
     return;
@@ -7488,7 +7504,7 @@ function bingoRender(){
   }).join('')+'</div>';
 
   wrap.innerHTML=selectorHtml+headerHtml+gridHtml+
-    `<p style="font-size:11px;color:var(--muted);text-align:center;margin-top:.5rem">🟢 = esta casilla puede sugerirte libros que la cumplen · solo cuentan libros marcados como leídos a partir del 1 de junio de 2026</p>`;
+    `<p style="font-size:11px;color:var(--muted);text-align:center;margin-top:.5rem">${document.body.classList.contains('halloween-mode')?'🟢 = esta casilla puede sugerirte libros que la cumplen · deja que la noche guíe tu recorrido.':'🟢 = esta casilla puede sugerirte libros que la cumplen · solo cuentan libros marcados como leídos a partir del 1 de junio de 2026'}</p>`;
 }
 
 // Comprueba si hay alguna fila/columna/diagonal completa (solo aplica a grids cuadradas 5x5 o 4x4)
