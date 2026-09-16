@@ -2704,7 +2704,7 @@ function getSaga(b){
 
 async function init(){
   // Especial de Octubre: se activa sola durante el mes, sin tocar nada más
-  if(new Date().getMonth()===9) document.body.classList.add('halloween-mode');
+  if(new Date().getMonth()===9 || new URLSearchParams(location.search).get('halloween')==='1') document.body.classList.add('halloween-mode');
   const {data:{session}}=await sb.auth.getSession();
   if(session) currentUser=session.user;
   renderAuthUI();
