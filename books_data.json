@@ -1732,7 +1732,7 @@
   },
   {
     "id": "b_1777216114475_m587p",
-    "title": "Formidable eyes",
+    "title": "Formidable eyes (Khom Klang)",
     "authors": [
       "Luxurious.W"
     ],
@@ -1750,13 +1750,17 @@
       "Horror"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
     "characters": [
       "Policía",
       "Chamana"
     ],
     "dinamicas": [
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Masc × Femme"
     ],
     "tropes": [
       "Forbidden Love",
@@ -1777,10 +1781,10 @@
       "Violencia Gráfica"
     ],
     "spicy": 2,
-    "formato": "Único",
+    "formato": "Dúo",
     "adaptacion": "Tiene serie",
-    "sagaName": null,
-    "sagaNum": null,
+    "sagaName": "Formidable Eyes",
+    "sagaNum": 1,
     "source": "thais",
     "editions": [
       {
