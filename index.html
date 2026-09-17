@@ -2033,29 +2033,6 @@ body.theme-halloween .hero-sub{color:var(--muted);font-style:italic;font-family:
   </div>
 </section>
 
-<!-- LA COLECCIÓN DE OCTUBRE — sección especial de Halloween, oculta salvo con el tema activo -->
-<section class="hw-forbidden hw-only" aria-hidden="true">
-  <div class="hw-forbidden-head">
-    <div class="hw-forbidden-eyebrow">Selección de octubre</div>
-    <h2 class="hw-forbidden-title">La colección <span class="hw-blackletter">de octubre</span></h2>
-    <p class="hw-forbidden-sub">Historias para perderse entre secretos, sombras y noches interminables.</p>
-  </div>
-  <div class="hw-forbidden-grid-head">
-    <div class="hw-forbidden-grid-title">✦ Los libros de esta noche ✦</div>
-    <p class="hw-forbidden-grid-sub">Una selección de historias reunidas para la noche de octubre.</p>
-  </div>
-  <div class="hw-forbidden-grid" id="hwForbiddenGrid">
-    <div class="hw-forbidden-empty">Buscando historias en la oscuridad…</div>
-  </div>
-
-  <div class="hw-oracle">
-    <div class="hw-oracle-title">¿Qué historia te espera esta noche?</div>
-    <p class="hw-oracle-sub">No elijas tú. Deja que la estantería decida.</p>
-    <button class="hw-oracle-btn" onclick="hwSurpriseMe()">✦ Invocar una lectura ✦</button>
-    <div class="hw-oracle-result" id="hwOracleResult" style="display:none"></div>
-  </div>
-</section>
-
 <main class="main">
 
   <!-- TABS -->
@@ -2073,6 +2050,29 @@ body.theme-halloween .hero-sub{color:var(--muted);font-style:italic;font-family:
 
   <!-- PANEL ESTANTERÍA -->
   <div id="panelEstanteria">
+  <!-- LA COLECCIÓN DE OCTUBRE — sección especial de Halloween, oculta salvo con el tema activo.
+       Vive dentro del panel de Estantería para que no aparezca encima de las demás pestañas. -->
+  <section class="hw-forbidden hw-only" aria-hidden="true">
+    <div class="hw-forbidden-head">
+      <div class="hw-forbidden-eyebrow">Selección de octubre</div>
+      <h2 class="hw-forbidden-title">La colección <span class="hw-blackletter">de octubre</span></h2>
+      <p class="hw-forbidden-sub">Historias para perderse entre secretos, sombras y noches interminables.</p>
+    </div>
+    <div class="hw-forbidden-grid-head">
+      <div class="hw-forbidden-grid-title">✦ Los libros de esta noche ✦</div>
+      <p class="hw-forbidden-grid-sub">Una selección de historias reunidas para la noche de octubre.</p>
+    </div>
+    <div class="hw-forbidden-grid" id="hwForbiddenGrid">
+      <div class="hw-forbidden-empty">Buscando historias en la oscuridad…</div>
+    </div>
+
+    <div class="hw-oracle">
+      <div class="hw-oracle-title">¿Qué historia te espera esta noche?</div>
+      <p class="hw-oracle-sub">No elijas tú. Deja que la estantería decida.</p>
+      <button class="hw-oracle-btn" onclick="hwSurpriseMe()">✦ Invocar una lectura ✦</button>
+      <div class="hw-oracle-result" id="hwOracleResult" style="display:none"></div>
+    </div>
+  </section>
   <div class="section-tabs" id="sectionTabs">
     <button class="section-tab active-thais" id="tabThais" onclick="switchSection('thais')">Libros Thais <span class="tab-count" id="countThais">0</span></button>
     <button class="section-tab" id="tabOther" onclick="switchSection('other')">Libros Occidentales <span class="tab-count hidden" id="countOther">0</span></button>
