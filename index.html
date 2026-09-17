@@ -3162,7 +3162,11 @@ async function sbFetchAll(table, columns, applyFilters){
 
 async function loadBooks(){
   try{
-    const res=await fetch(DATA_URL);
+    // cache:'no-store' + un parámetro de versión evita que GitHub Pages, el
+    // navegador o un CDN sirvan una copia vieja de books_data.json cuando lo
+    // actualizas — si no, puedes ver datos "atrasados" (o vacíos, si el
+    // esquema cambió) aunque el archivo en el repo ya esté actualizado.
+    const res=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store'});
     if(!res.ok) throw new Error();
     const data=await res.json();
     // Support both old (author: string) and new (authors: array) format
