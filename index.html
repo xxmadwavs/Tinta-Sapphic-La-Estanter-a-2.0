@@ -1846,6 +1846,14 @@ body.theme-halloween .hero-sub{color:var(--muted);font-style:italic;font-family:
 .hw-forbidden-book-author{font-size:10.5px;color:var(--muted)}
 .hw-forbidden-empty{text-align:center;color:var(--muted);font-size:13px;padding:2rem 0}
 
+/* Vista previa compacta (3 libros) + «Ver más», que abre la ventana con toda la colección */
+.hw-forbidden-grid.hw-preview{grid-template-columns:repeat(3,minmax(0,150px));justify-content:center;gap:.9rem;margin-top:1.4rem}
+.hw-preview .hw-forbidden-empty{grid-column:1/-1}
+.hw-more-wrap{text-align:center;margin-top:1.4rem}
+.info-modal.hw-collection-modal{max-width:920px}
+.hw-collection-modal .hw-blackletter{font-family:'Pirata One',var(--font-display);font-style:normal;font-weight:400;color:var(--accent2)}
+.hw-collection-modal .hw-forbidden-grid{margin-top:0}
+
 /* Interacción "¿Qué vas a leer esta noche?" */
 .hw-oracle{
   margin-top:2.6rem;border:1px solid var(--border2);border-radius:var(--radius-lg);
@@ -2062,8 +2070,11 @@ body.theme-halloween .hero-sub{color:var(--muted);font-style:italic;font-family:
       <div class="hw-forbidden-grid-title">✦ Los libros de esta noche ✦</div>
       <p class="hw-forbidden-grid-sub">Una selección de historias reunidas para la noche de octubre.</p>
     </div>
-    <div class="hw-forbidden-grid" id="hwForbiddenGrid">
+    <div class="hw-forbidden-grid hw-preview" id="hwForbiddenGrid">
       <div class="hw-forbidden-empty">Buscando historias en la oscuridad…</div>
+    </div>
+    <div class="hw-more-wrap" id="hwMoreWrap" style="display:none">
+      <button class="hw-oracle-btn" onclick="hwOpenCollection()">✦ Ver más ✦</button>
     </div>
 
     <div class="hw-oracle">
@@ -2983,28 +2994,73 @@ function hwForbiddenCoverHtml(b){
     :`<div class="hw-forbidden-cover-ph">📖</div>`;
 }
 
-// Usa siempre libros reales del catálogo — nunca datos ficticios.
-function hwRenderForbiddenShelf(){
-  const grid=document.getElementById('hwForbiddenGrid');
-  if(!grid || !allBooks.length) return;
-  let picks=allBooks.filter(hwIsForbiddenBook);
-  if(picks.length<6){
-    const rest=allBooks.filter(b=>!picks.includes(b)).sort(()=>Math.random()-.5);
-    picks=picks.concat(rest.slice(0,10-picks.length));
+// Libros de la colección de octubre: los que encajan con las palabras clave de Halloween.
+function hwCollectionBooks(){
+  return allBooks.filter(hwIsForbiddenBook);
+}
+
+// n elementos al azar sin repetir (Fisher–Yates; sort(()=>Math.random()-.5) sesga el resultado
+// y con pocos elementos elegidos saldrían casi siempre los mismos).
+function hwPickRandom(arr,n){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
   }
-  picks=[...picks].sort(()=>Math.random()-.5).slice(0,10);
-  if(!picks.length){ grid.innerHTML='<div class="hw-forbidden-empty">La estantería prohibida está vacía… por ahora.</div>'; return; }
-  grid.innerHTML=picks.map(b=>{
-    const authorStr=(b.authors||[]).join(', ')||'—';
-    return `<div class="hw-forbidden-card" onclick="openBook('${b.id}')">
+  return a.slice(0,n);
+}
+
+// Tarjeta de libro. En la ventana de la colección primero se cierra la ventana y luego se abre la ficha.
+function hwForbiddenCardHtml(b,inModal){
+  const authorStr=(b.authors||[]).join(', ')||'—';
+  const go=inModal?`hwCloseCollection();openBook('${b.id}')`:`openBook('${b.id}')`;
+  return `<div class="hw-forbidden-card" onclick="${go}">
       ${hwForbiddenCoverHtml(b)}
       <div class="hw-forbidden-info">
         <div class="hw-forbidden-book-title">${escHtml(b.title)}</div>
         <div class="hw-forbidden-book-author">${escHtml(authorStr)}</div>
       </div>
     </div>`;
-  }).join('');
 }
+
+// Usa siempre libros reales del catálogo — nunca datos ficticios.
+// Vista previa: 3 libros al azar en cada carga; «Ver más» abre la colección completa.
+function hwRenderForbiddenShelf(){
+  const grid=document.getElementById('hwForbiddenGrid');
+  if(!grid || !allBooks.length) return;
+  const collection=hwCollectionBooks();
+  let picks=hwPickRandom(collection,3);
+  if(picks.length<3){ // colección muy corta: completamos con libros del catálogo para no dejar huecos
+    picks=picks.concat(hwPickRandom(allBooks.filter(b=>!picks.includes(b)),3-picks.length));
+  }
+  if(!picks.length){ grid.innerHTML='<div class="hw-forbidden-empty">La estantería prohibida está vacía… por ahora.</div>'; return; }
+  grid.innerHTML=picks.map(b=>hwForbiddenCardHtml(b,false)).join('');
+  const more=document.getElementById('hwMoreWrap');
+  if(more) more.style.display=collection.length>3?'':'none';
+}
+
+function hwOpenCollection(){
+  const modal=document.getElementById('hwCollectionModal');
+  const body=document.getElementById('hwCollectionBody');
+  if(!modal || !body) return;
+  const list=hwCollectionBooks();
+  const sub=document.getElementById('hwCollectionSub');
+  if(sub) sub.textContent=`${list.length} historia${list.length===1?'':'s'} para la noche de octubre`;
+  body.innerHTML=list.length
+    ?`<div class="hw-forbidden-grid">${list.map(b=>hwForbiddenCardHtml(b,true)).join('')}</div>`
+    :'<div class="hw-forbidden-empty">La colección está vacía… por ahora.</div>';
+  body.scrollTop=0;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function hwCloseCollection(){
+  const modal=document.getElementById('hwCollectionModal');
+  if(!modal || !modal.classList.contains('open')) return; // no tocar el scroll si no está abierta
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') hwCloseCollection(); });
 
 // Selecciona al azar entre los libros reales ya cargados (no inventa datos).
 function hwSurpriseMe(){
@@ -5323,6 +5379,18 @@ init();
   </div>
 </div>
 
+<!-- LA COLECCIÓN DE OCTUBRE — ventana con todos los libros (se abre desde «Ver más») -->
+<div id="hwCollectionModal" class="info-modal-bg" onclick="if(event.target.id==='hwCollectionModal')hwCloseCollection()">
+  <div class="info-modal hw-collection-modal" role="dialog" aria-modal="true" aria-labelledby="hwCollectionTitle">
+    <button class="info-modal-close" onclick="hwCloseCollection()" aria-label="Cerrar">✕</button>
+    <div class="info-modal-header">
+      <div class="info-modal-title" id="hwCollectionTitle">La colección <span class="hw-blackletter">de octubre</span></div>
+      <div class="info-modal-subtitle" id="hwCollectionSub"></div>
+    </div>
+    <div class="info-modal-body" id="hwCollectionBody"></div>
+  </div>
+</div>
+
 <script>
 const INFO_CONTENT = {
   sobre: {
@@ -6071,6 +6139,20 @@ async function setReadingStatus(bookId, newStatus){
         if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
         myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
       } else if(logErr) console.error('reading_log start error:',logErr);
+    }
+    // Al marcar "Leído" con una lectura en curso (venía de "Leyendo"), la cerramos con la fecha de hoy
+    if(next==='read'){
+      const openEntry=getOpenLogEntry(bookId);
+      if(openEntry){
+        const hoy=new Date();
+        const pad=n=>String(n).padStart(2,'0');
+        const isoDate=new Date(`${hoy.getFullYear()}-${pad(hoy.getMonth()+1)}-${pad(hoy.getDate())}T12:00:00`).toISOString();
+        const {error:endErr}=await sb.from('reading_log').update({read_at:isoDate}).eq('id',openEntry.id).eq('user_id',currentUser.id);
+        if(!endErr){
+          openEntry.read_at=isoDate;
+          myReadingReadAt[bookId]=isoDate;
+        } else console.error('reading_log end error:',endErr);
+      }
     }
     const tieneFechas=(myReadingLog[bookId]||[]).some(e=>e.read_at);
     const msg=next==='want'?'Añadido a «Quiero leer» ＋'
