@@ -521,7 +521,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <button class="main-tab-btn" id="tabBtnSolicitudes" onclick="switchMainTab('solicitudes')">📬 Solicitudes <span class="tab-badge" id="tabBadgeSol">—</span></button>
     <button class="main-tab-btn" id="tabBtnBingo" onclick="switchMainTab('bingo')">🎲 Bingo</button>
     <button class="main-tab-btn" id="tabBtnTop10" onclick="switchMainTab('top10')">🏆 Top 10</button>
-    <button class="main-tab-btn" id="tabBtnHalloween" onclick="switchMainTab('halloween')">🎃 Especial Halloween</button>
   </div>
 
   <!-- ── PANEL LIBROS ── -->
@@ -559,6 +558,19 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       </div>
       <div class="safi-admin-body">
         <div id="safiCatsList"></div>
+      </div>
+    </div>
+
+    <!-- THAI CLUB — admin -->
+    <div class="safi-admin-section" id="thaiAdminSection">
+      <div class="safi-admin-head">
+        <div>
+          <div class="safi-admin-title">Leídas del <span>Thai Club</span></div>
+          <div class="safi-admin-sub">Libros en Thai Club · <span id="thaiAdminCount">0</span> libro(s)</div>
+        </div>
+      </div>
+      <div class="safi-admin-body">
+        <div id="thaiCatsList"></div>
       </div>
     </div>
 
@@ -727,20 +739,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div id="adminTop10Container"><div class="empty">Cargando…</div></div>
     </div>
   </div><!-- /panelTop10 -->
-
-  <!-- ESPECIAL HALLOWEEN -->
-  <div class="main-panel" id="panelHalloween">
-    <div class="card">
-      <div class="card-title">🎃 Colección de Octubre</div>
-      <p style="font-size:12.5px;color:var(--muted);margin:-.3rem 0 1rem;line-height:1.6">
-        Se calcula sola por género/subgénero/personaje (esto es una aproximación — en la web real también cuenta alguna etiqueta que añade la comunidad).
-        Si algún libro no pega o falta alguno, quítalo o añádelo aquí a mano. Como con todo lo demás: cuando termines, exporta el JSON y súbelo.
-      </p>
-      <input type="text" id="hwAddSearch" placeholder="Buscar un libro para añadirlo a mano…" oninput="renderHwAddResults(this.value)" style="width:100%;margin-bottom:.4rem">
-      <div id="hwAddResults"></div>
-      <div id="hwList" style="margin-top:1rem"><div class="empty">Cargando…</div></div>
-    </div>
-  </div><!-- /panelHalloween -->
 
   <!-- MODAL NUEVO/EDITAR BINGO -->
   <div class="modal-bg" id="bingoModal" style="display:none;align-items:flex-start;justify-content:center">
@@ -965,6 +963,20 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
             <div class="safi-club-form">
               <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
               <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title" style="color:var(--rose)">🌺 Thai Club</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <input type="checkbox" id="fThaiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('thaiCatField').style.display=this.checked?'block':'none'">
+            <label for="fThaiClub" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Thai Club</label>
+          </div>
+          <div id="thaiCatField" style="display:none">
+            <div class="safi-club-form">
+              <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
+              <input type="text" class="safi-club-cats-inp" id="fThaiCats" placeholder="Ej: Lectura actual, Próximas lecturas">
             </div>
           </div>
         </div>
@@ -1526,6 +1538,7 @@ function updateStats() {
   document.getElementById('sAuthors').innerHTML=`<em>${authorSet.size}</em>`;
   document.getElementById('sSafi').innerHTML =`<em>${safiCount}</em>`;
   renderSafiAdmin();
+  renderThaiAdmin();
   renderCanalAdmin();
   renderMyrecAdmin();
   renderAdminSolicitudes();
@@ -1709,6 +1722,10 @@ function openEditModal(id) {
   document.getElementById('fSafiClub').checked=!!b.saficlub;
   document.getElementById('safiCatField').style.display=b.saficlub?'block':'none';
   document.getElementById('fSafiCats').value=(b.safi_categories||[]).join(', ');
+  // Thai Club
+  document.getElementById('fThaiClub').checked=!!b.thaiclub;
+  document.getElementById('thaiCatField').style.display=b.thaiclub?'block':'none';
+  document.getElementById('fThaiCats').value=(b.thai_categories||[]).join(', ');
   // Canal Rec
   document.getElementById('fCanalRec').checked=!!b.canal_rec;
   document.getElementById('canalRecField').style.display=b.canal_rec?'block':'none';
@@ -1739,6 +1756,9 @@ function clearForm() {
   document.getElementById('fSafiClub').checked=false;
   document.getElementById('safiCatField').style.display='none';
   document.getElementById('fSafiCats').value='';
+  document.getElementById('fThaiClub').checked=false;
+  document.getElementById('thaiCatField').style.display='none';
+  document.getElementById('fThaiCats').value='';
   document.getElementById('fCanalRec').checked=false;
   document.getElementById('canalRecField').style.display='none';
   document.getElementById('fCanalMonth').value='';
@@ -2078,6 +2098,10 @@ function saveBook() {
       ? (document.getElementById('fSafiCats').value.split(',').map(s=>s.trim()).filter(Boolean).length
           ? document.getElementById('fSafiCats').value.split(',').map(s=>s.trim()).filter(Boolean)
           : ['Sin categoría'])
+      : [],
+    thaiclub: document.getElementById('fThaiClub').checked,
+    thai_categories: document.getElementById('fThaiClub').checked
+      ? (v=>v.length?v:['Sin categoría'])(document.getElementById('fThaiCats').value.split(',').map(s=>s.trim()).filter(Boolean))
       : [],
     canal_rec: document.getElementById('fCanalRec').checked,
     canal_month: document.getElementById('fCanalRec').checked
@@ -2699,6 +2723,53 @@ function removeFromSafi(id){
   showToast('Quitado de las SafiClub');
 }
 
+/* ── THAI CLUB admin ── */
+function renderThaiAdmin() {
+  const thaiData = books.filter(b=>b.thaiclub);
+  document.getElementById('thaiAdminCount').textContent = thaiData.length;
+  const allCats = new Set();
+  thaiData.forEach(b=>(b.thai_categories||['Sin categoría']).forEach(c=>allCats.add(c)));
+  const list = document.getElementById('thaiCatsList');
+  if(!thaiData.length){
+    list.innerHTML='<div class="safi-admin-empty">Ningún libro marcado como lectura del Thai Club todavía.<br>Edita un libro y activa la opción "Thai Club".</div>';
+    return;
+  }
+  list.innerHTML=[...allCats].sort().map(cat=>{
+    const items=thaiData.filter(b=>(b.thai_categories||['Sin categoría']).includes(cat));
+    const itemsHtml=items.map(b=>{
+      const cover=b.cover
+        ?`<img src="${b.cover}" onerror="this.style.display='none'">`
+        :`<div class="safi-admin-item-ph">📖</div>`;
+      const authorStr=(b.authors||[]).join(', ')||'—';
+      return `<div class="safi-admin-item">
+        ${cover}
+        <div class="safi-admin-item-info">
+          <div class="safi-admin-item-title" title="${b.title}">${b.title}</div>
+          <div class="safi-admin-item-sec">${authorStr}</div>
+        </div>
+        <button class="safi-admin-item-remove" onclick="removeFromThai('${b.id}')" title="Quitar del Thai Club">✕</button>
+      </div>`;
+    }).join('');
+    return `<div class="safi-cat-group">
+      <div class="safi-cat-head">
+        <span class="safi-cat-name">${cat}</span>
+        <span class="safi-cat-count">${items.length} libro${items.length!==1?'s':''}</span>
+      </div>
+      <div class="safi-cat-items">${itemsHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+function removeFromThai(id){
+  const b=books.find(x=>x.id===id);
+  if(!b) return;
+  b.thaiclub=false;
+  b.thai_categories=[];
+  renderThaiAdmin();
+  updateStats();
+  showToast('Quitado del Thai Club');
+}
+
 /* ── CANAL ADMIN ── */
 function renderCanalAdmin() {
   const canalData = books.filter(b=>b.canal_rec);
@@ -2757,75 +2828,6 @@ function removeFromMyrec(id){
 
 /* ── SOLICITUDES ADMIN ── */
 
-/* ── ESPECIAL HALLOWEEN ── */
-const HW_GENRES=['Horror','Paranormal'];
-const HW_SUBGENRES=['Sobrenatural'];
-const HW_CHARACTERS=['Bruja','Mujer Lobo','Vampira','Demonio','Zombie','Cambiaformas','Espíritu / Fantasma','Fantasma','Chamana','Monstruo'];
-function isHalloweenAuto(b){
-  return (b.genres||[]).some(g=>HW_GENRES.includes(g))
-      || (b.subgenres||[]).some(s=>HW_SUBGENRES.includes(s))
-      || (b.characters||[]).some(c=>HW_CHARACTERS.includes(c));
-}
-function hwRow(b, actionHtml){
-  const cover=b.cover?`<img class="book-thumb" src="${b.cover}" alt="" onerror="this.outerHTML='<div class=book-thumb-ph>🎃</div>'">`:`<div class="book-thumb-ph">🎃</div>`;
-  const authorStr=(b.authors||[]).join(', ')||'—';
-  return `<div class="book-item">
-    ${cover}
-    <div class="book-info">
-      <div class="book-name">${b.title}</div>
-      <div class="book-meta">${authorStr}</div>
-    </div>
-    <div class="book-actions">${actionHtml}</div>
-  </div>`;
-}
-function renderAdminHalloween(){
-  const c=document.getElementById('hwList');
-  if(!books.length){c.innerHTML='<div class="empty">Carga primero el JSON de libros.</div>';return;}
-  const included=books.filter(b=>b.halloween_override===true || (isHalloweenAuto(b) && b.halloween_override!==false));
-  const excluded=books.filter(b=>isHalloweenAuto(b) && b.halloween_override===false);
-  let html=`<div style="font-size:12.5px;color:var(--muted);margin-bottom:.6rem">${included.length} libro${included.length!==1?'s':''} en la colección</div>`;
-  html+=included.length
-    ? included.map(b=>hwRow(b, `<button class="btn small danger" onclick="hwExclude('${b.id}')">Quitar</button>`)).join('')
-    : '<div class="empty">Nada por ahora.</div>';
-  if(excluded.length){
-    html+=`<div class="section-sep"></div><div style="font-size:12.5px;color:var(--muted);margin-bottom:.6rem">Quitados a mano (${excluded.length})</div>`;
-    html+=excluded.map(b=>hwRow(b, `<button class="btn small" onclick="hwRemoveOverride('${b.id}')">Volver a incluir</button>`)).join('');
-  }
-  c.innerHTML=html;
-}
-function hwExclude(id){
-  const b=books.find(x=>x.id===id); if(!b) return;
-  b.halloween_override=false;
-  renderAdminHalloween();
-  showToast('Quitado de la Colección de Octubre — recuerda exportar el JSON');
-}
-function hwRemoveOverride(id){
-  const b=books.find(x=>x.id===id); if(!b) return;
-  delete b.halloween_override;
-  renderAdminHalloween();
-  showToast('Restaurado — recuerda exportar el JSON');
-}
-function hwAddManual(id){
-  const b=books.find(x=>x.id===id); if(!b) return;
-  b.halloween_override=true;
-  document.getElementById('hwAddSearch').value='';
-  document.getElementById('hwAddResults').innerHTML='';
-  renderAdminHalloween();
-  showToast('Añadido a la Colección de Octubre — recuerda exportar el JSON');
-}
-function renderHwAddResults(q){
-  const box=document.getElementById('hwAddResults');
-  q=(q||'').trim().toLowerCase();
-  if(q.length<2){box.innerHTML='';return;}
-  const matches=books.filter(b=>
-    !(b.halloween_override===true || (isHalloweenAuto(b) && b.halloween_override!==false))
-    && (b.title+' '+(b.authors||[]).join(' ')).toLowerCase().includes(q)
-  ).slice(0,8);
-  box.innerHTML=matches.length
-    ? matches.map(b=>hwRow(b, `<button class="btn small primary" onclick="hwAddManual('${b.id}')">Añadir</button>`)).join('')
-    : '<div class="empty" style="padding:.6rem 0">Sin resultados (o ya está en la colección).</div>';
-}
-
 /* ── MAIN TABS ── */
 function switchMainTab(tab) {
   document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
@@ -2835,7 +2837,6 @@ function switchMainTab(tab) {
   if (tab === 'solicitudes') renderAdminSolicitudes();
   if (tab === 'bingo') cargarBingosAdmin();
   if (tab === 'top10') renderAdminTop10();
-  if (tab === 'halloween') renderAdminHalloween();
 }
 
 function admSelChip(groupId, btn){
