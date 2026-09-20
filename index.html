@@ -7425,13 +7425,17 @@ function bingoEligibleBooks(){
   });
 }
 
+function bingoHoyISO(){
+  const d=new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
 async function bingoInit(){
   const wrap=document.getElementById('bingoWrap');
   wrap.innerHTML='<div class="loading"><div class="spinner"></div>Cargando bingo…</div>';
   try{
     const chData=await sbFetchAll('bingo_challenges','*',q=>q.eq('activo',true).order('fecha_inicio',{ascending:false}));
-    const d=new Date();
-    const hoy=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const hoy=bingoHoyISO();
     bingoChallenges=(chData||[]).filter(c=>(!c.fecha_inicio||c.fecha_inicio<=hoy)&&(!c.fecha_fin||c.fecha_fin>=hoy));
   }catch(e){
     wrap.innerHTML='<div class="bingo-empty">No se ha podido cargar el bingo. Inténtalo de nuevo en un momento.</div>';
@@ -7583,7 +7587,7 @@ let bingoAllChallenges=[];
 async function bingoLoadAllChallenges(){
   try{
     const data=await sbFetchAll('bingo_challenges','*',q=>q.order('fecha_inicio',{ascending:false}));
-    bingoAllChallenges=data||[];
+    bingoAllChallenges=(data||[]).filter(c=>!c.fecha_inicio||c.fecha_inicio<=bingoHoyISO());
   }catch(e){
     bingoAllChallenges=[];
   }
