@@ -2203,7 +2203,9 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 /* Barra de navegación inferior fija — reemplaza visualmente al
    home-nav-btn de la topbar y a un desplazamiento hasta la .tab-bar
-   horizontal para llegar a Estantería/Top10/SafiClub. */
+   horizontal. 4 destinos (Inicio/Buscar/Estantería/Más); .mbn-item
+   usa flex:1 así que el número de botones es libre, sin más cambios
+   de layout. */
 .mobile-bottom-nav{
   display:flex;position:fixed;left:0;right:0;bottom:0;z-index:150;
   background:rgba(14,11,16,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
@@ -2412,7 +2414,16 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   </div>
 </nav>
 
-<!-- ══ FASE 3: NAVEGACIÓN INFERIOR MÓVIL ══
+<!-- ══ FASE 3 — PASO 5: NAVEGACIÓN INFERIOR MÓVIL ══
+     4 destinos fijos: Inicio / Buscar / Estantería / Más.
+     Top10 y SafiClub pasan a vivir dentro de "Más" junto con el
+     resto de secciones secundarias (ninguna se elimina).
+     "Buscar" no es una pantalla nueva: reutiliza showCatalog('estanteria')
+     — la misma llamada que "Estantería" — y solo añade el foco sobre
+     #searchInput ya existente. Por eso, una vez aterrizas, el estado
+     activo que se enciende es el de "Estantería" (es la sección real
+     en la que estás); "Buscar" es un atajo de acción, no una sección
+     paralela con su propio estado.
      Reutiliza únicamente showHome() / showCatalog() ya existentes.
      No crea lógica nueva de cambio de sección: solo añade capa visual
      y syncMobileNavActive() para reflejar el estado activo. -->
@@ -2421,17 +2432,13 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 4l8 7.5"/><path d="M6 10.3V20a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9.7"/></svg></span>
     <span class="mbn-label">Inicio</span>
   </button>
+  <button class="mbn-item" id="mbnBuscar" type="button" onclick="focusMobileSearch()">
+    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.3" cy="10.3" r="6.3"/><path d="M19.5 19.5l-4.8-4.8"/></svg></span>
+    <span class="mbn-label">Buscar</span>
+  </button>
   <button class="mbn-item" id="mbnEstanteria" type="button" onclick="showCatalog('estanteria')">
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span>
     <span class="mbn-label">Estantería</span>
-  </button>
-  <button class="mbn-item" id="mbnTop10" type="button" onclick="showCatalog('top10')">
-    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span>
-    <span class="mbn-label">Top 10</span>
-  </button>
-  <button class="mbn-item" id="mbnSafi" type="button" onclick="showCatalog('safi')">
-    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span>
-    <span class="mbn-label">SafiClub</span>
   </button>
   <button class="mbn-item" id="mbnMore" type="button" onclick="toggleMobileMoreMenu()">
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="5" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></span>
@@ -2441,6 +2448,8 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 <div class="mbn-more-backdrop" id="mbnMoreBackdrop" onclick="closeMobileMoreMenu()"></div>
 <div class="mbn-more-sheet" id="mbnMoreSheet" role="menu" aria-label="Más secciones">
   <div class="mbn-more-handle"></div>
+  <button class="mbn-more-item" id="mbnMoreTop10" type="button" onclick="showCatalog('top10');closeMobileMoreMenu()">Top 10 Thais</button>
+  <button class="mbn-more-item" id="mbnMoreSafi" type="button" onclick="showCatalog('safi');closeMobileMoreMenu()">SafiClub</button>
   <button class="mbn-more-item" id="mbnMoreThaiclub" type="button" onclick="showCatalog('thaiclub');closeMobileMoreMenu()">Thai Club</button>
   <button class="mbn-more-item" id="mbnMoreCanal" type="button" onclick="showCatalog('canal');closeMobileMoreMenu()">Recomendaciones del Canal</button>
   <button class="mbn-more-item" id="mbnMoreMyrec" type="button" onclick="showCatalog('myrec');closeMobileMoreMenu()">Mis Recomendaciones</button>
@@ -5451,9 +5460,7 @@ function syncMobileNavActive(){
   const t=isHome?null:activeTab;
   document.getElementById('mbnHome')?.classList.toggle('active',isHome);
   document.getElementById('mbnEstanteria')?.classList.toggle('active',t==='estanteria');
-  document.getElementById('mbnTop10')?.classList.toggle('active',t==='top10');
-  document.getElementById('mbnSafi')?.classList.toggle('active',t==='safi');
-  const moreTabs={thaiclub:'mbnMoreThaiclub',canal:'mbnMoreCanal',myrec:'mbnMoreMyrec',solicitudes:'mbnMoreSolicitudes',ruleta:'mbnMoreRuleta',bingo:'mbnMoreBingo'};
+  const moreTabs={top10:'mbnMoreTop10',safi:'mbnMoreSafi',thaiclub:'mbnMoreThaiclub',canal:'mbnMoreCanal',myrec:'mbnMoreMyrec',solicitudes:'mbnMoreSolicitudes',ruleta:'mbnMoreRuleta',bingo:'mbnMoreBingo'};
   Object.entries(moreTabs).forEach(([tabName,id])=>{
     document.getElementById(id)?.classList.toggle('active',t===tabName);
   });
@@ -5466,6 +5473,20 @@ function toggleMobileMoreMenu(){
 function closeMobileMoreMenu(){
   document.getElementById('mbnMoreSheet')?.classList.remove('open');
   document.getElementById('mbnMoreBackdrop')?.classList.remove('open');
+}
+/* "Buscar" no es una sección nueva: lleva a Estantería (misma llamada
+   que el botón "Estantería") y enfoca el buscador ya existente del
+   filtro. No crea estado paralelo — el resaltado activo tras aterrizar
+   es el de Estantería, porque es la sección real en la que se está. */
+function focusMobileSearch(){
+  showCatalog('estanteria');
+  closeMobileMoreMenu();
+  requestAnimationFrame(()=>{
+    const el=document.getElementById('searchInput');
+    if(!el) return;
+    el.scrollIntoView({block:'center',behavior:'smooth'});
+    el.focus({preventScroll:true});
+  });
 }
 document.addEventListener('click', e=>{
   const sheet=document.getElementById('mbnMoreSheet');
