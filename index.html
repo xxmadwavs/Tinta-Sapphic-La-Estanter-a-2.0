@@ -668,6 +668,9 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .home-nav-btn:hover{border-color:var(--accent);color:var(--accent2)}
 .home-nav-btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 
+/* ── FASE 3: navegación inferior móvil (oculta salvo en ≤639px, ver media query) ── */
+.mobile-bottom-nav,.mbn-more-sheet,.mbn-more-backdrop{display:none}
+
 /* Hero */
 .hv-hero{padding:5.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(192,111,196,0.1) 0%,transparent 65%)}
 .hv-hero::before{content:'TS';position:absolute;right:-.01em;top:50%;transform:translateY(-55%);font-family:var(--font-display);font-size:clamp(9rem,22vw,18rem);font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(192,111,196,0.07);pointer-events:none;user-select:none;line-height:1}
@@ -2182,6 +2185,162 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 /* -- origen: 820px (sin contrapartida en 560/600/640px) -- */
 .sol-layout{grid-template-columns:1fr}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 3 — PRIMERA PANTALLA Y NAVEGACIÓN MÓVIL
+   Reutiliza exclusivamente showHome()/showCatalog()/switchTab() ya
+   existentes (ver <script>). Aquí solo hay CSS: barra inferior fija,
+   hoja "Más" y una primera pantalla (home) más compacta para que se
+   pueda empezar a explorar libros mucho antes en 390×844.
+   No toca filtros, fichas, modales, estantería, bingo, ruleta,
+   Top10, clubes ni solicitudes: esas vistas quedan igual.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Oculta en móvil el botón "Inicio" de la topbar: su función pasa
+   a vivir en la barra inferior (misma llamada, showHome()) para no
+   duplicar el control en dos sitios a la vez. */
+#homeNavBtn{display:none}
+
+/* Barra de navegación inferior fija — reemplaza visualmente al
+   home-nav-btn de la topbar y a un desplazamiento hasta la .tab-bar
+   horizontal para llegar a Estantería/Top10/SafiClub. */
+.mobile-bottom-nav{
+  display:flex;position:fixed;left:0;right:0;bottom:0;z-index:150;
+  background:rgba(14,11,16,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border2);padding:5px 2px 9px;
+  box-shadow:0 -8px 24px rgba(0,0,0,.28);
+}
+.mbn-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  background:transparent;border:none;color:var(--muted);font-family:var(--font-body);
+  font-size:9.5px;font-weight:600;letter-spacing:.01em;padding:6px 2px;cursor:pointer;
+  border-radius:12px;transition:color .15s;
+}
+.mbn-item:active{background:var(--surface2)}
+.mbn-icon{width:20px;height:20px;color:currentColor;opacity:.8;transition:opacity .15s}
+.mbn-icon svg{width:100%;height:100%;display:block}
+.mbn-item.active{color:var(--accent2)}
+.mbn-item.active .mbn-icon{opacity:1}
+
+/* Hoja "Más" — mismo patrón visual que .section-select-mobile
+   (botón + panel + cierre al tocar fuera), sin lógica propia:
+   cada ítem llama a showCatalog() como los .tab-btn existentes. */
+.mbn-more-backdrop{
+  display:none;position:fixed;inset:0;background:rgba(8,5,10,.55);z-index:149;
+}
+.mbn-more-backdrop.open{display:block}
+.mbn-more-sheet{
+  display:block;position:fixed;left:0;right:0;bottom:0;z-index:151;background:var(--surface);
+  border:1px solid var(--border2);border-bottom:none;border-radius:18px 18px 0 0;
+  padding:.5rem .6rem calc(1rem + 62px);
+  transform:translateY(100%);transition:transform .22s ease;
+  max-height:70vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  box-shadow:0 -16px 40px rgba(0,0,0,.45);
+}
+.mbn-more-sheet.open{transform:translateY(0)}
+.mbn-more-handle{width:36px;height:4px;border-radius:3px;background:var(--border2);margin:.3rem auto .7rem}
+.mbn-more-item{
+  display:block;width:100%;text-align:left;padding:13px 14px;border-radius:12px;
+  background:transparent;border:none;color:var(--text);font-family:var(--font-body);
+  font-size:14px;font-weight:500;cursor:pointer;
+}
+.mbn-more-item:active{background:var(--surface2)}
+.mbn-more-item.active{color:var(--accent2);background:var(--accent-soft)}
+
+/* Deja hueco para que la barra inferior no tape el final del contenido */
+.main{padding-bottom:78px}
+#homeView{padding-bottom:78px}
+
+/* Primera pantalla (home) más compacta: menos aire arriba/abajo y
+   menos elementos de baja prioridad antes del CTA principal, para
+   que "Ver la estantería" quede visible mucho antes al entrar. */
+.hv-hero{padding:2.2rem 1.1rem 1.8rem}
+.hv-eyebrow{margin-bottom:.8rem;font-size:9px}
+.hv-h1{font-size:2.5rem;margin-bottom:.4rem}
+.hv-jp{display:none}
+.hv-desc{font-size:13px;line-height:1.65;margin:0 auto 1.3rem;max-width:340px}
+.hv-ctas{flex-direction:column;gap:.55rem;width:100%}
+.hv-cta{width:100%;justify-content:center;padding:14px 18px;font-size:13px}
+.hv-url-row{display:none}
+.hv-stats-band{padding:1.2rem .75rem}
+.hv-stat{padding:.7rem .9rem}
+.hv-stat-icon{width:19px;height:19px;margin-bottom:.4rem}
+.hv-stat-n{font-size:1.9rem}
+.hv-stat-l{font-size:9px;margin-top:3px}
+
+/* El toast flotante debe quedar por encima de la nueva barra inferior */
+.toast{bottom:78px;right:1rem;left:1rem;width:auto;text-align:center}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 3 — PASO 2: PRIMERA PANTALLA MÓVIL (catálogo)
+   Objetivo: en 360×800 / 375×812 / 390×844 / 412×915 los primeros
+   libros deben verse mucho antes. Solo se ajustan padding, márgenes,
+   gaps, alturas y proporciones — ningún transform:scale, ningún
+   texto comprimido hasta ilegible, ninguna función eliminada.
+   Orden de prioridad visual respetado: topbar → hero compacto →
+   categoría → controles → libros.
+   ══════════════════════════════════════════════════════════════ */
+
+/* -- 1. Hero del catálogo (topbar ya es fija en 56px, sin tocar) --
+   Se reduce el aire vertical del hero; el título conserva su tamaño
+   de fuente móvil ya existente (2.1rem) para no perder identidad. */
+.hero{padding:1.05rem 1rem .85rem}
+.hero-eyebrow{margin-bottom:.35rem}
+.hero-title{margin-bottom:.2rem}
+.hero-stats{margin-top:.1rem}
+
+/* -- 2. Navegación de pestañas principal --
+   La fila horizontal de pestañas (Estantería/Top10/SafiClub/...)
+   queda cubierta 1:1 por la barra inferior del Paso 1: todas sus
+   funciones siguen disponibles a un toque (Inicio/Estantería/Top10/
+   SafiClub/Más). Por eso aquí solo se OCULTA la fila duplicada para
+   ganar espacio vertical; ninguna función desaparece. El único botón
+   sin otro punto de acceso — "Copiar enlace" — se conserva, en una
+   fila mucho más fina. */
+.tab-bar{margin-bottom:.55rem;padding-bottom:0;border-bottom:none;min-height:0}
+.tab-bar .tab-btn{display:none}
+.tab-share-btn{flex:0 0 auto!important;margin-left:auto!important}
+
+/* -- 3. Selector de categoría (Estantería) — controla activeSection,
+   se mantiene, solo se ajusta el espaciado -- */
+.section-select-mobile{margin-bottom:.5rem}
+.section-select-btn{padding:9px 14px}
+
+/* -- 4. Controles esenciales (búsqueda / orden / filtros) --
+   Misma fila de siempre, con menos aire arriba/abajo. */
+.filter-shell{margin-bottom:.6rem}
+.filter-top{padding:.5rem .8rem .45rem}
+.filter-dropdowns{padding:.4rem .8rem .45rem}
+.filter-bottom{padding:.45rem .8rem;min-height:32px}
+
+/* -- 5. .main: menos aire entre el hero y la navegación/controles -- */
+.main{padding-top:.65rem}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 3 — PASO 3: HERO MÓVIL (catálogo)
+   Profundiza el ajuste del Paso 2 sobre el mismo bloque .hero:
+   se mantienen eyebrow, título y estadísticas — ninguno se oculta
+   ni cambia de tamaño de letra — solo se afina aún más el aire que
+   los rodea. El subtítulo (.hero-sub) ya estaba oculto en móvil
+   desde antes de esta fase (Fase 1/2, validado); no se reintroduce
+   ni se vuelve a tocar aquí. Nada de esto afecta a tablet/desktop:
+   sigue dentro del mismo bloque ≤639px.
+   El hero de Inicio (.hv-hero) ya se compactó en el Paso 1 de esta
+   fase y no se modifica de nuevo aquí. */
+.hero{padding:.8rem 1rem .65rem}
+.hero-eyebrow{margin-bottom:.25rem}
+.hero-title{margin-bottom:.15rem}
+.hero-stats{margin-top:.05rem}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 3 — PASO 4: TOPBAR MÓVIL
+   No se cambia ningún id, clase, enlace ni función: #homeNavBtn,
+   #shelfNavBtn, #authArea, showHome(), openAuthModal(),
+   toggleUserDropdown()... todo sigue igual. Solo se recorta el aire
+   propio de la barra (su altura fija y su padding lateral), que era
+   mayor de lo que su contenido (botón/chip de ~28-30px) necesita.
+   ══════════════════════════════════════════════════════════════ */
+.topbar{height:50px;padding:0 .65rem}
 }
 
 /* ============================================================
@@ -2252,6 +2411,43 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
     </div>
   </div>
 </nav>
+
+<!-- ══ FASE 3: NAVEGACIÓN INFERIOR MÓVIL ══
+     Reutiliza únicamente showHome() / showCatalog() ya existentes.
+     No crea lógica nueva de cambio de sección: solo añade capa visual
+     y syncMobileNavActive() para reflejar el estado activo. -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Navegación principal">
+  <button class="mbn-item" id="mbnHome" type="button" onclick="showHome()">
+    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 4l8 7.5"/><path d="M6 10.3V20a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9.7"/></svg></span>
+    <span class="mbn-label">Inicio</span>
+  </button>
+  <button class="mbn-item" id="mbnEstanteria" type="button" onclick="showCatalog('estanteria')">
+    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span>
+    <span class="mbn-label">Estantería</span>
+  </button>
+  <button class="mbn-item" id="mbnTop10" type="button" onclick="showCatalog('top10')">
+    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span>
+    <span class="mbn-label">Top 10</span>
+  </button>
+  <button class="mbn-item" id="mbnSafi" type="button" onclick="showCatalog('safi')">
+    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span>
+    <span class="mbn-label">SafiClub</span>
+  </button>
+  <button class="mbn-item" id="mbnMore" type="button" onclick="toggleMobileMoreMenu()">
+    <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="5" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></span>
+    <span class="mbn-label">Más</span>
+  </button>
+</nav>
+<div class="mbn-more-backdrop" id="mbnMoreBackdrop" onclick="closeMobileMoreMenu()"></div>
+<div class="mbn-more-sheet" id="mbnMoreSheet" role="menu" aria-label="Más secciones">
+  <div class="mbn-more-handle"></div>
+  <button class="mbn-more-item" id="mbnMoreThaiclub" type="button" onclick="showCatalog('thaiclub');closeMobileMoreMenu()">Thai Club</button>
+  <button class="mbn-more-item" id="mbnMoreCanal" type="button" onclick="showCatalog('canal');closeMobileMoreMenu()">Recomendaciones del Canal</button>
+  <button class="mbn-more-item" id="mbnMoreMyrec" type="button" onclick="showCatalog('myrec');closeMobileMoreMenu()">Mis Recomendaciones</button>
+  <button class="mbn-more-item" id="mbnMoreSolicitudes" type="button" onclick="showCatalog('solicitudes');closeMobileMoreMenu()">Solicitudes</button>
+  <button class="mbn-more-item" id="mbnMoreRuleta" type="button" onclick="showCatalog('ruleta');closeMobileMoreMenu()">Ruleta</button>
+  <button class="mbn-more-item" id="mbnMoreBingo" type="button" onclick="showCatalog('bingo');closeMobileMoreMenu()">Bingo</button>
+</div>
 
 <!-- HOME VIEW -->
 <div id="homeView">
@@ -5241,7 +5437,40 @@ function switchTab(tab, silent){
     const url=params.toString()?'?'+params.toString():location.pathname;
     history.pushState({tab},'',url);
   }catch(e){}
+  syncMobileNavActive();
 }
+
+/* ── FASE 3: barra de navegación inferior móvil ──
+   No duplica lógica: solo refleja visualmente el estado que ya
+   controlan activeTab / body.home-active, y delega los taps a
+   showHome()/showCatalog() (que a su vez usa switchTab()). */
+function syncMobileNavActive(){
+  const nav=document.getElementById('mobileBottomNav');
+  if(!nav) return;
+  const isHome=document.body.classList.contains('home-active');
+  const t=isHome?null:activeTab;
+  document.getElementById('mbnHome')?.classList.toggle('active',isHome);
+  document.getElementById('mbnEstanteria')?.classList.toggle('active',t==='estanteria');
+  document.getElementById('mbnTop10')?.classList.toggle('active',t==='top10');
+  document.getElementById('mbnSafi')?.classList.toggle('active',t==='safi');
+  const moreTabs={thaiclub:'mbnMoreThaiclub',canal:'mbnMoreCanal',myrec:'mbnMoreMyrec',solicitudes:'mbnMoreSolicitudes',ruleta:'mbnMoreRuleta',bingo:'mbnMoreBingo'};
+  Object.entries(moreTabs).forEach(([tabName,id])=>{
+    document.getElementById(id)?.classList.toggle('active',t===tabName);
+  });
+  document.getElementById('mbnMore')?.classList.toggle('active', !!t && Object.prototype.hasOwnProperty.call(moreTabs,t));
+}
+function toggleMobileMoreMenu(){
+  const open=document.getElementById('mbnMoreSheet')?.classList.toggle('open');
+  document.getElementById('mbnMoreBackdrop')?.classList.toggle('open',!!open);
+}
+function closeMobileMoreMenu(){
+  document.getElementById('mbnMoreSheet')?.classList.remove('open');
+  document.getElementById('mbnMoreBackdrop')?.classList.remove('open');
+}
+document.addEventListener('click', e=>{
+  const sheet=document.getElementById('mbnMoreSheet');
+  if(sheet && sheet.classList.contains('open') && !sheet.contains(e.target) && !e.target.closest('#mbnMore')) closeMobileMoreMenu();
+});
 
 /* ── HOME VIEW ── */
 function showHome(){
@@ -5253,6 +5482,8 @@ function showHome(){
   updateHomeStats();
   // Clean URL — home has no params
   try{ history.replaceState(null,'',location.pathname); }catch(e){}
+  syncMobileNavActive();
+  closeMobileMoreMenu();
 }
 function showCatalog(tab){
   const t = tab || 'estanteria';
@@ -6025,6 +6256,7 @@ window.addEventListener('popstate', ()=>{
     renderActivePills();
     applyFilters(false);
   }
+  syncMobileNavActive();
 });
 
 // Intentar al cargar la página
