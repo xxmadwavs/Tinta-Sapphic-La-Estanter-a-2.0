@@ -2146,9 +2146,19 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .filter-dropdowns{padding:.55rem .85rem .6rem;gap:.3rem}
   .filter-bottom{padding:.5rem .85rem}
   .dd-btn{font-size:11px;padding:4px 9px}
-  .books-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}
-  .book-card-body{padding:.7rem .75rem}
-  .book-title{font-size:.9rem}
+  .books-grid{grid-template-columns:repeat(2,1fr);column-gap:.625rem;row-gap:.9rem}
+  .book-cover-wrap{aspect-ratio:3/4}
+  .book-card-body{padding:.6rem .7rem}
+  .book-title{font-size:.88rem;line-height:1.2;margin-bottom:.15rem}
+  .card-saga-sub{font-size:10px;margin-bottom:.1rem}
+  .book-author{font-size:11px;margin-bottom:.35rem}
+  .book-tags{gap:.25rem;margin-bottom:.3rem;align-items:center}
+  .book-tags .tag{font-size:9.5px;padding:2px 7px;line-height:1.15;white-space:nowrap}
+  .book-footer{margin-top:.25rem}
+  .vote-mini-btn{padding:3px 9px;font-size:10px}
+  .no-ratings{font-size:10px}
+  .card-shelf-btns{margin-top:.4rem;gap:.3rem}
+  .card-shelf-btn{padding:5px 3px;font-size:10px}
 
 /* -- origen: 640px -- */
   .hw-moon{width:64vw;height:64vw}
@@ -2224,9 +2234,17 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .mbn-item.active{color:var(--accent2)}
 .mbn-item.active .mbn-icon{opacity:1}
 
-/* Hoja "Más" — mismo patrón visual que .section-select-mobile
-   (botón + panel + cierre al tocar fuera), sin lógica propia:
-   cada ítem llama a showCatalog() como los .tab-btn existentes. */
+/* ══ FASE 3 — PASO 9: presentación de "Más" ══
+   Sigue siendo el mismo patrón (botón + panel + cierre al tocar
+   fuera) y cada ítem sigue llamando a showCatalog(), sin lógica
+   nueva. Aquí solo se añade: un eyebrow editorial de encabezado,
+   y un icono SVG lineal por ítem (mismo trazo que el resto de la
+   navegación) para que la hoja se lea como una sección de la app
+   y no como un <select> genérico. */
+.mbn-more-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);padding:.15rem .7rem .65rem;
+}
 .mbn-more-backdrop{
   display:none;position:fixed;inset:0;background:rgba(8,5,10,.55);z-index:149;
 }
@@ -2242,12 +2260,15 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .mbn-more-sheet.open{transform:translateY(0)}
 .mbn-more-handle{width:36px;height:4px;border-radius:3px;background:var(--border2);margin:.3rem auto .7rem}
 .mbn-more-item{
-  display:block;width:100%;text-align:left;padding:13px 14px;border-radius:12px;
+  display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;padding:12px 14px;border-radius:12px;
   background:transparent;border:none;color:var(--text);font-family:var(--font-body);
   font-size:14px;font-weight:500;cursor:pointer;
 }
 .mbn-more-item:active{background:var(--surface2)}
 .mbn-more-item.active{color:var(--accent2);background:var(--accent-soft)}
+.mbn-more-icon{width:18px;height:18px;flex-shrink:0;color:currentColor;opacity:.75}
+.mbn-more-icon svg{width:100%;height:100%;display:block}
+.mbn-more-item.active .mbn-more-icon{opacity:1}
 
 /* Deja hueco para que la barra inferior no tape el final del contenido */
 .main{padding-bottom:78px}
@@ -2448,14 +2469,39 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 <div class="mbn-more-backdrop" id="mbnMoreBackdrop" onclick="closeMobileMoreMenu()"></div>
 <div class="mbn-more-sheet" id="mbnMoreSheet" role="menu" aria-label="Más secciones">
   <div class="mbn-more-handle"></div>
-  <button class="mbn-more-item" id="mbnMoreTop10" type="button" onclick="showCatalog('top10');closeMobileMoreMenu()">Top 10 Thais</button>
-  <button class="mbn-more-item" id="mbnMoreSafi" type="button" onclick="showCatalog('safi');closeMobileMoreMenu()">SafiClub</button>
-  <button class="mbn-more-item" id="mbnMoreThaiclub" type="button" onclick="showCatalog('thaiclub');closeMobileMoreMenu()">Thai Club</button>
-  <button class="mbn-more-item" id="mbnMoreCanal" type="button" onclick="showCatalog('canal');closeMobileMoreMenu()">Recomendaciones del Canal</button>
-  <button class="mbn-more-item" id="mbnMoreMyrec" type="button" onclick="showCatalog('myrec');closeMobileMoreMenu()">Mis Recomendaciones</button>
-  <button class="mbn-more-item" id="mbnMoreSolicitudes" type="button" onclick="showCatalog('solicitudes');closeMobileMoreMenu()">Solicitudes</button>
-  <button class="mbn-more-item" id="mbnMoreRuleta" type="button" onclick="showCatalog('ruleta');closeMobileMoreMenu()">Ruleta</button>
-  <button class="mbn-more-item" id="mbnMoreBingo" type="button" onclick="showCatalog('bingo');closeMobileMoreMenu()">Bingo</button>
+  <div class="mbn-more-eyebrow">Más secciones</div>
+  <button class="mbn-more-item" id="mbnMoreTop10" type="button" onclick="showCatalog('top10');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span>
+    <span>Top 10 Thais</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreSafi" type="button" onclick="showCatalog('safi');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span>
+    <span>SafiClub</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreThaiclub" type="button" onclick="showCatalog('thaiclub');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5 19v-3.5H4v-10Z"/></svg></span>
+    <span>Thai Club</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreCanal" type="button" onclick="showCatalog('canal');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5v3l3 .6v-4.2l-3 .6Z"/><path d="M6 9.6l12-3.4v11.6L6 14.4V9.6Z"/><path d="M9 15.3v2.9c0 .7.6 1.2 1.2 1l1.8-.6"/></svg></span>
+    <span>Recomendaciones del Canal</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreMyrec" type="button" onclick="showCatalog('myrec');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6v-17Z"/></svg></span>
+    <span>Mis Recomendaciones</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreSolicitudes" type="button" onclick="showCatalog('solicitudes');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16v13H4v-13Z"/><path d="M4 7l8 6 8-6"/></svg></span>
+    <span>Solicitudes</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreRuleta" type="button" onclick="showCatalog('ruleta');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></span>
+    <span>Ruleta</span>
+  </button>
+  <button class="mbn-more-item" id="mbnMoreBingo" type="button" onclick="showCatalog('bingo');closeMobileMoreMenu()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span>
+    <span>Bingo</span>
+  </button>
 </div>
 
 <!-- HOME VIEW -->
