@@ -2118,8 +2118,28 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .modal-title{font-size:1.55rem;line-height:1.1}
   .modal-body{padding:1.1rem 1.1rem 1.5rem}
   .modal-synopsis{font-size:12.5px}
-  .modal-meta-grid{gap:.5rem .6rem;margin-bottom:1.1rem}
-  .modal-tags{margin-bottom:.9rem}
+  .modal-meta-grid{gap:.4rem .6rem;margin-bottom:.8rem}
+  .modal-tags{margin-bottom:.6rem}
+
+  /* -- FASE 5.2: jerarquía visual de la ficha (portada > título > autora >
+     rating > acciones > sinopsis > info. secundaria/etiquetas). Solo se
+     reordena visualmente con flex+order; el HTML/JS no cambia. -- */
+  .modal-body{display:flex;flex-direction:column}
+  .modal-title-row,.modal-saga-sub{order:1}
+  .modal-author{order:2}
+  .rating-section{order:3;margin:0 0 .9rem}
+  .shelf-btns,.buy-section,.wattpad-section{order:4}
+  .modal-synopsis-wrap{order:5;margin-top:.1rem}
+  .modal-tags,.modal-meta-grid,.modal-warnings-block,
+  #modalSpicySection,#modalCommunityTagsSection,.similar-section{order:6}
+
+  /* -- FASE 5.3: chips/advertencias más compactos, sin perder información.
+     Solo afecta a los chips de la ficha (.modal-tags/.modal-warnings-block),
+     no a los chips de las tarjetas del catálogo. -- */
+  .modal-tags{gap:.3rem}
+  .modal-tags .tag,.modal-warnings-block .tag{font-size:9.5px;padding:2px 7px;line-height:1.5}
+  .modal-warnings-block{margin-bottom:.6rem!important}
+  .modal-warnings-block>div[style*="flex-wrap"]{gap:.28rem!important}
 
   /* -- Tarjetas/cajas que solían salirse del ancho o verse desiguales -- */
   .bingo-login-card{padding:1.6rem 1.1rem;max-width:100%}
