@@ -1983,7 +1983,8 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 @media (max-width:639px){
 
 /* -- origen: 560px -- */
-.bingo-grid{gap:.4rem}.bingo-cell-label{font-size:9px}.bingo-header-card{padding:1.2rem 1.1rem}.bingo-title{font-size:1.3rem}
+.bingo-grid{gap:.4rem}.bingo-cell-label{font-size:9px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;width:100%;overflow-wrap:break-word}.bingo-header-card{padding:1.2rem 1.1rem}.bingo-title{font-size:1.3rem}
+.bingo-chal-btn{white-space:normal;max-width:100%;overflow-wrap:break-word;text-align:center}
 
 /* -- origen: 600px -- */
   .topbar{padding:0 .75rem;height:56px}
@@ -2095,7 +2096,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .cal-day-num{font-size:10.5px}
 .cal-day-more{font-size:8px}
 
-.ruleta-tipo-row{gap:.25rem}.ruleta-tipo-btn{padding:4px 9px;font-size:11px}
+.ruleta-tipo-row{gap:.25rem}.ruleta-tipo-btn{padding:4px 9px;font-size:11px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}.ruleta-dd-btn{min-height:40px}
 
 .ruleta-canvas-wrap canvas{width:300px!important;height:300px!important}.ruleta-filtros-card{padding:1rem}.ruleta-result-inner{padding:1rem}
 
@@ -6752,6 +6753,7 @@ let ruletaPool = [];
 let ruletaSpinning = false;
 let ruletaSelectedBook = null;
 let ruletaAngle = 0;
+let ruletaCanvasCssSize = 420; // último tamaño CSS válido conocido del canvas (fallback si clientWidth es 0)
 let ruletaExcludeValorados = false;
 let ruletaOnlyPendientes = false;
 let ruletaSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian' | 'african' | 'wattpad'
@@ -7082,11 +7084,32 @@ function ruletaClearFilters() {
   ruletaUpdateUI();
 }
 
+// Adapta la resolución interna del canvas al devicePixelRatio sin alterar
+// su tamaño visual (CSS), que sigue gobernado por el atributo width/height
+// original en desktop o por la regla responsive !important en móvil.
+// Devuelve el tamaño lógico/CSS (en px) que debe usarse para todo el
+// dibujo, ya que el contexto queda escalado por dpr mediante setTransform.
+function ruletaSyncCanvasSize(canvas) {
+  const dpr = window.devicePixelRatio || 1;
+  let cssSize = canvas.clientWidth || parseFloat(getComputedStyle(canvas).width) || 0;
+  if (cssSize > 0) ruletaCanvasCssSize = cssSize;
+  else cssSize = ruletaCanvasCssSize;
+  canvas.style.width = cssSize + 'px';
+  canvas.style.height = cssSize + 'px';
+  const targetPx = Math.round(cssSize * dpr);
+  if (canvas.width !== targetPx || canvas.height !== targetPx) {
+    canvas.width = targetPx;
+    canvas.height = targetPx;
+  }
+  canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+  return cssSize;
+}
+
 function ruletaDraw(highlightIdx = -1) {
   const canvas = document.getElementById('ruletaCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
+  const W = ruletaSyncCanvasSize(canvas), H = W;
   const cx = W / 2, cy = H / 2;
   const R = W / 2 - 4;
   ctx.clearRect(0, 0, W, H);
