@@ -1228,7 +1228,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .cal-nav-btn:hover{background:var(--surface3);border-color:rgba(192,111,196,.4)}
 .cal-today-btn{padding:6px 12px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:12px;cursor:pointer;font-family:var(--font-body);transition:all .15s}
 .cal-today-btn:hover{color:var(--text);border-color:rgba(192,111,196,.4)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
 .cal-weekday{text-align:center;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding-bottom:6px}
 .cal-day{min-height:132px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);padding:6px;cursor:default;display:flex;flex-direction:column;gap:4px;transition:all .15s}
 .cal-day.has-books{cursor:pointer;border-color:rgba(192,111,196,.25)}
@@ -2008,7 +2008,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
     width:92vw;max-width:400px;
     max-height:75vh;
   }
-  .fp-body{max-height:calc(80vh - 54px)}
+  .fp-body{max-height:calc(75vh - 54px)}
   .dd-item,.spicy-dd-item{padding:12px 16px;font-size:14px;gap:12px}
   .dd-item input[type=checkbox],.spicy-dd-item input[type=checkbox]{width:19px;height:19px}
   .spicy-dd-item label{font-size:14px}
@@ -2017,7 +2017,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .dd-exclude-btn svg{width:14px;height:14px}
   .dd-clear{padding:12px 16px;font-size:13px}
   .dd-search{padding:.75rem .9rem}
-  .dd-search input{padding:10px 12px;font-size:14px}
+  .dd-search input{padding:10px 12px;font-size:16px}
   .dd-empty{padding:16px}
   .fp-sec-body .dd-item,.fp-sec-body .spicy-dd-item{padding:11px 12px;font-size:14px}
   .fp-sec-body input[type=checkbox],.fp-sec-body input[type=radio]{width:19px;height:19px}
@@ -2084,6 +2084,17 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 .tab-share-btn{margin-left:0;flex:1 1 calc(50% - .35rem);justify-content:center}
 
+/* -- FASE 7.2: calendario móvil — las columnas deben poder encogerse
+   y las miniaturas adaptarse al ancho real disponible en 360–412px,
+   evitando que fuercen el grid a desbordar el viewport. -- */
+.cal-grid{gap:4px}
+.cal-day{padding:3px 2px;gap:3px}
+.cal-day-covers{gap:2px}
+.cal-cover-thumb,.cal-cover-ph{width:28px;height:40px}
+.cal-cover-ph{font-size:12px}
+.cal-day-num{font-size:10.5px}
+.cal-day-more{font-size:8px}
+
 .ruleta-tipo-row{gap:.25rem}.ruleta-tipo-btn{padding:4px 9px;font-size:11px}
 
 .ruleta-canvas-wrap canvas{width:300px!important;height:300px!important}.ruleta-filtros-card{padding:1rem}.ruleta-result-inner{padding:1rem}
@@ -2101,7 +2112,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
   /* -- Modales: siempre dentro de la pantalla y con scroll propio -- */
   .modal-bg,.info-modal-bg{padding:.6rem .5rem;align-items:flex-start}
-  .modal,.info-modal{
+  .modal,.info-modal,.auth-modal,.reset-modal{
     max-width:100%;
     max-height:calc(100vh - 1.2rem);
     max-height:calc(100dvh - 1.2rem);
@@ -2110,9 +2121,61 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
     border-radius:16px;
   }
   .modal-cover-strip,.modal-cover-ph{border-radius:16px 16px 0 0}
-  .info-modal-body{max-height:48vh;max-height:48dvh}
+
+  /* FASE 6.2: un solo scroll por modal (evita scroll anidado).
+     El header del info-modal queda sticky para no perderse al bajar. */
+  .info-modal-body{max-height:none;overflow-y:visible}
+  .info-modal-header{position:sticky;top:0;z-index:5;background:var(--surface)}
+
+  /* FASE 6.2: sagaModal pisaba overflow-x:visible + overflow-y:auto
+     (combinación inválida que el navegador normalizaba a auto/auto,
+     recortando nodos cerca del borde). Fijamos overflow-x:hidden
+     explícito con selector más específico para ganar el cascade. */
+  .modal.sagamap-modal{overflow-x:hidden;overflow-y:auto}
+
+  /* FASE 6.2: botones de cerrar/compartir siempre accesibles,
+     sin depender del scroll interno del modal. */
+  .modal-close,.info-modal-close,.auth-close{
+    position:fixed;
+    top:calc(.6rem + 14px);
+    right:calc(.5rem + 14px);
+  }
+  .modal-share-btn{
+    position:fixed;
+    top:calc(.6rem + 14px);
+    right:calc(.5rem + 54px);
+  }
+
   .hito-modal-bg{align-items:flex-start;padding:2.5rem .75rem;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .hito-card{margin:auto;width:100%;max-width:260px}
+
+  /* FASE 6.3: login/registro cómodos en móvil.
+     - padding lateral/vertical reducido: más ancho útil y menos scroll
+       antes de llegar al formulario cuando se abre el teclado.
+     - inputs a 16px: por debajo de eso Safari/iOS hace zoom automático
+       al enfocar el campo (el zoom se queda activado con el teclado
+       abierto, hay que corregirlo a mano). Es el problema real de
+       "comportamiento al abrir el teclado" en login/registro. */
+  .auth-modal,.reset-modal{padding:1.75rem 1.25rem}
+  .auth-logo{margin-bottom:1rem;font-size:1rem}
+  .auth-title{font-size:1.6rem;margin-bottom:.25rem}
+  .auth-sub{margin-bottom:1.1rem}
+  .auth-form{gap:.7rem}
+  .auth-form input,
+  .tg-input-wrap input,
+  .reset-modal .auth-form input{font-size:16px;padding:11px 14px}
+  .tg-at{font-size:16px}
+  .btn-primary{padding:12px;font-size:14.5px}
+  .auth-toggle{font-size:13px}
+
+  /* FASE 6.4: mismos 16px en el resto de campos de texto que abren
+     teclado, para que enfocarlos no dispare el zoom automático de
+     iOS Safari (autocompletar la fecha de solicitud, buscar en
+     ruleta/filtros, buscar libro en bingo, buscar en "cartas"). */
+  .sol-input,.sol-input-tg input{font-size:16px}
+  .ruleta-dd-search input{font-size:16px}
+  .bingo-manual-input,.bingo-book-search input{font-size:16px}
+  .cartas-search{font-size:16px}
 
   /* -- El modal de ficha de libro: mismo tamaño de letra que el resto -- */
   .modal-title{font-size:1.55rem;line-height:1.1}
@@ -2141,6 +2204,19 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .modal-warnings-block{margin-bottom:.6rem!important}
   .modal-warnings-block>div[style*="flex-wrap"]{gap:.28rem!important}
 
+  /* -- FASE 5.4: la X de cerrar la ficha de libro desaparecía al hacer
+     scroll. En móvil (regla de arriba) es .modal quien scrollea, no
+     .modal-bg, así que un botón position:absolute dentro de .modal se
+     desplaza con el contenido. Se fija a la pantalla SOLO en la ficha
+     de libro (#bookModal), sin tocar la clase .modal-close (que
+     comparten otros modales), su onclick="closeBookModal()" ni ningún
+     otro botón/acción de la ficha. -- */
+  #bookModal .modal-close{
+    position:fixed;
+    top:calc(.6rem + 14px);
+    right:calc(.5rem + 14px);
+  }
+
   /* -- Tarjetas/cajas que solían salirse del ancho o verse desiguales -- */
   .bingo-login-card{padding:1.6rem 1.1rem;max-width:100%}
   .filter-shell{border-radius:14px}
@@ -2160,7 +2236,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .filter-shell{margin-bottom:1rem}
   .filter-top{padding:.65rem .85rem .6rem;gap:.5rem;flex-wrap:nowrap}
   .search-wrap{min-width:0}
-  .search-input{padding:7px 10px 7px 34px;font-size:12.5px}
+  .search-input{padding:7px 10px 7px 34px;font-size:16px}
   .search-icon{left:11px;font-size:12px}
   .sort-select{padding:7px 26px 7px 10px;font-size:11.5px;background-position:right 8px center}
   .filter-dropdowns{padding:.55rem .85rem .6rem;gap:.3rem}
@@ -2384,6 +2460,107 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
    mayor de lo que su contenido (botón/chip de ~28-30px) necesita.
    ══════════════════════════════════════════════════════════════ */
 .topbar{height:50px;padding:0 .65rem}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 7.3 — SELECTOR DE ESTANTERÍA MÓVIL (.shelf-sidebar)
+   Antes: la navegación de la estantería era una lista vertical de
+   9 filas a ancho completo (5 estados de lectura + 3 accesos de
+   progreso + volver al catálogo), ~467px de alto en 360/390/412px,
+   empujando el primer libro fuera de la pantalla inicial.
+   Ahora: mismo HTML, mismos ids/clases/onclick — solo cambia cómo
+   se presentan. Cada .shelf-sidebar-section pasa de columna vertical
+   a fila horizontal con scroll propio (overflow-x:auto), y cada
+   botón pasa de fila de ancho completo a chip/píldora de ancho
+   automático (mismo lenguaje visual que .section-tab, ya usado en
+   el catálogo). Los rótulos puramente decorativos ("Estanterías",
+   "Tu progreso", el subtítulo "Tinta Sapphic") se ocultan en móvil,
+   igual que ya se hace con .filter-label-txt y .logo-sub — no son
+   opciones ni funciones, no se pierde nada interactivo.
+   El estado activo lo sigue marcando la misma clase .active que ya
+   añaden switchShelf()/openShelf(); aquí solo se le da más peso
+   visual (borde) para que se note con claridad en formato chip.
+   "Volver al catálogo" queda como enlace compacto en su propia
+   fila, sin ocupar el ancho completo. Nada de esto toca tablet/
+   desktop (bloque ≤639px) ni el resto de la estantería (cards,
+   calendario, logros, estadísticas, toolbar de búsqueda/orden).
+   .shelf-layout tenía min-height:80vh (pensado para el sidebar
+   sticky de escritorio); en grid, eso hace que la fila del
+   selector se estire por debajo de su contenido real aunque el
+   selector ya sea compacto, retrasando igualmente los libros. Se
+   quita solo en este bloque móvil para que la altura real (no la
+   heredada de escritorio) sea la que manda.
+   ══════════════════════════════════════════════════════════════ */
+.shelf-layout{min-height:0}
+.shelf-sidebar-header{padding:.7rem 1rem .5rem}
+.shelf-sidebar-name{font-size:1.05rem}
+.shelf-sidebar-sub{display:none}
+.shelf-sidebar-label{display:none}
+
+.shelf-sidebar-section{
+  display:flex;flex-wrap:nowrap;align-items:center;
+  overflow-x:auto;overflow-y:hidden;
+  gap:.5rem;padding:.4rem 1rem .55rem;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;
+  scrollbar-width:none;
+}
+.shelf-sidebar-section::-webkit-scrollbar{display:none}
+
+.shelf-nav-item{
+  width:auto;flex:0 0 auto;
+  justify-content:flex-start;gap:.4rem;
+  padding:7px 14px;border-radius:30px;
+  border:1px solid var(--border2);background:var(--surface2);
+  white-space:nowrap;scroll-snap-align:start;
+  min-height:44px;
+}
+.shelf-nav-item.active{border-color:var(--accent)}
+
+.shelf-progress-item{
+  width:auto;flex:0 0 auto;margin-bottom:0;
+  padding:7px 14px;border-radius:30px;
+  white-space:nowrap;scroll-snap-align:start;
+  min-height:44px;
+}
+.shelf-progress-item-label{font-size:12.5px}
+.shelf-progress-arrow{display:none}
+
+.shelf-sidebar-section:last-child{padding-top:.2rem!important}
+.shelf-back-link{width:auto;display:inline-flex;padding:6px 10px;font-size:12px}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 7.5 — ÁREA TÁCTIL DE CONTROLES DE ESTANTERÍA MÓVIL
+   .shelf-nav-item y .shelf-progress-item (arriba) ya reciben
+   min-height:44px sin tocar su padding/tipografía visual (siguen
+   siendo el mismo chip compacto, solo con más alto real). Aquí se
+   hace lo mismo con .shelf-view-btn (30×30 en el CSS base, fuera
+   de este bloque, para no afectar escritorio) y .shelf-clear-btn:
+   se lleva su caja a 44px manteniendo el icono/texto al mismo
+   tamaño visual de siempre. Ningún id, clase, onclick ni lógica
+   cambia; tampoco la distribución del toolbar ya fijada en 7.4
+   (search-wrap/selects/clear-btn siguen flex:1 1 0 / 1 1 100%).
+   ══════════════════════════════════════════════════════════════ */
+.shelf-view-btn{width:44px;height:44px}
+.shelf-clear-btn{min-height:44px}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 7.4 — TOOLBAR DE ESTANTERÍA MÓVIL (#shelfToolbar)
+   Antes: buscador + select de género + select de orden + botón
+   "Limpiar" compartían un único flex-wrap sin reglas propias, así
+   que el número de filas dependía del ancho intrínseco de cada
+   control (3 filas a 360px, 4 filas a 390/412px según el caso).
+   Ahora: el buscador pasa a ocupar su propia fila completa
+   (flex-basis:100%) y los otros tres controles se reparten a
+   partes iguales la fila siguiente (flex:1 1 0). Mismos controles,
+   mismos ids/clases, misma lógica de filtrado — solo cambia cómo
+   se reparte el ancho disponible. No toca el toolbar de escritorio
+   (sin cambios fuera de este bloque ≤639px) ni el resto de
+   estantería (tarjetas, sidebar, selector de categoría).
+   ══════════════════════════════════════════════════════════════ */
+#shelfToolbar .search-wrap{flex:1 1 100%;min-width:0}
+#shelfToolbar #shelfGenreSelect,
+#shelfToolbar #shelfSortSelect,
+#shelfToolbar .shelf-clear-btn{flex:1 1 0;min-width:0}
 }
 
 /* ============================================================
