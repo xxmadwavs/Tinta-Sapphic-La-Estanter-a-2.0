@@ -2178,6 +2178,14 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .bingo-manual-input,.bingo-book-search input{font-size:16px}
   .cartas-search{font-size:16px}
 
+  /* FASE 8.4: área táctil de chips/botón "Ver más"/input de Solicitudes
+     y Recomendaciones. Mismo criterio que 8.3 (Ruleta): min-height +
+     centrado con flex, sin tocar padding/font-size para mantener el
+     aspecto compacto. Solo estos 3 selectores, solo en móvil. */
+  .sol-chip{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+  .rec-ver-mas-btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+  .sol-input{min-height:44px}
+
   /* -- El modal de ficha de libro: mismo tamaño de letra que el resto -- */
   .modal-title{font-size:1.55rem;line-height:1.1}
   .modal-body{padding:1.1rem 1.1rem 1.5rem}
