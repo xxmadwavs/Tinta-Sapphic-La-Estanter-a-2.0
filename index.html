@@ -921,6 +921,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .rec-ver-mas-btn{background:transparent;border:1px solid var(--border2);border-radius:30px;color:var(--muted);font-size:12px;font-family:var(--font-body);padding:6px 20px;cursor:pointer;transition:all .18s}
 .rec-ver-mas-btn:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
 .rec-item-hidden{display:none!important}
+/* Fase 8.6: una palabra larga en el título de una tarjeta se cortaba sin puntos suspensivos; ahora se parte en la línea siguiente */
+.safi-item-title,.canal-item-title,.myrec-item-title{overflow-wrap:anywhere}
 .sol-login-notice{text-align:center;padding:1.5rem;color:var(--muted);font-size:13px}
 .sol-login-notice a{color:var(--accent2);cursor:pointer;background:none;border:none;font:inherit;text-decoration:underline}
 .sol-kanban-locked{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:13px}
@@ -3709,8 +3711,11 @@ const applyFiltersDebounced=debounce(()=>applyFilters(),180);
 const shelfApplyFiltersDebounced=debounce(()=>shelfApplyFilters(),180);
 
 /* ── URL STATE ── */
+let urlSyncReady=false; // false hasta que init() ha leído la URL original y decidido la vista inicial
 function pushState(addEntry){
   try{
+    // No escribir la URL antes de que init() decida la vista inicial (si no, ?section= interno se confunde con uno de la URL)
+    if(!urlSyncReady) return;
     // Don't touch URL if home is active
     if(sessionStorage.getItem('ts_active_tab')==='home') return;
     const params=new URLSearchParams();
@@ -4204,7 +4209,7 @@ async function init(){
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
-  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k));
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/');
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
@@ -4222,6 +4227,7 @@ async function init(){
     // primera visita o venía del home
     showHome();
   }
+  urlSyncReady=true; // vista inicial decidida: a partir de aquí applyFilters() ya puede escribir la URL
   // Si la URL trae ?myshelf=all|want|read, abrir directamente esa vista de "Mi estantería".
   // Nota: showHome()/switchTab() de arriba pueden haber limpiado la query string,
   // así que reaplicamos el parámetro myshelf sobre la URL resultante antes de abrir.
@@ -5754,7 +5760,7 @@ function showHome(){
   document.getElementById('homeNavBtn').classList.add('active');
   updateHomeStats();
   // Clean URL — home has no params
-  try{ history.replaceState(null,'',location.pathname); }catch(e){}
+  try{ history.replaceState({home:true},'',location.pathname); }catch(e){}
   syncMobileNavActive();
   closeMobileMoreMenu();
 }
@@ -6483,6 +6489,10 @@ window.addEventListener('popstate', ()=>{
   } else if(document.getElementById('shelfView').classList.contains('active')){
     closeShelf(true);
   }
+  // Entrada de historial que era el Home (la marca showHome): restaurarlo en vez de caer en Estantería
+  if(history.state && history.state.home){ showHome(); return; }
+  // Saliendo del Home hacia una entrada de catálogo: cerrarlo
+  if(document.body.classList.contains('home-active') && (location.search || (history.state && history.state.tab))) closeAllSpecialViews();
   // Restore tab and section from URL
   const params=new URLSearchParams(location.search);
   const tab=params.get('tab')||'estanteria';
