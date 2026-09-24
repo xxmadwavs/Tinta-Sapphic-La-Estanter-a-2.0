@@ -610,7 +610,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .top10-gold .t10-cover-ph{width:90px;height:136px;border-radius:10px;background:var(--surface3);border:2px solid rgba(201,151,90,0.3);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0}
 .top10-gold .t10-body{flex:1;min-width:0;position:relative;z-index:1}
 .top10-gold .t10-pos{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
-.top10-gold .t10-title{font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2.2rem);font-weight:600;line-height:1.1;margin-bottom:.3rem;cursor:pointer}
+.top10-gold .t10-title{font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2.2rem);font-weight:600;line-height:1.1;margin-bottom:.3rem;cursor:pointer;overflow-wrap:anywhere}
 .top10-gold .t10-title:hover{color:var(--accent2)}
 .top10-gold .t10-author{font-size:13px;color:var(--muted);margin-bottom:.75rem}
 .top10-gold .t10-score{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.5rem}
@@ -2303,7 +2303,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .safi-items{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 
 /* -- origen: 820px (sin contrapartida en 560/600/640px) -- */
-.sol-layout{grid-template-columns:1fr}
+.sol-layout{grid-template-columns:minmax(0,1fr)} /* la pista puede encoger: un .sol-item-title nowrap ya no impone el ancho de la columna */
 
 /* ══════════════════════════════════════════════════════════════
    FASE 3 — PRIMERA PANTALLA Y NAVEGACIÓN MÓVIL
@@ -2576,6 +2576,18 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 #shelfToolbar .shelf-clear-btn{flex:1 1 0;min-width:0}
 }
 
+/* FASE 8.4 (extensión táctil): mismos valores que el bloque móvil de arriba,
+   aplicados a tablets táctiles (>=640px). Con ratón (pointer:fine) no cambia
+   nada: el escritorio conserva sus tamaños compactos. */
+@media (min-width:640px) and (pointer:coarse){
+  .sol-chip{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+  .rec-ver-mas-btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+  .sol-input{min-height:44px}
+  .bingo-chal-btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+  .ruleta-tipo-btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+  .ruleta-dd-btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+}
+
 /* ============================================================
    EXCEPCIÓN NECESARIA — 601px a 639px
    .books-grid, .modal-body y .hero SÍ tienen contrapartida en el
@@ -2623,7 +2635,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
   .safi-items{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 
 /* -- origen: 820px -- */
-.sol-layout{grid-template-columns:1fr}
+.sol-layout{grid-template-columns:minmax(0,1fr)} /* la pista puede encoger: un .sol-item-title nowrap ya no impone el ancho de la columna */
 }
 
 </style>
