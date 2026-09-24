@@ -983,6 +983,9 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .ruleta-dd-btn .rdd-count{background:var(--accent);color:#fff;border-radius:20px;font-size:9px;font-weight:700;padding:1px 5px;letter-spacing:0}
 .ruleta-dd-panel{position:fixed;min-width:210px;max-width:290px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,.55),0 4px 20px rgba(0,0,0,.3);z-index:500;display:none;max-height:300px;overflow-y:auto;animation:ddFadeIn .14s ease}
 .ruleta-dd-wrap.open .ruleta-dd-panel{display:block}
+/* <main> (z-index:1) crea un stacking context que deja el panel (z-index:500) por debajo de .mobile-bottom-nav (150).
+   Solo mientras hay un dropdown de Ruleta abierto, main deja de crearlo; con el dropdown cerrado nada cambia. */
+.main:has(.ruleta-dd-wrap.open){z-index:auto}
 .ruleta-dd-search{padding:.5rem .8rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px)}
 .ruleta-dd-search input{width:100%;padding:5px 9px;border-radius:7px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12px;font-family:var(--font-body);outline:none;transition:border-color .15s}
 .ruleta-dd-search input::placeholder{color:var(--muted);opacity:.6}
@@ -6834,7 +6837,24 @@ function toggleRDD(id) {
     const btn = wrap.querySelector('.ruleta-dd-btn');
     const panel = wrap.querySelector('.ruleta-dd-panel');
     const rect = btn.getBoundingClientRect();
-    panel.style.top = (rect.bottom + 8) + 'px';
+    // Posición vertical: debajo si cabe; si no, encima; si no cabe en ninguno,
+    // en el lado con más espacio limitando la altura (el panel ya tiene overflow-y:auto)
+    const GAP = 8, EDGE = 8;
+    panel.style.maxHeight = '';
+    panel.style.top = '';
+    panel.style.bottom = '';
+    const panelH = panel.offsetHeight;
+    const spaceBelow = window.innerHeight - rect.bottom - GAP - EDGE;
+    const spaceAbove = rect.top - GAP - EDGE;
+    let placeAbove;
+    if (panelH <= spaceBelow) placeAbove = false;
+    else if (panelH <= spaceAbove) placeAbove = true;
+    else {
+      placeAbove = spaceAbove > spaceBelow;
+      panel.style.maxHeight = Math.max(0, Math.floor(placeAbove ? spaceAbove : spaceBelow)) + 'px';
+    }
+    if (placeAbove) panel.style.bottom = (window.innerHeight - rect.top + GAP) + 'px';
+    else panel.style.top = (rect.bottom + GAP) + 'px';
     panel.style.left = rect.left + 'px';
     // Ajustar si se sale por la derecha
     requestAnimationFrame(() => {
