@@ -6833,38 +6833,57 @@ function toggleRDD(id) {
   closeAllDD();
   if (!wasOpen) {
     wrap.classList.add('open');
-    // Posicionar el panel con fixed relativo al botón
-    const btn = wrap.querySelector('.ruleta-dd-btn');
-    const panel = wrap.querySelector('.ruleta-dd-panel');
-    const rect = btn.getBoundingClientRect();
-    // Posición vertical: debajo si cabe; si no, encima; si no cabe en ninguno,
-    // en el lado con más espacio limitando la altura (el panel ya tiene overflow-y:auto)
-    const GAP = 8, EDGE = 8;
-    panel.style.maxHeight = '';
-    panel.style.top = '';
-    panel.style.bottom = '';
-    const panelH = panel.offsetHeight;
-    const spaceBelow = window.innerHeight - rect.bottom - GAP - EDGE;
-    const spaceAbove = rect.top - GAP - EDGE;
-    let placeAbove;
-    if (panelH <= spaceBelow) placeAbove = false;
-    else if (panelH <= spaceAbove) placeAbove = true;
-    else {
-      placeAbove = spaceAbove > spaceBelow;
-      panel.style.maxHeight = Math.max(0, Math.floor(placeAbove ? spaceAbove : spaceBelow)) + 'px';
-    }
-    if (placeAbove) panel.style.bottom = (window.innerHeight - rect.top + GAP) + 'px';
-    else panel.style.top = (rect.bottom + GAP) + 'px';
-    panel.style.left = rect.left + 'px';
-    // Ajustar si se sale por la derecha
-    requestAnimationFrame(() => {
-      const panelRect = panel.getBoundingClientRect();
-      if (panelRect.right > window.innerWidth - 8) {
-        panel.style.left = (window.innerWidth - panelRect.width - 8) + 'px';
-      }
-    });
+    positionRDDPanel(wrap);
   }
 }
+
+// Posiciona el panel (position:fixed) relativo al botón usando su rect ACTUAL.
+// Se llama al abrir y de nuevo en scroll/resize mientras el dropdown sigue abierto.
+function positionRDDPanel(wrap) {
+  const btn = wrap.querySelector('.ruleta-dd-btn');
+  const panel = wrap.querySelector('.ruleta-dd-panel');
+  const rect = btn.getBoundingClientRect();
+  // Posición vertical: debajo si cabe; si no, encima; si no cabe en ninguno,
+  // en el lado con más espacio limitando la altura (el panel ya tiene overflow-y:auto)
+  const GAP = 8, EDGE = 8;
+  const keepScroll = panel.scrollTop; // resetear maxHeight puede recortar el scroll interno
+  panel.style.maxHeight = '';
+  panel.style.top = '';
+  panel.style.bottom = '';
+  const panelH = panel.offsetHeight;
+  const spaceBelow = window.innerHeight - rect.bottom - GAP - EDGE;
+  const spaceAbove = rect.top - GAP - EDGE;
+  let placeAbove;
+  if (panelH <= spaceBelow) placeAbove = false;
+  else if (panelH <= spaceAbove) placeAbove = true;
+  else {
+    placeAbove = spaceAbove > spaceBelow;
+    panel.style.maxHeight = Math.max(0, Math.floor(placeAbove ? spaceAbove : spaceBelow)) + 'px';
+  }
+  if (placeAbove) panel.style.bottom = (window.innerHeight - rect.top + GAP) + 'px';
+  else panel.style.top = (rect.bottom + GAP) + 'px';
+  panel.style.left = rect.left + 'px';
+  // Ajustar si se sale por la derecha
+  const panelRect = panel.getBoundingClientRect();
+  if (panelRect.right > window.innerWidth - 8) {
+    panel.style.left = (window.innerWidth - panelRect.width - 8) + 'px';
+  }
+  panel.scrollTop = keepScroll;
+}
+
+// Mantiene el dropdown abierto asociado a su botón; si el botón deja de ser
+// razonablemente visible (menos de la mitad dentro del viewport), lo cierra.
+function syncOpenRDD(e) {
+  if (e && e.target && e.target.nodeType === 1 && e.target.closest('.ruleta-dd-panel')) return; // scroll interno del panel
+  const wrap = document.querySelector('.ruleta-dd-wrap.open');
+  if (!wrap) return;
+  const r = wrap.querySelector('.ruleta-dd-btn').getBoundingClientRect();
+  const visH = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+  if (!r.height || visH < r.height / 2 || r.right <= 0 || r.left >= window.innerWidth) { closeAllRDD(); return; }
+  positionRDDPanel(wrap);
+}
+window.addEventListener('scroll', syncOpenRDD, { capture: true, passive: true });
+window.addEventListener('resize', syncOpenRDD);
 function closeAllRDD() { document.querySelectorAll('.ruleta-dd-wrap.open').forEach(w => w.classList.remove('open')); }
 
 function toggleRDDFilter(key, val) {
