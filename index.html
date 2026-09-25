@@ -455,8 +455,32 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 /* BOOK MODAL */
 .modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.75);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:300;padding:2rem 1rem;overflow-y:auto}
-.modal-bg.open{display:flex}
+.modal-bg.open,.modal-bg.closing{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:560px;margin:auto;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative}
+
+/* FASE 9.2 — transición de apertura/cierre para .modal-bg, .info-modal-bg y .hito-modal-bg.
+   Entrada: fade del backdrop + fade/scale muy sutil del contenido.
+   Salida: la clase .closing se mantiene brevemente (ver JS) para que el mismo fade se reproduzca al revés
+   antes de que el elemento vuelva a display:none. */
+@keyframes modalBgFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes modalBgFadeOut{from{opacity:1}to{opacity:0}}
+@keyframes modalBoxFadeIn{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes modalBoxFadeOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(6px) scale(.98)}}
+.modal-bg.open,.info-modal-bg.open,.hito-modal-bg.open{animation:modalBgFadeIn .2s ease}
+.modal-bg.closing,.info-modal-bg.closing,.hito-modal-bg.closing{animation:modalBgFadeOut .18s ease forwards}
+.modal-bg.open .modal,.modal-bg.open .auth-modal,.modal-bg.open .reset-modal,
+.info-modal-bg.open .info-modal,.hito-modal-bg.open .hito-card{animation:modalBoxFadeIn .22s cubic-bezier(.25,.7,.3,1)}
+.modal-bg.closing .modal,.modal-bg.closing .auth-modal,.modal-bg.closing .reset-modal,
+.info-modal-bg.closing .info-modal,.hito-modal-bg.closing .hito-card{animation:modalBoxFadeOut .18s ease forwards}
+@media (prefers-reduced-motion: reduce){
+  .modal-bg.open,.info-modal-bg.open,.hito-modal-bg.open,
+  .modal-bg.closing,.info-modal-bg.closing,.hito-modal-bg.closing,
+  .modal-bg.open .modal,.modal-bg.open .auth-modal,.modal-bg.open .reset-modal,
+  .info-modal-bg.open .info-modal,.hito-modal-bg.open .hito-card,
+  .modal-bg.closing .modal,.modal-bg.closing .auth-modal,.modal-bg.closing .reset-modal,
+  .info-modal-bg.closing .info-modal,.hito-modal-bg.closing .hito-card{animation:none}
+}
+
 .modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
 .modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 .modal-share-btn{position:absolute;top:14px;right:54px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
@@ -1075,7 +1099,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
 /* INFO MODAL */
 .info-modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.82);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;z-index:400;padding:2rem 1rem;overflow-y:auto}
-.info-modal-bg.open{display:flex}
+.info-modal-bg.open,.info-modal-bg.closing{display:flex}
 .info-modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:680px;margin:auto;box-shadow:0 32px 80px rgba(0,0,0,0.7);position:relative;overflow:hidden}
 .info-modal-header{padding:1.8rem 2rem 1.2rem;border-bottom:1px solid var(--border)}
 .info-modal-title{font-family:var(--font-display);font-size:2rem;font-weight:600;font-style:italic;color:var(--text);line-height:1}
@@ -1182,7 +1206,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
 /* ── LOGROS DEL BINGO (línea / bingo) ── */
 .hito-modal-bg{position:fixed;inset:0;background:rgba(10,8,14,.72);display:none;align-items:center;justify-content:center;z-index:200;padding:1.5rem}
-.hito-modal-bg.open{display:flex}
+.hito-modal-bg.open,.hito-modal-bg.closing{display:flex}
 .hito-card{position:relative;width:260px;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,.95) 100%);border:1px solid var(--border2);border-radius:20px;padding:2.75rem 1.25rem 1.75rem;text-align:center;overflow:hidden;display:flex;flex-direction:column;align-items:center}
 .hito-card h3{font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 .4rem;font-weight:600}
 .hito-card p{color:var(--muted);font-size:12px;margin:0;line-height:1.6}
@@ -3940,14 +3964,14 @@ function hwOpenCollection(){
     ?`<div class="hw-forbidden-grid">${list.map(b=>hwForbiddenCardHtml(b,true)).join('')}</div>`
     :'<div class="hw-forbidden-empty">La colección está vacía… por ahora.</div>';
   body.scrollTop=0;
-  modal.classList.add('open');
+  openAnimatedModalBg(modal);
   document.body.style.overflow='hidden';
 }
 
 function hwCloseCollection(){
   const modal=document.getElementById('hwCollectionModal');
   if(!modal || !modal.classList.contains('open')) return; // no tocar el scroll si no está abierta
-  modal.classList.remove('open');
+  closeAnimatedModalBg(modal);
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') hwCloseCollection(); });
@@ -4150,14 +4174,14 @@ function xmOpenCollection(){
     ?`<div class="xm-collection-grid">${list.map(b=>xmForbiddenCardHtml(b,true)).join('')}</div>`
     :'<div class="xm-collection-empty">La colección está vacía… por ahora.</div>';
   body.scrollTop=0;
-  modal.classList.add('open');
+  openAnimatedModalBg(modal);
   document.body.style.overflow='hidden';
 }
 
 function xmCloseCollection(){
   const modal=document.getElementById('xmCollectionModal');
   if(!modal || !modal.classList.contains('open')) return; // no tocar el scroll si no está abierta
-  modal.classList.remove('open');
+  closeAnimatedModalBg(modal);
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') xmCloseCollection(); });
@@ -4878,6 +4902,27 @@ function goToPage(n){
   document.querySelector('.main').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
+/* FASE 9.2 — helpers compartidos de apertura/cierre animado para .modal-bg, .info-modal-bg y .hito-modal-bg.
+   No cambian ningún comportamiento funcional: solo añaden/retiran las clases 'open'/'closing' que ya
+   controlaban la visibilidad, dando tiempo a que la transición de salida (ver CSS) se reproduzca antes
+   de que el elemento vuelva a display:none. Con prefers-reduced-motion la espera se reduce a 0. */
+function _prefersReducedMotion(){
+  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+function openAnimatedModalBg(el){
+  if(!el) return;
+  clearTimeout(el._closeTimer);
+  el.classList.remove('closing');
+  el.classList.add('open');
+}
+function closeAnimatedModalBg(el){
+  if(!el || !el.classList.contains('open')) return;
+  el.classList.remove('open');
+  el.classList.add('closing');
+  clearTimeout(el._closeTimer);
+  el._closeTimer=setTimeout(()=>{ el.classList.remove('closing'); }, _prefersReducedMotion()?0:200);
+}
+
 /* ── BOOK MODAL ── */
 let _scrollBeforeModal=0;
 function openBook(id, pushState=true){
@@ -4889,12 +4934,12 @@ function openBook(id, pushState=true){
   renderBookModal();
   attachStarTouch();
   _attachSpicyEvents();
-  document.getElementById('bookModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('bookModal'));
   document.body.style.overflow='hidden';
   if(pushState) history.pushState({bookId:id},'',`#libro/${id}`);
 }
 function closeBookModal(){
-  document.getElementById('bookModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('bookModal'));
   document.body.style.overflow='';
   if(location.hash.startsWith('#libro/')) history.pushState({},'',location.pathname+location.search);
   window.scrollTo(0,_scrollBeforeModal);
@@ -5095,11 +5140,11 @@ function openSagaMap(sagaName){
   if(books.length<2){ filterBySagaFromModal(sagaName); return; } // fallback si no hay suficientes datos
   closeBookModal();
   renderSagaMap(sagaName,books);
-  document.getElementById('sagaModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('sagaModal'));
   document.body.style.overflow='hidden';
 }
 function closeSagaModal(){
-  document.getElementById('sagaModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('sagaModal'));
   document.body.style.overflow='';
 }
 document.getElementById('sagaModal').addEventListener('click',e=>{if(e.target.id==='sagaModal')closeSagaModal();});
@@ -5504,8 +5549,8 @@ function renderAuthUI(){
   }
   updateDDCounts();
 }
-function openAuthModal(){authMode='login';updateAuthUI();document.getElementById('authModal').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('authEmail').focus(),100);}
-function closeAuthModal(){document.getElementById('authModal').classList.remove('open');document.body.style.overflow='';document.getElementById('authError').textContent='';}
+function openAuthModal(){authMode='login';updateAuthUI();openAnimatedModalBg(document.getElementById('authModal'));document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('authEmail').focus(),100);}
+function closeAuthModal(){closeAnimatedModalBg(document.getElementById('authModal'));document.body.style.overflow='';document.getElementById('authError').textContent='';}
 function toggleAuthMode(){authMode=authMode==='login'?'register':'login';updateAuthUI();}
 function updateAuthUI(){
   const isReg=authMode==='register';
@@ -5520,7 +5565,7 @@ function updateAuthUI(){
 async function handleForgotPassword(){
   closeAuthModal();
   showResetStep1();
-  document.getElementById('resetModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('resetModal'));
   document.body.style.overflow='hidden';
 }
 function showResetStep1(){
@@ -5586,11 +5631,11 @@ document.addEventListener('click',e=>{
 /* ── RESET PASSWORD ── */
 function openResetModal(){
   showResetStep1();
-  document.getElementById('resetModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('resetModal'));
   document.body.style.overflow='hidden';
 }
 function closeResetModal(){
-  document.getElementById('resetModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('resetModal'));
   document.body.style.overflow='';
 }
 async function handleResetPassword(){
@@ -6483,7 +6528,7 @@ window.addEventListener('popstate', ()=>{
     return;
   }
   // Close book modal if open
-  document.getElementById('bookModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('bookModal'));
   document.body.style.overflow='';
   window.scrollTo(0,_scrollBeforeModal);
   // Restaurar (o cerrar) las vistas especiales (Logros/Estadísticas/Cartas) según la URL
@@ -6772,11 +6817,11 @@ function openInfoModal(tipo) {
   document.getElementById('infoModalTitle').textContent = c.title;
   document.getElementById('infoModalSub').textContent = c.sub;
   document.getElementById('infoModalBody').innerHTML = c.body;
-  document.getElementById('infoModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('infoModal'));
   document.body.style.overflow = 'hidden';
 }
 function closeInfoModal() {
-  document.getElementById('infoModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('infoModal'));
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfoModal(); });
@@ -7661,11 +7706,11 @@ function openReadDoneModal(bookId){
   rdStar=myRatings[bookId]||0;
   rdSpicy=mySpicy[bookId]!=null?mySpicy[bookId]:-1;
   renderReadDoneModal();
-  document.getElementById('readDoneModal').style.display='flex';
+  openAnimatedModalBg(document.getElementById('readDoneModal'));
 }
 
 function closeReadDoneModal(){
-  document.getElementById('readDoneModal').style.display='none';
+  closeAnimatedModalBg(document.getElementById('readDoneModal'));
   rdBookId=null;rdStar=0;rdSpicy=-1;
 }
 
@@ -8216,13 +8261,13 @@ function showHitoModal(tipo){
       host.appendChild(s);
     }
   }
-  document.getElementById('hitoModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('hitoModal'));
   document.body.style.overflow='hidden';
   requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add('play')));
 }
 
 function closeHitoModal(){
-  document.getElementById('hitoModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('hitoModal'));
   document.body.style.overflow='';
   if(logroQueue.length) setTimeout(playNextLogroHito,320); // deja terminar la transición de cierre antes de encolar el siguiente
 }
@@ -8308,7 +8353,7 @@ function showLogroHitoModal(logro){
   document.getElementById('hitoTitle').textContent=logro.nombre;
   document.getElementById('hitoSubtitle').textContent=logro.descripcion||'Insignia conseguida';
   document.getElementById('hitoConfetti').innerHTML='';
-  document.getElementById('hitoModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('hitoModal'));
   document.body.style.overflow='hidden';
   requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add('play')));
 }
@@ -8967,12 +9012,12 @@ function openBingoCellModal(idx){
   bingoPendingBookCover=null;
   bingoManualConfirmed=false;
   renderBingoCellModal();
-  document.getElementById('bingoCellModal').classList.add('open');
+  openAnimatedModalBg(document.getElementById('bingoCellModal'));
   document.body.style.overflow='hidden';
 }
 
 function closeBingoCellModal(){
-  document.getElementById('bingoCellModal').classList.remove('open');
+  closeAnimatedModalBg(document.getElementById('bingoCellModal'));
   document.body.style.overflow='';
   bingoActiveCellIdx=null;
 }
