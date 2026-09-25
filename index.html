@@ -374,7 +374,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* GRID */
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
 
-.book-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .22s;position:relative}
+.book-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .22s;position:relative;-webkit-tap-highlight-color:transparent}
 .book-cover-wrap{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--surface2)}
 .book-cover{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .book-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:2.5rem}
@@ -7843,12 +7843,22 @@ async function setReadingStatus(bookId, newStatus){
   const current=myReadingStatus[bookId];
   const next=current===newStatus?null:newStatus; // clic en el activo = quitar
 
+  // Feedback visual inmediato (actualización optimista): pintamos el nuevo
+  // estado en los botones ANTES de esperar la respuesta de Supabase, para
+  // que el toque se perciba al instante. Si la petición falla más abajo,
+  // revertimos tanto el estado como el repintado.
+  if(next) myReadingStatus[bookId]=next; else delete myReadingStatus[bookId];
+  _refreshShelfUI(bookId);
+
   if(next){
     const payload={user_id:currentUser.id, book_id:bookId, status:next};
     const {error}=await sb.from('reading_status')
       .upsert(payload,{onConflict:'user_id,book_id'});
-    if(error){ showToast('Error al guardar 😞','error'); console.error(error); return; }
-    myReadingStatus[bookId]=next;
+    if(error){
+      if(current) myReadingStatus[bookId]=current; else delete myReadingStatus[bookId];
+      _refreshShelfUI(bookId);
+      showToast('Error al guardar 😞','error'); console.error(error); return;
+    }
     // Al marcar "Leyendo", abrimos automáticamente una entrada de lectura con fecha de inicio hoy (si no hay ya una en curso)
     if(next==='reading' && !getOpenLogEntry(bookId)){
       const todayISO=new Date().toISOString().slice(0,10)+'T12:00:00.000Z';
@@ -7885,8 +7895,11 @@ async function setReadingStatus(bookId, newStatus){
   } else {
     const {error}=await sb.from('reading_status')
       .delete().eq('user_id',currentUser.id).eq('book_id',bookId);
-    if(error){ showToast('Error al eliminar 😞','error'); console.error(error); return; }
-    delete myReadingStatus[bookId];
+    if(error){
+      if(current) myReadingStatus[bookId]=current;
+      _refreshShelfUI(bookId);
+      showToast('Error al eliminar 😞','error'); console.error(error); return;
+    }
     // El historial de lecturas (reading_log) NO se borra: si vuelve a marcarlo como leído, conserva sus fechas anteriores.
     showToast('Eliminado de tu estantería','success');
   }
