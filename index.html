@@ -1872,6 +1872,20 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
    ══════════════════════════════════════════════════════════════ */
 
 /* ============================================================
+   DESKTOP ULTRAWIDE  —  min-width: 1921px  (Fase 1.8)
+   Ancho progresivo de .main y .shelf-layout solo en pantallas muy
+   anchas. Hasta 1920px no cambia nada (siguen en max-width:1320px,
+   definido en sus reglas base). Por encima de 1921px, max-width
+   crece progresivamente entre 1320px y 1600px.
+   ============================================================ */
+@media (min-width:1921px){
+  .main,
+  .shelf-layout{
+    max-width:clamp(1320px,62.5vw,1600px);
+  }
+}
+
+/* ============================================================
    MOBILE  —  max-width: 639px
    Consolidado (Fase 2) desde los breakpoints originales:
    560px (bingo), 600px (mayoría de componentes) y 640px (temas
