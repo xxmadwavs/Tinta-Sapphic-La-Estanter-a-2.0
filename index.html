@@ -6,6 +6,8 @@
 <title>TINTA SAPPHIC ~ La Estantería</title>
 <meta name="sb-url" content="https://fteitflirsmabcasmwij.supabase.co">
 <meta name="sb-key" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0ZWl0ZmxpcnNtYWJjYXNtd2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMjM3MzIsImV4cCI6MjA5MjY5OTczMn0.n46OnfB74J8DN_dcDgTc-UmhZYO5SnKUQ69Gz90ybbA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=Cinzel:wght@400;500;600;700&family=Pirata+One&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -32,7 +34,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 0%,rgba(192,111,196,0.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(91,188,176,0.06) 0%,transparent 55%);pointer-events:none;z-index:0}
 
-.topbar{position:sticky;top:0;z-index:100;background:rgba(14,11,16,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(14,11,16,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border2);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
 .logo{font-family:var(--font-display);font-size:21px;font-weight:300;color:var(--text);display:flex;align-items:baseline;gap:.3em;text-decoration:none}
 .logo-tinta{font-weight:700;letter-spacing:.12em;font-size:.9em;text-transform:uppercase}
 .logo em{font-style:italic;font-weight:600;color:var(--accent)}
@@ -2228,7 +2230,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
    de layout. */
 .mobile-bottom-nav{
   display:flex;position:fixed;left:0;right:0;bottom:0;z-index:150;
-  background:rgba(14,11,16,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:rgba(14,11,16,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border-top:1px solid var(--border2);padding:5px 2px 9px;
   box-shadow:0 -8px 24px rgba(0,0,0,.28);
 }
@@ -4618,9 +4620,15 @@ async function init(){
   await loadBooks();
   initHalloweenTheme();
   initChristmasTheme();
-  if(currentUser) await loadMyRatings();
-  if(currentUser) await loadMyReadingStatus();
-  if(currentUser){ await bingoLoadHitos(); bingoUpdateNotifDot(); checkNewLogros(); }
+  if(currentUser){
+    // Las 3 llamadas de abajo solo dependen de currentUser, no entre sí
+    // (ratings/spicy/tags propios, estado de lectura propio, hitos de bingo
+    // propios), así que se lanzan en paralelo con Promise.all en vez de
+    // esperarlas en cadena (Fase 10.5B).
+    await Promise.all([loadMyRatings(), loadMyReadingStatus(), bingoLoadHitos()]);
+    bingoUpdateNotifDot();
+    checkNewLogros();
+  }
   buildDropdowns();
   loadState();   // restaurar filtros y página desde la URL
   // Pintar visualmente la sección activa restaurada
@@ -4737,7 +4745,14 @@ async function loadBooks(){
     document.getElementById('booksContainer').innerHTML=`<div class="empty-state"><div class="empty-big">Sin libros</div><p>No se encontró el archivo books_data.json.</p></div>`;
     return;
   }
-  const rData=await sbFetchAll('ratings','book_id,score');
+  // Las 3 consultas de abajo son independientes entre sí (no comparten datos
+  // ni dependen una de otra), así que se lanzan en paralelo con Promise.all
+  // en vez de esperarlas una detrás de otra (Fase 10.5B).
+  const [rData,svData,ctData]=await Promise.all([
+    sbFetchAll('ratings','book_id,score'),
+    sbFetchAll('spicy_votes','book_id,level'),
+    sbFetchAll('community_tags','book_id,tag_type,tag_value')
+  ]);
   ratingsMap={};
   if(rData){
     const grouped={};
@@ -4746,7 +4761,6 @@ async function loadBooks(){
       ratingsMap[id]={avg:Math.round(scores.reduce((a,b)=>a+b,0)/scores.length*10)/10,count:scores.length};
     });
   }
-  const svData=await sbFetchAll('spicy_votes','book_id,level');
   spicyMap={};
   if(svData){
     const grouped={};
@@ -4755,7 +4769,6 @@ async function loadBooks(){
       spicyMap[id]={avg:Math.round(levels.reduce((a,b)=>a+b,0)/levels.length*10)/10,count:levels.length};
     });
   }
-  const ctData=await sbFetchAll('community_tags','book_id,tag_type,tag_value');
   communityTagsMap={};
   if(ctData){
     ctData.forEach(r=>{
@@ -4770,13 +4783,18 @@ async function loadBooks(){
 
 async function loadMyRatings(){
   if(!currentUser) return;
-  const data=await sbFetchAll('ratings','book_id,score',q=>q.eq('user_id',currentUser.id));
+  // Las 3 consultas de abajo son independientes entre sí (mismo user_id,
+  // tablas distintas), así que se lanzan en paralelo con Promise.all en vez
+  // de esperarlas una detrás de otra (Fase 10.5B).
+  const [data,sv,myCtData]=await Promise.all([
+    sbFetchAll('ratings','book_id,score',q=>q.eq('user_id',currentUser.id)),
+    sbFetchAll('spicy_votes','book_id,level',q=>q.eq('user_id',currentUser.id)),
+    sbFetchAll('community_tags','book_id,tag_type,tag_value',q=>q.eq('user_id',currentUser.id))
+  ]);
   myRatings={};
   if(data) data.forEach(r=>myRatings[r.book_id]=r.score);
-  const sv=await sbFetchAll('spicy_votes','book_id,level',q=>q.eq('user_id',currentUser.id));
   mySpicy={};
   if(sv) sv.forEach(r=>mySpicy[r.book_id]=r.level);
-  const myCtData=await sbFetchAll('community_tags','book_id,tag_type,tag_value',q=>q.eq('user_id',currentUser.id));
   myTags={};
   if(myCtData){
     myCtData.forEach(r=>{
@@ -7819,13 +7837,19 @@ function ruletaOpenBook() {
 
 async function loadMyReadingStatus(){
   if(!currentUser) return;
-  const data=await sbFetchAll('reading_status','book_id,status,read_at',q=>q.eq('user_id',currentUser.id));
+  // Las 2 consultas de abajo son independientes entre sí (mismo user_id,
+  // tablas distintas); se lanzan en paralelo con Promise.all y el cálculo
+  // de myReadingReadAt de más abajo sigue esperando a que ambas terminen
+  // antes de ejecutarse, igual que antes (Fase 10.5B).
+  const [data,logData]=await Promise.all([
+    sbFetchAll('reading_status','book_id,status,read_at',q=>q.eq('user_id',currentUser.id)),
+    sbFetchAll('reading_log','id,book_id,started_at,read_at',q=>q.eq('user_id',currentUser.id).order('read_at',{ascending:true,nullsFirst:false}))
+  ]);
   myReadingStatus={};
   myReadingReadAt={};
   (data||[]).forEach(row=>{
     myReadingStatus[row.book_id]=row.status;
   });
-  const logData=await sbFetchAll('reading_log','id,book_id,started_at,read_at',q=>q.eq('user_id',currentUser.id).order('read_at',{ascending:true,nullsFirst:false}));
   myReadingLog={};
   (logData||[]).forEach(row=>{
     if(!myReadingLog[row.book_id]) myReadingLog[row.book_id]=[];
