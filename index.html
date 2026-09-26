@@ -511,22 +511,43 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
    Selectores con #bookModal/#sagaModal porque .modal también lo usan #bingoCellModal y
    #readDoneModal, que no deben verse afectados. */
 @media (min-width:640px){
-  #bookModal .modal,
+
+  /* PC5.3 — #sagaModal: sin incidencia reportada tras la validación real; mecanismo original
+     (contenedor flex) sin cambios. */
   #sagaModal .modal{
     display:flex;
     flex-direction:column;
     max-height:calc(100vh - 4rem);
     max-height:calc(100dvh - 4rem);
   }
-  #bookModal #bookModalContent{
+  #sagaModal .sagamap-body{
     flex:1;
     min-height:0;
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
   }
-  #sagaModal .sagamap-body{
-    flex:1;
-    min-height:0;
+
+  /* PC5.3 — #bookModal: la validación real detectó que la X sí se sigue perdiendo con este
+     mecanismo. Auditoría: #bookModalContent (primer hijo en flujo de .modal, y único que scrollea)
+     empieza con .modal-cover-strip, que fija su alto con aspect-ratio:16/7. Al depender de
+     "display:flex + flex:1 + min-height:0" para que #bookModalContent absorba el alto disponible,
+     su tamaño final depende de un cálculo de flex-basis que compite con el aspect-ratio del primer
+     hijo; es la única diferencia estructural real frente a #sagaModal (.sagamap-body no tiene
+     ningún hijo con aspect-ratio), que es precisamente el que no ha dado problema. Ese cálculo de
+     flex-basis puede resolverse de forma inestable en Chrome y dejar que #bookModalContent supere
+     puntualmente el alto de .modal, con lo que .modal-bg retoma el scroll y arrastra a .modal
+     (y a la X, absoluta dentro de él) fuera de pantalla otra vez.
+     Corrección: se quita la dependencia de flexbox en #bookModal .modal (aquí no hace falta:
+     solo tiene un hijo en flujo). #bookModalContent pasa a acotarse con su propio max-height,
+     igual al de .modal, sin necesitar ningún cálculo de flex-basis. */
+  #bookModal .modal{
+    max-height:calc(100vh - 4rem);
+    max-height:calc(100dvh - 4rem);
+  }
+  #bookModal #bookModalContent{
+    display:block;
+    max-height:calc(100vh - 4rem);
+    max-height:calc(100dvh - 4rem);
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
   }
@@ -5609,12 +5630,10 @@ function renderSagaMap(sagaName,books){
   let branches=books.filter(b=>!Number.isInteger(b.sagaNum));
   if(mainChain.length===0){ mainChain=books; branches=[]; } // si la saga es toda decimales, no separamos ramas
 
-  const xPattern=[50,78,22,70,16,58,30,74,12,54,86,8,42,64];
-  mainChain.forEach((b,i)=>{ b._x=xPattern[i%xPattern.length]; b._y=60+i*130; });
-
-  // agrupamos las ramas por a qué libro principal "cuelgan", para poder
-  // separarlas cuando dos especiales caen sobre el mismo hueco (p.ej. 0.5 y 1.5
-  // ambos antes del libro 1) y no se dibujen una encima de otra.
+  // agrupamos las ramas por a qué libro principal "cuelgan" (por número de saga,
+  // igual que antes) ANTES de fijar las posiciones Y: el espacio vertical que se
+  // reserva para cada libro principal depende ahora de cuántas ramas cuelgan de
+  // él (ver PC5.3 más abajo), así que hace falta conocer los grupos primero.
   const groups=new Map();
   branches.forEach(b=>{
     let attach=mainChain[0];
@@ -5623,12 +5642,39 @@ function renderSagaMap(sagaName,books){
     if(!groups.has(attach)) groups.set(attach,[]);
     groups.get(attach).push(b);
   });
+
+  /* PC5.3 — AUDITORÍA DE SOLAPES: .sm-node mide 128px de ancho y, sumando anillo
+     (84px) + gaps (.4rem×2) + número + etiqueta de 2 líneas, ronda ~150px de alto
+     real; .sm-node.branch (anillo 62px) ronda ~124px. El paso vertical fijo
+     anterior (130px entre libros principales, +62/+72px por rama) era MENOR que
+     esas alturas reales, así que los nodos y sus títulos se solapaban — y se
+     solapaban más cuanto más ramas colgaban del mismo libro (0.5 y 1.5 a la vez,
+     por ejemplo), porque el hueco hasta el siguiente libro principal era siempre
+     el mismo, sin importar cuántas ramas hubiera que colocar en él.
+     CORRECCIÓN: en vez de un paso fijo, cada libro principal reserva el alto de
+     su propio nodo (NODE_H) más el de las filas de ramas que cuelguen de él
+     (BRANCH_ROW_H por cada fila de hasta 2 ramas, izquierda/derecha). Así una
+     saga sin ediciones especiales apenas cambia de tamaño, y una rama nunca se
+     solapa con el siguiente libro principal, tenga la saga las ramas que tenga
+     (no es una solución pensada para un caso concreto). */
+  const NODE_H=150;       // alto aprox. de un nodo principal, con margen de seguridad
+  const BRANCH_ROW_H=140; // alto reservado por cada fila de hasta 2 ramas
+  const xPattern=[50,78,22,70,16,58,30,74,12,54,86,8,42,64];
+
+  let y=60;
+  mainChain.forEach((b,i)=>{
+    b._x=xPattern[i%xPattern.length];
+    b._y=y;
+    const rows=Math.ceil((groups.get(b)||[]).length/2); // 2 ramas por fila (izq./dcha.)
+    y+=NODE_H+rows*BRANCH_ROW_H;
+  });
+
   groups.forEach(group=>{
     group.forEach((b,gi)=>{
       const dir=gi%2===0?1:-1;
-      const step=Math.floor(gi/2);
-      b._x=Math.min(92,Math.max(8,b._attach._x+dir*(34+step*8)));
-      b._y=b._attach._y+62+step*72;
+      const row=Math.floor(gi/2);
+      b._x=Math.min(92,Math.max(8,b._attach._x+dir*34));
+      b._y=b._attach._y+NODE_H/2+row*BRANCH_ROW_H+BRANCH_ROW_H/2;
     });
   });
 
