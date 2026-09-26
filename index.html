@@ -649,7 +649,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .top10-empty{text-align:center;padding:3rem;color:var(--muted);font-style:italic}
 
 /* ── SOLICITUDES ── */
-.sol-layout{display:grid;grid-template-columns:340px 1fr;gap:1.5rem;align-items:start;padding-bottom:4rem}
+.sol-layout{display:grid;grid-template-columns:340px 1fr;gap:1.5rem;align-items:start;padding-bottom:4rem;max-width:1280px;margin-left:auto;margin-right:auto}
 
 /* ── HOME VIEW ─────────────────────────────────────── */
 #homeView{display:none;position:relative;z-index:1}
@@ -1398,6 +1398,11 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .shelf-view-btn.active{background:var(--surface);color:var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .shelf-view-btn svg{width:15px;height:15px}
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
+@media (min-width:2501px){
+  .shelf-grid{
+    grid-template-columns:repeat(8,minmax(130px,1fr));
+  }
+}
 .shelf-book{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .22s}
 .shelf-book .shelf-book-cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--surface2)}
 .shelf-book .shelf-book-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}

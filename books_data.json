@@ -2868,6 +2868,7 @@
     "synopsis": "El Amor Venenoso… hace que dos personas se enamoren perdidamente.\nPorque este veneno entra en sus corazones con su pleno consentimiento.\nLa Dra. Premsinee Chotiphicharn ama a Naphak Tharanisorn con todo su corazón.",
     "pages": 133,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "GinJay"
     ],
@@ -2888,13 +2889,16 @@
     ],
     "edad": [],
     "pais_cultura": [],
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "TSOU",
-    "sagaNum": 1.5,
+    "sagaNum": 2.5,
     "source": "thais",
     "editions": [
       {
@@ -2910,13 +2914,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777227729226_fzy99",
@@ -57257,6 +57260,7 @@
     "synopsis": "La querida cantante de country Juliet Jacobs ha pasado casi una década construyendo su reputación. Desde su debut a los diecisiete años, ha tocado discos, giras y una imagen perfectamente elaborada.\n\nDarcy Kincaid es la estrella revelación de la industria. Audaz, magnética e imposible de ignorar, ahora es la obsesión de todos, y el objeto de la envidia de Juliet.\n\nIncluso antes de conocerse, su rivalidad mutua se vuelve rápidamente infame. Pero cuando Darcy y Juliet tienen que colaborar en persona, la tensión entre ellas estalla.\n\nSi no pueden mantener las manos alejadas la una de la otra, entonces tendrán que ponerse de acuerdo en dos cosas: mantenerlo casual y en secreto. Cualquier\n\ncosa más allá podría destruir sus carreras. ¿Lo único más peligroso que tener un encuentro clandestino con tu némesis? Desarrollar sentimientos reales por ella.\n\nLas medias verdades ocultas en las letras venden discos... pero la verdad completa podría arruinarlo todo.",
     "pages": 607,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -57281,6 +57285,9 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Queerofobia / LGTBfobia"
@@ -57294,13 +57301,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": true,
+    "canal_month": "2026",
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781858579279_67npr",
@@ -67016,6 +67022,199 @@
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Complicated Love",
+    "sagaNum": 1,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1790427503015_t89i9",
+    "title": "Reckless Hearts",
+    "authors": [
+      "Ruby Scott"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T1/images/I/71Uzi9gdhCL._SL1500_.jpg",
+    "synopsis": "“Ambas sabíamos lo que era”. Fue la mentira más grande que jamás contó.\n\nMargo Duran ha construido una vida que nadie le puede arrebatar, y la construyó a propósito, y podría explicarte exactamente cómo. Una casa llena de inquilinos que pagan su alquiler y no se meten en los asuntos ajenos. Un trabajo en una fundación de animales de Denver donde es muy buena con el dolor de los demás, pero no sirve para nada con el suyo propio.\n\nPregúntale sobre Oregón y te hará una broma.\n\nHace cuatro años, Margo hizo algo en el patio trasero de una casa en la costa de Oregón que jamás le había contado a nadie. El miércoles pasado, esa cosa entró al edificio y le estrechó la mano como si fuera una desconocida.\n\nNell Brown es más joven, más cálida y mucho más valiente que Margo, y ha conducido mil cien millas por un trabajo que no necesita. Tiene una pregunta que lleva cuatro años guardando. No va a hacerla, porque preguntar le revela a la otra persona dónde puede herirte.\n\nAsí que trabajan. Dos escritorios y seis pies de espacio, y un café a las once que ninguno de los dos explica.\n\nNinguno de los dos va a ser quien lo diga.\n\nUna de ellas tendrá que ceder primero.",
+    "pages": 312,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Directora de Operaciones",
+      "Trabajadora social veterinaria"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Slow Burn"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": [
+      "Reino Unido"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "The Healing Hearts",
+    "sagaNum": 5,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1790428210285_kunnt",
+    "title": "Haven",
+    "authors": [
+      "C.L. Smoke"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T1/images/I/91VAhOERqqL._SL1500_.jpg",
+    "synopsis": "Me llamo Aurora, pero no soy una damisela en apuros.\n\nFui testigo de los aspectos más oscuros de este mundo, pero mi hermana me salvó y me trajo de vuelta a casa con los Vipers.\n\nCinder siempre me salvó. Me trató como a la niña que rescató, no como a la mujer en la que luché por convertirme.\n\nPero una noche me llamó, y sus palabras me helaron la sangre.\n\n¿Quieres perseguir luciérnagas, Luciérnaga?\n\nEra nuestro código cuando éramos niños; significaba que yo tenía que esconderme mientras ella me protegía. Fue lo último que oí por teléfono antes de que sonara el disparo.\n\nLos Vipers querían creer que era nuestro enemigo, pero yo sabía la verdad…\n\nEl asesino de mi hermana era un monstruo de mi pasado, y ahora necesito recordar la vida que luché por olvidar.\n\nLa chica del pasado que enterré.\n\nY necesité ayuda de mujeres de las que nunca debí haberme enamorado:\n\nViuda, la mejor amiga de mi hermana. Mayor, intensa y la primera mujer que me rompió el corazón.\n\nVesper, la piromana con un corazón de oro. Mi protectora intrépida. Nuestra conexión es explosiva, y mi corazón es lo único que no quiere quemar.\n\nHades, hija de la enemiga de mi hermana. Una noche con ella pareció una eternidad. Es prohibida, pero perfecta. Hades es intensa y oculta secretos que podrían llevarnos a la perdición.\n\nEn este mundo, las princesas nunca sobrevivían, pero yo no era ninguna princesa.\n\nYo escribí mi propia historia, y esta luciérnaga estaba lista para incendiar el mundo.",
+    "pages": 554,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Thriller"
+    ],
+    "subgenres": [
+      "WhyChoose",
+      "Dark Romance",
+      "BDSM",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme",
+      "Butch"
+    ],
+    "characters": [
+      "Tatuadora",
+      "Doctora / Médica"
+    ],
+    "dinamicas": [],
+    "tropes": [
+      "WhyChoose",
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Jealousy Trope",
+      "Sex Toys / Juguetes Sexuales"
+    ],
+    "edad": [
+      "25–39",
+      "26",
+      "30"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [
+      "Abuso Infantil",
+      "Autolesión"
+    ],
+    "spicy": 5,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Vexxed Vipers",
+    "sagaNum": 1,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1790428793256_0i663",
+    "title": "The Last Telegram of Mrs Hudson",
+    "authors": [
+      "Mattea Orr"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T1/images/I/814NdudHIwL._SL1500_.jpg",
+    "synopsis": "La primera entrega de una nueva serie de misterio que reimagina a la madre de Sherlock Holmes y a su doncella, convertida en compañera de investigación.\n\n«Hay problemas que, sencillamente, merecen ser resueltos, señora Hudson».\n\nCon el corazón roto, viuda y sin un céntimo, Katherine Hudson nunca deseó convertirse en la doncella de la excéntrica Violet Holmes, madre de un precoz Sherlock de siete años. Para evitar que su querida familia acabe en el asilo de pobres, Hudson cambia su carrera en el servicio telegráfico por un trabajo como sirvienta, igual que aquel que le costó la vida a su padre. Sin embargo, pronto descubre que trabajar para Lady Holmes, recientemente viuda, exige mucho más que aprender los últimos peinados. En cambio, se ve envuelta en unas investigaciones de lo más escandalosas y poco propias de una dama.\n\nCon un talento especial para detectar mentiras y un corazón tan grande como su boca, Hudson desprecia todo lo que Lady Holmes representa, pero un chico del pueblo ha desaparecido y el tiempo apremia. Y cuando alguien falsifica la firma del difunto marido de Hudson y aparece un cadáver en la finca de los Holmes, la policía intenta culparla de todo.\n\nPara evitar la cárcel, salvar al chico desaparecido y proteger a su familia, Hudson tendrá que hacer caso omiso de los sentimientos que empieza a sentir por Lady Holmes y sobrevivir el tiempo suficiente para desentrañar el secreto por el que su padre podría haber dado la vida.",
+    "pages": 368,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Histórica",
+      "Romance",
+      "Misterio",
+      "Drama"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Telegrafista",
+      "Astrónoma"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 0,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "A Lady Holmes and Hudson Investigation",
     "sagaNum": 1,
     "source": "other",
     "editions": [],
