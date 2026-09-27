@@ -3170,19 +3170,55 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
 /* FASE 2.6.4.1 — panel personal en fila compacta e integrada (antes era una
    columna vertical aislada bajo la portada). Solo estructura visual:
    estrellas/chiles no interactivos (la lógica de voto sigue en el modal). */
-.bp-mine-row{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;padding:.55rem 0;margin-bottom:.7rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.bp-mine-block{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
-.bp-mine-label{font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* FASE 7.4 VISUAL — "Tu valoración" y "Tu spicy" como dos columnas del
+   mismo ancho, con la misma composición interna (label → texto → control →
+   botones) y los botones anclados abajo en ambas aunque el contenido de
+   arriba difiera un poco de altura. Solo presentación: ningún handler,
+   caché ni núcleo cambia aquí (ver _submitRatingCore/_submitSpicyCore etc,
+   intactos). Todo lo de aquí abajo está scopeado a BookPage; no se toca
+   .star, .star-btn, .spicy-chile-btn, .spicy-vote-btn, .vote-submit ni
+   .vote-delete directamente (son compartidas con el modal). */
+.bp-mine-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.2rem;row-gap:.5rem;align-items:stretch;padding:.65rem 0;margin-bottom:.7rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.bp-mine-block{display:flex;flex-direction:column;min-width:0}
+.bp-mine-label{font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
 .bp-mine-chiles{display:flex;gap:2px}
-.bp-mine-chile{font-size:15px;opacity:.28}
-.bp-mine-chile.on{opacity:1}
-/* FASE 7.4 — botones interactivos de spicy en BookPage, scopeados aquí.
-   Mismo tamaño (15px) que los .bp-mine-chile de solo lectura que sustituyen;
-   el ajuste conjunto de tamaño con Rating se hará en una fase posterior. */
-.bp-spicy-btn{background:transparent;border:none;padding:2px;margin:0;cursor:pointer;font-size:15px;line-height:1;opacity:.28;transition:opacity .12s;font-family:inherit}
-.bp-spicy-btn.selected{opacity:1}
+/* Chiles de solo lectura (usuario no conectado). Antes usaban opacity para
+   "apagar" los niveles no alcanzados, pero un emoji a color con opacity baja
+   sobre un fondo oscuro se mezcla hacia el negro en vez de verse "apagado"
+   (bug de los "chilis negros"). filter:grayscale+opacity da un gris visible
+   en vez de esa mancha oscura. */
+.bp-mine-chile{font-size:16px;filter:grayscale(1) opacity(45%)}
+.bp-mine-chile.on{filter:none}
+.bp-readonly-note{grid-column:1/-1;text-align:center;font-size:11.5px;color:var(--muted);font-style:italic;margin:.2rem 0 0}
+
+/* Cuerpo interactivo (usuario conectado): label ya va fuera, aquí solo el
+   texto + control + fila de botones, en columna y estirado para que
+   .bp-mine-btns pueda anclarse abajo con margin-top:auto. */
+.bp-rating-interactive,.bp-spicy-interactive{display:flex;flex-direction:column;flex:1;gap:.3rem}
+.bp-rating-interactive .vote-prompt,.bp-spicy-interactive .vote-prompt{margin:0;font-size:11px;line-height:1.3}
+.bp-mine-btns{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:auto;padding-top:.3rem}
+
+/* Estrellas de Rating en BookPage — mismo símbolo que el modal (.star-btn)
+   pero visualmente más pequeño aquí. Se sobreescribe con selector con #id
+   para ganar a .star-btn sin tocar esa clase (compartida con el modal). */
+#bpStarInput.bp-rating-stars{gap:.15rem}
+#bpStarInput .bp-rating-star{font-size:19px;padding:5px 4px;min-width:0;min-height:0}
+
+/* Botones spicy interactivos de BookPage. Igual que arriba: el problema de
+   los "chilis negros" era el mismo (opacity baja sobre fondo oscuro con
+   emoji a color); se sustituye por grayscale+opacity, que sí se ve como un
+   🌶 apagado en vez de una mancha negra, y color pleno al seleccionar. */
+.bp-spicy-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer;line-height:1;font-family:inherit}
+#bpSpicyInput.bp-spicy-input{gap:2px}
+#bpSpicyInput .bp-spicy-btn{font-size:19px;padding:4px 3px;filter:grayscale(1) opacity(45%);transition:filter .12s}
+#bpSpicyInput .bp-spicy-btn.selected{filter:none}
 .bp-spicy-btn:disabled{cursor:not-allowed}
-.bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin:0 0 0 auto}
+
+/* Botones "Actualizar/Guardar" y "Eliminar" más compactos que en el modal,
+   vía las clases extra bp-rating-*/bp-spicy-* (nunca tocando .vote-submit/
+   .vote-delete directamente, que el modal también usa). */
+.bp-rating-submit,.bp-spicy-submit{padding:5px 12px;font-size:11px}
+.bp-rating-delete,.bp-spicy-delete{padding:5px 10px;font-size:10.5px}
 
 .bp-section{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border)}
 .bp-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
@@ -3220,12 +3256,19 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
   .bp-cover{max-width:170px;margin:0 auto}
   .bp-content{align-items:center}
   .bp-saga-row,.bp-general-row{justify-content:center}
-  .bp-mine-row{justify-content:center;gap:1.2rem}
-  .bp-readonly-note{margin:.3rem auto 0}
+  .bp-mine-row{column-gap:.9rem}
+  .bp-mine-block{align-items:center;text-align:center}
+  .bp-mine-btns{justify-content:center}
+  .bp-readonly-note{margin:.3rem 0 0}
   .bp-actions{width:100%}
   .bp-ficha-box{display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem;width:100%;padding:.8rem 1rem}
   .bp-ficha-box .meta-item{border-right:none;text-align:center}
   .bp-sobre-grid{grid-template-columns:1fr}
+}
+@media (max-width:359px){
+  /* Salvaguarda: si dos columnas no cupieran con comodidad en una pantalla
+     muy estrecha, Rating y Spicy pasan a apilarse verticalmente. */
+  .bp-mine-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -5966,7 +6009,7 @@ function buildBpRatingHTML(){
   return `${label}<div class="bp-rating-interactive">
     <p class="vote-prompt">${prompt}</p>
     <div class="stars-input bp-rating-stars" id="bpStarInput">${starBtns}</div>
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+    <div class="bp-mine-btns">
       <button type="button" class="vote-submit bp-rating-submit" id="bpVoteBtn" onclick="submitVoteBP()" ${bpPendingStar?'':'disabled'}>${submitLabel}</button>
       ${deleteBtn}
     </div>
@@ -6086,7 +6129,7 @@ function buildBpSpicyHTML(){
   return `${label}<div class="bp-spicy-interactive">
     <p class="vote-prompt">${prompt}</p>
     <div class="bp-mine-chiles bp-spicy-input" id="bpSpicyInput">${btn0}${chileBtns}</div>
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+    <div class="bp-mine-btns">
       <button type="button" class="vote-submit bp-spicy-submit" id="bpSpicyVoteBtn" onclick="submitSpicyVoteBP()" ${bpPendingSpicy>=0?'':'disabled'}>${submitLabel}</button>
       ${deleteBtn}
     </div>
