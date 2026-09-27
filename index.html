@@ -4197,6 +4197,11 @@ const SPICY_UNKNOWN_LABEL = '? Nivel desconocido';
 const SPICY_UNKNOWN_ICON  = '❓';
 
 let allBooks=[], ratingsMap={}, myRatings={}, currentUser=null, activeBook=null;
+// FASE — FIX ESTADO DE LECTURA: flag real (no timing) que indica que
+// myReadingStatus ya refleja la verdad (con sesión: tras loadMyReadingStatus();
+// sin sesión: no hay nada que cargar, se marca true en cuanto se conoce que no hay usuario).
+let readingStatusLoaded=false;
+const _settingReadingStatus=new Set(); // lock por bookId contra clics dobles/llamadas concurrentes en setReadingStatus()
 let myReadingStatus={}; // bookId -> 'want' | 'read'
 let myReadingReadAt={}; // bookId -> fecha ISO de la lectura MÁS RECIENTE (derivado de myReadingLog, para compatibilidad)
 let myReadingLog={}; // bookId -> [{id, started_at, read_at}, ...] historial completo de lecturas, ordenado ascendente. read_at null = lectura en curso
@@ -4748,6 +4753,9 @@ function initChristmasTheme(){
 async function init(){
   const {data:{session}}=await sb.auth.getSession();
   if(session) currentUser=session.user;
+  // Sin sesión no hay reading_status que cargar: el estado (vacío) ya es
+  // el real, así que se puede dar por "cargado" desde ya.
+  if(!currentUser) readingStatusLoaded=true;
   renderAuthUI();
   await loadBooks();
   initHalloweenTheme();
@@ -7295,12 +7303,14 @@ function tryOpenFromHash(){
   // FASE 2.4 — #libro/ID pasa a abrir la ficha nueva (#bookPage) en vez del
   // #bookModal antiguo. openBook()/#bookModal se dejan intactos como código
   // (posible rollback) pero ya no son el destino de esta ruta.
-  if(allBooks.length){
+  if(allBooks.length && readingStatusLoaded){
     openBookPage(id, false);
   } else {
-    // Esperar a que los libros carguen
+    // Esperar a que los libros Y el estado de lectura real estén listos
+    // (readingStatusLoaded evita abrir BookPage con myReadingStatus todavía
+    // vacío mientras loadMyReadingStatus() sigue en curso).
     const waitFor = setInterval(()=>{
-      if(allBooks.length){
+      if(allBooks.length && readingStatusLoaded){
         clearInterval(waitFor);
         openBookPage(id, false);
       }
@@ -7407,11 +7417,11 @@ function tryOpenFichaBetaFromHash(){
   if(!location.hash.startsWith('#fichabeta/')) return;
   const id=location.hash.slice('#fichabeta/'.length);
   if(!id) return;
-  if(allBooks.length){
+  if(allBooks.length && readingStatusLoaded){
     openBookPage(id);
   } else {
     const waitFor=setInterval(()=>{
-      if(allBooks.length){ clearInterval(waitFor); openBookPage(id); }
+      if(allBooks.length && readingStatusLoaded){ clearInterval(waitFor); openBookPage(id); }
     },100);
     setTimeout(()=>clearInterval(waitFor),8000);
   }
@@ -8272,6 +8282,12 @@ async function loadMyReadingStatus(){
     const completed=myReadingLog[bookId].filter(e=>e.read_at);
     if(completed.length) myReadingReadAt[bookId]=completed[completed.length-1].read_at;
   });
+  readingStatusLoaded=true;
+  // Refresco de seguridad: si hay una ficha (#bookPage o modal) abierta, su
+  // primer render pudo haber ocurrido con myReadingStatus aún vacío
+  // (allBooks llega antes que reading_status). Se reutiliza _refreshShelfUI,
+  // la misma función que ya repinta los botones tras marcar/desmarcar estado.
+  if(activeBook) _refreshShelfUI(activeBook.id);
 }
 
 function getOpenLogEntry(bookId){
@@ -8280,6 +8296,13 @@ function getOpenLogEntry(bookId){
 
 async function setReadingStatus(bookId, newStatus){
   if(!currentUser){ openAuthModal(); return; }
+  // Protección contra doble clic rápido / llamadas concurrentes: mientras haya
+  // una llamada en curso para este bookId, se ignoran clics adicionales sobre
+  // el mismo libro (evita que un 2º clic lea el "current" desactualizado y
+  // desmarque lo que el 1er clic acaba de marcar).
+  if(_settingReadingStatus.has(bookId)) return;
+  _settingReadingStatus.add(bookId);
+  try{
   const current=myReadingStatus[bookId];
   const next=current===newStatus?null:newStatus; // clic en el activo = quitar
 
@@ -8324,6 +8347,9 @@ async function setReadingStatus(bookId, newStatus){
     showToast('Eliminado de tu estantería','success');
   }
   _refreshShelfUI(bookId);
+  } finally {
+    _settingReadingStatus.delete(bookId);
+  }
 }
 
 function _isCompleteDateStr(v){
