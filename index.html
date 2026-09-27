@@ -5642,7 +5642,7 @@ function buildSimilarBooksHTML(book){
    definitiva, cuando bookModal deje de coexistir con bookPage. ── */
 let _bpScrollBefore=0;
 function openBookPage(id){
-  const book=allBooks.find(b=>b.id===id);
+  const book=allBooks.find(b=>String(b.id)===String(id));
   if(!book){ console.warn('[bookPage] libro no encontrado para id:',id); return; }
   activeBook=book; // misma variable global que usa el sistema de modal existente
   _bpScrollBefore=window.scrollY;
