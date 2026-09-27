@@ -4296,7 +4296,7 @@ function pushState(addEntry){
     if(filters.valoracion) params.set('valoracion',filters.valoracion);
     if(filters.pages) params.set('pages',filters.pages);
     if(filters.leido) params.set('leido',filters.leido);
-    const url=params.toString()?'?'+params.toString():location.pathname;
+    const url=(params.toString()?'?'+params.toString():location.pathname) + location.hash;
     if(addEntry) history.pushState(null,'',url);
     else history.replaceState(null,'',url);
   }catch(e){}
