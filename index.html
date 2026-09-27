@@ -4438,7 +4438,7 @@ function hwPickRandom(arr,n){
 // Tarjeta de libro. En la ventana de la colección primero se cierra la ventana y luego se abre la ficha.
 function hwForbiddenCardHtml(b,inModal){
   const authorStr=(b.authors||[]).join(', ')||'—';
-  const go=inModal?`hwCloseCollection();openBook('${b.id}')`:`openBook('${b.id}')`;
+  const go=inModal?`hwCloseCollection();openBookPage('${b.id}')`:`openBookPage('${b.id}')`;
   return `<div class="hw-forbidden-card" onclick="${go}">
       ${hwForbiddenCoverHtml(b)}
       <div class="hw-forbidden-info">
@@ -4500,7 +4500,7 @@ function hwSurpriseMe(){
   result.innerHTML=`${cover}<div><div class="hw-oracle-tag">Tu lectura de esta noche</div><div class="hw-oracle-book-title">${escHtml(b.title)}</div><div class="hw-oracle-book-author">${escHtml(authorStr)}</div></div>`;
   result.style.display='flex';
   result.style.cursor='pointer';
-  result.onclick=()=>openBook(b.id);
+  result.onclick=()=>openBookPage(b.id);
 }
 
 function hwApplyTextOverrides(){
@@ -4650,7 +4650,7 @@ function xmPickRandom(arr,n){
 
 function xmForbiddenCardHtml(b,inModal){
   const authorStr=(b.authors||[]).join(', ')||'—';
-  const go=inModal?`xmCloseCollection();openBook('${b.id}')`:`openBook('${b.id}')`;
+  const go=inModal?`xmCloseCollection();openBookPage('${b.id}')`:`openBookPage('${b.id}')`;
   return `<div class="xm-collection-card" onclick="${go}">
       ${xmForbiddenCoverHtml(b)}
       <div class="xm-collection-info">
@@ -4710,7 +4710,7 @@ function xmSurpriseMe(){
   result.innerHTML=`${cover}<div><div class="xm-gift-tag">Tu regalo de esta noche</div><div class="xm-gift-book-title">${escHtml(b.title)}</div><div class="xm-gift-book-author">${escHtml(authorStr)}</div></div>`;
   result.style.display='flex';
   result.style.cursor='pointer';
-  result.onclick=()=>openBook(b.id);
+  result.onclick=()=>openBookPage(b.id);
 }
 
 function xmApplyTextOverrides(){
@@ -5384,7 +5384,7 @@ function renderGrid(books, total, totalPages){
     const cardSagaNum=b.sagaNum!=null?' #'+b.sagaNum:'';
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${escHtml(cardSagaName)}${cardSagaNum}</div>`:'';
     const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
-    return `<div class="book-card" onclick="openBook('${b.id}')">
+    return `<div class="book-card" onclick="openBookPage('${b.id}')">
       <div class="book-cover-wrap">${spicyBadge}${coverEl}${avgBadge}</div>
       <div class="book-card-body">
         <div class="book-title">${escHtml(b.title)}</div>
@@ -5395,7 +5395,7 @@ function renderGrid(books, total, totalPages){
           ${currentUser
             ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
             : `<span class="no-ratings" style="cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒 Regístrate</span>`}
-          <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBook('${b.id}')">${voteLabel}</button>
+          <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBookPage('${b.id}')">${voteLabel}</button>
         </div>
         ${currentUser?buildCardShelfBtnsHTML(b.id):''}
       </div>
@@ -5613,7 +5613,7 @@ function buildSimilarBooksHTML(book){
     const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
     const cov=sb.cover?'<img src="'+sb.cover+'" alt="'+sb.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=similar-item-ph>📖</div>\'">':'<div class="similar-item-ph">📖</div>';
     const auth=(sb.authors||[]).join(', ')||'—';
-    return '<div class="similar-item" onclick="openBook(\''+sb.id+'\')"><div class="similar-item-cover">'+cov+ab+'</div><div class="similar-item-body"><div class="similar-item-title">'+sb.title+'</div><div class="similar-item-author">'+auth+'</div></div></div>';
+    return '<div class="similar-item" onclick="openBookPage(\''+sb.id+'\')"><div class="similar-item-cover">'+cov+ab+'</div><div class="similar-item-body"><div class="similar-item-title">'+sb.title+'</div><div class="similar-item-author">'+auth+'</div></div></div>';
   }).join('');
   return '<div class="similar-section"><div class="similar-title">💕 Si te gustó este libro…</div><div class="similar-items">'+cards+'</div></div>';
 }
@@ -5641,7 +5641,7 @@ function buildSimilarBooksHTML(book){
    tocado esas funciones — se resolverá en la fase de migración
    definitiva, cuando bookModal deje de coexistir con bookPage. ── */
 let _bpScrollBefore=0;
-function openBookPage(id){
+function openBookPage(id, pushState=true){
   const book=allBooks.find(b=>String(b.id)===String(id));
   if(!book){ console.warn('[bookPage] libro no encontrado para id:',id); return; }
   activeBook=book; // misma variable global que usa el sistema de modal existente
@@ -5657,9 +5657,15 @@ function openBookPage(id){
   renderBookPage(book);
   document.getElementById('bookPage').classList.add('active');
   window.scrollTo({top:0});
+  // FASE 2.4 — #libro/ID es ahora la ruta oficial de #bookPage (antes solo la usaba
+  // #bookModal vía openBook()). Mismo patrón de historial que openBook() usaba.
+  if(pushState) history.pushState({bookId:id},'',`#libro/${id}`);
 }
 function closeBookPage(){
   document.getElementById('bookPage').classList.remove('active');
+  // Limpia el hash #libro/ID igual que closeBookModal() hacía, para que la URL
+  // no se quede apuntando a una ficha que ya no se está mostrando.
+  if(location.hash.startsWith('#libro/')) history.pushState({},'',location.pathname+location.search);
   switchTab(activeTab, true); // restaura los hijos de <main> igual que las demás vistas especiales
   window.scrollTo(0,_bpScrollBefore);
 }
@@ -5803,7 +5809,7 @@ function renderBookPage(book){
     <p class="bp-readonly-note">Vista previa — añade o quita tags desde la ficha actual por ahora.</p>
   </div>`:'';
 
-  // RECOMENDACIONES (reutiliza buildSimilarBooksHTML tal cual, sigue abriendo openBook())
+  // RECOMENDACIONES (reutiliza buildSimilarBooksHTML tal cual; FASE 2.4: ahora abre openBookPage())
   const similarHtml=buildSimilarBooksHTML(b);
   const recomendaciones=similarHtml?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${similarHtml}</div>`:'';
 
@@ -5981,7 +5987,7 @@ function renderSagaMap(sagaName,books){
 }
 function openSagaBook(id){
   closeSagaModal();
-  openBook(id);
+  openBookPage(id);
 }
 function filterByAuthorFromModal(author){
   closeBookModal();
@@ -6713,7 +6719,7 @@ function renderThaiClub(){
           const r=ratingsMap[b.id];
           const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${r.avg.toFixed(1)}</span></div>`:'';
           const authorStr=(b.authors||[]).join(', ')||'—';
-          return `<div class="safi-item" onclick="openBook('${b.id}')">
+          return `<div class="safi-item" onclick="openBookPage('${b.id}')">
             <div class="safi-item-cover">
               ${b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=safi-item-ph>📖</div>'">`:`<div class="safi-item-ph">📖</div>`}
               ${avgBadge}
@@ -6754,7 +6760,7 @@ function renderSafi(){
           const r=ratingsMap[b.id];
           const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${r.avg.toFixed(1)}</span></div>`:'';
           const authorStr=(b.authors||[]).join(', ')||'—';
-          return `<div class="safi-item" onclick="openBook('${b.id}')">
+          return `<div class="safi-item" onclick="openBookPage('${b.id}')">
             <div class="safi-item-cover">
               ${b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=safi-item-ph>📖</div>'">`:`<div class="safi-item-ph">📖</div>`}
               ${avgBadge}
@@ -6790,7 +6796,7 @@ function renderCanal(){
       const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=canal-item-ph>📖</div>\'">'+'':'<div class="canal-item-ph">📖</div>';
       const auth=(b.authors||[]).join(', ')||'—';
       const hideCls=i>=CANAL_LIMIT?' rec-item-hidden':'';
-      itemsHtml+='<div class="canal-item'+hideCls+'" onclick="openBook(\''+b.id+'\')"><div class="canal-item-cover">'+cov+ab+'</div><div class="canal-item-body"><div class="canal-item-title">'+b.title+'</div><div class="canal-item-author">'+auth+'</div></div></div>';
+      itemsHtml+='<div class="canal-item'+hideCls+'" onclick="openBookPage(\''+b.id+'\')"><div class="canal-item-cover">'+cov+ab+'</div><div class="canal-item-body"><div class="canal-item-title">'+b.title+'</div><div class="canal-item-author">'+auth+'</div></div></div>';
     });
     const verMas=items.length>CANAL_LIMIT?'<div class="rec-ver-mas-wrap"><button class="rec-ver-mas-btn" onclick="recVerMas(\''+gid+'\',this)">Ver más ('+( items.length-CANAL_LIMIT)+' libros)</button></div>':'';
     html+='<div class="canal-month-group" id="'+gid+'"><div class="canal-month-head"><span class="canal-month-name">'+month+'</span><span class="canal-month-count">'+items.length+' libro'+(items.length!==1?'s':'')+'</span></div><div class="canal-items">'+itemsHtml+'</div>'+verMas+'</div>';
@@ -6848,7 +6854,7 @@ function renderMyrecCatDetail(c,hero,catMap,cat){
     const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
     const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=myrec-item-ph>📖</div>\'">'+'':'<div class="myrec-item-ph">📖</div>';
     const auth=(b.authors||[]).join(', ')||'—';
-    itemsHtml+='<div class="myrec-item" onclick="openBook(\''+b.id+'\')"><div class="myrec-item-cover">'+cov+ab+'</div><div class="myrec-item-body"><div class="myrec-item-title">'+b.title+'</div><div class="myrec-item-author">'+auth+'</div></div></div>';
+    itemsHtml+='<div class="myrec-item" onclick="openBookPage(\''+b.id+'\')"><div class="myrec-item-cover">'+cov+ab+'</div><div class="myrec-item-body"><div class="myrec-item-title">'+b.title+'</div><div class="myrec-item-author">'+auth+'</div></div></div>';
   });
   const head='<div class="myrec-detail-head"><button class="myrec-back-btn" onclick="closeMyrecCat()">← Todas las categorías</button><div class="myrec-detail-title"><span class="myrec-section-name">'+cat+'</span><span class="myrec-section-count">'+items.length+' libro'+(items.length!==1?'s':'')+'</span></div></div>';
   c.innerHTML=hero+head+'<div class="myrec-items">'+itemsHtml+'</div>';
@@ -6955,7 +6961,7 @@ function renderTop10(){
       ${coverEl(b,'t10-cover')}
       <div class="t10-body">
         <div class="t10-pos">🥇 Primer puesto</div>
-        <div class="t10-title" onclick="openBook('${b.id}')">${escHtml(b.title)}</div>
+        <div class="t10-title" onclick="openBookPage('${b.id}')">${escHtml(b.title)}</div>
         <div class="t10-author">${escHtml((b.authors||[]).join(', ')||'—')}</div>
         <div class="t10-score">
           <span class="t10-avg">${r.avg.toFixed(1)}</span>
@@ -6976,7 +6982,7 @@ function renderTop10(){
       const pos=i+2,r=ratingsMap[b.id];
       const medal=pos===2?'🥈':'🥉';
       const posClass=pos===2?'pos2':'pos3';
-      html+=`<div class="top10-silver" data-pos="${pos}" onclick="openBook('${b.id}')">
+      html+=`<div class="top10-silver" data-pos="${pos}" onclick="openBookPage('${b.id}')">
         ${coverEl(b,'t10-cover')}
         <div class="t10-body">
           <div class="t10-pos ${posClass}">${medal} Puesto ${pos}</div>
@@ -7001,7 +7007,7 @@ function renderTop10(){
     html+=`<div class="top10-rest">`;
     slice.forEach((b,gi)=>{
       const pos=idxs[gi]+1,r=ratingsMap[b.id];
-      html+=`<div class="top10-row" onclick="openBook('${b.id}')">
+      html+=`<div class="top10-row" onclick="openBookPage('${b.id}')">
         <div class="t10-num">${pos}</div>
         ${coverEl(b,'t10-cover')}
         <div class="t10-info">
@@ -7273,14 +7279,17 @@ function tryOpenFromHash(){
   if(!hash.startsWith('#libro/')) return;
   const id = hash.slice(7);
   if(!id) return;
+  // FASE 2.4 — #libro/ID pasa a abrir la ficha nueva (#bookPage) en vez del
+  // #bookModal antiguo. openBook()/#bookModal se dejan intactos como código
+  // (posible rollback) pero ya no son el destino de esta ruta.
   if(allBooks.length){
-    openBook(id, false);
+    openBookPage(id, false);
   } else {
     // Esperar a que los libros carguen
     const waitFor = setInterval(()=>{
       if(allBooks.length){
         clearInterval(waitFor);
-        openBook(id, false);
+        openBookPage(id, false);
       }
     },100);
     setTimeout(()=>clearInterval(waitFor),8000);
@@ -7290,12 +7299,15 @@ function tryOpenFromHash(){
 window.addEventListener('popstate', ()=>{
   if(location.hash.startsWith('#libro/')){
     const id = location.hash.slice(7);
-    openBook(id, false);
+    openBookPage(id, false);
     return;
   }
   // Close book modal if open
   closeAnimatedModalBg(document.getElementById('bookModal'));
   document.body.style.overflow='';
+  // FASE 2.4 — si veníamos de #libro/ID (#bookPage activa), quitarla antes de
+  // restaurar la vista anterior; si no estaba activa, esto no hace nada.
+  document.getElementById('bookPage')?.classList.remove('active');
   window.scrollTo(0,_scrollBeforeModal);
   // Restaurar (o cerrar) las vistas especiales (Logros/Estadísticas/Cartas) según la URL
   const viewParam=new URLSearchParams(location.search).get('view');
@@ -8214,7 +8226,7 @@ function ruletaShowResult(book) {
 
 function ruletaOpenBook() {
   if (!ruletaSelectedBook) return;
-  openBook(ruletaSelectedBook.id);
+  openBookPage(ruletaSelectedBook.id);
 }
 
 /* ══════════════════════════════════
@@ -8758,7 +8770,7 @@ function _renderShelfBooks(){
     html=`<div class="shelf-grid">${pageBooks.map(b=>{
       const cov=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-book-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
-      return `<div class="shelf-book" onclick="openBook('${b.id}')">
+      return `<div class="shelf-book" onclick="openBookPage('${b.id}')">
         <div class="shelf-book-cover">${cov}</div>
         <div class="shelf-book-body">
           <div class="shelf-book-title">${escHtml(b.title)}</div>
@@ -8784,7 +8796,7 @@ function _renderShelfBooks(){
           const vecesStr=n>1?` · ${n} veces`:'';
           return `<span style="font-size:11px;color:${ra?'var(--teal)':'var(--gold)'}">✓ Leído${dateStr?' · '+dateStr:' · falta fecha'}${vecesStr}</span>`;
         })();
-      return `<div class="shelf-list-item" onclick="openBook('${b.id}')">
+      return `<div class="shelf-list-item" onclick="openBookPage('${b.id}')">
         ${cov}
         <div class="shelf-list-info">
           <div class="shelf-list-title">${escHtml(b.title)}</div>
@@ -8890,7 +8902,7 @@ function renderReadingCalendar(){
         ${active.map(p=>{
           const rangeStr=`${new Date(p.start+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})} → ${p.ongoing?'ahora':new Date(p.end+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})}`;
           const cov=p.cover?`<img class="cal-panel-cover" src="${p.cover}" alt="" loading="lazy" decoding="async">`:`<div class="cal-panel-cover" style="display:flex;align-items:center;justify-content:center">📖</div>`;
-          return `<div class="cal-panel-book" onclick="openBook('${p.bookId}')">
+          return `<div class="cal-panel-book" onclick="openBookPage('${p.bookId}')">
             ${cov}
             <div class="cal-panel-info">
               <div class="cal-panel-title">${p.title}</div>
