@@ -3144,65 +3144,81 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
    body.home-active ya usa para ocultar estos dos elementos. */
 body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-wrap{max-width:1040px;margin:0 auto}
-.bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.4rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
+.bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.2rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
 .bp-back:hover{color:var(--accent2)}
-/* FASE 2.6.4 — grid-template-areas en vez de dos simples columnas: así el
-   panel personal ("tu valoración/spicy") puede quedar pegado a la portada en
-   desktop y, a la vez, moverse a otro punto del flujo en móvil (ver sección
-   RESPONSIVE del brief: en móvil va después del estado de lectura, no debajo
-   de la portada) sin duplicar marcado ni depender del orden del DOM. */
-.bp-header{display:grid;grid-template-columns:200px 1fr;grid-template-areas:"cover info" "mine actions";gap:1.3rem 2rem;margin-bottom:1.6rem;align-items:start}
-.bp-cover{grid-area:cover;width:100%;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;background:var(--surface2);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+/* FASE 2.6.4.1 — la cabecera vuelve a ser DOS columnas simples (portada +
+   contenido), sin grid-template-areas. El panel personal ("tu valoración/
+   spicy") ya no vive en su propia área bajo la portada: ahora es un bloque
+   más dentro de .bp-content, en fila compacta entre la valoración general y
+   el estado de lectura, así toda la cabecera se lee como una composición y
+   no queda una columna vacía debajo de la portada. */
+.bp-header{display:grid;grid-template-columns:190px 1fr;gap:1.5rem;margin-bottom:1.4rem;align-items:start}
+.bp-cover{width:100%;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;background:var(--surface2);box-shadow:0 20px 50px rgba(0,0,0,.45)}
 .bp-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .bp-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
-.bp-info-main{grid-area:info;display:flex;flex-direction:column;justify-content:center;min-width:0}
-.bp-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;line-height:1.12;margin-bottom:.4rem;overflow-wrap:anywhere}
-.bp-author{color:var(--muted);font-size:14.5px;margin-bottom:.5rem}
-.bp-saga-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:13px;color:var(--accent2);margin-bottom:.6rem}
+.bp-content{display:flex;flex-direction:column;min-width:0}
+.bp-title{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.5rem);font-weight:600;line-height:1.1;margin-bottom:.3rem;overflow-wrap:anywhere}
+.bp-author{color:var(--muted);font-size:14.5px;margin-bottom:.3rem}
+.bp-saga-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:13px;color:var(--accent2);margin-bottom:.4rem}
 /* Valoración + spicy GENERALES (comunidad) — junto al título, distinto del
    panel personal ("tu valoración/spicy") de abajo. */
-.bp-general-row{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;margin-bottom:.7rem}
+.bp-general-row{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;margin-bottom:.6rem}
 .bp-mini-rating{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--muted)}
-.bp-actions{grid-area:actions}
-.bp-actions .shelf-btns{margin:.3rem 0 0}
+.bp-actions .shelf-btns{margin:0}
 .bp-actions .shelf-btn{flex:0 1 auto;padding:7px 13px}
 
-/* FASE 2.6.4 — panel personal "tu valoración / tu spicy". Solo estructura
-   visual por ahora: estrellas/chiles no interactivos (ver nota al inicio del
-   bloque de renderBookPage sobre por qué la lógica de voto sigue en el modal). */
-.bp-mine{grid-area:mine;display:flex;flex-direction:column;gap:.6rem}
-.bp-mine-block{display:flex;flex-direction:column;gap:.25rem}
+/* FASE 2.6.4.1 — panel personal en fila compacta e integrada (antes era una
+   columna vertical aislada bajo la portada). Solo estructura visual:
+   estrellas/chiles no interactivos (la lógica de voto sigue en el modal). */
+.bp-mine-row{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;padding:.55rem 0;margin-bottom:.7rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.bp-mine-block{display:flex;align-items:center;gap:.55rem}
 .bp-mine-label{font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .bp-mine-chiles{display:flex;gap:2px}
 .bp-mine-chile{font-size:15px;opacity:.28}
 .bp-mine-chile.on{opacity:1}
+.bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin:0 0 0 auto}
 
-.bp-section{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.bp-section{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border)}
 .bp-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.bp-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
-.bp-section-title-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.8rem}
+.bp-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.bp-section-title-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.6rem}
 .bp-section-title-row .bp-section-title{margin-bottom:0}
 .bp-add-btn{background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;padding:4px 11px;border-radius:20px;cursor:pointer;transition:all .18s;white-space:nowrap}
 .bp-add-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
-/* Ficha técnica: 4 columnas (Año/Páginas/País/Ship) en vez de las 2 del modal */
-.bp-section .modal-meta-grid{grid-template-columns:repeat(4,1fr);gap:.7rem 1rem}
+
+/* FASE 2.6.4.1 — grupos internos de una misma bp-section (géneros +
+   subgéneros + ficha técnica; o conseguir + recomendaciones): gap moderado
+   entre ellos, SIN divisor propio — el divisor grande de la sección ya
+   marca el final del grupo. Antes cada uno era su propia bp-section con
+   borde, lo que multiplicaba las líneas divisorias. */
+.bp-class-block{margin-bottom:.7rem}
+.bp-class-block:last-child{margin-bottom:0}
+.bp-class-block .modal-tags,.bp-class-block .modal-meta-grid{margin-bottom:0}
+
+/* Ficha técnica en contenedor compacto (no a todo el ancho de la página) */
+.bp-ficha-box{display:inline-grid;grid-template-columns:repeat(4,1fr);gap:.5rem 0;padding:.7rem 0;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);max-width:100%}
+.bp-ficha-box .meta-item{padding:0 1.1rem;border-right:1px solid var(--border)}
+.bp-ficha-box .meta-item:last-child{border-right:none}
+
 /* "Sobre este libro" en grid de categorías, no como nube única de chips */
-.bp-sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.6rem}
+.bp-sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1.4rem}
 .bp-group{min-width:0}
-.bp-group-label{font-size:10.5px;color:var(--muted);margin-bottom:.35rem;letter-spacing:.06em}
-.bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:.5rem}
+.bp-group-label{font-size:10.5px;color:var(--muted);margin-bottom:.3rem;letter-spacing:.06em}
 
 @media (max-width:899px){
-  .bp-header{grid-template-columns:150px 1fr;gap:1.1rem 1.4rem}
+  .bp-header{grid-template-columns:160px 1fr;gap:1.2rem}
 }
 @media (max-width:639px){
   #bookPage{padding:1.25rem 1rem 4rem}
-  .bp-header{grid-template-columns:1fr;grid-template-areas:"cover" "info" "actions" "mine";text-align:center;gap:.9rem}
-  .bp-cover{max-width:180px;margin:0 auto}
-  .bp-info-main{align-items:center}
+  .bp-header{grid-template-columns:1fr;text-align:center;gap:.8rem}
+  .bp-cover{max-width:170px;margin:0 auto}
+  .bp-content{align-items:center}
   .bp-saga-row,.bp-general-row{justify-content:center}
-  .bp-mine{align-items:center}
-  .bp-section .modal-meta-grid{grid-template-columns:1fr 1fr}
+  .bp-mine-row{justify-content:center;gap:1.2rem}
+  .bp-readonly-note{margin:.3rem auto 0}
+  .bp-actions{width:100%}
+  .bp-ficha-box{display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem;width:100%;padding:.8rem 1rem}
+  .bp-ficha-box .meta-item{border-right:none;text-align:center}
   .bp-sobre-grid{grid-template-columns:1fr}
 }
 </style>
@@ -5771,26 +5787,25 @@ function renderBookPage(book){
     :'';
   const sagaRow=sagaName?`<div class="bp-saga-row"><span>${escHtml(sagaName)}${sagaNumStr}</span>${sagaMapBtn}</div>`:'';
 
-  // TU VALORACIÓN / TU SPICY — panel personal (FASE 2.6.4). Solo estructura
-  // visual: sin lógica de voto todavía (ver nota al inicio del bloque sobre
-  // por qué los controles interactivos siguen acoplados al modal).
-  const miPanel=`<div class="bp-mine">
+  // TU VALORACIÓN / TU SPICY — panel personal (FASE 2.6.4, refinado en
+  // 2.6.4.1). Solo estructura visual: sin lógica de voto todavía (ver nota
+  // al inicio del bloque sobre por qué los controles interactivos siguen
+  // acoplados al modal). Ahora es una fila compacta, no una columna aparte.
+  const miPanel=`<div class="bp-mine-row">
     <div class="bp-mine-block">
-      <div class="bp-mine-label">Tu valoración</div>
+      <span class="bp-mine-label">Tu valoración</span>
       <div class="avg-stars-row">${starsRow(myScore)}</div>
     </div>
     <div class="bp-mine-block">
-      <div class="bp-mine-label">Tu spicy</div>
+      <span class="bp-mine-label">Tu spicy</span>
       <div class="bp-mine-chiles">${chileRow(myChileVal)}</div>
     </div>
     ${!currentUser?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar.</p>`:''}
   </div>`;
 
-  // GÉNEROS / SUBGÉNEROS — secciones propias (antes iban en una fila de chips mixta)
+  // GÉNEROS / SUBGÉNEROS
   const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
   const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre">${s}</span>`).join('');
-  const generos=genreTags?`<div class="bp-section"><div class="bp-section-title">Géneros</div><div class="modal-tags">${genreTags}</div></div>`:'';
-  const subgeneros=subgenreTags?`<div class="bp-section"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:'';
 
   // FICHA TÉCNICA — Año, Páginas, País de origen y Ship (FASE 2.6.4: Ship
   // pasa a mostrarse exclusivamente aquí, ya no en "Sobre este libro").
@@ -5801,7 +5816,17 @@ function renderBookPage(book){
     b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:'',
     shipVal?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${escHtml(shipVal)}</span></div>`:''
   ].filter(Boolean).join('');
-  const fichaTecnica=metaItems?`<div class="bp-section"><div class="bp-section-title">Ficha técnica</div><div class="modal-meta-grid">${metaItems}</div></div>`:'';
+
+  // FASE 2.6.4.1 — Géneros + Subgéneros + Ficha técnica ahora comparten UNA
+  // sola bp-section ("clasificación/ficha" del brief) en vez de tres
+  // secciones con divisor propio cada una; internamente son bp-class-block
+  // con un gap moderado, sin línea entre ellos.
+  const clasBlocks=[
+    genreTags?`<div class="bp-class-block"><div class="bp-section-title">Géneros</div><div class="modal-tags">${genreTags}</div></div>`:'',
+    subgenreTags?`<div class="bp-class-block"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:'',
+    metaItems?`<div class="bp-class-block"><div class="bp-section-title">Ficha técnica</div><div class="modal-meta-grid bp-ficha-box">${metaItems}</div></div>`:''
+  ].filter(Boolean).join('');
+  const clasificacionFicha=clasBlocks?`<div class="bp-section">${clasBlocks}</div>`:'';
 
   // SINOPSIS
   const sinopsis=b.synopsis?(()=>{
@@ -5854,32 +5879,36 @@ function renderBookPage(book){
       <span class="buy-lang">${e.lang}</span><span class="buy-store">${e.store}</span>
     </a>`).join(''):'';
   const wattpadLink=b.wattpad?`<a class="wattpad-link" href="${b.wattpad}" target="_blank" rel="noopener"><span class="wattpad-icon">📙</span><span>Leer gratis en Wattpad</span><span class="buy-arrow">↗</span></a>`:'';
-  const dondeConseguirlo=(buyLinks||wattpadLink)?`<div class="bp-section"><div class="bp-section-title">Dónde conseguirlo</div>${buyLinks?`<div class="buy-links">${buyLinks}</div>`:''}${wattpadLink}</div>`:'';
 
   // RECOMENDACIONES (reutiliza buildSimilarBooksHTML tal cual; FASE 2.4: ahora abre openBookPage())
   const similarHtml=buildSimilarBooksHTML(b);
-  const recomendaciones=similarHtml?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${similarHtml}</div>`:'';
+
+  // FASE 2.6.4.1 — "Dónde conseguirlo" + "Recomendaciones" comparten la
+  // última bp-section (grupo "conseguir/recomendaciones" del brief), sin
+  // divisor entre ambos bloques ya que es la sección final de la página.
+  const conseguirBlocks=[
+    (buyLinks||wattpadLink)?`<div class="bp-class-block"><div class="bp-section-title">Dónde conseguirlo</div>${buyLinks?`<div class="buy-links">${buyLinks}</div>`:''}${wattpadLink}</div>`:'',
+    similarHtml?`<div class="bp-class-block">${similarHtml}</div>`:''
+  ].filter(Boolean).join('');
+  const conseguirRecomendaciones=conseguirBlocks?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${conseguirBlocks}</div>`:'';
 
   document.getElementById('bpWrap').innerHTML=`
     <button class="bp-back" onclick="closeBookPage()">← Volver al catálogo</button>
     <div class="bp-header">
       <div class="bp-cover">${coverEl}</div>
-      <div class="bp-info-main">
+      <div class="bp-content">
         <h1 class="bp-title">${escHtml(b.title)}</h1>
         <p class="bp-author">por ${authorStr}</p>
         ${sagaRow}
         ${generalRow}
+        ${miPanel}
+        <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
       </div>
-      <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
-      ${miPanel}
     </div>
-    ${generos}
-    ${subgeneros}
-    ${fichaTecnica}
+    ${clasificacionFicha}
     ${sinopsis}
     ${sobreEsteLibro}
-    ${dondeConseguirlo}
-    ${recomendaciones}
+    ${conseguirRecomendaciones}
   `;
 }
 
