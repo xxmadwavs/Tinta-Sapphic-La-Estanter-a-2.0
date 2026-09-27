@@ -3137,6 +3137,12 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
    ══════════════════════════════════════════════════════════════ */
 #bookPage{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
 #bookPage.active{display:block}
+/* FASE 2.5 — aislamiento real de la ficha: cuando #bookPage está activa, .hero
+   (cabecera "Nuestra estantería" + contadores) y .main (barra de tabs + catálogo)
+   son HERMANOS de #bookPage en el DOM, no hijos de #homeView/#shelfView, así que
+   nunca los ocultaban las vistas .active existentes. Mismo patrón que
+   body.home-active ya usa para ocultar estos dos elementos. */
+body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-wrap{max-width:1040px;margin:0 auto}
 .bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
 .bp-back:hover{color:var(--accent2)}
@@ -5654,6 +5660,10 @@ function openBookPage(id, pushState=true){
   document.getElementById('statsView')?.classList.remove('active');
   document.getElementById('cartasView')?.classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
+  // FASE 2.5 — .hero y .main son hermanos de #bookPage (no hijos de las vistas
+  // .active de arriba), así que necesitan su propio interruptor: ver regla CSS
+  // body.bp-active.
+  document.body.classList.add('bp-active');
   renderBookPage(book);
   document.getElementById('bookPage').classList.add('active');
   window.scrollTo({top:0});
@@ -5663,6 +5673,7 @@ function openBookPage(id, pushState=true){
 }
 function closeBookPage(){
   document.getElementById('bookPage').classList.remove('active');
+  document.body.classList.remove('bp-active'); // restaura .hero/.main (ver regla CSS body.bp-active)
   // Limpia el hash #libro/ID igual que closeBookModal() hacía, para que la URL
   // no se quede apuntando a una ficha que ya no se está mostrando.
   if(location.hash.startsWith('#libro/')) history.pushState({},'',location.pathname+location.search);
@@ -6492,6 +6503,8 @@ function closeAllSpecialViews(){
   document.getElementById('logrosView')?.classList.remove('active');
   document.getElementById('statsView')?.classList.remove('active');
   document.getElementById('cartasView')?.classList.remove('active');
+  document.getElementById('bookPage')?.classList.remove('active');
+  document.body.classList.remove('bp-active'); // FASE 2.5 — restaura .hero/.main si veníamos de una ficha
 }
 
 function switchTab(tab, silent){
@@ -7308,6 +7321,7 @@ window.addEventListener('popstate', ()=>{
   // FASE 2.4 — si veníamos de #libro/ID (#bookPage activa), quitarla antes de
   // restaurar la vista anterior; si no estaba activa, esto no hace nada.
   document.getElementById('bookPage')?.classList.remove('active');
+  document.body.classList.remove('bp-active'); // FASE 2.5 — restaura .hero/.main
   window.scrollTo(0,_scrollBeforeModal);
   // Restaurar (o cerrar) las vistas especiales (Logros/Estadísticas/Cartas) según la URL
   const viewParam=new URLSearchParams(location.search).get('view');
