@@ -8490,21 +8490,32 @@ function normalizePartialDate(parts){
 
 async function setLogStartDate(bookId, entryId, dateValue){
   if(!currentUser || !dateValue) return;
-  if(!_isCompleteDateStr(dateValue)) return; // año incompleto todavía, esperamos a que termine de escribir
-  const isoDate=new Date(dateValue+'T09:00:00').toISOString();
-  // FASE 2.6.5A: dateValue viene de _isCompleteDateStr() (YYYY-MM-DD completo),
-  // así que toda fecha NUEVA guardada por esta vía es precision='day'. Los registros
-  // antiguos que no pasan por aquí conservan su started_precision NULL sin tocar.
+  let isoDate, precision;
+  if(dateValue && typeof dateValue==='object'){
+    // FASE 2.6.5A — PASO 5: dateValue es {year}|{year,month}|{year,month,day}
+    // procedente de la nueva interfaz de fecha parcial. Se reutiliza
+    // normalizePartialDate() tal cual, sin duplicar su lógica de validación.
+    const norm=normalizePartialDate(dateValue);
+    if(!norm){ showToast('Fecha no válida 📅','error'); return; }
+    isoDate=norm.timestamp; precision=norm.precision;
+  } else {
+    if(!_isCompleteDateStr(dateValue)) return; // año incompleto todavía, esperamos a que termine de escribir
+    isoDate=new Date(dateValue+'T09:00:00').toISOString();
+    // FASE 2.6.5A: dateValue viene de _isCompleteDateStr() (YYYY-MM-DD completo),
+    // así que toda fecha NUEVA guardada por esta vía es precision='day'. Los registros
+    // antiguos que no pasan por aquí conservan su started_precision NULL sin tocar.
+    precision='day';
+  }
   const log=myReadingLog[bookId]||[];
   let entry=entryId?log.find(e=>e.id===entryId):getOpenLogEntry(bookId);
   if(entry){
-    const {error}=await sb.from('reading_log').update({started_at:isoDate,started_precision:'day'}).eq('id',entry.id).eq('user_id',currentUser.id);
+    const {error}=await sb.from('reading_log').update({started_at:isoDate,started_precision:precision}).eq('id',entry.id).eq('user_id',currentUser.id);
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     entry.started_at=isoDate;
-    entry.started_precision='day';
+    entry.started_precision=precision;
   } else {
     const {data,error}=await sb.from('reading_log')
-      .insert({user_id:currentUser.id, book_id:bookId, started_at:isoDate, started_precision:'day'})
+      .insert({user_id:currentUser.id, book_id:bookId, started_at:isoDate, started_precision:precision})
       .select('id,started_at,read_at,started_precision,read_precision').single();
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
@@ -8516,26 +8527,44 @@ async function setLogStartDate(bookId, entryId, dateValue){
 
 async function addReadLogEntry(bookId, dateValue, startDateValue){
   if(!currentUser) return;
-  if(!dateValue){ showToast('Elige una fecha primero 📅','error'); return; }
-  if(!_isCompleteDateStr(dateValue)){ showToast('Completa el año de la fecha 📅','error'); return; }
-  // dateValue es "YYYY-MM-DD", convertimos a ISO con hora mediodía para evitar desfases de zona horaria
-  const isoDate=new Date(dateValue+'T12:00:00').toISOString();
-  const hasStart=startDateValue && _isCompleteDateStr(startDateValue);
-  if(hasStart && startDateValue>dateValue){ showToast('La fecha de inicio no puede ser posterior a la de fin 📅','error'); return; }
-  const isoStart=hasStart?new Date(startDateValue+'T09:00:00').toISOString():null;
-  // FASE 2.6.5A: dateValue/startDateValue vienen de _isCompleteDateStr() (YYYY-MM-DD
-  // completo), así que toda fecha NUEVA guardada por esta vía es precision='day'.
-  // Los registros antiguos que no pasan por aquí conservan su read_precision NULL sin tocar.
+  let isoDate, readPrecision, isoStart=null, startPrecision=null;
+  if(dateValue && typeof dateValue==='object'){
+    // FASE 2.6.5A — PASO 5: dateValue/startDateValue son {year}|{year,month}|
+    // {year,month,day} procedentes de la nueva interfaz de fecha parcial (solo
+    // para la primera lectura de un libro; las relecturas siguen usando la rama
+    // de abajo, sin tocar). Se reutiliza normalizePartialDate() tal cual.
+    const norm=normalizePartialDate(dateValue);
+    if(!norm){ showToast('Fecha no válida 📅','error'); return; }
+    isoDate=norm.timestamp; readPrecision=norm.precision;
+    if(startDateValue && typeof startDateValue==='object'){
+      const normStart=normalizePartialDate(startDateValue);
+      if(!normStart){ showToast('Fecha de inicio no válida 📅','error'); return; }
+      if(normStart.timestamp>norm.timestamp){ showToast('La fecha de inicio no puede ser posterior a la de fin 📅','error'); return; }
+      isoStart=normStart.timestamp; startPrecision=normStart.precision;
+    }
+  } else {
+    if(!dateValue){ showToast('Elige una fecha primero 📅','error'); return; }
+    if(!_isCompleteDateStr(dateValue)){ showToast('Completa el año de la fecha 📅','error'); return; }
+    // dateValue es "YYYY-MM-DD", convertimos a ISO con hora mediodía para evitar desfases de zona horaria
+    isoDate=new Date(dateValue+'T12:00:00').toISOString();
+    readPrecision='day';
+    const hasStart=startDateValue && _isCompleteDateStr(startDateValue);
+    if(hasStart && startDateValue>dateValue){ showToast('La fecha de inicio no puede ser posterior a la de fin 📅','error'); return; }
+    // FASE 2.6.5A: dateValue/startDateValue vienen de _isCompleteDateStr() (YYYY-MM-DD
+    // completo), así que toda fecha NUEVA guardada por esta vía es precision='day'.
+    // Los registros antiguos que no pasan por aquí conservan su read_precision NULL sin tocar.
+    if(hasStart){ isoStart=new Date(startDateValue+'T09:00:00').toISOString(); startPrecision='day'; }
+  }
   const openEntry=getOpenLogEntry(bookId);
   if(openEntry){
     // Completa la lectura en curso (conserva la fecha de inicio ya guardada)
-    const {error}=await sb.from('reading_log').update({read_at:isoDate,read_precision:'day'}).eq('id',openEntry.id).eq('user_id',currentUser.id);
+    const {error}=await sb.from('reading_log').update({read_at:isoDate,read_precision:readPrecision}).eq('id',openEntry.id).eq('user_id',currentUser.id);
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     openEntry.read_at=isoDate;
-    openEntry.read_precision='day';
+    openEntry.read_precision=readPrecision;
   } else {
-    const payload={user_id:currentUser.id, book_id:bookId, read_at:isoDate, read_precision:'day'};
-    if(isoStart){ payload.started_at=isoStart; payload.started_precision='day'; }
+    const payload={user_id:currentUser.id, book_id:bookId, read_at:isoDate, read_precision:readPrecision};
+    if(isoStart){ payload.started_at=isoStart; payload.started_precision=startPrecision; }
     const {data,error}=await sb.from('reading_log')
       .insert(payload)
       .select('id,started_at,read_at,started_precision,read_precision').single();
@@ -8590,14 +8619,119 @@ function _refreshShelfUI(bookId){
   }
 }
 
+// FASE 2.6.5A — PASO 5: interfaz de fecha parcial (año / mes / día) + "Hoy".
+// Genera únicamente los controles; no incluye botón de guardar (cada llamador
+// añade el suyo aparte, como ya hacía el resto de esta interfaz). Los valores
+// se leen luego con _readPartialDateParts(), resolviendo siempre dentro del
+// bloque .shelf-btns más cercano al elemento pulsado — el mismo criterio
+// anti-IDs-duplicados (#bookModalContent vs #bpWrap) que ya usa el resto del
+// código, para no reintroducir el bug corregido en el paso anterior.
+function buildPartialDateInputHTML(idPrefix, bookId){
+  const yearId=`${idPrefix}Year_${bookId}`;
+  const monthId=`${idPrefix}Month_${bookId}`;
+  const dayId=`${idPrefix}Day_${bookId}`;
+  const inputStyle='padding:4px 6px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);outline:none';
+  const monthOptions=_MESES_ES.map((m,i)=>`<option value="${i+1}">${m.charAt(0).toUpperCase()+m.slice(1)}</option>`).join('');
+  const dayOptions=Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
+  return `<div class="partial-date-picker" style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center">
+    <input type="number" id="${yearId}" placeholder="Año" min="1900" max="2100" inputmode="numeric"
+      style="${inputStyle};width:64px" onclick="event.stopPropagation()">
+    <select id="${monthId}" style="${inputStyle};cursor:pointer" onclick="event.stopPropagation()">
+      <option value="">Mes</option>${monthOptions}
+    </select>
+    <select id="${dayId}" style="${inputStyle};cursor:pointer" onclick="event.stopPropagation()">
+      <option value="">Día</option>${dayOptions}
+    </select>
+    <button type="button" title="Rellenar con la fecha de hoy"
+      onclick="event.stopPropagation();_setPartialDateToday(this,'${idPrefix}','${bookId}')"
+      style="background:none;border:1px solid rgba(201,151,90,.4);border-radius:8px;color:var(--gold);cursor:pointer;font-size:11px;padding:3px 8px">Hoy</button>
+  </div>`;
+}
+
+// Rellena año/mes/día con la fecha actual del navegador. NO guarda nada por sí
+// sola: solo pone los valores en los controles, igual que pide el paso 5.
+function _setPartialDateToday(btnEl, idPrefix, bookId){
+  const scopeEl=btnEl.closest('.shelf-btns');
+  if(!scopeEl) return;
+  const now=new Date();
+  const yearEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Year_${bookId}`));
+  const monthEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Month_${bookId}`));
+  const dayEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Day_${bookId}`));
+  if(yearEl) yearEl.value=now.getFullYear();
+  if(monthEl) monthEl.value=String(now.getMonth()+1);
+  if(dayEl) dayEl.value=String(now.getDate());
+}
+
+// Lee año/mes/día de un grupo de controles ya resuelto dentro de scopeEl.
+// {ok:true, parts:null}  → no se introdujo nada (campo opcional vacío)
+// {ok:true, parts:{...}} → combinación a validar del todo en normalizePartialDate()
+// {ok:false, error}      → combinación que ya se puede rechazar aquí (día sin
+//                          mes, o mes/día puestos sin año)
+function _readPartialDateParts(scopeEl, idPrefix, bookId){
+  const yearEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Year_${bookId}`));
+  const monthEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Month_${bookId}`));
+  const dayEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Day_${bookId}`));
+  const yearStr=(yearEl?.value||'').trim();
+  const monthStr=monthEl?.value||'';
+  const dayStr=dayEl?.value||'';
+  if(!yearStr){
+    if(monthStr||dayStr) return {ok:false,error:'Elige también el año 📅'};
+    return {ok:true,parts:null};
+  }
+  const year=parseInt(yearStr,10);
+  if(!Number.isInteger(year)) return {ok:false,error:'Año no válido 📅'};
+  if(dayStr && !monthStr) return {ok:false,error:'Elige también el mes 📅'};
+  const parts={year};
+  if(monthStr) parts.month=parseInt(monthStr,10);
+  if(dayStr) parts.day=parseInt(dayStr,10);
+  return {ok:true,parts};
+}
+
+async function _submitSetLogStartDatePartial(btnEl, bookId, entryId, idPrefix){
+  const scopeEl=btnEl.closest('.shelf-btns');
+  if(!scopeEl) return;
+  const res=_readPartialDateParts(scopeEl, idPrefix, bookId);
+  if(!res.ok){ showToast(res.error,'error'); return; }
+  if(!res.parts){ showToast('Elige al menos el año 📅','error'); return; }
+  await setLogStartDate(bookId, entryId, res.parts);
+}
+
+async function _submitAddReadLogEntryPartial(btnEl, bookId, endPrefix, startPrefix){
+  const scopeEl=btnEl.closest('.shelf-btns');
+  if(!scopeEl) return;
+  const endRes=_readPartialDateParts(scopeEl, endPrefix, bookId);
+  if(!endRes.ok){ showToast(endRes.error,'error'); return; }
+  if(!endRes.parts){ showToast('Elige una fecha primero 📅','error'); return; }
+  let startParts=null;
+  if(startPrefix){
+    const startRes=_readPartialDateParts(scopeEl, startPrefix, bookId);
+    if(!startRes.ok){ showToast(startRes.error,'error'); return; }
+    startParts=startRes.parts;
+  }
+  await addReadLogEntry(bookId, endRes.parts, startParts);
+}
+
 function buildShelfButtonsHTML(bookId){
   const s=myReadingStatus[bookId];
   const log=myReadingLog[bookId]||[];
   const completedLog=log.filter(e=>e.read_at);
   const openEntry=getOpenLogEntry(bookId);
   const todayISO=new Date().toISOString().slice(0,10);
+  // FASE 2.6.5A — PASO 5: la nueva interfaz de fecha parcial (año/mes/día +
+  // "Establecer hoy") se aplica SOLO a la primera lectura de un libro, es
+  // decir, mientras no exista ninguna relectura previa. En cuanto hay alguna
+  // relectura (completedLog.length>0) se conserva exactamente el flujo
+  // anterior con <input type="date">, sin tocarlo — el paso 6 se encargará de
+  // las relecturas más adelante.
+  const isFirstReading=completedLog.length===0;
   const historyHtml=completedLog.map(entry=>{
-    const dStr=new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+    // Registros históricos (precision NULL): misma visualización de siempre,
+    // sin cambios (requisito de compatibilidad del paso 5). Registros nuevos
+    // con precision explícita ('year'/'month'/'day'): se usa formatPartialDate
+    // para no mostrar el "01" técnico de las fechas de solo año o año+mes.
+    const dStr=entry.read_precision
+      ? formatPartialDate(entry.read_at, entry.read_precision)
+      : new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
     const startVal=entry.started_at?new Date(entry.started_at).toISOString().slice(0,10):'';
     return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal);flex-wrap:wrap">
       <span style="display:flex;align-items:center;gap:.3em">📖
@@ -8612,8 +8746,16 @@ function buildShelfButtonsHTML(bookId){
     </div>`;
   }).join('');
   const addLabel=completedLog.length?'+ Añadir relectura':'Guardar fecha';
-  // Fecha de inicio editable mientras hay una lectura abierta sin terminar ("Leyendo")
-  const startDateBlock=openEntry?`
+  // Fecha de inicio editable mientras hay una lectura abierta sin terminar ("Leyendo").
+  // Interfaz nueva (año/mes/día) solo en la primera lectura; si ya hay alguna
+  // relectura, se mantiene el <input type="date"> exactamente como antes.
+  const startDateBlock=openEntry?(isFirstReading?`
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
+      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
+      ${buildPartialDateInputHTML('startDateOpen',bookId)}
+      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
+        onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry.id}','startDateOpen')">Guardar</button>
+    </div>`:`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
       <input type="date" id="startDateInput_${bookId}" max="${todayISO}"
@@ -8621,9 +8763,19 @@ function buildShelfButtonsHTML(bookId){
         style="padding:4px 8px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
         onclick="event.stopPropagation()"
         onchange="event.stopPropagation();setLogStartDate('${bookId}','${openEntry.id}',this.value)">
-    </div>`:'';
-  // Sin lectura abierta: al guardar la fecha de fin, permitimos indicar también la de inicio (ambas opcionales salvo la de fin)
-  const finishRow=openEntry?`
+    </div>`):'';
+  // Sin lectura abierta: al guardar la fecha de fin, permitimos indicar también la
+  // de inicio (ambas opcionales salvo la de fin). Interfaz nueva (año/mes/día)
+  // solo en la primera lectura (isFirstReading); en cuanto se trata de
+  // "+ Añadir relectura" (isFirstReading===false) se mantiene exactamente el
+  // flujo anterior con <input type="date">, sin tocarlo (paso 6 pendiente).
+  const finishRow=openEntry?(isFirstReading?`
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
+      ${buildPartialDateInputHTML('readDateOpen',bookId)}
+      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
+        onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateOpen',null)">✓ Marcar como terminado</button>
+    </div>`:`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
       <input type="date" id="readDateInput_${bookId}" max="${todayISO}"
@@ -8631,6 +8783,16 @@ function buildShelfButtonsHTML(bookId){
         onclick="event.stopPropagation()">
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();addReadLogEntry('${bookId}',this.closest('.shelf-btns').querySelector('#'+CSS.escape('readDateInput_${bookId}')).value)">✓ Marcar como terminado</button>
+    </div>`):(isFirstReading?`
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado</span>
+      ${buildPartialDateInputHTML('startDateNewP',bookId)}
+    </div>
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
+      ${buildPartialDateInputHTML('readDateNew',bookId)}
+      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
+        onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateNew','startDateNewP')">${addLabel}</button>
     </div>`:`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado</span>
@@ -8643,7 +8805,7 @@ function buildShelfButtonsHTML(bookId){
         onclick="event.stopPropagation()">
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();addReadLogEntry('${bookId}',this.closest('.shelf-btns').querySelector('#'+CSS.escape('readDateInput_${bookId}')).value,this.closest('.shelf-btns').querySelector('#'+CSS.escape('startDateNewInput_${bookId}')).value)">${addLabel}</button>
-    </div>`;
+    </div>`);
   const readDatePicker=(s==='read'||s==='reading')?`
     <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
       ${startDateBlock}
