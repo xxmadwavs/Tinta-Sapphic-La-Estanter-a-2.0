@@ -4767,7 +4767,7 @@ async function init(){
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
-  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/');
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/') || location.hash.startsWith('#fichabeta/');
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
