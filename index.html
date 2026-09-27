@@ -4249,7 +4249,7 @@ let readingStatusLoaded=false;
 const _settingReadingStatus=new Set(); // lock por bookId contra clics dobles/llamadas concurrentes en setReadingStatus()
 let myReadingStatus={}; // bookId -> 'want' | 'read'
 let myReadingReadAt={}; // bookId -> fecha ISO de la lectura MÁS RECIENTE (derivado de myReadingLog, para compatibilidad)
-let myReadingLog={}; // bookId -> [{id, started_at, read_at}, ...] historial completo de lecturas, ordenado ascendente. read_at null = lectura en curso
+let myReadingLog={}; // bookId -> [{id, started_at, read_at, started_precision, read_precision}, ...] historial completo de lecturas, ordenado ascendente. read_at null = lectura en curso. *_precision: NULL en filas históricas (=fecha completa), 'year'|'month'|'day' en filas nuevas (Fase 2.6.5A)
 let shelfFilter='all'; // 'all' | 'want' | 'reading' | 'read' | 'calendar'
 let shelfViewMode='grid'; // 'grid' | 'list'
 let shelfSearch='';
@@ -8337,7 +8337,7 @@ async function loadMyReadingStatus(){
   // antes de ejecutarse, igual que antes (Fase 10.5B).
   const [data,logData]=await Promise.all([
     sbFetchAll('reading_status','book_id,status,read_at',q=>q.eq('user_id',currentUser.id)),
-    sbFetchAll('reading_log','id,book_id,started_at,read_at',q=>q.eq('user_id',currentUser.id).order('read_at',{ascending:true,nullsFirst:false}))
+    sbFetchAll('reading_log','id,book_id,started_at,read_at,started_precision,read_precision',q=>q.eq('user_id',currentUser.id).order('read_at',{ascending:true,nullsFirst:false}))
   ]);
   myReadingStatus={};
   myReadingReadAt={};
@@ -8347,7 +8347,10 @@ async function loadMyReadingStatus(){
   myReadingLog={};
   (logData||[]).forEach(row=>{
     if(!myReadingLog[row.book_id]) myReadingLog[row.book_id]=[];
-    myReadingLog[row.book_id].push({id:row.id,started_at:row.started_at,read_at:row.read_at});
+    // started_precision/read_precision: NULL en filas históricas (comportamiento
+    // anterior = fecha completa); 'year'|'month'|'day' en filas nuevas (Fase 2.6.5A).
+    // No se infiere ni se rellena aquí: se conserva tal cual llega de Supabase.
+    myReadingLog[row.book_id].push({id:row.id,started_at:row.started_at,read_at:row.read_at,started_precision:row.started_precision,read_precision:row.read_precision});
   });
   // myReadingReadAt se mantiene como atajo a la lectura MÁS RECIENTE (completada) de cada libro (compatibilidad con el resto del código)
   Object.keys(myReadingLog).forEach(bookId=>{
@@ -8436,23 +8439,76 @@ function _isCompleteDateStr(v){
   return !isNaN(d.getTime());
 }
 
+// FASE 2.6.5A — FECHAS PARCIALES (paso 2)
+// Formatea un timestamp según su precisión, para mostrar al usuario.
+// precision: 'year' | 'month' | 'day' | null/undefined (=day, compatibilidad con fecha completa histórica).
+// NO infiere la precisión mirando si el día es 01: usa exactamente el valor recibido.
+const _MESES_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function formatPartialDate(iso, precision){
+  if(!iso) return '';
+  const d=new Date(iso);
+  if(isNaN(d.getTime())) return '';
+  if(precision==='year'){
+    return String(d.getUTCFullYear());
+  }
+  if(precision==='month'){
+    return `${_MESES_ES[d.getUTCMonth()]} de ${d.getUTCFullYear()}`;
+  }
+  // precision==='day', null o undefined -> fecha completa
+  return `${d.getUTCDate()} de ${_MESES_ES[d.getUTCMonth()]} de ${d.getUTCFullYear()}`;
+}
+
+// FASE 2.6.5A — FECHAS PARCIALES (paso 3)
+// Normaliza una fecha parcial introducida por la usuaria a {timestamp, precision}.
+// Recibe {year} | {year,month} | {year,month,day}. Valida año/mes/día.
+// Devuelve null si la entrada no es válida. NO escribe en Supabase ni toca myReadingLog:
+// es una función pura, se usará desde setLogStartDate()/addReadLogEntry() adaptadas (paso 4).
+function normalizePartialDate(parts){
+  if(!parts || typeof parts.year!=='number' || !Number.isInteger(parts.year)) return null;
+  const year=parts.year;
+  if(year<1900||year>2100) return null;
+  let month=1, day=1, precision='year';
+  if(parts.month!=null){
+    month=parseInt(parts.month,10);
+    if(!Number.isInteger(month)||month<1||month>12) return null;
+    precision='month';
+    if(parts.day!=null){
+      day=parseInt(parts.day,10);
+      if(!Number.isInteger(day)||day<1||day>31) return null;
+      precision='day';
+    }
+  } else if(parts.day!=null){
+    return null; // día sin mes no es una combinación válida
+  }
+  const iso=`${String(year).padStart(4,'0')}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}T00:00:00.000Z`;
+  const d=new Date(iso);
+  if(isNaN(d.getTime())) return null;
+  // Rechaza días que no existen en ese mes (p.ej. 31 de febrero), que Date() normaliza en vez de fallar
+  if(d.getUTCFullYear()!==year||d.getUTCMonth()!==month-1||d.getUTCDate()!==day) return null;
+  return {timestamp:d.toISOString(), precision};
+}
+
 async function setLogStartDate(bookId, entryId, dateValue){
   if(!currentUser || !dateValue) return;
   if(!_isCompleteDateStr(dateValue)) return; // año incompleto todavía, esperamos a que termine de escribir
   const isoDate=new Date(dateValue+'T09:00:00').toISOString();
+  // FASE 2.6.5A: dateValue viene de _isCompleteDateStr() (YYYY-MM-DD completo),
+  // así que toda fecha NUEVA guardada por esta vía es precision='day'. Los registros
+  // antiguos que no pasan por aquí conservan su started_precision NULL sin tocar.
   const log=myReadingLog[bookId]||[];
   let entry=entryId?log.find(e=>e.id===entryId):getOpenLogEntry(bookId);
   if(entry){
-    const {error}=await sb.from('reading_log').update({started_at:isoDate}).eq('id',entry.id).eq('user_id',currentUser.id);
+    const {error}=await sb.from('reading_log').update({started_at:isoDate,started_precision:'day'}).eq('id',entry.id).eq('user_id',currentUser.id);
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     entry.started_at=isoDate;
+    entry.started_precision='day';
   } else {
     const {data,error}=await sb.from('reading_log')
-      .insert({user_id:currentUser.id, book_id:bookId, started_at:isoDate})
-      .select('id,started_at,read_at').single();
+      .insert({user_id:currentUser.id, book_id:bookId, started_at:isoDate, started_precision:'day'})
+      .select('id,started_at,read_at,started_precision,read_precision').single();
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
-    myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
+    myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at, started_precision:data.started_precision, read_precision:data.read_precision});
   }
   _refreshShelfUI(bookId);
   showToast('Fecha de inicio guardada 📅','success');
@@ -8467,21 +8523,25 @@ async function addReadLogEntry(bookId, dateValue, startDateValue){
   const hasStart=startDateValue && _isCompleteDateStr(startDateValue);
   if(hasStart && startDateValue>dateValue){ showToast('La fecha de inicio no puede ser posterior a la de fin 📅','error'); return; }
   const isoStart=hasStart?new Date(startDateValue+'T09:00:00').toISOString():null;
+  // FASE 2.6.5A: dateValue/startDateValue vienen de _isCompleteDateStr() (YYYY-MM-DD
+  // completo), así que toda fecha NUEVA guardada por esta vía es precision='day'.
+  // Los registros antiguos que no pasan por aquí conservan su read_precision NULL sin tocar.
   const openEntry=getOpenLogEntry(bookId);
   if(openEntry){
     // Completa la lectura en curso (conserva la fecha de inicio ya guardada)
-    const {error}=await sb.from('reading_log').update({read_at:isoDate}).eq('id',openEntry.id).eq('user_id',currentUser.id);
+    const {error}=await sb.from('reading_log').update({read_at:isoDate,read_precision:'day'}).eq('id',openEntry.id).eq('user_id',currentUser.id);
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     openEntry.read_at=isoDate;
+    openEntry.read_precision='day';
   } else {
-    const payload={user_id:currentUser.id, book_id:bookId, read_at:isoDate};
-    if(isoStart) payload.started_at=isoStart;
+    const payload={user_id:currentUser.id, book_id:bookId, read_at:isoDate, read_precision:'day'};
+    if(isoStart){ payload.started_at=isoStart; payload.started_precision='day'; }
     const {data,error}=await sb.from('reading_log')
       .insert(payload)
-      .select('id,started_at,read_at').single();
+      .select('id,started_at,read_at,started_precision,read_precision').single();
     if(error){ showToast('Error al guardar la fecha 😞','error'); console.error(error); return; }
     if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
-    myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
+    myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at, started_precision:data.started_precision, read_precision:data.read_precision});
   }
   myReadingLog[bookId].sort((a,b)=>new Date(a.read_at||a.started_at)-new Date(b.read_at||b.started_at));
   const completed=myReadingLog[bookId].filter(e=>e.read_at);
