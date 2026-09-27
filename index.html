@@ -485,10 +485,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sm-leg-line{width:18px;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal));display:inline-block}
 .sm-leg-line.dashed{background:none;border-top:2px dashed var(--gold)}
 .sagamap-map{position:relative;width:100%}
-/* PC5.4 — envoltorio interno que agrupa SVG + nodos para poder desplazar el
-   conjunto completo en bloque (centrado horizontal) sin tocar .sagamap-map,
-   que es quien define el alto real (H) usado para el scroll vertical. */
-.sagamap-inner{position:relative;width:100%;height:100%}
 .sagamap-map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .sagamap-map svg path{fill:none;stroke-width:2.5}
 .sm-path-main{stroke:url(#smLineGrad)}
@@ -3128,6 +3124,52 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
   .cc-scene.legendaria .cc-front::after{animation:none}
 }
 
+/* ══════════════════════════════════════════════════════════════
+   FASE 2 — FICHA DE LIBRO EN PÁGINA PROPIA (#bookPage)
+   Vista nueva tipo SPA (no modal) que convive con #bookModal sin
+   sustituirlo todavía. Reutiliza clases ya existentes (tag, modal-*,
+   buy-*, community-rating, ctags-*, similar-*) para el contenido, y
+   solo añade layout propio (cabecera, chips, secciones). Ruta de
+   prueba aislada: #fichabeta/ID → openBookPage(id). No toca
+   #libro/ID, tryOpenFromHash() ni el ancho global de .main
+   (1320px) — usa un wrapper propio más estrecho, en línea con los
+   ya usados en otras vistas (.safi-wrap/.cartas-main ~1100-1180px).
+   ══════════════════════════════════════════════════════════════ */
+#bookPage{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
+#bookPage.active{display:block}
+.bp-wrap{max-width:1040px;margin:0 auto}
+.bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
+.bp-back:hover{color:var(--accent2)}
+.bp-header{display:grid;grid-template-columns:220px 1fr;gap:2.2rem;margin-bottom:1.75rem}
+.bp-cover{width:100%;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;background:var(--surface2);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.bp-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.bp-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.bp-info{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.bp-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;line-height:1.12;margin-bottom:.4rem;overflow-wrap:anywhere}
+.bp-author{color:var(--muted);font-size:14.5px;margin-bottom:.5rem}
+.bp-saga-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:13px;color:var(--accent2);margin-bottom:.7rem}
+.bp-mini-rating{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;font-size:13px;color:var(--muted)}
+.bp-actions{margin-top:.2rem}
+.bp-chips-row{display:flex;flex-wrap:wrap;gap:.4rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:1.9rem}
+.bp-chips-row:empty{display:none}
+.bp-section{margin-bottom:1.9rem;padding-bottom:1.9rem;border-bottom:1px solid var(--border)}
+.bp-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.bp-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem}
+.bp-group{margin-bottom:.9rem}
+.bp-group:last-child{margin-bottom:0}
+.bp-group-label{font-size:10.5px;color:var(--muted);margin-bottom:.35rem;letter-spacing:.06em}
+.bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:.6rem}
+
+@media (max-width:899px){
+  .bp-header{grid-template-columns:150px 1fr;gap:1.4rem}
+}
+@media (max-width:639px){
+  #bookPage{padding:1.25rem 1rem 4rem}
+  .bp-header{grid-template-columns:1fr;text-align:center}
+  .bp-cover{max-width:180px;margin:0 auto}
+  .bp-info{align-items:center}
+  .bp-saga-row,.bp-mini-rating,.bp-chips-row{justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -4096,6 +4138,12 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
 
     <div class="cartas-grid" id="cartasGrid"><div class="cartas-empty">Cargando…</div></div>
   </div>
+</div>
+
+<!-- BOOK PAGE — FASE 2: ficha de libro en página propia (vista SPA nueva, aislada, convive con #bookModal).
+     Ruta de prueba temporal: #fichabeta/ID (ver openBookPage/tryOpenFichaBetaFromHash más abajo). -->
+<div id="bookPage">
+  <div class="bp-wrap" id="bpWrap"></div>
 </div>
 
 <!-- HITO / LOGRO MODAL -->
@@ -5570,6 +5618,220 @@ function buildSimilarBooksHTML(book){
   return '<div class="similar-section"><div class="similar-title">💕 Si te gustó este libro…</div><div class="similar-items">'+cards+'</div></div>';
 }
 
+/* ══════════════════════════════════════════════════════════════
+   FASE 2 — FICHA DE LIBRO EN PÁGINA PROPIA (#bookPage)
+   openBookPage()/renderBookPage() son funciones NUEVAS y globales,
+   pensadas para validar la vista de forma aislada mientras
+   `bookModal`/`openBook()` siguen funcionando exactamente igual.
+   Reutilizan la lógica de datos existente (ratingsMap, myRatings,
+   effectiveSpicy, getEffectiveTags, buildShelfButtonsHTML,
+   buildSimilarBooksHTML, getSaga, openSagaMap) sin duplicarla.
+
+   LIMITACIÓN CONOCIDA (documentada en el informe final): las
+   secciones Valoración/Spicy/Comunidad se muestran en modo SOLO
+   LECTURA aquí. Sus controles interactivos (submitVote,
+   submitSpicyVote, handleTagAdderChange, removeMyTag…) están
+   acoplados a ids fijos y únicos del modal (modalRatingSection,
+   starInput, spicyChileInput, modalSpicySection,
+   modalCommunityTagsSection) que ya existen en el DOM dentro de
+   #bookModal. Duplicar esos mismos ids dentro de #bookPage
+   produciría ids repetidos en el documento y esas funciones
+   (que solo saben refrescar el modal) dejarían de apuntar al
+   sitio correcto. Por eso NO se han duplicado esos ids ni se ha
+   tocado esas funciones — se resolverá en la fase de migración
+   definitiva, cuando bookModal deje de coexistir con bookPage. ── */
+let _bpScrollBefore=0;
+function openBookPage(id){
+  const book=allBooks.find(b=>b.id===id);
+  if(!book){ console.warn('[bookPage] libro no encontrado para id:',id); return; }
+  activeBook=book; // misma variable global que usa el sistema de modal existente
+  _bpScrollBefore=window.scrollY;
+  document.getElementById('homeView')?.classList.remove('active');
+  document.body.classList.remove('home-active');
+  document.getElementById('homeNavBtn')?.classList.remove('active');
+  document.getElementById('shelfView')?.classList.remove('active');
+  document.getElementById('logrosView')?.classList.remove('active');
+  document.getElementById('statsView')?.classList.remove('active');
+  document.getElementById('cartasView')?.classList.remove('active');
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
+  renderBookPage(book);
+  document.getElementById('bookPage').classList.add('active');
+  window.scrollTo({top:0});
+}
+function closeBookPage(){
+  document.getElementById('bookPage').classList.remove('active');
+  switchTab(activeTab, true); // restaura los hijos de <main> igual que las demás vistas especiales
+  window.scrollTo(0,_bpScrollBefore);
+}
+
+/* Versión de solo lectura de los tags de comunidad para #bookPage
+   (sin selects de "+ Añadir" ni botones de quitar voto — ver nota arriba). */
+function buildCommunityTagsHTMLReadOnly(b){
+  const sections=[
+    {type:'trope',label:'Tropos',emoji:'🎭',tagClass:'tag-trope'},
+    {type:'dinamica',label:'Dinámicas',emoji:'💫',tagClass:'tag-dinamica'},
+    {type:'character',label:'Personajes',emoji:'👤',tagClass:'tag-character'},
+    {type:'identidad',label:'Identidades',emoji:'🏳️‍🌈',tagClass:'tag-identidad'},
+    {type:'edad',label:'Edad',emoji:'🎂',tagClass:'tag-edad'},
+    {type:'warning',label:'Advertencias',emoji:'⚠️',tagClass:'tag-warning'}
+  ];
+  const sectionHTMLs=sections.map(({type,label,emoji,tagClass})=>{
+    const {merged}=getEffectiveTags(b,type);
+    if(!merged.length) return '';
+    return `<div class="ctags-section"><div class="ctags-section-header">${emoji} ${label}</div><div class="ctags-tag-row">${merged.map(t=>`<span class="tag ${tagClass}">${t}</span>`).join('')}</div></div>`;
+  }).filter(Boolean).join('');
+  return sectionHTMLs;
+}
+
+function renderBookPage(book){
+  const b=book;
+  const r=ratingsMap[b.id]||{avg:0,count:0};
+  const myScore=myRatings[b.id]||0;
+  const authorStr=(b.authors||[]).map(a=>escHtml(a)).join(', ')||'—';
+  const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
+  const starsRow=avg=>[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
+  const miniRating=r.count>0
+    ?`<div class="bp-mini-rating"><span class="avg-stars-row">${starsRow(r.avg)}</span><span>${r.avg.toFixed(1)} · ${r.count} valoración${r.count!==1?'es':''}</span></div>`
+    :'';
+
+  // CHIPS PRINCIPALES (géneros, subgéneros, spicy, formato, adaptación)
+  const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
+  const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre">${s}</span>`).join('');
+  const spicyEff=effectiveSpicy(b);
+  const spicyIsUnknown=spicyEff==null;
+  const spicyTag=currentUser
+    ?(spicyIsUnknown
+      ?`<span class="tag" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
+      :(spicyEff>0?`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
+      :`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
+    :`<span class="tag" style="background:rgba(138,120,152,0.1);color:var(--muted);border:1px dashed rgba(138,120,152,0.3);cursor:pointer" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
+  const formatoTag=b.formato&&!['Saga','Dúo','Trilogía'].includes(b.formato)?`<span class="tag tag-formato">${b.formato}</span>`:'';
+  const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
+  const chipsRow=[genreTags,subgenreTags,spicyTag,formatoTag,adaptTag].join('');
+
+  // SAGA (cabecera + mapa de orden de lectura reutilizado tal cual)
+  const sagaName=b.sagaName||(b.formato&&['Saga','Dúo','Trilogía'].includes(b.formato)?getSaga(b):null);
+  const sagaNumStr=b.sagaNum!=null?' #'+b.sagaNum:'';
+  const sagaSiblingCount=b.sagaName?allBooks.filter(x=>x.sagaName===b.sagaName&&x.sagaNum!=null).length:0;
+  const sagaMapBtn=sagaSiblingCount>1
+    ?`<button class="saga-map-trigger" onclick="openSagaMap(decodeURIComponent('${encodeURIComponent(b.sagaName)}'))">✦ orden de lectura</button>`
+    :'';
+  const sagaRow=sagaName?`<div class="bp-saga-row"><span>${escHtml(sagaName)}${sagaNumStr}</span>${sagaMapBtn}</div>`:'';
+
+  // SINOPSIS
+  const sinopsis=b.synopsis?(()=>{
+    const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
+    const full=paras.map(p=>`<p class="modal-synopsis">${p}</p>`).join('');
+    return `<div class="bp-section"><div class="bp-section-title">Sinopsis</div><div class="modal-synopsis-wrap">${full}</div></div>`;
+  })():'';
+
+  // FICHA TÉCNICA (isbn no reserva espacio si no existe)
+  const metaItems=[
+    b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:'',
+    b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:'',
+    b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:'',
+    b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''
+  ].filter(Boolean).join('');
+  const fichaTecnica=metaItems?`<div class="bp-section"><div class="bp-section-title">Ficha técnica</div><div class="modal-meta-grid">${metaItems}</div></div>`:'';
+
+  // SOBRE ESTE LIBRO (agrupado, cada grupo desaparece si no tiene contenido)
+  const buildTopTag=(tagType,tagClass)=>{
+    const {official,merged}=getEffectiveTags(b,tagType);
+    return merged.map(v=>{
+      const isComm=!official.includes(v);
+      return `<span class="tag ${tagClass}${isComm?' tag-comm-added':''}">${v}${isComm?`<span class="tag-comm-dot"> ·com</span>`:''}</span>`;
+    }).join('');
+  };
+  const dinamicaTags=buildTopTag('dinamica','tag-dinamica');
+  const tropeTags=buildTopTag('trope','tag-trope');
+  const identidadTags=buildTopTag('identidad','tag-identidad');
+  const characterTags=buildTopTag('character','tag-character');
+  const edadTags=(b.edad||[]).map(e=>`<span class="tag tag-edad">🎂 ${e}</span>`).join('');
+  const shipVal=(b.ship&&b.ship.length)?b.ship.join(' · '):'';
+  const sobreGroups=[
+    tropeTags?`<div class="bp-group"><div class="bp-group-label">Tropos</div><div class="modal-tags">${tropeTags}</div></div>`:'',
+    dinamicaTags?`<div class="bp-group"><div class="bp-group-label">Dinámicas</div><div class="modal-tags">${dinamicaTags}</div></div>`:'',
+    characterTags?`<div class="bp-group"><div class="bp-group-label">Personajes</div><div class="modal-tags">${characterTags}</div></div>`:'',
+    identidadTags?`<div class="bp-group"><div class="bp-group-label">Identidades</div><div class="modal-tags">${identidadTags}</div></div>`:'',
+    edadTags?`<div class="bp-group"><div class="bp-group-label">Edad</div><div class="modal-tags">${edadTags}</div></div>`:'',
+    shipVal?`<div class="bp-group"><div class="bp-group-label">Ship</div><div class="modal-tags"><span class="tag">${escHtml(shipVal)}</span></div></div>`:''
+  ].filter(Boolean).join('');
+  const sobreEsteLibro=sobreGroups?`<div class="bp-section"><div class="bp-section-title">Sobre este libro</div>${sobreGroups}</div>`:'';
+
+  // ADVERTENCIAS
+  const advertencias=(b.content_warnings&&b.content_warnings.length)?`
+    <div class="bp-section">
+      <div class="bp-section-title" style="color:#ff6b6b">⚠️ Advertencias de contenido</div>
+      <div class="modal-tags">${b.content_warnings.map(w=>`<span class="tag tag-warning">⚠ ${w}</span>`).join('')}</div>
+    </div>`:'';
+
+  // DÓNDE CONSEGUIRLO
+  const buyLinks=(b.editions&&b.editions.length)?b.editions.map(e=>`
+    <a class="buy-link" href="${e.url}" target="_blank" rel="noopener">
+      <span class="buy-lang">${e.lang}</span><span class="buy-store">${e.store}</span>
+    </a>`).join(''):'';
+  const wattpadLink=b.wattpad?`<a class="wattpad-link" href="${b.wattpad}" target="_blank" rel="noopener"><span class="wattpad-icon">📙</span><span>Leer gratis en Wattpad</span><span class="buy-arrow">↗</span></a>`:'';
+  const dondeConseguirlo=(buyLinks||wattpadLink)?`<div class="bp-section"><div class="bp-section-title">Dónde conseguirlo</div>${buyLinks?`<div class="buy-links">${buyLinks}</div>`:''}${wattpadLink}</div>`:'';
+
+  // VALORACIÓN (solo lectura — ver nota al inicio del bloque)
+  const communityRatingReadOnly=r.count>0
+    ?`<div class="community-rating"><div class="avg-big">${r.avg.toFixed(1)}</div><div><div class="avg-stars-row">${starsRow(r.avg)}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
+    :`<p style="font-size:13px;color:var(--muted);font-style:italic">Aún sin valoraciones.</p>`;
+  const valoracion=`<div class="bp-section">
+    <div class="bp-section-title">Valoración</div>
+    ${communityRatingReadOnly}
+    ${!currentUser
+      ?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar este libro.</p>`
+      :(myScore>0?`<p class="bp-readonly-note">Tu valoración: ${'★'.repeat(myScore)} (vista previa — vota desde la ficha actual por ahora)</p>`:`<p class="bp-readonly-note">Vista previa — vota desde la ficha actual por ahora.</p>`)}
+  </div>`;
+
+  // SPICY (solo lectura)
+  const spicySrc=spicySourceLabel(b);
+  const spicySection=`<div class="bp-section">
+    <div class="bp-section-title">Spicy</div>
+    ${spicyIsUnknown
+      ?`<p style="font-size:13px;color:var(--muted)">Nivel desconocido — ¡sé la primera en votar!</p>`
+      :`<div style="display:flex;align-items:center;gap:.6rem"><span style="font-size:1.3rem">${SPICY_ICONS[spicyEff]||'—'}</span><span style="font-size:13.5px">${SPICY_LABELS[spicyEff]}</span><span style="font-size:11px;color:var(--muted)">(${spicySrc})</span></div>`}
+    ${!currentUser?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para votar el nivel spicy.</p>`:`<p class="bp-readonly-note">Vista previa — vota desde la ficha actual por ahora.</p>`}
+  </div>`;
+
+  // COMUNIDAD (solo lectura)
+  const comunidadHtml=buildCommunityTagsHTMLReadOnly(b);
+  const comunidad=comunidadHtml?`<div class="bp-section">
+    <div class="bp-section-title">Comunidad</div>
+    ${comunidadHtml}
+    <p class="bp-readonly-note">Vista previa — añade o quita tags desde la ficha actual por ahora.</p>
+  </div>`:'';
+
+  // RECOMENDACIONES (reutiliza buildSimilarBooksHTML tal cual, sigue abriendo openBook())
+  const similarHtml=buildSimilarBooksHTML(b);
+  const recomendaciones=similarHtml?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${similarHtml}</div>`:'';
+
+  document.getElementById('bpWrap').innerHTML=`
+    <button class="bp-back" onclick="closeBookPage()">← Volver al catálogo</button>
+    <div class="bp-header">
+      <div class="bp-cover">${coverEl}</div>
+      <div class="bp-info">
+        <h1 class="bp-title">${escHtml(b.title)}</h1>
+        <p class="bp-author">por ${authorStr}</p>
+        ${sagaRow}
+        ${miniRating}
+        <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
+      </div>
+    </div>
+    <div class="bp-chips-row">${chipsRow}</div>
+    ${sinopsis}
+    ${fichaTecnica}
+    ${sobreEsteLibro}
+    ${advertencias}
+    ${dondeConseguirlo}
+    ${valoracion}
+    ${spicySection}
+    ${comunidad}
+    ${recomendaciones}
+  `;
+}
+
 /* Actualiza solo el bloque de valoración sin rerenderizar todo el modal */
 function buildRatingHTML(){
   const b=activeBook;
@@ -5621,10 +5883,6 @@ function openSagaMap(sagaName){
   renderSagaMap(sagaName,books);
   openAnimatedModalBg(document.getElementById('sagaModal'));
   document.body.style.overflow='hidden';
-  // PC5.4 — el centrado necesita medir cajas reales (getBoundingClientRect), lo que
-  // solo da valores fiables una vez el modal deja de estar display:none. Se espera
-  // a dos frames para no leer geometría a medio aplicar el cambio de display.
-  requestAnimationFrame(()=>requestAnimationFrame(centerSagaMapNodes));
 }
 function closeSagaModal(){
   closeAnimatedModalBg(document.getElementById('sagaModal'));
@@ -5712,60 +5970,14 @@ function renderSagaMap(sagaName,books){
       <div class="sagamap-sub">${books.length} libro${books.length!==1?'s':''} · toca cada estrella para ver la ficha</div>
     </div>
     ${branches.length?`<div class="sagamap-legend"><span><i class="sm-leg-line"></i> orden principal</span><span><i class="sm-leg-line dashed"></i> especial / precuela</span></div>`:''}
-    <div class="sagamap-map" id="sagaMapViewport" style="height:${H}px">
-      <div class="sagamap-inner" id="sagaMapInner">
-        <svg viewBox="0 0 100 ${H}" preserveAspectRatio="none">
-          <defs><linearGradient id="smLineGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c06fc4"/><stop offset="100%" stop-color="#5bbcb0"/></linearGradient></defs>
-          ${linesSvg}
-        </svg>
-        ${mainChain.map(nodeHtml).join('')}
-        ${branches.map(nodeHtml).join('')}
-      </div>
+    <div class="sagamap-map" style="height:${H}px">
+      <svg viewBox="0 0 100 ${H}" preserveAspectRatio="none">
+        <defs><linearGradient id="smLineGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c06fc4"/><stop offset="100%" stop-color="#5bbcb0"/></linearGradient></defs>
+        ${linesSvg}
+      </svg>
+      ${mainChain.map(nodeHtml).join('')}
+      ${branches.map(nodeHtml).join('')}
     </div>`;
-}
-
-/* PC5.4 — CENTRADO HORIZONTAL DEL CONJUNTO REAL
-   Las X de libros principales (xPattern), ramas (attach±34) y sus etiquetas
-   (ancho fijo de .sm-node, 128px / 100px en móvil) viven en un sistema mixto
-   de % (posición) + px (ancho real de caja, incluida la etiqueta). Ese ancho
-   real solo se conoce cuando el nodo ya está pintado en el DOM, así que el
-   centrado se hace por MEDICIÓN geométrica real (getBoundingClientRect) tras
-   pintar el mapa, no recalculando xPattern: se toma el borde real izquierdo/
-   derecho de cada .sm-node (que ya incluye la etiqueta, no solo el anillo),
-   se calcula su centro real y se desplaza el conjunto completo (SVG + nodos,
-   agrupados en #sagaMapInner) lo justo para que ese centro coincida con el
-   centro del área disponible (#sagaMapViewport). Es el mismo desplazamiento
-   para todos los nodos y las líneas (que son hijas del mismo contenedor), así
-   que las conexiones no cambian y el alto/scroll vertical (definido en
-   #sagaMapViewport) no se toca. */
-function centerSagaMapNodes(){
-  const viewport=document.getElementById('sagaMapViewport');
-  const inner=document.getElementById('sagaMapInner');
-  if(!viewport||!inner) return;
-  inner.style.transform='none'; // medir siempre desde el estado neutro (por si se reabre el mapa)
-  const vpRect=viewport.getBoundingClientRect();
-  if(vpRect.width===0) return; // modal aún no visible: no hay nada fiable que medir
-  // Se miden tanto .sm-node (caja completa: anillo+número+etiqueta) como
-  // .sm-node-label (por si un título muy largo desbordara la caja), para que
-  // el ancho real de las etiquetas cuente en el cálculo y no solo el de las portadas.
-  const els=inner.querySelectorAll('.sm-node,.sm-node-label');
-  if(!els.length) return;
-  let minX=Infinity,maxX=-Infinity;
-  els.forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.width===0&&r.height===0) return;
-    minX=Math.min(minX,r.left-vpRect.left);
-    maxX=Math.max(maxX,r.right-vpRect.left);
-  });
-  if(!isFinite(minX)||!isFinite(maxX)) return;
-  const realCenter=(minX+maxX)/2;
-  const targetCenter=vpRect.width/2;
-  let delta=targetCenter-realCenter;
-  // Salvaguarda: nunca desplazar tanto que un nodo/etiqueta quede fuera del área útil
-  const maxShiftRight=vpRect.width-maxX; // margen libre real a la derecha
-  const maxShiftLeft=-minX;              // margen libre real a la izquierda (negativo)
-  delta=Math.max(maxShiftLeft,Math.min(maxShiftRight,delta));
-  inner.style.transform=Math.abs(delta)>0.5?`translateX(${delta}px)`:'';
 }
 function openSagaBook(id){
   closeSagaModal();
@@ -7160,6 +7372,27 @@ window.addEventListener('popstate', ()=>{
 
 // Intentar al cargar la página
 tryOpenFromHash();
+
+/* ── FASE 2: ruta de prueba AISLADA para #bookPage, independiente
+   de tryOpenFromHash()/popstate/openBook(). Solo reacciona a
+   #fichabeta/ID; no interfiere con #libro/ID. Uso: abrir
+   index.html#fichabeta/<id-del-libro-en-books_data.json> ── */
+function tryOpenFichaBetaFromHash(){
+  if(!location.hash.startsWith('#fichabeta/')) return;
+  const id=location.hash.slice('#fichabeta/'.length);
+  if(!id) return;
+  if(allBooks.length){
+    openBookPage(id);
+  } else {
+    const waitFor=setInterval(()=>{
+      if(allBooks.length){ clearInterval(waitFor); openBookPage(id); }
+    },100);
+    setTimeout(()=>clearInterval(waitFor),8000);
+  }
+}
+tryOpenFichaBetaFromHash();
+window.addEventListener('hashchange',()=>{ if(location.hash.startsWith('#fichabeta/')) tryOpenFichaBetaFromHash(); });
+
 document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuthModal();});
 
 async function checkSolicitudesNotif(){
