@@ -8299,31 +8299,11 @@ async function setReadingStatus(bookId, newStatus){
       _refreshShelfUI(bookId);
       showToast('Error al guardar 😞','error'); console.error(error); return;
     }
-    // Al marcar "Leyendo", abrimos automáticamente una entrada de lectura con fecha de inicio hoy (si no hay ya una en curso)
-    if(next==='reading' && !getOpenLogEntry(bookId)){
-      const todayISO=new Date().toISOString().slice(0,10)+'T12:00:00.000Z';
-      const {data,error:logErr}=await sb.from('reading_log')
-        .insert({user_id:currentUser.id, book_id:bookId, started_at:new Date().toISOString()})
-        .select('id,started_at,read_at').single();
-      if(!logErr && data){
-        if(!myReadingLog[bookId]) myReadingLog[bookId]=[];
-        myReadingLog[bookId].push({id:data.id, started_at:data.started_at, read_at:data.read_at});
-      } else if(logErr) console.error('reading_log start error:',logErr);
-    }
-    // Al marcar "Leído" con una lectura en curso (venía de "Leyendo"), la cerramos con la fecha de hoy
-    if(next==='read'){
-      const openEntry=getOpenLogEntry(bookId);
-      if(openEntry){
-        const hoy=new Date();
-        const pad=n=>String(n).padStart(2,'0');
-        const isoDate=new Date(`${hoy.getFullYear()}-${pad(hoy.getMonth()+1)}-${pad(hoy.getDate())}T12:00:00`).toISOString();
-        const {error:endErr}=await sb.from('reading_log').update({read_at:isoDate}).eq('id',openEntry.id).eq('user_id',currentUser.id);
-        if(!endErr){
-          openEntry.read_at=isoDate;
-          myReadingReadAt[bookId]=isoDate;
-        } else console.error('reading_log end error:',endErr);
-      }
-    }
+    // FASE 2.6.X — CORRECCIÓN BUG FECHAS AUTOMÁTICAS: setReadingStatus() ya NO
+    // crea ni cierra filas de reading_log al pasar a "reading"/"read". El único
+    // dato que este bloque escribe es reading_status.status. Las fechas siguen
+    // existiendo exclusivamente como acción manual de la usuaria, vía
+    // setLogStartDate() / addReadLogEntry() (sin tocar).
     const tieneFechas=(myReadingLog[bookId]||[]).some(e=>e.read_at);
     const msg=next==='want'?'Añadido a «Quiero leer» ＋'
       :next==='reading'?'Marcado como «Leyendo» 📖'
