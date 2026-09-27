@@ -8446,16 +8446,25 @@ function _isCompleteDateStr(v){
 const _MESES_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 function formatPartialDate(iso, precision){
   if(!iso) return '';
-  const d=new Date(iso);
-  if(isNaN(d.getTime())) return '';
-  if(precision==='year'){
-    return String(d.getUTCFullYear());
-  }
-  if(precision==='month'){
+  if(precision==='year' || precision==='month'){
+    const d=new Date(iso);
+    if(isNaN(d.getTime())) return '';
+    if(precision==='year'){
+      return String(d.getUTCFullYear());
+    }
     return `${_MESES_ES[d.getUTCMonth()]} de ${d.getUTCFullYear()}`;
   }
   // precision==='day', null o undefined -> fecha completa
-  return `${d.getUTCDate()} de ${_MESES_ES[d.getUTCMonth()]} de ${d.getUTCFullYear()}`;
+  // Cambio mínimo (auditoría FASE 2.6.5A): extraer YYYY-MM-DD directamente
+  // del string ISO, sin pasar por getters de Date, para eliminar cualquier
+  // dependencia del huso horario del navegador.
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso));
+  if(!m) return '';
+  const year = m[1];
+  const month = parseInt(m[2], 10);
+  const day = parseInt(m[3], 10);
+  if(month < 1 || month > 12 || day < 1 || day > 31) return '';
+  return `${day} de ${_MESES_ES[month-1]} de ${year}`;
 }
 
 // FASE 2.6.5A — FECHAS PARCIALES (paso 3)
