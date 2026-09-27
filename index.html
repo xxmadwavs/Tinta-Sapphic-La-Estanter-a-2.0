@@ -3171,7 +3171,7 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
    columna vertical aislada bajo la portada). Solo estructura visual:
    estrellas/chiles no interactivos (la lógica de voto sigue en el modal). */
 .bp-mine-row{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;padding:.55rem 0;margin-bottom:.7rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.bp-mine-block{display:flex;align-items:center;gap:.55rem}
+.bp-mine-block{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
 .bp-mine-label{font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .bp-mine-chiles{display:flex;gap:2px}
 .bp-mine-chile{font-size:15px;opacity:.28}
@@ -4297,6 +4297,10 @@ document.addEventListener('click', e=>{
 });
 let authMode='login', pendingStar=0;
 let spicyMap={}, mySpicy={}, pendingSpicy=0;
+/* FASE 7.3 — estado local de la valoración interactiva en BookPage, separado
+   de pendingStar (que es del modal) para que modal y BookPage no interfieran
+   entre sí si coexisten en el DOM. */
+let bpPendingStar=0, bpRatingBusy=false;
 let communityTagsMap={}, myTags={};
 const VALID_TAGS={
   trope:['Age Gap','Alpha/Beta/Omega','Arranged Marriage','Childhood Friends','Coming Out tardío','Destined Lovers','Enemies to Lovers','Fake Relationship','Forbidden Love','Forced Proximity','Found Family','Friends to Lovers','Friends with Benefits','Hurt/Comfort','Jealousy Trope','Lesbian Awakening','Love Triangle','Marriage of Convenience','Opposites Attract','Revenge Romance','Rich/Poor Romance','Rivals to Lovers','Road Trip','Second Chance Romance','Secret Relationship','Sex Toys / Juguetes Sexuales','Slow Burn','Strangers to Lovers','Student × Teacher','Toaster Oven','Unrequited Love','Vacation Romance','Workplace Romance'],
@@ -5704,6 +5708,7 @@ function openBookPage(id, pushState=true){
   const book=allBooks.find(b=>String(b.id)===String(id));
   if(!book){ console.warn('[bookPage] libro no encontrado para id:',id); return; }
   activeBook=book; // misma variable global que usa el sistema de modal existente
+  bpPendingStar=0; bpRatingBusy=false; // FASE 7.3 — evita arrastrar selección/estado pendiente del libro anterior
   _bpScrollBefore=window.scrollY;
   document.getElementById('homeView')?.classList.remove('active');
   document.body.classList.remove('home-active');
@@ -5725,6 +5730,7 @@ function openBookPage(id, pushState=true){
   if(pushState) history.pushState({bookId:id},'',`#libro/${id}`);
 }
 function closeBookPage(){
+  bpPendingStar=0; bpRatingBusy=false; // FASE 7.3 — limpia estado pendiente al salir de la ficha
   document.getElementById('bookPage').classList.remove('active');
   document.body.classList.remove('bp-active'); // restaura .hero/.main (ver regla CSS body.bp-active)
   // Limpia el hash #libro/ID igual que closeBookModal() hacía, para que la URL
@@ -5755,16 +5761,13 @@ function buildCommunityTagsHTMLReadOnly(b){
 
 function renderBookPage(book){
   const b=book;
-  const r=ratingsMap[b.id]||{avg:0,count:0};
-  const myScore=myRatings[b.id]||0;
   const myChileVal=mySpicy[b.id]!=null?mySpicy[b.id]:0;
   const authorStr=(b.authors||[]).map(a=>escHtml(a)).join(', ')||'—';
   const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
-  const starsRow=avg=>[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
   const chileRow=n=>[1,2,3,4,5].map(i=>`<span class="bp-mine-chile ${i<=n?'on':'off'}">🌶</span>`).join('');
-  const miniRating=r.count>0
-    ?`<div class="bp-mini-rating"><span class="avg-stars-row">${starsRow(r.avg)}</span><span>${r.avg.toFixed(1)} · ${r.count} valoración${r.count!==1?'es':''}</span></div>`
-    :'';
+  // FASE 7.3 — id estable para poder refrescar solo la media/nº de votos
+  // (_refreshBpGeneralRating) tras votar/eliminar, sin re-render completo.
+  const miniRating=`<div class="bp-mini-rating" id="bpMiniRating">${buildBpMiniRatingHTML()}</div>`;
 
   // SPICY GENERAL (comunidad) — junto a la valoración general en la cabecera;
   // el nivel PERSONAL ("tu spicy") va aparte, en el panel bajo la portada.
@@ -5792,10 +5795,7 @@ function renderBookPage(book){
   // al inicio del bloque sobre por qué los controles interactivos siguen
   // acoplados al modal). Ahora es una fila compacta, no una columna aparte.
   const miPanel=`<div class="bp-mine-row">
-    <div class="bp-mine-block">
-      <span class="bp-mine-label">Tu valoración</span>
-      <div class="avg-stars-row">${starsRow(myScore)}</div>
-    </div>
+    <div class="bp-mine-block" id="bpRatingBlock">${buildBpRatingHTML()}</div>
     <div class="bp-mine-block">
       <span class="bp-mine-label">Tu spicy</span>
       <div class="bp-mine-chiles">${chileRow(myChileVal)}</div>
@@ -5910,6 +5910,132 @@ function renderBookPage(book){
     ${sobreEsteLibro}
     ${conseguirRecomendaciones}
   `;
+  attachBpStarTouch();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 7.3 — VALORACIÓN INTERACTIVA EN BOOKPAGE
+   Usa exclusivamente los núcleos de 7.2B (_submitRatingCore/_deleteRatingCore),
+   ratingsMap y myRatings como única fuente de datos — sin caché propia, sin
+   llamadas a Supabase nuevas. IDs propios (bp*), nunca los del modal
+   (#starInput/#voteBtn/#deleteBtn), para que ambos puedan coexistir en el DOM
+   sin colisionar. Solo Rating: Spicy sigue sin tocar (pendiente de fase futura).
+   ── */
+
+/* Contenido de la media/nº de votos general (bp-mini-rating), reutilizado
+   tanto en el render completo de BookPage como en el refresco parcial tras
+   votar/eliminar. */
+function buildBpMiniRatingHTML(){
+  const r=activeBook?(ratingsMap[activeBook.id]||{avg:0,count:0}):{avg:0,count:0};
+  if(!(r.count>0)) return '';
+  const stars=[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(r.avg)?'on':'off'}">★</span>`).join('');
+  return `<span class="avg-stars-row">${stars}</span><span>${r.avg.toFixed(1)} · ${r.count} valoración${r.count!==1?'es':''}</span>`;
+}
+function _refreshBpGeneralRating(){
+  const el=document.getElementById('bpMiniRating');
+  if(!el) return;
+  el.innerHTML=buildBpMiniRatingHTML();
+}
+
+/* Contenido completo del bloque "Tu valoración" de BookPage (label + cuerpo),
+   según los 3 estados: no conectado / conectado sin voto / conectado con voto. */
+function buildBpRatingHTML(){
+  const b=activeBook;
+  const myScore=(b&&myRatings[b.id])||0;
+  const label=`<span class="bp-mine-label">Tu valoración</span>`;
+  if(!currentUser){
+    const readOnlyStars=[1,2,3,4,5].map(i=>`<span class="star ${i<=myScore?'on':'off'}">★</span>`).join('');
+    return `${label}<div class="avg-stars-row">${readOnlyStars}</div>`;
+  }
+  const shown=bpPendingStar||myScore;
+  const starBtns=[1,2,3,4,5].map(i=>
+    `<button type="button" class="star-btn bp-rating-star${i<=shown?' selected':''}" data-n="${i}" aria-label="Valorar con ${i} estrella${i!==1?'s':''}" title="${i} estrella${i!==1?'s':''}" aria-pressed="${i<=shown?'true':'false'}">★</button>`
+  ).join('');
+  const prompt=myScore>0?'Puedes cambiarla':'¿Qué te pareció?';
+  const submitLabel=bpPendingStar>0?`Guardar ${bpPendingStar} ★`:(myScore>0?'Actualizar':'Valorar');
+  const deleteBtn=myScore>0?`<button type="button" class="vote-delete bp-rating-delete" id="bpDeleteBtn" onclick="deleteVoteBP()">✕ Eliminar valoración</button>`:'';
+  return `${label}<div class="bp-rating-interactive">
+    <p class="vote-prompt">${prompt}</p>
+    <div class="stars-input bp-rating-stars" id="bpStarInput">${starBtns}</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+      <button type="button" class="vote-submit bp-rating-submit" id="bpVoteBtn" onclick="submitVoteBP()" ${bpPendingStar?'':'disabled'}>${submitLabel}</button>
+      ${deleteBtn}
+    </div>
+  </div>`;
+}
+/* Re-renderiza SOLO #bpRatingBlock (no toda la ficha) y reengancha los
+   eventos táctiles de las estrellas. */
+function renderBpRatingBlock(){
+  const el=document.getElementById('bpRatingBlock');
+  if(!el) return;
+  el.innerHTML=buildBpRatingHTML();
+  attachBpStarTouch();
+}
+
+/* Estrellas con soporte táctil real, acotadas a #bpStarInput (nunca a
+   #starInput, que es del modal) — mismo patrón que attachStarTouch(). */
+function attachBpStarTouch(){
+  const btns=document.querySelectorAll('#bpStarInput .star-btn');
+  btns.forEach(btn=>{
+    const n=parseInt(btn.dataset.n);
+    btn.addEventListener('mouseover',()=>hoverStarBP(n));
+    btn.addEventListener('mouseout',()=>unhoverStarBP());
+    btn.addEventListener('click',()=>selectStarBP(n));
+    btn.addEventListener('touchend',e=>{e.preventDefault();selectStarBP(n);},{passive:false});
+  });
+}
+function hoverStarBP(n){document.querySelectorAll('#bpStarInput .star-btn').forEach((b,i)=>b.style.color=i<n?'var(--gold)':'');}
+function unhoverStarBP(){document.querySelectorAll('#bpStarInput .star-btn').forEach(b=>b.style.color='');}
+function selectStarBP(n){
+  if(bpRatingBusy) return;
+  bpPendingStar=n;
+  document.querySelectorAll('#bpStarInput .star-btn').forEach((b,i)=>{
+    b.classList.toggle('selected',i<n);
+    b.setAttribute('aria-pressed',i<n?'true':'false');
+  });
+  const btn=document.getElementById('bpVoteBtn');
+  if(btn){btn.disabled=false;btn.textContent=`Guardar ${n} ★`;}
+}
+
+async function submitVoteBP(){
+  if(!currentUser||!activeBook||bpRatingBusy) return;
+  const score=bpPendingStar;
+  if(!Number.isInteger(score)||score<1||score>5) return;
+  bpRatingBusy=true;
+  const btn=document.getElementById('bpVoteBtn');
+  if(btn) btn.disabled=true;
+  try{
+    await _submitRatingCore(activeBook.id,currentUser.id,score);
+  }catch(err){
+    bpRatingBusy=false;
+    showToast('Error al guardar','error');
+    if(btn) btn.disabled=false;
+    return;
+  }
+  bpRatingBusy=false;
+  bpPendingStar=0;
+  showToast('¡Valoración guardada! ✓','success');
+  updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();
+  checkNewLogros();
+}
+
+async function deleteVoteBP(){
+  if(!currentUser||!activeBook||!myRatings[activeBook.id]||bpRatingBusy) return;
+  bpRatingBusy=true;
+  const btn=document.getElementById('bpDeleteBtn');
+  if(btn){btn.disabled=true;btn.textContent='Eliminando…';}
+  try{
+    await _deleteRatingCore(activeBook.id,currentUser.id);
+  }catch(err){
+    bpRatingBusy=false;
+    showToast('Error al eliminar','error');
+    if(btn){btn.disabled=false;btn.textContent='✕ Eliminar valoración';}
+    return;
+  }
+  bpRatingBusy=false;
+  bpPendingStar=0;
+  showToast('Voto eliminado','success');
+  updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();
 }
 
 /* Actualiza solo el bloque de valoración sin rerenderizar todo el modal */
