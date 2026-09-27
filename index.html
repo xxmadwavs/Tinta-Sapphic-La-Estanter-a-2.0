@@ -8572,6 +8572,11 @@ function _refreshShelfUI(bookId){
   // Botones en modal
   const modalWrap=document.getElementById('shelfBtns_'+bookId);
   if(modalWrap && activeBook && activeBook.id===bookId) modalWrap.outerHTML=buildShelfButtonsHTML(bookId);
+  // Botones en BookPage (acotado a #bpWrap, sin getElementById ambiguo)
+  if(activeBook && activeBook.id===bookId){
+    const bpShelfWrap=document.querySelector('#bpWrap .shelf-btns');
+    if(bpShelfWrap) bpShelfWrap.outerHTML=buildShelfButtonsHTML(bookId);
+  }
   // Botones en tarjeta
   const cardWrap=document.getElementById('cardShelf_'+bookId);
   if(cardWrap) cardWrap.outerHTML=buildCardShelfBtnsHTML(bookId);
