@@ -7303,6 +7303,12 @@ function tryOpenFromHash(){
   // FASE 2.4 — #libro/ID pasa a abrir la ficha nueva (#bookPage) en vez del
   // #bookModal antiguo. openBook()/#bookModal se dejan intactos como código
   // (posible rollback) pero ya no son el destino de esta ruta.
+  // FASE — FIX FLASH DE CATÁLOGO: .hero/.main son visibles por defecto hasta
+  // que algo añade body.home-active o body.bp-active (ver CSS). Si la URL ya
+  // trae una ruta de ficha, ocultamos el catálogo desde ya —reutilizando la
+  // misma clase que openBookPage()/closeBookPage() ya usan para esto— para
+  // no mostrar la estantería mientras se espera allBooks/readingStatusLoaded.
+  document.body.classList.add('bp-active');
   if(allBooks.length && readingStatusLoaded){
     openBookPage(id, false);
   } else {
@@ -7315,7 +7321,12 @@ function tryOpenFromHash(){
         openBookPage(id, false);
       }
     },100);
-    setTimeout(()=>clearInterval(waitFor),8000);
+    setTimeout(()=>{
+      clearInterval(waitFor);
+      // Si el id no era válido y BookPage nunca llegó a abrirse, no dejar el
+      // catálogo oculto indefinidamente: revertir el ocultamiento preventivo.
+      if(!document.getElementById('bookPage').classList.contains('active')) document.body.classList.remove('bp-active');
+    },8000);
   }
 }
 
@@ -7417,13 +7428,19 @@ function tryOpenFichaBetaFromHash(){
   if(!location.hash.startsWith('#fichabeta/')) return;
   const id=location.hash.slice('#fichabeta/'.length);
   if(!id) return;
+  // Ver comentario equivalente en tryOpenFromHash(): evitar el flash del
+  // catálogo reutilizando la misma clase de ocultamiento que openBookPage().
+  document.body.classList.add('bp-active');
   if(allBooks.length && readingStatusLoaded){
     openBookPage(id);
   } else {
     const waitFor=setInterval(()=>{
       if(allBooks.length && readingStatusLoaded){ clearInterval(waitFor); openBookPage(id); }
     },100);
-    setTimeout(()=>clearInterval(waitFor),8000);
+    setTimeout(()=>{
+      clearInterval(waitFor);
+      if(!document.getElementById('bookPage').classList.contains('active')) document.body.classList.remove('bp-active');
+    },8000);
   }
 }
 tryOpenFichaBetaFromHash();
