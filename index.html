@@ -6088,42 +6088,64 @@ function selectStar(n){
   if(btn){btn.disabled=false;btn.textContent=`Guardar ${n} ★`;}
 }
 
+/* 7.2B — núcleo agnóstico de UI, extraído de submitVote(). Sin DOM, sin
+   activeBook/currentUser/pendingStar: recibe bookId/userId/score explícitos.
+   Reutilizable después por BookPage sin duplicar esta lógica. */
+async function _submitRatingCore(bookId, userId, score){
+  const existing=myRatings[bookId];
+  const {error}=existing
+    ?await sb.from('ratings').update({score}).eq('user_id',userId).eq('book_id',bookId)
+    :await sb.from('ratings').insert({user_id:userId,book_id:bookId,score});
+  if(error) throw new Error(error.message||'Error al guardar la valoración');
+  const r=ratingsMap[bookId]||{avg:0,count:0};
+  const oldScore=existing||0,newCount=existing?r.count:r.count+1;
+  const newAvg=existing?(r.avg*r.count-oldScore+score)/r.count:(r.avg*r.count+score)/newCount;
+  ratingsMap[bookId]={avg:Math.round(newAvg*10)/10,count:newCount};
+  myRatings[bookId]=score;
+  return ratingsMap[bookId];
+}
+
 async function submitVote(){
   if(!currentUser||!activeBook||!pendingStar) return;
   const btn=document.getElementById('voteBtn');
   if(btn) btn.disabled=true;
-  const existing=myRatings[activeBook.id];
-  const {error}=existing
-    ?await sb.from('ratings').update({score:pendingStar}).eq('user_id',currentUser.id).eq('book_id',activeBook.id)
-    :await sb.from('ratings').insert({user_id:currentUser.id,book_id:activeBook.id,score:pendingStar});
-  if(error){showToast('Error al guardar','error');if(btn)btn.disabled=false;return;}
-  const r=ratingsMap[activeBook.id]||{avg:0,count:0};
-  const oldScore=existing||0,newCount=existing?r.count:r.count+1;
-  const newAvg=existing?(r.avg*r.count-oldScore+pendingStar)/r.count:(r.avg*r.count+pendingStar)/newCount;
-  ratingsMap[activeBook.id]={avg:Math.round(newAvg*10)/10,count:newCount};
-  myRatings[activeBook.id]=pendingStar;
+  try{
+    await _submitRatingCore(activeBook.id,currentUser.id,pendingStar);
+  }catch(err){
+    showToast('Error al guardar','error');if(btn)btn.disabled=false;return;
+  }
   showToast('¡Valoración guardada! ✓','success');
   updateStats();applyFilters(false);renderVoteSection();
   checkNewLogros();
+}
+
+/* 7.2B — núcleo agnóstico de UI, extraído de deleteVote(). */
+async function _deleteRatingCore(bookId, userId){
+  const {error}=await sb.from('ratings').delete().eq('user_id',userId).eq('book_id',bookId);
+  if(error) throw new Error(error.message||'Error al eliminar la valoración');
+  // Actualizar localmente igual que antes (sin recargar todo de Supabase)
+  const oldScore=myRatings[bookId];
+  const r=ratingsMap[bookId]||{avg:0,count:0};
+  if(r.count<=1){
+    delete ratingsMap[bookId];
+  } else {
+    const newCount=r.count-1;
+    const newAvg=(r.avg*r.count-oldScore)/newCount;
+    ratingsMap[bookId]={avg:Math.round(newAvg*10)/10,count:newCount};
+  }
+  delete myRatings[bookId];
+  return ratingsMap[bookId]||null;
 }
 
 async function deleteVote(){
   if(!currentUser||!activeBook||!myRatings[activeBook.id]) return;
   const btn=document.getElementById('deleteBtn');
   if(btn){btn.disabled=true;btn.textContent='Eliminando…';}
-  const {error}=await sb.from('ratings').delete().eq('user_id',currentUser.id).eq('book_id',activeBook.id);
-  if(error){showToast('Error al eliminar','error');if(btn){btn.disabled=false;btn.textContent='✕ Eliminar mi voto';}return;}
-  // Actualizar localmente igual que submitVote (sin recargar todo de Supabase)
-  const oldScore=myRatings[activeBook.id];
-  const r=ratingsMap[activeBook.id]||{avg:0,count:0};
-  if(r.count<=1){
-    delete ratingsMap[activeBook.id];
-  } else {
-    const newCount=r.count-1;
-    const newAvg=(r.avg*r.count-oldScore)/newCount;
-    ratingsMap[activeBook.id]={avg:Math.round(newAvg*10)/10,count:newCount};
+  try{
+    await _deleteRatingCore(activeBook.id,currentUser.id);
+  }catch(err){
+    showToast('Error al eliminar','error');if(btn){btn.disabled=false;btn.textContent='✕ Eliminar mi voto';}return;
   }
-  delete myRatings[activeBook.id];
   pendingStar=0;
   showToast('Voto eliminado','success');
   updateStats();applyFilters(false);renderVoteSection();
@@ -6216,37 +6238,58 @@ function _attachSpicyEvents(){
   });
 }
 
+/* 7.2B — núcleo agnóstico de UI, extraído de submitSpicyVote(). El guard de
+   pendingSpicy===0 (bug preexistente, no corregido) se queda en el wrapper. */
+async function _submitSpicyCore(bookId, userId, level){
+  const existing=mySpicy[bookId];
+  const {error}=existing!=null
+    ?await sb.from('spicy_votes').update({level}).eq('user_id',userId).eq('book_id',bookId)
+    :await sb.from('spicy_votes').insert({user_id:userId,book_id:bookId,level});
+  if(error) throw new Error(error.message||'Error al guardar el spicy');
+  const sv=spicyMap[bookId]||{avg:0,count:0};
+  const oldLevel=existing!=null?existing:null;
+  const newCount=oldLevel!=null?sv.count:sv.count+1;
+  const newAvg=oldLevel!=null?(sv.avg*sv.count-oldLevel+level)/sv.count:(sv.avg*sv.count+level)/newCount;
+  spicyMap[bookId]={avg:Math.round(newAvg*10)/10,count:newCount};
+  mySpicy[bookId]=level;
+  return spicyMap[bookId];
+}
+
 async function submitSpicyVote(){
   if(!currentUser||!activeBook||!pendingSpicy) return;
   const btn=document.getElementById('spicyVoteBtn');
   if(btn) btn.disabled=true;
-  const existing=mySpicy[activeBook.id];
-  const {error}=existing!=null
-    ?await sb.from('spicy_votes').update({level:pendingSpicy}).eq('user_id',currentUser.id).eq('book_id',activeBook.id)
-    :await sb.from('spicy_votes').insert({user_id:currentUser.id,book_id:activeBook.id,level:pendingSpicy});
-  if(error){showToast('Error al guardar','error');if(btn)btn.disabled=false;return;}
-  const sv=spicyMap[activeBook.id]||{avg:0,count:0};
-  const oldLevel=existing!=null?existing:null;
-  const newCount=oldLevel!=null?sv.count:sv.count+1;
-  const newAvg=oldLevel!=null?(sv.avg*sv.count-oldLevel+pendingSpicy)/sv.count:(sv.avg*sv.count+pendingSpicy)/newCount;
-  spicyMap[activeBook.id]={avg:Math.round(newAvg*10)/10,count:newCount};
-  mySpicy[activeBook.id]=pendingSpicy;
+  try{
+    await _submitSpicyCore(activeBook.id,currentUser.id,pendingSpicy);
+  }catch(err){
+    showToast('Error al guardar','error');if(btn)btn.disabled=false;return;
+  }
   showToast('¡Spicy guardado! 🌶','success');
   applyFilters(false);renderSpicySection();
   checkNewLogros();
+}
+
+/* 7.2B — núcleo agnóstico de UI, extraído de deleteSpicyVote(). */
+async function _deleteSpicyCore(bookId, userId){
+  const {error}=await sb.from('spicy_votes').delete().eq('user_id',userId).eq('book_id',bookId);
+  if(error) throw new Error(error.message||'Error al eliminar el spicy');
+  const oldLevel=mySpicy[bookId];
+  const sv=spicyMap[bookId]||{avg:0,count:0};
+  if(sv.count<=1) delete spicyMap[bookId];
+  else{const nc=sv.count-1;spicyMap[bookId]={avg:Math.round((sv.avg*sv.count-oldLevel)/nc*10)/10,count:nc};}
+  delete mySpicy[bookId];
+  return spicyMap[bookId]||null;
 }
 
 async function deleteSpicyVote(){
   if(!currentUser||!activeBook||mySpicy[activeBook.id]==null) return;
   const btn=document.getElementById('spicyDeleteBtn');
   if(btn){btn.disabled=true;btn.textContent='Eliminando…';}
-  const {error}=await sb.from('spicy_votes').delete().eq('user_id',currentUser.id).eq('book_id',activeBook.id);
-  if(error){showToast('Error al eliminar','error');if(btn){btn.disabled=false;btn.textContent='✕ Quitar mi voto';}return;}
-  const oldLevel=mySpicy[activeBook.id];
-  const sv=spicyMap[activeBook.id]||{avg:0,count:0};
-  if(sv.count<=1) delete spicyMap[activeBook.id];
-  else{const nc=sv.count-1;spicyMap[activeBook.id]={avg:Math.round((sv.avg*sv.count-oldLevel)/nc*10)/10,count:nc};}
-  delete mySpicy[activeBook.id];
+  try{
+    await _deleteSpicyCore(activeBook.id,currentUser.id);
+  }catch(err){
+    showToast('Error al eliminar','error');if(btn){btn.disabled=false;btn.textContent='✕ Quitar mi voto';}return;
+  }
   pendingSpicy=0;
   showToast('Voto spicy eliminado','success');
   applyFilters(false);renderSpicySection();
