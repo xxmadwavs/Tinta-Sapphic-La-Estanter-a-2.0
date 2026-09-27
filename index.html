@@ -8625,7 +8625,7 @@ function buildShelfButtonsHTML(bookId){
         style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
         onclick="event.stopPropagation()">
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();addReadLogEntry('${bookId}',document.getElementById('readDateInput_${bookId}').value)">✓ Marcar como terminado</button>
+        onclick="event.stopPropagation();addReadLogEntry('${bookId}',this.closest('.shelf-btns').querySelector('#'+CSS.escape('readDateInput_${bookId}')).value)">✓ Marcar como terminado</button>
     </div>`:`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado</span>
@@ -8637,7 +8637,7 @@ function buildShelfButtonsHTML(bookId){
         style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
         onclick="event.stopPropagation()">
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();addReadLogEntry('${bookId}',document.getElementById('readDateInput_${bookId}').value,document.getElementById('startDateNewInput_${bookId}').value)">${addLabel}</button>
+        onclick="event.stopPropagation();addReadLogEntry('${bookId}',this.closest('.shelf-btns').querySelector('#'+CSS.escape('readDateInput_${bookId}')).value,this.closest('.shelf-btns').querySelector('#'+CSS.escape('startDateNewInput_${bookId}')).value)">${addLabel}</button>
     </div>`;
   const readDatePicker=(s==='read'||s==='reading')?`
     <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
