@@ -8726,13 +8726,12 @@ function buildShelfButtonsHTML(bookId){
   const completedLog=log.filter(e=>e.read_at);
   const openEntry=getOpenLogEntry(bookId);
   const todayISO=new Date().toISOString().slice(0,10);
-  // FASE 2.6.5A — PASO 5: la nueva interfaz de fecha parcial (año/mes/día +
-  // "Establecer hoy") se aplica SOLO a la primera lectura de un libro, es
-  // decir, mientras no exista ninguna relectura previa. En cuanto hay alguna
-  // relectura (completedLog.length>0) se conserva exactamente el flujo
-  // anterior con <input type="date">, sin tocarlo — el paso 6 se encargará de
-  // las relecturas más adelante.
-  const isFirstReading=completedLog.length===0;
+  // STEP 6.2: la interfaz de fecha parcial (año/mes/día + "Establecer hoy")
+  // ya se aplica por igual a la primera lectura y a cualquier relectura —
+  // ver startDateBlock/finishRow más abajo. La antigua variable
+  // isFirstReading (que distinguía ambos casos solo para elegir qué UI pintar)
+  // ha quedado sin usos tras este cambio y se retira; historyHtml no se toca
+  // (eso es STEP 6.3, pendiente).
   const historyHtml=completedLog.map(entry=>{
     // Registros históricos (precision NULL): misma visualización de siempre,
     // sin cambios (requisito de compatibilidad del paso 5). Registros nuevos
@@ -8756,43 +8755,29 @@ function buildShelfButtonsHTML(bookId){
   }).join('');
   const addLabel=completedLog.length?'+ Añadir relectura':'Guardar fecha';
   // Fecha de inicio editable mientras hay una lectura abierta sin terminar ("Leyendo").
-  // Interfaz nueva (año/mes/día) solo en la primera lectura; si ya hay alguna
-  // relectura, se mantiene el <input type="date"> exactamente como antes.
-  const startDateBlock=openEntry?(isFirstReading?`
+  // STEP 6.2: interfaz de fecha parcial (año/mes/día) para cualquier lectura
+  // abierta, sea la primera o una relectura — mismo prefijo 'startDateOpen'
+  // y misma función _submitSetLogStartDatePartial ya usadas en STEP 5.
+  const startDateBlock=openEntry?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
       ${buildPartialDateInputHTML('startDateOpen',bookId)}
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry.id}','startDateOpen')">Guardar</button>
-    </div>`:`
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
-      <input type="date" id="startDateInput_${bookId}" max="${todayISO}"
-        value="${openEntry?.started_at?new Date(openEntry.started_at).toISOString().slice(0,10):''}"
-        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
-        onclick="event.stopPropagation()"
-        onchange="event.stopPropagation();setLogStartDate('${bookId}','${openEntry.id}',this.value)">
-    </div>`):'';
+    </div>`:'';
   // Sin lectura abierta: al guardar la fecha de fin, permitimos indicar también la
-  // de inicio (ambas opcionales salvo la de fin). Interfaz nueva (año/mes/día)
-  // solo en la primera lectura (isFirstReading); en cuanto se trata de
-  // "+ Añadir relectura" (isFirstReading===false) se mantiene exactamente el
-  // flujo anterior con <input type="date">, sin tocarlo (paso 6 pendiente).
-  const finishRow=openEntry?(isFirstReading?`
+  // de inicio (ambas opcionales salvo la de fin). STEP 6.2: interfaz de fecha
+  // parcial (año/mes/día) tanto para la primera lectura como para
+  // "+ Añadir relectura" — mismos prefijos (readDateOpen / startDateNewP,
+  // readDateNew) y mismas funciones (_submitAddReadLogEntryPartial,
+  // addReadLogEntry) ya usadas en STEP 5, sin duplicarlas.
+  const finishRow=openEntry?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
       ${buildPartialDateInputHTML('readDateOpen',bookId)}
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateOpen',null)">✓ Marcar como terminado</button>
     </div>`:`
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
-      <input type="date" id="readDateInput_${bookId}" max="${todayISO}"
-        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
-        onclick="event.stopPropagation()">
-      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();addReadLogEntry('${bookId}',this.closest('.shelf-btns').querySelector('#'+CSS.escape('readDateInput_${bookId}')).value)">✓ Marcar como terminado</button>
-    </div>`):(isFirstReading?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado</span>
       ${buildPartialDateInputHTML('startDateNewP',bookId)}
@@ -8802,19 +8787,7 @@ function buildShelfButtonsHTML(bookId){
       ${buildPartialDateInputHTML('readDateNew',bookId)}
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateNew','startDateNewP')">${addLabel}</button>
-    </div>`:`
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado</span>
-      <input type="date" id="startDateNewInput_${bookId}" max="${todayISO}"
-        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
-        onclick="event.stopPropagation()">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
-      <input type="date" id="readDateInput_${bookId}" max="${todayISO}"
-        style="padding:4px 8px;border-radius:8px;border:1px solid rgba(91,188,176,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
-        onclick="event.stopPropagation()">
-      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();addReadLogEntry('${bookId}',this.closest('.shelf-btns').querySelector('#'+CSS.escape('readDateInput_${bookId}')).value,this.closest('.shelf-btns').querySelector('#'+CSS.escape('startDateNewInput_${bookId}')).value)">${addLabel}</button>
-    </div>`);
+    </div>`;
   const readDatePicker=(s==='read'||s==='reading')?`
     <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
       ${startDateBlock}
