@@ -3144,37 +3144,66 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
    body.home-active ya usa para ocultar estos dos elementos. */
 body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-wrap{max-width:1040px;margin:0 auto}
-.bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
+.bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.4rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
 .bp-back:hover{color:var(--accent2)}
-.bp-header{display:grid;grid-template-columns:220px 1fr;gap:2.2rem;margin-bottom:1.75rem}
-.bp-cover{width:100%;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;background:var(--surface2);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+/* FASE 2.6.4 — grid-template-areas en vez de dos simples columnas: así el
+   panel personal ("tu valoración/spicy") puede quedar pegado a la portada en
+   desktop y, a la vez, moverse a otro punto del flujo en móvil (ver sección
+   RESPONSIVE del brief: en móvil va después del estado de lectura, no debajo
+   de la portada) sin duplicar marcado ni depender del orden del DOM. */
+.bp-header{display:grid;grid-template-columns:200px 1fr;grid-template-areas:"cover info" "mine actions";gap:1.3rem 2rem;margin-bottom:1.6rem;align-items:start}
+.bp-cover{grid-area:cover;width:100%;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;background:var(--surface2);box-shadow:0 20px 50px rgba(0,0,0,.45)}
 .bp-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .bp-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
-.bp-info{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.bp-info-main{grid-area:info;display:flex;flex-direction:column;justify-content:center;min-width:0}
 .bp-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;line-height:1.12;margin-bottom:.4rem;overflow-wrap:anywhere}
 .bp-author{color:var(--muted);font-size:14.5px;margin-bottom:.5rem}
-.bp-saga-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:13px;color:var(--accent2);margin-bottom:.7rem}
-.bp-mini-rating{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;font-size:13px;color:var(--muted)}
-.bp-actions{margin-top:.2rem}
-.bp-chips-row{display:flex;flex-wrap:wrap;gap:.4rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:1.9rem}
-.bp-chips-row:empty{display:none}
-.bp-section{margin-bottom:1.9rem;padding-bottom:1.9rem;border-bottom:1px solid var(--border)}
+.bp-saga-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:13px;color:var(--accent2);margin-bottom:.6rem}
+/* Valoración + spicy GENERALES (comunidad) — junto al título, distinto del
+   panel personal ("tu valoración/spicy") de abajo. */
+.bp-general-row{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;margin-bottom:.7rem}
+.bp-mini-rating{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--muted)}
+.bp-actions{grid-area:actions}
+.bp-actions .shelf-btns{margin:.3rem 0 0}
+.bp-actions .shelf-btn{flex:0 1 auto;padding:7px 13px}
+
+/* FASE 2.6.4 — panel personal "tu valoración / tu spicy". Solo estructura
+   visual por ahora: estrellas/chiles no interactivos (ver nota al inicio del
+   bloque de renderBookPage sobre por qué la lógica de voto sigue en el modal). */
+.bp-mine{grid-area:mine;display:flex;flex-direction:column;gap:.6rem}
+.bp-mine-block{display:flex;flex-direction:column;gap:.25rem}
+.bp-mine-label{font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.bp-mine-chiles{display:flex;gap:2px}
+.bp-mine-chile{font-size:15px;opacity:.28}
+.bp-mine-chile.on{opacity:1}
+
+.bp-section{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .bp-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.bp-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem}
-.bp-group{margin-bottom:.9rem}
-.bp-group:last-child{margin-bottom:0}
+.bp-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+.bp-section-title-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.8rem}
+.bp-section-title-row .bp-section-title{margin-bottom:0}
+.bp-add-btn{background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;padding:4px 11px;border-radius:20px;cursor:pointer;transition:all .18s;white-space:nowrap}
+.bp-add-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+/* Ficha técnica: 4 columnas (Año/Páginas/País/Ship) en vez de las 2 del modal */
+.bp-section .modal-meta-grid{grid-template-columns:repeat(4,1fr);gap:.7rem 1rem}
+/* "Sobre este libro" en grid de categorías, no como nube única de chips */
+.bp-sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.6rem}
+.bp-group{min-width:0}
 .bp-group-label{font-size:10.5px;color:var(--muted);margin-bottom:.35rem;letter-spacing:.06em}
-.bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:.6rem}
+.bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:.5rem}
 
 @media (max-width:899px){
-  .bp-header{grid-template-columns:150px 1fr;gap:1.4rem}
+  .bp-header{grid-template-columns:150px 1fr;gap:1.1rem 1.4rem}
 }
 @media (max-width:639px){
   #bookPage{padding:1.25rem 1rem 4rem}
-  .bp-header{grid-template-columns:1fr;text-align:center}
+  .bp-header{grid-template-columns:1fr;grid-template-areas:"cover" "info" "actions" "mine";text-align:center;gap:.9rem}
   .bp-cover{max-width:180px;margin:0 auto}
-  .bp-info{align-items:center}
-  .bp-saga-row,.bp-mini-rating,.bp-chips-row{justify-content:center}
+  .bp-info-main{align-items:center}
+  .bp-saga-row,.bp-general-row{justify-content:center}
+  .bp-mine{align-items:center}
+  .bp-section .modal-meta-grid{grid-template-columns:1fr 1fr}
+  .bp-sobre-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -5712,27 +5741,26 @@ function renderBookPage(book){
   const b=book;
   const r=ratingsMap[b.id]||{avg:0,count:0};
   const myScore=myRatings[b.id]||0;
+  const myChileVal=mySpicy[b.id]!=null?mySpicy[b.id]:0;
   const authorStr=(b.authors||[]).map(a=>escHtml(a)).join(', ')||'—';
   const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
   const starsRow=avg=>[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
+  const chileRow=n=>[1,2,3,4,5].map(i=>`<span class="bp-mine-chile ${i<=n?'on':'off'}">🌶</span>`).join('');
   const miniRating=r.count>0
     ?`<div class="bp-mini-rating"><span class="avg-stars-row">${starsRow(r.avg)}</span><span>${r.avg.toFixed(1)} · ${r.count} valoración${r.count!==1?'es':''}</span></div>`
     :'';
 
-  // CHIPS PRINCIPALES (géneros, subgéneros, spicy, formato, adaptación)
-  const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
-  const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre">${s}</span>`).join('');
+  // SPICY GENERAL (comunidad) — junto a la valoración general en la cabecera;
+  // el nivel PERSONAL ("tu spicy") va aparte, en el panel bajo la portada.
   const spicyEff=effectiveSpicy(b);
   const spicyIsUnknown=spicyEff==null;
-  const spicyTag=currentUser
+  const spicyGeneralTag=currentUser
     ?(spicyIsUnknown
       ?`<span class="tag" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
       :(spicyEff>0?`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
       :`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
     :`<span class="tag" style="background:rgba(138,120,152,0.1);color:var(--muted);border:1px dashed rgba(138,120,152,0.3);cursor:pointer" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
-  const formatoTag=b.formato&&!['Saga','Dúo','Trilogía'].includes(b.formato)?`<span class="tag tag-formato">${b.formato}</span>`:'';
-  const adaptTag=b.adaptacion&&b.adaptacion!=='Sin adaptación'?`<span class="tag tag-adaptacion">${b.adaptacion}</span>`:'';
-  const chipsRow=[genreTags,subgenreTags,spicyTag,formatoTag,adaptTag].join('');
+  const generalRow=`<div class="bp-general-row">${miniRating}${spicyGeneralTag}</div>`;
 
   // SAGA (cabecera + mapa de orden de lectura reutilizado tal cual)
   const sagaName=b.sagaName||(b.formato&&['Saga','Dúo','Trilogía'].includes(b.formato)?getSaga(b):null);
@@ -5743,6 +5771,38 @@ function renderBookPage(book){
     :'';
   const sagaRow=sagaName?`<div class="bp-saga-row"><span>${escHtml(sagaName)}${sagaNumStr}</span>${sagaMapBtn}</div>`:'';
 
+  // TU VALORACIÓN / TU SPICY — panel personal (FASE 2.6.4). Solo estructura
+  // visual: sin lógica de voto todavía (ver nota al inicio del bloque sobre
+  // por qué los controles interactivos siguen acoplados al modal).
+  const miPanel=`<div class="bp-mine">
+    <div class="bp-mine-block">
+      <div class="bp-mine-label">Tu valoración</div>
+      <div class="avg-stars-row">${starsRow(myScore)}</div>
+    </div>
+    <div class="bp-mine-block">
+      <div class="bp-mine-label">Tu spicy</div>
+      <div class="bp-mine-chiles">${chileRow(myChileVal)}</div>
+    </div>
+    ${!currentUser?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar.</p>`:''}
+  </div>`;
+
+  // GÉNEROS / SUBGÉNEROS — secciones propias (antes iban en una fila de chips mixta)
+  const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
+  const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre">${s}</span>`).join('');
+  const generos=genreTags?`<div class="bp-section"><div class="bp-section-title">Géneros</div><div class="modal-tags">${genreTags}</div></div>`:'';
+  const subgeneros=subgenreTags?`<div class="bp-section"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:'';
+
+  // FICHA TÉCNICA — Año, Páginas, País de origen y Ship (FASE 2.6.4: Ship
+  // pasa a mostrarse exclusivamente aquí, ya no en "Sobre este libro").
+  const shipVal=(b.ship&&b.ship.length)?b.ship.join(' · '):'';
+  const metaItems=[
+    b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:'',
+    b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:'',
+    b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:'',
+    shipVal?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${escHtml(shipVal)}</span></div>`:''
+  ].filter(Boolean).join('');
+  const fichaTecnica=metaItems?`<div class="bp-section"><div class="bp-section-title">Ficha técnica</div><div class="modal-meta-grid">${metaItems}</div></div>`:'';
+
   // SINOPSIS
   const sinopsis=b.synopsis?(()=>{
     const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
@@ -5750,45 +5810,43 @@ function renderBookPage(book){
     return `<div class="bp-section"><div class="bp-section-title">Sinopsis</div><div class="modal-synopsis-wrap">${full}</div></div>`;
   })():'';
 
-  // FICHA TÉCNICA (isbn no reserva espacio si no existe)
-  const metaItems=[
-    b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:'',
-    b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:'',
-    b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:'',
-    b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''
-  ].filter(Boolean).join('');
-  const fichaTecnica=metaItems?`<div class="bp-section"><div class="bp-section-title">Ficha técnica</div><div class="modal-meta-grid">${metaItems}</div></div>`:'';
-
-  // SOBRE ESTE LIBRO (agrupado, cada grupo desaparece si no tiene contenido)
-  const buildTopTag=(tagType,tagClass)=>{
+  // SOBRE ESTE LIBRO — grid de 6 categorías (Tropos/Dinámicas/Personajes/
+  // Identidades/Edad/Advertencias), cada una desaparece si no tiene contenido.
+  // Todo sigue viniendo de getEffectiveTags() (JSON oficial + community_tags):
+  // no se crea una fuente nueva ni una sección "Comunidad" aparte — un tag de
+  // comunidad ya incluido aquí no se repite en ningún otro sitio (ver
+  // buildCommunityTagsHTMLReadOnly, que por eso deja de usarse en esta vista).
+  const buildTopTag=(tagType,tagClass,emoji='')=>{
     const {official,merged}=getEffectiveTags(b,tagType);
     return merged.map(v=>{
       const isComm=!official.includes(v);
-      return `<span class="tag ${tagClass}${isComm?' tag-comm-added':''}">${v}${isComm?`<span class="tag-comm-dot"> ·com</span>`:''}</span>`;
+      return `<span class="tag ${tagClass}${isComm?' tag-comm-added':''}">${emoji?emoji+' ':''}${v}${isComm?`<span class="tag-comm-dot"> ·com</span>`:''}</span>`;
     }).join('');
   };
-  const dinamicaTags=buildTopTag('dinamica','tag-dinamica');
   const tropeTags=buildTopTag('trope','tag-trope');
-  const identidadTags=buildTopTag('identidad','tag-identidad');
+  const dinamicaTags=buildTopTag('dinamica','tag-dinamica');
   const characterTags=buildTopTag('character','tag-character');
-  const edadTags=(b.edad||[]).map(e=>`<span class="tag tag-edad">🎂 ${e}</span>`).join('');
-  const shipVal=(b.ship&&b.ship.length)?b.ship.join(' · '):'';
+  const identidadTags=buildTopTag('identidad','tag-identidad');
+  const edadTags=buildTopTag('edad','tag-edad','🎂');
+  const warningTags=buildTopTag('warning','tag-warning','⚠');
   const sobreGroups=[
     tropeTags?`<div class="bp-group"><div class="bp-group-label">Tropos</div><div class="modal-tags">${tropeTags}</div></div>`:'',
     dinamicaTags?`<div class="bp-group"><div class="bp-group-label">Dinámicas</div><div class="modal-tags">${dinamicaTags}</div></div>`:'',
     characterTags?`<div class="bp-group"><div class="bp-group-label">Personajes</div><div class="modal-tags">${characterTags}</div></div>`:'',
     identidadTags?`<div class="bp-group"><div class="bp-group-label">Identidades</div><div class="modal-tags">${identidadTags}</div></div>`:'',
     edadTags?`<div class="bp-group"><div class="bp-group-label">Edad</div><div class="modal-tags">${edadTags}</div></div>`:'',
-    shipVal?`<div class="bp-group"><div class="bp-group-label">Ship</div><div class="modal-tags"><span class="tag">${escHtml(shipVal)}</span></div></div>`:''
+    warningTags?`<div class="bp-group"><div class="bp-group-label">Advertencias</div><div class="modal-tags">${warningTags}</div></div>`:''
   ].filter(Boolean).join('');
-  const sobreEsteLibro=sobreGroups?`<div class="bp-section"><div class="bp-section-title">Sobre este libro</div>${sobreGroups}</div>`:'';
-
-  // ADVERTENCIAS
-  const advertencias=(b.content_warnings&&b.content_warnings.length)?`
-    <div class="bp-section">
-      <div class="bp-section-title" style="color:#ff6b6b">⚠️ Advertencias de contenido</div>
-      <div class="modal-tags">${b.content_warnings.map(w=>`<span class="tag tag-warning">⚠ ${w}</span>`).join('')}</div>
-    </div>`:'';
+  // FASE 2.6.4: el botón "+ Añadir" es solo el elemento visual — sin onclick
+  // todavía; abrirá el selector de tropo/dinámica/personaje/identidad/edad/
+  // advertencia en una fase posterior.
+  const sobreEsteLibro=sobreGroups?`<div class="bp-section">
+    <div class="bp-section-title-row">
+      <div class="bp-section-title">Sobre este libro</div>
+      <button class="bp-add-btn" type="button" title="Próximamente: añadir tropos, dinámicas, personajes, identidades, edad o advertencias">+ Añadir</button>
+    </div>
+    <div class="bp-sobre-grid">${sobreGroups}</div>
+  </div>`:'';
 
   // DÓNDE CONSEGUIRLO
   const buyLinks=(b.editions&&b.editions.length)?b.editions.map(e=>`
@@ -5798,36 +5856,6 @@ function renderBookPage(book){
   const wattpadLink=b.wattpad?`<a class="wattpad-link" href="${b.wattpad}" target="_blank" rel="noopener"><span class="wattpad-icon">📙</span><span>Leer gratis en Wattpad</span><span class="buy-arrow">↗</span></a>`:'';
   const dondeConseguirlo=(buyLinks||wattpadLink)?`<div class="bp-section"><div class="bp-section-title">Dónde conseguirlo</div>${buyLinks?`<div class="buy-links">${buyLinks}</div>`:''}${wattpadLink}</div>`:'';
 
-  // VALORACIÓN (solo lectura — ver nota al inicio del bloque)
-  const communityRatingReadOnly=r.count>0
-    ?`<div class="community-rating"><div class="avg-big">${r.avg.toFixed(1)}</div><div><div class="avg-stars-row">${starsRow(r.avg)}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
-    :`<p style="font-size:13px;color:var(--muted);font-style:italic">Aún sin valoraciones.</p>`;
-  const valoracion=`<div class="bp-section">
-    <div class="bp-section-title">Valoración</div>
-    ${communityRatingReadOnly}
-    ${!currentUser
-      ?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar este libro.</p>`
-      :(myScore>0?`<p class="bp-readonly-note">Tu valoración: ${'★'.repeat(myScore)} (vista previa — vota desde la ficha actual por ahora)</p>`:`<p class="bp-readonly-note">Vista previa — vota desde la ficha actual por ahora.</p>`)}
-  </div>`;
-
-  // SPICY (solo lectura)
-  const spicySrc=spicySourceLabel(b);
-  const spicySection=`<div class="bp-section">
-    <div class="bp-section-title">Spicy</div>
-    ${spicyIsUnknown
-      ?`<p style="font-size:13px;color:var(--muted)">Nivel desconocido — ¡sé la primera en votar!</p>`
-      :`<div style="display:flex;align-items:center;gap:.6rem"><span style="font-size:1.3rem">${SPICY_ICONS[spicyEff]||'—'}</span><span style="font-size:13.5px">${SPICY_LABELS[spicyEff]}</span><span style="font-size:11px;color:var(--muted)">(${spicySrc})</span></div>`}
-    ${!currentUser?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para votar el nivel spicy.</p>`:`<p class="bp-readonly-note">Vista previa — vota desde la ficha actual por ahora.</p>`}
-  </div>`;
-
-  // COMUNIDAD (solo lectura)
-  const comunidadHtml=buildCommunityTagsHTMLReadOnly(b);
-  const comunidad=comunidadHtml?`<div class="bp-section">
-    <div class="bp-section-title">Comunidad</div>
-    ${comunidadHtml}
-    <p class="bp-readonly-note">Vista previa — añade o quita tags desde la ficha actual por ahora.</p>
-  </div>`:'';
-
   // RECOMENDACIONES (reutiliza buildSimilarBooksHTML tal cual; FASE 2.4: ahora abre openBookPage())
   const similarHtml=buildSimilarBooksHTML(b);
   const recomendaciones=similarHtml?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${similarHtml}</div>`:'';
@@ -5836,23 +5864,21 @@ function renderBookPage(book){
     <button class="bp-back" onclick="closeBookPage()">← Volver al catálogo</button>
     <div class="bp-header">
       <div class="bp-cover">${coverEl}</div>
-      <div class="bp-info">
+      <div class="bp-info-main">
         <h1 class="bp-title">${escHtml(b.title)}</h1>
         <p class="bp-author">por ${authorStr}</p>
         ${sagaRow}
-        ${miniRating}
-        <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
+        ${generalRow}
       </div>
+      <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
+      ${miPanel}
     </div>
-    <div class="bp-chips-row">${chipsRow}</div>
-    ${sinopsis}
+    ${generos}
+    ${subgeneros}
     ${fichaTecnica}
+    ${sinopsis}
     ${sobreEsteLibro}
-    ${advertencias}
     ${dondeConseguirlo}
-    ${valoracion}
-    ${spicySection}
-    ${comunidad}
     ${recomendaciones}
   `;
 }
