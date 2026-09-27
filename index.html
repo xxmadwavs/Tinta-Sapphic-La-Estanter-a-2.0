@@ -3176,6 +3176,12 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-mine-chiles{display:flex;gap:2px}
 .bp-mine-chile{font-size:15px;opacity:.28}
 .bp-mine-chile.on{opacity:1}
+/* FASE 7.4 — botones interactivos de spicy en BookPage, scopeados aquí.
+   Mismo tamaño (15px) que los .bp-mine-chile de solo lectura que sustituyen;
+   el ajuste conjunto de tamaño con Rating se hará en una fase posterior. */
+.bp-spicy-btn{background:transparent;border:none;padding:2px;margin:0;cursor:pointer;font-size:15px;line-height:1;opacity:.28;transition:opacity .12s;font-family:inherit}
+.bp-spicy-btn.selected{opacity:1}
+.bp-spicy-btn:disabled{cursor:not-allowed}
 .bp-readonly-note{font-size:11.5px;color:var(--muted);font-style:italic;margin:0 0 0 auto}
 
 .bp-section{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border)}
@@ -4301,6 +4307,11 @@ let spicyMap={}, mySpicy={}, pendingSpicy=0;
    de pendingStar (que es del modal) para que modal y BookPage no interfieran
    entre sí si coexisten en el DOM. */
 let bpPendingStar=0, bpRatingBusy=false;
+/* FASE 7.4 — bpPendingSpicy usa -1 como "nada seleccionado todavía" (no 0),
+   precisamente para que el nivel 0 (🚫) sea un valor válido y distinguible
+   de "sin selección" — a diferencia de pendingSpicy del modal (bug conocido
+   y no corregido: ver _submitSpicyCore). */
+let bpPendingSpicy=-1, bpSpicyBusy=false;
 let communityTagsMap={}, myTags={};
 const VALID_TAGS={
   trope:['Age Gap','Alpha/Beta/Omega','Arranged Marriage','Childhood Friends','Coming Out tardío','Destined Lovers','Enemies to Lovers','Fake Relationship','Forbidden Love','Forced Proximity','Found Family','Friends to Lovers','Friends with Benefits','Hurt/Comfort','Jealousy Trope','Lesbian Awakening','Love Triangle','Marriage of Convenience','Opposites Attract','Revenge Romance','Rich/Poor Romance','Rivals to Lovers','Road Trip','Second Chance Romance','Secret Relationship','Sex Toys / Juguetes Sexuales','Slow Burn','Strangers to Lovers','Student × Teacher','Toaster Oven','Unrequited Love','Vacation Romance','Workplace Romance'],
@@ -5709,6 +5720,7 @@ function openBookPage(id, pushState=true){
   if(!book){ console.warn('[bookPage] libro no encontrado para id:',id); return; }
   activeBook=book; // misma variable global que usa el sistema de modal existente
   bpPendingStar=0; bpRatingBusy=false; // FASE 7.3 — evita arrastrar selección/estado pendiente del libro anterior
+  bpPendingSpicy=-1; bpSpicyBusy=false; // FASE 7.4 — ídem para spicy
   _bpScrollBefore=window.scrollY;
   document.getElementById('homeView')?.classList.remove('active');
   document.body.classList.remove('home-active');
@@ -5731,6 +5743,7 @@ function openBookPage(id, pushState=true){
 }
 function closeBookPage(){
   bpPendingStar=0; bpRatingBusy=false; // FASE 7.3 — limpia estado pendiente al salir de la ficha
+  bpPendingSpicy=-1; bpSpicyBusy=false; // FASE 7.4 — ídem para spicy
   document.getElementById('bookPage').classList.remove('active');
   document.body.classList.remove('bp-active'); // restaura .hero/.main (ver regla CSS body.bp-active)
   // Limpia el hash #libro/ID igual que closeBookModal() hacía, para que la URL
@@ -5761,10 +5774,8 @@ function buildCommunityTagsHTMLReadOnly(b){
 
 function renderBookPage(book){
   const b=book;
-  const myChileVal=mySpicy[b.id]!=null?mySpicy[b.id]:0;
   const authorStr=(b.authors||[]).map(a=>escHtml(a)).join(', ')||'—';
   const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
-  const chileRow=n=>[1,2,3,4,5].map(i=>`<span class="bp-mine-chile ${i<=n?'on':'off'}">🌶</span>`).join('');
   // FASE 7.3 — id estable para poder refrescar solo la media/nº de votos
   // (_refreshBpGeneralRating) tras votar/eliminar, sin re-render completo.
   const miniRating=`<div class="bp-mini-rating" id="bpMiniRating">${buildBpMiniRatingHTML()}</div>`;
@@ -5796,10 +5807,7 @@ function renderBookPage(book){
   // acoplados al modal). Ahora es una fila compacta, no una columna aparte.
   const miPanel=`<div class="bp-mine-row">
     <div class="bp-mine-block" id="bpRatingBlock">${buildBpRatingHTML()}</div>
-    <div class="bp-mine-block">
-      <span class="bp-mine-label">Tu spicy</span>
-      <div class="bp-mine-chiles">${chileRow(myChileVal)}</div>
-    </div>
+    <div class="bp-mine-block" id="bpSpicyBlock">${buildBpSpicyHTML()}</div>
     ${!currentUser?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar.</p>`:''}
   </div>`;
 
@@ -5911,6 +5919,7 @@ function renderBookPage(book){
     ${conseguirRecomendaciones}
   `;
   attachBpStarTouch();
+  attachBpSpicyTouch();
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -6036,6 +6045,135 @@ async function deleteVoteBP(){
   bpPendingStar=0;
   showToast('Voto eliminado','success');
   updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 7.4 — SPICY INTERACTIVO EN BOOKPAGE
+   Mismo patrón que 7.3 (Rating BookPage): usa exclusivamente los núcleos
+   de 7.2B (_submitSpicyCore/_deleteSpicyCore), spicyMap y mySpicy como
+   única fuente de datos — sin caché propia, sin llamadas a Supabase
+   nuevas. IDs propios (bpSpicy*), nunca los del modal (#spicyChileInput/
+   #spicyVoteBtn/#spicyDeleteBtn) ni los de bpRating*, para que los tres
+   puedan coexistir en el DOM sin colisionar.
+   El nivel 0 (🚫) es un valor válido: bpPendingSpicy usa -1 (no 0) como
+   sentinela de "nada seleccionado todavía" — ver declaración de la
+   variable. El bug preexistente de pendingSpicy=0 en el modal (líneas de
+   submitSpicyVote/_attachSpicyEvents) NO se toca en esta fase.
+   ── */
+
+/* Contenido completo del bloque "Tu spicy" de BookPage (label + cuerpo),
+   según los 3 estados: no conectado / conectado sin voto / conectado con
+   voto. Reutiliza el patrón visual de buildBpRatingHTML(). */
+function buildBpSpicyHTML(){
+  const b=activeBook;
+  const myLevel=(b&&mySpicy[b.id]!=null)?mySpicy[b.id]:null;
+  const label=`<span class="bp-mine-label">Tu spicy</span>`;
+  if(!currentUser){
+    const shown=myLevel!=null?myLevel:0;
+    const readOnly=shown===0
+      ?`<span class="bp-mine-chile on" title="${SPICY_LABELS[0]}">🚫</span>`
+      :[1,2,3,4,5].map(i=>`<span class="bp-mine-chile ${i<=shown?'on':'off'}">🌶</span>`).join('');
+    return `${label}<div class="bp-mine-chiles">${readOnly}</div>`;
+  }
+  const shown=bpPendingSpicy>=0?bpPendingSpicy:(myLevel!=null?myLevel:-1);
+  const btn0=`<button type="button" class="bp-spicy-btn bp-spicy-zero${shown===0?' selected':''}" data-s="0" aria-label="Sin spicy" title="${SPICY_LABELS[0]}" aria-pressed="${shown===0?'true':'false'}">🚫</button>`;
+  const chileBtns=[1,2,3,4,5].map(i=>
+    `<button type="button" class="bp-spicy-btn bp-spicy-chile${(shown>0&&i<=shown)?' selected':''}" data-s="${i}" aria-label="Nivel spicy ${i}" title="${SPICY_LABELS[i]}" aria-pressed="${(shown>0&&i<=shown)?'true':'false'}">🌶</button>`
+  ).join('');
+  const prompt=myLevel!=null?'Puedes cambiarlo':'¿Qué nivel spicy tiene?';
+  const submitLabel=bpPendingSpicy>=0?`Guardar ${bpPendingSpicy===0?'🚫':SPICY_ICONS[bpPendingSpicy]}`:(myLevel!=null?'Actualizar':'Guardar');
+  const deleteBtn=myLevel!=null?`<button type="button" class="vote-delete bp-spicy-delete" id="bpSpicyDeleteBtn" onclick="deleteSpicyVoteBP()">✕ Eliminar spicy</button>`:'';
+  return `${label}<div class="bp-spicy-interactive">
+    <p class="vote-prompt">${prompt}</p>
+    <div class="bp-mine-chiles bp-spicy-input" id="bpSpicyInput">${btn0}${chileBtns}</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+      <button type="button" class="vote-submit bp-spicy-submit" id="bpSpicyVoteBtn" onclick="submitSpicyVoteBP()" ${bpPendingSpicy>=0?'':'disabled'}>${submitLabel}</button>
+      ${deleteBtn}
+    </div>
+  </div>`;
+}
+/* Re-renderiza SOLO #bpSpicyBlock (no toda la ficha) y reengancha los
+   eventos táctiles de los botones. */
+function renderBpSpicyBlock(){
+  const el=document.getElementById('bpSpicyBlock');
+  if(!el) return;
+  el.innerHTML=buildBpSpicyHTML();
+  attachBpSpicyTouch();
+}
+
+/* Botones con soporte táctil real, acotados a #bpSpicyInput (nunca a
+   #spicyChileInput, que es del modal) — mismo patrón que attachBpStarTouch(). */
+function attachBpSpicyTouch(){
+  const wrap=document.getElementById('bpSpicyInput');
+  if(!wrap) return;
+  wrap.querySelectorAll('.bp-spicy-btn').forEach(btn=>{
+    const n=parseInt(btn.dataset.s);
+    btn.addEventListener('mouseover',()=>_paintBpChiles(n));
+    btn.addEventListener('mouseout',()=>_paintBpChiles(bpPendingSpicy>=0?bpPendingSpicy:(mySpicy[activeBook?.id]!=null?mySpicy[activeBook.id]:-1)));
+    btn.addEventListener('click',()=>selectSpicyBP(n));
+    btn.addEventListener('touchend',e=>{e.preventDefault();selectSpicyBP(n);},{passive:false});
+  });
+}
+/* upTo puede ser -1 (nada resaltado), 0 (🚫 resaltado, chiles no) o 1-5
+   (🚫 no resaltado, chiles 1..upTo sí). Nunca se usa `!upTo` como guarda,
+   para no repetir el bug de pendingSpicy=0 del modal. */
+function _paintBpChiles(upTo){
+  const wrap=document.getElementById('bpSpicyInput');
+  if(!wrap) return;
+  wrap.querySelectorAll('.bp-spicy-btn').forEach(b=>{
+    const s=parseInt(b.dataset.s);
+    const active=s===0?(upTo===0):(upTo>0&&s<=upTo);
+    b.classList.toggle('selected',active);
+    b.setAttribute('aria-pressed',active?'true':'false');
+  });
+}
+function selectSpicyBP(n){
+  if(bpSpicyBusy) return;
+  bpPendingSpicy=n;
+  _paintBpChiles(n);
+  const btn=document.getElementById('bpSpicyVoteBtn');
+  if(btn){btn.disabled=false;btn.textContent=`Guardar ${n===0?'🚫':SPICY_ICONS[n]}`;}
+}
+
+async function submitSpicyVoteBP(){
+  if(!currentUser||!activeBook||bpSpicyBusy) return;
+  const level=bpPendingSpicy;
+  if(!Number.isInteger(level)||level<0||level>5) return;
+  bpSpicyBusy=true;
+  const btn=document.getElementById('bpSpicyVoteBtn');
+  if(btn) btn.disabled=true;
+  try{
+    await _submitSpicyCore(activeBook.id,currentUser.id,level);
+  }catch(err){
+    bpSpicyBusy=false;
+    showToast('Error al guardar','error');
+    if(btn) btn.disabled=false;
+    return;
+  }
+  bpSpicyBusy=false;
+  bpPendingSpicy=-1;
+  showToast('¡Spicy guardado! 🌶','success');
+  applyFilters(false);renderBpSpicyBlock();
+  checkNewLogros();
+}
+
+async function deleteSpicyVoteBP(){
+  if(!currentUser||!activeBook||mySpicy[activeBook.id]==null||bpSpicyBusy) return;
+  bpSpicyBusy=true;
+  const btn=document.getElementById('bpSpicyDeleteBtn');
+  if(btn){btn.disabled=true;btn.textContent='Eliminando…';}
+  try{
+    await _deleteSpicyCore(activeBook.id,currentUser.id);
+  }catch(err){
+    bpSpicyBusy=false;
+    showToast('Error al eliminar','error');
+    if(btn){btn.disabled=false;btn.textContent='✕ Eliminar spicy';}
+    return;
+  }
+  bpSpicyBusy=false;
+  bpPendingSpicy=-1;
+  showToast('Spicy eliminado','success');
+  applyFilters(false);renderBpSpicyBlock();
 }
 
 /* Actualiza solo el bloque de valoración sin rerenderizar todo el modal */
