@@ -3159,6 +3159,13 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-content{display:flex;flex-direction:column;min-width:0}
 .bp-title{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.5rem);font-weight:600;line-height:1.1;margin-bottom:.3rem;overflow-wrap:anywhere}
 .bp-author{color:var(--muted);font-size:14.5px;margin-bottom:.3rem}
+/* FASE 8 — enlaces de navegación de BookPage (sutiles) */
+.bp-link{background:none;border:none;font:inherit;color:inherit;padding:0;margin:0;cursor:pointer;text-align:inherit;-webkit-tap-highlight-color:transparent}
+.bp-link:hover,.bp-link:focus-visible{color:var(--accent2);text-decoration:underline;text-underline-offset:3px}
+.bp-link:focus-visible,.bp-tag-link:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:4px}
+.bp-tag-link{cursor:pointer;transition:opacity .15s,transform .12s}
+.bp-tag-link:hover{opacity:.82;transform:translateY(-1px)}
+@media (pointer:coarse){.bp-link{padding:6px 3px;margin:-6px -3px}}
 .bp-saga-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:13px;color:var(--accent2);margin-bottom:.4rem}
 /* Valoración + spicy GENERALES (comunidad) — junto al título, distinto del
    panel personal ("tu valoración/spicy") de abajo. */
@@ -4395,7 +4402,7 @@ const VALID_TAGS={
 };
 const SPICY_MIN_VOTES=2;
 function emptyExcl(){return {genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[],pais_origen:[]};}
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
 const EXCL_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'];
 let currentPage=1;
 const PAGE_SIZE=24;
@@ -4418,7 +4425,7 @@ function pushState(addEntry){
     if(activeSection) params.set('section',activeSection);
     if(currentPage>1) params.set('page',currentPage);
     if(filters.q) params.set('q',filters.q);
-    ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'].forEach(k=>{
+    ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','identidades','warnings','ship'].forEach(k=>{
       if(filters[k].length) params.set(k,filters[k].join('|'));
       if(filters.excl[k]&&filters.excl[k].length) params.set('x_'+k,filters.excl[k].join('|'));
     });
@@ -4440,7 +4447,7 @@ function loadState(){
   if(params.get('cat')) activeMyrecCat=params.get('cat');
   if(params.get('page')) currentPage=parseInt(params.get('page'))||1;
   if(params.get('q')){filters.q=params.get('q');document.getElementById('searchInput').value=filters.q;}
-  ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'].forEach(k=>{
+  ['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','identidades','warnings','ship'].forEach(k=>{
     if(params.get(k)) filters[k]=params.get(k).split('|');
     if(params.get('x_'+k)) filters.excl[k]=params.get('x_'+k).split('|');
   });
@@ -4913,7 +4920,7 @@ async function init(){
   // Restore active tab from URL if present, otherwise use sessionStorage or home
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
-  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/') || location.hash.startsWith('#fichabeta/');
+  const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','identidades','warnings','ship','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/') || location.hash.startsWith('#fichabeta/');
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
   if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
@@ -5169,7 +5176,7 @@ function toggleDDFilter(key,val){
   idx>=0?arr.splice(idx,1):arr.push(val);
   if(key==='spicy') buildSpicyDD();
   else if(key==='edad') buildEdadDD();
-  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  else if(DD_MAP[key]) buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
 
@@ -5366,7 +5373,8 @@ function renderActivePills(){
   const labelMap={
     genres:'Género', subgenres:'Temática', dinamicas:'Dinámica',
     tropes:'Tropo', characters:'Personaje', authors:'Autora',
-    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País', pais_origen:'País de origen'
+    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País', pais_origen:'País de origen',
+    identidades:'Identidad', warnings:'Advertencia', ship:'Ship'
   };
   const pills=[];
   Object.entries(filters).forEach(([key,arr])=>{
@@ -5406,7 +5414,7 @@ function renderActivePills(){
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
   document.getElementById('searchInput').value='';
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
@@ -5442,6 +5450,10 @@ function applyFilters(resetPage=true){
   if(filters.edad.length)       books=books.filter(b=>filters.edad.every(e=>[...(b.edad||[]),...((communityTagsMap[b.id]||{}).edad||[])].includes(e)));
   if(filters.pais_cultura.length) books=books.filter(b=>filters.pais_cultura.every(p=>(b.pais_cultura||[]).includes(p)));
   if(filters.pais_origen.length) books=books.filter(b=>filters.pais_origen.includes(b.pais_origen));
+  // FASE 8 — filtros que solo se activan desde BookPage (sin dropdown propio)
+  if(filters.identidades.length) books=books.filter(b=>filters.identidades.every(i=>[...(b.identidades||[]),...((communityTagsMap[b.id]||{}).identidad||[])].includes(i)));
+  if(filters.warnings.length)    books=books.filter(b=>filters.warnings.every(w=>[...(b.content_warnings||[]),...((communityTagsMap[b.id]||{}).warning||[])].includes(w)));
+  if(filters.ship.length)        books=books.filter(b=>filters.ship.every(x=>(b.ship||[]).includes(x)));
   // Exclusiones: fuera cualquier libro que tenga alguno de estos valores marcados como "no quiero verlo"
   const ex=filters.excl;
   if(ex.genres.length)     books=books.filter(b=>!ex.genres.some(g=>(b.genres||[]).includes(g)));
@@ -5846,7 +5858,7 @@ function buildCommunityTagsHTMLReadOnly(b){
 
 function renderBookPage(book){
   const b=book;
-  const authorStr=(b.authors||[]).map(a=>escHtml(a)).join(', ')||'—';
+  const authorStr=(b.authors||[]).map(a=>`<button type="button" class="bp-link" data-bpf="authors" data-bpv="${escHtml(a)}">${escHtml(a)}</button>`).join(', ')||'—';
   const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
   // FASE 7.3 — id estable para poder refrescar solo la media/nº de votos
   // (_refreshBpGeneralRating) tras votar/eliminar, sin re-render completo.
@@ -5858,9 +5870,9 @@ function renderBookPage(book){
   const spicyIsUnknown=spicyEff==null;
   const spicyGeneralTag=currentUser
     ?(spicyIsUnknown
-      ?`<span class="tag" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
-      :(spicyEff>0?`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
-      :`<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
+      ?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicyUnknown" data-bpv="1" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
+      :(spicyEff>0?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="${spicyEff}" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
+      :`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="0" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
     :`<span class="tag" style="background:rgba(138,120,152,0.1);color:var(--muted);border:1px dashed rgba(138,120,152,0.3);cursor:pointer" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
   const generalRow=`<div class="bp-general-row">${miniRating}${spicyGeneralTag}</div>`;
 
@@ -5871,7 +5883,7 @@ function renderBookPage(book){
   const sagaMapBtn=sagaSiblingCount>1
     ?`<button class="saga-map-trigger" onclick="openSagaMap(decodeURIComponent('${encodeURIComponent(b.sagaName)}'))">✦ orden de lectura</button>`
     :'';
-  const sagaRow=sagaName?`<div class="bp-saga-row"><span>${escHtml(sagaName)}${sagaNumStr}</span>${sagaMapBtn}</div>`:'';
+  const sagaRow=sagaName?`<div class="bp-saga-row"><span><button type="button" class="bp-link" data-bpf="sagas" data-bpv="${escHtml(sagaName)}">${escHtml(sagaName)}</button>${sagaNumStr}</span>${sagaMapBtn}</div>`:'';
 
   // TU VALORACIÓN / TU SPICY — panel personal (FASE 2.6.4, refinado en
   // 2.6.4.1). Solo estructura visual: sin lógica de voto todavía (ver nota
@@ -5884,8 +5896,8 @@ function renderBookPage(book){
   </div>`;
 
   // GÉNEROS / SUBGÉNEROS
-  const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
-  const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre">${s}</span>`).join('');
+  const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre bp-tag-link" role="button" tabindex="0" data-bpf="genres" data-bpv="${escHtml(g)}">${g}</span>`).join('');
+  const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre bp-tag-link" role="button" tabindex="0" data-bpf="subgenres" data-bpv="${escHtml(s)}">${s}</span>`).join('');
 
   // FICHA TÉCNICA — Año, Páginas, País de origen y Ship (FASE 2.6.4: Ship
   // pasa a mostrarse exclusivamente aquí, ya no en "Sobre este libro").
@@ -5894,7 +5906,7 @@ function renderBookPage(book){
     b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:'',
     b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:'',
     b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:'',
-    shipVal?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${escHtml(shipVal)}</span></div>`:''
+    shipVal?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${b.ship.map(x=>`<button type="button" class="bp-link" data-bpf="ship" data-bpv="${escHtml(x)}">${escHtml(x)}</button>`).join(' · ')}</span></div>`:''
   ].filter(Boolean).join('');
 
   // FASE 2.6.4.1 — Géneros + Subgéneros + Ficha técnica ahora comparten UNA
@@ -5961,6 +5973,31 @@ function renderBookPage(book){
   attachBpSpicyTouch();
 }
 
+/* FASE 8 — clics de navegación en BookPage (autora, saga, chips, ship, spicy).
+   Delegado sobre #bpWrap (que se re-renderiza); reutiliza filterBy*FromModal. */
+function _bpNavActivate(el){
+  const k=el.dataset.bpf, v=el.dataset.bpv;
+  if(k==='authors') filterByAuthorFromModal(v);
+  else if(k==='sagas') filterBySagaFromModal(v);
+  else if(k==='spicy') filterByTagFromModal('spicy',Number(v));
+  else if(k==='spicyUnknown') filterByTagFromModal('spicyUnknown',true);
+  else filterByTagFromModal(k,v);
+}
+(function(){
+  const wrap=document.getElementById('bpWrap'); if(!wrap) return;
+  wrap.addEventListener('click',e=>{
+    const el=e.target.closest('[data-bpf]');
+    if(!el||!wrap.contains(el)||e.target.closest('.bp-tag-rm')) return;
+    _bpNavActivate(el);
+  });
+  wrap.addEventListener('keydown',e=>{
+    if(e.key!=='Enter'&&e.key!==' ') return;
+    const el=e.target.closest('.bp-tag-link[data-bpf]');
+    if(!el||e.target!==el) return;
+    e.preventDefault(); _bpNavActivate(el);
+  });
+})();
+
 /* ── TAGS EN BOOKPAGE ("Sobre este libro") ──
    Reutiliza getEffectiveTags(), VALID_TAGS, myTags, handleTagAdderChange() y
    removeMyTag() tal cual. Sin ids nuevos: los controles llevan data-type/
@@ -5974,6 +6011,7 @@ const BP_TAG_TYPES=[
   {type:'edad',label:'Edad',cls:'tag-edad',emoji:'🎂',noun:'etiqueta de edad'},
   {type:'warning',label:'Advertencias',cls:'tag-warning',emoji:'⚠',noun:'advertencia'}
 ];
+const BP_TAG_FILTER_KEY={trope:'tropes',dinamica:'dinamicas',character:'characters',identidad:'identidades',edad:'edad',warning:'warnings'};
 function buildBpTagsGridHTML(b){
   return BP_TAG_TYPES.map(({type,label,cls,emoji,noun})=>{
     const {official,merged}=getEffectiveTags(b,type);
@@ -5985,7 +6023,7 @@ function buildBpTagsGridHTML(b){
       const isMine=!isOff&&mine.includes(v);
       const ev=escHtml(v);
       const rm=isMine?`<button type="button" class="bp-tag-rm" data-type="${type}" data-value="${ev}" aria-label="Quitar mi tag de ${noun}: ${ev}" title="Quitar mi tag" onclick="removeMyTag(this.dataset.type,this.dataset.value,event)">×</button>`:'';
-      return `<span class="tag ${cls}${isOff?'':' tag-comm-added'}">${emoji?emoji+' ':''}${ev}${isOff?'':`<span class="tag-comm-dot"> ·com</span>`}${rm}</span>`;
+      return `<span class="tag ${cls}${isOff?'':' tag-comm-added'} bp-tag-link" role="button" tabindex="0" data-bpf="${BP_TAG_FILTER_KEY[type]}" data-bpv="${ev}">${emoji?emoji+' ':''}${ev}${isOff?'':`<span class="tag-comm-dot"> ·com</span>`}${rm}</span>`;
     }).join('');
     let add='';
     if(currentUser){
@@ -6309,9 +6347,11 @@ function attachStarTouch(){
 }
 
 function filterBySagaFromModal(sagaName){
-  closeBookModal();
+  const fromBp=_leaveDetailForCatalog();
+  if(fromBp) history.pushState({},'',location.pathname+location.search); // una sola entrada, sin #libro/ID
   if(!filters.sagas.includes(sagaName)) filters.sagas=[sagaName];
   currentPage=1;
+  if(fromBp) buildDropdowns();
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -6424,19 +6464,37 @@ function openSagaBook(id){
   closeSagaModal();
   openBookPage(id);
 }
+/* FASE 8 — salida hacia el catálogo. Si la ficha activa es #bookPage la oculta
+   (sin closeBookPage(): no restaura scroll ni añade entradas de historial
+   propias) y alinea la sección con la del libro; si no, mantiene el
+   comportamiento previo (cerrar el modal). Devuelve true si venía de BookPage. */
+function _leaveDetailForCatalog(){
+  const bp=document.getElementById('bookPage');
+  if(!(bp&&bp.classList.contains('active'))){ closeBookModal(); return false; }
+  bpPendingStar=0; bpRatingBusy=false; bpPendingSpicy=-1; bpSpicyBusy=false;
+  bp.classList.remove('active');
+  document.body.classList.remove('bp-active');
+  const src=activeBook&&activeBook.source;
+  if(src&&src!==activeSection) switchSection(src,true);
+  switchTab('estanteria',true);
+  return true;
+}
 function filterByAuthorFromModal(author){
-  closeBookModal();
+  const fromBp=_leaveDetailForCatalog();
   switchTab('estanteria');
   filters.authors=[author];
   currentPage=1;
+  if(fromBp) buildDropdowns();
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function filterByTagFromModal(filterKey, value){
-  closeBookModal();
+  const fromBp=_leaveDetailForCatalog();
   switchTab('estanteria');
-  filters[filterKey]=[value];
+  if(filterKey==='spicyUnknown'){ filters.spicy=[]; filters.spicyUnknown=true; }
+  else{ filters[filterKey]=[value]; if(filterKey==='spicy') filters.spicyUnknown=false; }
   currentPage=1;
+  if(fromBp) buildDropdowns();
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
 }
