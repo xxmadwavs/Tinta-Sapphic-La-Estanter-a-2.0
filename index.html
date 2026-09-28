@@ -3220,6 +3220,28 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-rating-submit,.bp-spicy-submit{padding:5px 12px;font-size:11px}
 .bp-rating-delete,.bp-spicy-delete{padding:5px 10px;font-size:10.5px}
 
+/* FASE 7.4 VISUAL (SOLO PC, >=900px) — Rating y Spicy alineados y compactos:
+   misma altura de fila de control (30px), casillas de 28px para estrella y
+   chili, sin margen inferior extra en el control (.stars-input traía
+   margin-bottom:.6rem y .bp-mine-chiles no, lo que desalineaba botones),
+   y menos padding vertical del panel. El móvil/tablet (<900px) no entra
+   aquí y conserva su aspecto. Las clases compartidas con el modal
+   (.star-btn, .spicy-chile-btn, .vote-submit, .vote-delete) no se tocan:
+   todo va por ids/clases bp-*.
+   Chilis: familia emoji explícita para que 🌶 no caiga en una fuente de
+   símbolos monocroma (que con color de botón negro se veía negro). */
+@media (min-width:900px){
+  .bp-mine-row{align-items:start;column-gap:2rem;row-gap:0;padding:.5rem 0;margin-bottom:.5rem}
+  .bp-mine-label{margin-bottom:.1rem}
+  .bp-rating-interactive,.bp-spicy-interactive{flex:0 0 auto;gap:.15rem}
+  #bpStarInput.bp-rating-stars,#bpSpicyInput.bp-spicy-input{display:flex;align-items:center;gap:2px;height:30px;margin:0}
+  #bpStarInput .bp-rating-star,#bpSpicyInput .bp-spicy-btn{width:28px;height:30px;padding:0;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;line-height:1}
+  #bpStarInput .bp-rating-star{font-size:21px}
+  #bpSpicyInput .bp-spicy-btn{font-size:17px}
+  .bp-spicy-btn,.bp-mine-chile{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+  .bp-mine-btns{margin-top:0;padding-top:.15rem}
+}
+
 .bp-section{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border)}
 .bp-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .bp-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
@@ -3227,6 +3249,13 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
 .bp-section-title-row .bp-section-title{margin-bottom:0}
 .bp-add-btn{background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:11px;font-family:var(--font-body);font-weight:500;padding:4px 11px;border-radius:20px;cursor:pointer;transition:all .18s;white-space:nowrap}
 .bp-add-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+/* Tags interactivos en BookPage: × para quitar un tag propio (integrado en
+   el chip) y "+ Añadir" como chip discontinuo. Solo bp-*; el modal no cambia. */
+.bp-tag-rm{background:transparent;border:none;color:inherit;cursor:pointer;font:inherit;font-size:11px;line-height:1;padding:2px 2px 2px 5px;margin-left:1px;opacity:.7}
+.bp-tag-rm:hover,.bp-tag-rm:focus-visible{opacity:1}
+.bp-tag-rm:focus-visible,.bp-add-btn:focus-visible,.bp-tag-adder:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.bp-sobre-grid .bp-add-btn{border-style:dashed;padding:3px 9px}
+@media (pointer:coarse){.bp-tag-rm{padding:7px 6px 7px 6px;margin:-7px -4px -7px 0}}
 
 /* FASE 2.6.4.1 — grupos internos de una misma bp-section (géneros +
    subgéneros + ficha técnica; o conseguir + recomendaciones): gap moderado
@@ -5886,43 +5915,10 @@ function renderBookPage(book){
     return `<div class="bp-section"><div class="bp-section-title">Sinopsis</div><div class="modal-synopsis-wrap">${full}</div></div>`;
   })():'';
 
-  // SOBRE ESTE LIBRO — grid de 6 categorías (Tropos/Dinámicas/Personajes/
-  // Identidades/Edad/Advertencias), cada una desaparece si no tiene contenido.
-  // Todo sigue viniendo de getEffectiveTags() (JSON oficial + community_tags):
-  // no se crea una fuente nueva ni una sección "Comunidad" aparte — un tag de
-  // comunidad ya incluido aquí no se repite en ningún otro sitio (ver
-  // buildCommunityTagsHTMLReadOnly, que por eso deja de usarse en esta vista).
-  const buildTopTag=(tagType,tagClass,emoji='')=>{
-    const {official,merged}=getEffectiveTags(b,tagType);
-    return merged.map(v=>{
-      const isComm=!official.includes(v);
-      return `<span class="tag ${tagClass}${isComm?' tag-comm-added':''}">${emoji?emoji+' ':''}${v}${isComm?`<span class="tag-comm-dot"> ·com</span>`:''}</span>`;
-    }).join('');
-  };
-  const tropeTags=buildTopTag('trope','tag-trope');
-  const dinamicaTags=buildTopTag('dinamica','tag-dinamica');
-  const characterTags=buildTopTag('character','tag-character');
-  const identidadTags=buildTopTag('identidad','tag-identidad');
-  const edadTags=buildTopTag('edad','tag-edad','🎂');
-  const warningTags=buildTopTag('warning','tag-warning','⚠');
-  const sobreGroups=[
-    tropeTags?`<div class="bp-group"><div class="bp-group-label">Tropos</div><div class="modal-tags">${tropeTags}</div></div>`:'',
-    dinamicaTags?`<div class="bp-group"><div class="bp-group-label">Dinámicas</div><div class="modal-tags">${dinamicaTags}</div></div>`:'',
-    characterTags?`<div class="bp-group"><div class="bp-group-label">Personajes</div><div class="modal-tags">${characterTags}</div></div>`:'',
-    identidadTags?`<div class="bp-group"><div class="bp-group-label">Identidades</div><div class="modal-tags">${identidadTags}</div></div>`:'',
-    edadTags?`<div class="bp-group"><div class="bp-group-label">Edad</div><div class="modal-tags">${edadTags}</div></div>`:'',
-    warningTags?`<div class="bp-group"><div class="bp-group-label">Advertencias</div><div class="modal-tags">${warningTags}</div></div>`:''
-  ].filter(Boolean).join('');
-  // FASE 2.6.4: el botón "+ Añadir" es solo el elemento visual — sin onclick
-  // todavía; abrirá el selector de tropo/dinámica/personaje/identidad/edad/
-  // advertencia en una fase posterior.
-  const sobreEsteLibro=sobreGroups?`<div class="bp-section">
-    <div class="bp-section-title-row">
-      <div class="bp-section-title">Sobre este libro</div>
-      <button class="bp-add-btn" type="button" title="Próximamente: añadir tropos, dinámicas, personajes, identidades, edad o advertencias">+ Añadir</button>
-    </div>
-    <div class="bp-sobre-grid">${sobreGroups}</div>
-  </div>`:'';
+  // SOBRE ESTE LIBRO — 6 categorías interactivas (ver buildBpTagsSectionHTML).
+  // Misma fuente de datos que el modal (getEffectiveTags/communityTagsMap/
+  // myTags) y mismas funciones de escritura (handleTagAdderChange/removeMyTag).
+  const sobreEsteLibro=buildBpTagsSectionHTML(b);
 
   // DÓNDE CONSEGUIRLO
   const buyLinks=(b.editions&&b.editions.length)?b.editions.map(e=>`
@@ -5963,6 +5959,64 @@ function renderBookPage(book){
   `;
   attachBpStarTouch();
   attachBpSpicyTouch();
+}
+
+/* ── TAGS EN BOOKPAGE ("Sobre este libro") ──
+   Reutiliza getEffectiveTags(), VALID_TAGS, myTags, handleTagAdderChange() y
+   removeMyTag() tal cual. Sin ids nuevos: los controles llevan data-type/
+   data-value y viven dentro de #bpWrap. Reglas de borrado: solo se ofrece ×
+   en tags que están en myTags Y no son oficiales del JSON. */
+const BP_TAG_TYPES=[
+  {type:'trope',label:'Tropos',cls:'tag-trope',emoji:'',noun:'tropo'},
+  {type:'dinamica',label:'Dinámicas',cls:'tag-dinamica',emoji:'',noun:'dinámica'},
+  {type:'character',label:'Personajes',cls:'tag-character',emoji:'',noun:'personaje'},
+  {type:'identidad',label:'Identidades',cls:'tag-identidad',emoji:'',noun:'identidad'},
+  {type:'edad',label:'Edad',cls:'tag-edad',emoji:'🎂',noun:'etiqueta de edad'},
+  {type:'warning',label:'Advertencias',cls:'tag-warning',emoji:'⚠',noun:'advertencia'}
+];
+function buildBpTagsGridHTML(b){
+  return BP_TAG_TYPES.map(({type,label,cls,emoji,noun})=>{
+    const {official,merged}=getEffectiveTags(b,type);
+    // Igual que el modal: sin sesión, las categorías vacías no se muestran.
+    if(!currentUser&&!merged.length) return '';
+    const mine=(myTags[b.id]||{})[type]||[];
+    const chips=merged.map(v=>{
+      const isOff=official.includes(v);
+      const isMine=!isOff&&mine.includes(v);
+      const ev=escHtml(v);
+      const rm=isMine?`<button type="button" class="bp-tag-rm" data-type="${type}" data-value="${ev}" aria-label="Quitar mi tag de ${noun}: ${ev}" title="Quitar mi tag" onclick="removeMyTag(this.dataset.type,this.dataset.value,event)">×</button>`:'';
+      return `<span class="tag ${cls}${isOff?'':' tag-comm-added'}">${emoji?emoji+' ':''}${ev}${isOff?'':`<span class="tag-comm-dot"> ·com</span>`}${rm}</span>`;
+    }).join('');
+    let add='';
+    if(currentUser){
+      const avail=(VALID_TAGS[type]||[]).filter(t=>!merged.includes(t));
+      if(avail.length) add=`<select class="tag-adder-select bp-tag-adder" data-type="${type}" aria-label="Añadir ${noun}" onchange="handleTagAdderChange(this.dataset.type,this)"><option value="">+ Añadir</option>${avail.map(t=>`<option value="${escHtml(t)}">${escHtml(t)}</option>`).join('')}</select>`;
+    } else {
+      add=`<button type="button" class="bp-add-btn" onclick="openAuthModal()" aria-label="Iniciar sesión para añadir ${noun}" title="Inicia sesión para añadir">+ Añadir</button>`;
+    }
+    return `<div class="bp-group"><div class="bp-group-label">${label}</div><div class="modal-tags">${chips}${add}</div></div>`;
+  }).filter(Boolean).join('');
+}
+function buildBpTagsSectionHTML(b){
+  const grid=buildBpTagsGridHTML(b);
+  if(!grid) return '';
+  return `<div class="bp-section" data-bp-tags-section>
+    <div class="bp-section-title-row"><div class="bp-section-title">Sobre este libro</div></div>
+    <div class="bp-sobre-grid">${grid}</div>
+  </div>`;
+}
+/* Refresco parcial: solo el grid de tags (no la ficha entera → no se pierde
+   scroll, lectura, fechas, rating ni spicy). Si el foco estaba en el grid,
+   se devuelve al "+ Añadir" de la misma categoría. */
+function renderBpTagsSection(focusType){
+  const wrap=document.getElementById('bpWrap');
+  const bp=document.getElementById('bookPage');
+  if(!wrap||!bp||!bp.classList.contains('active')||!activeBook) return;
+  const grid=wrap.querySelector('[data-bp-tags-section] .bp-sobre-grid');
+  if(!grid) return;
+  const hadFocus=grid.contains(document.activeElement);
+  grid.innerHTML=buildBpTagsGridHTML(activeBook);
+  if(hadFocus&&focusType) wrap.querySelector('.bp-tag-adder[data-type="'+focusType+'"]')?.focus({preventScroll:true});
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -6660,6 +6714,16 @@ function buildTagAdderHTML(bookId, tagType, alreadyPresent){
   return `<span class="tag-adder-wrap"><select class="tag-adder-select" onchange="handleTagAdderChange('${tagType}',this)"><option value="">+ Añadir</option>${opts}</select></span>`;
 }
 
+/* Refresca la vista de tags tras añadir/quitar: el modal (si su sección
+   existe en el DOM — solo existe si el modal se abrió alguna vez) y la
+   sección "Sobre este libro" de BookPage (si está activa). Antes se accedía
+   al modal sin guarda y fallaba con TypeError cuando solo estaba BookPage. */
+function _refreshCommunityTagsUI(tagType){
+  const m=document.getElementById('modalCommunityTagsSection');
+  if(m) m.innerHTML=buildCommunityTagsHTML();
+  renderBpTagsSection(tagType);
+}
+
 async function handleTagAdderChange(tagType, selectEl){
   const value=selectEl.value;
   if(!value||!currentUser||!activeBook) return;
@@ -6675,7 +6739,7 @@ async function handleTagAdderChange(tagType, selectEl){
   if(!communityTagsMap[bookId]) communityTagsMap[bookId]={};
   if(!communityTagsMap[bookId][tagType]) communityTagsMap[bookId][tagType]=[];
   if(!communityTagsMap[bookId][tagType].includes(value)) communityTagsMap[bookId][tagType].push(value);
-  document.getElementById('modalCommunityTagsSection').innerHTML=buildCommunityTagsHTML();
+  _refreshCommunityTagsUI(tagType);
   showToast('Tag añadido ✓','success');
 }
 
@@ -6688,7 +6752,7 @@ async function removeMyTag(tagType, value, event){
   if(error){showToast('Error al eliminar tag','error');return;}
   if(myTags[bookId]?.[tagType]) myTags[bookId][tagType]=myTags[bookId][tagType].filter(t=>t!==value);
   if(communityTagsMap[bookId]?.[tagType]) communityTagsMap[bookId][tagType]=communityTagsMap[bookId][tagType].filter(t=>t!==value);
-  document.getElementById('modalCommunityTagsSection').innerHTML=buildCommunityTagsHTML();
+  _refreshCommunityTagsUI(tagType);
   showToast('Tag eliminado','success');
 }
 
@@ -7948,7 +8012,7 @@ const INFO_CONTENT = {
       </div>
       <div class="info-section">
         <h3>Sobre el contenido adulto</h3>
-        <p>Algunos libros de nuestro catálogo contienen contenido explícito para adultos. Este contenido está debidamente etiquetado con nuestro sistema de clasificación de picante 🌶️. Eres responsable de filtrar el contenido según tu preferencia.</p>
+        <p>Algunos libros de nuestro catálogo contienen contenido explícito para adultos. Este contenido está debidamente etiquetado con nuestro sistema de clasificación de picante 🌶. Eres responsable de filtrar el contenido según tu preferencia.</p>
       </div>
     `
   },
