@@ -1323,8 +1323,42 @@ body.home-active .hero,body.home-active .main{display:none!important}
 #mundoView.active{display:block}
 #recorridoView{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
 #recorridoView.active{display:block}
-.rc-prov{margin:0 0 1.2rem;padding:.8rem 1rem;border-radius:var(--radius-lg);border:1px dashed var(--border2);color:var(--muted);font-size:13px;line-height:1.55}
-.rc-prov[hidden]{display:none}
+.rc-summary{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin:0 0 1.8rem;font-size:13px;color:var(--muted)}
+.rc-summary[hidden],.rc-path[hidden]{display:none}
+.rc-summary b{font-family:var(--font-display);font-size:1.25rem;font-weight:500;color:var(--text);margin-right:4px}
+.rc-path{--rc-node:68px;position:relative;margin:.4rem 0 1rem}
+.rc-svg{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
+.rc-link{fill:none;stroke:url(#rcGrad);stroke-width:2.5;stroke-linecap:round}
+.rc-link.rc-dash{stroke-dasharray:2 7}
+.rc-list{list-style:none;margin:0;padding:0;position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);row-gap:44px}
+.rc-list.rc-wide{grid-template-columns:repeat(var(--rc-cols,3),minmax(0,1fr));row-gap:56px}
+.rc-item{min-width:0}
+.rc-stop{display:flex;align-items:center;gap:14px;width:100%;min-height:44px;margin:0;padding:0;background:none;border:0;border-radius:14px;color:inherit;font:inherit;text-align:left}
+button.rc-stop{cursor:pointer}
+.rc-stop:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.rc-r .rc-stop{flex-direction:row-reverse;text-align:right}
+.rc-wide .rc-stop{flex-direction:column;align-items:center;gap:10px;text-align:center}
+.rc-nodebox{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:var(--rc-node);height:var(--rc-node)}
+.rc-n{display:block;box-sizing:border-box;border-radius:50%}
+.rc-n-book{width:var(--rc-node);height:var(--rc-node);padding:3px;background:conic-gradient(from 180deg,var(--accent),var(--rose),var(--teal),var(--accent));box-shadow:0 0 18px rgba(192,111,196,.28)}
+.rc-n-book.rc-n-re{background:conic-gradient(from 180deg,var(--rose),rgba(212,96,122,.35),var(--rose))}
+.rc-n-missing{width:var(--rc-node);height:var(--rc-node);border:2px dashed var(--border2);background:var(--surface2)}
+.rc-n-station{width:18px;height:18px;border:2px solid var(--accent2);background:var(--bg)}
+.rc-cover{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden;border-radius:50%;border:2.5px solid var(--surface);background:var(--surface2)}
+.rc-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.rc-cover.is-loaded .rc-initial{display:none}
+.rc-initial{font-family:var(--font-display);font-style:italic;font-size:1.7rem;color:var(--muted)}
+.rc-text{flex:1;min-width:0}
+.rc-wide .rc-text{flex:none;width:100%;max-width:168px}
+.rc-date{display:block;font-size:11.5px;letter-spacing:.02em;color:var(--teal)}
+.rc-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;margin:2px 0;font-family:var(--font-display);font-size:1.1rem;font-weight:600;line-height:1.2;color:var(--text)}
+.rc-title-missing{font-weight:500;font-style:italic;color:var(--muted)}
+.rc-meta{display:block;font-size:11.5px;line-height:1.4;color:var(--muted)}
+.rc-tag{display:inline-block;margin-top:5px;padding:0 8px;border:1px solid var(--rose);border-radius:20px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--rose)}
+.rc-station-label{display:block;font-family:var(--font-display);font-style:italic;font-size:1.05rem;color:var(--accent2)}
+@media (min-width:640px){.rc-path{--rc-node:76px}}
+@media (hover:hover){button.rc-stop:hover .rc-n-book{box-shadow:0 0 24px rgba(192,111,196,.5)}button.rc-stop:hover .rc-title{color:var(--accent2)}}
+@media (prefers-reduced-motion:no-preference){.rc-n-book{transition:box-shadow .15s}.rc-title{transition:color .15s}}
 
 /* ── MI MUNDO SAPPHIC (mapas anuales de países descubiertos) ── */
 .ws-block{margin-bottom:2.5rem}
@@ -4310,7 +4344,7 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
   </div>
 </div>
 
-<!-- MI RECORRIDO SAPPHIC — Fase 3.1: estructura y lógica de datos (el camino visual llega en la 3.2) -->
+<!-- MI RECORRIDO SAPPHIC — camino serpenteante de lecturas terminadas (datos: rc* en el script) -->
 <div id="recorridoView">
   <div class="shelf-main" style="max-width:900px;margin:0 auto">
     <button class="shelf-back-link" style="margin:0 0 1.5rem;padding:6px 10px" onclick="closeRecorridoModal()">← Volver al catálogo</button>
@@ -4322,8 +4356,8 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
       <label class="ws-year"><span>Año</span><select id="rcYearSel" onchange="rcSetYear(this.value)"></select></label>
     </div>
     <div class="ws-empty" id="rcEmpty" hidden></div>
-    <div class="rc-prov" id="rcSummary" hidden></div>
-    <div class="rc-prov" id="rcPath" data-phase="3.1" hidden></div>
+    <div class="rc-summary" id="rcSummary" hidden></div>
+    <div class="rc-path" id="rcPath" hidden></div>
   </div>
 </div>
 
@@ -10313,7 +10347,7 @@ function rcSetYear(v){
   rcYear=y; rcRender();
 }
 
-// Fase 3.1: prepara los datos y muestra solo bloques provisionales. El camino visual es la Fase 3.2.
+// Prepara los datos del año (rcCollectEntries + rcSortEntries) y los dibuja como camino
 function rcRender(){
   _rcEntries=rcSortEntries(rcCollectEntries(rcYear));
   const empty=document.getElementById('rcEmpty'),sum=document.getElementById('rcSummary'),path=document.getElementById('rcPath');
@@ -10329,10 +10363,97 @@ function rcRender(){
   }
   const r=rcSummarize(_rcEntries);
   empty.hidden=true; delete empty.dataset.state;
-  sum.textContent=`${r.readings} ${r.readings===1?'lectura':'lecturas'} · ${r.authors} ${r.authors===1?'autora':'autoras'} (bloque provisional del resumen)`;
+  sum.innerHTML=`<span><b>${r.books}</b>${r.books===1?'libro leído':'libros leídos'}</span><span><b>${r.authors}</b>${r.authors===1?'autora descubierta':'autoras descubiertas'}</span>`;
   sum.hidden=false;
-  path.textContent=`Bloque provisional: aquí se dibujará el camino de ${rcYear} (${_rcEntries.length} ${_rcEntries.length===1?'lectura preparada':'lecturas preparadas'}).`;
   path.hidden=false;
+  rcDrawJourney(path);
+}
+
+// ── Render del camino (Fase 3.2). Solo pinta lo que rcCollectEntries/rcSortEntries ya prepararon ──
+let _rcRO=null,_rcBound=false;
+function rcInitial(t){ const m=/[\p{L}\p{N}]/u.exec(t||''); return m?m[0].toUpperCase():''; }
+function rcStopHTML(x){
+  const date=`<span class="rc-date">${escHtml(x.formattedDate)}</span>`;
+  const tag=x.isReread===true?'<span class="rc-tag">Relectura</span>':''; // false y null: sin etiqueta
+  if(!x.inCatalog){
+    return `<li class="rc-item rc-missing" data-reading="${escHtml(x.readingId)}"><div class="rc-stop"><span class="rc-nodebox"><span class="rc-n rc-n-missing" aria-hidden="true"></span></span><span class="rc-text">${date}<span class="rc-title rc-title-missing">Libro no disponible en el catálogo</span>${tag}</span></div></li>`;
+  }
+  const b=x.book,ini=rcInitial(b.title);
+  const img=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async" onload="this.parentNode.classList.add('is-loaded')" onerror="this.remove()">`:'';
+  const authors=b.authors.length?`<span class="rc-meta">${escHtml(b.authors.join(', '))}</span>`:'';
+  const country=b.pais_origen.length?`<span class="rc-meta">${escHtml(b.pais_origen.join(' · '))}</span>`:'';
+  return `<li class="rc-item" data-reading="${escHtml(x.readingId)}"><button type="button" class="rc-stop" data-book="${escHtml(x.bookId)}"><span class="rc-nodebox"><span class="rc-n rc-n-book${x.isReread===true?' rc-n-re':''}" aria-hidden="true"><span class="rc-cover"><span class="rc-initial">${escHtml(ini)}</span>${img}</span></span></span><span class="rc-text">${date}<span class="rc-title">${escHtml(b.title||'')}</span>${authors}${country}${tag}</span></button></li>`;
+}
+function rcDrawJourney(host){
+  let html='',station=false;
+  _rcEntries.forEach(x=>{
+    if(!x.hasMonth && !station){
+      station=true;
+      html+='<li class="rc-item rc-station"><div class="rc-stop"><span class="rc-nodebox"><span class="rc-n rc-n-station" aria-hidden="true"></span></span><span class="rc-text"><span class="rc-station-label">Sin mes indicado</span></span></div></li>';
+    }
+    html+=rcStopHTML(x);
+  });
+  host.innerHTML=`<svg class="rc-svg" aria-hidden="true" focusable="false"><defs><linearGradient id="rcGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--teal)"/></linearGradient></defs><g></g></svg><ol class="rc-list" aria-label="Lecturas terminadas en ${rcYear}">${html}</ol>`;
+  if(!_rcBound){
+    _rcBound=true;
+    host.addEventListener('click',ev=>{
+      const b=ev.target.closest('.rc-stop[data-book]'); if(b) openBookPage(b.dataset.book);
+    });
+    if(window.ResizeObserver){ _rcRO=new ResizeObserver(()=>requestAnimationFrame(rcLayout)); _rcRO.observe(host); }
+    else window.addEventListener('resize',rcLayout);
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rcLayout);
+  }
+  rcLayout();
+}
+// Coloca los hitos (serpenteo en PC, alternancia en móvil) y traza las conexiones midiendo el DOM
+function rcLayout(){
+  const host=document.getElementById('rcPath'); if(!host||host.hidden) return;
+  const list=host.querySelector('.rc-list'),svg=host.querySelector('.rc-svg'); if(!list||!svg) return;
+  const W=host.clientWidth; if(!W) return;
+  const wide=window.matchMedia('(min-width:640px)').matches;
+  const cols=wide?(W>=680?3:2):1;
+  list.style.setProperty('--rc-cols',cols);
+  list.classList.toggle('rc-wide',wide);
+  const items=[...list.children];
+  items.forEach((li,i)=>{
+    if(wide){
+      const r=Math.floor(i/cols),k=i%cols;
+      li.style.gridRow=String(r+1); li.style.gridColumn=String(r%2?cols-k:k+1);
+      li.classList.remove('rc-l','rc-r');
+    }else{
+      li.style.gridRow=''; li.style.gridColumn='';
+      li.classList.toggle('rc-l',i%2===0); li.classList.toggle('rc-r',i%2===1);
+    }
+  });
+  const hb=host.getBoundingClientRect(),H=host.offsetHeight;
+  const P=items.map(li=>{
+    const n=li.querySelector('.rc-n').getBoundingClientRect(),l=li.getBoundingClientRect();
+    return {cx:n.left+n.width/2-hb.left,cy:n.top+n.height/2-hb.top,top:n.top-hb.top,bottom:n.bottom-hb.top,left:n.left-hb.left,right:n.right-hb.left,r:n.width/2,liTop:l.top-hb.top,liBottom:l.bottom-hb.top};
+  });
+  const st=items.findIndex(li=>li.classList.contains('rc-station')); // los enlaces hacia y desde «Sin mes indicado» van punteados
+  const cellW=list.clientWidth/cols;
+  let d='';
+  for(let i=0;i+1<P.length;i++){
+    const a=P[i],b=P[i+1];
+    let p;
+    if(wide){
+      const ra=Math.floor(i/cols),rb=Math.floor((i+1)/cols),dir=ra%2?-1:1;
+      if(ra===rb){
+        const sx=dir>0?a.right:a.left,ex=dir>0?b.left:b.right,dx=Math.abs(ex-sx)*0.4,amp=i%2?-8:8;
+        p=`M${sx} ${a.cy}C${sx+dir*dx} ${a.cy-amp} ${ex-dir*dx} ${a.cy+amp} ${ex} ${b.cy}`;
+      }else{
+        const sx=dir>0?a.right:a.left,K=Math.min(100,(cellW/2-a.r-6)/0.75);
+        p=`M${sx} ${a.cy}C${sx+dir*K} ${a.cy} ${sx+dir*K} ${b.cy} ${sx} ${b.cy}`;
+      }
+    }else{
+      const m=(a.liBottom+b.liTop)/2,h=Math.min(12,Math.max(0,m-a.bottom-1));
+      p=`M${a.cx} ${a.bottom}L${a.cx} ${m-h}C${a.cx} ${m} ${b.cx} ${m} ${b.cx} ${m+h}L${b.cx} ${b.top}`;
+    }
+    d+=`<path class="rc-link${st>=0&&i+1>=st?' rc-dash':''}" d="${p}"/>`;
+  }
+  svg.setAttribute('width',W); svg.setAttribute('height',H);
+  svg.querySelector('linearGradient').setAttribute('y2',String(H));
+  svg.querySelector('g').innerHTML=d;
 }
 
 async function openRecorridoModal(silent){
