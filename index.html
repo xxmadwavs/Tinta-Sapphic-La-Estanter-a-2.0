@@ -1320,6 +1320,48 @@ body.home-active .hero,body.home-active .main{display:none!important}
 #cartasView{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
 #cartasView.active{display:block}
 
+/* ── MI MUNDO SAPPHIC (mapas anuales de países descubiertos) ── */
+.ws-block{margin-bottom:2.5rem}
+.ws-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:.2rem 0 1.2rem}
+.ws-lead{flex:1 1 260px;font-size:12.5px;color:var(--muted);margin:0;line-height:1.55}
+.ws-year{display:flex;flex-direction:column;gap:4px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.ws-year select{min-height:44px;min-width:120px;padding:8px 14px;border-radius:30px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--font-body);font-size:15px;font-weight:500;cursor:pointer}
+.ws-year select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ws-empty{margin:0 0 1.2rem;padding:.8rem 1rem;border-radius:var(--radius-lg);background:var(--accent-soft);border:1px solid var(--border2);color:var(--accent2);font-size:13px;line-height:1.5}
+.ws-empty[hidden]{display:none}
+.ws-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1rem;margin-bottom:1.4rem}
+.ws-card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--text);margin:0 0 .7rem;letter-spacing:.01em}
+.ws-mapwrap{position:relative;width:100%;border-radius:12px;overflow:hidden;background:rgba(14,11,16,.55);-webkit-tap-highlight-color:transparent}
+.ws-svg{display:block;width:100%;height:100%;touch-action:manipulation}
+.ws-c{fill:rgba(180,120,200,.09);stroke:rgba(180,120,200,.3);stroke-width:.35;stroke-linejoin:round;transition:fill .25s}
+.ws-c.is-found{cursor:pointer;stroke:rgba(255,255,255,.5)}
+.ws-card[data-map="origen"] .ws-c.is-found,.ws-card[data-map="origen"] .ws-dot.is-found{fill:var(--accent)}
+.ws-card[data-map="cultura"] .ws-c.is-found,.ws-card[data-map="cultura"] .ws-dot.is-found{fill:var(--teal)}
+.ws-c.is-sel{stroke:#fff;stroke-width:1}
+.ws-dot{fill:transparent;stroke:none;pointer-events:none}
+.ws-dot.is-found{stroke:rgba(255,255,255,.6);stroke-width:.5}
+.ws-hit{fill:transparent;stroke:none;cursor:pointer}
+@media (hover:hover){.ws-c:hover{fill:rgba(180,120,200,.22)}.ws-c.is-found:hover{stroke:#fff;stroke-width:.9;filter:brightness(1.12)}}
+.ws-tip{position:absolute;z-index:3;pointer-events:none;opacity:0;display:flex;flex-direction:column;gap:1px;padding:6px 11px;border-radius:10px;background:var(--surface3);border:1px solid var(--border2);box-shadow:0 6px 18px rgba(0,0,0,.45);font-size:12.5px;line-height:1.3;color:var(--text);white-space:nowrap;transition:opacity .12s}
+.ws-tip.show{opacity:1}
+.ws-tip strong{font-weight:600}
+.ws-tip span{color:var(--accent2);font-size:12px}
+.ws-tip span.is-muted{color:var(--muted)}
+.ws-info{min-height:1.4em;margin-top:.6rem;font-size:12px;color:var(--muted)}
+.ws-info b{color:var(--text);font-weight:600}
+.ws-counters{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:.5rem;font-size:13px;color:var(--muted)}
+.ws-counters b{font-family:var(--font-display);font-size:1.25rem;font-weight:500;color:var(--text);margin-right:4px}
+.ws-counters .ws-extra{flex-basis:100%;font-size:11.5px}
+.ws-alt{margin-top:.8rem;font-size:12.5px;color:var(--muted)}
+.ws-alt summary{cursor:pointer;padding:6px 0;min-height:32px}
+.ws-alt-list{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.3rem .9rem}
+.ws-alt-list li{display:flex;justify-content:space-between;gap:.6rem;padding:3px 0;border-bottom:1px solid var(--border);color:var(--text)}
+.ws-alt-list li span{color:var(--muted);white-space:nowrap}
+.ws-alt-note{margin:.5rem 0 0;font-size:11.5px}
+.ws-loading,.ws-error{padding:2rem 1rem;text-align:center;color:var(--muted);font-size:13px}
+.ws-error button{margin-top:.6rem;padding:8px 18px;border-radius:30px;border:1px solid var(--border2);background:var(--accent-soft);color:var(--accent2);font-family:var(--font-body);cursor:pointer}
+@media (max-width:640px){#wsCards{margin-inline:-1.5rem}.ws-card{padding:.6rem .4rem;border-radius:14px}.ws-card-title{font-size:1.15rem;padding:0 .3rem}.ws-info,.ws-counters,.ws-alt{padding:0 .3rem}.ws-toolbar{align-items:stretch}.ws-year select{width:100%}.ws-year{flex:1 1 100%}}
+
 /* ── CARTAS DE AUTORA ── */
 .cartas-sub{color:var(--muted);font-size:13px;max-width:640px;margin:.3rem 0 1.5rem}
 .cartas-progress-bar-wrap{display:flex;align-items:center;gap:.9rem;margin-bottom:1.6rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg)}
@@ -4224,6 +4266,16 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
       <div class="logros-section-label">Libros leídos por año</div>
       <div id="statsYearChart"></div>
       <div class="stats-block-note" id="statsYearNote"></div>
+    </div>
+
+    <div class="stats-block ws-block" id="wsBlock">
+      <div class="logros-section-label">Mi mundo sapphic</div>
+      <div class="ws-toolbar">
+        <p class="ws-lead">Los países se descubren: cada país que aparece en al menos una lectura terminada durante el año se ilumina en el mapa.</p>
+        <label class="ws-year"><span>Año</span><select id="wsYear" onchange="wsSetYear(this.value)"></select></label>
+      </div>
+      <div class="ws-empty" id="wsEmpty" hidden>Todavía no hay descubrimientos en este año. Cada lectura terminada iluminará un país en el mapa 🌱</div>
+      <div id="wsCards"><div class="ws-loading">Cargando mapas…</div></div>
     </div>
 
     <div class="stats-block">
@@ -10426,6 +10478,233 @@ function renderStatsView(){
       <div class="rtag-col-title">Tus dinámicas favoritas</div>
       ${buildBars(s.topDin,'var(--rose)')}
     </div>`;
+  renderWorldSapphic(); // Mi mundo sapphic (mapas anuales)
+}
+
+/* ── MI MUNDO SAPPHIC — dos mapas mundiales anuales de países descubiertos ──
+   Fuente de lecturas: myReadingLog (solo entradas con read_at; read_at null = en curso).
+   Año: se extrae del ISO con /^(\d{4})/ (sin new Date, por fechas parciales y zonas horarias).
+   Un país está DESCUBIERTO si hay >=1 lectura terminada ese año asociada; el nº de lecturas
+   solo se usa en el tooltip y en los contadores, nunca en el color. */
+const WS_MAP_URL='world_map_data.json';
+const WS_MAPS=[
+  {key:'origen', field:'pais_origen', title:'🌍 De dónde vienen mis autoras', aria:'Mapa mundial de los países de origen de las autoras que has leído'},
+  {key:'cultura',field:'pais_cultura',title:'📍 Dónde me han llevado mis historias', aria:'Mapa mundial de los países donde se ambientan las historias que has leído'}
+];
+// Solo variantes ortográficas del MISMO país (no se inventan equivalencias: Escocia, Ítaca, etc. no se mapean)
+const WS_ALIASES={'eeuu':'US','usa':'US','estados unidos de america':'US','republica checa':'CZ','holanda':'NL','birmania':'MM','suazilandia':'SZ','macedonia':'MK','timor oriental':'TL'};
+// Regiones reconocidas que NO son un país: no pintan nada, solo se informan aparte
+const WS_REGIONS={'sudamerica':'Sudamérica'};
+let _wsMapPromise=null,_wsMap=null,_wsNameToIso=null,_wsIsoToName=null;
+let wsYear=null,_wsBuilt=false,_wsRefs={},_wsResult={},_wsTouchAt=0,_wsDocBound=false;
+
+function wsNorm(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[.,]/g,'').replace(/\s+/g,' ').trim();}
+function wsToList(v){ return Array.isArray(v)?v.filter(x=>typeof x==='string'&&x.trim()):(typeof v==='string'&&v.trim()?[v]:[]); }
+function wsEntryYear(e){
+  if(!e||typeof e.read_at!=='string') return null; // read_at null = lectura en curso: no cuenta
+  const m=/^(\d{4})/.exec(e.read_at);
+  return m?parseInt(m[1],10):null;
+}
+function wsResolveIso(v){ const k=wsNorm(v); return _wsNameToIso.get(k)||WS_ALIASES[k]||null; }
+
+// Carga perezosa: solo cuando se abre Estadísticas, y cacheada
+function wsLoadMap(){
+  if(_wsMap) return Promise.resolve(_wsMap);
+  if(!_wsMapPromise){
+    _wsMapPromise=fetch(WS_MAP_URL).then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(d=>{
+        if(!d||!Array.isArray(d.c)) throw new Error('world_map_data.json inválido');
+        _wsNameToIso=new Map(); _wsIsoToName=new Map();
+        d.c.forEach(c=>{ if(c.i){ _wsNameToIso.set(wsNorm(c.n),c.i); if(!_wsIsoToName.has(c.i)) _wsIsoToName.set(c.i,c.n); } });
+        _wsMap=d; return d;
+      })
+      .catch(e=>{ _wsMapPromise=null; throw e; });
+  }
+  return _wsMapPromise;
+}
+
+function wsYearBounds(){
+  let min=null,max=null;
+  Object.values(myReadingLog).forEach(list=>(list||[]).forEach(e=>{
+    const y=wsEntryYear(e); if(y==null) return;
+    if(min==null||y<min) min=y; if(max==null||y>max) max=y;
+  }));
+  return {min,max};
+}
+
+function computeWorldDiscoveries(year){
+  const res={};
+  WS_MAPS.forEach(m=>{ res[m.key]={countries:new Map(),located:0,unlocated:0,regions:new Map()}; });
+  const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
+  Object.keys(myReadingLog).forEach(bookId=>{
+    // Cada entrada del historial es una lectura independiente (las relecturas suman)
+    const n=(myReadingLog[bookId]||[]).filter(e=>wsEntryYear(e)===year).length;
+    if(!n) return;
+    const book=byId.get(String(bookId));
+    WS_MAPS.forEach(m=>{
+      const r=res[m.key],isos=new Set(),regs=new Set();
+      if(book) wsToList(book[m.field]).forEach(v=>{
+        const iso=wsResolveIso(v);
+        if(iso) isos.add(iso);
+        else if(WS_REGIONS[wsNorm(v)]) regs.add(WS_REGIONS[wsNorm(v)]);
+      });
+      regs.forEach(g=>r.regions.set(g,(r.regions.get(g)||0)+n));
+      if(isos.size){ r.located+=n; isos.forEach(i=>r.countries.set(i,(r.countries.get(i)||0)+n)); }
+      else r.unlocated+=n;
+    });
+  });
+  return res;
+}
+
+function wsFillYearSelect(){
+  const sel=document.getElementById('wsYear'); if(!sel) return;
+  const cur=new Date().getFullYear(),{min,max}=wsYearBounds();
+  const lo=Math.min(min==null?cur:min,cur),hi=Math.max(max==null?cur:max,cur);
+  if(wsYear==null||wsYear<lo||wsYear>hi) wsYear=cur;
+  let html='';
+  for(let y=hi;y>=lo;y--) html+=`<option value="${y}">${y}</option>`;
+  sel.innerHTML=html; sel.value=String(wsYear);
+}
+function wsSetYear(v){
+  const y=parseInt(v,10); if(isNaN(y)) return;
+  wsYear=y; renderWorldSapphic();
+}
+
+function wsBuild(){
+  const NS='http://www.w3.org/2000/svg',W=_wsMap.w,H=_wsMap.h;
+  const host=document.getElementById('wsCards');
+  host.innerHTML=WS_MAPS.map(m=>`
+    <section class="ws-card" data-map="${m.key}">
+      <h3 class="ws-card-title">${m.title}</h3>
+      <div class="ws-mapwrap" id="wsWrap_${m.key}" style="aspect-ratio:${W}/${H}"></div>
+      <div class="ws-info" id="wsInfo_${m.key}" aria-live="polite"></div>
+      <div class="ws-counters" id="wsCnt_${m.key}"></div>
+      <details class="ws-alt"><summary id="wsAltSum_${m.key}"></summary><div id="wsAlt_${m.key}"></div></details>
+    </section>`).join('');
+  WS_MAPS.forEach(m=>{
+    const wrap=document.getElementById('wsWrap_'+m.key);
+    const svg=document.createElementNS(NS,'svg');
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.setAttribute('class','ws-svg');
+    svg.setAttribute('role','img');
+    svg.setAttribute('aria-label',m.aria+'. Alternativa en texto justo debajo del mapa.');
+    const byIso=new Map(),reg=(iso,el)=>{ if(!byIso.has(iso)) byIso.set(iso,[]); byIso.get(iso).push(el); };
+    const land=document.createElementNS(NS,'g');
+    _wsMap.c.forEach(c=>{
+      const p=document.createElementNS(NS,'path');
+      p.setAttribute('d',c.d);
+      if(c.i){ p.setAttribute('class','ws-c'); p.setAttribute('data-iso',c.i); reg(c.i,p); }
+      else{ p.setAttribute('class','ws-c'); p.style.pointerEvents='none'; } // Kosovo, Somaliland…: sin código ISO, no descubribles
+      land.appendChild(p);
+    });
+    svg.appendChild(land);
+    // Marcadores para países diminutos: punto visible al descubrirlos + zona de toque ampliada
+    const marks=document.createElementNS(NS,'g');
+    (_wsMap.s||[]).forEach(s=>{
+      const dot=document.createElementNS(NS,'circle');
+      dot.setAttribute('cx',s.x); dot.setAttribute('cy',s.y); dot.setAttribute('r',3); dot.setAttribute('class','ws-dot'); dot.setAttribute('data-iso',s.i);
+      const hit=document.createElementNS(NS,'circle');
+      hit.setAttribute('cx',s.x); hit.setAttribute('cy',s.y); hit.setAttribute('r',7); hit.setAttribute('class','ws-hit'); hit.setAttribute('data-iso',s.i);
+      marks.appendChild(dot); marks.appendChild(hit); reg(s.i,dot); reg(s.i,hit);
+    });
+    svg.appendChild(marks);
+    wrap.appendChild(svg);
+    const tip=document.createElement('div'); tip.className='ws-tip'; tip.setAttribute('aria-hidden','true'); wrap.appendChild(tip);
+    _wsRefs[m.key]={byIso,selected:null};
+    svg.addEventListener('pointermove',e=>{
+      if(e.pointerType!=='mouse') return;
+      const el=e.target.closest&&e.target.closest('[data-iso]');
+      if(el) wsShowTip(m.key,el.getAttribute('data-iso'),e.clientX,e.clientY,false); else wsHideTip(m.key);
+    });
+    svg.addEventListener('pointerleave',e=>{ if(e.pointerType==='mouse') wsHideTip(m.key); });
+    // Táctil/lápiz: se usa el punto EXACTO del pointerup. El 'click' sintetizado en móvil pasa por el
+    // «touch adjustment» del navegador y puede caer en un país vecino (p. ej. Tailandia → Myanmar).
+    svg.addEventListener('pointerup',e=>{
+      if(e.pointerType==='mouse') return;
+      _wsTouchAt=Date.now();
+      const t=document.elementFromPoint(e.clientX,e.clientY);
+      const el=t&&t.closest&&t.closest('#wsWrap_'+m.key+' [data-iso]');
+      if(el) wsShowTip(m.key,el.getAttribute('data-iso'),e.clientX,e.clientY,true); else wsHideTip(m.key);
+    });
+    svg.addEventListener('click',e=>{ // clic de ratón (y teclado/AT); el click táctil ya se gestionó en pointerup
+      if(Date.now()-_wsTouchAt<800) return;
+      const el=e.target.closest&&e.target.closest('[data-iso]');
+      if(el) wsShowTip(m.key,el.getAttribute('data-iso'),e.clientX,e.clientY,true); else wsHideTip(m.key);
+    });
+  });
+  if(!_wsDocBound){ // tocar/pulsar fuera de un mapa cierra los tooltips abiertos
+    _wsDocBound=true;
+    document.addEventListener('pointerdown',e=>{ if(!(e.target.closest&&e.target.closest('.ws-mapwrap'))) WS_MAPS.forEach(m=>wsHideTip(m.key)); });
+  }
+  _wsBuilt=true;
+}
+
+function wsHideTip(key){
+  const wrap=document.getElementById('wsWrap_'+key); if(!wrap) return;
+  wrap.querySelector('.ws-tip')?.classList.remove('show');
+  const ref=_wsRefs[key];
+  if(ref&&ref.selected){ (ref.byIso.get(ref.selected)||[]).forEach(el=>el.classList.remove('is-sel')); ref.selected=null; }
+}
+function wsTipText(key,iso){
+  const name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso,n=(_wsResult[key]?.countries.get(iso))||0;
+  return {name,n,html:`<strong>${escHtml(name)}</strong><span class="${n?'':'is-muted'}">${n?`${n} lectura${n===1?'':'s'}`:'Aún no descubierto'}</span>`};
+}
+function wsShowTip(key,iso,cx,cy,pin){
+  const wrap=document.getElementById('wsWrap_'+key); if(!wrap) return;
+  const tip=wrap.querySelector('.ws-tip'),ref=_wsRefs[key],t=wsTipText(key,iso);
+  tip.innerHTML=t.html; tip.classList.add('show');
+  const r=wrap.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+  const x=Math.max(w/2+4,Math.min(r.width-w/2-4,cx-r.left)),y=cy-r.top,above=(y-h-14)>=0;
+  tip.style.left=x+'px'; tip.style.top=(above?y-10:y+18)+'px'; tip.style.transform=above?'translate(-50%,-100%)':'translate(-50%,0)';
+  if(pin){
+    if(ref.selected) (ref.byIso.get(ref.selected)||[]).forEach(el=>el.classList.remove('is-sel'));
+    ref.selected=iso; (ref.byIso.get(iso)||[]).forEach(el=>{ if(el.classList.contains('ws-c')) el.classList.add('is-sel'); });
+    const info=document.getElementById('wsInfo_'+key);
+    if(info) info.innerHTML=`<b>${escHtml(t.name)}</b> · ${t.n?`${t.n} lectura${t.n===1?'':'s'}`:'Aún no descubierto'}`;
+  }
+}
+
+function wsPaint(){
+  let anyFound=false;
+  WS_MAPS.forEach(m=>{
+    const res=_wsResult[m.key],ref=_wsRefs[m.key];
+    wsHideTip(m.key);
+    ref.byIso.forEach((els,iso)=>{ const f=res.countries.has(iso); els.forEach(el=>el.classList.toggle('is-found',f)); });
+    const nC=res.countries.size; if(nC) anyFound=true;
+    document.getElementById('wsInfo_'+m.key).textContent='Pasa el ratón o toca un país para ver su información.';
+    document.getElementById('wsCnt_'+m.key).innerHTML=
+      `<span><b>${nC}</b>${nC===1?'país descubierto':'países descubiertos'}</span>`+
+      `<span><b>${res.located}</b>${res.located===1?'lectura':'lecturas'}</span>`+
+      (res.unlocated?`<span class="ws-extra">${res.unlocated} lectura${res.unlocated===1?'':'s'} sin ubicación cartografiable</span>`:'');
+    document.getElementById('wsAltSum_'+m.key).textContent=`Ver lista de países descubiertos (${nC})`;
+    const rows=[...res.countries.entries()].map(([iso,n])=>[_wsIsoToName.get(iso)||iso,n]).sort((a,b)=>a[0].localeCompare(b[0],'es'));
+    const regs=[...res.regions.entries()];
+    document.getElementById('wsAlt_'+m.key).innerHTML=
+      (rows.length?`<ul class="ws-alt-list">${rows.map(([nm,n])=>`<li>${escHtml(nm)}<span>${n} lectura${n===1?'':'s'}</span></li>`).join('')}</ul>`
+        :`<p class="ws-alt-note">Aún no hay países descubiertos en ${wsYear}.</p>`)+
+      (regs.length?`<p class="ws-alt-note">Región sin país concreto (no se pinta en el mapa): ${regs.map(([g,n])=>`${escHtml(g)} (${n} lectura${n===1?'':'s'})`).join(', ')}.</p>`:'');
+  });
+  const empty=document.getElementById('wsEmpty');
+  if(empty){ empty.hidden=anyFound; empty.textContent=`Todavía no hay descubrimientos en ${wsYear}. Cada lectura terminada iluminará un país en el mapa 🌱`; }
+}
+
+function wsShowError(){
+  const host=document.getElementById('wsCards'); if(!host) return;
+  _wsBuilt=false;
+  host.innerHTML='<div class="ws-error">No se pudo cargar el mapa mundial.<br><button type="button" onclick="renderWorldSapphic()">Reintentar</button></div>';
+}
+
+function renderWorldSapphic(){
+  if(!document.getElementById('wsBlock')) return;
+  wsFillYearSelect();
+  if(!_wsMap){
+    if(!_wsBuilt&&!document.querySelector('#wsCards .ws-loading')) document.getElementById('wsCards').innerHTML='<div class="ws-loading">Cargando mapas…</div>';
+    wsLoadMap().then(()=>{ if(document.getElementById('statsView').classList.contains('active')) renderWorldSapphic(); }).catch(wsShowError);
+    return;
+  }
+  if(!_wsBuilt) wsBuild();
+  _wsResult=computeWorldDiscoveries(wsYear);
+  wsPaint();
 }
 
 // Pinta un renglón por cada edición de bingo (pasada o presente), con sus
