@@ -134,6 +134,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .chip-custom-add input:focus{border-color:var(--accent)}
 .chip-custom-btn{padding:6px 14px;border-radius:20px;border:1px dashed var(--border2);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;white-space:nowrap;transition:all .14s;flex-shrink:0}
 .chip-custom-btn:hover{border-color:var(--accent);color:var(--accent2)}
+/* Ubicaciones (fase prioridad 1) */
+.ub-card{border:1px solid var(--border2);border-radius:12px;padding:.8rem .9rem .5rem;margin-bottom:.7rem;background:var(--surface2)}
+.ub-card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent2);font-weight:600}
+.ub-del{padding:3px 11px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;cursor:pointer;transition:all .14s}
+.ub-del:hover{border-color:var(--rose);color:#e0909e}
+.ub-card .form-row input{background:var(--surface)}
+.ub-add-btn{width:100%;padding:8px;border-radius:10px;border:1px dashed var(--border2);background:transparent;color:var(--muted);font-size:12.5px;cursor:pointer;transition:all .14s}
+.ub-add-btn:hover{border-color:var(--accent);color:var(--accent2)}
 
 /* Collapsible chip section */
 .chip-section{margin-bottom:1.1rem}
@@ -476,6 +484,83 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   .top10-gold .t10-score{justify-content:center}
 }
 
+/* ══ Modal de libro · edición rápida (secciones plegables + densidad) ══ */
+#bookModal .modal{max-height:calc(100vh - 2rem)}
+#bookModal .modal-top{padding:.65rem 1.25rem;gap:.5rem 1rem}
+#bookModal .modal-title{font-size:1.35rem}
+#bookModal .modal-body{flex:1 1 auto;min-height:0;overflow:hidden;grid-template-rows:minmax(0,1fr)}
+#bookModal .modal-col-left,#bookModal .modal-col-right{padding:.7rem .9rem;max-height:none;min-height:0;overflow-y:auto}
+#bookModal .modal-footer{padding:.6rem 1.25rem;flex-shrink:0}
+@media(max-width:750px){#bookModal .modal-body{overflow-y:auto;grid-template-rows:none}#bookModal .modal-col-left,#bookModal .modal-col-right{overflow:visible}}
+
+/* secciones plegables: cabecera de una línea con resumen */
+#bookModal .chip-section{margin-bottom:.35rem;border:1px solid var(--border);border-radius:10px}
+#bookModal .chip-section-hd{display:flex;align-items:center;justify-content:flex-start;gap:.5rem;padding:.4rem .7rem;margin:0;min-height:34px;border:0;border-radius:10px;background:var(--surface2);cursor:pointer;user-select:none}
+#bookModal .chip-section:not(.collapsed) .chip-section-hd{border-radius:10px 10px 0 0;border-bottom:1px solid var(--border)}
+#bookModal .chip-section-hd:hover{background:var(--surface3,var(--surface2))}
+#bookModal .chip-section-arrow{font-size:10px;width:10px;flex-shrink:0;color:var(--muted)}
+#bookModal .chip-section-lbl{flex-shrink:0;white-space:nowrap}
+#bookModal .fold-sum{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:var(--text);text-transform:none;letter-spacing:0;font-weight:400}
+#bookModal .fold-sum:not(:empty)::before{content:'· ';color:var(--muted)}
+#bookModal .fold-sum.is-empty{color:var(--muted);opacity:.7;font-style:italic}
+#bookModal .chip-section-body{padding:.55rem .75rem .65rem}
+.sub-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:.6rem 0 .2rem}
+.sub-hint{font-weight:400;text-transform:none;letter-spacing:0;font-size:10.5px}
+
+/* densidad de campos */
+#bookModal .source-chip{padding:3px 10px;font-size:11.5px}
+#bookModal .source-chip-group{gap:.3rem;margin-top:.2rem}
+.form-row-3{display:grid;grid-template-columns:84px 84px minmax(0,1fr);gap:8px;margin-bottom:8px}
+#fYear,#fPages{-moz-appearance:textfield;appearance:textfield}
+#fYear::-webkit-outer-spin-button,#fYear::-webkit-inner-spin-button,#fPages::-webkit-outer-spin-button,#fPages::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+#bookModal .form-row{margin-bottom:8px}
+#bookModal .form-label{margin-bottom:3px}
+#bookModal .form-row input,#bookModal .form-row textarea,#bookModal .form-row select{padding:7px 11px}
+#bookModal .form-row textarea{min-height:64px}
+#bookModal .chip-group{margin-top:.2rem}
+#bookModal .chip-opt{padding:3px 11px}
+#bookModal .chip-custom-add{margin-top:6px}
+#bookModal .chip-custom-add input{padding:5px 12px}
+#bookModal .chip-custom-btn{padding:5px 12px}
+#bookModal .spicy-grid{gap:.25rem;margin-top:.2rem}
+#bookModal .spicy-row{padding:5px 10px}
+#bookModal .cover-hint{display:inline;margin:0 0 0 6px}
+#bookModal .edition-row{grid-template-columns:84px minmax(0,1fr) 28px;gap:.35rem}
+#bookModal .edition-row>:nth-child(3){grid-column:1 / -1;grid-row:2}
+#bookModal .edition-row>:nth-child(4){grid-column:3;grid-row:1}
+
+/* CONTEXTO: un solo bloque, una fila por dato */
+.ctx-row{display:grid;grid-template-columns:96px minmax(0,1fr);gap:.6rem;padding:.4rem 0;border-top:1px solid var(--border)}
+.ctx-row:first-child{border-top:0;padding-top:0}
+.ctx-row:last-child{padding-bottom:0}
+.ctx-lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;padding-top:.4rem}
+.ctx-fld .chip-group{margin-top:0}
+.ctx-fld .chip-custom-add{margin-top:4px}
+.ctx-fld .chip-custom-add input{padding:3px 11px;font-size:11.5px}
+.ctx-fld .chip-custom-btn{padding:3px 11px;font-size:11.5px}
+@media(max-width:750px){.ctx-row{grid-template-columns:1fr;gap:.2rem}.ctx-lbl{padding-top:0}}
+
+/* UBICACIONES: línea-resumen + detalle al pulsar */
+#bookModal .ub-card{padding:0;margin-bottom:.3rem;border-radius:10px;overflow:visible}
+.ub-line{display:flex;align-items:center;gap:.5rem;padding:6px 10px;cursor:pointer;font-size:13px;border-radius:10px}
+.ub-line:hover{background:var(--surface3,var(--surface2))}
+.ub-chev{font-size:10px;color:var(--muted);width:10px;flex-shrink:0;transition:transform .2s}
+.ub-card:not(.open) .ub-chev{transform:rotate(-90deg)}
+.ub-sum{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ub-new{color:var(--muted);font-style:italic}
+.ub-meta{flex:1;min-width:0;text-align:right;font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ub-line .ub-del{padding:1px 8px;flex-shrink:0}
+.ub-body{display:none;padding:.15rem .7rem .6rem;border-top:1px solid var(--border)}
+.ub-card.open .ub-body{display:block}
+.ub-g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:.5rem}
+.ub-g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+@media(max-width:750px){.ub-g3,.ub-g2{grid-template-columns:1fr}}
+.ub-f{min-width:0}
+.ub-f>input{width:100%;padding:6px 10px;border-radius:9px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;outline:none;transition:border-color .15s}
+.ub-f>input:focus{border-color:var(--accent)}
+.ub-f .chip-custom-add{margin-top:0}
+.ub-chips{margin-top:.45rem}
+#bookModal .ub-add-btn{padding:6px}
 </style>
 </head>
 <body>
@@ -791,15 +876,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="modal-top">
       <div class="modal-title" id="modalTitle">Nuevo libro</div>
       <div class="modal-jumpnav" id="modalJumpNav">
-        <button class="jnav-btn" onclick="jumpTo('sec-basic')">📋 Básicos</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-basic')">📋 General</button>
         <button class="jnav-btn" onclick="jumpTo('sec-genres')">🏷 Géneros</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-dinamica')">💞 Dinámica</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-tropes')">📖 Tropos</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-characters')">🧑 Personajes</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-edad')">🎂 Edad</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-pais')">🌍 País</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-warnings')">⚠️ Advertencias</button>
-        <button class="jnav-btn" onclick="jumpTo('sec-spicy')">🌶 Spicy</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-warnings')">⚠️ Contenido</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-contexto')">🧭 Contexto</button>
+        <button class="jnav-btn" onclick="jumpTo('sec-ediciones')">🛒 Ediciones</button>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
@@ -807,312 +888,294 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <!-- 2-col body -->
     <div class="modal-body">
 
-      <!-- LEFT COL: datos básicos -->
       <div class="modal-col-left" id="modalColLeft">
-
-        <div class="paste-bar" style="margin-bottom:1.1rem" id="gbSearchBar">
-          <div class="paste-bar-label">🔎 Buscar libro (Google Books + Open Library + Hardcover)</div>
-          <div class="paste-bar-row" style="margin-bottom:0">
-            <input type="text" class="paste-bar-textarea" id="gbQuery" style="min-height:auto;height:40px" placeholder="Título (y autora, opcional)" onkeydown="if(event.key==='Enter'){event.preventDefault();searchBooks();}">
-            <button class="paste-bar-btn" onclick="searchBooks()">Buscar</button>
-          </div>
-          <div class="paste-bar-status" id="gbStatus"></div>
-          <div id="gbResults" style="display:none;flex-direction:column;gap:6px;margin-top:8px"></div>
-        </div>
-
-        <div class="paste-bar" style="margin-bottom:1.1rem">
-          <div class="paste-bar-label">⚡ Autocompletar</div>
-          <div class="paste-bar-row" style="margin-bottom:0">
-            <textarea class="paste-bar-textarea" id="pasteInput" placeholder="Pega aquí la info del libro (Titulo, Autora, Genero, Sinopsis...)"></textarea>
-            <button class="paste-bar-btn" onclick="runBookPaste()">Rellenar</button>
-          </div>
-          <div class="paste-bar-status" id="pasteStatus"></div>
-        </div>
-
-        <div id="sec-basic" class="form-section">
-          <div class="form-section-title">Datos básicos</div>
-          <div class="form-row">
-            <label class="form-label">Título *</label>
-            <input type="text" id="fTitle" placeholder="Título del libro" oninput="checkDuplicate(this.value)">
-            <div class="dup-warning" id="dupWarning">⚠️ <strong>¡Posible duplicado!</strong> Ya existe un libro similar:<div class="dup-list" id="dupList"></div></div>
-            <div class="dup-ok" id="dupOk">✓ Título disponible</div>
-          </div>
-
-          <div class="form-row">
-            <label class="form-label">Autora/s * <span style="color:var(--muted);font-size:10px;text-transform:none">(Enter o coma para añadir varias)</span></label>
-            <div class="author-field-wrap">
-              <div class="tag-input-wrap" id="authorWrap" onclick="document.getElementById('authorInput').focus()">
-                <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="new-password">
-              </div>
-              <div class="author-suggestions" id="authorSuggestions"></div>
-            </div>
-          </div>
-
-          <div class="form-row-half">
-            <div class="form-row" style="margin-bottom:0">
-              <label class="form-label">Año</label>
-              <input type="number" id="fYear" placeholder="2024" min="1800" max="2100">
-            </div>
-            <div class="form-row" style="margin-bottom:0">
-              <label class="form-label">Páginas</label>
-              <input type="number" id="fPages" placeholder="320">
-            </div>
-          </div>
-          <div class="form-row">
-            <label class="form-label">ISBN</label>
-            <input type="text" id="fIsbn" placeholder="978-…">
-          </div>
-          <div class="form-row" id="shipRow" style="display:none">
-            <label class="form-label">Ship(s) <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(nombres separados por comas)</span></label>
-            <input type="text" id="fShip" placeholder="PhinyaBusaya, OtroShip…">
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Sección *</div>
-          <div class="source-chip-group" id="sourceChips">
-            <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Thais</button>
-            <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Occidentales</button>
-            <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Español</button>
-            <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
-            <button class="source-chip" id="sourceAsian" onclick="setSource('asian')">🏮 Asiáticas</button>
-            <button class="source-chip" id="sourceAfrican" onclick="setSource('african')">🪘 Africanas</button>
-            <button class="source-chip" id="sourceWattpad" onclick="setSource('wattpad')">📙 Wattpad</button>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">País de origen <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(dónde se escribió/publicó, no la ambientación)</span></div>
-          <div class="chip-group" id="paisOrigenChips"></div>
-          <div class="chip-custom-add"><input type="text" id="customPaisOrigen" placeholder="Añadir otro país…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('pais_origen','customPaisOrigen',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('pais_origen','customPaisOrigen',false)">+ Añadir</button></div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Portada</div>
-          <div class="cover-row">
-            <div style="flex:1">
-              <div class="form-row" style="margin-bottom:4px">
-                <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="onCoverUrlInput(this.value)">
-              </div>
-              <div class="cover-hint">Pega una URL <strong>o sube una imagen</strong> desde tu ordenador.</div>
-              <input type="file" id="fCoverFile" accept="image/*" onchange="onCoverFileChange(this)">
-              <label for="fCoverFile" class="cover-upload-btn" id="coverUploadLabel">
-                <span>📁</span> <span id="coverUploadTxt">Subir imagen…</span>
-              </label>
-            </div>
-            <img id="coverPreview" class="cover-preview" alt="" onerror="this.style.display='none'">
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Sinopsis</div>
-          <div class="form-row">
-            <textarea id="fSynopsis" placeholder="Descripción del libro…" rows="4"></textarea>
-          </div>
-        </div>
-
-        <div id="sec-spicy" class="form-section">
-          <div class="form-section-title">Nivel Spicy 🌶</div>
-          <div class="spicy-grid" id="spicyGrid"></div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Formato</div>
-          <div class="chip-group" id="formatoChips"></div>
-        </div>
-
-        <div class="form-section" id="sagaSection" style="display:none">
-          <div class="form-section-title">Saga</div>
-          <div class="form-row-half">
-            <div class="form-row" style="margin-bottom:0">
-              <label class="form-label">Nombre de la saga</label>
-              <input type="text" id="fSagaName" placeholder="Ej: WHALE, Caraval…">
-            </div>
-            <div class="form-row" style="margin-bottom:0">
-              <label class="form-label">Número</label>
-              <input type="number" id="fSagaNum" placeholder="1" min="0" step="0.5">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Adaptación</div>
-          <div class="chip-group" id="adaptacionChips"></div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Dónde comprar <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0">(idioma · tienda · enlace)</span></div>
-          <div id="editionsWrap" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.6rem"></div>
-          <button class="btn small" onclick="addEdition()" type="button">+ Añadir edición</button>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title" style="color:#FF6B2C">📙 Wattpad <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(enlace a la historia, si está disponible gratis)</span></div>
-          <div class="form-row">
-            <input type="url" id="fWattpad" placeholder="https://www.wattpad.com/story/…">
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title" style="color:var(--rose)">🌹 SafiClub</div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-            <input type="checkbox" id="fSafiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('safiCatField').style.display=this.checked?'block':'none'">
-            <label for="fSafiClub" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como SafiClub</label>
-          </div>
-          <div id="safiCatField" style="display:none">
-            <div class="safi-club-form">
-              <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
-              <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title" style="color:var(--rose)">🌺 Thai Club</div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-            <input type="checkbox" id="fThaiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('thaiCatField').style.display=this.checked?'block':'none'">
-            <label for="fThaiClub" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Thai Club</label>
-          </div>
-          <div id="thaiCatField" style="display:none">
-            <div class="safi-club-form">
-              <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
-              <input type="text" class="safi-club-cats-inp" id="fThaiCats" placeholder="Ej: Lectura actual, Próximas lecturas">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title" style="color:var(--teal)">📻 Recomendación del Canal</div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-            <input type="checkbox" id="fCanalRec" style="accent-color:var(--teal);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('canalRecField').style.display=this.checked?'block':'none'">
-            <label for="fCanalRec" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Recomendación del Canal</label>
-          </div>
-          <div id="canalRecField" style="display:none">
-            <div class="canal-club-form">
-              <label class="form-label" style="color:var(--teal)">Mes / Período (ej: Enero 2025, Verano 2024)</label>
-              <input type="text" class="canal-club-inp" id="fCanalMonth" placeholder="Ej: Enero 2025">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title" style="color:#e0909e">💌 Mis Recomendaciones</div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-            <input type="checkbox" id="fMyRec" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('myRecField').style.display=this.checked?'block':'none'">
-            <label for="fMyRec" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Mi Recomendación</label>
-          </div>
-          <div id="myRecField" style="display:none">
-            <div class="myrec-club-form">
-              <label class="form-label" style="color:#e0909e">Categorías (separadas por coma)</label>
-              <input type="text" class="myrec-club-inp" id="fMyRecCats" placeholder="Ej: Romántica Intensa, Para llorar, Enemigos a amantes">
-            </div>
-          </div>
-        </div>
+<div class="chip-section" id="sec-tools">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🔎 Buscar y autocompletar</span><span class="fold-sum" id="sum-tools"></span></div>
+  <div class="chip-section-body">
+<div class="paste-bar" style="margin-bottom:.6rem" id="gbSearchBar">
+  <div class="paste-bar-label">🔎 Buscar libro (Google Books + Open Library + Hardcover)</div>
+  <div class="paste-bar-row" style="margin-bottom:0">
+    <input type="text" class="paste-bar-textarea" id="gbQuery" style="min-height:auto;height:40px" placeholder="Título (y autora, opcional)" onkeydown="if(event.key==='Enter'){event.preventDefault();searchBooks();}">
+    <button class="paste-bar-btn" onclick="searchBooks()">Buscar</button>
+  </div>
+  <div class="paste-bar-status" id="gbStatus"></div>
+  <div id="gbResults" style="display:none;flex-direction:column;gap:6px;margin-top:8px"></div>
+</div>
+<div class="paste-bar" style="margin-bottom:0">
+  <div class="paste-bar-label">⚡ Autocompletar</div>
+  <div class="paste-bar-row" style="margin-bottom:0">
+    <textarea class="paste-bar-textarea" id="pasteInput" placeholder="Pega aquí la info del libro (Titulo, Autora, Genero, Sinopsis...)"></textarea>
+    <button class="paste-bar-btn" onclick="runBookPaste()">Rellenar</button>
+  </div>
+  <div class="paste-bar-status" id="pasteStatus"></div>
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-basic">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">Información básica</span><span class="fold-sum" id="sum-basic"></span></div>
+  <div class="chip-section-body">
+<div class="form-row">
+  <label class="form-label">Título *</label>
+  <input type="text" id="fTitle" placeholder="Título del libro" oninput="checkDuplicate(this.value)">
+  <div class="dup-warning" id="dupWarning">⚠️ <strong>¡Posible duplicado!</strong> Ya existe un libro similar:<div class="dup-list" id="dupList"></div></div>
+  <div class="dup-ok" id="dupOk">✓ Título disponible</div>
+</div>
+<div class="form-row">
+  <label class="form-label">Autora/s * <span style="color:var(--muted);font-size:10px;text-transform:none">(Enter o coma para añadir varias)</span></label>
+  <div class="author-field-wrap">
+    <div class="tag-input-wrap" id="authorWrap" onclick="document.getElementById('authorInput').focus()">
+      <input class="tag-bare-input" id="authorInput" placeholder="Nombre de la autora…" onkeydown="handleAuthorInput(event)" oninput="showAuthorSuggestions(this.value)" onblur="hideAuthorSuggestions()" autocomplete="new-password">
+    </div>
+    <div class="author-suggestions" id="authorSuggestions"></div>
+  </div>
+</div>
+<div class="form-row-3">
+  <div class="form-row" style="margin-bottom:0">
+    <label class="form-label">Año</label>
+    <input type="number" id="fYear" placeholder="2024" min="1800" max="2100">
+  </div>
+  <div class="form-row" style="margin-bottom:0">
+    <label class="form-label">Páginas</label>
+    <input type="number" id="fPages" placeholder="320">
+  </div>
+  <div class="form-row" style="margin-bottom:0">
+    <label class="form-label">ISBN</label>
+    <input type="text" id="fIsbn" placeholder="978-…">
+  </div>
+</div>
+<div class="form-row" id="shipRow" style="display:none">
+  <label class="form-label">Ship(s) <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(nombres separados por comas)</span></label>
+  <input type="text" id="fShip" placeholder="PhinyaBusaya, OtroShip…">
+</div>
+<div class="sub-lbl">Sección *</div>
+<div class="source-chip-group" id="sourceChips">
+  <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Thais</button>
+  <button class="source-chip" id="sourceOther" onclick="setSource('other')">🌍 Occidentales</button>
+  <button class="source-chip" id="sourceSpanish" onclick="setSource('spanish')">💜 Español</button>
+  <button class="source-chip" id="sourceBaihee" onclick="setSource('baihee')">🐉 Baihee</button>
+  <button class="source-chip" id="sourceAsian" onclick="setSource('asian')">🏮 Asiáticas</button>
+  <button class="source-chip" id="sourceAfrican" onclick="setSource('african')">🪘 Africanas</button>
+  <button class="source-chip" id="sourceWattpad" onclick="setSource('wattpad')">📙 Wattpad</button>
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-media">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">Portada y sinopsis</span><span class="fold-sum" id="sum-media"></span></div>
+  <div class="chip-section-body">
+<div class="cover-row">
+  <div style="flex:1">
+    <div class="form-row" style="margin-bottom:4px">
+      <input type="url" id="fCover" placeholder="https://… (URL directa de la imagen)" oninput="onCoverUrlInput(this.value)">
+    </div>
+    <input type="file" id="fCoverFile" accept="image/*" onchange="onCoverFileChange(this)">
+    <label for="fCoverFile" class="cover-upload-btn" id="coverUploadLabel">
+      <span>📁</span> <span id="coverUploadTxt">Subir imagen…</span>
+    </label>
+    <span class="cover-hint">o pega una URL</span>
+  </div>
+  <img id="coverPreview" class="cover-preview" alt="" onerror="this.style.display='none'">
+</div>
+<div class="sub-lbl">Sinopsis</div>
+<div class="form-row" style="margin-bottom:0">
+  <textarea id="fSynopsis" placeholder="Descripción del libro…" rows="4"></textarea>
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-formato">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">Formato y adaptación</span><span class="fold-sum" id="sum-formato"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="formatoChips" style="margin-top:0"></div>
+<div id="sagaSection" style="display:none;margin-top:8px">
+  <div class="form-row-half">
+    <div class="form-row" style="margin-bottom:0">
+      <label class="form-label">Nombre de la saga</label>
+      <input type="text" id="fSagaName" placeholder="Ej: WHALE, Caraval…">
+    </div>
+    <div class="form-row" style="margin-bottom:0">
+      <label class="form-label">Número</label>
+      <input type="number" id="fSagaNum" placeholder="1" min="0" step="0.5">
+    </div>
+  </div>
+</div>
+<div class="sub-lbl">Adaptación</div>
+<div class="chip-group" id="adaptacionChips" style="margin-top:0"></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-ediciones">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">Ediciones</span><span class="fold-sum" id="sum-ediciones"></span></div>
+  <div class="chip-section-body">
+<div class="sub-lbl" style="margin-top:0">Dónde comprar <span class="sub-hint">(idioma · tienda · enlace)</span></div>
+<div id="editionsWrap" style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:.5rem"></div>
+<button class="btn small" onclick="addEdition()" type="button">+ Añadir edición</button>
+<div class="sub-lbl" style="color:#FF6B2C">📙 Wattpad <span class="sub-hint">(enlace a la historia, si está disponible gratis)</span></div>
+<div class="form-row" style="margin-bottom:0">
+  <input type="url" id="fWattpad" placeholder="https://www.wattpad.com/story/…">
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-safi">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl" style="color:var(--rose)">🌹 SafiClub</span><span class="fold-sum" id="sum-safi"></span></div>
+  <div class="chip-section-body">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+  <input type="checkbox" id="fSafiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('safiCatField').style.display=this.checked?'block':'none'">
+  <label for="fSafiClub" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como SafiClub</label>
+</div>
+<div id="safiCatField" style="display:none">
+  <div class="safi-club-form">
+    <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
+    <input type="text" class="safi-club-cats-inp" id="fSafiCats" placeholder="Ej: Lectura del mes, Favoritas del club">
+  </div>
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-thai">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl" style="color:var(--rose)">🌺 Thai Club</span><span class="fold-sum" id="sum-thai"></span></div>
+  <div class="chip-section-body">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+  <input type="checkbox" id="fThaiClub" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('thaiCatField').style.display=this.checked?'block':'none'">
+  <label for="fThaiClub" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Thai Club</label>
+</div>
+<div id="thaiCatField" style="display:none">
+  <div class="safi-club-form">
+    <label class="form-label" style="color:var(--rose)">Categorías (separadas por coma)</label>
+    <input type="text" class="safi-club-cats-inp" id="fThaiCats" placeholder="Ej: Lectura actual, Próximas lecturas">
+  </div>
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-canal">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl" style="color:var(--teal)">📻 Recomendación del Canal</span><span class="fold-sum" id="sum-canal"></span></div>
+  <div class="chip-section-body">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+  <input type="checkbox" id="fCanalRec" style="accent-color:var(--teal);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('canalRecField').style.display=this.checked?'block':'none'">
+  <label for="fCanalRec" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Recomendación del Canal</label>
+</div>
+<div id="canalRecField" style="display:none">
+  <div class="canal-club-form">
+    <label class="form-label" style="color:var(--teal)">Mes / Período (ej: Enero 2025, Verano 2024)</label>
+    <input type="text" class="canal-club-inp" id="fCanalMonth" placeholder="Ej: Enero 2025">
+  </div>
+</div>
+  </div>
+</div>
+<div class="chip-section" id="sec-myrec">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl" style="color:#e0909e">💌 Mis Recomendaciones</span><span class="fold-sum" id="sum-myrec"></span></div>
+  <div class="chip-section-body">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+  <input type="checkbox" id="fMyRec" style="accent-color:var(--rose);width:16px;height:16px;cursor:pointer" onchange="document.getElementById('myRecField').style.display=this.checked?'block':'none'">
+  <label for="fMyRec" style="font-size:13px;cursor:pointer;color:var(--muted)">Marcar como Mi Recomendación</label>
+</div>
+<div id="myRecField" style="display:none">
+  <div class="myrec-club-form">
+    <label class="form-label" style="color:#e0909e">Categorías (separadas por coma)</label>
+    <input type="text" class="myrec-club-inp" id="fMyRecCats" placeholder="Ej: Romántica Intensa, Para llorar, Enemigos a amantes">
+  </div>
+</div>
+  </div>
+</div>
 
       </div><!-- /col-left -->
 
-      <!-- RIGHT COL: chips -->
       <div class="modal-col-right" id="modalColRight">
-
-        <div id="sec-genres" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">🏷 Géneros <span class="chip-section-badge" id="badge-genres" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="genreChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customGenres" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('genres','customGenres',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('genres','customGenres',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">🌈 Subgéneros / Temáticas <span class="chip-section-badge" id="badge-subgenres" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="subgenreChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customSubgenres" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('subgenres','customSubgenres',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('subgenres','customSubgenres',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div id="sec-dinamica" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">💞 Dinámica de pareja <span class="chip-section-badge" id="badge-dinamicas" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="dinamicaChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customDinamicas" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('dinamicas','customDinamicas',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('dinamicas','customDinamicas',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div id="sec-tropes" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">📖 Tropos narrativos <span class="chip-section-badge" id="badge-tropes" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="tropeChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customTropes" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('tropes','customTropes',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('tropes','customTropes',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div id="sec-characters" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">🧑 Personajes / Profesiones <span class="chip-section-badge" id="badge-characters" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="characterChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customCharacters" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('characters','customCharacters',true);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('characters','customCharacters',true)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">🏳‍🌈 Identidad / expresión de género <span class="chip-section-badge" id="badge-identidades" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="identidadChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customIdentidades" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('identidades','customIdentidades',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('identidades','customIdentidades',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div id="sec-edad" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">🎂 Edad protagonistas <span class="chip-section-badge" id="badge-edad" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="edadChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customEdad" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('edad','customEdad',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('edad','customEdad',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div id="sec-pais" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">🌍 País y Cultura <span class="chip-section-badge" id="badge-pais" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <div class="chip-group" id="paisCulturaChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customPaisCultura" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('pais_cultura','customPaisCultura',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('pais_cultura','customPaisCultura',false)">+ Añadir</button></div>
-          </div>
-        </div>
-
-        <div id="sec-warnings" class="chip-section">
-          <div class="chip-section-hd" onclick="toggleChipSection(this)">
-            <span class="chip-section-lbl">⚠️ Advertencias de contenido <span class="chip-section-badge" id="badge-warnings" style="display:none"></span></span>
-            <span class="chip-section-arrow">▾</span>
-          </div>
-          <div class="chip-section-body">
-            <p style="font-size:11px;color:var(--muted);margin-bottom:.6rem;line-height:1.5">Marca las advertencias relevantes para ayudar a las lectoras a tomar decisiones informadas.</p>
-            <div class="chip-group" id="warningChips"></div>
-            <div class="chip-custom-add"><input type="text" id="customWarnings" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('content_warnings','customWarnings',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('content_warnings','customWarnings',false)">+ Añadir</button></div>
-          </div>
-        </div>
+<div class="chip-section" id="sec-genres">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🏷 Géneros</span><span class="fold-sum" id="sum-genres"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="genreChips"></div>
+<div class="chip-custom-add"><input type="text" id="customGenres" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('genres','customGenres',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('genres','customGenres',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-subgenres">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🌈 Subgéneros / Temáticas</span><span class="fold-sum" id="sum-subgenres"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="subgenreChips"></div>
+<div class="chip-custom-add"><input type="text" id="customSubgenres" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('subgenres','customSubgenres',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('subgenres','customSubgenres',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-dinamica">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">💞 Dinámica de pareja</span><span class="fold-sum" id="sum-dinamicas"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="dinamicaChips"></div>
+<div class="chip-custom-add"><input type="text" id="customDinamicas" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('dinamicas','customDinamicas',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('dinamicas','customDinamicas',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-tropes">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">📖 Tropos narrativos</span><span class="fold-sum" id="sum-tropes"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="tropeChips"></div>
+<div class="chip-custom-add"><input type="text" id="customTropes" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('tropes','customTropes',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('tropes','customTropes',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-characters">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🧑 Personajes / Profesiones</span><span class="fold-sum" id="sum-characters"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="characterChips"></div>
+<div class="chip-custom-add"><input type="text" id="customCharacters" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('characters','customCharacters',true);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('characters','customCharacters',true)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-identidades">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🏳‍🌈 Identidad / expresión de género</span><span class="fold-sum" id="sum-identidades"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="identidadChips"></div>
+<div class="chip-custom-add"><input type="text" id="customIdentidades" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('identidades','customIdentidades',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('identidades','customIdentidades',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-edad">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🎂 Edad protagonistas</span><span class="fold-sum" id="sum-edad"></span></div>
+  <div class="chip-section-body">
+<div class="chip-group" id="edadChips"></div>
+<div class="chip-custom-add"><input type="text" id="customEdad" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('edad','customEdad',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('edad','customEdad',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-pais">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🌍 País y Cultura</span><span class="fold-sum" id="sum-pais"></span></div>
+  <div class="chip-section-body">
+<div class="sub-lbl" style="margin-top:0">País / cultura de la historia</div>
+<div class="chip-group" id="paisCulturaChips" style="margin-top:0"></div>
+<div class="chip-custom-add"><input type="text" id="customPaisCultura" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('pais_cultura','customPaisCultura',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('pais_cultura','customPaisCultura',false)">+ Añadir</button></div>
+<div class="sub-lbl">País de origen <span class="sub-hint">(dónde se escribió/publicó, no la ambientación)</span></div>
+<div class="chip-group" id="paisOrigenChips" style="margin-top:0"></div>
+<div class="chip-custom-add"><input type="text" id="customPaisOrigen" placeholder="Añadir otro país…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('pais_origen','customPaisOrigen',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('pais_origen','customPaisOrigen',false)">+ Añadir</button></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-contexto">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">🧭 Contexto</span><span class="fold-sum" id="sum-contexto"></span></div>
+  <div class="chip-section-body">
+<div class="ctx-row" id="sec-ubicacion"><div class="ctx-lbl">Ubicación</div><div class="ctx-fld">
+<div id="ubicacionesList"></div>
+<button type="button" class="ub-add-btn" onclick="addUbicacion()">+ Añadir ubicación</button>
+<datalist id="ubPaisesList"></datalist>
+<datalist id="ubLugaresList"></datalist>
+</div></div>
+<div class="ctx-row" id="sec-epoca"><div class="ctx-lbl">Época</div><div class="ctx-fld">
+<div class="chip-group" id="epocaChips"></div>
+<div class="chip-custom-add"><input type="text" id="customEpoca" placeholder="Otra época…" style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomSingle('epoca','customEpoca','teal');}"><button type="button" class="chip-custom-btn" onclick="addCustomSingle('epoca','customEpoca','teal')">+ Añadir</button><input type="text" id="fPeriodo" style="flex:1.7" placeholder="Periodo específico (opcional): Inglaterra victoriana" aria-label="Periodo específico"></div>
+</div></div>
+<div class="ctx-row" id="sec-tipomundo"><div class="ctx-lbl">Tipo de mundo</div><div class="ctx-fld">
+<div class="chip-group" id="tipoMundoChips"></div>
+<div class="chip-custom-add"><input type="text" id="customTipoMundo" placeholder="Añadir otro tipo…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomSingle('tipo_mundo','customTipoMundo','lavender');}"><button type="button" class="chip-custom-btn" onclick="addCustomSingle('tipo_mundo','customTipoMundo','lavender')">+ Añadir</button></div>
+</div></div>
+<div class="ctx-row" id="sec-entorno"><div class="ctx-lbl">Entorno</div><div class="ctx-fld">
+<div class="chip-group" id="entornoChips"></div>
+<div class="chip-custom-add"><input type="text" id="customEntornos" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('entornos','customEntornos',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('entornos','customEntornos',false)">+ Añadir</button></div>
+</div></div>
+<div class="ctx-row" id="sec-idioma"><div class="ctx-lbl">Idioma original</div><div class="ctx-fld">
+<div class="chip-group" id="idiomaOriginalChips"></div>
+<div class="chip-custom-add"><input type="text" id="customIdiomaOriginal" placeholder="Añadir otro idioma…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomSingle('idioma_original','customIdiomaOriginal','gold');}"><button type="button" class="chip-custom-btn" onclick="addCustomSingle('idioma_original','customIdiomaOriginal','gold')">+ Añadir</button></div>
+</div></div>
+  </div>
+</div>
+<div class="chip-section" id="sec-warnings">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl">⚠️ Contenido</span><span class="fold-sum" id="sum-warnings"></span></div>
+  <div class="chip-section-body">
+<div id="sec-spicy">
+  <div class="sub-lbl" style="margin-top:0">Nivel Spicy 🌶</div>
+  <div class="spicy-grid" id="spicyGrid"></div>
+</div>
+<div class="sub-lbl">Advertencias de contenido <span class="sub-hint">(ayudan a las lectoras a decidir)</span></div>
+<div class="chip-group" id="warningChips" style="margin-top:0"></div>
+<div class="chip-custom-add"><input type="text" id="customWarnings" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('content_warnings','customWarnings',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('content_warnings','customWarnings',false)">+ Añadir</button></div>
+  </div>
+</div>
 
       </div><!-- /col-right -->
     </div><!-- /modal-body -->
@@ -1255,6 +1318,22 @@ const PAIS_ORIGEN = [
   'India','Otro',
 ];
 
+// ── 8c. CONTEXTO DE LA HISTORIA (época, tipo de mundo, entorno, idioma original) ──
+const EPOCAS = [
+  'Contemporánea','Histórica','Futurista','Distópica','Victoriana',
+  'Medieval','Antigua','Años 80','Años 90','Principios de los 2000',
+];
+const TIPOS_MUNDO = [
+  'Realista','Realista con elementos sobrenaturales','Fantasía','Ciencia ficción',
+  'Distópico','Paranormal','Universo alternativo','Histórico alternativo','Mundo ficticio',
+];
+const ENTORNOS = [
+  'Universidad','Instituto','Oficina','Hospital','Empresa','Cafetería','Restaurante',
+  'Librería','Estudio artístico','Mundo criminal','Palacio','Pueblo pequeño',
+  'Ciudad','Campo','Isla','Viaje',
+];
+const IDIOMAS_ORIGINAL = ['Tailandés','Inglés','Español','Chino','Japonés','Francés'];
+
 // ── 9. ADVERTENCIAS DE CONTENIDO ─────────────────────────────────────────
 const CONTENT_WARNINGS = [
   'Abandono',
@@ -1346,7 +1425,8 @@ const CONTENT_WARNINGS = [
 // Books stored in memory (from JSON), votes in Supabase
 let books = [], editingId = null;
 let adminFilterSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian'
-let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[]};
+let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[],ambientacion:[],epoca:null,tipo_mundo:null,entornos:[],idioma_original:null};
+let ubicDraft = []; // borrador de ubicaciones en el formulario: [{pais,region,ciudad,localidad,lugares[]}] (strings vacíos = sin dato)
 let authors = []; // array of strings
 let editions = []; // array of {lang, store, url}
 
@@ -1664,6 +1744,8 @@ function openAddModal() {
   document.getElementById('modalTitle').textContent='Nuevo libro';
   document.getElementById('bookModal').classList.add('open');
   document.body.style.overflow='hidden';
+  applyDefaultFolds(true);
+  updateFoldSummaries();
   setTimeout(()=>{
     document.getElementById('fTitle').focus();
     const ai=document.getElementById('authorInput');
@@ -1708,6 +1790,14 @@ function openEditModal(id) {
   sel.pais_cultura=[...(b.pais_cultura||[])];
   sel.pais_origen=Array.isArray(b.pais_origen)?[...b.pais_origen]:(b.pais_origen?b.pais_origen.split(',').map(s=>s.trim()).filter(Boolean):[]);
   sel.content_warnings=[...(b.content_warnings||[])];
+  // Campos nuevos (fase prioridad 1): si el libro no los tiene se asumen los valores por defecto
+  sel.ambientacion=Array.isArray(b.ambientacion)?[...b.ambientacion]:[];
+  sel.epoca=b.epoca||null;
+  sel.tipo_mundo=b.tipo_mundo||null;
+  sel.entornos=Array.isArray(b.entornos)?[...b.entornos]:[];
+  sel.idioma_original=b.idioma_original||null;
+  document.getElementById('fPeriodo').value=b.periodo||'';
+  ubicDraft=normalizeUbicaciones(b.ubicaciones);
   sel.spicy     =b.spicy||0;
   sel.formato   =b.formato||null;
   sel.adaptacion=b.adaptacion||null;
@@ -1736,9 +1826,12 @@ function openEditModal(id) {
   document.getElementById('fMyRecCats').value=(b.my_rec_categories||[]).join(', ');
   renderAuthorPills();
   renderAllChips();
+  renderUbicaciones();
   renderEditions();
   document.getElementById('bookModal').classList.add('open');
   document.body.style.overflow='hidden';
+  applyDefaultFolds(false);
+  updateFoldSummaries();
 }
 
 function clearForm() {
@@ -1746,7 +1839,7 @@ function clearForm() {
   document.getElementById('dupWarning').classList.remove('show');
   document.getElementById('dupOk').classList.remove('show');
   authors=[];editions=[];
-  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[]};
+  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[],ambientacion:[],epoca:null,tipo_mundo:null,entornos:[],idioma_original:null};
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
   document.getElementById('fCoverFile').value='';
@@ -1765,8 +1858,11 @@ function clearForm() {
   document.getElementById('fMyRec').checked=false;
   document.getElementById('myRecField').style.display='none';
   document.getElementById('fMyRecCats').value='';
+  document.getElementById('fPeriodo').value='';
+  ubicDraft=[];
   renderAuthorPills();
   renderAllChips();
+  renderUbicaciones();
   renderEditions();
 }
 
@@ -1816,16 +1912,75 @@ function levenshtein(a,b){
 function closeModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';hideAuthorSuggestions();}
 
 /* ── JUMP NAV ── */
-function jumpTo(id){
+function openFold(id){
   const el=document.getElementById(id);
-  if(!el) return;
+  if(!el) return null;
   const sec=el.closest('.chip-section');
   if(sec&&sec.classList.contains('collapsed')) sec.classList.remove('collapsed');
+  return el;
+}
+function jumpTo(id){
+  const el=openFold(id);
+  if(!el) return;
   el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 /* ── CHIP SECTIONS (collapsible) ── */
 function toggleChipSection(hd){hd.closest('.chip-section').classList.toggle('collapsed');}
+
+/* Estado de plegado inicial: SOLO se aplica al abrir el modal (nunca desde renders),
+   así una sección que la usuaria abre no se cierra por actualizar otro campo. */
+function applyDefaultFolds(isNew){
+  document.querySelectorAll('#bookModal .chip-section').forEach(s=>{
+    const open = s.id==='sec-basic' || s.id==='sec-genres' || (isNew && s.id==='sec-tools');
+    s.classList.toggle('collapsed',!open);
+  });
+  ['modalColLeft','modalColRight'].forEach(id=>{const c=document.getElementById(id);if(c) c.scrollTop=0;});
+}
+
+/* Resumen de una línea en la cabecera de cada sección (solo textContent: no toca el estado de plegado) */
+function foldSum(id,txt,empty){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=txt||'';el.title=txt||'';
+  el.classList.toggle('is-empty',!!empty);
+}
+function sumList(a,n){
+  n=n||2;a=(Array.isArray(a)?a:[]).filter(Boolean);
+  return a.length<=n?a.join(', '):a.slice(0,n).join(', ')+' +'+(a.length-n);
+}
+function updateFoldSummaries(){
+  const E='Sin especificar';
+  const val=id=>{const e=document.getElementById(id);return e?String(e.value||'').trim():'';};
+  const chk=id=>{const e=document.getElementById(id);return !!(e&&e.checked);};
+  const put=(id,txt)=>foldSum(id,txt||E,!txt);
+  [['sum-genres','genres'],['sum-subgenres','subgenres'],['sum-dinamicas','dinamicas'],['sum-tropes','tropes'],
+   ['sum-characters','characters'],['sum-identidades','identidades'],['sum-edad','edad']
+  ].forEach(([id,k])=>put(id,sumList(sel[k])));
+  put('sum-pais',[sumList(sel.pais_cultura),(sel.pais_origen&&sel.pais_origen.length)?'orig. '+sumList(sel.pais_origen):''].filter(Boolean).join(' · '));
+  // Contexto
+  const ubs=ubicDraft.filter(u=>u.pais.trim()||u.region.trim()||u.ciudad.trim()||u.localidad.trim()||u.lugares.length||(u.pend||'').trim());
+  const ubTxt=ubs.length>1?ubs.length+' ubicaciones':(ubs.length===1?ubLineText(ubs[0]):'');
+  const per=val('fPeriodo');
+  const epoca=sel.epoca?(sel.epoca+(per?' ('+per+')':'')):per;
+  put('sum-contexto',[ubTxt,epoca,sel.tipo_mundo,sumList(sel.entornos),sel.idioma_original].filter(Boolean).join(' · '));
+  // Contenido (spicy + advertencias)
+  const sp=(sel.spicy!==null&&sel.spicy!==undefined)?SPICY_LEVELS.find(s=>s.v===sel.spicy):null;
+  const nw=(sel.content_warnings||[]).length;
+  put('sum-warnings',[sp?((sp.icon?sp.icon+' ':'')+sp.label.split(' ·')[0]):'',nw?nw+(nw===1?' advertencia':' advertencias'):''].filter(Boolean).join(' · '));
+  // General / formato / ediciones
+  put('sum-media',[val('fCover')?'Portada':'',val('fSynopsis')?'Sinopsis':''].filter(Boolean).join(' · '));
+  const saga=val('fSagaName'),sn=val('fSagaNum');
+  put('sum-formato',[sel.formato,saga?(saga+(sn?' #'+sn:'')):'',sel.adaptacion].filter(Boolean).join(' · '));
+  const ne=(editions||[]).filter(e=>e&&e.url).length;
+  put('sum-ediciones',[ne?String(ne):'',val('fWattpad')?'Wattpad':''].filter(Boolean).join(' · '));
+  // Clubes (sí/no)
+  const club=(c,cats)=>chk(c)?('Sí'+(val(cats)?' · '+val(cats):'')):'';
+  foldSum('sum-safi',club('fSafiClub','fSafiCats'));
+  foldSum('sum-thai',club('fThaiClub','fThaiCats'));
+  foldSum('sum-canal',club('fCanalRec','fCanalMonth'));
+  foldSum('sum-myrec',club('fMyRec','fMyRecCats'));
+}
 
 /* ── AUTHORS with autocomplete ── */
 /* Busca en los libros ya existentes qué país de origen tiene esta autora (la más frecuente si hay varias) */
@@ -1948,17 +2103,12 @@ function renderAllChips() {
   renderSingleChips('formatoChips',    FORMATOS,    'formato',    'teal');
   renderSingleChips('adaptacionChips', ADAPTACIONES,'adaptacion', 'lavender');
   renderPaisOrigenChips('paisOrigenChips', PAIS_ORIGEN,'pais_origen');
+  renderSingleChips('epocaChips',           EPOCAS,           'epoca',            'teal');
+  renderSingleChips('tipoMundoChips',       TIPOS_MUNDO,      'tipo_mundo',       'lavender');
+  renderChipGroup('entornoChips',           ENTORNOS,         'entornos',         false);
+  renderSingleChips('idiomaOriginalChips',  IDIOMAS_ORIGINAL, 'idioma_original', 'gold');
   renderSpicy();
-  // Update section badges
-  [['badge-genres','genres'],['badge-subgenres','subgenres'],['badge-dinamicas','dinamicas'],
-   ['badge-tropes','tropes'],['badge-characters','characters'],['badge-identidades','identidades'],
-   ['badge-edad','edad'],['badge-pais','pais_cultura'],['badge-warnings','content_warnings']
-  ].forEach(([bid,key])=>{
-    const el=document.getElementById(bid);
-    if(!el) return;
-    const n=Array.isArray(sel[key])?sel[key].length:0;
-    el.textContent=n;el.style.display=n?'':'none';
-  });
+  updateFoldSummaries();
 }
 
 function renderChipGroup(cId,list,key,isRose){
@@ -2056,11 +2206,143 @@ function setSource(v){
 }
 
 
+/* ── UBICACIONES (fase prioridad 1) ── */
+function ubEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ubStr(v){return (v==null)?'':String(v);}
+
+const UB_KNOWN=['pais','region','ciudad','localidad','lugares'];
+function normalizeUbicaciones(v){
+  if(!Array.isArray(v)) return [];
+  return v.filter(u=>u&&typeof u==='object').map(u=>{
+    // `extra`: claves desconocidas dentro de la ubicación → se conservan al guardar
+    const extra={};Object.keys(u).forEach(k=>{if(!UB_KNOWN.includes(k)) extra[k]=u[k];});
+    return {
+      pais:ubStr(u.pais), region:ubStr(u.region), ciudad:ubStr(u.ciudad), localidad:ubStr(u.localidad),
+      lugares:Array.isArray(u.lugares)?u.lugares.map(ubStr).filter(s=>s.trim()):[], pend:'', open:false, extra
+    };
+  });
+}
+
+const UB_ISO={'tailandia':'TH','espana':'ES','estados unidos':'US','reino unido':'GB','corea del sur':'KR','corea del norte':'KP','japon':'JP','china':'CN','taiwan':'TW','vietnam':'VN','filipinas':'PH','francia':'FR','alemania':'DE','italia':'IT','paises bajos':'NL','brasil':'BR','mexico':'MX','argentina':'AR','chile':'CL','colombia':'CO','peru':'PE','canada':'CA','australia':'AU','india':'IN','rusia':'RU','irlanda':'IE','portugal':'PT','grecia':'GR','turquia':'TR','egipto':'EG','marruecos':'MA','nigeria':'NG','sudafrica':'ZA','indonesia':'ID','malasia':'MY','singapur':'SG','hong kong':'HK','suecia':'SE','noruega':'NO','dinamarca':'DK','finlandia':'FI','islandia':'IS','suiza':'CH','austria':'AT','belgica':'BE','polonia':'PL','ucrania':'UA','cuba':'CU','venezuela':'VE','uruguay':'UY','ecuador':'EC','bolivia':'BO','paraguay':'PY','costa rica':'CR','panama':'PA','republica dominicana':'DO','nueva zelanda':'NZ','camboya':'KH','laos':'LA','myanmar':'MM','birmania':'MM','nepal':'NP','pakistan':'PK','bangladesh':'BD','sri lanka':'LK','israel':'IL','iran':'IR','arabia saudita':'SA','emiratos arabes unidos':'AE','kenia':'KE','etiopia':'ET','ghana':'GH'};
+function ubFlag(p){
+  const k=String(p||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
+  const c=UB_ISO[k];
+  return c?String.fromCodePoint(...[...c].map(ch=>0x1F1E6+ch.charCodeAt(0)-65)):'📍';
+}
+/* Línea-resumen: "🇹🇭 Tailandia · Bangkok" (ciudad; si no hay, región) */
+function ubLineText(u){
+  const p=u.pais.trim(),c=u.ciudad.trim(),r=u.region.trim();
+  const rest=c||r;
+  if(!p&&!rest) return '';
+  return ubFlag(p)+' '+[p||'(sin país)',rest].filter(Boolean).join(' · ');
+}
+function ubLineHtml(u){const t=ubLineText(u);return t?ubEsc(t):'<span class="ub-new">Nueva ubicación</span>';}
+/* Lo que no cabe en la línea principal, para revisar de un vistazo */
+function ubMeta(u){
+  const m=[],c=u.ciudad.trim(),r=u.region.trim(),l=u.localidad.trim(),n=u.lugares.length;
+  if(c&&r) m.push(r);
+  if(l) m.push(l);
+  if(n) m.push(n+(n===1?' lugar':' lugares'));
+  return m.join(' · ');
+}
+function toggleUbicacion(i,force){
+  const u=ubicDraft[i];
+  if(!u) return;
+  u.open=(force===undefined)?!u.open:!!force;
+  const card=document.querySelectorAll('#ubicacionesList .ub-card')[i];
+  if(card) card.classList.toggle('open',u.open);
+}
+
+function renderUbicaciones(){
+  const box=document.getElementById('ubicacionesList');
+  if(!box) return;
+  const dlP=document.getElementById('ubPaisesList');
+  if(dlP&&!dlP.children.length) dlP.innerHTML=[...new Set([...PAIS_ORIGEN.filter(p=>p!=='Otro'),...PAIS_CULTURA.filter(p=>!/^(Ambientación|Cultura|Mundo)/.test(p))])].sort((a,b)=>a.localeCompare(b,'es')).map(p=>`<option value="${ubEsc(p)}">`).join('');
+  const dlL=document.getElementById('ubLugaresList');
+  if(dlL&&!dlL.children.length) dlL.innerHTML=ENTORNOS.map(p=>`<option value="${ubEsc(p)}">`).join('');
+  box.innerHTML=ubicDraft.map((u,i)=>`
+    <div class="ub-card${u.open?' open':''}">
+      <div class="ub-line" onclick="toggleUbicacion(${i})">
+        <span class="ub-chev">▾</span>
+        <span class="ub-sum" id="ubSum_${i}">${ubLineHtml(u)}</span>
+        <span class="ub-meta" id="ubMeta_${i}">${ubEsc(ubMeta(u))}</span>
+        <button type="button" class="ub-del" title="Eliminar ubicación" onclick="event.stopPropagation();removeUbicacion(${i})">✕</button>
+      </div>
+      <div class="ub-body">
+        <div class="ub-g3">
+          <div class="ub-f"><label class="form-label">País</label><input type="text" list="ubPaisesList" value="${ubEsc(u.pais)}" placeholder="Ej: Tailandia" oninput="setUbField(${i},'pais',this.value)"></div>
+          <div class="ub-f"><label class="form-label">Región</label><input type="text" value="${ubEsc(u.region)}" placeholder="Opcional" oninput="setUbField(${i},'region',this.value)"></div>
+          <div class="ub-f"><label class="form-label">Ciudad</label><input type="text" value="${ubEsc(u.ciudad)}" placeholder="Ej: Bangkok" oninput="setUbField(${i},'ciudad',this.value)"></div>
+        </div>
+        <div class="ub-g2">
+          <div class="ub-f"><label class="form-label">Localidad</label><input type="text" value="${ubEsc(u.localidad)}" placeholder="Opcional" oninput="setUbField(${i},'localidad',this.value)"></div>
+          <div class="ub-f"><label class="form-label">Lugares</label>
+            <div class="chip-custom-add"><input type="text" list="ubLugaresList" id="ubLugarInp_${i}" value="${ubEsc(u.pend||'')}" oninput="setUbField(${i},'pend',this.value)" placeholder="Ej: Universidad" onkeydown="if(event.key==='Enter'){event.preventDefault();addLugar(${i});}"><button type="button" class="chip-custom-btn" onclick="addLugar(${i})">+ Añadir</button></div>
+          </div>
+        </div>
+        ${u.lugares.length?`<div class="chip-group ub-chips">${u.lugares.map((l,j)=>`<button type="button" class="chip-opt active chip-custom" title="Quitar" onclick="removeLugar(${i},${j})">${ubEsc(l)} ✕</button>`).join('')}</div>`:''}
+      </div>
+    </div>`).join('');
+  updateUbicBadge();
+}
+
+function updateUbicBadge(){ updateFoldSummaries(); }
+function addUbicacion(){
+  ubicDraft.push({pais:'',region:'',ciudad:'',localidad:'',lugares:[],pend:'',open:true,extra:{}});
+  openFold('sec-contexto');
+  renderUbicaciones();
+  const cards=document.querySelectorAll('#ubicacionesList .ub-card');
+  const last=cards[cards.length-1];
+  if(last){const inp=last.querySelector('input');if(inp) inp.focus();}
+}
+function removeUbicacion(i){ubicDraft.splice(i,1);renderUbicaciones();}
+function setUbField(i,key,val){
+  const u=ubicDraft[i];
+  if(!u) return;
+  u[key]=val;
+  const s=document.getElementById('ubSum_'+i);if(s) s.innerHTML=ubLineHtml(u);
+  const m=document.getElementById('ubMeta_'+i);if(m) m.textContent=ubMeta(u);
+  updateUbicBadge();
+}
+function addLugar(i){
+  const inp=document.getElementById('ubLugarInp_'+i);
+  if(!inp||!ubicDraft[i]) return;
+  const v=inp.value.trim();
+  if(!v) return;
+  if(!ubicDraft[i].lugares.includes(v)) ubicDraft[i].lugares.push(v);
+  ubicDraft[i].pend='';
+  renderUbicaciones();
+  const again=document.getElementById('ubLugarInp_'+i);
+  if(again) again.focus();
+}
+function removeLugar(i,j){if(ubicDraft[i]){ubicDraft[i].lugares.splice(j,1);renderUbicaciones();}}
+
+/* Convierte el borrador en el array final de `ubicaciones`.
+   - Ignora ubicaciones totalmente vacías.
+   - Incluye el texto pendiente (sin pulsar "+ Añadir") de la casilla Lugares (guardado en u.pend).
+   - Si una ubicación tiene datos pero no país → error (no se crean objetos inválidos). */
+function collectUbicaciones(){
+  const out=[];
+  for(let i=0;i<ubicDraft.length;i++){
+    const u=ubicDraft[i];
+    const pais=u.pais.trim(), region=u.region.trim(), ciudad=u.ciudad.trim(), localidad=u.localidad.trim();
+    const lugares=u.lugares.map(s=>s.trim()).filter(Boolean);
+    const pend=(u.pend||'').trim();
+    if(pend&&!lugares.includes(pend)) lugares.push(pend);
+    if(!(pais||region||ciudad||localidad||lugares.length)) continue;
+    if(!pais) return {error:`Ubicación ${i+1}: falta el país (o elimina la ubicación)`,idx:i};
+    out.push(Object.assign({pais,region:region||null,ciudad:ciudad||null,localidad:localidad||null,lugares},u.extra||{}));
+  }
+  return {data:out};
+}
+
 /* ── SAVE / DELETE ── */
 function saveBook() {
   const title=document.getElementById('fTitle').value.trim();
-  if(!title){showToast('El título es obligatorio','error');return;}
-  if(!authors.length){showToast('Añade al menos una autora','error');return;}
+  if(!title){openFold('sec-basic');showToast('El título es obligatorio','error');return;}
+  if(!authors.length){openFold('sec-basic');showToast('Añade al menos una autora','error');return;}
+  const ubRes=collectUbicaciones();
+  if(ubRes.error){openFold('sec-contexto');toggleUbicacion(ubRes.idx,true);showToast(ubRes.error,'error');return;}
 
   const bookData={
     id:        editingId||'b_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
@@ -2083,6 +2365,12 @@ function saveBook() {
     tropes:      [...sel.tropes],
     edad:        [...(sel.edad||[])],
     pais_cultura:[...(sel.pais_cultura||[])],
+    ubicaciones: ubRes.data,
+    epoca:       sel.epoca||null,
+    periodo:     document.getElementById('fPeriodo').value.trim()||null,
+    tipo_mundo:  sel.tipo_mundo||null,
+    entornos:    [...(sel.entornos||[])],
+    idioma_original: sel.idioma_original||null,
     pais_origen:(sel.pais_origen&&sel.pais_origen.length)?[...sel.pais_origen]:null,
     ambientacion:[...(sel.ambientacion||[])],
     content_warnings:[...(sel.content_warnings||[])],
@@ -2117,7 +2405,12 @@ function saveBook() {
 
   if(editingId){
     const idx=books.findIndex(b=>b.id===editingId);
-    if(idx>=0) books[idx]=bookData;
+    if(idx>=0){
+      // Conserva cualquier campo del libro original que este formulario no gestione
+      const extra={};
+      Object.keys(books[idx]).forEach(k=>{ if(!(k in bookData)) extra[k]=books[idx][k]; });
+      books[idx]=Object.assign(bookData,extra);
+    }
   } else {
     books.push(bookData);
   }
@@ -2197,6 +2490,7 @@ function onCoverFileChange(input){
     img.style.display='block';
     document.getElementById('coverUploadLabel').classList.add('has-file');
     document.getElementById('coverUploadTxt').textContent=file.name;
+    updateFoldSummaries();
   };
   reader.readAsDataURL(file);
 }
@@ -3390,6 +3684,14 @@ async function exportarBingoCSV(){
 }
 
 checkSession();
+
+/* Resúmenes de cabecera: se refrescan tras cualquier edición dentro del modal de libro */
+(function(){
+  const m=document.getElementById('bookModal');
+  if(!m) return;
+  const upd=()=>setTimeout(updateFoldSummaries,0);
+  ['input','change','click'].forEach(ev=>m.addEventListener(ev,upd));
+})();
 
 /* ── ATAJOS DE TECLADO ── */
 document.addEventListener('keydown', function(e) {

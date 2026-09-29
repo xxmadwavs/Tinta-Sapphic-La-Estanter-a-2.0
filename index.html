@@ -4538,6 +4538,8 @@ function pushState(addEntry){
     if(!urlSyncReady) return;
     // Don't touch URL if home is active
     if(sessionStorage.getItem('ts_active_tab')==='home') return;
+    // No reescribir la URL mientras haya una vista personal abierta (conserva ?view= / ?myshelf=)
+    if(document.querySelector('#shelfView.active,#logrosView.active,#statsView.active,#cartasView.active,#mundoView.active,#recorridoView.active')) return;
     const params=new URLSearchParams();
     if(activeTab&&activeTab!=='estanteria') params.set('tab',activeTab);
     if(activeSection) params.set('section',activeSection);

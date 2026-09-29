@@ -10,26 +10,53 @@
     "synopsis": "El accidente de un avión chárter obliga a las ex compañeras de doctorado Phinya y Busaya a reunirse nuevamente debido a su trabajo en antropología forense. Ambas son convocadas para la difícil tarea de identificar a las víctimas del choque aéreo.\n\nSin embargo, en medio de la investigación, hallan un cráneo misterioso que no pertenece al manifiesto del vuelo; un resto óseo que no debería estar ahí, ni en ese lugar ni en ese momento, lo que sumerge el caso en un caos absoluto.\n\nEsta vez, su relación —que en el pasado fue tensa y distante— comenzará a transformarse. Entre restos de naufragios y enigmas científicos, surgirá entre ellas una conexión donde los sentimientos se volverán tan complejos como difíciles de describir.",
     "pages": 722,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "FreenBecky"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Misterio"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [
-      "Arqueóloga",
+    "subgenres": [
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Crimen"
+    ],
+    "identidades": [
       "Femme"
+    ],
+    "characters": [
+      "Jefa de Laboratorio",
+      "Antropóloga",
+      "Subdirectora del Instituto de Investigación Bioantropológico"
     ],
     "dinamicas": [
       "Femme × Femme"
     ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Rivals to Lovers",
+      "Workplace Romance",
+      "Forced Proximity",
+      "Jealousy Trope"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -57,13 +84,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777138144561_pxbz2",
@@ -1979,29 +2005,81 @@
     "synopsis": "Bajo las luces de la pasarela, dos estrellas se cruzan.\nPawida, la princesa perfecta, y Alin, el ángel con cicatrices ocultas.\n\nBajo la misma luna, los secretos se transforman en anhelo y la rivalidad se suaviza hasta convertirse en algo real. En un mundo que valora la belleza y el amor por igual, sus corazones aprenden a buscar no lo que el mundo puede ver, sino lo que solo el amor puede revelar...\n\nA la sombra de la luna, el amor florece en silencio.",
     "pages": 448,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "GinJay"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "GL Thai 🇹🇭",
+      "Celebridad"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Actriz",
-      "Modelo"
+      "Modelo",
+      "Famosa"
     ],
     "dinamicas": [
       "Femme × Femme"
     ],
     "tropes": [
       "Enemies to Lovers",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Rivals to Lovers",
+      "Forced Proximity",
+      "Opposites Attract",
+      "One Night Stand → More",
+      "Workplace Romance",
+      "Jealousy Trope",
+      "Hurt/Comfort"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia",
+      "Maldivas"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Ekkamai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Sukhumvit",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Maltrato Físico",
@@ -2029,13 +2107,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777218127092_w9773",
@@ -3328,32 +3405,77 @@
     "synopsis": "Okbab regresa para ayudar a su hermano a sanear la empresa familiar y enfrentarse al rival que una vez le robó descaradamente su trabajo. Pero nada sale según lo planeado. No cuando ese rival resulta ser su primer amor. Ni cuando un nuevo e impredecible jugador entra en escena\nRin es una joven y brillante arquitecta, muy solicitada por sus habilidades. Pero su talento viene acompañado de una actitud muy irritante y una terquedad kilométrica.\nCon todo en juego, el pasado y los asuntos del corazón, Okbab se encuentra con que su mundo se ha vuelto un caos desde el momento en que esta chica entra en él\nIncluso su corazón, diseñado para permanecer intacto, podría no ser inmune.\n¿Es posible enamorarse de alguien a quien nunca quisiste amar? ¿Tú qué crees?",
     "pages": 289,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "KaoJane"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Autodescubrimiento"
+    ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Arquitecta"
+    ],
     "dinamicas": [
       "Femme × Femme",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Jefa × Subordinada",
+      "Feroz × Tierna",
+      "Caos × Control"
     ],
     "tropes": [
       "Enemies to Lovers",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Age Gap",
+      "Rivals to Lovers",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Jealousy Trope"
     ],
     "edad": [
-      "25–39"
+      "25–39",
+      "New Adult (18–24)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia",
+      "Japón"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok,",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Kitakyushu",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 2,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -3368,14 +3490,13 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
       "THAIS"
-    ],
-    "pais_origen": [
-      "Tailandia"
     ]
   },
   {
@@ -4640,20 +4761,65 @@
     "synopsis": "Mi definición del mal. Llámame Hermano Jeans para abreviar.\n\nEntonces ¿es posible que nos enamoremos de personas malas?\n\nYo, quienquiera que sea, nunca pensé en estas experiencias cuando comencé mi primer año. Hasta el día en que cometió un error y creó un enemigo, una pandilla de serpientes que abofetearon a la hija del decano. Ella fue quien entró en mi casillero para robar el libro de autógrafos de mi estudiante de último año. Él fue quien tiró mi teléfono al agua por diversión. Y hasta me llamas patito porque crees que me gusta seguirte a todas partes. ...pero es cierto porque\n\n¡Estoy obsesionado con los villanos!",
     "pages": 416,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Queer"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Rich × Poor",
+      "Feroz × Tierna",
+      "Grumpy × Sunshine"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Unrequited Love"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "REVERSE 4 YOU",
     "sagaNum": 2,
+    "source": "thais",
     "editions": [
       {
         "lang": "TH",
@@ -4661,10 +4827,14 @@
         "url": "https://www.mebmarket.com/ebook-83797-Bad-Sugar-%E0%B8%AB%E0%B8%A5%E0%B8%87%E0%B8%A7%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777287438908_7i1c4",
@@ -9313,6 +9483,7 @@
     "synopsis": "Un matrimonio que nunca encaja del todo, pero que encaja a la perfección, como un vino tinto que marida con el tamarindo y la sal.\nUn amor que ya no es solo dulzura, sino apoyo mutuo en los días ridículos. Celos que no destruyen. Disculpas sin vergüenza. Elegirse la una a la otra, incluso en las discusiones.\nUna reina de la alta sociedad y su rústica esposa: mundos aparte, pero nadie la entiende mejor que la menos parecida a ella. Su amor es ardiente y apasionado.\nAman como adultas que se conocen de verdad, discuten como niñas y se reconcilian con ternura eterna. Y aman tan abiertamente que nunca pensaron en ocultarlo",
     "pages": 111,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LMSY"
     ],
@@ -9332,7 +9503,8 @@
       "Empresaria"
     ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Feroz × Tierna"
     ],
     "tropes": [
       "Opposites Attract",
@@ -9341,6 +9513,32 @@
     ],
     "edad": [],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Samut Prakan",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Suphan",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Campo"
+    ],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -9360,13 +9558,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777970747578_t62r2",
