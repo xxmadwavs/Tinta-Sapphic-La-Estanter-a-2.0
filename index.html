@@ -6882,6 +6882,10 @@ function renderAuthUI(){
         <button class="user-dd-item" onclick="toggleUserDropdown();openShelf()">Mi estantería</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openLogrosModal()">Mis logros</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openStatsModal()">Mis estadísticas</button>
+        <!-- Fase 1: entradas preparadas, aún sin vista. Se conectarán a su función open…() en fases posteriores (data-personal-view) -->
+        <button class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown()">Mi mundo sapphic</button>
+        <button class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown()">Mi recorrido sapphic</button>
+        <button class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown()">Mi año sapphic</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
         <div class="user-dd-sep"></div>
         <button class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
