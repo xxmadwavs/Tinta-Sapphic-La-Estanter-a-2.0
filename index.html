@@ -1319,6 +1319,8 @@ body.home-active .hero,body.home-active .main{display:none!important}
 #statsView.active{display:block}
 #cartasView{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
 #cartasView.active{display:block}
+#mundoView{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
+#mundoView.active{display:block}
 
 /* ── MI MUNDO SAPPHIC (mapas anuales de países descubiertos) ── */
 .ws-block{margin-bottom:2.5rem}
@@ -2307,7 +2309,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 .rtag-grid{grid-template-columns:1fr}
 
-.shelf-layout{grid-template-columns:1fr}.shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}.shelf-sidebar-header{padding:0 1rem .75rem}.shelf-sidebar-section{padding:.5rem 1rem .3rem}.shelf-main{padding:1.25rem 1rem 3rem}#logrosView{padding:1.25rem 1rem 3rem}#statsView{padding:1.25rem 1rem 3rem}
+.shelf-layout{grid-template-columns:1fr}.shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}.shelf-sidebar-header{padding:0 1rem .75rem}.shelf-sidebar-section{padding:.5rem 1rem .3rem}.shelf-main{padding:1.25rem 1rem 3rem}#logrosView{padding:1.25rem 1rem 3rem}#statsView{padding:1.25rem 1rem 3rem}#mundoView{padding:1.25rem 1rem 3rem}
 
 /* -- origen: 768px (sin contrapartida en 560/600/640px) -- */
   .hv-features{grid-template-columns:1fr}
@@ -2639,7 +2641,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 .rtag-grid{grid-template-columns:1fr}
 
-.shelf-layout{grid-template-columns:1fr}.shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}.shelf-sidebar-header{padding:0 1rem .75rem}.shelf-sidebar-section{padding:.5rem 1rem .3rem}.shelf-main{padding:1.25rem 1rem 3rem}#logrosView{padding:1.25rem 1rem 3rem}#statsView{padding:1.25rem 1rem 3rem}
+.shelf-layout{grid-template-columns:1fr}.shelf-sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border2);padding:1rem 0}.shelf-sidebar-header{padding:0 1rem .75rem}.shelf-sidebar-section{padding:.5rem 1rem .3rem}.shelf-main{padding:1.25rem 1rem 3rem}#logrosView{padding:1.25rem 1rem 3rem}#statsView{padding:1.25rem 1rem 3rem}#mundoView{padding:1.25rem 1rem 3rem}
 
 /* -- origen: 768px -- */
   .hv-features{grid-template-columns:1fr}
@@ -4268,16 +4270,6 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
       <div class="stats-block-note" id="statsYearNote"></div>
     </div>
 
-    <div class="stats-block ws-block" id="wsBlock">
-      <div class="logros-section-label">Mi mundo sapphic</div>
-      <div class="ws-toolbar">
-        <p class="ws-lead">Los países se descubren: cada país que aparece en al menos una lectura terminada durante el año se ilumina en el mapa.</p>
-        <label class="ws-year"><span>Año</span><select id="wsYear" onchange="wsSetYear(this.value)"></select></label>
-      </div>
-      <div class="ws-empty" id="wsEmpty" hidden>Todavía no hay descubrimientos en este año. Cada lectura terminada iluminará un país en el mapa 🌱</div>
-      <div id="wsCards"><div class="ws-loading">Cargando mapas…</div></div>
-    </div>
-
     <div class="stats-block">
       <div class="logros-section-label">Tu racha de lectura</div>
       <div class="mystat-row" id="statsStreakRow"></div>
@@ -4291,6 +4283,25 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
     <div class="stats-block">
       <div class="logros-section-label">Tus tropos y dinámicas favoritas</div>
       <div class="rtag-grid" id="statsTagsGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MI MUNDO SAPPHIC — mapas anuales de países descubiertos (antes dentro de Mis estadísticas) -->
+<div id="mundoView">
+  <div class="shelf-main" style="max-width:900px;margin:0 auto">
+    <button class="shelf-back-link" style="margin:0 0 1.5rem;padding:6px 10px" onclick="closeMundoModal()">← Volver al catálogo</button>
+    <div class="shelf-main-header">
+      <div class="shelf-main-title">Mi mundo sapphic</div>
+    </div>
+
+    <div class="stats-block ws-block" id="wsBlock">
+      <div class="ws-toolbar">
+        <p class="ws-lead">Los países se descubren: cada país que aparece en al menos una lectura terminada durante el año se ilumina en el mapa.</p>
+        <label class="ws-year"><span>Año</span><select id="wsYear" onchange="wsSetYear(this.value)"></select></label>
+      </div>
+      <div class="ws-empty" id="wsEmpty" hidden>Todavía no hay descubrimientos en este año. Cada lectura terminada iluminará un país en el mapa</div>
+      <div id="wsCards"><div class="ws-loading">Cargando mapas…</div></div>
     </div>
   </div>
 </div>
@@ -4531,7 +4542,7 @@ function shelfUrlClear(addEntry){
   }catch(e){}
 }
 
-/* ── URL de las vistas especiales (Logros / Estadísticas / Cartas) ── */
+/* ── URL de las vistas especiales (Logros / Estadísticas / Cartas / Mundo) ── */
 function viewUrlSync(view,addEntry){
   try{
     const params=new URLSearchParams(location.search);
@@ -5006,12 +5017,13 @@ async function init(){
   }
   // Si la URL trae ?view=logros|stats|cartas, abrir directamente esa vista especial.
   const _viewParam=urlParams.get('view');
-  if(_viewParam && ['logros','stats','cartas'].includes(_viewParam)){
+  if(_viewParam && ['logros','stats','cartas','mundo'].includes(_viewParam)){
     if(currentUser){
       viewUrlSync(_viewParam,false);
       if(_viewParam==='logros') await openLogrosModal(true);
       else if(_viewParam==='stats') await openStatsModal(true);
       else if(_viewParam==='cartas') await openCartasModal(true);
+      else if(_viewParam==='mundo') await openMundoModal(true);
     } else {
       // Sin sesión no podemos mostrar estas vistas: limpiamos el parámetro
       viewUrlClear(false);
@@ -5865,6 +5877,7 @@ function openBookPage(id, pushState=true){
   document.getElementById('logrosView')?.classList.remove('active');
   document.getElementById('statsView')?.classList.remove('active');
   document.getElementById('cartasView')?.classList.remove('active');
+  document.getElementById('mundoView')?.classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   // FASE 2.5 — .hero y .main son hermanos de #bookPage (no hijos de las vistas
   // .active de arriba), así que necesitan su propio interruptor: ver regla CSS
@@ -6882,8 +6895,8 @@ function renderAuthUI(){
         <button class="user-dd-item" onclick="toggleUserDropdown();openShelf()">Mi estantería</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openLogrosModal()">Mis logros</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openStatsModal()">Mis estadísticas</button>
+        <button class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown();openMundoModal()">Mi mundo sapphic</button>
         <!-- Fase 1: entradas preparadas, aún sin vista. Se conectarán a su función open…() en fases posteriores (data-personal-view) -->
-        <button class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown()">Mi mundo sapphic</button>
         <button class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown()">Mi recorrido sapphic</button>
         <button class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown()">Mi año sapphic</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
@@ -7094,6 +7107,7 @@ function closeAllSpecialViews(){
   document.getElementById('logrosView')?.classList.remove('active');
   document.getElementById('statsView')?.classList.remove('active');
   document.getElementById('cartasView')?.classList.remove('active');
+  document.getElementById('mundoView')?.classList.remove('active');
   document.getElementById('bookPage')?.classList.remove('active');
   document.body.classList.remove('bp-active'); // FASE 2.5 — restaura .hero/.main si veníamos de una ficha
 }
@@ -7927,17 +7941,19 @@ window.addEventListener('popstate', ()=>{
   document.getElementById('bookPage')?.classList.remove('active');
   document.body.classList.remove('bp-active'); // FASE 2.5 — restaura .hero/.main
   window.scrollTo(0,_scrollBeforeModal);
-  // Restaurar (o cerrar) las vistas especiales (Logros/Estadísticas/Cartas) según la URL
+  // Restaurar (o cerrar) las vistas especiales (Logros/Estadísticas/Cartas/Mundo) según la URL
   const viewParam=new URLSearchParams(location.search).get('view');
-  if(viewParam && currentUser && ['logros','stats','cartas'].includes(viewParam)){
+  if(viewParam && currentUser && ['logros','stats','cartas','mundo'].includes(viewParam)){
     if(viewParam==='logros') openLogrosModal(true);
     else if(viewParam==='stats') openStatsModal(true);
     else if(viewParam==='cartas') openCartasModal(true);
+    else if(viewParam==='mundo') openMundoModal(true);
     return;
   } else {
     if(document.getElementById('logrosView').classList.contains('active')) closeLogrosModal(true);
     if(document.getElementById('statsView').classList.contains('active')) closeStatsModal(true);
     if(document.getElementById('cartasView').classList.contains('active')) closeCartasModal(true);
+    if(document.getElementById('mundoView').classList.contains('active')) closeMundoModal(true);
   }
   // Restaurar (o cerrar) la estantería personal según la URL
   const shelfParam=new URLSearchParams(location.search).get('myshelf');
@@ -10071,6 +10087,7 @@ async function openLogrosModal(silent){
   document.getElementById('shelfView').classList.remove('active');
   document.getElementById('statsView').classList.remove('active');
   document.getElementById('cartasView').classList.remove('active');
+  document.getElementById('mundoView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('logrosView').classList.add('active');
   window.scrollTo({top:0});
@@ -10108,6 +10125,7 @@ async function openStatsModal(silent){
   document.getElementById('shelfView').classList.remove('active');
   document.getElementById('logrosView').classList.remove('active');
   document.getElementById('cartasView').classList.remove('active');
+  document.getElementById('mundoView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('statsView').classList.add('active');
   window.scrollTo({top:0});
@@ -10118,6 +10136,38 @@ async function openStatsModal(silent){
 function closeStatsModal(silent){
   document.getElementById('statsView').classList.remove('active');
   const prev=_statsPrevState;
+  if(!silent) viewUrlClear(true);
+  if(prev?.home){ showHome(); }
+  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
+  else{ switchTab(activeTab, true); }
+}
+
+/* ── MI MUNDO SAPPHIC — vista propia (mapas movidos desde Mis estadísticas) ── */
+let _mundoPrevState=null;
+async function openMundoModal(silent){
+  if(!currentUser){ openAuthModal(); return; }
+  _mundoPrevState={
+    home:document.body.classList.contains('home-active'),
+    shelf:document.getElementById('shelfView').classList.contains('active'),
+    shelfFilter:shelfFilter
+  };
+  document.getElementById('homeView').classList.remove('active');
+  document.body.classList.remove('home-active');
+  document.getElementById('homeNavBtn')?.classList.remove('active');
+  document.getElementById('shelfView').classList.remove('active');
+  document.getElementById('logrosView').classList.remove('active');
+  document.getElementById('statsView').classList.remove('active');
+  document.getElementById('cartasView').classList.remove('active');
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
+  document.getElementById('mundoView').classList.add('active');
+  window.scrollTo({top:0});
+  if(!silent) viewUrlSync('mundo',true);
+  renderWorldSapphic();
+}
+
+function closeMundoModal(silent){
+  document.getElementById('mundoView').classList.remove('active');
+  const prev=_mundoPrevState;
   if(!silent) viewUrlClear(true);
   if(prev?.home){ showHome(); }
   else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
@@ -10326,6 +10376,7 @@ async function openCartasModal(silent){
   document.getElementById('shelfView').classList.remove('active');
   document.getElementById('logrosView').classList.remove('active');
   document.getElementById('statsView').classList.remove('active');
+  document.getElementById('mundoView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('cartasView').classList.add('active');
   window.scrollTo({top:0});
@@ -10482,7 +10533,6 @@ function renderStatsView(){
       <div class="rtag-col-title">Tus dinámicas favoritas</div>
       ${buildBars(s.topDin,'var(--rose)')}
     </div>`;
-  renderWorldSapphic(); // Mi mundo sapphic (mapas anuales)
 }
 
 /* ── MI MUNDO SAPPHIC — dos mapas mundiales anuales de países descubiertos ──
@@ -10492,8 +10542,8 @@ function renderStatsView(){
    solo se usa en el tooltip y en los contadores, nunca en el color. */
 const WS_MAP_URL='world_map_data.json';
 const WS_MAPS=[
-  {key:'origen', field:'pais_origen', title:'🌍 De dónde vienen mis autoras', aria:'Mapa mundial de los países de origen de las autoras que has leído'},
-  {key:'cultura',field:'pais_cultura',title:'📍 Dónde me han llevado mis historias', aria:'Mapa mundial de los países donde se ambientan las historias que has leído'}
+  {key:'origen', field:'pais_origen', title:'De dónde vienen mis autoras', aria:'Mapa mundial de los países de origen de las autoras que has leído'},
+  {key:'cultura',field:'pais_cultura',title:'Dónde me han llevado mis historias', aria:'Mapa mundial de los países donde se ambientan las historias que has leído'}
 ];
 // Solo variantes ortográficas del MISMO país (no se inventan equivalencias: Escocia, Ítaca, etc. no se mapean)
 const WS_ALIASES={'eeuu':'US','usa':'US','estados unidos de america':'US','republica checa':'CZ','holanda':'NL','birmania':'MM','suazilandia':'SZ','macedonia':'MK','timor oriental':'TL'};
@@ -10511,7 +10561,7 @@ function wsEntryYear(e){
 }
 function wsResolveIso(v){ const k=wsNorm(v); return _wsNameToIso.get(k)||WS_ALIASES[k]||null; }
 
-// Carga perezosa: solo cuando se abre Estadísticas, y cacheada
+// Carga perezosa: solo cuando se abre Mi mundo sapphic, y cacheada
 function wsLoadMap(){
   if(_wsMap) return Promise.resolve(_wsMap);
   if(!_wsMapPromise){
@@ -10689,7 +10739,7 @@ function wsPaint(){
       (regs.length?`<p class="ws-alt-note">Región sin país concreto (no se pinta en el mapa): ${regs.map(([g,n])=>`${escHtml(g)} (${n} lectura${n===1?'':'s'})`).join(', ')}.</p>`:'');
   });
   const empty=document.getElementById('wsEmpty');
-  if(empty){ empty.hidden=anyFound; empty.textContent=`Todavía no hay descubrimientos en ${wsYear}. Cada lectura terminada iluminará un país en el mapa 🌱`; }
+  if(empty){ empty.hidden=anyFound; empty.textContent=`Todavía no hay descubrimientos en ${wsYear}. Cada lectura terminada iluminará un país en el mapa`; }
 }
 
 function wsShowError(){
@@ -10703,7 +10753,7 @@ function renderWorldSapphic(){
   wsFillYearSelect();
   if(!_wsMap){
     if(!_wsBuilt&&!document.querySelector('#wsCards .ws-loading')) document.getElementById('wsCards').innerHTML='<div class="ws-loading">Cargando mapas…</div>';
-    wsLoadMap().then(()=>{ if(document.getElementById('statsView').classList.contains('active')) renderWorldSapphic(); }).catch(wsShowError);
+    wsLoadMap().then(()=>{ if(document.getElementById('mundoView').classList.contains('active')) renderWorldSapphic(); }).catch(wsShowError);
     return;
   }
   if(!_wsBuilt) wsBuild();
