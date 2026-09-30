@@ -1401,6 +1401,122 @@ button.rc-stop{cursor:pointer}
 .ws-loading,.ws-error{padding:2rem 1rem;text-align:center;color:var(--muted);font-size:13px}
 .ws-error button{margin-top:.6rem;padding:8px 18px;border-radius:30px;border:1px solid var(--border2);background:var(--accent-soft);color:var(--accent2);font-family:var(--font-body);cursor:pointer}
 @media (max-width:640px){#wsCards{margin-inline:-1.5rem}.ws-card{padding:.6rem .4rem;border-radius:14px}.ws-card-title{font-size:1.15rem;padding:0 .3rem}.ws-info,.ws-counters,.ws-alt{padding:0 .3rem}.ws-toolbar{align-items:stretch}.ws-year select{width:100%}.ws-year{flex:1 1 100%}}
+/* ── MI AÑO SAPPHIC (Annual Report editorial) — todo con prefijo an-, sin tocar reglas existentes ── */
+#anioView{display:none;position:relative;z-index:1;padding:2rem 2rem 5rem}
+#anioView.active{display:block}
+.an-main{max-width:1100px;margin:0 auto;min-width:0}
+.an-hero{position:relative;overflow:hidden;min-width:0;border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.6rem 1.25rem 1.3rem;margin:0 0 2rem;background:radial-gradient(120% 140% at 0% 0%,rgba(192,111,196,.22) 0%,transparent 58%),linear-gradient(160deg,#261b33 0%,var(--surface) 72%)}
+.an-hero::before{content:'';position:absolute;left:1.25rem;right:1.25rem;top:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.an-hero-top{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.an-hero-text{flex:1 1 300px;min-width:0}
+.an-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .5rem}
+.an-title{font-family:var(--font-display);font-size:clamp(2rem,7vw,3.4rem);font-weight:600;font-style:italic;line-height:1.05;letter-spacing:.005em;color:var(--text);margin:0;overflow-wrap:anywhere}
+.an-title-year{color:var(--gold);font-style:normal;font-weight:500}
+.an-lead{font-size:13.5px;color:var(--muted);margin:.6rem 0 0;line-height:1.55}
+.an-lead:empty{display:none}
+.an-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:1.4rem 0 0}
+.an-stats[hidden],.an-notes[hidden],.an-plain[hidden]{display:none}
+.an-stat{min-width:0;padding:.9rem 1rem;border-radius:16px;background:rgba(14,11,16,.5);border:1px solid var(--border2)}
+.an-stats .an-stat:last-child:nth-child(odd){grid-column:1/-1}
+.an-stat-n{font-family:var(--font-display);font-size:clamp(2rem,8vw,3rem);font-weight:500;line-height:1;color:var(--gold);overflow-wrap:anywhere}
+.an-stat-l{margin-top:.4rem;font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.an-stat-note{margin-top:.25rem;font-size:11.5px;line-height:1.35;color:var(--muted)}
+.an-notes{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.25rem;font-size:12px;line-height:1.5;color:var(--muted)}
+.an-sec{margin:0 0 2.4rem;min-width:0}
+.an-sec-h{margin:0 0 1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.an-sec-title{font-family:var(--font-display);font-size:clamp(1.5rem,4.5vw,2rem);font-weight:600;font-style:italic;color:var(--text);margin:0}
+.an-sec-title::before{content:'';display:block;width:34px;height:2px;margin-bottom:.6rem;background:var(--gold)}
+.an-sec-sub{font-size:12.5px;line-height:1.55;color:var(--muted);margin:.4rem 0 0}
+.an-muted{font-size:12.5px;line-height:1.5;color:var(--muted);margin:.5rem 0 0}
+.an-plain{font-size:14px;line-height:1.6;color:var(--text);margin:0 0 .4rem}
+.an-link{display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem;background:none;border:0;color:var(--accent2);font-family:var(--font-body);font-size:12.5px;font-weight:600;cursor:pointer}
+.an-link:focus-visible,.an-mbtn:focus-visible,.an-cvb:focus-visible,.an-mopen:focus-visible,.an-podb:focus-visible,.an-favrow:focus-visible,.an-more summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* mes a mes */
+.an-mlist{list-style:none;margin:0 0 .4rem;padding:0;display:grid;gap:.15rem}
+.an-mrow{min-width:0;border-radius:12px}
+.an-mrow.is-open{background:var(--accent-soft)}
+.an-mbtn{display:grid;grid-template-columns:6rem minmax(0,1fr) 2.2rem;align-items:center;gap:.8rem;width:100%;min-height:44px;padding:.3rem .6rem;background:none;border:0;border-radius:12px;color:var(--text);font-family:var(--font-body);font-size:13px;text-align:left}
+button.an-mbtn{cursor:pointer}
+.an-mname{min-width:0;overflow-wrap:anywhere}
+.an-mtrack{display:block;height:10px;border-radius:6px;background:rgba(180,120,200,.1);overflow:hidden}
+.an-mfill{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.an-mcount{font-family:var(--font-display);font-size:1.3rem;line-height:1;text-align:right;color:var(--text)}
+.an-mrow.is-top .an-mfill{background:linear-gradient(90deg,var(--gold),#e3b981)}
+.an-mrow.is-top .an-mname,.an-mrow.is-top .an-mcount{color:var(--gold);font-weight:600}
+.an-mrow.is-zero .an-mbtn{opacity:.5}
+.an-mrow-nm{margin-top:.6rem;border-top:1px dashed var(--border2);border-radius:0 0 12px 12px;padding-top:.4rem}
+.an-mrow-nm .an-mfill{background:var(--muted);opacity:.7}
+.an-mpanel{padding:.5rem .6rem .8rem}
+.an-mpanel[hidden]{display:none}
+.an-covs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.9rem .7rem;margin:0 0 .3rem}
+.an-cvb{display:flex;flex-direction:column;align-items:stretch;gap:.35rem;min-width:0;min-height:44px;padding:0;background:none;border:0;color:inherit;font-family:var(--font-body);text-align:left}
+button.an-cvb{cursor:pointer}
+.an-cv{position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:8px;background:var(--surface2);border:1px solid var(--border2)}
+.an-cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.an-cv-i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.6rem;color:var(--muted)}
+.an-cv.is-loaded .an-cv-i{display:none}
+.an-cv-missing{border-style:dashed;background:transparent}
+.an-cv-t{font-size:11px;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.an-cvb.is-missing .an-cv-t{color:var(--muted)}
+.an-cv-tag{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+/* descubrimientos y tendencias */
+.an-disc-grid,.an-trends{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem}
+.an-disc,.an-trend,.an-mcard{min-width:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.1rem}
+.an-disc-h{margin:0 0 .6rem;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.an-big{font-family:var(--font-display);font-size:2.8rem;font-weight:500;line-height:1;color:var(--gold)}
+.an-big-l{font-size:13px;line-height:1.45;color:var(--muted);margin:.3rem 0 .8rem}
+.an-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.an-chip{max-width:100%;padding:4px 11px;border-radius:20px;border:1px solid var(--border2);background:var(--surface2);font-size:12px;line-height:1.4;color:var(--text);overflow-wrap:anywhere}
+.an-chip.is-new{border-color:rgba(201,151,90,.5);background:var(--gold-soft);color:var(--gold)}
+.an-chip-new{margin-left:6px;font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.an-more summary{display:flex;align-items:center;min-height:44px;color:var(--accent2);font-size:12.5px;font-weight:600;cursor:pointer}
+.an-ranks{list-style:none;margin:0;padding:0}
+.an-rank{display:grid;grid-template-columns:minmax(0,40%) minmax(0,1fr) 1.6rem;align-items:center;gap:.6rem;margin:.6rem 0}
+.an-rank-l{font-size:12.5px;line-height:1.3;color:var(--text);overflow-wrap:anywhere}
+.an-rank-track{display:block;height:8px;border-radius:5px;background:rgba(180,120,200,.1);overflow:hidden}
+.an-rank-fill{display:block;height:100%;border-radius:5px;background:var(--accent)}
+.an-trend[data-f="tropes"] .an-rank-fill{background:var(--rose)}
+.an-trend[data-f="dinamicas"] .an-rank-fill{background:var(--teal)}
+.an-rank-n{font-family:var(--font-display);font-size:1.1rem;line-height:1;text-align:right;color:var(--text)}
+/* momentos */
+.an-moments{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:1rem}
+.an-mcard{display:flex;flex-direction:column;gap:.8rem}
+.an-mlabel{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+.an-mopen{display:flex;align-items:flex-start;gap:.9rem;width:100%;min-height:44px;padding:0;background:none;border:0;color:inherit;font-family:var(--font-body);text-align:left}
+button.an-mopen{cursor:pointer}
+.an-mopen .an-cv{flex:0 0 64px;width:64px}
+.an-mtext{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+.an-mtitle{font-family:var(--font-display);font-size:1.2rem;font-weight:600;line-height:1.2;color:var(--text);overflow-wrap:anywhere}
+.an-mmeta{font-size:12px;line-height:1.4;color:var(--muted);overflow-wrap:anywhere}
+.an-mdate{color:var(--accent2)}
+/* favoritos */
+.an-podium{list-style:none;margin:0 0 1.2rem;padding:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1.2rem 1rem}
+.an-pod{flex:0 1 calc(50% - .5rem);max-width:170px;min-width:0}
+.an-pod-1{flex-basis:100%;max-width:220px}
+.an-podb{display:flex;flex-direction:column;align-items:center;gap:.4rem;width:100%;min-height:44px;padding:0;background:none;border:0;color:inherit;font-family:var(--font-body);text-align:center;cursor:pointer}
+.an-podb .an-cv{width:100%}
+.an-pod-1 .an-cv{border:2px solid var(--gold);box-shadow:0 0 28px rgba(201,151,90,.28)}
+.an-pod-rank{font-family:var(--font-display);font-size:1.8rem;font-weight:500;line-height:1;color:var(--gold)}
+.an-pod-1 .an-pod-rank{font-size:2.4rem}
+.an-pod-t{font-family:var(--font-display);font-size:1.1rem;font-weight:600;line-height:1.2;color:var(--text);overflow-wrap:anywhere}
+.an-pod-a{font-size:12px;line-height:1.35;color:var(--muted);overflow-wrap:anywhere}
+.an-pod-r{display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap}
+.an-stars{font-size:14px;letter-spacing:.08em;color:var(--gold)}
+.an-pod-s{font-size:11.5px;color:var(--muted)}
+.an-spicy{font-size:11px;line-height:1.35;color:var(--muted)}
+.an-favlist{list-style:none;margin:0 0 .6rem;padding:0;display:grid;gap:.45rem}
+.an-favrow{display:flex;align-items:center;gap:.8rem;width:100%;min-height:44px;padding:.45rem .6rem;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:inherit;font-family:var(--font-body);text-align:left;cursor:pointer}
+.an-favrow .an-cv{flex:0 0 40px;width:40px}
+.an-favrank{flex:0 0 2rem;font-family:var(--font-display);font-size:1.15rem;color:var(--muted)}
+.an-favtext{display:flex;flex-direction:column;gap:.1rem;flex:1 1 auto;min-width:0}
+.an-favt{font-size:13.5px;font-weight:500;line-height:1.3;color:var(--text);overflow-wrap:anywhere}
+.an-favmeta{font-size:12px;line-height:1.35;color:var(--muted);overflow-wrap:anywhere}
+@media (hover:hover){button.an-mbtn:hover,.an-favrow:hover{background:var(--accent-soft)}.an-link:hover{text-decoration:underline}button.an-cvb:hover .an-cv,button.an-mopen:hover .an-cv,.an-podb:hover .an-cv{border-color:var(--accent2)}}
+@media (max-width:640px){#anioView{padding:1.25rem 1rem 4rem}.an-hero{padding:1.3rem 1rem 1.1rem}.an-hero::before{left:1rem;right:1rem}.an-mbtn{grid-template-columns:5.4rem minmax(0,1fr) 1.8rem;gap:.6rem}}
+@media (min-width:640px){.an-stats{grid-template-columns:repeat(var(--an-n,4),minmax(0,1fr))}.an-stats .an-stat:last-child:nth-child(odd){grid-column:auto}.an-disc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.an-hero{padding:2rem 2rem 1.6rem}.an-hero::before{left:2rem;right:2rem}.an-pod{flex-basis:170px}.an-pod-1{flex-basis:220px}.an-covs{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}}
+@media (min-width:900px){.an-trends{grid-template-columns:repeat(var(--an-cols,3),minmax(0,1fr))}}
+.an-main .shelf-back-link{min-height:44px}
+@media (min-width:1921px){.an-main{max-width:1240px}}
 
 /* ── CARTAS DE AUTORA ── */
 .cartas-sub{color:var(--muted);font-size:13px;max-width:640px;margin:.3rem 0 1.5rem}
@@ -4361,6 +4477,27 @@ body.bp-active .hero,body.bp-active .main{display:none!important}
   </div>
 </div>
 
+<!-- MI AÑO SAPPHIC — Annual Report de las lecturas terminadas de un año (datos: an* en el script) -->
+<div id="anioView">
+  <div class="an-main">
+    <button class="shelf-back-link" style="margin:0 0 1.5rem;padding:6px 10px" onclick="closeAnioModal()">← Volver al catálogo</button>
+    <header class="an-hero">
+      <div class="an-hero-top">
+        <div class="an-hero-text">
+          <div class="an-eyebrow">Tu año en lecturas</div>
+          <h2 class="an-title" id="anTitle">Mi año sapphic</h2>
+          <p class="an-lead" id="anLead"></p>
+        </div>
+        <label class="ws-year"><span>Año</span><select id="anYearSel" onchange="anSetYear(this.value)"></select></label>
+      </div>
+      <div class="ws-empty" id="anEmpty" hidden></div>
+      <div class="an-stats" id="anSummary" hidden></div>
+      <ul class="an-notes" id="anNotes" hidden></ul>
+    </header>
+    <div id="anSections"></div>
+  </div>
+</div>
+
 <!-- CARTAS DE AUTORA — colección desbloqueable ligada a tu estantería -->
 <div id="cartasView">
   <div class="shelf-main" style="max-width:1180px;margin:0 auto">
@@ -4539,7 +4676,7 @@ function pushState(addEntry){
     // Don't touch URL if home is active
     if(sessionStorage.getItem('ts_active_tab')==='home') return;
     // No reescribir la URL mientras haya una vista personal abierta (conserva ?view= / ?myshelf=)
-    if(document.querySelector('#shelfView.active,#logrosView.active,#statsView.active,#cartasView.active,#mundoView.active,#recorridoView.active')) return;
+    if(document.querySelector('#shelfView.active,#logrosView.active,#statsView.active,#cartasView.active,#mundoView.active,#recorridoView.active,#anioView.active')) return;
     const params=new URLSearchParams();
     if(activeTab&&activeTab!=='estanteria') params.set('tab',activeTab);
     if(activeSection) params.set('section',activeSection);
@@ -5074,7 +5211,7 @@ async function init(){
   }
   // Si la URL trae ?view=logros|stats|cartas|mundo|recorrido, abrir directamente esa vista especial.
   const _viewParam=urlParams.get('view');
-  if(_viewParam && ['logros','stats','cartas','mundo','recorrido'].includes(_viewParam)){
+  if(_viewParam && ['logros','stats','cartas','mundo','recorrido','anio'].includes(_viewParam)){
     if(currentUser){
       viewUrlSync(_viewParam,false);
       if(_viewParam==='logros') await openLogrosModal(true);
@@ -5082,6 +5219,7 @@ async function init(){
       else if(_viewParam==='cartas') await openCartasModal(true);
       else if(_viewParam==='mundo') await openMundoModal(true);
       else if(_viewParam==='recorrido') await openRecorridoModal(true);
+      else if(_viewParam==='anio') await openAnioModal(true);
     } else {
       // Sin sesión no podemos mostrar estas vistas: limpiamos el parámetro
       viewUrlClear(false);
@@ -5937,6 +6075,7 @@ function openBookPage(id, pushState=true){
   document.getElementById('cartasView')?.classList.remove('active');
   document.getElementById('mundoView')?.classList.remove('active');
   document.getElementById('recorridoView')?.classList.remove('active');
+  document.getElementById('anioView')?.classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   // FASE 2.5 — .hero y .main son hermanos de #bookPage (no hijos de las vistas
   // .active de arriba), así que necesitan su propio interruptor: ver regla CSS
@@ -6956,8 +7095,7 @@ function renderAuthUI(){
         <button class="user-dd-item" onclick="toggleUserDropdown();openStatsModal()">Mis estadísticas</button>
         <button class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown();openMundoModal()">Mi mundo sapphic</button>
         <button class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown();openRecorridoModal()">Mi recorrido sapphic</button>
-        <!-- Fase 1: entrada preparada, aún sin vista. Se conectará a su función open…() en una fase posterior (data-personal-view) -->
-        <button class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown()">Mi año sapphic</button>
+        <button class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown();openAnioModal()">Mi año sapphic</button>
         <button class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
         <div class="user-dd-sep"></div>
         <button class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
@@ -7168,6 +7306,7 @@ function closeAllSpecialViews(){
   document.getElementById('cartasView')?.classList.remove('active');
   document.getElementById('mundoView')?.classList.remove('active');
   document.getElementById('recorridoView')?.classList.remove('active');
+  document.getElementById('anioView')?.classList.remove('active');
   document.getElementById('bookPage')?.classList.remove('active');
   document.body.classList.remove('bp-active'); // FASE 2.5 — restaura .hero/.main si veníamos de una ficha
 }
@@ -8003,12 +8142,13 @@ window.addEventListener('popstate', ()=>{
   window.scrollTo(0,_scrollBeforeModal);
   // Restaurar (o cerrar) las vistas especiales (Logros/Estadísticas/Cartas/Mundo/Recorrido) según la URL
   const viewParam=new URLSearchParams(location.search).get('view');
-  if(viewParam && currentUser && ['logros','stats','cartas','mundo','recorrido'].includes(viewParam)){
+  if(viewParam && currentUser && ['logros','stats','cartas','mundo','recorrido','anio'].includes(viewParam)){
     if(viewParam==='logros') openLogrosModal(true);
     else if(viewParam==='stats') openStatsModal(true);
     else if(viewParam==='cartas') openCartasModal(true);
     else if(viewParam==='mundo') openMundoModal(true);
     else if(viewParam==='recorrido') openRecorridoModal(true);
+    else if(viewParam==='anio') openAnioModal(true);
     return;
   } else {
     if(document.getElementById('logrosView').classList.contains('active')) closeLogrosModal(true);
@@ -8016,6 +8156,7 @@ window.addEventListener('popstate', ()=>{
     if(document.getElementById('cartasView').classList.contains('active')) closeCartasModal(true);
     if(document.getElementById('mundoView').classList.contains('active')) closeMundoModal(true);
     if(document.getElementById('recorridoView').classList.contains('active')) closeRecorridoModal(true);
+    if(document.getElementById('anioView').classList.contains('active')) closeAnioModal(true);
   }
   // Restaurar (o cerrar) la estantería personal según la URL
   const shelfParam=new URLSearchParams(location.search).get('myshelf');
@@ -10151,6 +10292,7 @@ async function openLogrosModal(silent){
   document.getElementById('cartasView').classList.remove('active');
   document.getElementById('mundoView').classList.remove('active');
   document.getElementById('recorridoView').classList.remove('active');
+  document.getElementById('anioView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('logrosView').classList.add('active');
   window.scrollTo({top:0});
@@ -10190,6 +10332,7 @@ async function openStatsModal(silent){
   document.getElementById('cartasView').classList.remove('active');
   document.getElementById('mundoView').classList.remove('active');
   document.getElementById('recorridoView').classList.remove('active');
+  document.getElementById('anioView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('statsView').classList.add('active');
   window.scrollTo({top:0});
@@ -10223,6 +10366,7 @@ async function openMundoModal(silent){
   document.getElementById('statsView').classList.remove('active');
   document.getElementById('cartasView').classList.remove('active');
   document.getElementById('recorridoView').classList.remove('active');
+  document.getElementById('anioView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('mundoView').classList.add('active');
   window.scrollTo({top:0});
@@ -10473,6 +10617,7 @@ async function openRecorridoModal(silent){
   document.getElementById('statsView').classList.remove('active');
   document.getElementById('cartasView').classList.remove('active');
   document.getElementById('mundoView').classList.remove('active');
+  document.getElementById('anioView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('recorridoView').classList.add('active');
   window.scrollTo({top:0});
@@ -10484,6 +10629,351 @@ async function openRecorridoModal(silent){
 function closeRecorridoModal(silent){
   document.getElementById('recorridoView').classList.remove('active');
   const prev=_rcPrevState;
+  if(!silent) viewUrlClear(true);
+  if(prev?.home){ showHome(); }
+  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
+  else{ switchTab(activeTab, true); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MI AÑO SAPPHIC — Annual Report de las lecturas terminadas de un año
+   · Lecturas del año: rcCollectEntries(year) (fechas parciales y flags de relectura ya resueltos).
+   · Catálogo: anEnrich() cruza bookId → allBooks en solo lectura (no se guarda ninguna estructura).
+   · Países: computeWorldDiscoveries(year) de Mi mundo. Valoraciones: myRatings/mySpicy (por LIBRO).
+   · Unidad: LECTURA (evento) en el mes a mes · LIBRO ÚNICO en todo lo demás. Nunca se inventan datos.
+══════════════════════════════════════════════════════════════ */
+let anYear=null,_anPrevState=null,_anRun=0,_anBound=false;
+const AN_MIN_RANK=3;   // mínimo de libros con dato para mostrar un ranking de tendencias
+
+// Envuelve cada entrada con su libro completo del catálogo (null si ya no está). No modifica las entradas.
+function anEnrich(entries){
+  const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
+  return entries.map(entry=>({entry,book:byId.get(String(entry.bookId))||null}));
+}
+function anPagesOf(b){ const p=b?Number(b.pages):NaN; return isFinite(p)&&p>0?p:null; }
+const anNum=n=>Number(n).toLocaleString('es-ES');
+const anCap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const anJoin=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' y '+a[a.length-1];
+
+// Años con lecturas terminadas + el año actual aunque esté vacío (más reciente primero)
+function anYearList(){
+  const set=new Set([new Date().getFullYear()]);
+  Object.values(myReadingLog).forEach(l=>(l||[]).forEach(e=>{ const y=wsEntryYear(e); if(y!=null) set.add(y); }));
+  return [...set].sort((a,b)=>b-a);
+}
+function anFillYearSelect(){
+  const sel=document.getElementById('anYearSel'); if(!sel) return;
+  const years=anYearList();
+  if(anYear==null||!years.includes(anYear)) anYear=new Date().getFullYear();
+  sel.innerHTML=years.map(y=>`<option value="${y}">${y}</option>`).join('');
+  sel.value=String(anYear);
+}
+function anSetYear(v){
+  const y=parseInt(v,10); if(isNaN(y)) return;
+  anYear=y; anRender();
+}
+
+// Historial completo de lecturas terminadas: primer año en que aparece cada autora/género y primer año con registros
+function anHistory(){
+  const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
+  const authors=new Map(),genres=new Map(); let first=null;
+  Object.keys(myReadingLog).forEach(bookId=>{
+    let y=null;
+    (myReadingLog[bookId]||[]).forEach(e=>{ const ey=wsEntryYear(e); if(ey!=null&&(y==null||ey<y)) y=ey; });
+    if(y==null) return;
+    if(first==null||y<first) first=y;
+    const b=byId.get(String(bookId)); if(!b) return;
+    wsToList(b.authors).forEach(a=>{ const k=wsNorm(a); if(!authors.has(k)||y<authors.get(k)) authors.set(k,y); });
+    wsToList(b.genres).forEach(g=>{ const k=wsNorm(g); if(!genres.has(k)||y<genres.get(k)) genres.set(k,y); });
+  });
+  return {authors,genres,first};
+}
+
+// Modelo del año: lecturas (eventos) y libros únicos, ambos con su libro de catálogo
+function anBuild(year){
+  const entries=rcSortEntries(rcCollectEntries(year));
+  const items=anEnrich(entries);
+  const uniq=new Map();
+  items.forEach(it=>{
+    let u=uniq.get(it.entry.bookId);
+    if(!u){ u={bookId:it.entry.bookId,book:it.book,items:[]}; uniq.set(it.entry.bookId,u); }
+    u.items.push(it);
+  });
+  return {year,items,books:[...uniq.values()],summary:rcSummarize(entries)};
+}
+
+/* ── piezas de render ── */
+function anCoverHTML(b,cls){
+  const img=b&&b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async" onload="this.parentNode.classList.add('is-loaded')" onerror="this.remove()">`:'';
+  return `<span class="an-cv${cls?' '+cls:''}" aria-hidden="true"><span class="an-cv-i">${b?escHtml(rcInitial(b.title)):''}</span>${img}</span>`;
+}
+function anSection(name,title,sub,inner){
+  return `<section class="an-sec an-sec-${name}" aria-label="${escHtml(title)}"><header class="an-sec-h"><h3 class="an-sec-title">${escHtml(title)}</h3>${sub?`<p class="an-sec-sub">${sub}</p>`:''}</header>${inner}</section>`;
+}
+function anChips(list,limit){
+  const li=list.map(x=>typeof x==='string'?`<li class="an-chip">${escHtml(x)}</li>`:`<li class="an-chip${x.fresh?' is-new':''}">${escHtml(x.name)}${x.fresh?'<span class="an-chip-new">nuevo</span>':''}</li>`);
+  if(li.length<=limit) return `<ul class="an-chips">${li.join('')}</ul>`;
+  return `<ul class="an-chips">${li.slice(0,limit).join('')}</ul><details class="an-more"><summary>Ver ${li.length-limit} más</summary><ul class="an-chips">${li.slice(limit).join('')}</ul></details>`;
+}
+function anStarsHTML(score){
+  const r=Math.max(0,Math.min(5,Math.round(score)));
+  return `<span class="an-stars" role="img" aria-label="${anNum(score)} de 5">${'★'.repeat(r)}${'☆'.repeat(5-r)}</span>`;
+}
+function anSpicyHTML(id){
+  const v=mySpicy[id]; if(v==null||isNaN(Number(v))) return '';
+  return `<span class="an-spicy">Spicy personal actual: ${anNum(v)}/5</span>`;
+}
+
+/* 1 · Cabecera + resumen (libros únicos, lecturas, autoras distintas, páginas) */
+function anRenderHeader(m){
+  const s=m.summary;
+  const withPages=m.books.filter(u=>anPagesOf(u.book)!=null);
+  const pages=withPages.reduce((a,u)=>a+anPagesOf(u.book),0);
+  const showPages=withPages.length>0&&withPages.length*2>=m.books.length;   // cobertura < 1/2 → se oculta
+  const cards=[
+    [s.books,s.books===1?'Libro único':'Libros únicos',''],
+    [s.readings,s.readings===1?'Lectura':'Lecturas',''],
+  ];
+  if(s.authors>0) cards.push([s.authors,s.authors===1?'Autora distinta':'Autoras distintas','']);
+  if(showPages) cards.push([anNum(pages),'Páginas',withPages.length===m.books.length?'de todos los libros del año':`${withPages.length} de ${m.books.length} libros con páginas conocidas`]);
+  const sum=document.getElementById('anSummary');
+  sum.style.setProperty('--an-n',String(cards.length));
+  sum.innerHTML=cards.map(c=>`<div class="an-stat"><div class="an-stat-n">${c[0]}</div><div class="an-stat-l">${c[1]}</div>${c[2]?`<div class="an-stat-note">${c[2]}</div>`:''}</div>`).join('');
+  sum.hidden=false;
+  const rereads=m.items.filter(x=>x.entry.isReread===true).length;
+  document.getElementById('anLead').textContent=`Un repaso a lo que terminaste de leer en ${m.year}${rereads?`, incluidas ${rereads} ${rereads===1?'relectura':'relecturas'}`:''}.`;
+  const notes=['Cifras calculadas a partir de tu historial de lecturas terminadas con fecha.'];
+  if(s.readings>s.books) notes.push('Un libro leído más de una vez cuenta una sola vez como libro y varias como lecturas.');
+  if(s.missingFromCatalog>0) notes.push(`${s.missingFromCatalog} ${s.missingFromCatalog===1?'lectura corresponde':'lecturas corresponden'} a libros que ya no están en el catálogo: cuentan en los totales, pero no aportan más datos.`);
+  const nl=document.getElementById('anNotes');
+  nl.innerHTML=notes.map(n=>`<li>${escHtml(n)}</li>`).join(''); nl.hidden=false;
+}
+
+/* 2 · Mi año mes a mes (eventos de lectura) */
+function anCovsHTML(items){
+  return `<div class="an-covs">${items.map(it=>{
+    const e=it.entry,b=it.book,tag=e.isReread===true?'<span class="an-cv-tag">Relectura</span>':'';
+    if(!b) return `<span class="an-cvb is-missing">${anCoverHTML(null,'an-cv-missing')}<span class="an-cv-t">Libro no disponible en el catálogo</span>${tag}</span>`;
+    const au=wsToList(b.authors).join(', ');
+    return `<button type="button" class="an-cvb" data-book="${escHtml(e.bookId)}" title="${escHtml(b.title+(au?' — '+au:''))}">${anCoverHTML(b)}<span class="an-cv-t">${escHtml(b.title||'')}</span>${tag}</button>`;
+  }).join('')}</div>`;
+}
+function anMonthsHTML(m){
+  const counts=Array(13).fill(0);          // 1..12 = mes · 0 = sin mes indicado
+  m.items.forEach(it=>{ counts[it.entry.month||0]++; });
+  const total=m.items.length,noMonth=counts[0],dated=total-noMonth;
+  const link=`<button type="button" class="an-link" data-go="recorrido">Ver mi recorrido</button>`;
+  if(noMonth*2>total){
+    return anSection('meses','Mi año mes a mes','',`<p class="an-plain">La mayoría de tus lecturas de ${m.year} no tiene el mes indicado (${noMonth} de ${total}), así que no se puede dibujar el año mes a mes. Cuando las lecturas incluyan el mes, aparecerán aquí.</p><p class="an-muted">${dated} ${dated===1?'lectura con mes indicado':'lecturas con mes indicado'} · ${noMonth} sin mes indicado.</p>${link}`);
+  }
+  const mc=counts.slice(1),max=Math.max(...mc),withReads=mc.filter(c=>c>0).length;
+  const tops=mc.map((c,i)=>c===max&&c>0?i+1:0).filter(Boolean);
+  const hi=tops.length<withReads?new Set(tops):new Set();      // si todos empatan, no se destaca ninguno
+  const scale=Math.max(max,noMonth);
+  const row=(key,label,c,cls)=>{
+    const items=m.items.filter(it=>(it.entry.month||0)===key);
+    if(!c) return `<li class="an-mrow is-zero"><div class="an-mbtn"><span class="an-mname">${label}</span><span class="an-mtrack"></span><span class="an-mcount">0</span></div></li>`;
+    return `<li class="an-mrow${cls}"><button type="button" class="an-mbtn" data-month="${key}" aria-expanded="false"><span class="an-mname">${label}</span><span class="an-mtrack"><span class="an-mfill" style="width:${Math.max(4,c/scale*100)}%"></span></span><span class="an-mcount">${c}</span></button><div class="an-mpanel" hidden>${anCovsHTML(items)}${link}</div></li>`;
+  };
+  let rows='';
+  for(let i=1;i<=12;i++) rows+=row(i,anCap(_MESES_ES[i-1]),counts[i],hi.has(i)?' is-top':'');
+  if(noMonth>0) rows+=row(0,'Sin mes indicado',noMonth,' an-mrow-nm');
+  let sub='';
+  if(hi.size===1) sub=`Tu mes más lector fue ${_MESES_ES[tops[0]-1]}, con ${max} ${max===1?'lectura':'lecturas'}.`;
+  else if(hi.size>1) sub=`Tus meses más lectores fueron ${anJoin(tops.map(i=>_MESES_ES[i-1]))}, con ${max} ${max===1?'lectura':'lecturas'} cada uno.`;
+  return anSection('meses','Mi año mes a mes',escHtml(sub)+(sub?' ':'')+'Cada barra cuenta lecturas terminadas; toca un mes para ver sus portadas.',`<ol class="an-mlist">${rows}</ol>`);
+}
+
+/* 3 · Mis descubrimientos (autoras y géneros nuevos en el historial; países vía Mi mundo) */
+function anNewList(m,hist,field){
+  const map=field==='authors'?hist.authors:hist.genres;
+  const seen=new Map();
+  m.books.forEach(u=>{ if(!u.book) return; wsToList(u.book[field]).forEach(v=>{ const k=wsNorm(v); if(!seen.has(k)) seen.set(k,v); }); });
+  const fresh=[]; seen.forEach((disp,k)=>{ if(map.get(k)===m.year) fresh.push(disp); });
+  fresh.sort((a,b)=>a.localeCompare(b,'es'));
+  return {total:seen.size,fresh};
+}
+function anDiscCard(title,body,attr){ return `<article class="an-disc"${attr||''}><h4 class="an-disc-h">${escHtml(title)}</h4><div class="an-disc-body">${body}</div></article>`; }
+function anDiscoveriesHTML(m){
+  const hist=anHistory(),can=hist.first!=null&&hist.first<m.year;
+  const noCmp='<p class="an-muted">Este es tu primer año con lecturas registradas, así que no hay lecturas anteriores con las que comparar.</p>';
+  const one=(field,title,noun,nounPl,emptyMsg,fem)=>{
+    const r=anNewList(m,hist,field),nw=fem?['nueva','nuevas','ninguna es nueva']:['nuevo','nuevos','ninguno es nuevo'];
+    if(!r.total) return anDiscCard(title,`<p class="an-muted">${emptyMsg}</p>`);
+    if(!can) return anDiscCard(title,noCmp);
+    if(!r.fresh.length) return anDiscCard(title,`<div class="an-big">0</div><p class="an-big-l">de ${r.total} ${r.total===1?noun:nounPl} del año, ${nw[2]} en tu historial.</p>`);
+    return anDiscCard(title,`<div class="an-big">${r.fresh.length}</div><p class="an-big-l">de ${r.total} ${r.total===1?noun:nounPl} del año ${r.fresh.length===1?'es '+nw[0]:'son '+nw[1]} en tu historial.</p>${anChips(r.fresh,12)}`);
+  };
+  const cards=[
+    one('authors','Autoras nuevas','autora','autoras','Las lecturas de este año no tienen autoras en el catálogo.',true),
+    one('genres','Géneros nuevos','género','géneros','Las lecturas de este año no tienen géneros en el catálogo.',false)
+  ];
+  WS_MAPS.forEach(mp=>cards.push(anDiscCard(mp.title,'<p class="an-muted">Cargando países…</p>',` data-an-map="${mp.key}"`)));
+  return anSection('descubrimientos','Mis descubrimientos','',`<div class="an-disc-grid">${cards.join('')}</div><button type="button" class="an-link" data-go="mundo">Ver mi mundo sapphic</button>`);
+}
+async function anFillCountries(m,run){
+  const hosts=[...document.querySelectorAll('#anSections [data-an-map] .an-disc-body')];
+  if(!hosts.length) return;
+  try{ await wsLoadMap(); }
+  catch(e){ if(run===_anRun) hosts.forEach(h=>{ h.innerHTML='<p class="an-muted">No se han podido cargar los países ahora mismo.</p>'; }); return; }
+  if(run!==_anRun) return;
+  const cur=computeWorldDiscoveries(m.year);
+  const min=wsYearBounds().min,can=min!=null&&min<m.year;
+  const before={}; WS_MAPS.forEach(mp=>{ before[mp.key]=new Set(); });
+  if(can) for(let y=min;y<m.year;y++){ const r=computeWorldDiscoveries(y); WS_MAPS.forEach(mp=>r[mp.key].countries.forEach((_,iso)=>before[mp.key].add(iso))); }
+  WS_MAPS.forEach(mp=>{
+    const host=document.querySelector(`#anSections [data-an-map="${mp.key}"] .an-disc-body`); if(!host) return;
+    const r=cur[mp.key],lect=r.located+r.unlocated;
+    const list=[...r.countries.entries()].map(([iso,n])=>({iso,n,name:(_wsIsoToName&&_wsIsoToName.get(iso))||iso,fresh:can&&!before[mp.key].has(iso)}))
+      .sort((a,b)=>b.n-a.n||a.name.localeCompare(b.name,'es'));
+    const cov=`<p class="an-muted">${r.located} de ${lect} ${lect===1?'lectura':'lecturas'} con país localizado.</p>`;
+    const reg=r.regions.size?`<p class="an-muted">Regiones sin país concreto: ${escHtml([...r.regions.keys()].join(', '))}.</p>`:'';
+    if(!list.length){ host.innerHTML=`<p class="an-muted">Ninguna lectura de este año tiene país localizado.</p>${cov}${reg}`; return; }
+    const nNew=list.filter(x=>x.fresh).length;
+    host.innerHTML=`<div class="an-big">${list.length}</div><p class="an-big-l">${list.length===1?'país':'países'}${can?` · ${nNew} ${nNew===1?'nuevo':'nuevos'} en tu historial`:''}</p>${anChips(list,12)}${cov}${reg}`;
+  });
+}
+
+/* 4 · Mis tendencias (libros únicos; una relectura no duplica etiquetas) */
+function anTrendsHTML(m){
+  const defs=[['genres','Géneros'],['tropes','Tropos'],['dinamicas','Dinámicas']],cols=[];
+  defs.forEach(([f,label])=>{
+    const counts=new Map(); let withData=0;
+    m.books.forEach(u=>{
+      if(!u.book) return;
+      const set=new Set(wsToList(u.book[f]).map(x=>x.trim()));
+      if(!set.size) return;
+      withData++; set.forEach(v=>counts.set(v,(counts.get(v)||0)+1));
+    });
+    if(withData<AN_MIN_RANK) return;
+    const arr=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'es'));
+    const top=arr.slice(0,5),max=top[0][1],tie=arr.length>5&&arr[4][1]===arr[5][1];
+    cols.push(`<article class="an-trend" data-f="${f}"><h4 class="an-disc-h">Top 5 ${label.toLowerCase()}</h4><ul class="an-ranks">${top.map(([l,c])=>`<li class="an-rank"><span class="an-rank-l">${escHtml(l)}</span><span class="an-rank-track"><span class="an-rank-fill" style="width:${Math.max(6,c/max*100)}%"></span></span><span class="an-rank-n">${c}</span></li>`).join('')}</ul><p class="an-muted">${withData} de ${m.books.length} libros con datos${tie?' · hay empates en el corte y se ordenan alfabéticamente':''}.</p></article>`);
+  });
+  if(!cols.length) return '';
+  return anSection('tendencias','Mis tendencias','Cuenta libros distintos, no lecturas.',`<div class="an-trends" style="--an-cols:${cols.length}">${cols.join('')}</div>`);
+}
+
+/* 5 · Mis momentos (primera/última lectura fiables, más largo/corto) */
+function anMomentCard(label,books,meta,it){
+  const dead=books.length===1&&!books[0].book;
+  if(books.length>1){
+    const names=books.slice(0,3).map(u=>escHtml(u.book.title||'')).join(' · ')+(books.length>3?` y ${books.length-3} más`:'');
+    return `<article class="an-mcard"><span class="an-mlabel">${label} (empate)</span><div class="an-mopen is-static"><span class="an-mtext"><span class="an-mtitle">${names}</span><span class="an-mmeta">${meta}</span></span></div></article>`;
+  }
+  const u=books[0],b=u.book,tag=it&&it.entry.isReread===true?' · Relectura':'';
+  const inner=`${anCoverHTML(b,dead?'an-cv-missing':'')}<span class="an-mtext"><span class="an-mtitle">${dead?'Libro no disponible en el catálogo':escHtml(b.title||'')}</span>${!dead&&wsToList(b.authors).length?`<span class="an-mmeta">${escHtml(wsToList(b.authors).join(', '))}</span>`:''}<span class="an-mmeta an-mdate">${escHtml(meta)}${tag}</span></span>`;
+  return `<article class="an-mcard"><span class="an-mlabel">${label}</span>${dead?`<div class="an-mopen is-static">${inner}</div>`:`<button type="button" class="an-mopen" data-book="${escHtml(u.bookId)}">${inner}</button>`}</article>`;
+}
+function anMomentsHTML(m){
+  const cards=[],ids=new Set();
+  const uOf=it=>m.books.find(u=>u.bookId===it.entry.bookId);
+  if(m.items.length>=2){
+    const sp=m.items.map(it=>_rcSpan(it.entry));
+    const fi=sp.findIndex((s,i)=>sp.every((t,j)=>i===j||s[1]<t[0]));   // termina antes de que empiece cualquier otra
+    const la=sp.findIndex((s,i)=>sp.every((t,j)=>i===j||s[0]>t[1]));   // empieza después de que termine cualquier otra
+    if(fi>=0){ const it=m.items[fi]; cards.push(anMomentCard('Primera lectura del año',[uOf(it)],it.entry.formattedDate,it)); ids.add(it.entry.bookId); }
+    if(la>=0){ const it=m.items[la]; cards.push(anMomentCard('Última lectura del año',[uOf(it)],it.entry.formattedDate,it)); ids.add(it.entry.bookId); }
+  }
+  const wp=m.books.filter(u=>anPagesOf(u.book)!=null);
+  if(wp.length>=2){
+    const pg=wp.map(u=>anPagesOf(u.book)),mx=Math.max(...pg),mn=Math.min(...pg);
+    if(mx!==mn){
+      const lg=wp.filter(u=>anPagesOf(u.book)===mx),sh=wp.filter(u=>anPagesOf(u.book)===mn);
+      cards.push(anMomentCard('Libro más largo',lg,`${anNum(mx)} páginas`)); lg.forEach(u=>ids.add(u.bookId));
+      cards.push(anMomentCard('Libro más corto',sh,`${anNum(mn)} páginas`)); sh.forEach(u=>ids.add(u.bookId));
+    }
+  }
+  if(ids.size<2) return '';
+  return anSection('momentos','Mis momentos','Las fechas parciales no inventan un día: si el orden no es seguro, esa tarjeta no aparece.',`<div class="an-moments">${cards.join('')}</div>`);
+}
+
+/* 6 · Mis favoritos (valoración personal ACTUAL de cada libro; los empates se muestran juntos) */
+function anFavoritesHTML(m){
+  const rated=m.books.filter(u=>u.book&&Number(myRatings[u.book.id])>0).map(u=>({u,score:Number(myRatings[u.book.id])}));
+  const sub='Muestra la valoración actual de cada libro, no la que le diste ese año.';
+  if(!rated.length) return anSection('favoritos','Mis favoritos',sub,'<p class="an-plain">Aún no has valorado libros de este año.</p>');
+  rated.sort((a,b)=>b.score-a.score);
+  rated.forEach((r,i)=>{ r.rank=i>0&&r.score===rated[i-1].score?rated[i-1].rank:i+1; });
+  const cut=n=>{ n=Math.min(n,rated.length); while(n<rated.length&&rated[n].rank===rated[n-1].rank) n++; return n; };   // nunca parte un empate
+  const p=cut(3),q=cut(p+5);
+  const info=(r)=>{ const b=r.u.book; return {b,au:wsToList(b.authors).join(', ')}; };
+  const pod=rated.slice(0,p).map(r=>{
+    const {b,au}=info(r);
+    return `<li class="an-pod${r.rank===1?' an-pod-1':''}"><button type="button" class="an-podb" data-book="${escHtml(r.u.bookId)}"><span class="an-pod-rank">${r.rank}.º</span>${anCoverHTML(b)}<span class="an-pod-t">${escHtml(b.title||'')}</span>${au?`<span class="an-pod-a">${escHtml(au)}</span>`:''}<span class="an-pod-r">${anStarsHTML(r.score)}<span class="an-pod-s">${anNum(r.score)}/5</span></span>${anSpicyHTML(b.id)}</button></li>`;
+  }).join('');
+  const rest=rated.slice(p,q).map(r=>{
+    const {b,au}=info(r);
+    return `<li><button type="button" class="an-favrow" data-book="${escHtml(r.u.bookId)}"><span class="an-favrank">${r.rank}.º</span>${anCoverHTML(b)}<span class="an-favtext"><span class="an-favt">${escHtml(b.title||'')}</span>${au?`<span class="an-favmeta">${escHtml(au)}</span>`:''}${anSpicyHTML(b.id)}</span><span class="an-pod-r">${anStarsHTML(r.score)}</span></button></li>`;
+  }).join('');
+  const more=rated.length-q;
+  return anSection('favoritos','Mis favoritos',sub,`<ol class="an-podium">${pod}</ol>${rest?`<ol class="an-favlist">${rest}</ol>`:''}${more>0?`<p class="an-muted">Y ${more} ${more===1?'libro más':'libros más'} con valoración.</p>`:''}`);
+}
+
+function anRender(){
+  const run=++_anRun,m=anBuild(anYear);
+  const title=document.getElementById('anTitle'),lead=document.getElementById('anLead'),empty=document.getElementById('anEmpty');
+  const sum=document.getElementById('anSummary'),notes=document.getElementById('anNotes'),host=document.getElementById('anSections');
+  if(!title||!host) return;
+  title.innerHTML=`Mi año sapphic <span class="an-title-year">${anYear}</span>`;
+  if(!m.items.length){
+    empty.textContent=`Todavía no hay lecturas registradas en ${anYear}.`;
+    empty.hidden=false; sum.hidden=true; notes.hidden=true; lead.textContent=''; host.innerHTML='';
+    return;
+  }
+  empty.hidden=true;
+  anRenderHeader(m);
+  host.innerHTML=[anMonthsHTML(m),anDiscoveriesHTML(m),anTrendsHTML(m),anMomentsHTML(m),anFavoritesHTML(m)].join('');
+  anFillCountries(m,run);
+}
+
+function anBind(){
+  if(_anBound) return; _anBound=true;
+  document.getElementById('anioView').addEventListener('click',ev=>{
+    const mb=ev.target.closest('button.an-mbtn[data-month]');
+    if(mb){
+      const li=mb.closest('.an-mrow'),panel=li.querySelector('.an-mpanel'),willOpen=panel.hidden;
+      document.querySelectorAll('#anSections .an-mrow.is-open').forEach(x=>{ x.classList.remove('is-open'); x.querySelector('.an-mpanel').hidden=true; x.querySelector('.an-mbtn').setAttribute('aria-expanded','false'); });
+      if(willOpen){ li.classList.add('is-open'); panel.hidden=false; mb.setAttribute('aria-expanded','true'); }
+      return;
+    }
+    const bk=ev.target.closest('[data-book]'); if(bk){ openBookPage(bk.dataset.book); return; }
+    const go=ev.target.closest('[data-go]');
+    if(go){
+      if(go.dataset.go==='recorrido'){ rcYear=anYear; openRecorridoModal(); }
+      else if(go.dataset.go==='mundo'){ wsYear=anYear; openMundoModal(); }
+    }
+  });
+}
+
+function openAnioModal(silent){
+  if(!currentUser){ openAuthModal(); return; }
+  _anPrevState={
+    home:document.body.classList.contains('home-active'),
+    shelf:document.getElementById('shelfView').classList.contains('active'),
+    shelfFilter:shelfFilter
+  };
+  document.getElementById('homeView').classList.remove('active');
+  document.body.classList.remove('home-active');
+  document.getElementById('homeNavBtn')?.classList.remove('active');
+  document.getElementById('shelfView').classList.remove('active');
+  document.getElementById('logrosView').classList.remove('active');
+  document.getElementById('statsView').classList.remove('active');
+  document.getElementById('cartasView').classList.remove('active');
+  document.getElementById('mundoView').classList.remove('active');
+  document.getElementById('recorridoView').classList.remove('active');
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
+  document.getElementById('anioView').classList.add('active');
+  window.scrollTo({top:0});
+  if(!silent) viewUrlSync('anio',true);
+  anBind();
+  anFillYearSelect();
+  anRender();
+}
+
+function closeAnioModal(silent){
+  document.getElementById('anioView').classList.remove('active');
+  const prev=_anPrevState;
   if(!silent) viewUrlClear(true);
   if(prev?.home){ showHome(); }
   else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
@@ -10694,6 +11184,7 @@ async function openCartasModal(silent){
   document.getElementById('statsView').classList.remove('active');
   document.getElementById('mundoView').classList.remove('active');
   document.getElementById('recorridoView').classList.remove('active');
+  document.getElementById('anioView').classList.remove('active');
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('cartasView').classList.add('active');
   window.scrollTo({top:0});
