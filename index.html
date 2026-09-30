@@ -3341,6 +3341,10 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
    nunca los ocultaban las vistas .active existentes. Mismo patrón que
    body.home-active ya usa para ocultar estos dos elementos. */
 body.bp-active .hero,body.bp-active .main{display:none!important}
+/* Vistas personales (Mi estantería, logros, estadísticas, mundo, recorrido, año, cartas):
+   ocultar solo la cabecera global .hero ("Nuestra estantería" + Libros/Valoraciones).
+   Se apaga sola al cerrar la vista, porque closeAllSpecialViews() quita .active. */
+body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.active,#recorridoView.active,#anioView.active,#cartasView.active) .hero{display:none!important}
 .bp-wrap{max-width:1040px;margin:0 auto}
 .bp-back{background:none;border:none;color:var(--muted);font-size:12.5px;font-family:var(--font-body);cursor:pointer;padding:6px 4px;margin-bottom:1.2rem;display:inline-flex;align-items:center;gap:.4em;transition:color .15s}
 .bp-back:hover{color:var(--accent2)}
