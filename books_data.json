@@ -1767,6 +1767,7 @@
     "synopsis": "—Khun Noey, ¿Qué tal mi nueva receta de pan?\nPuede que al principio empezáramos con el pie izquierdo, pero esperaba que nos volviéramos más cercanas y trabajaramos juntas sin problemas.\nNo tenía ni idea de si era porque nos habíamos vuelto cercanas o no, pero el corazón se me aceleraba.\nTenía que recordarme que era amable conmigo simplemente porque era su trabajo. Que nunca debía pensar que había algo más.",
     "pages": 777,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "ViewMim"
     ],
@@ -1797,6 +1798,30 @@
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chonburi",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -1831,13 +1856,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777216114475_m587p",
@@ -4679,6 +4703,8 @@
     "synopsis": "Continuación de Be my Baby!",
     "pages": 217,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -4687,17 +4713,41 @@
       "Femme"
     ],
     "characters": [
-      "Empresaria"
+      "Empresaria",
+      "Estudiante"
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Femme × Femme"
     ],
     "tropes": [
-      "Workplace Romance"
+      "Workplace Romance",
+      "Age Gap"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chiang Mai",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Conflictos Familiares",
@@ -4718,13 +4768,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777287202383_ckcqn",
@@ -5052,6 +5101,7 @@
     "synopsis": "Cuando la economía se desploma, el sueño de Jane de abrir su panadería se desvanece. Desesperada, recurre a una aplicación que promete bendiciones a cambio de puntos. Pero un fallo técnico invoca una \"bendición\" inesperada que cae en sus manos: un ángel de dulce rostro llamado Zee.\n\nZee tiene una sonrisa amable y una voz celestial, pero en el mundo terrenal es inútil. Decidida a que su inversión valga la pena, Jane investiga quién fue Zee cuando aún era humana. Cada pista revela un pasado complejo y el misterio que rodea su muerte.\n\nEn medio de secretos y panes recién horneados, surge un vínculo que desafía las leyes del cielo. ¿Adónde las llevará este destino compartido?",
     "pages": 257,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -5064,7 +5114,8 @@
       "Soft Butch"
     ],
     "characters": [
-      "Ángel"
+      "Ángel",
+      "Empresaria"
     ],
     "dinamicas": [
       "Soft Butch × Femme"
@@ -5073,8 +5124,29 @@
       "Forbidden Love",
       "Slow Burn"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -5097,13 +5169,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777358896886_eb66d",
@@ -5480,24 +5551,42 @@
     "synopsis": "Dara y Aom estaban unidos por el hilo de la vida. Cuando se encontraron en la playa, algo desconocido despertó en su interior. Durante siete días, se cruzaron en diferentes lugares—cada encuentro desbloqueaba recuerdos de una vida pasada que una vez compartieron.\n\nExiste una teoría que dice que el tiempo es infinito—que la muerte puede no llevarnos hacia adelante, sino hacia atrás, a otra vida décadas antes. Una oportunidad para revivir, redescubrir y volver a aprender.\n\n\"De todas las personas del mundo, solo te necesito a ti.\"\n\nNuestras almas están unidas eternamente, una bendición poco común. Cuanto más te miro a los ojos, más crece mi amor.\n\nNo importa cuántas vidas vivas o cuántos rostros lleves, siempre te encontraré.\n\nSomos como imanes—destinados a reencontrarnos, una y otra vez.\n\nY sabiendo eso, puedo enfrentar cualquier cosa… siempre que tenga tu mano entre las mías.",
     "pages": 77,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Reencarnación"
+    ],
     "identidades": [
       "Masc",
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Cajera",
+      "Peluquera",
+      "Estilista"
+    ],
     "dinamicas": [
       "Masc × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Slow Burn"
+    ],
     "edad": [
       "New Adult (18–24)"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [],
+    "epoca": "Principios de los 2000",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -5530,13 +5619,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777359863181_h3pnt",
@@ -6549,6 +6637,7 @@
     "synopsis": "Soy Bow, una persona normal, reservada y con una vida sin demasiados colores. Mi vecina Arpo, que me ha molestado desde que éramos niñas, me confesó su amor… y poco después se transformó en una gata persa pegajosa y llorona. Mis padres la encuentran adorable. Yo no. ¿Por qué nadie ve raro que una niña pida a gritos otra hermana?\n\nEntonces, un día, Arpo dijo: «Creo que ya no te quiero». Y algo en mí se rompió.\nLa chica que siempre decía amarme dejó de hacerlo. La que estaba obsesionada conmigo… ya no lo estaba.\n\nEsa sensación de vacío, de abandono, como quedar sola en una isla en medio del océano… ¿qué es?\n\nNo. Siempre me has querido. Solo a mí.\nNo permitiré que dejes de hacerlo.\n\nPorque Arpo…\nme perteneces.",
     "pages": 354,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -6567,6 +6656,30 @@
       "New Adult (18–24)"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Ayutthaya",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -6590,13 +6703,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777383997409_aimyh",
@@ -7410,6 +7522,7 @@
     "synopsis": "Fa acaba de cumplir su sueño en Francia: ser perfumista. Pero al volver, su maleta es intercambiada por la de una desconocida. Lo que empieza como un misterioso juego de detectives por teléfono, donde ambas ocultan quiénes son, despierta en Fa una conexión profunda e inexplicable.\n\nLa situación estalla cuando su mejor amigo le presenta a su futura esposa. Fa, que no creía en el amor a primera vista, siente una atracción instantánea y devastadora por ella. La crisis es total: se siente atraída por dos mujeres, sin saber que la dueña de la maleta y la prometida de su amigo son la misma persona. Un romance sáfico de enredos, secretos y aromas, donde el corazón ignora cualquier plan previsto.\nGracias a Ana Villa por la traducción",
     "pages": 448,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -7421,7 +7534,9 @@
       "Masc",
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Guardaespaldas"
+    ],
     "dinamicas": [
       "Masc × Femme"
     ],
@@ -7430,6 +7545,23 @@
       "New Adult (18–24)"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -7458,13 +7590,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777622722632_en6ou",
@@ -7523,9 +7654,9 @@
         "lugares": []
       }
     ],
-    "epoca": null,
+    "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [],
     "idioma_original": "Tailandés",
     "pais_origen": [
@@ -25431,12 +25562,16 @@
     "synopsis": "Iona, una bruja novata con un poder inexplicable, llega al elitista Colegio Lysander, donde su magia anómala despierta sospechas y rivalidades.\n\nAriadna, heredera de una ilustre estirpe, ve en Iona una amenaza a su posición y a su misión: ganar el colgante de Morgan Le Fay en las pruebas arcanas de primavera. Pero cuanto más intenta derrotarla, más difícil se vuelve ignorar lo que realmente empieza a sentir.\n\nEntre rivalidad, magia y deseo, ambas descubrirán que el mayor poder quizá no esté en vencer… sino en rendirse al corazón.",
     "pages": 499,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Romance"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Magia"
+    ],
     "identidades": [],
     "characters": [
       "Bruja",
@@ -25444,20 +25579,48 @@
     ],
     "dinamicas": [
       "Femme × Femme",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Feroz × Tierna",
+      "Fría × Cálida",
+      "Ice Queen × Sunshine",
+      "Protectora × Delicada",
+      "Seria × Divertida",
+      "Rich × Poor"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Forced Proximity",
-      "Destined Lovers"
+      "Destined Lovers",
+      "Jealousy Trope",
+      "Love Triangle",
+      "Opposites Attract"
     ],
     "edad": [
-      "Young Adult (15–18)"
+      "New Adult (18–24)"
     ],
     "pais_cultura": [
-      "Ambientación europea"
+      "Ambientación europea",
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Cornwall",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -25469,14 +25632,13 @@
     "safi_categories": [
       "2026"
     ],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
       "Enemies to Lovers"
-    ],
-    "pais_origen": [
-      "Estados Unidos"
     ]
   },
   {
@@ -37647,6 +37809,7 @@
     "synopsis": "Junio de 1852.\nLa hija de un predicador con un secreto.\nUna forajida rumbo a la horca.\nUn amor que desafía desiertos, océanos y destinos.\n\nCuando Abby Proctor es secuestrada de un tren en pleno desierto mientras huye hacia una nueva vida en California, se promete escapar. Ha dejado atrás Iowa y una existencia de opresión, y no piensa volver a ser prisionera… menos aún de Joey “JT London” Taylor, una infame forajida tan descarada como peligrosamente fascinante.\n\nMientras planea su huida, Abby descubre que su secuestro es parte de algo mucho mayor. Y que Joey quizá no sea el monstruo que todos creen. Con secretos entrelazados y sentimientos imposibles de ignorar, Abby deberá elegir entre una vida segura y vacía o confiar en una mujer condenada… y en el amor que podría cambiarlo todo.",
     "pages": 514,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Histórica",
@@ -37658,7 +37821,10 @@
       "Femme",
       "Masc"
     ],
-    "characters": [],
+    "characters": [
+      "Profesora",
+      "Forajida"
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Masc × Femme"
@@ -37674,7 +37840,40 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Iowa",
+        "ciudad": "Stillwater",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Utah",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -37686,13 +37885,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780152606902_ozj51",
@@ -61676,6 +61874,7 @@
     "synopsis": "Un amor sáfico nacido en la adversidad y unido por lazos de sangre… Un mal latente que amenaza con destrozar el mundo… Un cuento mágico de destino maldito y caos implacable.\n\nIona lucha por la armonía en tiempos de discordia absoluta.\nAhora imbuida de una magia abundante, se le brinda una oportunidad única para reformar la jerarquía corrupta que ha llegado a despreciar, pero los grandes aquelarres se aferran a la tradición y amenazan con obstaculizar su labor. Debe aprender a controlar su poder y cumplir con las abrumadoras expectativas de los demás, o arriesgarse a perder todo lo que ama.\n\nAriadne está atormentada por los horrores de su pasado.\nUna parte de ella siempre supo que su familia no la dejaría ir tan fácilmente, a pesar de sus amenazas de exilio. Cuando se revelan secretos ancestrales largamente ocultos, su propia percepción de la libertad se ve alterada para siempre. Los rencores deben dejarse de lado cuando se enfrenta a un enemigo común, un ajuste de cuentas que supera sus peores pesadillas.\n\nCuando un adversario malévolo siembra el caos entre los inocentes, Iona es llamada a defenderlos.\nEl colgante de Morgan Le Faye la identifica como una futura líder de su pueblo, pero tras solo un año de estudio, se encuentra en clara desventaja en sus esfuerzos por preservar la paz. Ariadne busca ayudarla y jura protegerla, pero cuando el destino parece volverse en su contra, sus difíciles circunstancias ponen a prueba su vínculo eterno. Las lealtades se ponen a prueba, los misterios se desvelan y el tiempo se agota rápidamente.",
     "pages": 566,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Fantasía",
@@ -61703,7 +61902,87 @@
       "New Adult (18–24)"
     ],
     "pais_cultura": [
-      "Ambientación europea"
+      "Ambientación europea",
+      "Reino Unido",
+      "Nepal",
+      "Japón",
+      "Brasil",
+      "Francia",
+      "Turquía",
+      "Rusia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Lyon",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Brasil",
+        "region": null,
+        "ciudad": "Rio Paraná",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Cornwall",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Grecia",
+        "region": null,
+        "ciudad": "Thessaly",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Turquía",
+        "region": null,
+        "ciudad": "Constantinopla",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Nepal",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Rusia",
+        "region": null,
+        "ciudad": "Moscú",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
@@ -61716,13 +61995,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1785593657712_i75l3",

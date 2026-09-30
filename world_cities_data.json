@@ -102,6 +102,117 @@
         "Kita-Kyushu",
         "Kitakyūshū"
       ]
+    },
+    {
+      "id": "th-ayutthaya",
+      "ciudad": "Ayutthaya",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Phra Nakhon Si Ayutthaya",
+      "lat": 14.353,
+      "lon": 100.568,
+      "x": 779.9,
+      "y": 208.2,
+      "aliases": [
+        "Phra Nakhon Si Ayutthaya"
+      ]
+    },
+    {
+      "id": "th-chonburi",
+      "ciudad": "Chonburi",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Chonburi",
+      "lat": 13.361,
+      "lon": 100.984,
+      "x": 781.5,
+      "y": 211.4,
+      "aliases": [
+        "Chon Buri"
+      ]
+    },
+    {
+      "id": "th-phop-phra",
+      "ciudad": "Phop Phra",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Tak",
+      "lat": 16.3,
+      "lon": 98.68,
+      "x": 773.9,
+      "y": 201.8,
+      "aliases": []
+    },
+    {
+      "id": "th-sam-ngao",
+      "ciudad": "Sam Ngao",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Tak",
+      "lat": 17.297,
+      "lon": 99.0,
+      "x": 774.4,
+      "y": 198.6,
+      "aliases": []
+    },
+    {
+      "id": "fr-lyon",
+      "ciudad": "Lyon",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Auvernia-Ródano-Alpes",
+      "lat": 45.764,
+      "lon": 4.836,
+      "x": 512.1,
+      "y": 105.6,
+      "aliases": [
+        "Lyón"
+      ]
+    },
+    {
+      "id": "fr-paris",
+      "ciudad": "París",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Isla de Francia",
+      "lat": 48.857,
+      "lon": 2.352,
+      "x": 505.8,
+      "y": 95.8,
+      "aliases": [
+        "Paris"
+      ]
+    },
+    {
+      "id": "ru-moscu",
+      "ciudad": "Moscú",
+      "pais": "Rusia",
+      "pais_iso": "RU",
+      "region": null,
+      "lat": 55.756,
+      "lon": 37.617,
+      "x": 589.2,
+      "y": 74.3,
+      "aliases": [
+        "Moscow",
+        "Moskva"
+      ]
+    },
+    {
+      "id": "tr-estambul",
+      "ciudad": "Estambul",
+      "pais": "Turquía",
+      "pais_iso": "TR",
+      "region": "Estambul",
+      "lat": 41.008,
+      "lon": 28.978,
+      "x": 574.7,
+      "y": 121.0,
+      "aliases": [
+        "Constantinopla",
+        "Istanbul",
+        "Bizancio"
+      ]
     }
   ],
   "pendientes_verificacion": [
