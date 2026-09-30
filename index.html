@@ -1390,8 +1390,8 @@ button.rc-stop{cursor:pointer}
 /* Capa de ciudades (Fase 5.2) */
 .ws-card[data-map="cultura"]{position:relative}
 .ws-cities{pointer-events:none}
-.ws-city{fill:var(--accent2);stroke:#fff;stroke-width:1.4;vector-effect:non-scaling-stroke;pointer-events:none;transition:fill .15s}
-.ws-city.is-sel{fill:#fff;stroke:var(--accent2);stroke-width:2}
+.ws-city{fill:var(--accent2);stroke:#fff;stroke-width:.9;vector-effect:non-scaling-stroke;pointer-events:none;transition:fill .15s}
+.ws-city.is-sel{fill:#fff;stroke:var(--accent2);stroke-width:1.6}
 .ws-city-hit{fill:transparent;stroke:none;pointer-events:all;cursor:pointer}
 .ws-city-tip{z-index:4}
 .ws-city-tip.is-pinned{pointer-events:auto}
@@ -1401,6 +1401,35 @@ button.rc-stop{cursor:pointer}
 .ws-city-back{justify-content:flex-start;margin-top:4px;padding:4px 0;color:var(--muted);font-size:11.5px}
 .ws-city-tip.is-pinned .ws-city-row,.ws-city-tip.is-pinned .ws-city-back{min-height:34px;cursor:pointer}
 .ws-city-tip.is-pinned .ws-city-row:hover,.ws-city-tip.is-pinned .ws-city-row:focus-visible{background:var(--accent-soft)}
+/* Fase 5.3 — selección de país + zoom (solo mapa «cultura»). --ws-k = ancho del viewBox / ancho del mapa completo:
+   con k=1 (vista mundial) todo queda idéntico a antes; con zoom, los trazos se compensan para no engordar. */
+.ws-card[data-map="cultura"] .ws-c{stroke-width:calc(.35*var(--ws-k,1))}
+.ws-card[data-map="cultura"] .ws-c.is-sel{stroke-width:calc(1*var(--ws-k,1))}
+.ws-card[data-map="cultura"] .ws-dot.is-found{stroke-width:calc(.5*var(--ws-k,1))}
+@media (hover:hover){.ws-card[data-map="cultura"] .ws-c.is-found:hover{stroke-width:calc(.9*var(--ws-k,1))}}
+.ws-card[data-map="cultura"] .ws-c{transition:fill .25s,opacity .25s}
+.ws-card[data-map="cultura"] .ws-svg.has-sel .ws-c:not(.is-active){opacity:.45}
+.ws-card[data-map="cultura"] .ws-c.is-active{stroke:#fff;stroke-width:calc(1.3*var(--ws-k,1));opacity:1}
+.ws-card[data-map="cultura"] .ws-c.is-active:not(.is-found){fill:rgba(180,120,200,.35)}
+.ws-card[data-map="cultura"] .ws-dot.is-active{stroke:#fff}
+.ws-alt-btn{display:flex;justify-content:space-between;align-items:center;gap:.6rem;width:100%;min-height:32px;padding:0;background:none;border:0;border-radius:6px;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.ws-alt-btn .ws-alt-name{color:var(--text);white-space:normal}
+.ws-alt-btn:hover .ws-alt-name,.ws-alt-btn[aria-pressed="true"] .ws-alt-name{color:var(--accent2)}
+.ws-alt-btn[aria-pressed="true"] .ws-alt-name{font-weight:600}
+.ws-alt-btn:focus-visible,.ws-cp-back:focus-visible,.ws-cp-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ws-cp{margin-top:.6rem}
+.ws-cp:empty{display:none}
+.ws-cp-head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.ws-cp-back{min-height:36px;padding:6px 14px;border-radius:30px;border:1px solid var(--border2);background:var(--accent-soft);color:var(--accent2);font:inherit;font-size:13px;cursor:pointer}
+.ws-cp-title{margin:0;font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--text)}
+.ws-cp-list{list-style:none;margin:.5rem 0 0;padding:0;max-height:min(42vh,280px);overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--border)}
+.ws-cp-row{display:flex;align-items:center;gap:.35rem;width:100%;min-height:40px;padding:6px 4px;background:none;border:0;border-bottom:1px solid var(--border);border-radius:0;font:inherit;font-size:13.5px;color:var(--text);text-align:left;cursor:pointer}
+.ws-cp-row b{font-weight:600}
+.ws-cp-row span{color:var(--muted)}
+.ws-cp-row:hover,.ws-cp-row.is-current{background:var(--accent-soft)}
+.ws-cp-none{margin:.5rem 0 0;font-size:12px;color:var(--muted);line-height:1.5}
+@media (max-width:640px){.ws-cp{padding:0 .3rem}}
+@media (prefers-reduced-motion:reduce){.ws-card[data-map="cultura"] .ws-c{transition:none}}
 .ws-info{min-height:1.4em;margin-top:.6rem;font-size:12px;color:var(--muted)}
 .ws-info b{color:var(--text);font-weight:600}
 .ws-counters{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:.5rem;font-size:13px;color:var(--muted)}
@@ -11447,6 +11476,7 @@ function wsFillYearSelect(){
 }
 function wsSetYear(v){
   const y=parseInt(v,10); if(isNaN(y)) return;
+  _wsKeepYearSel=true; // Fase 5.3: el país seleccionado sobrevive al cambio de año
   wsYear=y; renderWorldSapphic();
 }
 
@@ -11585,7 +11615,10 @@ function renderWorldSapphic(){
   if(!_wsBuilt) wsBuild();
   _wsResult=computeWorldDiscoveries(wsYear);
   wsPaint();
-  wsRenderCities(); // Fase 5.2: capa de ciudades (asíncrona, aislada)
+  if(!_wsKeepYearSel) _wsCountrySel=null; // entrar/reintentar = vista mundial; solo el selector de año conserva el país
+  _wsKeepYearSel=false;
+  wsCountryInit();  // Fase 5.3: listeners de selección (una sola vez por SVG)
+  wsRenderCities(); // capa de ciudades + selección/zoom (asíncrona, aislada)
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -11600,10 +11633,15 @@ function renderWorldSapphic(){
 const WS_CITIES_URL='world_cities_data.json';
 const WS_CITY_MAP='cultura';        // único mapa que recibe la capa
 const WS_CITY_ZONE_PX=12;           // radio (px de pantalla) de la zona táctil: ciudades dentro de él se listan juntas
-const WS_CITY_MARK_PX=4;            // radio visual del marcador (px de pantalla)
+const WS_CITY_MARK_PX=2.6;          // radio visual del marcador (px de pantalla): pequeño y discreto
+const WS_ZOOM_MIN_W=100;            // ancho mínimo visible del viewBox al hacer zoom (≈10x): tope de acercamiento
+const WS_ZOOM_PAD=0.25;             // margen proporcional alrededor de la extensión de las ciudades
+const WS_ZOOM_PAD_MIN=10;           // margen mínimo (unidades del viewBox)
+const WS_ZOOM_MS=450;               // duración de la transición de zoom (0 con prefers-reduced-motion)
 const WS_CITY_RETRY_MS=30000;       // espera antes de reintentar si el catálogo falló
 let _wsCitiesPromise=null,_wsCitiesFailAt=0,_wsCityIndex=null,_wsCityResult=null;
-let _wsCityUI={tip:null,pinned:false,zone:[],sel:null,cx:0,cy:0,touchAt:0,ro:null,docBound:false};
+let _wsCityUI={tip:null,pinned:false,zone:[],sel:null,cx:0,cy:0,touchAt:0,ro:null,docBound:false,shown:[]};
+let _wsCountrySel=null,_wsKeepYearSel=false,_wsSelTouchAt=0,_wsSelDocBound=false,_wsViewRaf=0; // Fase 5.3: país seleccionado (ISO), independiente del tooltip
 
 // Como wsNorm, pero además unifica guiones y apóstrofos ("Kita-Kyushu" = "Kita Kyushu")
 function wsCityNorm(s){ return wsNorm(String(s).replace(/[-‐‑–'’`]/g,' ')); }
@@ -11676,42 +11714,52 @@ function computeCityDiscoveries(year){
 function wsCityLecturas(n){ return n+' lectura'+(n===1?'':'s'); }
 function wsCitySvg(){ const w=document.getElementById('wsWrap_'+WS_CITY_MAP); return w?w.querySelector('svg'):null; }
 
-// Orquestador: nunca lanza. Si algo falla, simplemente no hay capa de ciudades.
+// Orquestador: nunca lanza. Si algo falla, simplemente no hay ciudades (la selección de país sigue funcionando).
 function wsRenderCities(){
   const yr=wsYear;
   wsLoadCities().then(()=>{
     if(yr!==wsYear||!_wsBuilt) return;
     _wsCityResult=computeCityDiscoveries(yr);
-    wsPaintCities();
-  }).catch(e=>{ wsClearCities(); if(e&&e.message) console.warn('[Mi mundo] ciudades:',e.message); });
+    wsCountryRefresh();
+  }).catch(e=>{
+    if(yr!==wsYear||!_wsBuilt) return;
+    _wsCityResult=null; wsClearCities(); wsCountryRefresh();
+    if(e&&e.message) console.warn('[Mi mundo] ciudades:',e.message);
+  });
 }
 
 function wsClearCities(){
   wsCityHideTip();
+  _wsCityUI.shown=[];
   const svg=wsCitySvg(); if(svg){ const g=svg.querySelector('.ws-cities'); if(g) g.remove(); }
   ['wsCityCnt','wsCityAlt'].forEach(id=>{ const el=document.getElementById(id); if(el) el.remove(); });
   if(_wsCityUI.ro){ _wsCityUI.ro.disconnect(); _wsCityUI.ro=null; }
 }
 
-// Radios en unidades del viewBox según la escala real de pantalla (se recalcula al redimensionar)
+// Radios en unidades del viewBox según la escala real de pantalla (se recalcula al redimensionar y en cada paso de zoom)
 function wsCityApplyScale(){
   const svg=wsCitySvg(),m=svg&&svg.getScreenCTM(); if(!m||!m.a) return;
-  const rm=(WS_CITY_MARK_PX/m.a).toFixed(2),rh=(WS_CITY_ZONE_PX/m.a).toFixed(2);
+  const rm=(WS_CITY_MARK_PX/m.a).toFixed(3),rh=(WS_CITY_ZONE_PX/m.a).toFixed(3);
   svg.querySelectorAll('.ws-city').forEach(el=>el.setAttribute('r',rm));
   svg.querySelectorAll('.ws-city-hit').forEach(el=>el.setAttribute('r',rh));
 }
 
-function wsPaintCities(){
-  const svg=wsCitySvg(),card=document.querySelector('.ws-card[data-map="'+WS_CITY_MAP+'"]'),res=_wsCityResult;
-  if(!svg||!card||!res||!_wsMap||!_wsCityIndex) return;
-  // Seguridad: el catálogo está proyectado sobre un viewBox concreto; si no coincide, no se dibuja
-  if(_wsCityIndex.viewBox&&String(_wsCityIndex.viewBox).trim()!=='0 0 '+_wsMap.w+' '+_wsMap.h){
-    console.warn('[Mi mundo] viewBox del catálogo de ciudades ≠ mapa; capa omitida'); wsClearCities(); return;
-  }
+// El catálogo está proyectado sobre un viewBox concreto; si no coincide con el mapa, no se usa
+function wsCityCatalogOk(){
+  if(!_wsCityIndex||!_wsMap) return false;
+  const vb=_wsCityIndex.viewBox;
+  return !(vb&&String(vb).trim()!=='0 0 '+_wsMap.w+' '+_wsMap.h);
+}
+
+// Dibuja SOLO las ciudades recibidas (las del país seleccionado). Sin lista → no hay capa.
+function wsPaintCities(list){
+  const svg=wsCitySvg(),card=document.querySelector('.ws-card[data-map="'+WS_CITY_MAP+'"]');
+  if(!svg||!card||!_wsMap||!_wsCityIndex) return;
+  if(!wsCityCatalogOk()){ console.warn('[Mi mundo] viewBox del catálogo de ciudades ≠ mapa; capa omitida'); wsClearCities(); return; }
+  if(!Array.isArray(list)||!list.length){ wsClearCities(); return; }
   wsCityHideTip();
-  const list=[...res.cities.values()].sort((a,b)=>String(a.city.pais).localeCompare(String(b.city.pais),'es')||String(a.city.ciudad).localeCompare(String(b.city.ciudad),'es'));
+  _wsCityUI.shown=list;
   let g=svg.querySelector('.ws-cities');
-  if(!list.length){ wsClearCities(); return; }
   const NS='http://www.w3.org/2000/svg';
   if(!g){ g=document.createElementNS(NS,'g'); g.setAttribute('class','ws-cities'); g.setAttribute('aria-hidden','true'); svg.appendChild(g); wsCityBind(g); }
   g.textContent='';
@@ -11729,21 +11777,13 @@ function wsPaintCities(){
     t.addEventListener('click',e=>{ const b=e.target.closest('[data-city]'); if(b) wsCitySelect(b.dataset.city); else if(e.target.closest('[data-back]')) wsCitySelect(null); });
   }
   _wsCityUI.tip=card.querySelector('.ws-city-tip');
-  if(!_wsCityUI.docBound){ _wsCityUI.docBound=true; document.addEventListener('pointerdown',e=>{ if(!e.target.closest||!e.target.closest('.ws-city-tip,.ws-city-hit')) wsCityHideTip(); }); }
-  // Contadores y lista alternativa (accesibilidad)
-  let cnt=document.getElementById('wsCityCnt'),alt=document.getElementById('wsCityAlt');
-  if(!cnt){ cnt=document.createElement('div'); cnt.id='wsCityCnt'; cnt.className='ws-counters'; const ref=document.getElementById('wsCnt_'+WS_CITY_MAP); (ref||card.lastElementChild).insertAdjacentElement('afterend',cnt); }
-  if(!alt){ alt=document.createElement('details'); alt.id='wsCityAlt'; alt.className='ws-alt'; cnt.insertAdjacentElement('afterend',alt); }
-  cnt.innerHTML=`<span><b>${list.length}</b>${list.length===1?'ciudad descubierta':'ciudades descubiertas'}</span><span><b>${res.located}</b>${res.located===1?'lectura con ciudad':'lecturas con ciudad'}</span>`;
-  const open=alt.open;
-  alt.innerHTML=`<summary>Ver lista de ciudades (${list.length})</summary><ul class="ws-alt-list">${list.map(it=>`<li><span class="ws-alt-name">${escHtml(it.city.ciudad)} · ${escHtml(it.city.pais)}</span><span>${wsCityLecturas(it.n)}</span></li>`).join('')}</ul>`;
-  alt.open=open;
+  if(!_wsCityUI.docBound){ _wsCityUI.docBound=true; document.addEventListener('pointerdown',e=>{ if(!e.target.closest||!e.target.closest('.ws-city-tip,.ws-city-hit,.ws-cp-row')) wsCityHideTip(); }); }
 }
 
 /* ── Interacción: ciudades cuya posición en pantalla cae dentro de la zona táctil del puntero ── */
 function wsCityZone(cx,cy){
-  const svg=wsCitySvg(),m=svg&&svg.getScreenCTM(),out=[]; if(!m||!_wsCityResult) return out;
-  _wsCityResult.cities.forEach(it=>{
+  const svg=wsCitySvg(),m=svg&&svg.getScreenCTM(),out=[]; if(!m||!_wsCityUI.shown.length) return out;
+  _wsCityUI.shown.forEach(it=>{
     const d=Math.hypot(m.a*it.city.x+m.e-cx,m.d*it.city.y+m.f-cy);
     if(d<=WS_CITY_ZONE_PX+0.5) out.push(it);
   });
@@ -11807,6 +11847,170 @@ function wsCityBind(g){
     if(Date.now()-_wsCityUI.touchAt<800) return;   // click sintetizado tras un toque: ya gestionado
     wsCityShowTip(e.clientX,e.clientY,true);
   });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Fase 5.3 — SELECCIÓN DE PAÍS + ZOOM DINÁMICO + PANEL DE CIUDADES
+   Estado propio (_wsCountrySel, ISO). No usa el tooltip de países ni ref.selected.
+   Un país es seleccionable si está descubierto (pais_cultura) O tiene alguna ciudad
+   descubierta ese año. El zoom sale SOLO de las coordenadas de las ciudades mostradas.
+   ───────────────────────────────────────────────────────────── */
+function wsCountryCities(iso){
+  const out=[]; if(!iso||!_wsCityResult||!wsCityCatalogOk()) return out;
+  _wsCityResult.cities.forEach(it=>{ if(String(it.city.pais_iso).toUpperCase()===iso) out.push(it); });
+  return out.sort((a,b)=>b.n-a.n||String(a.city.ciudad).localeCompare(String(b.city.ciudad),'es'));
+}
+function wsCountrySelectable(iso){
+  const ref=_wsRefs[WS_CITY_MAP],res=_wsResult[WS_CITY_MAP]; if(!iso||!ref||!ref.byIso.has(iso)) return false;
+  return !!(res&&res.countries.has(iso))||wsCountryCities(iso).length>0;
+}
+
+// Caja del viewBox (x,y,w,h) que encuadra las ciudades; mantiene la proporción del mapa
+function wsZoomBox(cities){
+  const W=_wsMap.w,H=_wsMap.h,ar=W/H;
+  let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+  cities.forEach(c=>{ if(c.x<x0)x0=c.x; if(c.x>x1)x1=c.x; if(c.y<y0)y0=c.y; if(c.y>y1)y1=c.y; });
+  const sx=x1-x0,sy=y1-y0;
+  let w=sx+2*Math.max(WS_ZOOM_PAD_MIN,sx*WS_ZOOM_PAD),h=sy+2*Math.max(WS_ZOOM_PAD_MIN,sy*WS_ZOOM_PAD);
+  if(w/h<ar) w=h*ar; else h=w/ar;
+  if(w<WS_ZOOM_MIN_W){ w=WS_ZOOM_MIN_W; h=w/ar; }
+  if(w>W){ w=W; h=H; }
+  const cx=(x0+x1)/2,cy=(y0+y1)/2;
+  return [Math.min(Math.max(cx-w/2,0),W-w),Math.min(Math.max(cy-h/2,0),H-h),w,h];
+}
+
+function wsViewApply(svg,b){
+  const W=_wsMap.w,k=b[2]/W,f=n=>+n.toFixed(3);
+  svg.setAttribute('viewBox',f(b[0])+' '+f(b[1])+' '+f(b[2])+' '+f(b[3]));
+  svg.style.setProperty('--ws-k',k>=0.9999?'1':k.toFixed(4));
+  // países diminutos: su punto y zona táctil están en unidades del viewBox; se compensan para no crecer con el zoom
+  svg.querySelectorAll('.ws-dot').forEach(el=>el.setAttribute('r',f(3*k)));
+  svg.querySelectorAll('.ws-hit').forEach(el=>el.setAttribute('r',f(7*k)));
+  wsCityApplyScale();
+}
+function wsViewTo(box){
+  const svg=wsCitySvg(); if(!svg||!_wsMap) return;
+  cancelAnimationFrame(_wsViewRaf);
+  const v=svg.viewBox.baseVal,from=[v.x,v.y,v.width,v.height];
+  if(from.every((n,i)=>Math.abs(n-box[i])<0.01)){ wsViewApply(svg,box); return; }
+  if(_prefersReducedMotion()||typeof requestAnimationFrame!=='function'){ wsViewApply(svg,box); return; }
+  const t0=performance.now();
+  const step=now=>{
+    const p=Math.min(1,(now-t0)/WS_ZOOM_MS),e=1-Math.pow(1-p,3);
+    wsViewApply(svg,p>=1?box:from.map((n,i)=>n+(box[i]-n)*e));
+    if(p<1) _wsViewRaf=requestAnimationFrame(step);
+  };
+  _wsViewRaf=requestAnimationFrame(step);
+}
+
+function wsCountryPanel(iso,list){
+  const p=document.getElementById('wsCityPanel'); if(!p) return;
+  if(!iso){ p.textContent=''; return; }
+  const name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso;
+  p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4></div>`+
+    (list.length
+      ?`<ul class="ws-cp-list">${list.map(it=>`<li><button type="button" class="ws-cp-row" data-city="${escHtml(it.city.id)}"><b>${escHtml(it.city.ciudad)}</b><span>· ${wsCityLecturas(it.n)}</span></button></li>`).join('')}</ul>`
+      :`<p class="ws-cp-none">No hay ciudades descubiertas en ${escHtml(name)} en ${wsYear}.</p>`);
+}
+
+// Lista alternativa de países (accesible): botones para los seleccionables, incluidos los descubiertos solo por una ciudad
+function wsAltRebuild(){
+  const box=document.getElementById('wsAlt_'+WS_CITY_MAP),sum=document.getElementById('wsAltSum_'+WS_CITY_MAP),res=_wsResult[WS_CITY_MAP],ref=_wsRefs[WS_CITY_MAP];
+  if(!box||!sum||!res||!ref||!_wsIsoToName) return;
+  const rows=new Map();
+  res.countries.forEach((n,iso)=>rows.set(iso,{n,c:0}));
+  let extra=0;
+  if(_wsCityResult&&wsCityCatalogOk()) _wsCityResult.cities.forEach(it=>{
+    const iso=String(it.city.pais_iso).toUpperCase(); if(!ref.byIso.has(iso)) return;
+    let r=rows.get(iso); if(!r){ r={n:0,c:0}; rows.set(iso,r); extra++; }
+    r.c++;
+  });
+  sum.textContent=extra?`Ver lista de países (${rows.size})`:`Ver lista de países descubiertos (${res.countries.size})`;
+  if(!rows.size) return; // sin datos: se conserva el aviso que ya pintó wsPaint
+  const list=[...rows.entries()].map(([iso,r])=>({iso,name:_wsIsoToName.get(iso)||iso,r})).sort((a,b)=>a.name.localeCompare(b.name,'es'));
+  const regs=[...res.regions.entries()];
+  box.innerHTML=`<ul class="ws-alt-list">${list.map(o=>`<li><button type="button" class="ws-alt-btn" data-country="${escHtml(o.iso)}" aria-pressed="${o.iso===_wsCountrySel}"><span class="ws-alt-name">${escHtml(o.name)}</span><span>${o.r.n?`${o.r.n} lectura${o.r.n===1?'':'s'}`:`${o.r.c} ciudad${o.r.c===1?'':'es'}`}</span></button></li>`).join('')}</ul>`+
+    (regs.length?`<p class="ws-alt-note">Región sin país concreto (no se pinta en el mapa): ${regs.map(([g,n])=>`${escHtml(g)} (${n} lectura${n===1?'':'s'})`).join(', ')}.</p>`:'');
+}
+
+// Aplica el estado actual: resaltado, marcadores, panel, botones de la lista y zoom
+function wsCountryApply(){
+  const svg=wsCitySvg(),ref=_wsRefs[WS_CITY_MAP]; if(!svg||!ref||!_wsMap) return;
+  const iso=_wsCountrySel;
+  ref.byIso.forEach((els,k)=>els.forEach(el=>el.classList.toggle('is-active',k===iso)));
+  svg.classList.toggle('has-sel',!!iso);
+  document.querySelectorAll('#wsAlt_'+WS_CITY_MAP+' [data-country]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.country===iso)));
+  const list=iso?wsCountryCities(iso):[];
+  wsPaintCities(list);
+  wsCountryPanel(iso,list);
+  wsViewTo(list.length?wsZoomBox(list.map(it=>it.city)):[0,0,_wsMap.w,_wsMap.h]);
+}
+function wsCountryRefresh(){ wsAltRebuild(); wsCountryApply(); }
+
+function wsCountrySet(iso){
+  _wsCountrySel=iso||null;
+  wsCityHideTip();
+  const inf=document.getElementById('wsInfo_'+WS_CITY_MAP); // no dejar la ficha de una ciudad del país anterior
+  if(inf) inf.textContent='Pasa el ratón o toca un país para ver su información.';
+  wsCountryApply();
+}
+function wsCountryPick(el){
+  const t=el&&el.closest?el.closest('#wsWrap_'+WS_CITY_MAP+' [data-iso]'):null,iso=t?t.getAttribute('data-iso'):null;
+  if(!iso||iso===_wsCountrySel){ if(_wsCountrySel) wsCountrySet(null); return; }   // zona sin país / mismo país → mundo
+  if(wsCountrySelectable(iso)){ wsCountrySet(iso); wsHideTip(WS_CITY_MAP); }       // sin tooltip fijado de país tras seleccionar
+  else if(_wsCountrySel) wsCountrySet(null);
+}
+// Una ciudad elegida desde la lista: mismo tooltip/selección que desde el mapa
+function wsCityFromList(id){
+  const it=_wsCityUI.shown.find(x=>x.city.id===id),svg=wsCitySvg(),m=svg&&svg.getScreenCTM(); if(!it||!m) return;
+  wsCityShowTip(m.a*it.city.x+m.e,m.d*it.city.y+m.f,true);
+  wsCitySelect(id);
+  document.querySelectorAll('#wsCityPanel .ws-cp-row').forEach(b=>b.classList.toggle('is-current',b.dataset.city===id));
+}
+function wsCountryBackToWorld(){
+  const prev=_wsCountrySel; wsCountrySet(null);
+  const btn=prev&&document.querySelector('#wsAlt_'+WS_CITY_MAP+' [data-country="'+prev+'"]');
+  const target=(btn&&btn.offsetParent)?btn:document.getElementById('wsAltSum_'+WS_CITY_MAP);   // el botón «← Mundo» desaparece: el foco no se pierde
+  if(target) target.focus({preventScroll:true});
+}
+
+function wsCountryInit(){
+  const svg=wsCitySvg(); if(!svg) return;
+  if(!svg.dataset.wsSel){
+    svg.dataset.wsSel='1';
+    // Táctil: punto EXACTO del pointerup (como la interacción de países); ratón/teclado: click
+    svg.addEventListener('pointerup',e=>{ if(e.pointerType==='mouse') return; _wsSelTouchAt=Date.now(); wsCountryPick(document.elementFromPoint(e.clientX,e.clientY)); });
+    svg.addEventListener('click',e=>{ if(Date.now()-_wsSelTouchAt<800) return; wsCountryPick(e.target); });
+  }
+  if(!document.getElementById('wsCityPanel')){
+    const wrap=document.getElementById('wsWrap_'+WS_CITY_MAP),p=document.createElement('div');
+    p.id='wsCityPanel'; p.className='ws-cp'; p.setAttribute('role','region'); p.setAttribute('aria-label','Ciudades del país seleccionado'); p.setAttribute('aria-live','polite');
+    wrap.insertAdjacentElement('afterend',p);
+    p.addEventListener('click',e=>{
+      if(e.target.closest('[data-back-world]')){ wsCountryBackToWorld(); return; }
+      const b=e.target.closest('[data-city]'); if(b) wsCityFromList(b.dataset.city);
+    });
+  }
+  const alt=document.getElementById('wsAlt_'+WS_CITY_MAP);
+  if(alt&&!alt.dataset.wsSel){
+    alt.dataset.wsSel='1';
+    alt.addEventListener('click',e=>{
+      const b=e.target.closest('[data-country]'); if(!b) return;
+      const iso=b.dataset.country;
+      if(iso===_wsCountrySel){ wsCountrySet(null); return; }
+      wsCountrySet(iso);
+      const w=document.getElementById('wsWrap_'+WS_CITY_MAP); // la lista queda bajo el mapa: que el mapa siga a la vista
+      if(w&&w.scrollIntoView) w.scrollIntoView({block:'nearest',behavior:_prefersReducedMotion()?'auto':'smooth'});
+    });
+  }
+  if(!_wsSelDocBound){
+    _wsSelDocBound=true;
+    document.addEventListener('keydown',e=>{
+      if(e.key!=='Escape'||e.defaultPrevented||!_wsCountrySel) return;
+      const v=document.getElementById('mundoView'); if(!v||!v.classList.contains('active')) return;
+      wsCountrySet(null);
+    });
+  }
 }
 
 // Pinta un renglón por cada edición de bingo (pasada o presente), con sus
