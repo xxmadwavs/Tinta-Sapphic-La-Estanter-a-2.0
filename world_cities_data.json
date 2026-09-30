@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "descripcion": "Ciudades cartografiables de Tinta Sapphic para 'Mi mundo sapphic'. Solo ciudades reales confirmadas; barrios, distritos, regiones y lugares NO van aquí. Independiente de world_map_data.json.",
+  "descripcion": "Ciudades cartografiables de Tinta Sapphic para 'Mi mundo sapphic'. Solo ciudades reales confirmadas; barrios, distritos y lugares NO van en \"ciudades\"; provincias, estados y regiones van en \"regiones\". Independiente de world_map_data.json.",
   "coordenadas": "lat/lon en grados decimales (WGS84, centro urbano aproximado, 3 decimales). Son el dato de referencia.",
   "proyeccion_mapa": {
     "nombre": "Natural Earth",
@@ -212,6 +212,136 @@
         "Constantinopla",
         "Istanbul",
         "Bizancio"
+      ]
+    }
+  ],
+  "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
+  "regiones": [
+    {
+      "id": "th-tak",
+      "nombre": "Tak",
+      "tipo": "provincia",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "lat": 16.6,
+      "lon": 98.9,
+      "x": 774.4,
+      "y": 200.9,
+      "aliases": []
+    },
+    {
+      "id": "th-suphan-buri",
+      "nombre": "Suphan Buri",
+      "tipo": "provincia",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "lat": 14.5,
+      "lon": 99.95,
+      "x": 778.2,
+      "y": 207.7,
+      "aliases": [
+        "Suphan"
+      ]
+    },
+    {
+      "id": "th-prachuap-khiri-khan",
+      "nombre": "Prachuap Khiri Khan",
+      "tipo": "provincia",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "lat": 11.9,
+      "lon": 99.65,
+      "x": 778.2,
+      "y": 216.2,
+      "aliases": []
+    },
+    {
+      "id": "th-samut-prakan",
+      "nombre": "Samut Prakan",
+      "tipo": "provincia",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "lat": 13.6,
+      "lon": 100.6,
+      "x": 780.3,
+      "y": 210.7,
+      "aliases": []
+    },
+    {
+      "id": "th-nong-khai",
+      "nombre": "Nong Khai",
+      "tipo": "provincia",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "lat": 17.95,
+      "lon": 102.6,
+      "x": 784.0,
+      "y": 196.5,
+      "aliases": []
+    },
+    {
+      "id": "us-iowa",
+      "nombre": "Iowa",
+      "tipo": "estado",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "lat": 42.08,
+      "lon": -93.5,
+      "x": 259.7,
+      "y": 117.5,
+      "aliases": []
+    },
+    {
+      "id": "us-utah",
+      "nombre": "Utah",
+      "tipo": "estado",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "lat": 39.32,
+      "lon": -111.09,
+      "x": 211.0,
+      "y": 126.5,
+      "aliases": []
+    },
+    {
+      "id": "us-california",
+      "nombre": "California",
+      "tipo": "estado",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "lat": 37.25,
+      "lon": -119.75,
+      "x": 185.8,
+      "y": 133.2,
+      "aliases": []
+    },
+    {
+      "id": "gb-cornwall",
+      "nombre": "Cornwall",
+      "tipo": "condado",
+      "pais": "Inglaterra",
+      "pais_iso": "GB",
+      "lat": 50.4,
+      "lon": -4.85,
+      "x": 488.0,
+      "y": 90.9,
+      "aliases": [
+        "Cornualles"
+      ]
+    },
+    {
+      "id": "gr-thessaly",
+      "nombre": "Thessaly",
+      "tipo": "región",
+      "pais": "Grecia",
+      "pais_iso": "GR",
+      "lat": 39.55,
+      "lon": 22.0,
+      "x": 557.1,
+      "y": 125.7,
+      "aliases": [
+        "Tesalia",
+        "Thessalia"
       ]
     }
   ],
