@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "descripcion": "Ciudades cartografiables de Tinta Sapphic para 'Mi mundo sapphic'. Solo ciudades reales confirmadas; barrios, distritos, regiones y lugares NO van aquí. Independiente de world_map_data.json.",
+  "coordenadas": "lat/lon en grados decimales (WGS84, centro urbano aproximado, 3 decimales). Son el dato de referencia.",
+  "proyeccion_mapa": {
+    "nombre": "Natural Earth",
+    "viewBox": "0 0 1000 444",
+    "nota": "x,y de cada ciudad están precalculados en el espacio SVG de world_map_data.json (calibración con sus marcadores: error medio <1 px). Derivados de lat/lon; si algo no cuadra, recalcular desde lat/lon.",
+    "parametros": {
+      "cx": 499.9187,
+      "cy": 254.9876,
+      "kx": 3.22876,
+      "ky": 185.24272
+    }
+  },
+  "ciudades": [
+    {
+      "id": "th-bangkok",
+      "ciudad": "Bangkok",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": null,
+      "lat": 13.756,
+      "lon": 100.502,
+      "x": 780.0,
+      "y": 210.2,
+      "aliases": [
+        "Krung Thep"
+      ]
+    },
+    {
+      "id": "th-chiang-mai",
+      "ciudad": "Chiang Mai",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Chiang Mai",
+      "lat": 18.788,
+      "lon": 98.985,
+      "x": 773.6,
+      "y": 193.7,
+      "aliases": []
+    },
+    {
+      "id": "th-chiang-rai",
+      "ciudad": "Chiang Rai",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Chiang Rai",
+      "lat": 19.91,
+      "lon": 99.841,
+      "x": 775.4,
+      "y": 190.0,
+      "aliases": []
+    },
+    {
+      "id": "th-hua-hin",
+      "ciudad": "Hua Hin",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Prachuap Khiri Khan",
+      "lat": 12.568,
+      "lon": 99.958,
+      "x": 778.9,
+      "y": 214.0,
+      "aliases": []
+    },
+    {
+      "id": "th-mae-sot",
+      "ciudad": "Mae Sot",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Tak",
+      "lat": 16.717,
+      "lon": 98.571,
+      "x": 773.4,
+      "y": 200.5,
+      "aliases": []
+    },
+    {
+      "id": "th-rangsit",
+      "ciudad": "Rangsit",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Pathum Thani",
+      "lat": 13.989,
+      "lon": 100.618,
+      "x": 780.2,
+      "y": 209.4,
+      "aliases": []
+    },
+    {
+      "id": "jp-kitakyushu",
+      "ciudad": "Kitakyushu",
+      "pais": "Japón",
+      "pais_iso": "JP",
+      "region": "Fukuoka",
+      "lat": 33.883,
+      "lon": 130.875,
+      "x": 847.6,
+      "y": 144.2,
+      "aliases": [
+        "Kita-Kyushu",
+        "Kitakyūshū"
+      ]
+    }
+  ],
+  "pendientes_verificacion": [
+    {
+      "ciudad": "Prachuap Khiri Khan",
+      "pais": "Tailandia",
+      "motivo": "Nombre de provincia y de su capital; confirmar cuál se refiere en el libro"
+    },
+    {
+      "ciudad": "Samut Prakan",
+      "pais": "Tailandia",
+      "motivo": "Nombre de provincia y de su capital; confirmar cuál se refiere en el libro"
+    },
+    {
+      "ciudad": "Nong Khai",
+      "pais": "Tailandia",
+      "motivo": "Nombre de provincia y de su capital; confirmar cuál se refiere en el libro"
+    },
+    {
+      "ciudad": "Suphan",
+      "pais": "Tailandia",
+      "motivo": "Nombre incompleto (¿Suphan Buri?); confirmar clasificación"
+    }
+  ]
+}

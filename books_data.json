@@ -704,6 +704,7 @@
     "synopsis": "En medio de las ondulantes colinas del norte de Tailandia, dos mujeres de granjas rivales se ven unidas por el destino, unidas por el amor y amenazadas por el peso de un conflicto de varias generaciones. Din Kasama, la resistente y ferozmente leal propietaria de la granja Saenrak, ha jurado proteger a Rose, la radiante heredera de la granja Chomjan Flower. Pero cuando los secretos ocultos y las presiones familiares se vuelven mortales, Din se mantiene firme y dispuesta a luchar por Rose, aunque eso signifique arriesgar su propia vida.",
     "pages": 353,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "AppleMiu"
     ],
@@ -741,6 +742,58 @@
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chiang Mai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chiang Rai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Mae Sot",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Sam Ngao",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Phop Phra",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -781,13 +834,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777150669209_w445j",
@@ -800,6 +852,7 @@
     "synopsis": "Como el agua que moldea la tierra, Chonlada Kunanon fluye hacia territorio enemigo, colándose en el Grupo Wathin para desmantelar su poder desde dentro. ¿Su objetivo? Apo Wathinwanit, la fría y calculadora mujer de negocios que ha aplastado las ambiciones de su familia.\n\nPero cuanto más se sumerge Chonlada, más fuertes son las corrientes que la arrastran. Apo no es nada de lo que ella esperaba: fuerte, inflexible y peligrosamente cautivadora. Lo que comienza como una misión de sabotaje se convierte en una lucha contra la marea de sus propias emociones.\n\n¿Podrá Chonlada mantenerse a flote en este juego traicionero, o dejará que el agua la consuma por completo?",
     "pages": 369,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "AppleMiu",
       "Englot"
@@ -836,6 +889,37 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Prachuap Khiri Khan",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso de Poder",
@@ -867,13 +951,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777150783754_yngj1",
@@ -1799,6 +1882,20 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": "Tak",
+        "ciudad": "Phop Phra",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Tailandia"
     ],
@@ -1831,6 +1928,8 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -4446,6 +4545,7 @@
     "synopsis": "Pipim no entiende por qué una mujer le ofreció de repente un trato descabellado a cambio de ayudar a su padre.\n\nPero como no tenía otra opción, solo pudo aceptar ese trato.\n\n\"Quiero que seas mi novia.\"\n\"¿Qué?\"\n\"Tienes cuatro meses para convertirte en mi novia perfecta.\"",
     "pages": 378,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -4473,6 +4573,26 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad",
+      "Oficina"
+    ],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Alcohol",
@@ -4497,13 +4617,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777287010800_dpf2q",
@@ -6490,6 +6609,7 @@
     "synopsis": "Espero que encuentres a alguien como ella.\n\nYo... \"Anna\"\nDespués de decirle cosas hirientes a tu amante\nEntonces tendría que arrepentirme más tarde de lo que hice.\n\n\"Kewalin\"\n\nTuve que tener un accidente automovilístico.\nPero lo que más duele es\nEl hombre fragante se despertó y recordó todo en el mundo excepto \"Anna\".\nO yo, el primer y único novio que Kaewalin ha tenido.\n\nSin contar la redondez del mundo que ha traído a otras dos personas a mi vida. Ambos ex novios que se convirtieron en los nuevos novios de Kaewalin\nY mi primer amor que es el ex novio de mi nueva novia, Kaewalin.\n\nAcéptalo, este mundo, si esto no es una coincidencia, entonces debe ser el destino.\nO dicho de otra manera: es cruel.\n\nRuedas de carro\n¡Es como girar en un círculo sin fin!\n\nGracias a Capricornia por la traducción",
     "pages": 489,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -6499,13 +6619,53 @@
       "Femme",
       "Masc"
     ],
-    "characters": [],
-    "dinamicas": [
-      "Masc × Femme"
+    "characters": [
+      "Estudiante"
     ],
-    "tropes": [],
+    "dinamicas": [
+      "Masc × Femme",
+      "Switch × Switch"
+    ],
+    "tropes": [
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Forced Proximity"
+    ],
     "edad": [],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Rangsit",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Samyan",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -6538,13 +6698,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384060823_gmo0x",
@@ -7318,6 +7477,7 @@
     "synopsis": "Soy Mew y tengo una relación con otra mujer. No somos muy abiertas al respecto, pero tampoco lo ocultamos. Llevamos siete años juntas.\n\nHace tres años, nos conocimos en una parada de autobús. Los últimos tres años, vivimos juntas, simplemente por amor y atracción.\n\nPero todo el mundo dice que vamos a romper\n\npor la \"maldición del siete\". \n\nIncluso mi novia, Egg, ha oído hablar de ello y empieza a preocuparse de que sea cierto.\n\nPero nos queremos tanto que nada puede separarnos.\n\nEl número siete... ¡no puede hacernos nada!\nGracias a Capricornia por la traducción",
     "pages": 269,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -7329,15 +7489,46 @@
       "Femme",
       "Masc"
     ],
-    "characters": [],
+    "characters": [
+      "Doctora / Médica",
+      "Peluquera"
+    ],
     "dinamicas": [
       "Masc × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Slow Burn"
+    ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -7369,13 +7560,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777321670802_y710c",
@@ -64411,6 +64601,7 @@
     "synopsis": "Zhaojun era una estudiante universitaria más durante el día, pero por la noche, se adentra en un mundo secreto de encuentros de alto riesgo y deseos ocultos. Compaginando los estudios, sus amigas y la presión de su trabajo poco convencional, jamás imaginó que una reunión rutinaria se convertiría en un momento que podría cambiarlo todo.\n\nCuando una misteriosa clienta, Namnueng, se cruzó en su camino, Zhaojun tuvo que enfrentarse a la tensión entre el deseo, el peligro y las decisiones que definirían su verdadera identidad. Si a esto le agregabamos amigas que se preocupan demasiado, profesores que saben demasiado y secretos que se resisten a permanecer enterrados, de repente, cada decisión comenzó a tener un peso que iba mucho más allá del dinero.\n\n¿Podrá sobrevivir a la emoción y el riesgo de un mundo donde las apariencias engañan y los límites se desdibujan, o un solo encuentro cambiará su vida para siempre?",
     "pages": 1150,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "ShellyPudao"
     ],
@@ -64424,7 +64615,11 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Estudiante",
+      "Profesora",
+      "Escort"
+    ],
     "dinamicas": [
       "Femme × Femme",
       "Mentora × Aprendiz",
@@ -64451,6 +64646,43 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Rangsit",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chiang Mai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Lat Phrao",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad"
+    ],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -64472,6 +64704,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -66892,6 +67126,55 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": "Tak",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": "Suphan Buri",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Sam Ngao",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Nong Khai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": "Tak",
+        "ciudad": "Phop Phra",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -66906,6 +67189,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
