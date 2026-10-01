@@ -4676,6 +4676,10 @@ let shelfGenreFilter='';
 let shelfSort='recent';
 let shelfPage=1;
 const SHELF_PAGE_SIZE=18;
+// FASE E4.2 — listas válidas únicas para Mi estantería (las usan init(), popstate y la restauración desde la URL)
+const SHELF_FILTERS=['all','want','reading','read','dnf','calendar'];
+const SHELF_VIEWS=['grid','list'];
+const SHELF_SORTS=['recent','recentReading','az','za','author','year_desc','year_asc'];
 let calYear=new Date().getFullYear();
 let calMonth=new Date().getMonth(); // 0-11
 let calSelectedDay=null; // 'YYYY-MM-DD'
@@ -4744,7 +4748,20 @@ const PAGE_SIZE=24;
 /* ── UTILIDADES ── */
 function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms);};}
 const applyFiltersDebounced=debounce(()=>applyFilters(),180);
-const shelfApplyFiltersDebounced=debounce(()=>shelfApplyFilters(),180);
+// FASE E4.4 — búsqueda de Mi estantería con debounce CANCELABLE. El debounce genérico no se podía cancelar: si el temporizador
+// vencía justo después de un cambio de filtro o de un Atrás, aplicaba la búsqueda al estado equivocado (reponía la página 1 y
+// reescribía la entrada de historial ya restaurada). Ahora se vuelca (flush) antes de cambiar de filtro, se cancela al restaurar
+// desde la URL, y no hace nada si la estantería ya no está visible (ficha abierta, catálogo...).
+let _shelfApplyTimer=null;
+function shelfApplyFiltersDebounced(){
+  clearTimeout(_shelfApplyTimer);
+  _shelfApplyTimer=setTimeout(()=>{
+    _shelfApplyTimer=null;
+    if(document.getElementById('shelfView')?.classList.contains('active')) shelfApplyFilters();
+  },180);
+}
+function _shelfCancelPending(){ clearTimeout(_shelfApplyTimer); _shelfApplyTimer=null; }
+function _shelfFlushPending(){ if(_shelfApplyTimer!==null){ _shelfCancelPending(); shelfApplyFilters(); } }
 
 /* ── URL STATE ── */
 let urlSyncReady=false; // false hasta que init() ha leído la URL original y decidido la vista inicial
@@ -4800,6 +4817,15 @@ function shelfUrlSync(filter,addEntry){
   try{
     const params=new URLSearchParams(location.search);
     params.set('myshelf',filter);
+    params.delete('view'); // FASE E4.5: la estantería visible nunca conserva ?view= (viene de una vista personal)
+    // FASE E4.2 — resto del estado de Mi estantería; solo se escriben los valores distintos del defecto
+    // (el calendario no usa estos controles, así que ahí solo va myshelf)
+    const put=(k,v,def)=>{ if(filter!=='calendar'&&v&&v!==def) params.set(k,v); else params.delete(k); };
+    put('shelfView',shelfViewMode,'grid');
+    put('shelfSearch',shelfSearch,'');
+    put('shelfGenre',shelfGenreFilter,'');
+    put('shelfSort',shelfSort,filter==='read'?'recentReading':'recent');
+    put('shelfPage',String(shelfPage),'1');
     const url='?'+params.toString();
     if(addEntry) history.pushState({myshelf:filter},'',url);
     else history.replaceState({myshelf:filter},'',url);
@@ -4809,22 +4835,159 @@ function shelfUrlClear(addEntry){
   try{
     const params=new URLSearchParams(location.search);
     params.delete('myshelf');
+    ['shelfView','shelfSearch','shelfGenre','shelfSort','shelfPage'].forEach(k=>params.delete(k)); // FASE E4.2
     const url=params.toString()?'?'+params.toString():location.pathname;
     if(addEntry) history.pushState(null,'',url);
     else history.replaceState(null,'',url);
   }catch(e){}
 }
+// FASE E4.2 — reconstruye el estado de Mi estantería desde la URL y abre la vista (ausente/inválido → defecto actual).
+// normalize=true reescribe la URL con el estado final (solo en la carga inicial; en popstate no se toca el historial).
+function shelfRestoreFromUrl(params,normalize){
+  _shelfCancelPending(); // FASE E4.4: lo que haya en el campo de búsqueda sin aplicar queda sustituido por el estado de la URL
+  const filter=params.get('myshelf');
+  const v=params.get('shelfView');
+  shelfViewMode=SHELF_VIEWS.includes(v)?v:'grid';
+  document.getElementById('shelfBtnGrid')?.classList.toggle('active',shelfViewMode==='grid');
+  document.getElementById('shelfBtnList')?.classList.toggle('active',shelfViewMode==='list');
+  shelfSearch=(params.get('shelfSearch')||'').toLowerCase().trim();
+  document.getElementById('shelfSearchInput').value=shelfSearch;
+  shelfGenreFilter=params.get('shelfGenre')||'';
+  const s=params.get('shelfSort');
+  shelfSort=SHELF_SORTS.includes(s)?s:'recent';
+  const pg=parseInt(params.get('shelfPage'),10);
+  shelfPage=pg>=1?pg:1;
+  openShelf(filter,true);
+  // E3 convierte 'recent'→'recentReading' al entrar en «Leídos»; si la URL pedía 'recent' explícitamente, se respeta
+  if(filter==='read' && s==='recent' && shelfSort!=='recent'){
+    shelfSort='recent';
+    document.getElementById('shelfSortSelect').value='recent';
+    _renderShelfBooks();
+  }
+  // FASE E4.3: con #libro/ID en la URL (F5 sobre una ficha) no se reescribe, para no perder el hash ni el history.state de la ficha
+  if(normalize && !location.hash.startsWith('#libro/')) shelfUrlSync(shelfFilter,false);
+}
+
+// FASE E4.3 — restaura el scroll de la estantería. html{scroll-behavior:smooth} animaría el salto y, si el usuario vuelve mientras
+// sigue en curso el scrollTo({top:0}) suave de openBookPage(), el final de esa animación pisaría la posición: se fuerza 'auto' y
+// se reaplica en los dos fotogramas siguientes solo si hay desviación.
+function bpRestoreScroll(y){
+  const de=document.documentElement;
+  const go=()=>{ de.style.scrollBehavior='auto'; window.scrollTo(0,y); de.style.scrollBehavior=''; };
+  go();
+  requestAnimationFrame(()=>{ if(Math.abs(window.scrollY-y)>1) go(); requestAnimationFrame(()=>{ if(Math.abs(window.scrollY-y)>1) go(); }); });
+}
 
 /* ── URL de las vistas especiales (Logros / Estadísticas / Cartas / Mundo) ── */
-function viewUrlSync(view,addEntry){
+// FASE E4.5 — la entrada de una vista abierta por navegación (pushState) se marca con {view, pvOwn:true, pvPrev}:
+// pvOwn = «esta entrada es mía, el retroceso real vuelve al origen»; pvPrev = origen (para recuperar etiqueta/cadena tras F5).
+// baseState: estado previo a conservar al reescribir sin crear entrada (F5 en la carga inicial).
+const _bootHistState=(()=>{ try{ return history.state; }catch(e){ return null; } })(); // estado de la entrada al cargar, antes de que init() lo reescriba
+function viewUrlSync(view,addEntry,pvPrev,baseState){
   try{
     const params=new URLSearchParams(location.search);
     params.set('view',view);
     const url='?'+params.toString();
-    if(addEntry) history.pushState({view},'',url);
-    else history.replaceState({view},'',url);
+    if(addEntry) history.pushState({view,pvOwn:true,pvPrev:pvPrev||null},'',url);
+    else history.replaceState((baseState&&baseState.view===view)?{...baseState}:{view},'',url);
   }catch(e){}
 }
+/* ── FASE E4.5 — ORIGEN y RETORNO de las 6 vistas personales ──
+   Cada vista conserva su _xxxPrevState = {home, shelf, shelfFilter, view}. `view` solo se rellena cuando la vista se abrió DESDE otra
+   vista personal (cadena A→B): «Volver» de B va a A, «Volver» de A va al origen real de la cadena. */
+const PV_KEYS=['logros','stats','mundo','recorrido','anio','cartas'];
+const PV_VIEW_IDS={logros:'logrosView',stats:'statsView',mundo:'mundoView',recorrido:'recorridoView',anio:'anioView',cartas:'cartasView'};
+const PV_NAMES={logros:'Logros',stats:'Estadísticas',mundo:'Mi mundo sapphic',recorrido:'Mi recorrido sapphic',anio:'Mi año sapphic',cartas:'Cartas de autora'};
+let _pvGoingBack=false; // evita doble clic en «Volver» (un segundo history.back saldría del origen)
+function _pvGetPrev(k){
+  switch(k){
+    case 'logros': return _logrosPrevState; case 'stats': return _statsPrevState; case 'mundo': return _mundoPrevState;
+    case 'recorrido': return _rcPrevState; case 'anio': return _anPrevState; case 'cartas': return _cartasPrevState;
+  }
+  return null;
+}
+function _pvActiveKey(){ return PV_KEYS.find(k=>document.getElementById(PV_VIEW_IDS[k])?.classList.contains('active'))||null; }
+function _pvFromDom(){
+  return {home:document.body.classList.contains('home-active'),shelf:!!document.getElementById('shelfView')?.classList.contains('active'),shelfFilter:shelfFilter,view:null};
+}
+// Origen con el que se abre la vista `key`. Se llama ANTES de ocultar nada y después del filtro de «misma vista ya activa».
+function _pvResolvePrev(key,silent){
+  const cur=_pvGetPrev(key);
+  if(silent){
+    if(cur) return cur; // restauración silenciosa (popstate/F5…): nunca se sobrescribe el origen existente
+    const st=history.state;
+    if(st&&st.view===key&&st.pvPrev) return st.pvPrev; // sin memoria (F5): el origen viaja en la propia entrada del historial
+    return _pvFromDom();
+  }
+  const act=_pvActiveKey();
+  if(act){ // A → B: B hereda el origen de la cadena de A y recuerda que viene de A
+    const p=_pvGetPrev(act)||_pvFromDom();
+    return {home:!!p.home,shelf:!!p.shelf,shelfFilter:p.shelfFilter||shelfFilter,view:act};
+  }
+  const o=_pvFromDom();
+  if(o.shelf){ // scroll de la estantería en SU entrada de historial, para recuperarlo al volver (mismo mecanismo que E4.3)
+    try{ history.replaceState({...(history.state||{}),shelfScroll:Math.round(window.scrollY)},'',location.href); }catch(e){}
+  }
+  return o;
+}
+function _pvBackLabel(prev){
+  if(prev&&prev.view&&PV_NAMES[prev.view]) return '← Volver a '+PV_NAMES[prev.view];
+  if(prev&&prev.home) return '← Volver a inicio';
+  if(prev&&prev.shelf) return '← Volver a mi estantería';
+  return '← Volver al catálogo';
+}
+function _pvApplyLabel(key){
+  const b=document.querySelector('#'+PV_VIEW_IDS[key]+' .shelf-back-link');
+  if(b) b.textContent=_pvBackLabel(_pvGetPrev(key));
+}
+// Scroll de la estantería al volver desde una vista: igual que E4.3 (bpRestoreScroll) y, además, se reafirma durante ~0,5 s solo si hay desviación,
+// porque tras cerrar vistas con render asíncrono pesado (p. ej. «Mi año sapphic») el navegador puede seguir desplazando la página unos píxeles.
+function _pvRestoreShelfScroll(y){
+  bpRestoreScroll(y);
+  [120,260,520].forEach(ms=>setTimeout(()=>{
+    if(!document.getElementById('shelfView')?.classList.contains('active')) return; // el usuario ya se ha ido de la estantería
+    if(Math.abs(window.scrollY-y)>1) bpRestoreScroll(y);
+  },ms));
+}
+function _pvOpenByKey(k,silent){
+  if(k==='logros') return openLogrosModal(silent);
+  if(k==='stats') return openStatsModal(silent);
+  if(k==='mundo') return openMundoModal(silent);
+  if(k==='recorrido') return openRecorridoModal(silent);
+  if(k==='anio') return openAnioModal(silent);
+  if(k==='cartas') return openCartasModal(silent);
+}
+// Cierre común de las 6 vistas.
+//  · silent (popstate): solo oculta la vista y deja el destino al origen; la URL ya la ha fijado el historial.
+//  · «Volver» con entrada propia: history.back() — el popstate hace el resto (sin pushState, sin entradas nuevas).
+//  · «Volver» sin entrada propia (carga directa, etc.): reemplaza la URL (replaceState) y navega al origen sin crear entradas.
+function _pvClose(key,silent){
+  const prev=_pvGetPrev(key);
+  if(!silent){
+    const st=history.state;
+    if(st&&st.pvOwn&&st.view===key&&new URLSearchParams(location.search).get('view')===key&&!location.hash){
+      if(_pvGoingBack) return;
+      _pvGoingBack=true; setTimeout(()=>{_pvGoingBack=false;},800);
+      history.back();
+      return;
+    }
+  }
+  document.getElementById(PV_VIEW_IDS[key]).classList.remove('active');
+  if(!silent && prev?.view && PV_KEYS.includes(prev.view) && currentUser){
+    viewUrlSync(prev.view,false); // sin entrada propia, a la vista de la que se venía
+    _pvOpenByKey(prev.view,true);
+    return;
+  }
+  if(!silent) viewUrlClear(false);
+  if(prev?.home){ showHome(); }
+  else if(prev?.shelf){
+    const sp=new URLSearchParams(location.search);
+    if(!silent && SHELF_FILTERS.includes(sp.get('myshelf'))) shelfRestoreFromUrl(sp); // estado completo de E4.2 desde la URL
+    else openShelf(prev.shelfFilter,true);
+  }
+  else{ switchTab(activeTab, true); }
+}
+
 function viewUrlClear(addEntry){
   try{
     const params=new URLSearchParams(location.search);
@@ -5275,14 +5438,13 @@ async function init(){
     showHome();
   }
   urlSyncReady=true; // vista inicial decidida: a partir de aquí applyFilters() ya puede escribir la URL
-  // Si la URL trae ?myshelf=all|want|read, abrir directamente esa vista de "Mi estantería".
+  // Si la URL trae ?myshelf=all|want|reading|read|dnf|calendar, abrir directamente esa vista de "Mi estantería".
   // Nota: showHome()/switchTab() de arriba pueden haber limpiado la query string,
   // así que reaplicamos el parámetro myshelf sobre la URL resultante antes de abrir.
   const _shelfParam=urlParams.get('myshelf');
-  if(_shelfParam && ['all','want','reading','read','calendar'].includes(_shelfParam)){
+  if(_shelfParam && SHELF_FILTERS.includes(_shelfParam)){
     if(currentUser){
-      shelfUrlSync(_shelfParam,false);
-      openShelf(_shelfParam, true);
+      shelfRestoreFromUrl(urlParams,true); // FASE E4.2: filtro + vista + búsqueda + género + orden + página
     } else {
       // Sin sesión no podemos mostrar la estantería personal: limpiamos el parámetro
       shelfUrlClear(false);
@@ -5292,7 +5454,9 @@ async function init(){
   const _viewParam=urlParams.get('view');
   if(_viewParam && ['logros','stats','cartas','mundo','recorrido','anio'].includes(_viewParam)){
     if(currentUser){
-      viewUrlSync(_viewParam,false);
+      // FASE E4.5: con #libro/ID (F5 sobre una ficha abierta desde una vista) no se reescribe la URL/estado de la ficha; y se conserva
+      // el estado de la entrada ({view,pvOwn,pvPrev}) que init() habría perdido al normalizar la estantería
+      if(!location.hash.startsWith('#libro/')) viewUrlSync(_viewParam,false,null,_bootHistState);
       if(_viewParam==='logros') await openLogrosModal(true);
       else if(_viewParam==='stats') await openStatsModal(true);
       else if(_viewParam==='cartas') await openCartasModal(true);
@@ -6138,6 +6302,15 @@ function buildSimilarBooksHTML(book){
    tocado esas funciones — se resolverá en la fase de migración
    definitiva, cuando bookModal deje de coexistir con bookPage. ── */
 let _bpScrollBefore=0;
+/* FASE E4.3 — ORIGEN de BookPage. Solo existe el origen 'shelf' (Mi estantería); cualquier otro origen deja _bpOrigin=null y
+   BookPage se comporta como antes. El estado de la estantería (filtro/vista/búsqueda/género/orden/página) ya vive en la URL
+   (E4.2) y no se duplica: aquí solo se guarda el scroll. Dos fuentes: _bpOrigin.scrollY (en memoria, el más reciente) y
+   history.state.shelfScroll de la entrada de la estantería (sobrevive a F5). La entrada #libro/ID se marca con
+   {bpFrom:'shelf', bpDepth:n} (n = fichas apiladas desde la estantería) para que «Volver» sea exactamente history.go(-n). */
+/* FASE E4.5 — segundo origen: 'view' (una de las 6 vistas personales). Misma mecánica: la entrada #libro/ID se marca
+   {bpFrom:'view', bpView, bpDepth:n} y «Volver» = history.go(-n); el popstate reabre la vista (su URL lleva ?view=). */
+let _bpOrigin=null; // null | {type:'shelf', scrollY:number|null} | {type:'view', view:string}
+let _bpGoingBack=false; // evita doble clic en «Volver» (un segundo history.go saldría de la estantería)
 function openBookPage(id, pushState=true){
   const book=allBooks.find(b=>String(b.id)===String(id));
   if(!book){ console.warn('[bookPage] libro no encontrado para id:',id); return; }
@@ -6145,6 +6318,21 @@ function openBookPage(id, pushState=true){
   bpPendingStar=0; bpRatingBusy=false; // FASE 7.3 — evita arrastrar selección/estado pendiente del libro anterior
   bpPendingSpicy=-1; bpSpicyBusy=false; // FASE 7.4 — ídem para spicy
   _bpScrollBefore=window.scrollY;
+  // FASE E4.3 — registrar el origen ANTES de ocultar la estantería
+  const _fromShelf=!!document.getElementById('shelfView')?.classList.contains('active');
+  const _fromView=_fromShelf?null:_pvActiveKey(); // FASE E4.5
+  if(_fromShelf){
+    const sc=Math.round(window.scrollY);
+    if(pushState){
+      _bpOrigin={type:'shelf',scrollY:sc};
+      try{ history.replaceState({...(history.state||{}),shelfScroll:sc},'',location.href); }catch(e){} // scroll en la entrada de la estantería
+    } else if(_bpOrigin) _bpOrigin.scrollY=sc; // Adelante del navegador: scroll actual de la estantería
+    else _bpOrigin={type:'shelf',scrollY:null}; // F5 sobre una ficha: el scroll se lee del history.state de la entrada anterior
+  } else if(_fromView){
+    // FASE E4.5: ficha abierta desde una vista personal (también Adelante y F5: la vista ya está restaurada cuando se abre la ficha)
+    _bpOrigin={type:'view',view:_fromView};
+  } else if(!document.getElementById('bookPage').classList.contains('active')) _bpOrigin=null; // otro origen (catálogo, Top10…)
+  const _bpDepth=(_fromShelf||_fromView)?1:((history.state&&history.state.bpDepth)?history.state.bpDepth+1:0); // 0 = desconocida (ficha→ficha tras perder el estado)
   document.getElementById('homeView')?.classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -6165,16 +6353,50 @@ function openBookPage(id, pushState=true){
   window.scrollTo({top:0});
   // FASE 2.4 — #libro/ID es ahora la ruta oficial de #bookPage (antes solo la usaba
   // #bookModal vía openBook()). Mismo patrón de historial que openBook() usaba.
-  if(pushState) history.pushState({bookId:id},'',`#libro/${id}`);
+  if(pushState) history.pushState((_bpOrigin&&_bpOrigin.type==='shelf')?{bookId:id,bpFrom:'shelf',bpDepth:_bpDepth}
+    :(_bpOrigin&&_bpOrigin.type==='view')?{bookId:id,bpFrom:'view',bpView:_bpOrigin.view,bpDepth:_bpDepth} // FASE E4.5
+    :{bookId:id},'',`#libro/${id}`);
+}
+// FASE E4.5 — D1: texto del botón de retorno según el origen real (solo shelf y view tienen origen propio; el resto sigue siendo el catálogo)
+function _bpBackLabel(){
+  if(_bpOrigin&&_bpOrigin.type==='shelf') return '← Volver a mi estantería';
+  if(_bpOrigin&&_bpOrigin.type==='view'&&PV_NAMES[_bpOrigin.view]) return '← Volver a '+PV_NAMES[_bpOrigin.view];
+  return '← Volver al catálogo';
 }
 function closeBookPage(){
   bpPendingStar=0; bpRatingBusy=false; // FASE 7.3 — limpia estado pendiente al salir de la ficha
   bpPendingSpicy=-1; bpSpicyBusy=false; // FASE 7.4 — ídem para spicy
+  // FASE E4.3 — ficha abierta desde Mi estantería: «Volver» = retroceder en el historial hasta la entrada de la estantería;
+  // el popstate restaura estado (URL de E4.2) y scroll, igual que el botón Atrás del navegador.
+  const _st=history.state;
+  if(_st&&(_st.bpFrom==='shelf'||_st.bpFrom==='view')&&_st.bpDepth>0&&location.hash.startsWith('#libro/')){
+    if(_bpGoingBack) return;
+    _bpGoingBack=true; setTimeout(()=>{_bpGoingBack=false;},800);
+    history.go(-_st.bpDepth);
+    return;
+  }
+  const _toShelf=_bpOrigin&&_bpOrigin.type==='shelf'&&!!currentUser;
+  const _toView=_bpOrigin&&_bpOrigin.type==='view'&&PV_KEYS.includes(_bpOrigin.view)&&!!currentUser; // FASE E4.5
   document.getElementById('bookPage').classList.remove('active');
   document.body.classList.remove('bp-active'); // restaura .hero/.main (ver regla CSS body.bp-active)
+  if(_toView){
+    // FASE E4.5 — origen vista personal sin entrada de historial utilizable (enlace directo a ?view=…#libro/ID): se reemplaza la
+    // entrada de la ficha por la de la vista (replaceState, sin entradas nuevas) y se reabre la vista.
+    viewUrlSync(_bpOrigin.view,false);
+    _pvOpenByKey(_bpOrigin.view,true);
+    return;
+  }
   // Limpia el hash #libro/ID igual que closeBookModal() hacía, para que la URL
   // no se quede apuntando a una ficha que ya no se está mostrando.
   if(location.hash.startsWith('#libro/')) history.pushState({},'',location.pathname+location.search);
+  if(_toShelf){
+    // FASE E4.3 — origen estantería sin entrada de historial utilizable (p. ej. #libro/ID abierto directamente con ?myshelf=…):
+    // se restaura la estantería desde la URL (E4.2) y se quita el hash con una entrada nueva, como ya hacía el cierre normal.
+    shelfRestoreFromUrl(new URLSearchParams(location.search));
+    shelfUrlSync(shelfFilter,true);
+    bpRestoreScroll(_bpOrigin.scrollY||0);
+    return;
+  }
   switchTab(activeTab, true); // restaura los hijos de <main> igual que las demás vistas especiales
   window.scrollTo(0,_bpScrollBefore);
 }
@@ -6294,7 +6516,7 @@ function renderBookPage(book){
   const conseguirRecomendaciones=conseguirBlocks?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${conseguirBlocks}</div>`:'';
 
   document.getElementById('bpWrap').innerHTML=`
-    <button class="bp-back" onclick="closeBookPage()">← Volver al catálogo</button>
+    <button class="bp-back" onclick="closeBookPage()">${_bpBackLabel()}</button>
     <div class="bp-header">
       <div class="bp-cover">${coverEl}</div>
       <div class="bp-content">
@@ -8206,6 +8428,9 @@ function tryOpenFromHash(){
 }
 
 window.addEventListener('popstate', ()=>{
+  const _wasBp=!!document.getElementById('bookPage')?.classList.contains('active'); // FASE E4.3: ¿veníamos de una ficha?
+  const _wasView=!!_pvActiveKey(); // FASE E4.5: ¿veníamos de una vista personal?
+  _bpGoingBack=false; _pvGoingBack=false;
   if(location.hash.startsWith('#libro/')){
     const id = location.hash.slice(7);
     openBookPage(id, false);
@@ -8239,8 +8464,16 @@ window.addEventListener('popstate', ()=>{
   }
   // Restaurar (o cerrar) la estantería personal según la URL
   const shelfParam=new URLSearchParams(location.search).get('myshelf');
-  if(shelfParam && currentUser && ['all','want','reading','read','dnf'].includes(shelfParam)){
-    openShelf(shelfParam, true);
+  if(shelfParam && currentUser && SHELF_FILTERS.includes(shelfParam)){
+    shelfRestoreFromUrl(new URLSearchParams(location.search)); // FASE E4.2: misma lista y mismo estado que al iniciar
+    // FASE E4.3: si veníamos de una ficha, recuperar el scroll de la estantería (memoria → history.state de la entrada)
+    if(_wasBp){
+      const y=(_bpOrigin&&_bpOrigin.scrollY!=null)?_bpOrigin.scrollY:((history.state&&history.state.shelfScroll)||0);
+      bpRestoreScroll(y);
+    } else if(_wasView){
+      // FASE E4.5: volvemos a la estantería desde una vista personal → scroll guardado en la entrada de la estantería
+      _pvRestoreShelfScroll((history.state&&history.state.shelfScroll)||0);
+    }
     return;
   } else if(document.getElementById('shelfView').classList.contains('active')){
     closeShelf(true);
@@ -9754,6 +9987,22 @@ document.getElementById('readDoneModal').addEventListener('click',e=>{if(e.targe
 
 /* ── Vista estantería ── */
 function openShelf(filter,silent){
+  // FASE E4.4: reabrir la estantería que ya está abierta en el mismo filtro (p. ej. «Mi estantería» del menú de usuario) no es una navegación nueva
+  const _sameShelf=document.getElementById('shelfView').classList.contains('active') && (filter||shelfFilter||'all')===shelfFilter;
+  // FASE E4.5: «Mi estantería» desde una vista personal que se abrió desde ESA misma estantería (entrada propia, sin cadena) es un retorno
+  // real: history.back() → popstate restaura la estantería (sin ?view=, con todo E4.2 y el scroll) sin crear entrada.
+  if(!silent){
+    const _pk=_pvActiveKey();
+    if(_pk){
+      const _pp=_pvGetPrev(_pk), _st=history.state;
+      if(_pp&&_pp.shelf&&!_pp.view&&(filter||shelfFilter||'all')===_pp.shelfFilter&&_st&&_st.pvOwn&&_st.view===_pk&&new URLSearchParams(location.search).get('view')===_pk&&!location.hash){
+        if(_pvGoingBack) return;
+        _pvGoingBack=true; setTimeout(()=>{_pvGoingBack=false;},800);
+        history.back();
+        return;
+      }
+    }
+  }
   shelfFilter=filter||shelfFilter||'all';
   closeAllSpecialViews();
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
@@ -9763,23 +10012,26 @@ function openShelf(filter,silent){
   document.getElementById(map[shelfFilter])?.classList.add('active');
   _shelfRenderCurrent();
   renderShelfBadges();
-  if(!silent) shelfUrlSync(shelfFilter,true);
+  if(!silent) shelfUrlSync(shelfFilter,!_sameShelf);
 }
 
 function closeShelf(silent){
+  if(silent) _shelfCancelPending(); else _shelfFlushPending(); // FASE E4.4: la búsqueda tecleada se guarda en la entrada que se abandona
   document.getElementById('shelfView').classList.remove('active');
   switchTab(activeTab, true);
   if(!silent) shelfUrlClear(true);
 }
 
 function switchShelf(filter,silent){
+  _shelfFlushPending(); // FASE E4.4: la búsqueda tecleada pertenece a la entrada que se abandona, no a la nueva
+  const _sameFilter=filter===shelfFilter; // FASE E4.4: volver a pulsar el filtro activo (doble clic) no crea entrada
   shelfFilter=filter;
   shelfPage=1;
   document.querySelectorAll('.shelf-nav-item').forEach(el=>el.classList.remove('active'));
   const map={all:'shelfNavAll',want:'shelfNavWant',reading:'shelfNavReading',read:'shelfNavRead',dnf:'shelfNavDnf',calendar:'shelfNavCalendar'};
   document.getElementById(map[filter])?.classList.add('active');
   _shelfRenderCurrent();
-  if(!silent) shelfUrlSync(filter,true);
+  if(!silent) shelfUrlSync(filter,!_sameFilter);
 }
 
 function _shelfRenderCurrent(){
@@ -9827,6 +10079,7 @@ function setShelfView(mode){
   document.getElementById('shelfBtnGrid').classList.toggle('active',mode==='grid');
   document.getElementById('shelfBtnList').classList.toggle('active',mode==='list');
   _renderShelfBooks();
+  shelfUrlSync(shelfFilter,false); // FASE E4.2
 }
 
 function shelfBaseBooks(){
@@ -9855,6 +10108,7 @@ function shelfApplyFilters(){
   shelfGenreFilter=document.getElementById('shelfGenreSelect').value;
   shelfSort=document.getElementById('shelfSortSelect').value;
   _renderShelfBooks();
+  shelfUrlSync(shelfFilter,false); // FASE E4.2
 }
 
 function shelfClearFilters(){
@@ -9863,11 +10117,13 @@ function shelfClearFilters(){
   document.getElementById('shelfGenreSelect').value='';
   document.getElementById('shelfSortSelect').value=shelfSort;
   _renderShelfBooks();
+  shelfUrlSync(shelfFilter,false); // FASE E4.2
 }
 
 function shelfGoToPage(n){
   shelfPage=n;
   _renderShelfBooks();
+  shelfUrlSync(shelfFilter,false); // FASE E4.2
   document.querySelector('.shelf-main')?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -10384,11 +10640,9 @@ function renderLogrosGeneralGrid(){
 let _logrosPrevState=null;
 async function openLogrosModal(silent){
   if(!currentUser){ openAuthModal(); return; }
-  _logrosPrevState={
-    home:document.body.classList.contains('home-active'),
-    shelf:document.getElementById('shelfView').classList.contains('active'),
-    shelfFilter:shelfFilter
-  };
+  if(_pvActiveKey()==='logros') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
+  _logrosPrevState=_pvResolvePrev('logros',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  _pvApplyLabel('logros');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -10404,31 +10658,22 @@ async function openLogrosModal(silent){
   document.getElementById('logrosLecturaGrid').innerHTML='<div class="logros-empty">Cargando…</div>';
   document.getElementById('logrosGeneralGrid').innerHTML='<div class="logros-empty">Cargando…</div>';
   document.getElementById('logrosModalBody').innerHTML='<div class="logros-empty">Cargando…</div>';
-  if(!silent) viewUrlSync('logros',true);
+  if(!silent) viewUrlSync('logros',true,_logrosPrevState);
   await Promise.all([bingoLoadHitos(), bingoLoadAllChallenges(), loadLogrosCatalog(), loadUserLogros()]);
   renderLogrosGeneralGrid();
   renderLogrosModal();
   bingoUpdateNotifDot();
 }
 
-function closeLogrosModal(silent){
-  document.getElementById('logrosView').classList.remove('active');
-  const prev=_logrosPrevState;
-  if(!silent) viewUrlClear(true);
-  if(prev?.home){ showHome(); }
-  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
-  else{ switchTab(activeTab, true); }
-}
+function closeLogrosModal(silent){ _pvClose('logros',silent); } // FASE E4.5: cierre común (retroceso real con entrada propia)
 
 /* ── MIS ESTADÍSTICAS — dashboard personal de lectura ── */
 let _statsPrevState=null;
 async function openStatsModal(silent){
   if(!currentUser){ openAuthModal(); return; }
-  _statsPrevState={
-    home:document.body.classList.contains('home-active'),
-    shelf:document.getElementById('shelfView').classList.contains('active'),
-    shelfFilter:shelfFilter
-  };
+  if(_pvActiveKey()==='stats') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
+  _statsPrevState=_pvResolvePrev('stats',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  _pvApplyLabel('stats');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -10441,28 +10686,19 @@ async function openStatsModal(silent){
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('statsView').classList.add('active');
   window.scrollTo({top:0});
-  if(!silent) viewUrlSync('stats',true);
+  if(!silent) viewUrlSync('stats',true,_statsPrevState);
   renderStatsView();
 }
 
-function closeStatsModal(silent){
-  document.getElementById('statsView').classList.remove('active');
-  const prev=_statsPrevState;
-  if(!silent) viewUrlClear(true);
-  if(prev?.home){ showHome(); }
-  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
-  else{ switchTab(activeTab, true); }
-}
+function closeStatsModal(silent){ _pvClose('stats',silent); } // FASE E4.5: cierre común (retroceso real con entrada propia)
 
 /* ── MI MUNDO SAPPHIC — vista propia (mapas movidos desde Mis estadísticas) ── */
 let _mundoPrevState=null;
 async function openMundoModal(silent){
   if(!currentUser){ openAuthModal(); return; }
-  _mundoPrevState={
-    home:document.body.classList.contains('home-active'),
-    shelf:document.getElementById('shelfView').classList.contains('active'),
-    shelfFilter:shelfFilter
-  };
+  if(_pvActiveKey()==='mundo') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
+  _mundoPrevState=_pvResolvePrev('mundo',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  _pvApplyLabel('mundo');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -10475,18 +10711,11 @@ async function openMundoModal(silent){
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('mundoView').classList.add('active');
   window.scrollTo({top:0});
-  if(!silent) viewUrlSync('mundo',true);
+  if(!silent) viewUrlSync('mundo',true,_mundoPrevState);
   renderWorldSapphic();
 }
 
-function closeMundoModal(silent){
-  document.getElementById('mundoView').classList.remove('active');
-  const prev=_mundoPrevState;
-  if(!silent) viewUrlClear(true);
-  if(prev?.home){ showHome(); }
-  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
-  else{ switchTab(activeTab, true); }
-}
+function closeMundoModal(silent){ _pvClose('mundo',silent); } // FASE E4.5: cierre común (retroceso real con entrada propia)
 
 /* ── MI RECORRIDO SAPPHIC — Fase 3.1: vista, navegación y lógica de datos (sin camino visual todavía) ── */
 let rcYear=null;          // año seleccionado
@@ -10775,11 +11004,9 @@ function rcLayout(){
 
 async function openRecorridoModal(silent){
   if(!currentUser){ openAuthModal(); return; }
-  _rcPrevState={
-    home:document.body.classList.contains('home-active'),
-    shelf:document.getElementById('shelfView').classList.contains('active'),
-    shelfFilter:shelfFilter
-  };
+  if(_pvActiveKey()==='recorrido') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
+  _rcPrevState=_pvResolvePrev('recorrido',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  _pvApplyLabel('recorrido');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -10792,19 +11019,12 @@ async function openRecorridoModal(silent){
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('recorridoView').classList.add('active');
   window.scrollTo({top:0});
-  if(!silent) viewUrlSync('recorrido',true);
+  if(!silent) viewUrlSync('recorrido',true,_rcPrevState);
   rcFillYearSelect();
   rcRender();
 }
 
-function closeRecorridoModal(silent){
-  document.getElementById('recorridoView').classList.remove('active');
-  const prev=_rcPrevState;
-  if(!silent) viewUrlClear(true);
-  if(prev?.home){ showHome(); }
-  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
-  else{ switchTab(activeTab, true); }
-}
+function closeRecorridoModal(silent){ _pvClose('recorrido',silent); } // FASE E4.5: cierre común (retroceso real con entrada propia)
 
 /* ══════════════════════════════════════════════════════════════
    MI AÑO SAPPHIC — Annual Report de las lecturas terminadas de un año
@@ -11119,11 +11339,9 @@ function anBind(){
 
 function openAnioModal(silent){
   if(!currentUser){ openAuthModal(); return; }
-  _anPrevState={
-    home:document.body.classList.contains('home-active'),
-    shelf:document.getElementById('shelfView').classList.contains('active'),
-    shelfFilter:shelfFilter
-  };
+  if(_pvActiveKey()==='anio') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
+  _anPrevState=_pvResolvePrev('anio',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  _pvApplyLabel('anio');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -11136,20 +11354,13 @@ function openAnioModal(silent){
   document.querySelectorAll('main > *').forEach(el=>el.style.display='none');
   document.getElementById('anioView').classList.add('active');
   window.scrollTo({top:0});
-  if(!silent) viewUrlSync('anio',true);
+  if(!silent) viewUrlSync('anio',true,_anPrevState);
   anBind();
   anFillYearSelect();
   anRender();
 }
 
-function closeAnioModal(silent){
-  document.getElementById('anioView').classList.remove('active');
-  const prev=_anPrevState;
-  if(!silent) viewUrlClear(true);
-  if(prev?.home){ showHome(); }
-  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
-  else{ switchTab(activeTab, true); }
-}
+function closeAnioModal(silent){ _pvClose('anio',silent); } // FASE E4.5: cierre común (retroceso real con entrada propia)
 
 /* ══════════════════════════════════
    CARTAS DE AUTORA — colección desbloqueable
@@ -11342,11 +11553,9 @@ function renderCartasGrid(){
 
 async function openCartasModal(silent){
   if(!currentUser){ openAuthModal(); return; }
-  _cartasPrevState={
-    home:document.body.classList.contains('home-active'),
-    shelf:document.getElementById('shelfView').classList.contains('active'),
-    shelfFilter:shelfFilter
-  };
+  if(_pvActiveKey()==='cartas') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
+  _cartasPrevState=_pvResolvePrev('cartas',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  _pvApplyLabel('cartas');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
   document.getElementById('homeNavBtn')?.classList.remove('active');
@@ -11366,17 +11575,10 @@ async function openCartasModal(silent){
   cartasAuthorsCache=computeAuthorsCollection();
   renderCartasProgress(cartasAuthorsCache);
   renderCartasGrid();
-  if(!silent) viewUrlSync('cartas',true);
+  if(!silent) viewUrlSync('cartas',true,_cartasPrevState);
 }
 
-function closeCartasModal(silent){
-  document.getElementById('cartasView').classList.remove('active');
-  const prev=_cartasPrevState;
-  if(!silent) viewUrlClear(true);
-  if(prev?.home){ showHome(); }
-  else if(prev?.shelf){ openShelf(prev.shelfFilter,true); }
-  else{ switchTab(activeTab, true); }
-}
+function closeCartasModal(silent){ _pvClose('cartas',silent); } // FASE E4.5: cierre común (retroceso real con entrada propia)
 
 function computeReadingStats(){
   const readIds=Object.keys(myReadingStatus).filter(id=>myReadingStatus[id]==='read');
