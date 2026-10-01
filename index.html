@@ -1390,8 +1390,10 @@ button.rc-stop{cursor:pointer}
 /* Capa de ciudades (Fase 5.2) */
 .ws-card[data-map="cultura"]{position:relative}
 .ws-cities{pointer-events:none}
-.ws-city{fill:var(--accent2);stroke:#fff;stroke-width:.9;vector-effect:non-scaling-stroke;pointer-events:none;transition:fill .15s}
-.ws-city.is-sel{fill:#fff;stroke:var(--accent2);stroke-width:1.6}
+.ws-city-halo{fill:var(--accent2);fill-opacity:.22;stroke:var(--accent2);stroke-opacity:.55;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;transition:fill-opacity .15s,transform .15s}
+.ws-city-halo.is-sel{fill-opacity:.4;stroke-opacity:.9;transform:scale(1.15)}
+.ws-city{fill:var(--accent2);stroke:rgba(14,11,16,.95);stroke-width:1.6;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;transition:fill .15s,transform .15s}
+.ws-city.is-sel{fill:#fff;stroke:var(--accent2);stroke-width:2;transform:scale(1.25)}
 .ws-city-hit{fill:transparent;stroke:none;pointer-events:all;cursor:pointer}
 .ws-city-tip{z-index:4}
 .ws-city-tip.is-pinned{pointer-events:auto}
@@ -1429,7 +1431,7 @@ button.rc-stop{cursor:pointer}
 .ws-cp-row:hover,.ws-cp-row.is-current{background:var(--accent-soft)}
 .ws-cp-none{margin:.5rem 0 0;font-size:12px;color:var(--muted);line-height:1.5}
 @media (max-width:640px){.ws-cp{padding:0 .3rem}}
-@media (prefers-reduced-motion:reduce){.ws-card[data-map="cultura"] .ws-c{transition:none}}
+@media (prefers-reduced-motion:reduce){.ws-card[data-map="cultura"] .ws-c,.ws-city,.ws-city-halo{transition:none}}
 .ws-info{min-height:1.4em;margin-top:.6rem;font-size:12px;color:var(--muted)}
 .ws-info b{color:var(--text);font-weight:600}
 .ws-counters{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:.5rem;font-size:13px;color:var(--muted)}
@@ -11633,10 +11635,12 @@ function renderWorldSapphic(){
 const WS_CITIES_URL='world_cities_data.json';
 const WS_CITY_MAP='cultura';        // único mapa que recibe la capa
 const WS_CITY_ZONE_PX=12;           // radio (px de pantalla) de la zona táctil: ciudades dentro de él se listan juntas
-const WS_CITY_MARK_PX=2.6;          // radio visual del marcador (px de pantalla): pequeño y discreto
-const WS_ZOOM_MIN_W=100;            // ancho mínimo visible del viewBox al hacer zoom (≈10x): tope de acercamiento
-const WS_ZOOM_PAD=0.25;             // margen proporcional alrededor de la extensión de las ciudades
-const WS_ZOOM_PAD_MIN=10;           // margen mínimo (unidades del viewBox)
+const WS_CITY_MARK_MIN=3.6,WS_CITY_MARK_MAX=4.5; // radio del punto (px de pantalla): crece con el ancho del mapa (360→900 px), nunca con las lecturas
+const WS_CITY_HALO_K=2;             // halo decorativo = 2× el radio del punto (≈7–9 px)
+const WS_ZOOM_STEP_PX=2;            // calidad: la rejilla del mapa (1 unidad) no debe medir más de ~2 px de pantalla → ancho mínimo del viewBox = ancho del mapa / 2
+const WS_ZOOM_PAD=0.18;             // margen proporcional alrededor de la silueta del país
+const WS_ZOOM_PAD_MIN=4;            // margen mínimo (unidades del viewBox)
+const WS_SIL_GAP=0.5;               // un polígono pertenece a la silueta si está a menos de 0,5× la mayor dimensión del polígono principal
 const WS_ZOOM_MS=450;               // duración de la transición de zoom (0 con prefers-reduced-motion)
 const WS_CITY_RETRY_MS=30000;       // espera antes de reintentar si el catálogo falló
 let _wsCitiesPromise=null,_wsCitiesFailAt=0,_wsCityIndex=null,_wsCityResult=null;
@@ -11739,8 +11743,10 @@ function wsClearCities(){
 // Radios en unidades del viewBox según la escala real de pantalla (se recalcula al redimensionar y en cada paso de zoom)
 function wsCityApplyScale(){
   const svg=wsCitySvg(),m=svg&&svg.getScreenCTM(); if(!m||!m.a) return;
-  const rm=(WS_CITY_MARK_PX/m.a).toFixed(3),rh=(WS_CITY_ZONE_PX/m.a).toFixed(3);
+  const t=Math.max(0,Math.min(1,((svg.clientWidth||360)-360)/540)),mk=WS_CITY_MARK_MIN+(WS_CITY_MARK_MAX-WS_CITY_MARK_MIN)*t;
+  const rm=(mk/m.a).toFixed(3),rhalo=(mk*WS_CITY_HALO_K/m.a).toFixed(3),rh=(WS_CITY_ZONE_PX/m.a).toFixed(3);
   svg.querySelectorAll('.ws-city').forEach(el=>el.setAttribute('r',rm));
+  svg.querySelectorAll('.ws-city-halo').forEach(el=>el.setAttribute('r',rhalo));
   svg.querySelectorAll('.ws-city-hit').forEach(el=>el.setAttribute('r',rh));
 }
 
@@ -11764,12 +11770,13 @@ function wsPaintCities(list){
   if(!g){ g=document.createElementNS(NS,'g'); g.setAttribute('class','ws-cities'); g.setAttribute('aria-hidden','true'); svg.appendChild(g); wsCityBind(g); }
   g.textContent='';
   const mk=(cls,c)=>{ const el=document.createElementNS(NS,'circle'); el.setAttribute('class',cls); el.setAttribute('cx',c.x); el.setAttribute('cy',c.y); el.dataset.city=c.id; return el; };
+  list.forEach(it=>g.appendChild(mk('ws-city-halo',it.city))); // halo decorativo
   list.forEach(it=>g.appendChild(mk('ws-city',it.city)));      // marcadores (posición x/y del catálogo)
   list.forEach(it=>g.appendChild(mk('ws-city-hit',it.city)));  // zonas táctiles (transparentes)
   wsCityApplyScale();
   if(typeof ResizeObserver!=='undefined'){
     if(_wsCityUI.ro) _wsCityUI.ro.disconnect();
-    _wsCityUI.ro=new ResizeObserver(wsCityApplyScale); _wsCityUI.ro.observe(svg);
+    _wsCityUI.ro=new ResizeObserver(wsCityOnResize); _wsCityUI.ro.observe(svg);
   }
   // Tooltip propio (mismo aspecto que el de países)
   if(!card.querySelector('.ws-city-tip')){   // colgado de la tarjeta: el mapa tiene overflow:hidden y recortaría listas largas
@@ -11806,7 +11813,10 @@ function wsCityPlaceTip(){
   const x=Math.max(w/2+4,Math.min(r.width-w/2-4,_wsCityUI.cx-r.left)),y=_wsCityUI.cy-r.top;
   const top=Math.max(4,Math.min(r.height-h-4,(y-h-14)>=0?y-10-h:y+18));
   tip.style.left=x+'px'; tip.style.top=top+'px'; tip.style.transform='translateX(-50%)';
-  const svg=wsCitySvg(); if(svg) svg.querySelectorAll('.ws-city').forEach(el=>el.classList.toggle('is-sel',!!_wsCityUI.sel&&el.dataset.city===_wsCityUI.sel));
+  const svg=wsCitySvg(); if(svg) svg.querySelectorAll('.ws-city,.ws-city-halo').forEach(el=>{
+    const on=!!_wsCityUI.sel&&el.dataset.city===_wsCityUI.sel; el.classList.toggle('is-sel',on);
+    if(on&&el.classList.contains('ws-city')&&el.parentNode) el.parentNode.appendChild(el);   // por encima de los vecinos
+  });
 }
 function wsCityShowTip(cx,cy,pin){
   const z=wsCityZone(cx,cy); if(!z.length){ wsCityHideTip(); return; }
@@ -11826,7 +11836,7 @@ function wsCityInfo(it){
 function wsCityHideTip(){
   const u=_wsCityUI; u.pinned=false; u.sel=null; u.zone=[];
   if(u.tip){ u.tip.classList.remove('show','is-pinned'); }
-  const svg=wsCitySvg(); if(svg) svg.querySelectorAll('.ws-city.is-sel').forEach(el=>el.classList.remove('is-sel'));
+  const svg=wsCitySvg(); if(svg) svg.querySelectorAll('.ws-city.is-sel,.ws-city-halo.is-sel').forEach(el=>el.classList.remove('is-sel'));
 }
 function wsCityBind(g){
   // Ratón: hover muestra, clic fija. Táctil/lápiz: pointerup con coordenadas reales (sin depender del click sintetizado)
@@ -11865,18 +11875,65 @@ function wsCountrySelectable(iso){
   return !!(res&&res.countries.has(iso))||wsCountryCities(iso).length>0;
 }
 
-// Caja del viewBox (x,y,w,h) que encuadra las ciudades; mantiene la proporción del mapa
-function wsZoomBox(cities){
-  const W=_wsMap.w,H=_wsMap.h,ar=W/H;
-  let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+// Silueta útil de un país: caja del polígono principal (mayor área) + los polígonos próximos (islas, exclaves cercanos).
+// Los territorios lejanos (ultramar) se descartan. Puramente geométrico: sin casos por país. Se cachea por ISO.
+const _wsSilCache=new Map();
+function wsSilBox(iso){
+  if(_wsSilCache.has(iso)) return _wsSilCache.get(iso);
+  const re=/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g,polys=[];
+  _wsMap.c.forEach(c=>{ if(c.i!==iso) return;
+    c.d.split('Z').forEach(sub=>{
+      let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity,a=0,px=null,py=null,fx=null,fy=null,m;
+      re.lastIndex=0;
+      while((m=re.exec(sub))){ const x=+m[1],y=+m[2];
+        if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y;
+        if(px===null){ fx=x; fy=y; } else a+=px*y-x*py;
+        px=x; py=y; }
+      if(px===null) return;
+      a+=px*fy-fx*py;
+      polys.push({b:[x0,y0,x1,y1],a:Math.abs(a)/2});
+    });
+  });
+  let out=null;
+  if(polys.length){
+    let main=polys[0]; polys.forEach(p=>{ if(p.a>main.a) main=p; });
+    const box=main.b.slice(),thr=WS_SIL_GAP*Math.max(main.b[2]-main.b[0],main.b[3]-main.b[1],1),used=new Set([main]);
+    for(let grew=true;grew;){ grew=false;
+      polys.forEach(p=>{ if(used.has(p)) return;
+        const gx=Math.max(0,p.b[0]-box[2],box[0]-p.b[2]),gy=Math.max(0,p.b[1]-box[3],box[1]-p.b[3]);
+        if(Math.hypot(gx,gy)<=thr){ used.add(p); grew=true;
+          box[0]=Math.min(box[0],p.b[0]); box[1]=Math.min(box[1],p.b[1]); box[2]=Math.max(box[2],p.b[2]); box[3]=Math.max(box[3],p.b[3]); }
+      });
+    }
+    out=box;
+  }
+  _wsSilCache.set(iso,out); return out;
+}
+
+// Caja del viewBox (x,y,w,h): silueta del país ∪ ciudades + margen, con la proporción real del contenedor.
+// El ancho nunca baja de (ancho del mapa en px / WS_ZOOM_STEP_PX): así la rejilla de 1 unidad del mapa no pasa de ~2 px.
+function wsZoomBox(iso,cities){
+  const W=_wsMap.w,H=_wsMap.h,wrap=document.getElementById('wsWrap_'+WS_CITY_MAP);
+  const cw=(wrap&&wrap.clientWidth)||360,ch=(wrap&&wrap.clientHeight)||cw*H/W,ar=cw/ch;
+  const sb=wsSilBox(iso);
+  let x0=sb?sb[0]:Infinity,y0=sb?sb[1]:Infinity,x1=sb?sb[2]:-Infinity,y1=sb?sb[3]:-Infinity;
   cities.forEach(c=>{ if(c.x<x0)x0=c.x; if(c.x>x1)x1=c.x; if(c.y<y0)y0=c.y; if(c.y>y1)y1=c.y; });
-  const sx=x1-x0,sy=y1-y0;
-  let w=sx+2*Math.max(WS_ZOOM_PAD_MIN,sx*WS_ZOOM_PAD),h=sy+2*Math.max(WS_ZOOM_PAD_MIN,sy*WS_ZOOM_PAD);
-  if(w/h<ar) w=h*ar; else h=w/ar;
-  if(w<WS_ZOOM_MIN_W){ w=WS_ZOOM_MIN_W; h=w/ar; }
-  if(w>W){ w=W; h=H; }
-  const cx=(x0+x1)/2,cy=(y0+y1)/2;
-  return [Math.min(Math.max(cx-w/2,0),W-w),Math.min(Math.max(cy-h/2,0),H-h),w,h];
+  const sx=x1-x0,sy=y1-y0,mx=Math.max(WS_ZOOM_PAD_MIN,sx*WS_ZOOM_PAD),my=Math.max(WS_ZOOM_PAD_MIN,sy*WS_ZOOM_PAD);
+  const w=Math.max(sx+2*mx,(sy+2*my)*ar,cw/WS_ZOOM_STEP_PX),h=w/ar;
+  if(w>=W||h>=H) return [0,0,W,H];
+  // Se prefiere no salir del mapa, pero nunca a costa del margen de la silueta (países pegados al borde del mapa)
+  const fit=(c,len,lo,hi,m,max)=>Math.min(Math.max(Math.min(Math.max(c-len/2,0),max-len),hi+m-len),lo-m);
+  return [fit((x0+x1)/2,w,x0,x1,mx,W),fit((y0+y1)/2,h,y0,y1,my,H),w,h];
+}
+// Cambio de ancho del mapa con un país seleccionado: se vuelve a encuadrar (el tope de calidad depende de los px)
+function wsCityOnResize(){
+  const svg=wsCitySvg(),w=svg?svg.clientWidth:0; if(!svg) return;
+  if(_wsCountrySel&&_wsCityUI.w&&w&&Math.abs(w-_wsCityUI.w)>1){
+    const l=wsCountryCities(_wsCountrySel);
+    if(l.length){ cancelAnimationFrame(_wsViewRaf); wsViewApply(svg,wsZoomBox(_wsCountrySel,l.map(it=>it.city))); }
+  }
+  if(w) _wsCityUI.w=w;
+  wsCityApplyScale();
 }
 
 function wsViewApply(svg,b){
@@ -11943,7 +12000,8 @@ function wsCountryApply(){
   const list=iso?wsCountryCities(iso):[];
   wsPaintCities(list);
   wsCountryPanel(iso,list);
-  wsViewTo(list.length?wsZoomBox(list.map(it=>it.city)):[0,0,_wsMap.w,_wsMap.h]);
+  wsViewTo(list.length?wsZoomBox(iso,list.map(it=>it.city)):[0,0,_wsMap.w,_wsMap.h]);
+  _wsCityUI.w=svg.clientWidth;
 }
 function wsCountryRefresh(){ wsAltRebuild(); wsCountryApply(); }
 
