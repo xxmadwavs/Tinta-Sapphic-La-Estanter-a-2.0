@@ -18,7 +18,7 @@
   --accent:#c06fc4;--accent2:#da99de;--accent-soft:rgba(192,111,196,0.12);
   --rose:#d4607a;--rose-soft:rgba(212,96,122,0.12);
   --gold:#c9975a;--gold-soft:rgba(201,151,90,0.12);
-  --teal:#5bbcb0;
+  --teal:#5bbcb0;--teal-text:#5bbcb0;
   --radius:14px;--radius-lg:20px;
   --font-display:'Cormorant Garamond',Georgia,serif;
   --font-body:'Instrument Sans',system-ui,sans-serif;
@@ -404,17 +404,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .card-saga-sub{font-size:10.5px;color:var(--teal);margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;font-style:italic;transition:opacity .15s}
 .book-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
 .tag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;white-space:nowrap}
-.tag-genre{background:var(--accent-soft);color:var(--accent2);border:1px solid rgba(192,111,196,0.2)}
-.tag-trope{background:var(--rose-soft);color:#e0909e;border:1px solid rgba(212,96,122,0.2)}
-.tag-dinamica{background:rgba(212,96,122,0.15);color:#f0a0b0;border:1px solid rgba(212,96,122,0.35);font-weight:600}
+.tag-genre{background:var(--accent-soft);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent)}
+.tag-trope{background:var(--rose-soft);color:#e0909e;border:1px solid color-mix(in srgb,var(--rose) 20%,transparent)}
+.tag-dinamica{background:color-mix(in srgb,var(--rose) 15%,transparent);color:#f0a0b0;border:1px solid color-mix(in srgb,var(--rose) 35%,transparent);font-weight:600}
 .tag-identidad{background:rgba(155,130,201,0.14);color:#c8b8f0;border:1px solid rgba(155,130,201,0.3)}
-.tag-subgenre{background:rgba(91,188,176,0.1);color:var(--teal);border:1px solid rgba(91,188,176,0.22)}
+.tag-subgenre{background:color-mix(in srgb,var(--teal) 10%,transparent);color:var(--teal-text);border:1px solid color-mix(in srgb,var(--teal) 22%,transparent)}
 .tag-character{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
 .tag-warning{background:#8b1a2a;color:#ffd0d8;border:1px solid rgba(255,100,120,0.35);font-size:10.5px;font-weight:600;letter-spacing:.02em}
 .tag-year{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
-.tag-formato{background:rgba(91,188,176,0.12);color:var(--teal);border:1px solid rgba(91,188,176,0.25)}
+.tag-formato{background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal-text);border:1px solid color-mix(in srgb,var(--teal) 25%,transparent)}
 .tag-adaptacion{background:rgba(155,130,201,0.12);color:#c4b0e8;border:1px solid rgba(155,130,201,0.3)}
-.tag-edad{background:rgba(201,151,90,0.12);color:var(--gold);border:1px solid rgba(201,151,90,0.3)}
+.tag-edad{background:color-mix(in srgb,var(--gold) 12%,transparent);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
 .book-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem}
 .vote-mini-btn{padding:4px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;font-family:var(--font-body);cursor:pointer;transition:all .18s}
 .vote-mini-btn.voted{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
@@ -469,8 +469,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .modal-saga-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 .modal-saga-link{background:none;border:none;padding:0;font-size:12.5px;color:var(--muted);font-family:var(--font-body);cursor:pointer;transition:color .15s;font-style:italic}
 .modal-saga-link:hover{color:var(--teal);text-decoration:underline}
-.saga-map-trigger{background:none;border:1px solid var(--border2);border-radius:20px;padding:2px 10px 2px 8px;font-size:10.5px;color:var(--teal);font-family:var(--font-body);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all .15s;white-space:nowrap}
-.saga-map-trigger:hover{background:rgba(91,188,176,0.12);border-color:var(--teal)}
+.saga-map-trigger{background:none;border:1px solid var(--border2);border-radius:20px;padding:2px 10px 2px 8px;font-size:10.5px;color:var(--teal-text);font-family:var(--font-body);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all .15s;white-space:nowrap}
+.saga-map-trigger:hover{background:color-mix(in srgb,var(--teal-text) 12%,transparent);border-color:var(--teal-text)}
 
 /* ── SAGA MAP (constelación de orden de lectura) ── */
 .sagamap-modal{max-width:600px;overflow:visible}
@@ -593,7 +593,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .vote-submit{padding:8px 22px;border-radius:20px;background:var(--accent);border:none;color:#fff;font-size:12.5px;font-weight:600;font-family:var(--font-body);cursor:pointer;transition:all .18s}
 .vote-submit:hover{background:var(--accent2)}
 .vote-submit:disabled{opacity:.45;cursor:not-allowed}
-.vote-delete{padding:8px 16px;border-radius:20px;background:transparent;border:1px solid rgba(212,96,122,0.35);color:var(--rose);font-size:12px;font-weight:500;font-family:var(--font-body);cursor:pointer;transition:all .18s}
+.vote-delete{padding:8px 16px;border-radius:20px;background:transparent;border:1px solid color-mix(in srgb,var(--rose) 35%,transparent);color:var(--rose);font-size:12px;font-weight:500;font-family:var(--font-body);cursor:pointer;transition:all .18s}
 .vote-delete:hover{background:var(--rose-soft);border-color:var(--rose)}
 .vote-delete:disabled{opacity:.45;cursor:not-allowed}
 .login-to-vote{font-size:12.5px;color:var(--muted);font-style:italic}
@@ -1296,10 +1296,10 @@ body.home-active .hero,body.home-active .main{display:none!important}
 /* ── SHELF BUTTONS (modal) ── */
 .shelf-btns{display:flex;gap:.5rem;margin:.4rem 0 1rem;flex-wrap:wrap}
 .shelf-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;padding:8px 0;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:12.5px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s;user-select:none}
-.shelf-btn.want{background:var(--accent-soft);border-color:rgba(192,111,196,.45);color:var(--accent2)}
-.shelf-btn.reading{background:var(--gold-soft);border-color:rgba(201,151,90,.45);color:var(--gold)}
-.shelf-btn.read{background:rgba(91,188,176,.12);border-color:rgba(91,188,176,.4);color:var(--teal)}
-.shelf-btn.dnf{background:var(--rose-soft);border-color:rgba(212,96,122,.45);color:var(--rose)}
+.shelf-btn.want{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent2)}
+.shelf-btn.reading{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 45%,transparent);color:var(--gold)}
+.shelf-btn.read{background:color-mix(in srgb,var(--teal-text) 12%,transparent);border-color:color-mix(in srgb,var(--teal-text) 40%,transparent);color:var(--teal-text)}
+.shelf-btn.dnf{background:var(--rose-soft);border-color:color-mix(in srgb,var(--rose) 45%,transparent);color:var(--rose)}
 
 /* ── SHELF BUTTONS (tarjeta) ── */
 .card-shelf-btns{display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap}
@@ -1761,7 +1761,7 @@ body.theme-halloween{
   --accent:#7a2333;--accent2:#a8442a;--accent-soft:rgba(122,35,51,0.16);
   --rose:#7a2333;--rose-soft:rgba(122,35,51,0.14);
   --gold:#b5652c;--gold-soft:rgba(181,101,44,0.16);
-  --teal:#5c4a3a;
+  --teal:#5c4a3a;--teal-text:#c2ad92;
   --radius:6px;--radius-lg:8px;
   --font-display:'Cinzel','Cormorant Garamond',Georgia,serif;
   --hw-blood:#6e1423;
@@ -1945,6 +1945,18 @@ body.theme-halloween .hero-sub{color:var(--muted);font-style:italic;font-family:
 .hw-oracle-book-title{font-family:var(--font-display);font-size:16px;color:var(--text);margin-bottom:.25rem;line-height:1.25}
 .hw-oracle-book-author{font-size:12px;color:var(--muted)}
 
+/* ── Badges y etiquetas (Halloween): sangre / óxido / sepia / ceniza ── */
+body.theme-halloween .tag-genre{background:var(--accent-soft);color:color-mix(in srgb,var(--accent2) 55%,var(--text));border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent)}
+body.theme-halloween .tag-trope{background:var(--rose-soft);color:color-mix(in srgb,var(--text) 70%,var(--rose));border:1px solid color-mix(in srgb,var(--rose) 45%,transparent)}
+body.theme-halloween .tag-dinamica{background:color-mix(in srgb,var(--rose) 22%,transparent);color:color-mix(in srgb,var(--text) 85%,var(--rose));border:1px solid color-mix(in srgb,var(--rose) 55%,transparent);font-weight:600}
+body.theme-halloween .tag-subgenre{background:color-mix(in srgb,var(--teal-text) 12%,transparent);color:var(--teal-text);border:1px solid color-mix(in srgb,var(--teal-text) 28%,transparent)}
+body.theme-halloween .tag-formato{background:color-mix(in srgb,var(--teal-text) 14%,transparent);color:var(--teal-text);border:1px solid color-mix(in srgb,var(--teal-text) 30%,transparent)}
+body.theme-halloween .tag-edad{background:var(--gold-soft);color:color-mix(in srgb,var(--gold) 55%,var(--text));border:1px solid color-mix(in srgb,var(--gold) 40%,transparent)}
+body.theme-halloween .tag-identidad,
+body.theme-halloween .tag-adaptacion{background:color-mix(in srgb,var(--hw-purple) 70%,transparent);color:color-mix(in srgb,var(--text) 75%,var(--hw-purple));border:1px solid color-mix(in srgb,var(--text) 22%,var(--hw-purple))}
+body.theme-halloween .similar-title{color:color-mix(in srgb,var(--text) 70%,var(--rose))}
+body.theme-halloween .bp-readonly-note a{color:color-mix(in srgb,var(--accent2) 55%,var(--text))}
+
 /* ══════════════════════════════════════════════════════════════
    TEMA NAVIDAD — "Librería navideña nocturna"
    Skin temporal y encapsulada, hermana del tema Halloween.
@@ -1968,7 +1980,7 @@ body.theme-christmas{
   --accent:#6e1423;--accent2:#b8863c;--accent-soft:rgba(110,20,35,0.16);
   --rose:#7a1f2e;--rose-soft:rgba(122,31,46,0.14);
   --gold:#c9a04a;--gold-soft:rgba(201,160,74,0.14);
-  --teal:#2f5b45;
+  --teal:#2f5b45;--teal-text:#8fd0ab;
   --radius:6px;--radius-lg:8px;
   font-family:var(--font-body);
 }
@@ -2030,9 +2042,12 @@ body.theme-christmas .book-cover-wrap::before{
 body.theme-christmas .tag-genre{background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,160,74,.3)}
 body.theme-christmas .tag-trope{background:var(--rose-soft);color:#e2a3ad;border:1px solid rgba(122,31,46,.3)}
 body.theme-christmas .tag-dinamica{background:rgba(122,31,46,.18);color:#eab2ba;border:1px solid rgba(122,31,46,.4);font-weight:600}
-body.theme-christmas .tag-subgenre{background:rgba(47,91,69,.18);color:#8fd0ab;border:1px solid rgba(47,91,69,.4)}
-body.theme-christmas .tag-formato{background:rgba(47,91,69,.16);color:#8fd0ab;border:1px solid rgba(47,91,69,.35)}
+body.theme-christmas .tag-subgenre{background:rgba(47,91,69,.18);color:var(--teal-text);border:1px solid rgba(47,91,69,.4)}
+body.theme-christmas .tag-formato{background:rgba(47,91,69,.16);color:var(--teal-text);border:1px solid rgba(47,91,69,.35)}
 body.theme-christmas .tag-edad{background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,160,74,.3)}
+body.theme-christmas .tag-identidad,
+body.theme-christmas .tag-adaptacion{background:color-mix(in srgb,var(--text) 8%,transparent);color:color-mix(in srgb,var(--text) 85%,var(--muted));border:1px solid color-mix(in srgb,var(--text) 22%,transparent)}
+body.theme-christmas .similar-title{color:color-mix(in srgb,var(--text) 70%,var(--rose))}
 body.theme-christmas .tag-character,
 body.theme-christmas .tag-year{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
 
@@ -3051,7 +3066,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .myrec-back-btn:hover{border-color:rgba(212,96,122,0.45);color:#e0909e;background:var(--accent-soft)}
 
 
-.similar-item:hover{border-color:rgba(212,96,122,0.35);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.similar-item:hover{border-color:color-mix(in srgb,var(--rose) 35%,transparent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 
 .similar-item:hover .similar-item-cover img{transform:scale(1.04)}
@@ -3150,7 +3165,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .logros-general-badge:hover img{transform:scale(1.06)}
 
 
-.shelf-btn:hover{border-color:rgba(192,111,196,.4);color:var(--text);background:var(--surface3)}
+.shelf-btn:hover{border-color:color-mix(in srgb,var(--accent) 40%,transparent);color:var(--text);background:var(--surface3)}
 
 
 .card-shelf-btn:hover{border-color:rgba(192,111,196,.5);color:var(--accent2);background:var(--accent-soft)}
@@ -3458,6 +3473,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .bp-mine-chile{font-size:16px;filter:grayscale(1) opacity(45%)}
 .bp-mine-chile.on{filter:none}
 .bp-readonly-note{grid-column:1/-1;text-align:center;font-size:11.5px;color:var(--muted);font-style:italic;margin:.2rem 0 0}
+.bp-readonly-note a{color:var(--accent2)}
 
 /* Cuerpo interactivo (usuario conectado): label ya va fuera, aquí solo el
    texto + control + fila de botones, en columna y estirado para que
@@ -6091,7 +6107,7 @@ function buildSimilarBooksHTML(book){
   if(!similar.length) return '';
   const cards=similar.map(function(sb){
     const r=ratingsMap[sb.id];
-    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
+    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
     const cov=sb.cover?'<img src="'+sb.cover+'" alt="'+sb.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=similar-item-ph>📖</div>\'">':'<div class="similar-item-ph">📖</div>';
     const auth=(sb.authors||[]).join(', ')||'—';
     return '<div class="similar-item" onclick="openBookPage(\''+sb.id+'\')"><div class="similar-item-cover">'+cov+ab+'</div><div class="similar-item-body"><div class="similar-item-title">'+sb.title+'</div><div class="similar-item-author">'+auth+'</div></div></div>';
@@ -6196,10 +6212,10 @@ function renderBookPage(book){
   const spicyIsUnknown=spicyEff==null;
   const spicyGeneralTag=currentUser
     ?(spicyIsUnknown
-      ?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicyUnknown" data-bpv="1" style="background:rgba(138,120,152,0.15);color:var(--muted);border:1px solid rgba(138,120,152,0.3)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
-      :(spicyEff>0?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="${spicyEff}" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
-      :`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="0" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25)">${SPICY_LABELS[0]}</span>`))
-    :`<span class="tag" style="background:rgba(138,120,152,0.1);color:var(--muted);border:1px dashed rgba(138,120,152,0.3);cursor:pointer" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
+      ?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicyUnknown" data-bpv="1" style="background:color-mix(in srgb,var(--muted) 15%,transparent);color:var(--muted);border:1px solid color-mix(in srgb,var(--muted) 30%,transparent)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
+      :(spicyEff>0?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="${spicyEff}" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 25%,transparent)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
+      :`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="0" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 25%,transparent)">${SPICY_LABELS[0]}</span>`))
+    :`<span class="tag" style="background:color-mix(in srgb,var(--muted) 10%,transparent);color:var(--muted);border:1px dashed color-mix(in srgb,var(--muted) 30%,transparent);cursor:pointer" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
   const generalRow=`<div class="bp-general-row">${miniRating}${spicyGeneralTag}</div>`;
 
   // SAGA (cabecera + mapa de orden de lectura reutilizado tal cual)
@@ -6218,7 +6234,7 @@ function renderBookPage(book){
   const miPanel=`<div class="bp-mine-row">
     <div class="bp-mine-block" id="bpRatingBlock">${buildBpRatingHTML()}</div>
     <div class="bp-mine-block" id="bpSpicyBlock">${buildBpSpicyHTML()}</div>
-    ${!currentUser?`<p class="bp-readonly-note"><a style="color:var(--accent);cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar.</p>`:''}
+    ${!currentUser?`<p class="bp-readonly-note"><a style="cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar.</p>`:''}
   </div>`;
 
   // GÉNEROS / SUBGÉNEROS
@@ -9449,7 +9465,7 @@ function buildPartialDateInputHTML(idPrefix, bookId){
   const yearId=`${idPrefix}Year_${bookId}`;
   const monthId=`${idPrefix}Month_${bookId}`;
   const dayId=`${idPrefix}Day_${bookId}`;
-  const inputStyle='padding:4px 6px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);outline:none';
+  const inputStyle='padding:4px 6px;border-radius:8px;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);outline:none';
   const monthOptions=_MESES_ES.map((m,i)=>`<option value="${i+1}">${m.charAt(0).toUpperCase()+m.slice(1)}</option>`).join('');
   const dayOptions=Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
   return `<div class="partial-date-picker" style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center">
@@ -9463,7 +9479,7 @@ function buildPartialDateInputHTML(idPrefix, bookId){
     </select>
     <button type="button" title="Rellenar con la fecha de hoy"
       onclick="event.stopPropagation();_setPartialDateToday(this,'${idPrefix}','${bookId}')"
-      style="background:none;border:1px solid rgba(201,151,90,.4);border-radius:8px;color:var(--gold);cursor:pointer;font-size:11px;padding:3px 8px">Hoy</button>
+      style="background:none;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:8px;color:var(--gold);cursor:pointer;font-size:11px;padding:3px 8px">Hoy</button>
   </div>`;
 }
 
@@ -9551,11 +9567,11 @@ function buildShelfButtonsHTML(bookId){
       ? formatPartialDate(entry.read_at, entry.read_precision)
       : new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
     const startVal=entry.started_at?new Date(entry.started_at).toISOString().slice(0,10):'';
-    return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal);flex-wrap:wrap">
+    return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal-text);flex-wrap:wrap">
       <span style="display:flex;align-items:center;gap:.3em">📖
         <input type="date" max="${todayISO}" value="${startVal}"
           title="Fecha en que empezaste esta lectura"
-          style="padding:2px 6px;border-radius:8px;border:1px solid rgba(201,151,90,.4);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
+          style="padding:2px 6px;border-radius:8px;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
           onclick="event.stopPropagation()"
           onchange="event.stopPropagation();setLogStartDate('${bookId}','${entry.id}',this.value)">
       </span>

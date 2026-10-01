@@ -81,6 +81,71 @@
       "x": 185.8,
       "y": 133.2,
       "aliases": []
+    },
+    {
+      "id": "us-florida",
+      "nombre": "Florida",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 28.1,
+      "lon": -81.6,
+      "x": 279.1,
+      "y": 163.2,
+      "aliases": []
+    },
+    {
+      "id": "us-virginia",
+      "nombre": "Virginia",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 37.5,
+      "lon": -78.8,
+      "x": 293.4,
+      "y": 132.4,
+      "aliases": []
+    },
+    {
+      "id": "us-colorado",
+      "nombre": "Colorado",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 39.0,
+      "lon": -105.55,
+      "x": 225.0,
+      "y": 127.5,
+      "aliases": []
+    },
+    {
+      "id": "es-alicante",
+      "nombre": "Alicante",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "provincia",
+      "lat": 38.5,
+      "lon": -0.6,
+      "x": 498.4,
+      "y": 129.1,
+      "aliases": [
+        "Alacant"
+      ]
+    },
+    {
+      "id": "gr-thessaly",
+      "nombre": "Thessaly",
+      "pais": "Grecia",
+      "pais_iso": "GR",
+      "tipo": "región",
+      "lat": 39.55,
+      "lon": 22.0,
+      "x": 557.1,
+      "y": 125.7,
+      "aliases": [
+        "Tesalia",
+        "Thessalia"
+      ]
     }
   ],
   "pendientes_verificacion": [
@@ -110,9 +175,9 @@
       "motivo": "Aparece como ciudad; el país «Inglaterra» no resuelve a ningún país del mapa (el mapa solo tiene Reino Unido). Pendiente de decisión de datos"
     },
     {
-      "valor": "Thessaly",
-      "pais": "Grecia",
-      "motivo": "Aparece como ciudad; confirmar clasificación (región histórica)"
+      "valor": "Minnesota",
+      "pais": "Estados Unidos",
+      "motivo": "Aparece como región junto a la ciudad Davenport, que está en Iowa; confirmar si es un error en books_data.json antes de registrarla"
     }
   ]
 }

@@ -213,6 +213,186 @@
         "Istanbul",
         "Bizancio"
       ]
+    },
+    {
+      "id": "us-nueva-york",
+      "ciudad": "Nueva York",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Nueva York",
+      "lat": 40.713,
+      "lon": -74.006,
+      "x": 308.6,
+      "y": 121.9,
+      "aliases": [
+        "New York",
+        "New York City",
+        "NYC"
+      ]
+    },
+    {
+      "id": "us-richmond",
+      "ciudad": "Richmond",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Virginia",
+      "lat": 37.541,
+      "lon": -77.436,
+      "x": 297.0,
+      "y": 132.3,
+      "aliases": []
+    },
+    {
+      "id": "us-miami",
+      "ciudad": "Miami",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 25.762,
+      "lon": -80.192,
+      "x": 281.5,
+      "y": 170.9,
+      "aliases": []
+    },
+    {
+      "id": "us-boston",
+      "ciudad": "Boston",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Massachusetts",
+      "lat": 42.36,
+      "lon": -71.059,
+      "x": 317.6,
+      "y": 116.6,
+      "aliases": []
+    },
+    {
+      "id": "us-filadelfia",
+      "ciudad": "Filadelfia",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Pensilvania",
+      "lat": 39.953,
+      "lon": -75.165,
+      "x": 305.0,
+      "y": 124.4,
+      "aliases": [
+        "Philadelphia"
+      ]
+    },
+    {
+      "id": "us-washington-dc",
+      "ciudad": "Washington D. C.",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": null,
+      "lat": 38.907,
+      "lon": -77.037,
+      "x": 299.2,
+      "y": 127.8,
+      "aliases": [
+        "Washington",
+        "Washington D.C.",
+        "Washington DC"
+      ]
+    },
+    {
+      "id": "us-atlanta",
+      "ciudad": "Atlanta",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Georgia",
+      "lat": 33.749,
+      "lon": -84.388,
+      "x": 275.6,
+      "y": 144.7,
+      "aliases": []
+    },
+    {
+      "id": "ca-toronto",
+      "ciudad": "Toronto",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "region": "Ontario",
+      "lat": 43.653,
+      "lon": -79.383,
+      "x": 297.5,
+      "y": 112.4,
+      "aliases": []
+    },
+    {
+      "id": "gb-londres",
+      "ciudad": "Londres",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "region": "Gran Londres",
+      "lat": 51.507,
+      "lon": -0.128,
+      "x": 499.6,
+      "y": 87.4,
+      "aliases": [
+        "London"
+      ]
+    },
+    {
+      "id": "is-reikiavik",
+      "ciudad": "Reikiavik",
+      "pais": "Islandia",
+      "pais_iso": "IS",
+      "region": "Capital",
+      "lat": 64.147,
+      "lon": -21.942,
+      "x": 451.0,
+      "y": 49.4,
+      "aliases": [
+        "Reykjavik",
+        "Reykjavík"
+      ]
+    },
+    {
+      "id": "is-vik-i-myrdal",
+      "ciudad": "Vík í Mýrdal",
+      "pais": "Islandia",
+      "pais_iso": "IS",
+      "region": "Sur",
+      "lat": 63.419,
+      "lon": -19.006,
+      "x": 457.3,
+      "y": 51.5,
+      "aliases": [
+        "Vik i Myrdal"
+      ]
+    },
+    {
+      "id": "ro-bucarest",
+      "ciudad": "Bucarest",
+      "pais": "Rumanía",
+      "pais_iso": "RO",
+      "region": "Bucarest",
+      "lat": 44.427,
+      "lon": 26.103,
+      "x": 566.2,
+      "y": 109.9,
+      "aliases": [
+        "Bucharest",
+        "București"
+      ]
+    },
+    {
+      "id": "ru-san-petersburgo",
+      "ciudad": "San Petersburgo",
+      "pais": "Rusia",
+      "pais_iso": "RU",
+      "region": "San Petersburgo",
+      "lat": 59.934,
+      "lon": 30.336,
+      "x": 569.8,
+      "y": 61.7,
+      "aliases": [
+        "Leningrado",
+        "Petrogrado",
+        "Saint Petersburg"
+      ]
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -365,6 +545,21 @@
       "ciudad": "Suphan",
       "pais": "Tailandia",
       "motivo": "Nombre incompleto (¿Suphan Buri?); confirmar clasificación"
+    },
+    {
+      "ciudad": "Riegersburg",
+      "pais": "Austria",
+      "motivo": "Hay varias localidades con ese nombre (p. ej. Estiria y Baja Austria); confirmar cuál se refiere en el libro"
+    },
+    {
+      "ciudad": "Stillwater",
+      "pais": "Estados Unidos",
+      "motivo": "El libro la sitúa en Iowa, pero no se ha podido confirmar una ciudad real con ese nombre en ese estado (¿ficticia?)"
+    },
+    {
+      "ciudad": "Davenport",
+      "pais": "Estados Unidos",
+      "motivo": "El libro indica Minnesota, pero la ciudad de Davenport conocida está en Iowa; confirmar estado antes de cartografiar"
     }
   ]
 }
