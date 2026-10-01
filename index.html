@@ -1390,6 +1390,20 @@ button.rc-stop{cursor:pointer}
 /* Capa de ciudades (Fase 5.2) */
 .ws-card[data-map="cultura"]{position:relative}
 .ws-cities{pointer-events:none}
+/* Fase 5.4 — regiones: anillo hueco y discreto (ubicación menos precisa que la ciudad, que es un punto sólido) */
+.ws-regions{pointer-events:none}
+.ws-reg{fill:var(--accent2);fill-opacity:.07;stroke:var(--accent2);stroke-opacity:.9;stroke-width:1.5;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;transition:fill-opacity .15s,stroke .15s,transform .15s}
+.ws-reg.is-sel{fill-opacity:.25;stroke:#fff;transform:scale(1.15)}
+.ws-reg-hit{fill:transparent;stroke:none;pointer-events:all;cursor:pointer}
+.ws-reg-tip{z-index:4}
+.ws-reg-tip.is-pinned{pointer-events:auto}
+.ws-reg-item{display:flex;flex-direction:column;gap:1px}
+.ws-reg-item+.ws-reg-item{margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.ws-cp-sub{margin:.7rem 0 0;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.ws-cp-sub+.ws-cp-list{margin-top:.3rem}
+.ws-cp-li-via .ws-cp-row{border-bottom:0}
+.ws-cp-via{margin:0;padding:0 4px 7px;font-size:11.5px;line-height:1.4;color:var(--muted);border-bottom:1px solid var(--border)}
+@media (prefers-reduced-motion:reduce){.ws-reg{transition:none}}
 .ws-city-halo{fill:var(--accent2);fill-opacity:.22;stroke:var(--accent2);stroke-opacity:.55;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;transition:fill-opacity .15s,transform .15s}
 .ws-city-halo.is-sel{fill-opacity:.4;stroke-opacity:.9;transform:scale(1.15)}
 .ws-city{fill:var(--accent2);stroke:rgba(14,11,16,.95);stroke-width:1.6;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;transition:fill .15s,transform .15s}
@@ -11693,24 +11707,35 @@ function wsResolveCity(u){
   return id?{status:'ok',id}:{status:'pending',key:iso+'|'+k};
 }
 
-// Ciudades descubiertas en `year`: Map(cityId → {city, n}). n = lecturas terminadas ese año
-// de libros que incluyen la ciudad; dentro de un libro cada ciudad cuenta una sola vez (Set).
+// Ciudades y regiones descubiertas en `year` (Fase 5.4). Prioridad CIUDAD > REGIÓN, fila a fila y con los datos reales de cada ubicación:
+//  · ciudad registrada → solo la ciudad (la región de esa fila no cuenta);
+//  · ciudad no registrada + región registrada → la región como fallback; la ciudad queda en `pending`;
+//  · sin ciudad + región registrada → la región;
+//  · supresión por libro: una región no cuenta si el MISMO libro ya aporta una ciudad registrada con ESA región en su propia fila.
+// n = lecturas terminadas ese año; dentro de un libro cada ciudad y cada región cuentan una sola vez (Set). Contadores separados.
 function computeCityDiscoveries(year){
-  const res={cities:new Map(),located:0,noCity:0,pending:new Map()};
+  const res={cities:new Map(),regions:new Map(),located:0,noCity:0,pending:new Map(),regionPending:new Map()};
   if(!_wsCityIndex) return res;
   const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
   Object.keys(myReadingLog).forEach(bookId=>{
     const n=(myReadingLog[bookId]||[]).filter(e=>wsEntryYear(e)===year).length;
     if(!n) return;
-    const book=byId.get(String(bookId)),ids=new Set();
+    const book=byId.get(String(bookId)),ids=new Set(),regs=new Map(),cityRegs=new Set();
     if(book&&Array.isArray(book.ubicaciones)) book.ubicaciones.forEach(u=>{
-      const r=wsResolveCity(u);
-      if(r.status==='ok') ids.add(r.id);
-      else if(r.status==='pending') res.pending.set(r.key,(res.pending.get(r.key)||0)+n);
+      const r=wsResolveCity(u),g=wsResolveRegion(u);
+      if(r.status==='ok'){ ids.add(r.id); if(g.status==='ok'||g.status==='pending') cityRegs.add(g.id||g.key); return; }
+      if(r.status==='pending') res.pending.set(r.key,(res.pending.get(r.key)||0)+n);
+      if(g.status==='ok'){ let v=regs.get(g.id); if(!v){ v=new Set(); regs.set(g.id,v); } if(r.status==='pending') v.add(u.ciudad.trim()); }
+      else if(g.status==='pending') res.regionPending.set(g.key,(res.regionPending.get(g.key)||0)+n);
     });
-    if(!ids.size){ res.noCity+=n; return; }
+    const rids=[...regs.keys()].filter(id=>!cityRegs.has(id));
+    if(!ids.size&&!rids.length){ res.noCity+=n; return; }
     res.located+=n;
     ids.forEach(id=>{ const cur=res.cities.get(id); if(cur) cur.n+=n; else res.cities.set(id,{city:_wsCityIndex.byId.get(id),n}); });
+    rids.forEach(id=>{
+      let cur=res.regions.get(id); if(!cur){ cur={region:_wsRegIndex.byId.get(id),n:0,via:new Set()}; res.regions.set(id,cur); }
+      cur.n+=n; regs.get(id).forEach(v=>cur.via.add(v));
+    });
   });
   return res;
 }
@@ -11721,7 +11746,7 @@ function wsCitySvg(){ const w=document.getElementById('wsWrap_'+WS_CITY_MAP); re
 // Orquestador: nunca lanza. Si algo falla, simplemente no hay ciudades (la selección de país sigue funcionando).
 function wsRenderCities(){
   const yr=wsYear;
-  wsLoadCities().then(()=>{
+  wsLoadCities().then(()=>wsLoadRegions().catch(e=>{ if(e&&e.message) console.warn('[Mi mundo] regiones:',e.message); return null; })).then(()=>{
     if(yr!==wsYear||!_wsBuilt) return;
     _wsCityResult=computeCityDiscoveries(yr);
     wsCountryRefresh();
@@ -11748,6 +11773,9 @@ function wsCityApplyScale(){
   svg.querySelectorAll('.ws-city').forEach(el=>el.setAttribute('r',rm));
   svg.querySelectorAll('.ws-city-halo').forEach(el=>el.setAttribute('r',rhalo));
   svg.querySelectorAll('.ws-city-hit').forEach(el=>el.setAttribute('r',rh));
+  const rr=(mk*WS_REG_RING_K/m.a).toFixed(3);   // anillo de región: algo mayor que el punto de ciudad
+  svg.querySelectorAll('.ws-reg').forEach(el=>el.setAttribute('r',rr));
+  svg.querySelectorAll('.ws-reg-hit').forEach(el=>el.setAttribute('r',rh));
 }
 
 // El catálogo está proyectado sobre un viewBox concreto; si no coincide con el mapa, no se usa
@@ -11820,6 +11848,7 @@ function wsCityPlaceTip(){
 }
 function wsCityShowTip(cx,cy,pin){
   const z=wsCityZone(cx,cy); if(!z.length){ wsCityHideTip(); return; }
+  wsRegHideTip();
   wsHideTip(WS_CITY_MAP);                      // cierra el tooltip de país (función existente, sin modificarla)
   Object.assign(_wsCityUI,{zone:z,cx,cy,pinned:!!pin,sel:z.length===1&&pin?z[0].city.id:null});
   wsCityPlaceTip();
@@ -11872,7 +11901,7 @@ function wsCountryCities(iso){
 }
 function wsCountrySelectable(iso){
   const ref=_wsRefs[WS_CITY_MAP],res=_wsResult[WS_CITY_MAP]; if(!iso||!ref||!ref.byIso.has(iso)) return false;
-  return !!(res&&res.countries.has(iso))||wsCountryCities(iso).length>0;
+  return !!(res&&res.countries.has(iso))||wsCountryCities(iso).length>0||wsCountryRegions(iso).length>0;
 }
 
 // Silueta útil de un país: caja del polígono principal (mayor área) + los polígonos próximos (islas, exclaves cercanos).
@@ -11929,8 +11958,8 @@ function wsZoomBox(iso,cities){
 function wsCityOnResize(){
   const svg=wsCitySvg(),w=svg?svg.clientWidth:0; if(!svg) return;
   if(_wsCountrySel&&_wsCityUI.w&&w&&Math.abs(w-_wsCityUI.w)>1){
-    const l=wsCountryCities(_wsCountrySel);
-    if(l.length){ cancelAnimationFrame(_wsViewRaf); wsViewApply(svg,wsZoomBox(_wsCountrySel,l.map(it=>it.city))); }
+    const l=wsCountryPoints(_wsCountrySel);
+    if(l.length){ cancelAnimationFrame(_wsViewRaf); wsViewApply(svg,wsZoomBox(_wsCountrySel,l)); }
   }
   if(w) _wsCityUI.w=w;
   wsCityApplyScale();
@@ -11960,14 +11989,19 @@ function wsViewTo(box){
   _wsViewRaf=requestAnimationFrame(step);
 }
 
-function wsCountryPanel(iso,list){
+function wsCountryPanel(iso,list,rlist){
   const p=document.getElementById('wsCityPanel'); if(!p) return;
   if(!iso){ p.textContent=''; return; }
-  const name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso;
+  rlist=rlist||[];
+  const name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso,both=list.length&&rlist.length;
+  const cityRow=it=>`<li><button type="button" class="ws-cp-row" data-city="${escHtml(it.city.id)}"><b>${escHtml(it.city.ciudad)}</b><span>· ${wsCityLecturas(it.n)}</span></button></li>`;
+  const regRow=it=>{ const t=wsRegTipo(it.region),via=it.via.size;
+    return `<li${via?' class="ws-cp-li-via"':''}><button type="button" class="ws-cp-row" data-region="${escHtml(it.region.id)}"><b>${escHtml(it.region.nombre)}</b><span>· ${wsCityLecturas(it.n)}${t?' · '+escHtml(t):''}</span></button>`+
+      (via?`<p class="ws-cp-via">Incluye lecturas con ciudad aún sin cartografiar: ${escHtml([...it.via].join(', '))}</p>`:'')+`</li>`; };
   p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4></div>`+
-    (list.length
-      ?`<ul class="ws-cp-list">${list.map(it=>`<li><button type="button" class="ws-cp-row" data-city="${escHtml(it.city.id)}"><b>${escHtml(it.city.ciudad)}</b><span>· ${wsCityLecturas(it.n)}</span></button></li>`).join('')}</ul>`
-      :`<p class="ws-cp-none">No hay ciudades descubiertas en ${escHtml(name)} en ${wsYear}.</p>`);
+    (list.length?(both?'<h5 class="ws-cp-sub">Ciudades</h5>':'')+`<ul class="ws-cp-list">${list.map(cityRow).join('')}</ul>`:'')+
+    (rlist.length?'<h5 class="ws-cp-sub">Regiones · ubicación aproximada</h5>'+`<ul class="ws-cp-list">${rlist.map(regRow).join('')}</ul>`:'')+
+    (both||list.length||rlist.length?'':`<p class="ws-cp-none">No hay ciudades ni regiones descubiertas en ${escHtml(name)} en ${wsYear}.</p>`);
 }
 
 // Lista alternativa de países (accesible): botones para los seleccionables, incluidos los descubiertos solo por una ciudad
@@ -11975,18 +12009,23 @@ function wsAltRebuild(){
   const box=document.getElementById('wsAlt_'+WS_CITY_MAP),sum=document.getElementById('wsAltSum_'+WS_CITY_MAP),res=_wsResult[WS_CITY_MAP],ref=_wsRefs[WS_CITY_MAP];
   if(!box||!sum||!res||!ref||!_wsIsoToName) return;
   const rows=new Map();
-  res.countries.forEach((n,iso)=>rows.set(iso,{n,c:0}));
+  res.countries.forEach((n,iso)=>rows.set(iso,{n,c:0,g:0}));
   let extra=0;
   if(_wsCityResult&&wsCityCatalogOk()) _wsCityResult.cities.forEach(it=>{
     const iso=String(it.city.pais_iso).toUpperCase(); if(!ref.byIso.has(iso)) return;
-    let r=rows.get(iso); if(!r){ r={n:0,c:0}; rows.set(iso,r); extra++; }
+    let r=rows.get(iso); if(!r){ r={n:0,c:0,g:0}; rows.set(iso,r); extra++; }
     r.c++;
+  });
+  if(_wsCityResult&&_wsCityResult.regions&&wsRegCatalogOk()) _wsCityResult.regions.forEach(it=>{
+    const iso=String(it.region.pais_iso).toUpperCase(); if(!ref.byIso.has(iso)) return;
+    let r=rows.get(iso); if(!r){ r={n:0,c:0,g:0}; rows.set(iso,r); extra++; }
+    r.g++;
   });
   sum.textContent=extra?`Ver lista de países (${rows.size})`:`Ver lista de países descubiertos (${res.countries.size})`;
   if(!rows.size) return; // sin datos: se conserva el aviso que ya pintó wsPaint
   const list=[...rows.entries()].map(([iso,r])=>({iso,name:_wsIsoToName.get(iso)||iso,r})).sort((a,b)=>a.name.localeCompare(b.name,'es'));
   const regs=[...res.regions.entries()];
-  box.innerHTML=`<ul class="ws-alt-list">${list.map(o=>`<li><button type="button" class="ws-alt-btn" data-country="${escHtml(o.iso)}" aria-pressed="${o.iso===_wsCountrySel}"><span class="ws-alt-name">${escHtml(o.name)}</span><span>${o.r.n?`${o.r.n} lectura${o.r.n===1?'':'s'}`:`${o.r.c} ciudad${o.r.c===1?'':'es'}`}</span></button></li>`).join('')}</ul>`+
+  box.innerHTML=`<ul class="ws-alt-list">${list.map(o=>`<li><button type="button" class="ws-alt-btn" data-country="${escHtml(o.iso)}" aria-pressed="${o.iso===_wsCountrySel}"><span class="ws-alt-name">${escHtml(o.name)}</span><span>${o.r.n?`${o.r.n} lectura${o.r.n===1?'':'s'}`:o.r.c?`${o.r.c} ciudad${o.r.c===1?'':'es'}`:`${o.r.g} región${o.r.g===1?'':'es'}`}</span></button></li>`).join('')}</ul>`+
     (regs.length?`<p class="ws-alt-note">Región sin país concreto (no se pinta en el mapa): ${regs.map(([g,n])=>`${escHtml(g)} (${n} lectura${n===1?'':'s'})`).join(', ')}.</p>`:'');
 }
 
@@ -11997,17 +12036,19 @@ function wsCountryApply(){
   ref.byIso.forEach((els,k)=>els.forEach(el=>el.classList.toggle('is-active',k===iso)));
   svg.classList.toggle('has-sel',!!iso);
   document.querySelectorAll('#wsAlt_'+WS_CITY_MAP+' [data-country]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.country===iso)));
-  const list=iso?wsCountryCities(iso):[];
-  wsPaintCities(list);
-  wsCountryPanel(iso,list);
-  wsViewTo(list.length?wsZoomBox(iso,list.map(it=>it.city)):[0,0,_wsMap.w,_wsMap.h]);
+  const list=iso?wsCountryCities(iso):[],rlist=iso?wsCountryRegions(iso):[];
+  wsPaintCities(list);      // primero ciudades; las regiones se insertan debajo de ellas
+  wsPaintRegions(rlist);
+  wsCountryPanel(iso,list,rlist);
+  const pts=iso?wsCountryPoints(iso):[];
+  wsViewTo(pts.length?wsZoomBox(iso,pts):[0,0,_wsMap.w,_wsMap.h]);
   _wsCityUI.w=svg.clientWidth;
 }
 function wsCountryRefresh(){ wsAltRebuild(); wsCountryApply(); }
 
 function wsCountrySet(iso){
   _wsCountrySel=iso||null;
-  wsCityHideTip();
+  wsCityHideTip(); wsRegHideTip();
   const inf=document.getElementById('wsInfo_'+WS_CITY_MAP); // no dejar la ficha de una ciudad del país anterior
   if(inf) inf.textContent='Pasa el ratón o toca un país para ver su información.';
   wsCountryApply();
@@ -12042,11 +12083,12 @@ function wsCountryInit(){
   }
   if(!document.getElementById('wsCityPanel')){
     const wrap=document.getElementById('wsWrap_'+WS_CITY_MAP),p=document.createElement('div');
-    p.id='wsCityPanel'; p.className='ws-cp'; p.setAttribute('role','region'); p.setAttribute('aria-label','Ciudades del país seleccionado'); p.setAttribute('aria-live','polite');
+    p.id='wsCityPanel'; p.className='ws-cp'; p.setAttribute('role','region'); p.setAttribute('aria-label','Ciudades y regiones del país seleccionado'); p.setAttribute('aria-live','polite');
     wrap.insertAdjacentElement('afterend',p);
     p.addEventListener('click',e=>{
       if(e.target.closest('[data-back-world]')){ wsCountryBackToWorld(); return; }
-      const b=e.target.closest('[data-city]'); if(b) wsCityFromList(b.dataset.city);
+      const b=e.target.closest('[data-city]'); if(b){ wsCityFromList(b.dataset.city); return; }
+      const rb=e.target.closest('[data-region]'); if(rb) wsRegFromList(rb.dataset.region);
     });
   }
   const alt=document.getElementById('wsAlt_'+WS_CITY_MAP);
@@ -12069,6 +12111,170 @@ function wsCountryInit(){
       wsCountrySet(null);
     });
   }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Fase 5.4 — REGIONES (provincias, estados, comunidades…)
+   Catálogo propio y abierto: world_regions_data.json. NO hay ninguna región escrita aquí;
+   añadir una al JSON basta. `tipo` es texto libre que se muestra tal cual.
+   Solo se dibujan las del país seleccionado, con anillo hueco (ubicación menos precisa que la ciudad).
+   Si el catálogo falla, simplemente no hay regiones y las ciudades siguen igual.
+   ───────────────────────────────────────────────────────────── */
+const WS_REGCAT_URL='world_regions_data.json';
+const WS_REG_RING_K=1.55;           // radio del anillo = 1,55× el del punto de ciudad
+let _wsRegPromise=null,_wsRegFailAt=0,_wsRegIndex=null;
+let _wsRegUI={tip:null,pinned:false,zone:[],cx:0,cy:0,touchAt:0,shown:[],docBound:false};
+
+// Índice país(ISO) → nombre/alias normalizado → id. Nombre repetido en el mismo país = ambiguo (null) y no se resuelve.
+function wsBuildRegionIndex(d){
+  if(!d||!Array.isArray(d.regiones)) throw new Error('catálogo de regiones no válido');
+  const byId=new Map(),byIso=new Map();
+  d.regiones.forEach(r=>{
+    if(!r||typeof r.id!=='string'||!r.id||typeof r.nombre!=='string'||!r.nombre.trim()||typeof r.pais_iso!=='string'||!Number.isFinite(r.x)||!Number.isFinite(r.y)) return;
+    if(byId.has(r.id)) return;
+    byId.set(r.id,r);
+    const iso=r.pais_iso.toUpperCase();
+    if(!byIso.has(iso)) byIso.set(iso,new Map());
+    const names=byIso.get(iso);
+    [r.nombre].concat(Array.isArray(r.aliases)?r.aliases:[]).forEach(n=>{
+      if(typeof n!=='string'||!n.trim()) return;
+      const k=wsCityNorm(n);
+      if(!names.has(k)) names.set(k,r.id); else if(names.get(k)!==r.id) names.set(k,null);
+    });
+  });
+  return {byId,byIso,viewBox:d.proyeccion_mapa&&d.proyeccion_mapa.viewBox};
+}
+function wsLoadRegions(){
+  if(_wsRegIndex) return Promise.resolve(_wsRegIndex);
+  if(Date.now()-_wsRegFailAt<WS_CITY_RETRY_MS) return Promise.reject(new Error('catálogo de regiones no disponible'));
+  if(!_wsRegPromise){
+    _wsRegPromise=fetch(WS_REGCAT_URL+'?v='+Date.now(),{cache:'no-store'})
+      .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(d=>{ _wsRegIndex=wsBuildRegionIndex(d); return _wsRegIndex; })
+      .catch(e=>{ _wsRegPromise=null; _wsRegFailAt=Date.now(); throw e; });
+  }
+  return _wsRegPromise;
+}
+function wsRegCatalogOk(){
+  if(!_wsRegIndex||!_wsMap) return false;
+  const vb=_wsRegIndex.viewBox;
+  return !(vb&&String(vb).trim()!=='0 0 '+_wsMap.w+' '+_wsMap.h);
+}
+// Una ubicación → región del catálogo. Lee SOLO u.region: nunca reinterpreta u.ciudad como región.
+function wsResolveRegion(u){
+  if(!_wsRegIndex||!u||typeof u.region!=='string'||!u.region.trim()) return {status:'noregion'};
+  if(typeof u.pais!=='string'||!u.pais.trim()) return {status:'nocountry'};
+  const iso=wsResolveIso(u.pais); if(!iso) return {status:'nocountry'};
+  const k=wsCityNorm(u.region),names=_wsRegIndex.byIso.get(iso),id=names&&names.get(k);
+  return id?{status:'ok',id,key:iso+'|'+k}:{status:'pending',key:iso+'|'+k};
+}
+function wsRegTipo(r){ return typeof r.tipo==='string'&&r.tipo.trim()?r.tipo.trim():''; }
+function wsCountryRegions(iso){
+  const out=[]; if(!iso||!_wsCityResult||!_wsCityResult.regions||!wsRegCatalogOk()) return out;
+  _wsCityResult.regions.forEach(it=>{ if(String(it.region.pais_iso).toUpperCase()===iso) out.push(it); });
+  return out.sort((a,b)=>b.n-a.n||String(a.region.nombre).localeCompare(String(b.region.nombre),'es'));
+}
+// Puntos x/y (ciudades + regiones) del país: de ahí sale el zoom
+function wsCountryPoints(iso){ return wsCountryCities(iso).map(it=>it.city).concat(wsCountryRegions(iso).map(it=>it.region)); }
+
+function wsEnsureResizeObs(svg){
+  if(typeof ResizeObserver==='undefined'||_wsCityUI.ro) return;
+  _wsCityUI.ro=new ResizeObserver(wsCityOnResize); _wsCityUI.ro.observe(svg);
+}
+function wsClearRegions(){
+  wsRegHideTip(); _wsRegUI.shown=[];
+  const svg=wsCitySvg(); if(svg){ const g=svg.querySelector('.ws-regions'); if(g) g.remove(); }
+}
+// Dibuja SOLO las regiones recibidas (las del país seleccionado), por debajo de las ciudades
+function wsPaintRegions(list){
+  const svg=wsCitySvg(),card=document.querySelector('.ws-card[data-map="'+WS_CITY_MAP+'"]');
+  if(!svg||!card||!_wsMap) return;
+  if(!wsRegCatalogOk()||!Array.isArray(list)||!list.length){ wsClearRegions(); return; }
+  wsRegHideTip();
+  _wsRegUI.shown=list;
+  let g=svg.querySelector('.ws-regions');
+  const NS='http://www.w3.org/2000/svg';
+  if(!g){
+    g=document.createElementNS(NS,'g'); g.setAttribute('class','ws-regions'); g.setAttribute('aria-hidden','true');
+    const cg=svg.querySelector('.ws-cities'); if(cg) svg.insertBefore(g,cg); else svg.appendChild(g);
+    wsRegBind(g);
+  }
+  g.textContent='';
+  const mk=(cls,r)=>{ const el=document.createElementNS(NS,'circle'); el.setAttribute('class',cls); el.setAttribute('cx',r.x); el.setAttribute('cy',r.y); el.dataset.region=r.id; return el; };
+  list.forEach(it=>g.appendChild(mk('ws-reg',it.region)));
+  list.forEach(it=>g.appendChild(mk('ws-reg-hit',it.region)));
+  wsCityApplyScale(); wsEnsureResizeObs(svg);
+  if(!card.querySelector('.ws-reg-tip')){
+    const t=document.createElement('div'); t.className='ws-tip ws-reg-tip'; t.setAttribute('role','status'); card.appendChild(t);
+  }
+  _wsRegUI.tip=card.querySelector('.ws-reg-tip');
+  if(!_wsRegUI.docBound){ _wsRegUI.docBound=true; document.addEventListener('pointerdown',e=>{ if(!e.target.closest||!e.target.closest('.ws-reg-tip,.ws-reg-hit,.ws-cp-row')) wsRegHideTip(); }); }
+}
+
+/* ── Interacción de regiones (independiente de la de ciudades; las ciudades quedan encima y tienen prioridad al tocar) ── */
+function wsRegZone(cx,cy){
+  const svg=wsCitySvg(),m=svg&&svg.getScreenCTM(),out=[]; if(!m||!_wsRegUI.shown.length) return out;
+  _wsRegUI.shown.forEach(it=>{
+    if(Math.hypot(m.a*it.region.x+m.e-cx,m.d*it.region.y+m.f-cy)<=WS_CITY_ZONE_PX+0.5) out.push(it);
+  });
+  return out.sort((a,b)=>b.n-a.n||String(a.region.nombre).localeCompare(String(b.region.nombre),'es'));
+}
+function wsRegTipHTML(z){
+  return z.map(it=>{ const r=it.region,t=wsRegTipo(r);
+    return `<div class="ws-reg-item"><strong>${escHtml(r.nombre)}</strong><span>${escHtml(r.pais||'')} · ${wsCityLecturas(it.n)}</span>`+
+      `<span class="is-muted">${t?'Tipo: '+escHtml(t)+' · ':''}ubicación aproximada</span>`+
+      (it.via.size?`<span class="is-muted">Incluye ciudad aún sin cartografiar: ${escHtml([...it.via].join(', '))}</span>`:'')+`</div>`; }).join('');
+}
+function wsRegPlaceTip(){
+  const card=document.querySelector('.ws-card[data-map="'+WS_CITY_MAP+'"]'),tip=_wsRegUI.tip; if(!card||!tip) return;
+  tip.innerHTML=wsRegTipHTML(_wsRegUI.zone); tip.classList.add('show'); tip.classList.toggle('is-pinned',_wsRegUI.pinned);
+  const r=card.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+  const x=Math.max(w/2+4,Math.min(r.width-w/2-4,_wsRegUI.cx-r.left)),y=_wsRegUI.cy-r.top;
+  const top=Math.max(4,Math.min(r.height-h-4,(y-h-14)>=0?y-10-h:y+18));
+  tip.style.left=x+'px'; tip.style.top=top+'px'; tip.style.transform='translateX(-50%)';
+  const ids=new Set(_wsRegUI.zone.map(it=>it.region.id)),svg=wsCitySvg();
+  if(svg) svg.querySelectorAll('.ws-reg').forEach(el=>el.classList.toggle('is-sel',_wsRegUI.pinned&&ids.has(el.dataset.region)));
+}
+function wsRegShowTip(cx,cy,pin,forced){
+  const z=forced||wsRegZone(cx,cy); if(!z.length){ wsRegHideTip(); return; }
+  wsCityHideTip(); wsHideTip(WS_CITY_MAP);     // un solo tooltip a la vez (ciudad / país / región)
+  Object.assign(_wsRegUI,{zone:z,cx,cy,pinned:!!pin});
+  wsRegPlaceTip();
+  if(pin&&z.length===1) wsRegInfo(z[0]);
+}
+function wsRegInfo(it){
+  const info=document.getElementById('wsInfo_'+WS_CITY_MAP),t=wsRegTipo(it.region);
+  if(info) info.innerHTML=`<b>${escHtml(it.region.nombre)}</b> · ${escHtml(it.region.pais||'')}${t?' · '+escHtml(t):''} · ${wsCityLecturas(it.n)}`;
+}
+function wsRegHideTip(){
+  const u=_wsRegUI; u.pinned=false; u.zone=[];
+  if(u.tip) u.tip.classList.remove('show','is-pinned');
+  const svg=wsCitySvg(); if(svg) svg.querySelectorAll('.ws-reg.is-sel').forEach(el=>el.classList.remove('is-sel'));
+}
+function wsRegBind(g){
+  g.addEventListener('pointermove',e=>{
+    if(e.pointerType!=='mouse') return;
+    e.stopPropagation();
+    if(_wsRegUI.pinned) return;
+    wsRegShowTip(e.clientX,e.clientY,false);
+  });
+  g.addEventListener('pointerleave',e=>{ if(e.pointerType==='mouse'&&!_wsRegUI.pinned) wsRegHideTip(); });
+  g.addEventListener('pointerup',e=>{
+    if(e.pointerType==='mouse') return;
+    e.stopPropagation(); _wsRegUI.touchAt=Date.now();
+    wsRegShowTip(e.clientX,e.clientY,true);
+  });
+  g.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(Date.now()-_wsRegUI.touchAt<800) return;
+    wsRegShowTip(e.clientX,e.clientY,true);
+  });
+}
+// Una región elegida desde el panel: mismo tooltip/selección que desde el mapa
+function wsRegFromList(id){
+  const it=_wsRegUI.shown.find(x=>x.region.id===id),svg=wsCitySvg(),m=svg&&svg.getScreenCTM(); if(!it||!m) return;
+  wsRegShowTip(m.a*it.region.x+m.e,m.d*it.region.y+m.f,true,[it]);
+  document.querySelectorAll('#wsCityPanel .ws-cp-row').forEach(b=>b.classList.toggle('is-current',b.dataset.region===id));
 }
 
 // Pinta un renglón por cada edición de bingo (pasada o presente), con sus
