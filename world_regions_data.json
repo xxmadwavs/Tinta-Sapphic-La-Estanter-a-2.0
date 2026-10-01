@@ -172,6 +172,98 @@
       "x": 490.3,
       "y": 122.6,
       "aliases": []
+    },
+    {
+      "id": "es-galicia",
+      "nombre": "Galicia",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 42.8,
+      "lon": -7.9,
+      "x": 479.7,
+      "y": 115.2,
+      "aliases": [
+        "Galiza"
+      ]
+    },
+    {
+      "id": "us-alabama",
+      "nombre": "Alabama",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 32.8,
+      "lon": -86.8,
+      "x": 268.4,
+      "y": 147.8,
+      "aliases": []
+    },
+    {
+      "id": "us-kansas",
+      "nombre": "Kansas",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 38.5,
+      "lon": -98.4,
+      "x": 243.1,
+      "y": 129.1,
+      "aliases": []
+    },
+    {
+      "id": "us-pensilvania",
+      "nombre": "Pensilvania",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 40.9,
+      "lon": -77.8,
+      "x": 299.0,
+      "y": 121.3,
+      "aliases": [
+        "Pennsylvania"
+      ]
+    },
+    {
+      "id": "us-washington",
+      "nombre": "Washington",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 47.4,
+      "lon": -120.5,
+      "x": 198.6,
+      "y": 100.4,
+      "aliases": [
+        "Estado de Washington"
+      ]
+    },
+    {
+      "id": "gb-kent",
+      "nombre": "Kent",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "tipo": "condado",
+      "lat": 51.2,
+      "lon": 0.7,
+      "x": 501.6,
+      "y": 88.4,
+      "aliases": []
+    },
+    {
+      "id": "gb-cornwall",
+      "nombre": "Cornwall",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "tipo": "condado",
+      "lat": 50.4,
+      "lon": -4.85,
+      "x": 488.0,
+      "y": 90.9,
+      "aliases": [
+        "Cornualles"
+      ]
     }
   ],
   "pendientes_verificacion": [
@@ -196,14 +288,19 @@
       "motivo": "Aparece como ciudad; es nombre de provincia y de su capital. Confirmar cuál se refiere en el libro"
     },
     {
-      "valor": "Cornwall",
-      "pais": "Inglaterra",
-      "motivo": "Aparece como ciudad; el país «Inglaterra» no resuelve a ningún país del mapa (el mapa solo tiene Reino Unido). Pendiente de decisión de datos"
-    },
-    {
       "valor": "Minnesota",
       "pais": "Estados Unidos",
       "motivo": "Aparece como región junto a la ciudad Davenport, que está en Iowa; confirmar si es un error en books_data.json antes de registrarla"
+    },
+    {
+      "valor": "Moural",
+      "pais": "España",
+      "motivo": "Aparece como ciudad dentro de Galicia en books_data.json; no se ha podido confirmar. Se registra Galicia como región, pero no Moural"
+    },
+    {
+      "valor": "Inglaterra",
+      "pais": "Inglaterra",
+      "motivo": "Kent y Cornwall se han registrado con país «Reino Unido» (GB) porque «Inglaterra» no resuelve en el mapa; books_data.json los escribe con «Inglaterra». Confirmar esta decisión o añadir un alias de país"
     }
   ]
 }

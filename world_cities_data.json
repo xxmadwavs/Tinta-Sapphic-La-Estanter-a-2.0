@@ -480,6 +480,90 @@
       "x": 549.0,
       "y": 111.0,
       "aliases": []
+    },
+    {
+      "id": "th-pattaya",
+      "ciudad": "Pattaya",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Chonburi",
+      "lat": 12.927,
+      "lon": 100.877,
+      "x": 781.3,
+      "y": 212.9,
+      "aliases": []
+    },
+    {
+      "id": "th-chanthaburi",
+      "ciudad": "Chanthaburi",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Chanthaburi",
+      "lat": 12.61,
+      "lon": 102.104,
+      "x": 784.8,
+      "y": 213.9,
+      "aliases": []
+    },
+    {
+      "id": "us-seattle",
+      "ciudad": "Seattle",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 47.606,
+      "lon": -122.332,
+      "x": 194.4,
+      "y": 99.7,
+      "aliases": []
+    },
+    {
+      "id": "us-cincinnati",
+      "ciudad": "Cincinnati",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Ohio",
+      "lat": 39.103,
+      "lon": -84.512,
+      "x": 279.9,
+      "y": 127.2,
+      "aliases": []
+    },
+    {
+      "id": "gb-canterbury",
+      "ciudad": "Canterbury",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "region": "Kent",
+      "lat": 51.28,
+      "lon": 1.08,
+      "x": 502.6,
+      "y": 88.1,
+      "aliases": []
+    },
+    {
+      "id": "it-amalfi",
+      "ciudad": "Amalfi",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Campania",
+      "lat": 40.634,
+      "lon": 14.603,
+      "x": 537.7,
+      "y": 122.2,
+      "aliases": []
+    },
+    {
+      "id": "au-melbourne",
+      "ciudad": "Melbourne",
+      "pais": "Australia",
+      "pais_iso": "AU",
+      "region": "Victoria",
+      "lat": -37.814,
+      "lon": 144.963,
+      "x": 879.3,
+      "y": 378.6,
+      "aliases": []
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -647,6 +731,11 @@
       "ciudad": "Davenport",
       "pais": "Estados Unidos",
       "motivo": "El libro indica Minnesota, pero la ciudad de Davenport conocida está en Iowa; confirmar estado antes de cartografiar"
+    },
+    {
+      "ciudad": "Moural",
+      "pais": "España",
+      "motivo": "El libro lo sitúa en Galicia, pero no se ha podido confirmar una ciudad o localidad cartografiable con ese nombre; confirmar antes de añadirla"
     }
   ]
 }
