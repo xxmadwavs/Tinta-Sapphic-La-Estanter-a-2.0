@@ -358,6 +358,7 @@
     "synopsis": "Soy \"ML Sippakorn\", o como todos llaman, \"Señorita Nueng\". Vivir sola lejos del palacio me ha hecho darme cuenta de que todavía tengo mucho que aprender. Pero, a diferencia de todos los demás, nunca he experimentado el \"amor\". Es decir, hasta que conocí a esa chica tan alegre: A-Nueng.\n\nEs una joven de 18 años con unos ojos preciosos. Me visita con frecuencia y me confiesa su amor cada vez que nos vemos. Es extraño... Normalmente me molesta que la gente se me pegue, pero con ella siento... Ah, da igual. No se irá, aunque la aleje.\n\nLa naturaleza de nuestra relación es inusual. Más tarde descubrí que yo participé en el nacimiento de esa chica: su madre era mi mejor amiga en el instituto y desapareció de repente porque estaba embarazada. No sé si el universo está en mi contra o si me está gastando una broma, pero ella llegó a mi vida para llenar mi \"espacio en blanco\".\n\nNuestra diferencia de edad es demasiado grande. \"Yo tenía 16 cuando naciste\", le digo para advertirle. Pero A-Nueng no parece interesada en mis razones.\n\n— ¿Y qué? —responde ella.\n\n— Significa que cuando tengas 20, yo tendré 36. La diferencia entre nosotros es demasiado grande.\n\n— Míralo desde otro ángulo. Cuando tengas 86, yo tendré 70. Entonces, la gente dirá que tenemos edades similares. Y podré cuidarte si te enfermas, dado que soy más joven y más fuerte. ¿No es genial?\n\nMiro a la pequeña, que discute conmigo con sus razones. Entonces uso las palabras que siempre utilizo para dejar a todos boquiabiertos:\n\n— ¿Crees que eres lo suficientemente digna?\n\n— Hoy no —me asegura—. Pero seré digna de ti algún día. Te lo prometo.",
     "pages": 867,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "FayeYoko"
     ],
@@ -369,7 +370,8 @@
     "identidades": [
       "Lesbiana",
       "Sunshine",
-      "Ice Queen"
+      "Ice Queen",
+      "Femme"
     ],
     "characters": [
       "Estudiante",
@@ -387,8 +389,30 @@
       "Slow Burn",
       "Unrequited Love"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Infantilización",
@@ -409,13 +433,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777149654761_42p0w",
@@ -1432,19 +1455,59 @@
     "synopsis": "Tantiya, una arquitecta experta, se topó con el archienemigo de su profesión.\nRenita, una exitosa maestra de Feng Shui, especializada en traer prosperidad a los residentes.\nY así comenzó la batalla, como el gato y el perro, el agua y el fuego, el yin y el yang.\nCon sus personalidades tan opuestas y la casa, tuvieron que construir…\n¿Habría un espacio vacío en sus corazones para que floreciera el amor?",
     "pages": 635,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "PimjiPineare"
     ],
-    "genres": [],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [
-      "Enemies to Lovers"
+    "genres": [
+      "Romance",
+      "Contemporánea"
     ],
-    "edad": [],
+    "subgenres": [
+      "GL Thai 🇹🇭",
+      "Autodescubrimiento",
+      "Queer"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Arquitecta"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Feroz × Tierna",
+      "Fría × Cálida",
+      "Seria × Divertida"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Rivals to Lovers",
+      "Workplace Romance",
+      "Forced Proximity",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Manipulación Psicológica",
@@ -1486,13 +1549,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777214685968_zuext",
@@ -1505,11 +1567,13 @@
     "synopsis": "Sadanun, apasionada investigadora culinaria, organiza una aventura de una noche con una mujer misteriosa bajo la estricta condición de no compromiso. Pero cuando ella rompe las reglas, pidiendo una conexión emocional, Sadanun pone fin al encuentro y se marcha.\n\nEl destino tiene otros planes: la mujer resulta ser Piengrawin, la hija del presidente de la empresa donde trabaja Sadanun. Con un encanto travieso y persistente, Piengrawin irrumpe en su vida, desafiando su rutina y su corazón, incluso inventando nombres para sus futuros hijos. Entre devoción, travesuras y emociones inesperadas, Sadanun descubre que algunas conexiones no se pueden ignorar ni controlar.",
     "pages": 936,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "NileNamwan"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [],
     "identidades": [
@@ -1528,8 +1592,30 @@
     "tropes": [
       "Forbidden Love"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -1552,13 +1638,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": true,
     "canal_month": "2026",
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777214867470_fkv04",
@@ -1635,6 +1720,7 @@
     "synopsis": "Aunque era su subordinada en el trabajo, yo era quien mandaba en la cama.\n\n¿Quién hubiera pensado que esto me pasaría? «Araya», que siempre era tan atractiva y me dejaba sin aliento, resultó ser la Sra. «Isara», mi nueva jefa.",
     "pages": 432,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "YingAom"
     ],
@@ -1654,14 +1740,43 @@
       "Femme × Femme",
       "Dominante × Sumisa",
       "Top × Bottom",
-      "Ice Queen × Sunshine"
+      "Ice Queen × Sunshine",
+      "Boss × Employee"
     ],
     "tropes": [
       "Workplace Romance",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Age Gap",
+      "Sex Toys / Juguetes Sexuales",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Opposites Attract",
+      "One Night Stand → More"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -1684,13 +1799,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777215436834_pe91i",
@@ -6908,6 +7022,7 @@
     "synopsis": "Comparten nombre, pero viven en mundos opuestos. Una es Best, una Enigma poderosa en la cima de la sociedad; la otra, Best, una Reina Omega cuya existencia está a punto de subastarse.\n\nCon su libertad en juego, la Omega desafía todo para atrapar a quien cree que puede salvarla: destruirá el orgullo de la Enigma, despertará su obsesión y se convertirá en lo único que ella debe poseer.\n\n“Ve y puja por mí”, le dijo la Omega, ojos brillando como diamantes.\n\n“Te dejaré reinar sobre mí para siempre, una esclava dócil lista para tu cama”, respondió la Enigma.",
     "pages": 662,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -6915,9 +7030,17 @@
     "subgenres": [
       "Omegaverse"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria",
+      "CEO",
+      "Artista"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Age Gap"
     ],
@@ -6926,6 +7049,15 @@
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -6956,13 +7088,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384223709_vmtpz",
@@ -7117,6 +7248,8 @@
     "synopsis": "Viranya le juró una vez a su hermana mayor que jamás se enamoraría de una mujer de su edad, pero el destino tenía otros planes. Un día, se sintió irresistiblemente atraída por la dulzura de Patcharin, su secretaria de 35 años. Esto no debería haber sucedido; después de todo, Viranya siempre había preferido a las mujeres más jóvenes. Para complicar aún más las cosas, esta secretaria era madre soltera. No se sentía como ella en absoluto, como si todo en Patcharin la atrajera, como una mariposa atraída sin remedio por el dulce aroma de las flores florecientes.",
     "pages": 756,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -7146,7 +7279,25 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
@@ -7172,13 +7323,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384434317_bpib4",
@@ -23659,6 +23809,7 @@
     "synopsis": "En el pasado, existió un amor dulce, pero ahora solo queda amargura. Un amor largamente cultivado terminó debido a las limitaciones de la vida. Una decisión difícil implicó dejar algo atrás, y ese algo fue una persona, alguien con quien se compartieron innumerables recuerdos.\n\nBittersweet cuenta la historia de dos personas que se amaron, dos personas que estuvieron juntas, y dos personas que tuvieron que terminar su relación por una razón que la persona abandonada lamenta como la más patética del mundo.",
     "pages": 161,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -23690,6 +23841,23 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Alcohol",
@@ -23711,13 +23879,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779384412477_h05rt",
@@ -60925,6 +61092,7 @@
     "synopsis": "De repente, Ingdao, una joven hermosa y dulce, se ve envuelta en una fuerte discusión con su familia, tan intensa que huye de casa. ¿El motivo? Algo que nadie esperaría. Sueña con convertirse en novelista erótica, un camino que su familia se niega rotundamente a aceptar. Decidida a demostrar su valía, abandona su lujosa vida para perseguir ese sueño. \n\nPero la realidad resulta ser mucho más difícil de lo que imaginaba, empezando por alquilar una casa con un pasado dudoso, lidiar con cortes de luz e incluso una invasión de geckos. \n\nEn medio de todo el caos, aparece Earth, una motera genial y cautivadora, que siempre está ahí para ayudarla. Sin embargo, justo cuando Ingdao empieza a sentirse tranquila, se encuentra constantemente siendo objeto de burlas, mientras presiente que algo se esconde tras la sonrisa despreocupada de Earth. \n\nCon alguien tan impredecible, ¿se convertirá en el mayor apoyo de Ingdao o en la causante de sus problemas?",
     "pages": 449,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -60951,6 +61119,23 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Conflictos Familiares",
@@ -60968,13 +61153,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1784364807516_cfi0e",
