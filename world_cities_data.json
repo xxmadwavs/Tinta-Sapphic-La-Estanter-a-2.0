@@ -393,6 +393,93 @@
         "Petrogrado",
         "Saint Petersburg"
       ]
+    },
+    {
+      "id": "us-los-angeles",
+      "ciudad": "Los Ángeles",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.052,
+      "lon": -118.244,
+      "x": 185.9,
+      "y": 143.7,
+      "aliases": [
+        "Los Angeles",
+        "LA"
+      ]
+    },
+    {
+      "id": "ar-buenos-aires",
+      "ciudad": "Buenos Aires",
+      "pais": "Argentina",
+      "pais_iso": "AR",
+      "region": "Ciudad Autónoma de Buenos Aires",
+      "lat": -34.604,
+      "lon": -58.382,
+      "x": 345.2,
+      "y": 368.1,
+      "aliases": []
+    },
+    {
+      "id": "ar-la-plata",
+      "ciudad": "La Plata",
+      "pais": "Argentina",
+      "pais_iso": "AR",
+      "region": "Buenos Aires",
+      "lat": -34.921,
+      "lon": -57.954,
+      "x": 346.5,
+      "y": 369.1,
+      "aliases": []
+    },
+    {
+      "id": "es-madrid",
+      "ciudad": "Madrid",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad de Madrid",
+      "lat": 40.417,
+      "lon": -3.704,
+      "x": 490.3,
+      "y": 122.9,
+      "aliases": []
+    },
+    {
+      "id": "me-podgorica",
+      "ciudad": "Podgorica",
+      "pais": "Montenegro",
+      "pais_iso": "ME",
+      "region": null,
+      "lat": 42.441,
+      "lon": 19.263,
+      "x": 549.3,
+      "y": 116.3,
+      "aliases": []
+    },
+    {
+      "id": "ba-sarajevo",
+      "ciudad": "Sarajevo",
+      "pais": "Bosnia y Herzegovina",
+      "pais_iso": "BA",
+      "region": "Cantón de Sarajevo",
+      "lat": 43.856,
+      "lon": 18.413,
+      "x": 546.8,
+      "y": 111.8,
+      "aliases": []
+    },
+    {
+      "id": "ba-srebrenica",
+      "ciudad": "Srebrenica",
+      "pais": "Bosnia y Herzegovina",
+      "pais_iso": "BA",
+      "region": "República Srpska",
+      "lat": 44.105,
+      "lon": 19.298,
+      "x": 549.0,
+      "y": 111.0,
+      "aliases": []
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",

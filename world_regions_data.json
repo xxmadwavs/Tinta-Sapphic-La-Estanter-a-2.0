@@ -146,6 +146,32 @@
         "Tesalia",
         "Thessalia"
       ]
+    },
+    {
+      "id": "us-oregon",
+      "nombre": "Oregón",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 44.0,
+      "lon": -120.5,
+      "x": 193.2,
+      "y": 111.3,
+      "aliases": [
+        "Oregon"
+      ]
+    },
+    {
+      "id": "es-madrid-comunidad",
+      "nombre": "Comunidad de Madrid",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 40.5,
+      "lon": -3.7,
+      "x": 490.3,
+      "y": 122.6,
+      "aliases": []
     }
   ],
   "pendientes_verificacion": [

@@ -9794,8 +9794,32 @@ function _shelfRenderCurrent(){
     renderReadingCalendar();
   } else {
     shelfPopulateGenres();
+    _shelfSyncSortForFilter();
     _renderShelfBooks();
   }
+}
+
+// FASE E3 — Orden "Última lectura" (recentReading): solo existe en «Leídos» y es allí el orden por defecto.
+// Se aplica al ENTRAR en un filtro (no al cambiar el selector), así que no pisa elecciones explícitas
+// de otros órdenes (A→Z, Autora, Año…). En el resto de filtros la opción no se ofrece y, si estaba activa,
+// se vuelve al orden anterior ('recent'), que no cambia.
+let _shelfRecentReadingOpt=null;
+function _shelfSyncSortForFilter(){
+  const sel=document.getElementById('shelfSortSelect'); if(!sel) return;
+  if(!_shelfRecentReadingOpt){
+    _shelfRecentReadingOpt=document.createElement('option');
+    _shelfRecentReadingOpt.value='recentReading';
+    _shelfRecentReadingOpt.textContent='📖 Última lectura';
+  }
+  const has=sel.querySelector('option[value="recentReading"]');
+  if(shelfFilter==='read'){
+    if(!has) sel.insertBefore(_shelfRecentReadingOpt,sel.firstChild);
+    if(shelfSort==='recent') shelfSort='recentReading';
+  } else {
+    if(has) has.remove();
+    if(shelfSort==='recentReading') shelfSort='recent';
+  }
+  sel.value=shelfSort;
 }
 
 function setShelfView(mode){
@@ -9834,10 +9858,10 @@ function shelfApplyFilters(){
 }
 
 function shelfClearFilters(){
-  shelfSearch='';shelfGenreFilter='';shelfSort='recent';shelfPage=1;
+  shelfSearch='';shelfGenreFilter='';shelfSort=shelfFilter==='read'?'recentReading':'recent';shelfPage=1;
   document.getElementById('shelfSearchInput').value='';
   document.getElementById('shelfGenreSelect').value='';
-  document.getElementById('shelfSortSelect').value='recent';
+  document.getElementById('shelfSortSelect').value=shelfSort;
   _renderShelfBooks();
 }
 
@@ -9872,7 +9896,8 @@ function _renderShelfBooks(){
   else if(shelfSort==='author') books=[...books].sort((a,b)=>((a.authors||[])[0]||'').localeCompare((b.authors||[])[0]||'','es'));
   else if(shelfSort==='year_desc') books=[...books].sort((a,b)=>(b.year||0)-(a.year||0));
   else if(shelfSort==='year_asc') books=[...books].sort((a,b)=>(a.year||0)-(b.year||0));
-  else books=[...books].sort((a,b)=>b.id.localeCompare(a.id));
+  else if(shelfSort==='recentReading') books=sortBooksByLastReading(books); // FASE E3 (modelo E2): última lectura completada, más reciente primero; sin fecha al final
+  else books=[...books].sort((a,b)=>b.id.localeCompare(a.id)); // 'recent' («Recién añadidos»): en realidad id descendente
 
   document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>(${books.length})</span>`;
   const container=document.getElementById('shelfBooksContainer');
@@ -9917,11 +9942,12 @@ function _renderShelfBooks(){
         :myReadingStatus[b.id]==='dnf'
         ?`<span style="font-size:11px;color:var(--rose)">✕ Lo dejé</span>`
         :(()=>{
-          const ra=myReadingReadAt[b.id];
-          const n=(myReadingLog[b.id]||[]).filter(e=>e.read_at).length;
-          const dateStr=ra?new Date(ra).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'}):'';
+          // FASE E3: fecha de la ÚLTIMA lectura completada vía modelo E2 (respeta year/month/day; sin new Date)
+          const rt=bookReadingTime(b.id);
+          const dateStr=rt.formattedDate;
+          const n=rt.completedCount;
           const vecesStr=n>1?` · ${n} veces`:'';
-          return `<span style="font-size:11px;color:${ra?'var(--teal)':'var(--gold)'}">✓ Leído${dateStr?' · '+dateStr:' · falta fecha'}${vecesStr}</span>`;
+          return `<span style="font-size:11px;color:${rt.hasDate?'var(--teal)':'var(--gold)'}">✓ Leído${dateStr?' · '+dateStr:' · falta fecha'}${vecesStr}</span>`;
         })();
       return `<div class="shelf-list-item" onclick="openBookPage('${b.id}')">
         ${cov}
@@ -10508,6 +10534,72 @@ function rcRereadFlags(list){
     a.isReread=before?true:(overlap?null:false);
   });
   return list;
+}
+
+/* ── FASE E2 — MODELO DE FECHA DE LECTURA (solo modelo interno; ninguna vista lo usa todavía) ──
+   Una única fecha de referencia por libro: su ÚLTIMA LECTURA COMPLETADA (read_at != null).
+   - Reutiliza rcEntryParts (respeta read_precision, NULL = fecha completa histórica),
+     rcRereadFlags (isReread) y formatPartialDate (texto). No duplica su lógica.
+   - read_at null/vacío = lectura en curso: se ignora como fecha.
+   - Pura: no consulta Supabase ni modifica estado. Por defecto lee myReadingLog (ya cargado). */
+
+// Compara dos periodos {year,month,day}. Positivo si a es posterior a b.
+// Un mes/día desconocido (null) cuenta como 0: nunca se inventa una fecha, y ante el mismo
+// año/mes el dato más preciso (con mes/día conocido) queda por delante del menos preciso.
+function _rtCmpPeriod(a,b){
+  const k=v=>v==null?0:v;
+  return (a.year-b.year)||(k(a.month)-k(b.month))||(k(a.day)-k(b.day));
+}
+
+// Información temporal de UN libro. `log` opcional (array de lecturas) para poder probarla en memoria.
+function bookReadingTime(bookId, log){
+  const list=(log!==undefined?log:myReadingLog[bookId])||[];
+  const dated=[]; let completedCount=0, best=null;
+  for(let i=0;i<list.length;i++){
+    const e=list[i];
+    if(!e||!e.read_at) continue;            // sin read_at = en curso: no es lectura completada
+    completedCount++;
+    const p=rcEntryParts(e);                // null si read_at no es una fecha ISO válida
+    if(!p) continue;
+    const item={entry:e,year:p.year,month:p.month,day:p.day,precision:p.precision,isReread:false};
+    dated.push(item);
+    // >= : si dos lecturas son indistinguibles, gana la posterior en el log (orden ascendente del log)
+    if(!best||_rtCmpPeriod(item,best)>=0) best=item;
+  }
+  const out={
+    bookId:String(bookId), latestReading:null,
+    year:null, month:null, day:null, precision:null, precisionRaw:null,
+    formattedDate:'', hasCompletedReading:completedCount>0, hasDate:false,
+    isReread:false, isRereadUncertain:false, completedCount
+  };
+  if(!best) return out;
+  if(dated.length>1) rcRereadFlags(dated);  // reutiliza la lógica de relecturas existente
+  const eff=best.day!=null?'day':(best.month!=null?'month':'year'); // precisión efectiva (NULL histórico → 'day')
+  out.latestReading=best.entry;
+  out.year=best.year; out.month=best.month; out.day=best.day;
+  out.precision=eff; out.precisionRaw=best.precision;
+  out.formattedDate=formatPartialDate(best.entry.read_at,eff);
+  out.hasDate=true;
+  out.isReread=best.isReread===true;
+  out.isRereadUncertain=best.isReread===null;
+  return out;
+}
+
+// Comparador para la futura ordenación de "Leídos": MÁS RECIENTE → MÁS ANTIGUO.
+// Recibe resultados de bookReadingTime. Orden: 1) con fecha antes que sin fecha; 2) año, mes, día
+// conocidos (descendente; precisión mayor antes que menor con el mismo periodo); 3) id descendente
+// solo como desempate estable, nunca como sustituto de la fecha.
+function compareBooksByReadingTime(a,b){
+  if(a.hasDate!==b.hasDate) return a.hasDate?-1:1;
+  if(a.hasDate){ const c=_rtCmpPeriod(b,a); if(c) return c; }
+  return String(b.bookId).localeCompare(String(a.bookId));
+}
+
+// Ordena libros (objetos con .id) con UNA pasada por libro. No muta el array recibido.
+function sortBooksByLastReading(books, logMap){
+  const map=logMap||myReadingLog;
+  return books.map(b=>({b,t:bookReadingTime(b.id,map[b.id]||[])}))
+              .sort((x,y)=>compareBooksByReadingTime(x.t,y.t)).map(x=>x.b);
 }
 
 // Lecturas terminadas del año indicado, ya preparadas para el render

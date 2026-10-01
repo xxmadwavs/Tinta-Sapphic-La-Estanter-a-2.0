@@ -10661,17 +10661,72 @@
     "synopsis": "Evelyn Hugo, el icono de Hollywood, decide contar su verdad a Monique Grant, una periodista desconocida. A pesar de sus propios problemas, Monique aprovecha la oportunidad para impulsar su carrera.\n\nEn el lujoso apartamento de Evelyn, la actriz revela su vida llena de glamour, escándalos, siete maridos, ambición y un amor prohibido. Mientras Monique se conecta cada vez más con la historia de Evelyn, descubre que sus vidas están entrelazadas de una manera trágica e irreversible.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Drama",
       "Histórica",
       "Romance"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Autodescubrimiento",
+      "Bisexual",
+      "Celebridad",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Actriz",
+      "Famosa"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Feroz × Tierna",
+      "Rich × Poor",
+      "Protectora × Delicada"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Secret Relationship",
+      "Slow Burn",
+      "Strangers to Lovers"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Siglo XX",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -10681,14 +10736,13 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
       "Drama"
-    ],
-    "pais_origen": [
-      "Estados Unidos"
     ]
   },
   {
@@ -14499,15 +14553,46 @@
     "synopsis": "Eloise Bailey, heredera al trono de Vanderland, y su impulsiva hermana Oprah, son enviadas a estudiar en el extranjero bajo identidades secretas. Allí, en la Universidad de Rochester, la estricta educación de Eloise se tambalea cuando conoce a Serena Forester: líder de las animadoras, hija del presidente y reina del campus.\n\nEntre secretos, nuevas amistades y emociones inesperadas, Eloise descubrirá que no es una princesa cualquiera. Está a punto de romper todas las tradiciones… empezando por enamorarse de una mujer. Y, para colmo, ¡de una republicana!",
     "pages": 545,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Realeza",
+      "Deportista"
+    ],
+    "dinamicas": [
+      "Realeza × Plebeya",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Slow Burn"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "País Ficticio"
+    ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -14516,7 +14601,13 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240546408_3a61d",
@@ -15123,15 +15214,30 @@
     "synopsis": "¿Dónde están las lesbianas en la historia?\n\nMujeres que se rebelaron contra el matrimonio y rompieron las reglas de etiqueta. Rebeldes, genias, decadentes, artistas... Señoras que, pese a todas las dificultades de su tiempo, se atrevieron a expresar su sexualidad y desafiar a su época.\n\nEste libro, que contempla desde el siglo XVII hasta el siglo XX, explora la historia pública y privada de estas fascinantes mujeres que amaban a otras -Anne Seymour Damer, Anne Lister o Josephine Baker, entre tantas otras-, para visibilizar y sacar a la luz una realidad que nunca debería haber sido secreta.",
     "pages": 224,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Histórica"
+      "Histórica",
+      "Biografía"
     ],
     "subgenres": [],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -15141,9 +15247,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778316490196_fi81r",
@@ -15186,15 +15295,30 @@
     "synopsis": "Poetas como Safo o Emily Dickinson, las artistas Frida Kahlo y Tamara de Lempicka, las literatas sor Juana Inés de la Cruz y Virginia Woolf, una gran diva de Hollywood y hasta una reina de Inglaterra son algunas de las genias que protagonizan el nuevo libro de la académica Cristina Domenech, que cuenta además con las maravillosas ilustraciones de Medusa Dollmaker.\n\nSeñoras ilustres es un recorrido fascinante por la vida intelectual y amorosa de estas señoras con un talento desmesurado y una vida con facetas a menudo silenciadas o tergiversadas por la historia.",
     "pages": 144,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Histórica"
+      "Histórica",
+      "Biografía"
     ],
     "subgenres": [],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -15204,9 +15328,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778316590746_g3zvz",
@@ -15219,15 +15346,30 @@
     "synopsis": "¿Dónde están las lesbianas en la historia?\n\nMás señoras, más bolleras de la historia, más personajes fascinantes. Tras el éxito de Señoras que se empotraron hace mucho, vuelve Cristina Domenech -académica y experta en literatura- para dar voz a nuevas mujeres que se atrevieron a amar a otras.\n\nDesde Madame de Murat y Winnaretta Singer hasta Katherine Mansfield, Elsie de Wolfe o Nobuko Yoshiya, entre muchas otras, este es un recorrido deslumbrante que nos lleva del siglo XVII al XX revelándonos las historias íntimas y los secretos de estas señoras brillantes que fueron en contra de todas las convenciones sociales haciendo del amor, la sexualidad libre y la creación artística su revolución.",
     "pages": 208,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Histórica"
+      "Histórica",
+      "Biografía"
     ],
     "subgenres": [],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -15237,9 +15379,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778316657938_t815j",
@@ -15414,17 +15559,50 @@
     "synopsis": "Mara Velasco regresa a San Miguel con un plan sencillo: vender la casa de sus padres y largarse sin mirar atrás.\nFácil.\nPero el destino, ese guionista adicto al drama, tiene otros planes. Porque ahí está Lucía Ferrer: vecina, musa involuntaria y autora de sus insomnios.\nY también está su caprichosa hija, dispuesta a complicarlo todo.\nEntre lo que fue, lo que pudo ser, y lo que nunca debió pasar, Mara tendrá que tomar una decisión, porque irse ya no parece tan fácil, ni quedarse tan estúpido.",
     "pages": 278,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
-      "Escritora"
+      "Escritora",
+      "Poeta",
+      "Empresaria"
     ],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Secret Relationship",
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -15433,7 +15611,13 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778317751685_pvryz",
@@ -15446,15 +15630,67 @@
     "synopsis": "Delilah Green juró no volver a Bright Falls, el pueblo donde pasó una infancia solitaria con su distante madrastra. Su vida está en Nueva York, donde triunfa como fotógrafa y mantiene relaciones pasajeras sin compromisos.\n\nPero cuando su hermanastra Astrid le ofrece una gran suma para que fotografíe su boda, Delilah se ve obligada a regresar. Su idea es marcharse lo antes posible… hasta que se reencuentra con Claire Sutherland, la mejor amiga de Astrid.\n\nClaire, madre soltera y dueña de una librería, no tiene tiempo para sorpresas, y menos para alguien como Delilah. Sin embargo, al pasar tiempo juntas en los preparativos de la boda —incluida una misión para evitar que Astrid se case con el hombre equivocado—, Claire empieza a cuestionarse si en realidad quiere resistirse al magnetismo de Delilah.",
     "pages": 402,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Fotógrafa",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Masc × Femme",
+      "Grumpy × Sunshine",
+      "Feroz × Tierna"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "One Night Stand → More",
+      "Only One Bed",
+      "Secret Relationship",
+      "Friends with Benefits",
+      "Opposites Attract",
+      "Sex Toys / Juguetes Sexuales",
+      "Jealousy Trope"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Oregón",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -15464,9 +15700,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778317792343_bny3t",
@@ -15479,15 +15718,59 @@
     "synopsis": "Para Astrid Parker, fracasar no es una opción. Tras romper con su prometido, ha centrado toda su energía en su carrera. Por eso, cuando le ofrecen renovar el hotel Everwood para un programa de televisión, ve la oportunidad perfecta para relanzar su negocio y ganarse la aprobación de su exigente madre.\n\nLo que no espera es chocar con Jordan Everwood, la nieta de la dueña y carpintera principal del proyecto, que rechaza sus ideas modernas. La tensión entre ambas se convierte en el foco del programa… y en algo mucho más inesperado. Astrid tendrá que replantearse qué quiere realmente: cumplir expectativas o seguir su propio camino.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme",
+      "Butch"
+    ],
+    "characters": [
+      "Diseñadora de interiores.",
+      "Carpintera"
+    ],
+    "dinamicas": [
+      "Butch × Femme"
+    ],
+    "tropes": [
+      "Bi Awakening",
+      "Coming Out tardío",
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Slow Burn",
+      "Workplace Romance",
+      "Sex Toys / Juguetes Sexuales"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Oregón",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -15497,9 +15780,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778317821221_yxfdw",
@@ -18663,15 +18949,64 @@
     "synopsis": "Scottie es la jugadora estrella del equipo de baloncesto de su instituto y acaba de perder de forma espectacular contra el equipo de su exnovia. Al salir del aparcamiento, se golpea sin querer contra el coche de Irene Abraham, la capitana de las animadoras y la persona contra la que mantiene una cruzada personal por un agravio en una fiesta. ¡Ahora tendrá que llevar a Irene al instituto todos los días!\n\nPara Scottie, estar con Irene es una tortura… hasta que descubre que su exnovia está celosa de su nueva «relación». Quizá pueda sacar algo de esto, aunque eso implique tener que convencer a Irene para que se preste al engaño.\n\nUna comedia romántica #enemiestolovers con una relación exquisitamente construida en la que las dos enemigas terminarán apoyándose de maneras positivas.",
     "pages": 304,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Deporte",
+      "Interracial"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Deportista",
+      "Animadora"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Caos × Control",
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Fake Relationship",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Rivals to Lovers",
+      "Slow Burn"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 1,
     "formato": null,
     "adaptacion": null,
@@ -18681,15 +19016,14 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
       "Enemies to Lovers",
       "Soft"
-    ],
-    "pais_origen": [
-      "Estados Unidos"
     ]
   },
   {
@@ -23049,15 +23383,67 @@
     "synopsis": "Jessica pensaba que no le gustaban las chicas… hasta que conoció a Alex, la carismática y caótica novia de su novio.\n\nTodo iba bien en su vida: independencia, universidad, un buen chico y una carrera prometedora. Pero tras descubrir en una fiesta que ella y Alex salían con el mismo chico, todo cambia. Y cuando él desaparece sin dejar rastro, ambas deben unir fuerzas para encontrarlo.\n\nAlex es todo lo que Jessica no soporta... y todo lo que empieza a desear. Porque entre discusiones, roces y tensión, la línea entre el odio y algo más se vuelve cada vez más delgada.",
     "pages": 356,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "New Adult",
+      "Juvenil"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Celebridad",
+      "Bisexual"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Famosa",
+      "Actriz"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Caos × Control"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Secret Relationship",
+      "Slow Burn"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Argentina"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Argentina",
+        "region": null,
+        "ciudad": "Buenos Aires",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Argentina",
+        "region": null,
+        "ciudad": "La Plata",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -23067,6 +23453,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -32706,20 +33094,58 @@
     "synopsis": "Delia Agós roza los treinta y su vida es un desastre: becaria eterna, recién dejada y arruinada por un dúplex. Decide pasar una noche para olvidar y acaba con Angie, la caradura de la barra —la mujer que más detesta— en lo que resulta ser la mejor noche de su vida.\n\nTodo bien… hasta que Angie se despeña por las escaleras y se convierte en el fantasma de su piso recién hipotecado.\n\nUna comedia romántica macabra sobre amor inesperado, mala suerte inmobiliaria y cómo sobrevivir a un literal “aquí te pillo, aquí te mato”.",
     "pages": 384,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
       "Comedia Romántica"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [
-      "Enemies to Lovers"
+    "identidades": [
+      "Femme",
+      "Masc"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "characters": [
+      "Analista de datos",
+      "Psicóloga"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Friends to Lovers",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "One Night Stand → More",
+      "Opposites Attract",
+      "Sex Toys / Juguetes Sexuales",
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Comunidad de Madrid",
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -32731,13 +33157,12 @@
     "safi_categories": [
       "2026"
     ],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779826758318_w19qf",
@@ -34312,17 +34737,67 @@
     "synopsis": "Hay dos versiones de Milena Kovač.\nLa que aparece en los comandante acusada de crímenes que desangraron una región entera. La mujer que ordenó cosas que no tienen perdón.\nY la que conozco inteligente, seductora, imposible de clasificar.\nLlegué a su puerta para hacer un documental. Con mi cámara y la moral intacta.\nEl plan era grabar su confesión, exponer sus delitos y colgar mi premio en la pared.\nPero Milena me desafía y me mira como si conociera cada grieta en mi armadura de justicia. Y yo, que he pasado años filmando monstruos, empiezo a temer que esta vez la cámara apunte hacia mí.\n\nTengo su historia.\n\nTengo el poder de reescribirla, para arruinarla… o para salvarme.",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Comandante militar"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Dominante × Sumisa"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Slow Burn"
+    ],
+    "edad": [
+      "+40",
+      "60"
+    ],
+    "pais_cultura": [
+      "Montenegro",
+      "Bosnia y Herzegovina"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Montenegro",
+        "region": null,
+        "ciudad": "Podgorica",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Bosnia y Herzegovina",
+        "region": null,
+        "ciudad": "Sarajevo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Bosnia y Herzegovina",
+        "region": null,
+        "ciudad": "Srebrenica",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -34332,6 +34807,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
