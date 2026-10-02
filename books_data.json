@@ -1434,7 +1434,9 @@
     "subgenres": [
       "Erótica"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "CEO",
       "Escort",
@@ -1454,6 +1456,20 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -1487,6 +1503,8 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -1503,6 +1521,7 @@
     "synopsis": "Mucha gente piensa que el matrimonio es el final, cuando llega el día de vestirse de novia y participar en una gran ceremonia nupcial con la que muchos sueñan. Estos momentos se consideran la culminación de una vida matrimonial perfecta.\nSin embargo, si piensas así, estás muy equivocado.\n\nPara Pakinee y Panapsorn, este matrimonio podría ser el comienzo de una nueva oportunidad para demostrar su amor...",
     "pages": 265,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LenaMiu"
     ],
@@ -1510,7 +1529,9 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "CEO"
     ],
@@ -1522,8 +1543,29 @@
       "Opposites Attract",
       "Rich/Poor Romance"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso Sexual",
@@ -1544,13 +1586,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777214380692_13wf1",
@@ -1764,6 +1805,7 @@
     "synopsis": "Aunque la luna se ponga en el horizonte, nunca desaparece del cielo. Al igual que la luna en mi pecho, nunca se va ni se desvanece…",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "EmiBonnie"
     ],
@@ -1780,13 +1822,46 @@
       "Empresaria"
     ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Fría × Cálida",
+      "Grumpy × Sunshine"
     ],
     "tropes": [
-      "Workplace Romance"
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Jealousy Trope"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -1809,13 +1884,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777215180922_rhoy0",
@@ -2246,14 +2320,18 @@
     "synopsis": "Como el sol, brillante y deslumbrante, en el cielo...\nLa única e inigualable, siempre destacando dentro de mí corazón.",
     "pages": 382,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "AtomMer"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "CEO",
       "Actriz"
@@ -2263,10 +2341,34 @@
     ],
     "tropes": [
       "Age Gap",
-      "Jealousy Trope"
+      "Jealousy Trope",
+      "Childhood Friends",
+      "Opposites Attract"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -2294,13 +2396,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777217871579_2zsqo",
@@ -2313,6 +2414,7 @@
     "synopsis": "Una persona con una vida perfecta como la suya vio cómo su boda se arruinaba por completo, convirtiéndose en noticia de primera plana. Incluso la amenazaron para que la aceptara como becaria. Pero ¿cómo iba a tener miedo alguien como ella? La aceptó sin dudarlo, esperando el día de su venganza. Sin embargo, parecía que la otra persona no iba a ceder debido a las palabras hirientes que le había dicho:\n\n\"¿Quién querría a alguien como tú?\"\n. \"Pues inténtalo. Si te acercas a mí, no te enamorarás\".",
     "pages": 579,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "EnjoyJune"
     ],
@@ -2350,6 +2452,23 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso de Poder",
@@ -2385,13 +2504,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777217999832_t1rxt",
@@ -3267,27 +3385,57 @@
     "synopsis": "om nació con un don: puede escuchar los pensamientos de los demás y ver sus recuerdos con solo tocarlos. Sus padres han usado su habilidad para todo, desde apuestas hasta vigilar a los inquilinos de su edificio. Pero todo cambia cuando aparece Renu.\n\nRenu es la nueva inquilina y, para sorpresa de Jom, también la nueva maestra de su escuela. Por primera vez en su vida, Jom no puede leer una mente; solo escucha el eco rítmico de un corazón. Ese silencio absoluto lo obsesiona, convirtiendo su indiferencia en una curiosidad desesperada. ¿Por qué su corazón se sincroniza con el de ella si ni siquiera puede oír sus secretos? Jom está a punto de descubrir que el misterio más grande no está en lo que la gente piensa, sino en lo que el corazón siente.",
     "pages": 392,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [
       "Sobrenatural"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Profesora",
-      "Estudiante"
+      "Estudiante",
+      "Veterinaria"
     ],
-    "dinamicas": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Student × Teacher"
     ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": "Saga",
     "adaptacion": "Tiene serie",
     "sagaName": "Sobrenatural",
     "sagaNum": 2,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -3295,10 +3443,14 @@
         "url": "https://en.mebmarket.com/ebook-313383-Rhythm-Vol--1-%E0%B9%80%E0%B8%98%E0%B8%AD%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B0%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%83%E0%B8%88-English-version"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777227093022_fz2si",
@@ -3311,6 +3463,8 @@
     "synopsis": "Jom nació con un don: puede escuchar los pensamientos de los demás y ver sus recuerdos con solo tocarlos. Sus padres han usado su habilidad para todo, desde apuestas hasta vigilar a los inquilinos de su edificio. Pero todo cambia cuando aparece Renu.\n\nRenu es la nueva inquilina y, para sorpresa de Jom, también la nueva maestra de su escuela. Por primera vez en su vida, Jom no puede leer una mente; solo escucha el eco rítmico de un corazón. Ese silencio absoluto lo obsesiona, convirtiendo su indiferencia en una curiosidad desesperada. ¿Por qué su corazón se sincroniza con el de ella si ni siquiera puede oír sus secretos? Jom está a punto de descubrir que el misterio más grande no está en lo que la gente piensa, sino en lo que el corazón siente.",
     "pages": 564,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -3326,12 +3480,35 @@
     "tropes": [
       "Student × Teacher"
     ],
+    "edad": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": "Saga",
     "adaptacion": "Tiene serie",
     "sagaName": "Sobrenatural",
     "sagaNum": 3,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -3339,10 +3516,14 @@
         "url": "https://en.mebmarket.com/?action=book_details&book_id=314500"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777227542301_m9bv3",
@@ -3355,6 +3536,7 @@
     "synopsis": "El amor es un veneno que intoxica los corazones. Sin embargo, al final, es el Amor Venenoso lo que hace que los corazones latan con fuerza.",
     "pages": 744,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "GinJay"
     ],
@@ -3362,7 +3544,9 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Actriz",
       "Doctora / Médica"
@@ -3375,8 +3559,27 @@
       "Slow Burn",
       "Unrequited Love"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -3399,13 +3602,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777227618544_wh1ck",
@@ -3426,7 +3628,9 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Actriz",
       "Doctora / Médica"
@@ -3437,8 +3641,26 @@
     "tropes": [
       "Enemies to Lovers"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -3482,6 +3704,7 @@
     "synopsis": "5 años de amor nunca pasan de moda.\n\n«Hermano, te quiero mucho».\n«Hermana, yo también te quiero mucho, más que a nada en el mundo».",
     "pages": 122,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "GinJay"
     ],
@@ -3489,7 +3712,9 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Actriz",
       "Doctora / Médica"
@@ -3500,8 +3725,29 @@
     "tropes": [
       "Enemies to Lovers"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
@@ -3519,13 +3765,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777229073790_d4z1t",
@@ -3751,6 +3996,7 @@
     "synopsis": "A solo 168 horas de que la muerte la atrape, Winravee se encontraba en el blanco de un espíritu implacable y vengativo, cuya oscura presencia se acercaba con cada segundo que pasaba. Una voz escalofriante susurraba: ¡No creas que nadie pueda salvarte! ¡Cada centímetro de tu cuerpo, incluso tu último aliento, es mío!\nDesesperada y sola, se encontró con una mujer de mirada gélida que alberga la única esperanza de escapar de esta persecución inquietante, pero su súplica fue recibida con un rechazo despiadado.\nA medida que el tiempo se desvanece, Vinravee se ve obligada a enfrentarse a las sombras de su pasado, desentrañando secretos que revelan una verdad aterradora, ¡precipitándose hacia una tragedia que nadie podría prever!",
     "pages": 624,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "PlaifahMiusic"
     ],
@@ -3770,8 +4016,27 @@
       "Masc × Femme"
     ],
     "tropes": [],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
@@ -3794,13 +4059,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777277464434_11fjo",
@@ -4256,6 +4520,7 @@
     "synopsis": "Vivir imprudentemente, sin precaución, había terminado por pasarle factura. Lanzarse a una relación tumultuosa, como subirse a una montaña rusa, hacía ahora que las buscadoras de emociones saborearan algo más que emociones pasajeras.",
     "pages": 453,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "ShellyPudao"
     ],
@@ -4281,7 +4546,33 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Pattaya",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -4304,13 +4595,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777279275019_mmpb1",
@@ -4500,6 +4790,7 @@
     "synopsis": "Player es un spin-off de Hello, How Are You\n\nEsta reunión podría salir desastrosamente mal o deslumbrantemente bien.\nLa narrativa se centra en el amor entre dos mujeres, provocada por la ganancia y la manipulación del corazón.\n\n\"Pun\", una adorable conejita que se considera una tigresa, desplegará todas sus habilidades de coqueteo para sacarle información a la reconocida e inteligente villana estrella, \"Ploy Pitcha\". Pero cuanto más señuelos usa Pun para atar el corazón de Ploy... más se ata Pun. Cuanto más cava la trampa Pun... más profundo cae. Porque en este juego, Ploy, la presa, siempre va un paso adelante. Cuando la apuesta es su irresistible amor, ¿cómo terminará este juego del corazón, que ya ha comenzado?",
     "pages": 594,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "IceMemi"
     ],
@@ -4522,7 +4813,34 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia",
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -4545,13 +4863,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777280191522_cngu3",
@@ -4564,6 +4881,7 @@
     "synopsis": "Como una paleta: All Eyes on Jane es una comedia romántica universitaria sobre Jane, una burbujeante estudiante de primer año de Bellas Artes con un don para el drama y un talento para meterse en problemas. Cuando se cruza en su camino con Daia, una serena estudiante de último curso de arquitectura y ex-Miss Estrella Universitaria, Jane llega a la conclusión de que Dai debe odiarla totalmente.\n\nUna caótica confusión de besos, un sorprendente título de estrella de la facultad y una tutoría forzada las acercan hasta que Dai da la vuelta al guión: no odia a Jane. Le gusta. A partir de ahí, flirteo, confusión digna de un webcómic y una historia de amor pintada con todos los colores equivocados (pero perfecta).",
     "pages": 209,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "PrigkhingFah"
     ],
@@ -4573,7 +4891,9 @@
     "subgenres": [
       "Universidad"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Estudiante"
     ],
@@ -4586,6 +4906,25 @@
       "New Adult (18–24)"
     ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad"
+    ],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
@@ -4603,13 +4942,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777280365665_055np",
@@ -6030,20 +6368,57 @@
     "synopsis": "Yo, Eva, me emocioné mucho cuando mi padre me dijo que conocería a mi nueva mamá y a mi hermana mayor. Y cuando la conocí, mi emoción se convirtió en una explosión de emoción como nunca antes.\n\nPero mi emoción no duró mucho porque escuché a madre e hija hablar de unirse a mi familia para arrebatárnoslo todo. El amor se convirtió en odio. En cuanto lo supe, me declaré su enemiga. Pero no podía entender por qué seguía sonriéndome como si me adorara y mirándome con ojos amorosos cuando yo sabía que ella sabía que yo lo sabía.\n\nLa historia de amor que debería haber sido como la de Cenicienta, con la hijastra acosando a la hermana menor, terminó conmigo acosando a mi hijastra mayor.\n\nPero de alguna manera, mientras la acosaba... me enamoré perdidamente de ella.",
     "pages": 553,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria",
+      "Diseñadora de interiores"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Enemies to Lovers",
+      "Jealousy Trope",
+      "Forbidden Love"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -6051,10 +6426,14 @@
         "url": "https://en.mebmarket.com/?action=book_details&book_id=265123"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777359676958_8jt8c",
@@ -6067,20 +6446,57 @@
     "synopsis": "Me llamo \"Phuean\". Crecí en una familia perfecta, pero con una salud bastante chunga. Tras una operación de corazón, llevo una vida normal, aunque sigo sin saber socializar, no se me da bien hablar y casi nadie quiere estar conmigo.\n\nAun así, hay alguien que siempre intenta ligar conmigo: mi jefa, \"Melda\" o \"Khun Mui\". Siempre tiene una razón para decir que me quiere, lo cual me raya porque... ¿el amor de verdad tiene razones?\n\nY justo cuando empiezo a dudar de todo, aparece alguien igualita a mí, pero al otro lado del espejo. Se llama \"Faen\". Solo hablamos a través del espejo, pero nos hicimos amigas.\n\nElla vive en otro mundo. Yo en el mío.\n\nY cuando cruzó al mío...\n\nEmpezaron los líos.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Contable",
+      "Empresaria",
+      "CEO"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Second Chance Romance",
+      "Lesbian Awakening"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -6088,10 +6504,14 @@
         "url": "https://www.mebmarket.com/ebook-276344-Mirror--%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9F%E0%B8%99%E0%B9%81%E0%B8%97%E0%B8%99%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%84%E0%B8%94%E0%B9%89"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777359745399_p2nxu",
@@ -6227,20 +6647,45 @@
     "synopsis": "¿Una noche de pasión... puede convertirse en amor verdadero?\nPloypan, una empresaria fría como el diamante, conoce a Fanja, una florista cálida y luminosa.\nLo que empezó como una noche de atracción prohibida se transforma en una conexión imposible de ignorar.\nDeciden mantener una relación sin compromiso… pero los sentimientos crecen.\nJusto cuando la felicidad florece, el doloroso pasado de Ploypan vuelve para ponerlo todo en peligro.\n¿Podrán superar los miedos y sanar sus corazones?\n¿O fue solo una mentira envuelta en deseo?\nGracias a Ana Villa por la traducción",
     "pages": 132,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Florista",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Friends with Benefits"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "TH",
@@ -6248,10 +6693,14 @@
         "url": "https://www.mebmarket.com/ebook-323209-One-Night-Stand---%E0%B9%81%E0%B8%9F%E0%B8%99%E0%B8%9E%E0%B8%A5%E0%B8%AD%E0%B8%A2"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777361116587_0baa3",
@@ -6658,22 +7107,59 @@
     "synopsis": "Fier es fría, implacable y no juega con reglas ajenas. Su mundo de poder y control lo gobierna con una sola norma: obedecerla. Hasta que aparece Nene, una chica insolente, de lengua rápida y corazón demasiado blando, que enciende una chispa capaz de reducirlo todo a cenizas.\n\nLas reglas son simples: sé bonita, cállate, sé suya.\nPero Nene no nació para ser domesticada, y Fier no está acostumbrada a perder.\n\nEn un juego de pasión, poder y peligro, ¿hasta dónde llegará Fier para quedarse con una chica que nunca aprendió a arrodillarse?",
     "pages": 173,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [
       "Mafia"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Azafata",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -6681,10 +7167,14 @@
         "url": "https://es.mebmarket.com/?action=book_details&book_id=373021"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362003095_v50dx",
@@ -6808,22 +7298,67 @@
     "synopsis": "Tubtim (29), policía encubierta cansada de jugarse la vida, planea ahorrar para dejar el cuerpo y abrir su propio negocio. Pero el destino la arrastra a un trabajo de seguridad privada protegiendo a Pringpraw (20), una heredera consentida cuyo único objetivo es dar caza a las amantes de su padre para evitar que alguna ocupe el lugar de su madre.\n\nAhora, el trabajo de Tubtim ya no es perseguir peligrosos gánsteres, sino desmantelar peleas diarias entre mujeres. Si hubiera sabido que su misión consistiría en impedir que una joven malcriada se abra paso a tirones de pelo en el harén de su padre, habría abierto su tienda de fideos hace meses.",
     "pages": 112,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [
-      "Guardaespaldas"
+    "identidades": [
+      "Femme",
+      "Masc"
     ],
-    "dinamicas": [],
-    "tropes": [],
+    "characters": [
+      "Guardaespaldas",
+      "Estudiante",
+      "Heredera"
+    ],
+    "dinamicas": [
+      "Masc × Femme",
+      "Bodyguard × VIP",
+      "Protectora × Delicada"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Workplace Romance",
+      "Strangers to Lovers",
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 2,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -6831,10 +7366,14 @@
         "url": "https://es.mebmarket.com/?action=book_details&book_id=378759"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362210922_nnf88",
@@ -6891,6 +7430,8 @@
     "synopsis": "Cuando el destino llega en forma de «Pheromone... Hidden Love», tan intenso que lleva a uno al borde de la locura, se despierta un instinto primitivo que exige poseer un cuerpo prohibido.\n\nPitchayapa... una alfa hermosa y noble, nunca ha visto rechazado nada de lo que desea. La única excepción es Minlada, una pobre omega en prácticas que se atrevió a desafiarla desde su primer encuentro.\n\nEl destino conspira para colocarlas en la misma habitación, a solas. Su proximidad enciende una compatibilidad peligrosamente perfecta en sus aromas. Cuando Minlada experimenta su primer celo, ¡las barreras de la razón de la alfa se derrumban!\n\nCuanto más se alejan... más se anhelan. Cuanto más se desprecian... más sus cuerpos ansían el contacto del otro.",
     "pages": 221,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -6898,15 +7439,56 @@
       "Omegaverse"
     ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Alfa × Omega"
+    ],
+    "tropes": [
+      "Alpha/Beta/Omega"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Ratchaburi",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -6919,10 +7501,14 @@
         "url": "https://www.mebmarket.com/ebook-373527-%E0%B8%9F%E0%B8%B5%E0%B9%82%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%99hellip%E0%B8%8B%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%81--Omegaverse-"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362366269_jlnwj",
@@ -6935,22 +7521,50 @@
     "synopsis": "Rain, una poderosa Alfa de linaje noble, y Luna, una misteriosa Omega que posee el legendario poder de una \"Reina Omega\", descubren al conocerse que son almas gemelas. Su conexión es inmediata y despierta un instinto de protección y deseo irresistible.\n\nSin embargo, su unión se ve amenazada por una organización clandestina que ambiciona el poder de Luna y por secretos del pasado que resurgen. Ambas deberán luchar contra la traición y fuerzas que podrían cambiar su mundo, confiando únicamente en la fuerza de su vínculo inquebrantable para superar la tormenta.",
     "pages": 234,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [
       "Omegaverse"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Artista",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Alfa × Omega"
+    ],
+    "tropes": [
+      "Alpha/Beta/Omega",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Slow Burn"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -6963,10 +7577,14 @@
         "url": "https://www.mebmarket.com/ebook-372450-Lunar-Queen--Omegaverse-"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362716821_p3x0y",
@@ -6979,20 +7597,59 @@
     "synopsis": "\"Linda, ¿cuándo será mío tu corazón?\"\nAmor Yuri con diferencia de edad.\n\n\nUna confesión en estado de ebriedad, una caricia tierna y un amor que espera ser reclamado.\n\nCuando Kunjaesol se encuentra cuidando a Linda, una chica más joven, testaruda e irresistiblemente encantadora, una conversación sincera convierte su amistad en algo más. Pero con diez años de diferencia y un futuro incierto, ¿realmente vale la pena arriesgarse en el amor?",
     "pages": 93,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria",
+      "Estudiante"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Slow Burn"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -7000,10 +7657,14 @@
         "url": "https://www.mebmarket.com/ebook-368662-SPANISH-VER--Linda-When-Will-Your-Heart-Be-Mine"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362846761_v9rmq",
@@ -7016,6 +7677,8 @@
     "synopsis": "Por pedir un deseo en un árbol de Navidad, Prannirun vivió una experiencia fantástica: conocer a la mujer de sus sueños y enamorarse a primera vista. «Rose», una mujer hermosa y elegante con un gato, le hizo sentir que había encontrado el amor verdadero.\n\nPero el destino intervino; debido a su alergia al alcohol, Prannirun vomitó sobre la mujer que le gustaba, provocando que ella lo odiara y se alejara con indiferencia. ¡Luego se desmayó y despertó la Navidad siguiente!\n\nY para colmo, ¡se encontró persiguiendo a Rose durante casi un año !\n\"¿Te interesaría adoptarme?\"",
     "pages": 154,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -7024,15 +7687,45 @@
     "subgenres": [
       "Navidad"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [
-      "Destined Lovers"
+    "identidades": [
+      "Femme"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "characters": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Destined Lovers",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 1,
     "formato": "Trilogía",
     "adaptacion": "Sin adaptación",
@@ -7048,13 +7741,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777383563978_zp112",
@@ -7067,6 +7759,8 @@
     "synopsis": "Al llegar a un punto muerto, mis compañeros de banda me pidieron que escribiera una canción de amor, aunque nunca lo había hecho.\n\nHasta que conocí a \"Or\", una clienta habitual que venía a tomar café a mi cafetería. Nunca la había visto.\n\nAl cruzarnos nuestras miradas, la primera línea y la melodía de la canción flotaron en mi mente, haciéndome acercarme a ella y decirle: \"Eres mi inspiración\".\n\nNo solo fue mi inspiración, sino que también se convirtió en mi primer amor.\n\nEn cuanto a ella... pensaba que yo era un bicho raro. Intentaba huir, pero parecía que no podía escapar porque era adicta a mi café.\n\nNo pude evitarlo. Cuanto más huía, más la seguía y más inspirado me sentía.\n\nMe enamoré perdidamente de ella, ¡y ahora es demasiado tarde para cambiar de opinión!",
     "pages": 361,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -7074,16 +7768,52 @@
       "Música",
       "GL Thai 🇹🇭"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Música",
+      "Cantante",
+      "Doctora / Médica"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Strangers to Lovers",
+      "Unrequited Love"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "EN",
@@ -7091,10 +7821,14 @@
         "url": "https://en.mebmarket.com/ebook-335845-Lyric-%E0%B9%80%E0%B8%98%E0%B8%AD%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%84%E0%B8%99%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%A5%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%81-English-version"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777383694407_pj1m2",
@@ -7146,22 +7880,54 @@
     "synopsis": "Fui a pedir un deseo bajo el árbol de Navidad con mis amigos, pidiendo un regalo largamente esperado. ¡Pero mi deseo se cumplió más allá de mis expectativas! No solo recibí una caja de regalo en mi calcetín, sino también un hermoso Papá Noel, ¡en cuerpo y alma!\n\nFondue: Un freelancer soltero de 27 años que siempre ha creído en Papá Noel.\n\nCela: Un aprendiz de Papá Noel de 25 años, del pueblo número 7, en su primer año repartiendo regalos a niños buenos.\n\nLo que pensó que sería una misión fácil resultó ser todo lo contrario. Desde que Fondue y Cela se conocieron, la Nochebuena ha sido un caos.\n\n=========\n\nHay tres historias en total:\n1. La Navidad pasada: Una prueba de amor | Peony\n2. Esta Navidad: ¿Y no te gusta la fantasía? | Jasmine.P\n3. La próxima Navidad: Déjame tenerte | Nongnat",
     "pages": 145,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [
       "Navidad"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 2,
     "formato": "Trilogía",
     "adaptacion": "Sin adaptación",
     "sagaName": "Trilogía Christmas",
     "sagaNum": 3,
+    "source": "thais",
     "editions": [
       {
         "lang": "TH",
@@ -7169,10 +7935,14 @@
         "url": "https://www.mebmarket.com/ebook-340894-Next-Christmas-%E0%B8%82%E0%B8%AD%E0%B8%89%E0%B8%B1%E0%B8%99%E0%B8%A1%E0%B8%B5%E0%B9%80%E0%B8%98%E0%B8%AD"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777383839667_b3sr3",
@@ -7696,6 +8466,7 @@
     "synopsis": "“Nunca volveré a enamorarme.” Esa era mi promesa al regresar del extranjero.\n\nSoy Intuorn: rica, guapa y, según yo, madura. Pero mi padre seguía viéndome como una niña, tanto que me asignó una niñera—perdón, “secretaria”—llamada Arunburgfah.\n\nDesde el primer momento, no me cayó bien. Se parecía demasiado a Renu, mi antigua rival amorosa. Quise alejarla… pero terminé acercándome sin saber por qué.\n\nElla era indiferente, inexpresiva, nunca recordaba mi rostro… y jamás me sonreía.\n\nEso me obsesionó.\n\nMe dije que le daría cualquier cosa solo por verla sentir. Y si el dinero puede comprarlo todo, quería preguntarle:\n\n«Tu sonrisa… ¿cuánto vale?».\nGracias a Capricornia por la traducción",
     "pages": 1036,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -7705,15 +8476,57 @@
       "Femme",
       "Masc"
     ],
-    "characters": [],
-    "dinamicas": [
-      "Masc × Femme"
+    "characters": [
+      "Empresaria",
+      "Deportista"
     ],
-    "tropes": [],
+    "dinamicas": [
+      "Masc × Femme",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Rich / Poor Romance"
+    ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Phuket",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chonburi",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -7751,13 +8564,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384338988_zxlvj",
@@ -8212,6 +9024,8 @@
     "synopsis": "En la oficina, la Sra. Yoon Sujin es el ejemplo de perfección: encantadora, ética e impecable. Sin embargo, tras su fachada de gerente ideal se esconde una naturaleza astuta y una sonrisa cargada de veneno. Aunque intento mantener las distancias, el azar nos une una noche fuera del trabajo, donde su imagen profesional desaparece.\n\nCon una mirada sugerente, me susurra al oído: \"¿Te gustaría venir a ver los conejos de mi habitación?\". Un encuentro que revela que la jefa más admirada esconde secretos mucho más oscuros y tentadores.",
     "pages": 126,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -8221,20 +9035,47 @@
       "Universidad",
       "GL Thai 🇹🇭"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Empresaria",
       "Estudiante"
     ],
-    "dinamicas": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Slow Burn",
       "Secret Relationship",
       "Forced Proximity",
       "Workplace Romance"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Empresa"
+    ],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Consentimiento Dudoso (Dub-Con)",
@@ -8255,13 +9096,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777405852645_kr0fp",
@@ -9684,6 +10524,27 @@
       "Francia",
       "Japón"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Taiwán",
+        "region": null,
+        "ciudad": "Taipéi",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Taiwán"
     ],
@@ -9698,6 +10559,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -14198,6 +15061,8 @@
     "synopsis": "En una ciudad africana, una joven anónima que vive en los barrios marginales comienza a perder su identidad: su piel se descascara, la gente se vuelve invisible y la ciudad planea destruir el tren donde entierran a sus muertos. Tras una advertencia de la abuela de la narradora, todo empieza a desmoronarse. Luchando por aferrarse a una realidad cambiante, se autoinduce el insomnio en un intento desesperado por salvar a su familia.",
     "pages": 74,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -14208,7 +15073,29 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Botsuana"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Botsuana",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Botsuana"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -14218,9 +15105,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Botsuana"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778239658252_2hkoo",
@@ -14265,6 +15155,55 @@
       "España",
       "Marruecos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Nigeria",
+        "region": null,
+        "ciudad": "Abeokuta",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Nueva Escocia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Montpellier",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Marruecos",
+        "region": null,
+        "ciudad": "Tánger",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Países Bajos",
+        "region": null,
+        "ciudad": "Ámsterdam",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Nigeria"
     ],
@@ -14279,6 +15218,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -14390,6 +15331,41 @@
     "pais_cultura": [
       "Nigeria"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Nigeria",
+        "region": null,
+        "ciudad": "Aba",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Nigeria",
+        "region": null,
+        "ciudad": "Ojoto",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Nigeria",
+        "region": null,
+        "ciudad": "Nnewi",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Nigeria",
+        "region": null,
+        "ciudad": "Oraifite",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Nigeria"
     ],
@@ -14404,6 +15380,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -61279,6 +62257,7 @@
     "synopsis": "De repente, mi temperamental jefa —a quien ni siquiera conocía en persona— fue emboscada y recibió un disparo.\nEso me obligó a ayudarla a escapar y esconderla en un lugar secreto.\nY, entre el peligro y el silencio de aquel escondite, comenzó a nacer algo que ninguna de las dos esperaba: una relación prohibida.\n\n\n============\n\n\nEsta es la historia de Keta, una ex doble de acción al borde de la ruina que acepta la propuesta de una amiga cercana para trabajar como asistente especial y guardaespaldas secreta de Punyisa, una CEO hermosa, decidida y de carácter explosivo… justo el tipo de mujer que más la desarma.\n\n\n\nEl problema es que la atractiva tía de su amiga no quiere tener ningún tipo de cercanía con Keta.\nAsí, su trabajo juntas empieza a la fuerza: entre discusiones, choques de temperamento y una tensión imposible de ignorar.\nPero, poco a poco, Keta termina enamorándose de su jefa.",
     "pages": 575,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -61316,6 +62295,23 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Violencia Gráfica",
@@ -61339,13 +62335,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783148284207_4yrj6",
@@ -63146,6 +64141,7 @@
     "synopsis": "Una y otra vez, se enfrenta a la derrota y al desamor. Sus amantes nunca fueron fieles.\n\nFama, riqueza, honor y belleza: Pijika Theptat no puede enorgullecerse de nada de ello, por más que intente empezar de nuevo.\n\nLa tachan y la desprecian como una mujer maldita.\n\nPara colmo, la última vez, incluso después de que su pareja falleciera, la cosa no terminó ahí. Khemkaew, su mejor amiga de 12 años, la traicionó.\n\nSe burló de ella, afirmando que solo era una amante, mientras que Khemkaew era la verdadera pareja con un certificado de matrimonio.\n\nPijika, siempre brillante y perspicaz, reflexiona sobre los problemas de su vida y de repente se da cuenta de que nunca ha reconocido oficialmente a ninguna mujer como suya con un certificado de matrimonio legal.\n\nEsta vez, decide hacer las cosas bien. Pimpisut, una joven hermosa, hija de un padre soltero con una trayectoria impresionante, parece la elección perfecta para enmendar los errores de sus tres relaciones anteriores. Sin embargo, este nuevo amor se basa en la duda.\n\n¡Ay!... Pijika pasa por alto el elemento más vital de un matrimonio.\n\nSe olvida del amor. Pronto descubrirá si la culpa esta vez es de los demás o suya. ¿\n\nPodría realmente proteger y mantener una relación mediante un certificado de matrimonio?\n\nEspecialmente cuando Khemkaew sigue ahí, sacudiendo los cimientos de su relación. Pijika aprenderá la lección más importante de la vida:\n\nel amor perdura a través de la comprensión,\n\nno mediante la imposición de un certificado de matrimonio.\n\nEl amor sana y cura las heridas de los errores del pasado hasta que desaparecen.\n\nEl amor, expresado tanto con acciones como con palabras, es el verdadero camino a la felicidad.",
     "pages": 777,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "OrmFolk"
     ],
@@ -63155,12 +64151,45 @@
     "subgenres": [
       "GL Thai 🇹🇭"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Alcohol",
@@ -63175,13 +64204,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1784971026916_d6712",
@@ -65224,6 +66252,7 @@
     "synopsis": "Dos poderosas familias empresariales pretendían que sus herederas se casaran para obtener ventajas comerciales, pero Tharika, la hija menor, no fue elegida, a pesar de que secretamente sentía algo por la heredera de la familia rival desde la infancia. Su hermana mayor fue quien recibió la propuesta de matrimonio, pero el destino dio un giro trágico cuando su hermana murió repentinamente en un accidente. Tharika, la «superviviente», se vio obligada a cumplir el deseo de la familia.\n\nSin embargo, el matrimonio, simplemente como sustituta de su hermana, fue una experiencia agonizante. Tharika la amaba y se sentía feliz de estar cerca de ella, pero en última instancia seguía siendo una extraña, inalcanzable, incapaz de llegar a su corazón ni de comprender sus verdaderas intenciones. Su amor estaba bloqueado, dejándola con una sensación de vacío e insignificancia.",
     "pages": 282,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -65260,6 +66289,20 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -65281,6 +66324,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -66258,6 +67303,7 @@
     "synopsis": "Sé que esto nunca durará, pero mi corazón es...\ntraicionero. Aunque la realidad siempre me recuerda cuál es mi...\nsituación, estoy demasiado metida en esto, mi corazón no podría dejarte marchar...",
     "pages": 321,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "AndaLookkaew"
     ],
@@ -66298,6 +67344,20 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -66323,6 +67383,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,

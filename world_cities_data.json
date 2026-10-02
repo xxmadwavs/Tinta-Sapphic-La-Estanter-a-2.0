@@ -665,6 +665,146 @@
       "aliases": [
         "Ōsaka"
       ]
+    },
+    {
+      "id": "fr-montpellier",
+      "ciudad": "Montpellier",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Occitania",
+      "lat": 43.611,
+      "lon": 3.877,
+      "x": 509.8,
+      "y": 112.6,
+      "aliases": []
+    },
+    {
+      "id": "th-phuket",
+      "ciudad": "Phuket",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Phuket",
+      "lat": 7.88,
+      "lon": 98.392,
+      "x": 775.7,
+      "y": 229.3,
+      "aliases": []
+    },
+    {
+      "id": "th-ratchaburi",
+      "ciudad": "Ratchaburi",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "region": "Ratchaburi",
+      "lat": 13.528,
+      "lon": 99.813,
+      "x": 778.1,
+      "y": 210.9,
+      "aliases": []
+    },
+    {
+      "id": "tw-taipei",
+      "ciudad": "Taipéi",
+      "pais": "Taiwán",
+      "pais_iso": "TW",
+      "region": null,
+      "lat": 25.033,
+      "lon": 121.565,
+      "x": 831.6,
+      "y": 173.3,
+      "aliases": [
+        "Taipei",
+        "Taibéi"
+      ]
+    },
+    {
+      "id": "ma-tanger",
+      "ciudad": "Tánger",
+      "pais": "Marruecos",
+      "pais_iso": "MA",
+      "region": "Tánger-Tetuán-Alhucemas",
+      "lat": 35.759,
+      "lon": -5.834,
+      "x": 484.5,
+      "y": 138.1,
+      "aliases": [
+        "Tanger",
+        "Tangier"
+      ]
+    },
+    {
+      "id": "nl-amsterdam",
+      "ciudad": "Ámsterdam",
+      "pais": "Países Bajos",
+      "pais_iso": "NL",
+      "region": "Holanda Septentrional",
+      "lat": 52.37,
+      "lon": 4.895,
+      "x": 511.8,
+      "y": 84.7,
+      "aliases": [
+        "Amsterdam"
+      ]
+    },
+    {
+      "id": "ng-aba",
+      "ciudad": "Aba",
+      "pais": "Nigeria",
+      "pais_iso": "NG",
+      "region": "Abia",
+      "lat": 5.107,
+      "lon": 7.367,
+      "x": 520.6,
+      "y": 238.4,
+      "aliases": []
+    },
+    {
+      "id": "ng-abeokuta",
+      "ciudad": "Abeokuta",
+      "pais": "Nigeria",
+      "pais_iso": "NG",
+      "region": "Ogun",
+      "lat": 7.161,
+      "lon": 3.348,
+      "x": 509.3,
+      "y": 231.7,
+      "aliases": []
+    },
+    {
+      "id": "ng-nnewi",
+      "ciudad": "Nnewi",
+      "pais": "Nigeria",
+      "pais_iso": "NG",
+      "region": "Anambra",
+      "lat": 6.017,
+      "lon": 6.917,
+      "x": 519.3,
+      "y": 235.4,
+      "aliases": []
+    },
+    {
+      "id": "ng-ojoto",
+      "ciudad": "Ojoto",
+      "pais": "Nigeria",
+      "pais_iso": "NG",
+      "region": "Anambra",
+      "lat": 6.05,
+      "lon": 6.87,
+      "x": 519.2,
+      "y": 235.3,
+      "aliases": []
+    },
+    {
+      "id": "ng-oraifite",
+      "ciudad": "Oraifite",
+      "pais": "Nigeria",
+      "pais_iso": "NG",
+      "region": "Anambra",
+      "lat": 6.0,
+      "lon": 6.85,
+      "x": 519.1,
+      "y": 235.4,
+      "aliases": []
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -837,6 +977,17 @@
       "ciudad": "Moural",
       "pais": "España",
       "motivo": "El libro lo sitúa en Galicia, pero no se ha podido confirmar una ciudad o localidad cartografiable con ese nombre; confirmar antes de añadirla"
+    },
+    {
+      "ciudad": "Ojoto / Oraifite",
+      "pais": "Nigeria",
+      "motivo": "Coordenadas aproximadas (Anambra); afinar si se necesita más precisión"
     }
-  ]
+  ],
+  "aliases_pais": {
+    "Inglaterra": "GB",
+    "Escocia": "GB",
+    "Unión Soviética": "RU"
+  },
+  "aliases_pais_nota": "Nombres de país que aparecen en books_data.json pero no existen como polígono en world_map_data.json (nación constituyente o estado histórico). Se resuelven al ISO-2 indicado para colocar ciudades y regiones; no se pintan como país."
 }

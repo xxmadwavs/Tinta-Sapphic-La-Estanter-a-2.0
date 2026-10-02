@@ -8,7 +8,8 @@
     "tipo": "texto libre que se muestra tal cual (provincia, estado, región, prefectura, comunidad, territorio, condado, equivalente administrativo…). El código no debe depender de una lista cerrada",
     "lat / lon": "dato de referencia (WGS84, grados decimales): punto representativo INTERIOR elegido a mano, no centroide matemático",
     "x / y": "derivados de lat/lon con la proyección de proyeccion_mapa; si algo no cuadra, recalcular desde lat/lon",
-    "aliases": "solo variantes ortográficas o traducciones verificadas del MISMO lugar; nunca equivalencias inferidas"
+    "aliases": "solo variantes ortográficas o traducciones verificadas del MISMO lugar; nunca equivalencias inferidas",
+    "aliases_pais": "mapa nombre de país (como en books_data.json) -> ISO-2, para países sin polígono (Inglaterra, Escocia, Unión Soviética)"
   },
   "proyeccion_mapa": {
     "nombre": "Natural Earth",
@@ -278,6 +279,20 @@
       "aliases": [
         "Hokkaidō"
       ]
+    },
+    {
+      "id": "ca-nueva-escocia",
+      "nombre": "Nueva Escocia",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "tipo": "provincia",
+      "lat": 45.0,
+      "lon": -63.0,
+      "x": 340.4,
+      "y": 108.1,
+      "aliases": [
+        "Nova Scotia"
+      ]
     }
   ],
   "pendientes_verificacion": [
@@ -310,11 +325,11 @@
       "valor": "Moural",
       "pais": "España",
       "motivo": "Aparece como ciudad dentro de Galicia en books_data.json; no se ha podido confirmar. Se registra Galicia como región, pero no Moural"
-    },
-    {
-      "valor": "Inglaterra",
-      "pais": "Inglaterra",
-      "motivo": "Kent y Cornwall se han registrado con país «Reino Unido» (GB) porque «Inglaterra» no resuelve en el mapa; books_data.json los escribe con «Inglaterra». Confirmar esta decisión o añadir un alias de país"
     }
-  ]
+  ],
+  "aliases_pais": {
+    "Inglaterra": "GB",
+    "Escocia": "GB",
+    "Unión Soviética": "RU"
+  }
 }
