@@ -564,6 +564,107 @@
       "x": 879.3,
       "y": 378.6,
       "aliases": []
+    },
+    {
+      "id": "de-berlin",
+      "ciudad": "Berlín",
+      "pais": "Alemania",
+      "pais_iso": "DE",
+      "region": null,
+      "lat": 52.52,
+      "lon": 13.405,
+      "x": 532.4,
+      "y": 84.3,
+      "aliases": [
+        "Berlin"
+      ]
+    },
+    {
+      "id": "at-viena",
+      "ciudad": "Viena",
+      "pais": "Austria",
+      "pais_iso": "AT",
+      "region": null,
+      "lat": 48.208,
+      "lon": 16.374,
+      "x": 540.7,
+      "y": 97.8,
+      "aliases": [
+        "Vienna",
+        "Wien"
+      ]
+    },
+    {
+      "id": "fr-niza",
+      "ciudad": "Niza",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Provenza-Alpes-Costa Azul",
+      "lat": 43.71,
+      "lon": 7.262,
+      "x": 518.4,
+      "y": 112.2,
+      "aliases": [
+        "Nice"
+      ]
+    },
+    {
+      "id": "it-milan",
+      "ciudad": "Milán",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Lombardía",
+      "lat": 45.464,
+      "lon": 9.19,
+      "x": 523.1,
+      "y": 106.6,
+      "aliases": [
+        "Milan",
+        "Milano"
+      ]
+    },
+    {
+      "id": "it-roma",
+      "ciudad": "Roma",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Lacio",
+      "lat": 41.903,
+      "lon": 12.496,
+      "x": 532.0,
+      "y": 118.1,
+      "aliases": [
+        "Rome"
+      ]
+    },
+    {
+      "id": "it-venecia",
+      "ciudad": "Venecia",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Véneto",
+      "lat": 45.438,
+      "lon": 12.336,
+      "x": 531.1,
+      "y": 106.7,
+      "aliases": [
+        "Venice",
+        "Venezia"
+      ]
+    },
+    {
+      "id": "jp-osaka",
+      "ciudad": "Osaka",
+      "pais": "Japón",
+      "pais_iso": "JP",
+      "region": "Osaka",
+      "lat": 34.694,
+      "lon": 135.502,
+      "x": 858.9,
+      "y": 141.6,
+      "aliases": [
+        "Ōsaka"
+      ]
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",

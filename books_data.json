@@ -609,6 +609,7 @@
     "synopsis": "Un grupo de amigas se sume en el caos cuando sus vínculos se ponen a prueba de diversas maneras, empezando por el regreso de una ex novia.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "MilkLove",
       "NamtanFilm",
@@ -618,11 +619,13 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Modelo",
-      "Femme",
-      "Empresaria"
+      "Empresaria",
+      "Fotógrafa"
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
@@ -637,7 +640,26 @@
       "Opposites Attract"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -649,13 +671,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777150429279_ua3lz",
@@ -1120,19 +1141,25 @@
     "synopsis": "De personas que no se llevaban bien entre sí Pero debido a un evento inesperado, accidentalmente tuvimos una relación profunda e inolvidable. Se hizo un acuerdo secreto entre nosotros.\n\nY estoy segura que nunca me enamoraré de ti. Porque las relaciones surgen del deseo, no hay manera de que puedan convertirse en amor.",
     "pages": 459,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "JanJingJing"
     ],
     "genres": [
       "Comedia",
-      "Romance"
+      "Romance",
+      "Comedia Romántica"
     ],
     "subgenres": [],
     "identidades": [
       "Sunshine",
-      "Grumpy"
+      "Grumpy",
+      "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Supervisora de Ventas",
+      "Gerente de Contabilidad"
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Femme × Femme"
@@ -1143,8 +1170,29 @@
       "Secret Relationship",
       "Friends with Benefits"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -1172,13 +1220,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777151505771_h6z1c",
@@ -1191,6 +1238,7 @@
     "synopsis": "El amor no tiene por qué ser algo extravagante ni sofisticado.\nPuede ser simplemente el consuelo que encuentras en la compañía de otra persona.\nY eso es más que suficiente.",
     "pages": 236,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "JanJingJing"
     ],
@@ -1200,12 +1248,46 @@
       "Comedia Romántica"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Gerente de Contabilidad",
+      "Supervisora de Ventas"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Grumpy × Sunshine",
+      "Fría × Cálida",
+      "Feroz × Tierna"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Jealousy Trope"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -1228,13 +1310,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777151620612_s2wzo",
@@ -1247,6 +1328,7 @@
     "synopsis": "La ceremonia nupcial, rodeada de risas, sonrisas y bendiciones, fue solo el comienzo de su vida matrimonial. Les aguardaban muchos obstáculos en el futuro, que superarían juntos. Runchlapat y Peeracha soñaban con tomarse de la mano y superar cada desafío, con un amor duradero y con estar juntas hasta la vejez. Sin embargo, esos sueños se hicieron añicos rápidamente, inesperadamente para alguien.",
     "pages": 374,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LingOrm"
     ],
@@ -1259,15 +1341,42 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Empresaria",
+      "Abogada"
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
     "tropes": [
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Opposites Attract",
+      "Jealousy Trope",
+      "Hurt/Comfort"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -1295,14 +1404,13 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
       "THAIS"
-    ],
-    "pais_origen": [
-      "Tailandia"
     ]
   },
   {
@@ -2911,6 +3019,8 @@
     "synopsis": "Su esperanza era como una vela en medio de una tormenta, parpadeó y se apagó. Probablemente nunca volvería a ver a P’Kassakorn. La mujer le dejó en claro que no quería verla. Atithan era consciente de que solo se trataba de un momento agradable y amistoso durante la cena, no era realista esperar que durara. Incluso si lo supiera, todavía sentía que su corazón se enfurruñaba y se marchitaba por ello.",
     "pages": 264,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Histórica",
       "Romance"
@@ -2925,13 +3035,81 @@
     "dinamicas": [
       "Femme × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Destined Lovers",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Love Triangle",
+      "Opposites Attract",
+      "Secret Relationship"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Sathorn",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Sukhumvit",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": "Silom",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Niza",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -2944,10 +3122,14 @@
         "url": "https://www.mebmarket.com/ebook-341249-Kassatithan-%E0%B8%81%E0%B8%B1%E0%B8%A9%E0%B8%98%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B8%B2%E0%B8%99-English-Version"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777225294442_nujkv",
@@ -4141,6 +4323,7 @@
     "synopsis": "Nos conocimos como competidoras en los negocios.\nPero luego, nos dimos cuenta de que a veces\nqueremos ser amables a puerta cerrada y entre sábanas.",
     "pages": 438,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LMSY"
     ],
@@ -4164,8 +4347,29 @@
       "Forbidden Love",
       "Workplace Romance"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -4193,13 +4397,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777280022593_ru1kw",
@@ -4212,6 +4415,7 @@
     "synopsis": "Después de que la intensa puja por la concesión terminó, Aiwarin y Maevika, ahora, pasaron de ser competidores a ser una pareja real. Su secreto ya no era un secreto. Su relación secreta se convirtió en una verdadera relación romántica, empezaron a trabajar juntos como socios comerciales y pudieron estar juntas como novias. Incluso cuando su relación salió a la luz, algunos momentos privados solo ocurrían cuando estaban solos, y seguía siendo un secreto... solo para ellas.",
     "pages": 149,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LMSY"
     ],
@@ -4233,8 +4437,29 @@
       "Forbidden Love",
       "Workplace Romance"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -4257,13 +4482,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777280115845_gdg61",
@@ -6206,6 +6430,8 @@
     "synopsis": "Cuando la teniente de policía Raphassa,\nencargada del caso, y Kao Karat, superviviente de un misterioso suceso,\nse conocen, se trata de un encuentro en forma de espíritu que abandona su cuerpo.\nAmbos deberán colaborar para descubrir quién está detrás de todo esto\ny encontrar la manera de regresar a sus cuerpos. Tendrán que superar numerosos obstáculos\ny proteger el amor que florece entre ellos.",
     "pages": 333,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -6229,8 +6455,35 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 2,
     "formato": null,
     "adaptacion": "Tiene serie",
@@ -6246,13 +6499,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777361559253_ud4hj",
@@ -6265,20 +6517,50 @@
     "synopsis": "La historia de la creencia de que quien posea a la chica de cabello morado... Farencia, los 7 reinos, son como un polluelo en la palma de tu mano. Mientras tanto, la Emperatriz, que nunca teme ni se doblega ante nadie, es perfecta como la reina de la época. Pero hay una cosa que todavía le falta.\n...fuerza\n\n“Si fingir amor por Farencia hace que los nobles presuman de esa manera, dispuestos a inclinarse a nuestros pies incluso si te obligas a hacerlo, no es un problema”.\n\nHabló con palabras hirientes hacia sus subordinados como si no fuera asunto suyo. Sin darse cuenta del daño que le hacía al dueño de ese nombre.\n\nAunque lo que hiciste fue solo una farsa, lo aceptaré con gusto. Y te doy mi amor para que lo pisotees por lo que deseas.",
     "pages": 339,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Doctora / Médica",
+      "Emperatriz",
+      "Realeza"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Friends to Lovers",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Love Triangle"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "TH",
@@ -6286,10 +6568,14 @@
         "url": "https://www.mebmarket.com/ebook-261628-Farensia-%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%9B"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777361621015_k5zt9",
@@ -6899,6 +7185,7 @@
     "synopsis": "Pingrak, una antigua chica nerd convertida en una millonaria heredera, se reencuentra con su pasado al protagonizar una serie de romance (GL) junto a Charm, la chica popular que le rompió el corazón en la escuela y que ahora es una modelo en ascenso.\n\nMientras trabajan juntas, la tensión del pasado y los sentimientos no resueltos de Pingrak salen a la luz. En este nuevo escenario donde los roles de poder han cambiado, ambas deberán descubrir si el amor unilateral de la adolescencia puede transformarse en algo mutuo o si los secretos del pasado las mantendrán alejadas.",
     "pages": 377,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "NattyYeepun"
     ],
@@ -6912,10 +7199,13 @@
       "Femme"
     ],
     "characters": [
-      "Actriz"
+      "Actriz",
+      "Estudiante"
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Fría × Cálida",
+      "Feroz × Tierna"
     ],
     "tropes": [
       "Enemies to Lovers",
@@ -6924,7 +7214,26 @@
       "Secret Relationship"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -6947,13 +7256,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777383897166_iinbf",
@@ -7639,20 +7947,51 @@
     "synopsis": "Todos lo llaman \"God\", no por divinidad, sino por su nombre. Posee un don cruel: dar felicidad o infligir sufrimiento, pero cada palabra tiene consecuencias físicas para ella. Tras una maldición, una enfermedad consume su cuerpo y la esperanza de su madre.\n\nEn este declive aparece Miriam, su amor secreto de la secundaria y bálsamo para su espíritu. Su presencia despierta en él un deseo prohibido: vivir. Pero sobrevivir es un riesgo bajo su condición. Ahora guarda su último deseo y, si debe entregarlo, será para ella. Una historia de sacrificios y un amor que desafía al destino.\nGracias a Capricornia por la traducción",
     "pages": 341,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Artista",
+      "Productora de televisión"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Forbidden Love",
       "Slow Burn",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Age Gap"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Autolesión",
@@ -7674,13 +8013,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384646677_lu778",
@@ -7693,20 +8031,52 @@
     "synopsis": "Todos lo llaman \"God\", no por divinidad, sino por su nombre. Posee un don cruel: dar felicidad o infligir sufrimiento, pero cada palabra tiene consecuencias físicas para ella. Tras una maldición, una enfermedad consume su cuerpo y la esperanza de su madre.\n\nEn este declive aparece Miriam, su amor secreto de la secundaria y bálsamo para su espíritu. Su presencia despierta en él un deseo prohibido: vivir. Pero sobrevivir es un riesgo bajo su condición. Ahora guarda su último deseo y, si debe entregarlo, será para ella. Una historia de sacrificios y un amor que desafía al destino.\nGracias a Capricornia por la traducción",
     "pages": 341,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Artista",
+      "Estudiante",
+      "Productora de televisión"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Forbidden Love",
       "Slow Burn",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Age Gap"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Autolesión",
@@ -7728,13 +8098,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384699316_b1wlb",
@@ -10352,6 +10721,8 @@
     "synopsis": "Nam-ing siempre fue el ejemplo de la elegancia, criada con amor por sus padres adoptivos y adorada por su hermana, Wayupak. Una familia perfecta en apariencia.\n\nPero Wayupak nunca ha ocultado lo que siente: una devoción que cruza la línea del cariño fraternal. Y Nam-ing, a pesar de resistirse, se rinde poco a poco a sentimientos que no puede controlar.\n\nCuando la madre biológica de Nam-ing reaparece, todo se desmorona. Los celos de Wayupak se intensifican, y Nam-ing se debate entre la familia que tiene y el pasado que ya no puede ignorar.\n\n¿Resistirá su amor la tormenta, o los sepultará el peso de los secretos?",
     "pages": 257,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -10367,9 +10738,32 @@
     "dinamicas": [
       "Femme × Femme"
     ],
-    "tropes": [],
-    "edad": [],
+    "tropes": [
+      "Forced Proximity",
+      "Forbidden Love",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -10392,13 +10786,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778008068133_dmv6t",
@@ -19044,6 +19437,8 @@
     "synopsis": "En este sector, si quieres triunfar, necesitas a alguien que te apoye... ¡y yo te voy a apoyar!\nPD: este libro es el libro que compre, así que nadie lo tiene. Por favor, no lo compartáis",
     "pages": 299,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -19072,6 +19467,23 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Manipulación Psicológica",
@@ -19094,13 +19506,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778489358712_bi59e",
@@ -32858,6 +33269,7 @@
     "synopsis": "La empresa es un lugar encantador. Todo el personal de RR. HH. es muy amable. Todos los empleados son aliados. A todos nos encanta ir a trabajar, nos encanta, nos encanta ir a trabajar~\n\n\"K. Lal, ¿podrías editar este archivo? Lo necesito antes de las 10 de la mañana, por favor.\"\n\nEn el momento en que escucho esa agradable voz, todas mis buenas vibras desaparecen de golpe.\nRealmente digno del nombre Vetaka, el que roba sonrisas…\nMe retracto. ¡Ya no quiero trabajar! ¡Quiero irme a casa!",
     "pages": 223,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "JanJingJing"
     ],
@@ -32871,19 +33283,47 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Supervisora de Ventas",
+      "Gerente de Contabilidad"
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
-      "Femme × Femme"
+      "Femme × Femme",
+      "Fría × Cálida",
+      "Feroz × Tierna"
     ],
     "tropes": [
-      "Enemies to Lovers",
       "Workplace Romance"
     ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Osaka",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -32897,13 +33337,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779825190251_9pdcz",
@@ -32916,6 +33355,7 @@
     "synopsis": "Estoy segura de que amo a Wine, y estoy segura de que Wine también me ama.\nPase lo que pase, haré todo lo posible por mantener nuestra relación...",
     "pages": 159,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "JanJingJing"
     ],
@@ -32929,19 +33369,54 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Gerente de Contabilidad",
+      "Supervisora de Ventas"
+    ],
     "dinamicas": [
       "Femme × Femme",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Fría × Cálida",
+      "Feroz × Tierna"
     ],
     "tropes": [
-      "Enemies to Lovers",
       "Workplace Romance"
     ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Osaka",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Hokkaido",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -32957,13 +33432,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779825627179_8wl9u",
@@ -61406,6 +61880,7 @@
     "synopsis": "¿Qué pasa cuando una mujer soltera (a regañadientes) supersticiosa reza a la deidad local por un novio, solo para que le envíen a 'ella misma' como su novio imaginario?!\n=============================\nCuando una oración 'premium' por un novio\nllega accidentalmente a los oídos de la 'hermosa y genial' deidad local del condominio,\n¡comienza una misión para que su discípula se case en 7 días!\nPero, ¿por qué, cuanto más enseña y más se acerca,\neste reacio Cupido quiere 'abandonar' su misión?\n\"Recuerda esto, idiota... ¡nadie es tan premium como yo!\"\n=============================\nUna novela Yuri para sentirse bien que te mostrará... ¡\nla deidad más hermosa y genial del mundo! ¡\nEstá justo enfrente del condominio!",
     "pages": 122,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -61435,7 +61910,26 @@
       "Secret Relationship"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
@@ -61447,13 +61941,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783770751381_5pqur",
@@ -63287,6 +63780,7 @@
     "synopsis": "Me llamo Baicha, o Chama, y ​​soy la dueña de una empresa de importación y exportación tan exitosa que he recibido varios premios empresariales.\n\nConforme mi negocio crecía, también crecía la necesidad de contratar más empleados, lo que me llevó a conocer a Ninmookda.\n\nEra una recién graduada que había solicitado un puesto en el departamento de contabilidad.\n\nEn cuanto la vi, supe que era amor a primera vista. Era la indicada para mí.\n\nEmpecé a regalarle ramos de flores, a dejarle Post-it en su escritorio y a colmarla de frutas y regalos.\n\nPero su reacción no fue la que esperaba. Se puso paranoica, convencida de que alguien la vigilaba.\n\n¡Aunque mis intenciones eran buenas, su respuesta me hizo perder toda la confianza!",
     "pages": 709,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63319,6 +63813,23 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Clasismo",
@@ -63334,13 +63845,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1785513496986_1cen0",

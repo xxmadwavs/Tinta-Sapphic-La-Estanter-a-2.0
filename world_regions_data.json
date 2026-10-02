@@ -264,6 +264,20 @@
       "aliases": [
         "Cornualles"
       ]
+    },
+    {
+      "id": "jp-hokkaido",
+      "nombre": "Hokkaido",
+      "pais": "Japón",
+      "pais_iso": "JP",
+      "tipo": "prefectura",
+      "lat": 43.4,
+      "lon": 142.8,
+      "x": 864.5,
+      "y": 113.2,
+      "aliases": [
+        "Hokkaidō"
+      ]
     }
   ],
   "pendientes_verificacion": [
