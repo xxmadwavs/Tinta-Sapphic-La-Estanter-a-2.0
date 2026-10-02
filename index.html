@@ -1733,6 +1733,22 @@ button.an-mopen{cursor:pointer}
 .shelf-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;color:var(--muted);text-align:center;gap:.75rem}
 .shelf-empty-icon{font-size:2.5rem;opacity:.5}
 .shelf-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
+/* FASE E5.2 — Estantería física (solo estructura). Madera derivada de --gold (sigue los temas); sin imágenes ni fuentes nuevas. */
+.shelf-physical{display:flex;flex-direction:column;gap:1.5rem;min-width:0;margin-bottom:1.25rem;padding:1.25rem 1.25rem .5rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg)}
+.shelf-row{min-width:0}
+.shelf-books-area{display:grid;grid-template-columns:repeat(var(--shelf-cols,6),minmax(0,1fr));gap:.9rem;align-items:end;padding:0 .5rem}
+.shelf-slot{aspect-ratio:2/3;border:1px dashed var(--border2);border-bottom:none;border-radius:3px 3px 0 0}
+.shelf-board{height:16px;border-radius:2px;background:linear-gradient(to bottom,rgba(255,255,255,.14),rgba(0,0,0,.3) 55%,rgba(0,0,0,.5)),var(--gold);box-shadow:0 6px 10px -5px rgba(0,0,0,.5)}
+@media (max-width:899px){
+  .shelf-physical{gap:1.25rem;padding:1rem 1rem .5rem}
+  .shelf-books-area{gap:.7rem}
+  .shelf-board{height:13px}
+}
+@media (max-width:639px){
+  .shelf-physical{gap:1rem;padding:.75rem .6rem .4rem}
+  .shelf-books-area{gap:.5rem;padding:0 .25rem}
+  .shelf-board{height:10px}
+}
 
 /* ══════════════════════════════════════════════════════════════
    FIX MÓVIL — ventanas que no se cortan + proporciones uniformes
@@ -4369,6 +4385,9 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
           <button class="shelf-view-btn" id="shelfBtnList" onclick="setShelfView('list')" title="Listado">
             <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="2" width="14" height="2" rx="1"/><rect x="1" y="7" width="14" height="2" rx="1"/><rect x="1" y="12" width="14" height="2" rx="1"/></svg>
           </button>
+          <button class="shelf-view-btn" id="shelfBtnShelf" onclick="setShelfView('shelf')" title="Estantería">
+            <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1.5" y="5" width="3" height="6" rx=".5"/><rect x="6" y="2" width="3" height="9" rx=".5"/><rect x="10.5" y="4" width="3" height="7" rx=".5"/><rect x="1" y="12" width="14" height="2" rx="1"/></svg>
+          </button>
         </div>
       </div>
       <div class="shelf-toolbar" id="shelfToolbar">
@@ -4678,7 +4697,7 @@ let shelfPage=1;
 const SHELF_PAGE_SIZE=18;
 // FASE E4.2 — listas válidas únicas para Mi estantería (las usan init(), popstate y la restauración desde la URL)
 const SHELF_FILTERS=['all','want','reading','read','dnf','calendar'];
-const SHELF_VIEWS=['grid','list'];
+const SHELF_VIEWS=['grid','list','shelf'];
 const SHELF_SORTS=['recent','recentReading','az','za','author','year_desc','year_asc'];
 let calYear=new Date().getFullYear();
 let calMonth=new Date().getMonth(); // 0-11
@@ -4850,6 +4869,7 @@ function shelfRestoreFromUrl(params,normalize){
   shelfViewMode=SHELF_VIEWS.includes(v)?v:'grid';
   document.getElementById('shelfBtnGrid')?.classList.toggle('active',shelfViewMode==='grid');
   document.getElementById('shelfBtnList')?.classList.toggle('active',shelfViewMode==='list');
+  document.getElementById('shelfBtnShelf')?.classList.toggle('active',shelfViewMode==='shelf'); // FASE E5.2
   shelfSearch=(params.get('shelfSearch')||'').toLowerCase().trim();
   document.getElementById('shelfSearchInput').value=shelfSearch;
   shelfGenreFilter=params.get('shelfGenre')||'';
@@ -10078,6 +10098,7 @@ function setShelfView(mode){
   shelfViewMode=mode;
   document.getElementById('shelfBtnGrid').classList.toggle('active',mode==='grid');
   document.getElementById('shelfBtnList').classList.toggle('active',mode==='list');
+  document.getElementById('shelfBtnShelf').classList.toggle('active',mode==='shelf'); // FASE E5.2
   _renderShelfBooks();
   shelfUrlSync(shelfFilter,false); // FASE E4.2
 }
@@ -10139,8 +10160,8 @@ function renderShelfCounts(){
   document.getElementById('shelfDnfCount').textContent=dnfBooks.length;
 }
 
-function _renderShelfBooks(){
-  const titleMap={all:'Todos los libros',want:'Quiero leer',reading:'Leyendo',read:'Leídos',dnf:'Lo dejé'};
+// FASE E5.1 — Fase de DATOS: base → búsqueda/género → ordenación (E3 incluido). Sin DOM ni paginación.
+function _shelfPrepareBooks(){
   let books=shelfBaseBooks();
   const hadBooksBeforeFilters=books.length>0;
 
@@ -10154,28 +10175,21 @@ function _renderShelfBooks(){
   else if(shelfSort==='year_asc') books=[...books].sort((a,b)=>(a.year||0)-(b.year||0));
   else if(shelfSort==='recentReading') books=sortBooksByLastReading(books); // FASE E3 (modelo E2): última lectura completada, más reciente primero; sin fecha al final
   else books=[...books].sort((a,b)=>b.id.localeCompare(a.id)); // 'recent' («Recién añadidos»): en realidad id descendente
+  return {books,hadBooksBeforeFilters};
+}
 
-  document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>(${books.length})</span>`;
-  const container=document.getElementById('shelfBooksContainer');
-
-  if(!books.length){
-    if(hadBooksBeforeFilters){
-      container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">🔍</span><p>Ningún libro coincide con tu búsqueda o filtro.</p></div>`;
-    } else {
-      const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',reading:'Aún no tienes libros marcados como «Leyendo».',read:'Aún no has marcado ningún libro como leído.',dnf:'No has dejado ningún libro a medias (¡bien por ti! 🌸).'};
-      container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':shelfFilter==='dnf'?'✕':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
-    }
-    return;
-  }
-
+// FASE E5.1 — Fase de PAGINACIÓN: recorta shelfPage si se pasa del final (misma mutación que antes) y devuelve la página actual.
+function _shelfPaginate(books){
   const totalPages=Math.max(1,Math.ceil(books.length/SHELF_PAGE_SIZE));
   if(shelfPage>totalPages) shelfPage=totalPages;
   const start=(shelfPage-1)*SHELF_PAGE_SIZE;
   const pageBooks=books.slice(start,start+SHELF_PAGE_SIZE);
+  return {totalPages,pageBooks};
+}
 
-  let html='';
-  if(shelfViewMode==='grid'){
-    html=`<div class="shelf-grid">${pageBooks.map(b=>{
+// FASE E5.1 — Representación Galería (HTML idéntico al previo).
+function _shelfRenderGrid(pageBooks){
+    return `<div class="shelf-grid">${pageBooks.map(b=>{
       const cov=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-book-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
       return `<div class="shelf-book" onclick="openBookPage('${b.id}')">
@@ -10186,8 +10200,11 @@ function _renderShelfBooks(){
         </div>
       </div>`;
     }).join('')}</div>`;
-  } else {
-    html=`<div class="shelf-list">${pageBooks.map(b=>{
+}
+
+// FASE E5.1 — Representación Lista (HTML idéntico al previo).
+function _shelfRenderList(pageBooks){
+    return `<div class="shelf-list">${pageBooks.map(b=>{
       const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-list-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
       const r=ratingsMap[b.id]||{avg:0,count:0};
@@ -10217,9 +10234,39 @@ function _renderShelfBooks(){
         </div>
       </div>`;
     }).join('')}</div>`;
-  }
+}
 
-  if(totalPages>1){
+// FASE E5.2 — Estantería física, SOLO estructura: filas (zona de libros + balda) con un hueco por libro de la página actual.
+// Aún no se pintan libros. Huecos por fila según ancho: 3 (<640px), 6 (640–1279px), 9 (≥1280px); todos dividen 18 (SHELF_PAGE_SIZE).
+function _shelfCols(){
+  if(window.matchMedia('(min-width:1280px)').matches) return 9;
+  if(window.matchMedia('(min-width:640px)').matches) return 6;
+  return 3;
+}
+function _shelfRenderShelf(pageBooks){
+  const cols=_shelfCols();
+  let rows='';
+  for(let i=0;i<pageBooks.length;i+=cols){
+    const slots='<div class="shelf-slot"></div>'.repeat(Math.min(cols,pageBooks.length-i));
+    rows+=`<div class="shelf-row"><div class="shelf-books-area">${slots}</div><div class="shelf-board"></div></div>`;
+  }
+  return `<div class="shelf-physical" style="--shelf-cols:${cols}" aria-hidden="true">${rows}</div>`;
+}
+// FASE E5.2 — los huecos por fila dependen del ancho: al cruzar un breakpoint se repinta (sin tocar URL ni estado).
+['(min-width:640px)','(min-width:1280px)'].forEach(q=>window.matchMedia(q).addEventListener('change',()=>{
+  if(shelfViewMode==='shelf' && shelfFilter!=='calendar' && document.getElementById('shelfView').classList.contains('active')) _renderShelfBooks();
+}));
+
+// FASE E5.1 — Selector de representación. El `return` final es Lista, como antes (cualquier valor distinto de 'grid' pintaba Lista).
+function _shelfRenderView(pageBooks){
+  if(shelfViewMode==='grid') return _shelfRenderGrid(pageBooks);
+  if(shelfViewMode==='shelf') return _shelfRenderShelf(pageBooks);
+  return _shelfRenderList(pageBooks);
+}
+
+// FASE E5.1 — Controles de paginación (vacío si solo hay una página). Usa shelfPage ya recortada.
+function _shelfPaginationHTML(totalPages,total){
+  if(totalPages<=1) return '';
     const p=shelfPage;
     const show=new Set([1,totalPages,p,p-1,p+1].filter(n=>n>=1&&n<=totalPages));
     const sorted=[...show].sort((a,b)=>a-b);
@@ -10229,15 +10276,32 @@ function _renderShelfBooks(){
       btns+=`<button class="pg-btn${n===p?' active':''}" onclick="shelfGoToPage(${n})">${n}</button>`;
       prev=n;
     }
-    html+=`<p class="pg-info">Página ${p} de ${totalPages} · ${books.length} libros</p>
+    return `<p class="pg-info">Página ${p} de ${totalPages} · ${total} libros</p>
     <div class="pagination">
       <button class="pg-btn pg-arrow" onclick="shelfGoToPage(${p-1})" ${p<=1?'disabled':''}>‹</button>
       ${btns}
       <button class="pg-btn pg-arrow" onclick="shelfGoToPage(${p+1})" ${p>=totalPages?'disabled':''}>›</button>
     </div>`;
+}
+
+function _renderShelfBooks(){
+  const titleMap={all:'Todos los libros',want:'Quiero leer',reading:'Leyendo',read:'Leídos',dnf:'Lo dejé'};
+  const {books,hadBooksBeforeFilters}=_shelfPrepareBooks();
+  document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>(${books.length})</span>`;
+  const container=document.getElementById('shelfBooksContainer');
+
+  if(!books.length){
+    if(hadBooksBeforeFilters){
+      container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">🔍</span><p>Ningún libro coincide con tu búsqueda o filtro.</p></div>`;
+    } else {
+      const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',reading:'Aún no tienes libros marcados como «Leyendo».',read:'Aún no has marcado ningún libro como leído.',dnf:'No has dejado ningún libro a medias (¡bien por ti! 🌸).'};
+      container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':shelfFilter==='dnf'?'✕':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
+    }
+    return;
   }
 
-  container.innerHTML=html;
+  const {totalPages,pageBooks}=_shelfPaginate(books);
+  container.innerHTML=_shelfRenderView(pageBooks)+_shelfPaginationHTML(totalPages,books.length);
 }
 
 /* ══════════════════════════ CALENDARIO DE LECTURAS ══════════════════════════ */
