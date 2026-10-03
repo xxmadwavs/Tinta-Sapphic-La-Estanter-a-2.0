@@ -8511,6 +8511,12 @@ window.addEventListener('popstate', ()=>{
     // FASE E4.3: si veníamos de una ficha, recuperar el scroll de la estantería (memoria → history.state de la entrada)
     if(_wasBp){
       const y=(_bpOrigin&&_bpOrigin.scrollY!=null)?_bpOrigin.scrollY:((history.state&&history.state.shelfScroll)||0);
+      // FASE E4.3 (A2): el navegador no debe aplicar su restauración nativa del historial sobre la nuestra; se devuelve a 'auto' a los 500 ms solo si seguimos en la misma entrada
+      const _url=location.href;
+      try{
+        history.scrollRestoration='manual';
+        setTimeout(()=>{ try{ if(location.href===_url) history.scrollRestoration='auto'; }catch(e){} },500);
+      }catch(e){}
       bpRestoreScroll(y);
     } else if(_wasView){
       // FASE E4.5: volvemos a la estantería desde una vista personal → scroll guardado en la entrada de la estantería
