@@ -293,6 +293,236 @@
       "aliases": [
         "Nova Scotia"
       ]
+    },
+    {
+      "id": "cn-zhejiang",
+      "nombre": "Zhejiang",
+      "pais": "China",
+      "pais_iso": "CN",
+      "tipo": "provincia",
+      "lat": 29.2,
+      "lon": 120.0,
+      "x": 823.6,
+      "y": 159.6,
+      "aliases": [
+        "Chekiang"
+      ]
+    },
+    {
+      "id": "th-trat",
+      "nombre": "Trat",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "tipo": "provincia",
+      "lat": 12.24,
+      "lon": 102.52,
+      "x": 786.1,
+      "y": 215.1,
+      "aliases": []
+    },
+    {
+      "id": "ca-ontario",
+      "nombre": "Ontario",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "tipo": "provincia",
+      "lat": 49.0,
+      "lon": -83.0,
+      "x": 294.3,
+      "y": 95.3,
+      "aliases": []
+    },
+    {
+      "id": "es-principado-de-asturias",
+      "nombre": "Principado de Asturias",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 43.3,
+      "lon": -6.0,
+      "x": 484.6,
+      "y": 113.6,
+      "aliases": [
+        "Asturias"
+      ]
+    },
+    {
+      "id": "es-cataluna",
+      "nombre": "Cataluña",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 41.8,
+      "lon": 1.5,
+      "x": 503.8,
+      "y": 118.4,
+      "aliases": [
+        "Catalunya",
+        "Catalonia"
+      ]
+    },
+    {
+      "id": "es-pais-vasco",
+      "nombre": "País Vasco",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 43.0,
+      "lon": -2.6,
+      "x": 493.3,
+      "y": 114.5,
+      "aliases": [
+        "Euskadi"
+      ]
+    },
+    {
+      "id": "es-islas-baleares",
+      "nombre": "Islas Baleares",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 39.6,
+      "lon": 2.95,
+      "x": 507.6,
+      "y": 125.6,
+      "aliases": [
+        "Baleares",
+        "Illes Balears"
+      ]
+    },
+    {
+      "id": "es-islas-canarias",
+      "nombre": "Islas Canarias",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 28.3,
+      "lon": -15.8,
+      "x": 457.2,
+      "y": 162.5,
+      "aliases": [
+        "Canarias"
+      ]
+    },
+    {
+      "id": "es-ibiza",
+      "nombre": "Ibiza",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "isla",
+      "lat": 38.98,
+      "lon": 1.43,
+      "x": 503.6,
+      "y": 127.6,
+      "aliases": [
+        "Eivissa"
+      ]
+    },
+    {
+      "id": "es-gran-canaria",
+      "nombre": "Gran Canaria",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "isla",
+      "lat": 27.96,
+      "lon": -15.6,
+      "x": 457.7,
+      "y": 163.7,
+      "aliases": []
+    },
+    {
+      "id": "gr-creta",
+      "nombre": "Creta",
+      "pais": "Grecia",
+      "pais_iso": "GR",
+      "tipo": "región",
+      "lat": 35.24,
+      "lon": 24.81,
+      "x": 565.5,
+      "y": 139.8,
+      "aliases": [
+        "Crete",
+        "Kriti"
+      ]
+    },
+    {
+      "id": "th-ko-chang",
+      "nombre": "Ko Chang",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "tipo": "isla",
+      "lat": 12.05,
+      "lon": 102.32,
+      "x": 785.6,
+      "y": 215.7,
+      "aliases": [
+        "Koh Chang"
+      ]
+    },
+    {
+      "id": "th-koh-samet",
+      "nombre": "Koh Samet",
+      "pais": "Tailandia",
+      "pais_iso": "TH",
+      "tipo": "isla",
+      "lat": 12.57,
+      "lon": 101.45,
+      "x": 783.0,
+      "y": 214.0,
+      "aliases": [
+        "Ko Samet",
+        "Ko Samed"
+      ]
+    },
+    {
+      "id": "us-nueva-jersey",
+      "nombre": "Nueva Jersey",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 40.1,
+      "lon": -74.5,
+      "x": 306.8,
+      "y": 123.9,
+      "aliases": [
+        "New Jersey"
+      ]
+    },
+    {
+      "id": "gb-lanarkshire",
+      "nombre": "Lanarkshire",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "tipo": "condado",
+      "lat": 55.67,
+      "lon": -3.78,
+      "x": 490.9,
+      "y": 74.5,
+      "aliases": []
+    },
+    {
+      "id": "ph-benguet",
+      "nombre": "Benguet",
+      "pais": "Filipinas",
+      "pais_iso": "PH",
+      "tipo": "provincia",
+      "lat": 16.6,
+      "lon": 120.75,
+      "x": 835.0,
+      "y": 200.9,
+      "aliases": []
+    },
+    {
+      "id": "us-minnesota",
+      "nombre": "Minnesota",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 46.3,
+      "lon": -94.3,
+      "x": 262.7,
+      "y": 103.9,
+      "aliases": []
     }
   ],
   "pendientes_verificacion": [
@@ -315,16 +545,6 @@
       "valor": "Nong Khai",
       "pais": "Tailandia",
       "motivo": "Aparece como ciudad; es nombre de provincia y de su capital. Confirmar cuál se refiere en el libro"
-    },
-    {
-      "valor": "Minnesota",
-      "pais": "Estados Unidos",
-      "motivo": "Aparece como región junto a la ciudad Davenport, que está en Iowa; confirmar si es un error en books_data.json antes de registrarla"
-    },
-    {
-      "valor": "Moural",
-      "pais": "España",
-      "motivo": "Aparece como ciudad dentro de Galicia en books_data.json; no se ha podido confirmar. Se registra Galicia como región, pero no Moural"
     }
   ],
   "aliases_pais": {
