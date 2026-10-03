@@ -1721,6 +1721,17 @@ button.an-mopen{cursor:pointer}
 .shelf-book .shelf-book-body{padding:.6rem .7rem}
 .shelf-book .shelf-book-title{font-size:12px;font-weight:500;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
 .shelf-book .shelf-book-author{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* FASE E6.2 — línea meta (mi valoración · mi spicy). Una sola línea de alto fijo: si el spicy no cabe, salta a una 2.ª línea recortada
+   y desaparece junto a su separador (el «·» es su ::before); la valoración se mantiene siempre. */
+.shelf-book .shelf-book-meta{position:relative;display:flex;flex-wrap:wrap;height:14px;margin-top:3px;overflow:hidden;font-size:10.5px;line-height:14px;color:var(--muted)}
+.shelf-book .shelf-book-meta>span{white-space:nowrap}
+.shelf-book .shelf-book-stars{color:var(--gold);letter-spacing:.5px}
+.shelf-book .shelf-book-stars+.shelf-book-spicy::before{content:'·';margin:0 .4em}
+/* FASE E6.3 — fecha corta de última lectura: una sola línea; si no cabe se trunca con elipsis antes que desbordar. */
+.shelf-book .shelf-book-date{margin-top:3px;font-size:10.5px;line-height:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* FASE E6.4 — estado actual de lectura (solo reading/want/dnf): texto secundario de una sola línea; si no cabe se trunca con elipsis. */
+.shelf-book .shelf-book-status{margin-top:3px;font-size:10.5px;line-height:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-book .shelf-book-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%)}
 .shelf-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
 .shelf-list-item{display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:center;padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--surface);cursor:pointer;transition:background .15s}
 .shelf-list-item:last-child{border-bottom:none}
@@ -10216,15 +10227,73 @@ function _shelfPaginate(books){
 }
 
 // FASE E5.1 — Representación Galería (HTML idéntico al previo).
+const _MESES_CORTOS_ES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']; // FASE E6.3 — solo presentación de la fecha corta de la tarjeta
+// FASE E7.2 — formato de fecha corta (extraído de E6.3 sin cambiar su resultado): día → «28 sep 2026», mes → «sep 2026», año → «2026».
+function _shelfShortDateTxt(year,month,day,precision){
+  const mon=_MESES_CORTOS_ES[month-1];
+  return precision==='day'?`${day} ${mon} ${year}`:precision==='month'?`${mon} ${year}`:`${year}`;
+}
+// FASE E7.2 — fecha corta de INICIO de la entrada abierta (reading/dnf). Solo started_at + started_precision (NULL histórico = día completo); nunca bookReadingTime. Sin entrada abierta, sin started_at o ISO inválido → ''.
+function _shelfStartedTxt(bookId){
+  const e=getOpenLogEntry(bookId);
+  const m=e&&typeof e.started_at==='string'?/^(\d{4})-(\d{2})-(\d{2})/.exec(e.started_at):null;
+  if(!m) return '';
+  const y=parseInt(m[1],10), mo=parseInt(m[2],10), d=parseInt(m[3],10);
+  const sp=e.started_precision;
+  if(sp==='year') return _shelfShortDateTxt(y,null,null,'year');
+  if(mo<1||mo>12) return '';
+  if(sp==='month') return _shelfShortDateTxt(y,mo,null,'month');
+  return d>=1&&d<=31?_shelfShortDateTxt(y,mo,d,'day'):'';
+}
 function _shelfRenderGrid(pageBooks){
     return `<div class="shelf-grid">${pageBooks.map(b=>{
       const cov=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-book-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
+      // FASE E7.2 — información contextual según shelfFilter (solo datos ya cargados, sin consultas). Un único bloque de decisión por estado.
+      let meta='', dateLine='';
+      switch(shelfFilter){
+        case 'all':
+        case 'want': {
+          // Solo valoración de la comunidad; sin votos → sin línea.
+          const cr=ratingsMap[b.id];
+          if(cr&&cr.count>0){
+            const sr=`Valoración de la comunidad ${cr.avg.toFixed(1).replace('.',',')} de 5, ${cr.count} ${cr.count===1?'voto':'votos'}`;
+            meta=`<div class="shelf-book-meta"><span class="shelf-book-sr">${sr}</span><span class="shelf-book-stars" aria-hidden="true">★ ${cr.avg.toFixed(1)} (${cr.count})</span></div>`;
+          }
+          break;
+        }
+        case 'reading': {
+          // «Leyendo» + («· desde <fecha>» solo si la entrada abierta tiene started_at). La fecha va en un 2.º span nowrap: si no cabe salta a la 2.ª línea de .shelf-book-meta (alto fijo, overflow oculto) y queda recortada; el texto accesible la conserva siempre.
+          const since=_shelfStartedTxt(b.id);
+          meta=`<div class="shelf-book-meta"><span class="shelf-book-sr">Leyendo${since?` desde ${since}`:''}</span><span aria-hidden="true">Leyendo</span>${since?`<span aria-hidden="true">&nbsp;· desde ${since}</span>`:''}</div>`;
+          break;
+        }
+        case 'read': {
+          // Lógica de E6 intacta.
+          // FASE E6.2 — línea meta: SOLO mi valoración y mi spicy (datos ya cargados, sin consultas). Spicy 0 se omite en v1; se comprueba != null, nunca truthiness.
+          const rv=myRatings[b.id], sv=mySpicy[b.id];
+          const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+          const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
+          meta=(rN||sN)?`<div class="shelf-book-meta"><span class="shelf-book-sr">${[rN?`Mi valoración ${rN} de 5`:'',sN?`${rN?'spicy':'Mi spicy'} ${sN} de 5`:''].filter(Boolean).join(', ')}</span>${rN?`<span class="shelf-book-stars" aria-hidden="true">${'★'.repeat(rN)+'☆'.repeat(5-rN)}</span>`:''}${sN?`<span class="shelf-book-spicy" aria-hidden="true">🌶 ${sN}</span>`:''}</div>`:'';
+          // FASE E6.3/E6.3.1 — fecha corta de la ÚLTIMA lectura completada, tomada de bookReadingTime (modelo E2/E3; sin lógica de fechas propia). Respeta la precisión (día / mes / año); sin fecha → sin línea.
+          const rt=bookReadingTime(b.id);
+          if(rt.hasDate) dateLine=`<div class="shelf-book-date">${_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision)}</div>`;
+          break;
+        }
+        case 'dnf': {
+          // «Empezado <fecha>» solo con started_at de la entrada abierta. Nunca «Dejado» (no hay fecha real de abandono) ni bookReadingTime.
+          const since=_shelfStartedTxt(b.id);
+          if(since) dateLine=`<div class="shelf-book-date">Empezado ${since}</div>`;
+          break;
+        }
+      }
       return `<div class="shelf-book" onclick="openBookPage('${b.id}')">
         <div class="shelf-book-cover">${cov}</div>
         <div class="shelf-book-body">
           <div class="shelf-book-title">${escHtml(b.title)}</div>
           <div class="shelf-book-author">${escHtml(auth)}</div>
+          ${meta}
+          ${dateLine}
         </div>
       </div>`;
     }).join('')}</div>`;

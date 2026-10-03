@@ -102,6 +102,7 @@
     "synopsis": "¡¿Ves ese cartel de cerrado?! ¡Son las once de la noche! ¡¿Qué clase de supermercado abre a esta hora?!\n\nWan era una secretaria experta que, de repente, tuvo que hacerse cargo del negocio de su familia. Y lo que era peor, ahora tenía que lidiar con Maewnam, una clienta extraña que no paraba de aparecer en su tienda para molestarla.\n\nÚltimamente, ¡parecía que Maewnam también estaba empezando a hacerle daño a su corazón! Ya era bastante difícil intentar reflotar el supermercado... ¡¿Podría dejar de darle más dolores de cabeza a Wan, por favor?!",
     "pages": 394,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "MilkLove",
       "JuneMewnich"
@@ -115,16 +116,41 @@
     ],
     "characters": [
       "Abogada",
-      "Femme"
+      "Empresaria",
+      "Profesora"
     ],
     "dinamicas": [
       "Femme × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Age Gap",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract",
+      "Unrequited Love"
+    ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -160,13 +186,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777138710876_7tgwy",
@@ -537,6 +562,7 @@
     "synopsis": "Yo, Dokruk, una chica sencilla, nunca pensé en amar a una mujer, excepto a Pam, una dentista de ojos marrones, que me robó el corazón con todo, sin saber cómo ni por qué.\n\nMe encantaba su singular perfume de vainilla cada vez que aparecía. ¿Era amor?\n\nSin embargo, Pam tenía novio, mi hermano. No debía expresarle mis sentimientos. ¿Cómo podría hacerlo?",
     "pages": 771,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "EmiBonnie"
     ],
@@ -547,7 +573,10 @@
     "subgenres": [
       "Universidad"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
     "characters": [
       "Estudiantes",
       "Estudiante"
@@ -561,7 +590,18 @@
       "Lesbian Awakening"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Enfermedad Mental",
@@ -590,13 +630,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777150282338_4gv0h",
@@ -1013,6 +1052,7 @@
     "synopsis": "Cuando Vayo, una hábil y honrada oficial de la policía marítima, es asignada para proteger a la princesa Catherine Blew de Laina, la princesa heredera del Reino de Madelin, surge una grave amenaza. Los rebeldes envían a una impostora para ocupar el lugar de la princesa y dar caza a la verdadera con el fin de asesinarla. Ahora, esta renuente guardaespaldas debe arriesgar su vida para proteger a la verdadera princesa y ayudarla a recuperar el trono que le corresponde por derecho.",
     "pages": 368,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "AppleMiu",
       "Englot",
@@ -1023,10 +1063,14 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
     "characters": [
       "Guardaespaldas",
-      "Realeza"
+      "Realeza",
+      "Policía"
     ],
     "dinamicas": [
       "Masc × Femme",
@@ -1037,8 +1081,43 @@
       "Forced Proximity",
       "Slow Burn"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Chiang Rai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
@@ -1061,13 +1140,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777151073237_1o982",
@@ -1080,6 +1158,7 @@
     "synopsis": "Ella era la llama. Ella era el combustible. Juntos, ardían.\nAtchimaFai siempre ha visto la vida como un campo de batalla, sobre todo cuando se trata de la tranquila chica AthittayaKaphrao, a la que culpa de robarle el afecto de su padre.\nPara Fai, Kaphrao no era más que un problema.\nPara Kaphrao, Fai lo era todo.\nQuince años después, su reencuentro reaviva algo más que viejos rencores. Pero entre ellos se interpone la tía Panee, la devota tutora de Fai, cuyo profundo rencor amenaza con separarlos.\n¿Será el amor lo bastante fuerte para curar el pasado?\n¿O el orgullo reducirá su pasión a cenizas?\nEl fuego nunca teme al combustible, así que ¿por qué debería el amor temer a todo?",
     "pages": 369,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "AppleMiu",
       "Englot",
@@ -1090,16 +1169,45 @@
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
     "tropes": [
       "Forced Proximity",
       "Rivals to Lovers",
       "Slow Burn"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Surat Thani",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
@@ -1122,13 +1230,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777151241210_moxht",
@@ -1554,6 +1661,13 @@
         "pais": "Tailandia",
         "region": null,
         "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Maldivas",
+        "region": null,
+        "ciudad": null,
         "localidad": null,
         "lugares": []
       }
@@ -2757,6 +2871,7 @@
     "synopsis": "La bella doctora estaba desconsolada.\n¿Qué hará cuando la vida vuelva a unir los dos corazones rotos?",
     "pages": 657,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LingOrm"
     ],
@@ -2778,8 +2893,44 @@
       "Second Chance Romance",
       "Jealousy Trope"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Roma",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Venecia",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -2807,13 +2958,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777223268111_70xer",
@@ -3945,24 +4095,63 @@
     "synopsis": "Soy Mai Tri, abogada brillante con una habilidad secreta: puedo detener el tiempo diez minutos al día. Siempre he confiado solo en mí… hasta que apareció Man Mek, una fiscal imperturbable que logró derrotarme en un caso y dejó mi orgullo por los suelos.\n\nEl destino nos une de nuevo cuando Man Mek entra a mi oficina como asistente legal. Rodeada de girasoles y misterio, empieza a desmontar mis barreras con su calma, su amabilidad y su mirada sin juicio.\n\nPero entonces, una advertencia: mi hermana, que ve el futuro, me dice que alguien quiere manipularme para usar mi poder... y que me costará la vida.\n\n¿Y si la culpable fuera justamente ella? ¿La mujer de la que, sin querer, empiezo a enamorarme?",
     "pages": 308,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
     "characters": [
       "Abogada"
     ],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Enemies to Lovers",
+      "Workplace Romance",
+      "Rivals to Lovers",
+      "Hurt/Comfort",
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": "Saga",
     "adaptacion": "Tiene serie",
     "sagaName": "REVERSE WITH ME",
     "sagaNum": 6,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -3980,10 +4169,14 @@
         "url": "https://www.mebmarket.com/ebook-233783-Stuck-with-Me-%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%9E%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B2%E0%B8%A1"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777277360953_9ffx1",
@@ -6610,20 +6803,41 @@
     "synopsis": "Como sugiere su nombre, Nemanin puede cambiar entre diferentes posiciones de forma suave e inteligente.\n\nCada chica piensa que ella es la que siempre está a su lado.\n\nPero ¿quién habría pensado que en realidad eran sólo uno de los nombres de tu lista de mujeres, Nemanin?",
     "pages": 52,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "TH",
@@ -6631,10 +6845,14 @@
         "url": "https://www.mebmarket.com/ebook-311530-WOMEN-IN-THE-LIST"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777359992867_jkg6y",
@@ -6713,6 +6931,8 @@
     "synopsis": "¿Y qué si es un dragón?\n\nFei Long, la heredera mayor de la pandilla del Dragón del Fuego, tendrá que casarse con la joven señorita Wang Li Ming de la pandilla del León de Jade en contra de la voluntad de ambas.\nEl dragón despiadado y la rata descarada tendrán que vivir juntas como una pareja casada mientras la pequeña rata aprende a convertirse en la primera amante de la pandilla.\n¿Qué será de su relación?\n¿Y cómo terminará este matrimonio arreglado?",
     "pages": 684,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -6723,14 +6943,53 @@
       "Femme",
       "Masc"
     ],
-    "characters": [],
+    "characters": [
+      "Líder mafia"
+    ],
     "dinamicas": [
       "Masc × Femme"
     ],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "tropes": [
+      "Age Gap",
+      "Arranged Marriage",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Shanghái",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 2,
     "formato": "Trilogía",
     "adaptacion": "Tiene serie",
@@ -6761,13 +7020,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777361238169_onpvc",
@@ -6780,22 +7038,62 @@
     "synopsis": "¡Dos tigres no pueden compartir la misma cueva!\n\nTras asumir el cargo de nueva líder, Fei Tian, ​​la segunda heredera de la pandilla del Fuego del Dragón, tuvo que estar con una mujer víbora, Zhou Zhu Ting. Su nuevo y difícil desafío comenzó con las huellas de la pandilla del Zorro de Nueve Colas, una venganza eterna que esperaba ser buscada, y la joven señorita Zhao Jiao Jin, a quien le debía la vida. La había estado esperando y buscando por todas partes. ¿Cómo terminaría este amor y esta venganza?\nGracias a Ana Villa por la traducción",
     "pages": 591,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Acción"
     ],
     "subgenres": [
       "Mafia"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Líder mafia"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Trilogía",
     "adaptacion": "Tiene serie",
     "sagaName": "THE DRAGON, THE TIGER & THE SWAN",
     "sagaNum": 2,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -6813,10 +7111,14 @@
         "url": "https://www.mebmarket.com/ebook-375770-THE-TIGER-Indonesian-Version"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777361337461_g202f",
@@ -6829,6 +7131,8 @@
     "synopsis": "¡Un cisne sin alas no puede volar tan alto como un cuervo!\nCuando Fei Feng, la heredera más joven de la Banda del Fuego del Dragón es atacada por un asesino desconocido de sus enemigos, conoce a Yang Chun, una persona que no conoce pero que tiene amnesia y que está dispuesta a proteger al hermoso cisne como un cachorro fiel.\n¿Cómo logrará desarrollarse este amor no correspondido y esta venganza?\nGracias a Ana Villa por la traducción",
     "pages": 604,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -6836,16 +7140,60 @@
       "Mafia",
       "GL Thai 🇹🇭"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "Doctora / Médica",
+      "Líder mafia"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Slow Burn",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Shanghái",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 2,
     "formato": "Trilogía",
     "adaptacion": "Tiene serie",
     "sagaName": "THE DRAGON, THE TIGER & THE SWAN",
     "sagaNum": 3,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -6863,10 +7211,14 @@
         "url": "https://www.mebmarket.com/ebook-409693-THE-SWAN-Indonesian-Version"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777361384644_m7v2n",
@@ -7187,20 +7539,43 @@
     "synopsis": "Era la pesadilla que Meena quería olvidar.\nAhora es la jefa de la que Meena no puede escapar.\n\nAños después de sobrevivir a un encuentro humillante que marcó su corazón adolescente, Meena se ha reinventado: más fuerte, más inteligente y lista para conquistar el mundo.\n\nPero el destino tiene otros planes.\nEn su primer día en un nuevo trabajo, Meena se encuentra cara a cara con la última persona que jamás habría querido ver:\n\nAlice fría, hermosa y todavía tan cruel como siempre.\n\nViejas heridas se reabren. Saltan chispas. Las reglas se reescriben.\nY en algún lugar entre el odio y el deseo, comienza una nueva clase de obsesión.",
     "pages": 90,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "CEO"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -7208,10 +7583,14 @@
         "url": "https://es.mebmarket.com/?action=book_details&book_id=388551"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362049050_d7wcr",
@@ -7224,20 +7603,48 @@
     "synopsis": "Desterrada y traicionada, la Reina Esmeralda es abandonada a morir en el mar. Cuando una sirena rebelde la rescata del abismo, sus destinos quedan sellados.\n\nAtrapadas en una isla misteriosa, una es una reina destronada que aprende a sobrevivir; la otra, una sirena convertida en humana que descubre el peligro del deseo. Unidas por la necesidad y enredadas en una atracción prohibida, su vínculo se vuelve tan intenso como el océano que las separó.\n\nEntre secretos, obsesión y labios que se buscan, nace un romance salvaje y peligroso.\nElla debía volver al mar… pero se quedó por la reina.",
     "pages": 84,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Realeza",
+      "Sirena"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love"
+    ],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -7245,10 +7652,14 @@
         "url": "https://es.mebmarket.com/?action=book_details&book_id=379642"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362085062_aqoxz",
@@ -7261,20 +7672,80 @@
     "synopsis": "«Deberías invitar a Prim a cenar más seguido.»\n«Así podrá ahorrar un poco. Una chica que estudia y se mantiene sola no lo debe de tener nada fácil.»\n\nPrim se encontró con la mirada atenta de la madre de su amiga. No dijo nada, pero en sus ojos había algo que la hacía sentir observada.\n\nPara Prim, Yaibua la mujer a la que siempre había llamado \"tía\" nunca había parecido una madre común de mediana edad.\n\nDe no saberlo, cualquiera podría confundirla con una estudiante mayor, apenas unos años por encima de ellas.",
     "pages": 112,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Camarera",
+      "Millonaria / Billonaria",
+      "CEO"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Jefa × Subordinada",
+      "Boss × Employee"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Jealousy Trope",
+      "Rich / Poor Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
     "sagaNum": null,
+    "source": "thais",
     "editions": [
       {
         "lang": "ES",
@@ -7282,10 +7753,14 @@
         "url": "https://es.mebmarket.com/?action=book_details&book_id=396341"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777362117439_f6duk",
@@ -7841,22 +8316,51 @@
     "synopsis": "Jeff, una famosa novelista de fantasía que sufre de síndrome de burnout, se aísla en su habitación, evitando todo contacto humano.\n\nFinn, dueña de una cafetería durante el día que se transforma en un bar tranquilo por la noche, de repente empieza a brillar \ny así permanecerá hasta que complete una «misión secreta».",
     "pages": 177,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [
       "Navidad"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Escritora",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
     "formato": "Trilogía",
     "adaptacion": "Sin adaptación",
     "sagaName": "Trilogía Christmas",
     "sagaNum": 2,
+    "source": "thais",
     "editions": [
       {
         "lang": "TH",
@@ -7864,10 +8368,14 @@
         "url": "https://www.mebmarket.com/ebook-339753-THIS-CHRISTMAS-%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B8%8A%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%9F%E0%B8%99%E0%B8%95%E0%B8%B2%E0%B8%8B%E0%B8%B5-"
       }
     ],
-    "source": "thais",
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777383773835_l38zf",
@@ -8398,6 +8906,8 @@
     "synopsis": "Hay muchas diferencias en el mundo.\nDo corazones, una más.\n\nEn el pasado, el origen humilde se convirtió en piloto: elegante, decidido, siempre persiguiendo nubes. Sin embargo, tienes la oportunidad de ganar un premio.\n\nA los médicos que tienen preguntas sobre sus citas médicas no se les permite hacerlo, pero no se les permite hacerlo. En los últimos años, tendrás que entrar al jardín para entrar al jardín y entrar al jardín.\n\nCuando estés en medio de una órbita, no podrás escapar.\n\nEn el silencio de la noche, las crepes y los amaneceres se llenan de brillantez.\n\nEste es el mejor lugar para alojarse en una casa.",
     "pages": 569,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -8421,7 +8931,46 @@
       "25–39"
     ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Noruega",
+        "region": null,
+        "ciudad": "Oslo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Tokio",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Noruega",
+        "region": null,
+        "ciudad": "Tromsø",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
@@ -8447,13 +8996,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777384275926_p68sx",
@@ -9114,6 +9662,8 @@
     "synopsis": "Ping ha arriesgado su dignidad en un intento desesperado por asegurar su futuro, pero se encuentra con el desprecio de la mujer al que intentó seducir. Mientras ella se oculta tras una manta, ella la acusa de ser una cazafortunas ambiciosa que solo busca un lugar en su poderosa familia. Sin embargo, tras los insultos y la mirada intensa, se esconde una mezcla de dolor y deseo herido. Un relato de pasión tóxica y juegos de poder donde las palabras hirientes son el único escudo contra un sentimiento que ninguna de las dos puede controlar.",
     "pages": 321,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Drama",
@@ -9144,6 +9694,30 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Alcohol",
@@ -9167,13 +9741,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777405898914_hkxn7",
@@ -9381,20 +9954,48 @@
     "subgenres": [
       "Baihee 🇨🇳"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Artista",
-      "Empresaria"
+      "Empresaria",
+      "Modelo"
     ],
-    "dinamicas": [],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Dominante × Sumisa",
+      "Ice Queen × Sunshine",
+      "Fría × Cálida",
+      "Caos × Control",
+      "Femme × Femme"
+    ],
     "tropes": [
       "Second Chance Romance",
       "Childhood Friends",
       "Slow Burn",
       "Unrequited Love"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Jiangcheng",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
@@ -9409,6 +10010,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -9425,6 +10028,7 @@
     "synopsis": "Pensaba que yo era la heroína. Mientras pudiera conquistar el corazón de mi sustento de por vida al final, podría convertirme en su verdadero amor, casarme y tener hijos después. Al final, dar a luz a un niño podría considerarse el final de la historia, y todos vivirían felices para siempre.\n\nDe todos modos, ¿no están escritas así todas las historias antiguas?\nPero nunca hubiera pensado que me quedaría atascada en el primer paso.\nPorque mi sustento es...\n—¡G-general, ah! _(:з」∠)_",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -9433,14 +10037,28 @@
       "Baihee 🇨🇳",
       "Baihee 🐉"
     ],
-    "identidades": [],
-    "characters": [
-      "Realeza"
+    "identidades": [
+      "Femme",
+      "Masc"
     ],
-    "dinamicas": [],
+    "characters": [
+      "Realeza",
+      "General"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
     "tropes": [],
-    "edad": [],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
@@ -9455,6 +10073,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -10070,25 +10690,57 @@
     "synopsis": "Qiao Ziman tiene dos problemas: su madre la asfixia con citas a ciegas y su jefa, la exigente Chi Yin, le hace la vida imposible. Agobiada, Qiao decide mentirle a su madre para que la deje en paz: \"Tengo novia. Es mi jefa, es rica y tiene muy mal carácter\".\n\nEl desastre ocurre cuando descubre que Chi Yin ha escuchado toda la mentira. Sin embargo, al día siguiente, la jefa la sorprende con una propuesta formal: le entrega una lista de sus propiedades, sus ahorros y una promesa de fidelidad. Ante la confusión de Qiao, Chi Yin sonríe con astucia: \"¿No dijiste que eras mi novia?\".\n\nLo que empezó como una excusa desesperada se convierte en un inesperado y lucrativo compromiso con la mujer que más temía. Una divertida comedia romántica sobre enredos, apariencias y contratos del corazón.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama"
     ],
     "subgenres": [
       "Baihee 🐉"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Artista",
+      "CEO"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Secret Relationship",
+      "Jealousy Trope",
+      "Slow Burn"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -10097,6 +10749,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -10113,6 +10767,7 @@
     "synopsis": "Fu Sitian fue una vez el \"conejito blanco\" de la universidad, alguien a quien Shi Yi, una belleza intocable, conoció tan íntimamente como para recordar cada marca de su cuerpo. Pero el tiempo y un pasado difícil las separaron, dejando heridas que todos creían incurables.\n\nAños después, un trato comercial las obliga a un reencuentro inesperado. La dinámica ha cambiado: la fragilidad ha dado paso al éxito y la frialdad oculta un deseo que nunca se extinguió. Mientras una recuerda con nostalgia su antigua cercanía, la otra solo piensa en si aquel \"conejito\" sigue siendo tan tentador como antes.\n\n¿Será este el momento de sanar el pasado o el inicio de una obsesión que las consumirá por completo?",
     "pages": 1571,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Drama",
@@ -10121,18 +10776,52 @@
     "subgenres": [
       "Baihee 🐉"
     ],
-    "identidades": [],
-    "characters": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "CEO",
+      "Empresaria"
+    ],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "tropes": [
+      "Friends to Lovers",
+      "Slow Burn",
+      "Secret Relationship"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Shanghái",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Haicheng",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -10141,6 +10830,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -10157,6 +10848,7 @@
     "synopsis": "Cuenta la historia de crecimiento emocional de una nueva actriz de doblaje, Xiang Wan, y su superior, Chao Xin, desde una conexión inesperada hasta un malentendido, y luego se reunieron a través de un programa de variedades de doblaje y finalmente se reconciliaron.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -10164,14 +10856,50 @@
     "subgenres": [
       "Baihee 🐉"
     ],
-    "identidades": [],
-    "characters": [
-      "Actriz"
+    "identidades": [
+      "Femme"
     ],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "characters": [
+      "Actriz",
+      "Estudiante",
+      "Empresaria",
+      "Profesora",
+      "Madre Soltera",
+      "Famosa"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forced Proximity",
+      "Unrequited Love",
+      "Student × Teacher",
+      "Workplace Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Jincheng",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
@@ -10186,6 +10914,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -10202,27 +10932,73 @@
     "synopsis": "Mientras se celebraba la boda de la Emperatriz del Cine Jing Xiu, Weibo se vio inundado por una noticia impactante: \"La nueva Emperatriz del Cine Ji Youyan falleció por alcoholismo\".\nPoco después, apareció otro titular: la boda se canceló por alguna razón.\nJi Youyan despertó y se sorprendió al darse cuenta de que había regresado tres años antes.\nRegresó al segundo año de su ruptura con Jing Xiu.\nEsta vez, juró no perderla jamás.\nEn esos momentos en que nos extrañábamos, seguíamos amándonos.\nLas estrellas brillan en el cielo despejado. Si no estoy a tu lado, el tiempo se perdería en vano.",
     "pages": 1319,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [
-      "Baihee 🐉"
+      "Baihee 🐉",
+      "Viaje en el Tiempo",
+      "Celebridad",
+      "Sobrenatural"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Actriz",
+      "Cantante",
+      "Famosa"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Ice Queen × Sunshine",
+      "Fría × Cálida"
+    ],
     "tropes": [
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Reencarnación",
+      "Workplace Romance",
+      "Slow Burn",
+      "Secret Relationship",
+      "Jealousy Trope",
+      "Forbidden Love"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Lingzhou",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Beicheng",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -10231,6 +11007,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -10247,6 +11025,7 @@
     "synopsis": "Golpea el ataúd,\n\ny haz tres preguntas.\n\nEl primero, para preguntar por su pasado sagrado,\n\nA continuación, para preguntar sobre su camino predestinado,\n\nFinalmente, pidió que le indicaran su lugar de descanso.\n\nSolo una copa más;\n\n¿Serías mi invitado?",
     "pages": 966,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Fantasía",
@@ -10256,14 +11035,44 @@
     "subgenres": [
       "Baihee 🐉"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [
-      "Unrequited Love"
+    "identidades": [
+      "Butch",
+      "Femme"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "characters": [
+      "Saqueadora de tumbas",
+      "Diosa"
+    ],
+    "dinamicas": [
+      "Butch × Femme"
+    ],
+    "tropes": [
+      "Unrequited Love",
+      "Age Gap",
+      "Forced Proximity",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "China",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Chino",
     "pais_origen": [
       "China"
     ],
@@ -10278,6 +11087,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -13752,12 +14563,11 @@
       "Coming of Age"
     ],
     "identidades": [
-      "Femme",
-      "Butch"
+      "Femme"
     ],
     "characters": [],
     "dinamicas": [
-      "Butch × Femme"
+      "Femme × Femme"
     ],
     "tropes": [
       "Forbidden Love",
@@ -13773,6 +14583,41 @@
       "Rusia",
       "China"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Rusia",
+        "region": null,
+        "ciudad": "Ulan-Ude",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Rusia",
+        "region": null,
+        "ciudad": "Tomsk",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Corea del Sur",
+        "region": null,
+        "ciudad": "Incheon",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Qingdao",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Corea del Sur"
     ],
@@ -13787,6 +14632,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -13898,6 +14745,55 @@
       "Filipinas",
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Manila",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Coron",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Cebú",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "La Unión",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Benguet",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Sagada",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Filipinas"
     ],
@@ -13912,6 +14808,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -15270,6 +16168,62 @@
       "Australia",
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Tokio",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Taiwán",
+        "region": null,
+        "ciudad": "Taipéi",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Xi'an",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Pekín",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Sídney",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Japón"
     ],
@@ -15284,6 +16238,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -42451,6 +43407,20 @@
     "pais_cultura": [
       "Singapur"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Singapur",
+        "region": null,
+        "ciudad": "Singapur",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Años 70",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Singapur"
     ],
@@ -42465,6 +43435,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -46278,6 +47250,7 @@
     "synopsis": "¿Las extrañas?\nLa historia de la Dra. Fahlada y Sanithada continúa en capítulos llenos de momentos dulces, esperando que regreses para ser testigo de su amor.",
     "pages": 657,
     "isbn": null,
+    "wattpad": null,
     "ship": [
       "LingOrm"
     ],
@@ -46310,6 +47283,30 @@
     "pais_cultura": [
       "Tailandia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Hokkaido",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -46321,13 +47318,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780832448298_4apco",
@@ -52006,6 +53002,7 @@
     "synopsis": "Cuando el pasado es un\nmisterio, las pistas confunden,\nel amor te atrapa\ny la gente te engaña\n\n, Chris, una mujer con amnesia, se está recuperando y vive con su amable amante, Nadia, después de un accidente ocurrido hace cuatro años. Todo va bien, pero entonces la llegada de una extraña mujer llamada Sun sacude las creencias de Chris...\n\n---------\n\nQuizás me ofrecería voluntariamente como una polilla, solo para saborear ese brillo una vez antes de que mi cuerpo sea consumido por el fuego",
     "pages": 468,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -52023,6 +53020,23 @@
       "25–39"
     ],
     "pais_cultura": [
+      "Tailandia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Tailandi",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
@@ -52047,13 +53061,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781343614696_0hyfa",
@@ -58547,6 +59560,7 @@
     "synopsis": "Meera Rao-George tiene un plan: destronar a su ex mejor amiga, la popular Lucy Hughson, y conquistar al chico que ambas desean. Pero Lucy no es la joven perfecta que aparenta; lucha contra la ansiedad y un pasado que no logra soltar.\n\nMientras Meera se acerca a ella para ejecutar su venganza, un secreto que rompió su amistad años atrás resurge, cambiando las reglas del juego. Lo que empezó como un sabotaje se transforma en una conexión inesperada. ¿Podrán perdonarse y descubrir que lo que buscan es la una a la otra?",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Comedia Romántica",
@@ -58576,6 +59590,23 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "India"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
@@ -58587,13 +59618,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "India"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781853745826_n129o",
@@ -60010,21 +61040,79 @@
     "synopsis": "Diez años de silencio separan a Ava y Aliya. Mientras la vida de Ava se ha estancado, Aliya ha logrado el éxito editorial que ambas anhelaban. Obligadas a reencontrarse en una despedida de soltera en Londres, Ava regresa dispuesta a desenterrar la verdad sobre su intensa historia compartida. En la universidad, su conexión fue eléctrica; juntas crearon un universo literario donde las fronteras entre su trabajo y sus sentimientos se desdibujaron.\nSin embargo, el mundo real terminó por separarlas, dejando preguntas sin respuesta. Ahora, frente a frente, deberán descubrir si su vínculo fue real o solo una ficción compartida.\n¿Podrán reconciliar el pasado con sus versiones actuales o las historias que se contaron terminarán por destruirlas?",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "YA",
+      "Juvenil",
+      "New Adult"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "Interracial"
+    ],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Camarera",
+      "Escritora"
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Second Chance Romance",
+      "Jealousy Trope",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Secret Relationship"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Londrés",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Pakistán",
+        "region": null,
+        "ciudad": "Karachi",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Escocia",
+        "region": null,
+        "ciudad": "Glasgow",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Bangladés"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -60033,13 +61121,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Bangladés"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781857818169_z3m6y",
@@ -61657,6 +62744,7 @@
     "synopsis": "El mundo no gira a mi alrededor, porque yo soy mi propio universo.",
     "pages": 1094,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -61665,17 +62753,68 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Empresaria"
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Jealousy Trope",
+      "Love Triangle",
+      "Opposites Attract"
+    ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
       "Tailandia",
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva Jersey",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Ottawa",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Tailandés",
+    "pais_origen": [
+      "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [
@@ -61695,13 +62834,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Tailandia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782547916528_xi482",
@@ -62093,10 +63231,11 @@
       "君sola"
     ],
     "year": 2014,
-    "cover": "https://cdn.anime-planet.com/manga/primary/after-exchanging-shadows-novel-1.jpg?t=1625872585",
+    "cover": "https://cdn.novelupdates.com/images/2017/01/After-Exchanging-Shadows.jpg",
     "synopsis": "Ruan Yesheng era una estrella pasada de moda; mientras que Xi Mo, que había alcanzado la fama en el mismo período, era ahora como la diosa del pueblo. Así fue, hasta que un horrible ataque inesperado ocurrió en la conferencia. Tú que tanto admiraste a esa persona, hasta que un día te convertiste en ella. – Después de un tiempo de conmoción, Ruan Yesheng se sintió secretamente feliz durante los siguientes tres días. Tú que odiaste tanto a esa persona, hasta que un día te convertiste en ella. – Xi Mo solo sintió el impulso de matar.",
     "pages": 964,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Drama",
@@ -62107,7 +63246,9 @@
       "Femme"
     ],
     "characters": [
-      "Actriz"
+      "Actriz",
+      "Famosa",
+      "Bailarina"
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -62126,6 +63267,41 @@
     "pais_cultura": [
       "China"
     ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": "Zhejiang",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Hengdian",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Dongyang",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": "Jinhua",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "China"
     ],
@@ -62139,7 +63315,7 @@
       "PTSD / Trauma",
       "Manipulación Psicológica"
     ],
-    "spicy": 0,
+    "spicy": 1,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -62148,6 +63324,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -67832,6 +69010,7 @@
     "synopsis": "La noche está hecha para las confesiones. Las acuna con seguridad, las suspende en la oscuridad y las retiene hasta la mañana, cuando podemos elegir entre reconocerlas o ignorarlas...\nCon el amor de Elly asegurado, y el de Haz prácticamente garantizado, pensaba que Nic seguiría siendo el único punto oscuro de mi existencia.\nPero surge una nueva amenaza, un fantasma del pasado de Nic que hará lo que sea para recuperarla, aunque eso signifique venir a por mí.",
     "pages": 529,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -67871,6 +69050,12 @@
     "pais_cultura": [
       "Reino Unido"
     ],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -67892,6 +69077,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
