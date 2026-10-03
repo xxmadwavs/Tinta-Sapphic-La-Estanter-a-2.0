@@ -49290,49 +49290,6 @@
     ]
   },
   {
-    "id": "b_1780860767901_gujtr",
-    "title": "La hija del huracán",
-    "authors": [
-      "Kacen Callender"
-    ],
-    "year": 2018,
-    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1589671537i/53425174.jpg",
-    "synopsis": "Caroline tiene doce años y vino al mundo mientras un huracán azotaba su minúscula isla en el Caribe, lo que se considera un signo de mal agüero. Pero a Caroline no le importa, porque la mayoría de gente ya la odia por ser como es: demasiado pequeña, demasiado negra y demasiado lista para ellos.\n\nCaroline solo quiere encontrar a su madre, que desapareció sin más una mañana y los abandonó a su padre y a ella. Y cuando una niña nueva, Kalinda, llega a su colegio, las orgullosas rastas de su cabello y su sonrisa cómplice le insuflan nuevas fuerzas.\n\nPorque Kalinda también es capaz de ver las cosas que nadie más ve…",
-    "pages": 200,
-    "isbn": null,
-    "genres": [
-      "Fantasía",
-      "Fantasía Urbana"
-    ],
-    "subgenres": [
-      "Magia"
-    ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
-    "ambientacion": [],
-    "content_warnings": [],
-    "spicy": null,
-    "formato": null,
-    "adaptacion": null,
-    "sagaName": null,
-    "sagaNum": null,
-    "source": "spanish",
-    "editions": [],
-    "saficlub": false,
-    "safi_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
-  },
-  {
     "id": "b_1780860828381_8xexs",
     "title": "Una memoria llamada imperio",
     "authors": [
@@ -53479,6 +53436,8 @@
     "synopsis": "A Belén la ciudad la ha escupido sin piedad y ahora está de vuelta en el nido materno. Entre su madre, que es experta en sacarla de quicio y que tiene una vida social envidiable, su sobrina de diez años, una niña con alma de señora jubilada que cuestionará y juzgará algunas de sus decisiones, y el reencuentro con su ex mejor amiga, que pasa de ser un recuerdo doloroso a un incendio en el pecho, se dará cuenta de algo vital.\nDescubrirá que volver a sus raíces no es un paso atrás, sino el salto que necesitaba para reencontrarse.",
     "pages": 377,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -53490,6 +53449,13 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -53501,6 +53467,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -53603,6 +53571,8 @@
     "synopsis": "Astrid Falkenberg controla con puño de hierro el exclusivo club gastronómico Aureum en Copenhague. Elegante e inaccesible, ha dedicado su vida a proteger el legado de su padre. Sin embargo, su impecable orden se tambalea con la llegada de Mireya Kovács, una chef autodidacta y madre soltera que gana el concurso del club con una cocina intensa, emocional e impredecible.\nAstrid ve en Mireya una amenaza al equilibrio del club; Mireya ve en Astrid a una mujer fría prisionera de las apariencias. La cercanía constante en la cocina desata una tensión inevitable donde el hielo de Astrid empieza a agrietarse y el fuego de Mireya amenaza con quemarlas. Ante el caos, Astrid deberá elegir entre proteger su imperio o rendirse a la mujer capaz de destruirlo.",
     "pages": 252,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -53635,7 +53605,25 @@
       "25–39"
     ],
     "pais_cultura": [
-      "Ambientación europea"
+      "Ambientación europea",
+      "Dinamarca"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Dinamarca",
+        "region": null,
+        "ciudad": "Copenhague",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
     ],
     "ambientacion": [],
     "content_warnings": [],
@@ -53648,13 +53636,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168768091_gt4lc",
@@ -53667,6 +53654,8 @@
     "synopsis": "Hace años, Lidia y Bárbara lo tuvieron todo: deseo, pasión, química y un amor tan intenso y adictivo que dejó marcas imposibles de borrar. Ahora, en una isla tropical donde el calor se adhiere a la piel y el ambiente huele a deseo, el destino las vuelve a cruzar. Y lo que creían superado regresa para hacerles ver que se necesita de muy poco para que todo vuelva a arder.\n\nUna boda.\nUna invitación.\nY Pablo, el padre de Lidia, como cómplice de este reencuentro. Será lo que lleve a Lidia y Bárbara a decidir si apagan de una vez por todas esa llama… o se entregan a ella sin reservas.\n\nPorque algunas pasiones no se olvidan. A veces, simplemente esperan el momento para consumirlo todo de nuevo.",
     "pages": 331,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -53678,6 +53667,23 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Maldivas",
+        "region": null,
+        "ciudad": "Ukulhas",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -53689,13 +53695,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168800517_4j0nr",
@@ -53708,6 +53713,8 @@
     "synopsis": "Álex regresa a Madrid tras cinco años de ausencia para despedirse de su mejor amigo, Hugo. Su muerte ha sido declarada un suicidio, pero nada pistas, preguntas, viajes pendientes y un testamento que la obliga a convivir con Diana, la mujer de la que huyó y a la que nunca ha logrado olvidar por completo.\n\nEntre sesiones inquietantes, secretos ocultos y una convivencia que reabre heridas, Álex y Diana deberán enfrentarse no solo a la verdad sobre Hugo, sino también a lo que aún existe entre ellas. Porque volver significa enfrentar todo lo que dejó en Madrid.",
     "pages": 577,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -53718,7 +53725,24 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Comunidad de Madrid",
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -53730,6 +53754,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -53746,6 +53772,8 @@
     "synopsis": "Eleanor Morley regresa a San Diego tras un viaje que se ha prolongado más de lo previsto, con la sensación incómoda de que ha dejado demasiadas cosas sin resolver.\nEntre ellas, Julia Bernet.\n\nEl campus sigue siendo el mismo, pero para ella todo es diferente porque antes caminaba por esos pasillos como rectora y ahora lo hace como profesora, y a Eleanor le cuesta saber quién es sin ese cargo.\nCompartir pasillos, reuniones y miradas se convierte en un recordatorio constante de todo lo que quedó pendiente entre ellas cuando se marchó.\n\nPorque hay vínculos que no desaparecen, por mucho que el tiempo pase o decisiones equivocadas que se tomen.\nY cuando el pasado vuelve a abrirse paso en el presente, Eleanor sabe que tiene que enfrentarse a muchas cosas para convertirse en la mujer que Julia necesita.\n\nPorque hay historias que es imposible que terminen cuando existe un campo magnético que siempre las hace orbitar juntas.",
     "pages": 236,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -53755,7 +53783,33 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "San Diego",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Illinois",
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -53767,13 +53821,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168892598_cq3wi",
@@ -53786,6 +53839,8 @@
     "synopsis": "Elche, 1894.\n\nBeatrice San Salvatore, a sus treinta y tres años, se ha labrado una reputación intachable como profesora de idiomas para señoritas que buscan matrimonios aventajados, pero esta situación impide que pueda asentarse en un lugar de forma permanente. Tal vez por eso le resulte tan sencillo colarse en las faldas de tantas damas como ciudades visita.\n\nCristina Santafé lleva muerta en vida desde que su marido falleció y su suegra llegó para controlar todo su día a día, como contratar a una maestra de idiomas para un compromiso que no quiere que se produzca o gestionar el palmeral de la familia.\n\nLo último que se imagina es que una maestra pueda revolucionar su vida y cambiar su destino.\n\nPorque ¿qué pasaría si tus deseos fueran en contra de lo establecido?",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Histórica",
       "Romance"
@@ -53796,7 +53851,33 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Elche",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Hungría",
+        "region": null,
+        "ciudad": "Budapest",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Finales del siglo XIX",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
@@ -53808,13 +53889,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168944361_0vzas",
@@ -53827,6 +53907,8 @@
     "synopsis": "Una identidad falsa.\nUna venganza cocinada a fuego lento.\nUna atracción que podría destruir a ambas.\nShio Aramaki no existe. Es un nombre limpio, un expediente impecable, una mentira perfecta diseñada con un único propósito: infiltrarse en el corazón de Onuki Holdings y hacerles pagar.\nAzusa Onuki es la fría y perfecta heredera del clan. En un mundo implacable gobernado por hombres, ha construido una armadura impenetrable. No se permite debilidades, no comete errores, oculta bajo llave sus verdaderos deseos.\nSu instinto le dice que su nueva analista esconde algo. Debería investigarla.\nEn su lugar, decide mantenerla cerca. Demasiado cerca.\nLo que comienza como un tenso juego de sospechas pronto se transforma en una obsesión inevitable. Entre copas de sake a medianoche y roces que queman la piel, la línea entre el odio y la pasión se desvanece.\nPero en su mundo, los errores se pagan demasiado caros.\nMientras tanto, Shio se enfrenta a un dilema imposible: ¿cómo destruir la organización que juró hundir cuando la heredera del imperio es la única mujer que la hace sentir viva?",
     "pages": 128,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -53836,7 +53918,33 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Japón"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Tokio",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": null,
+        "ciudad": "Kioto",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -53848,13 +53956,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781338789839_gotb0",
@@ -53867,6 +53974,7 @@
     "synopsis": "Cuando Amanda Gehry es contratada por la firma de arquitectos más prestigiosa de Manhattan, ella cree que su sueño se ha hecho realidad. La casualidad, o tal vez el destino, lleva a Amanda a conocer a Mirra en la sala de quimioterapia del hospital Saint Pilgrim. La primera vez que la vio, ella ni siquiera estaba despierta, pero los origamis en sus manos llamaron su atención. A partir de ese momento, Amanda se sumergirá en el mito de las mil grullas de papel y la magia que las envuelve. Una magia que conducirá a las dos protagonistas al amor, mientras van en busca de un milagro de vida.",
     "pages": 246,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -53888,6 +53996,21 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -53899,6 +54022,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -53916,6 +54041,7 @@
     "synopsis": "Sloane Price ha construido una vida perfecta: un apartamento impecable en Brooklyn, una carrera brillante y una rutina donde todo permanece bajo control.\nJenna Callahan es exactamente lo contrario. Caótica, intensa y al borde del colapso, Jenna lleva meses intentando salvar un proyecto tecnológico condenado al fracaso mientras su vida personal se desmorona en silencio.\nCuando Sloane es elegida para hacerse cargo del desastre, ninguna de las dos imagina hasta qué punto sus vidas están a punto de cambiar, porque bajo el ruido de Manhattan, los plazos imposibles y las heridas que nunca terminaron de cerrar, empieza a surgir algo imposible de organizar, contener o ignorar.\nY el amor, igual que el caos, aparece cuando menos te lo esperas.",
     "pages": 186,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [],
     "subgenres": [],
@@ -53941,6 +54067,24 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España",
+      "Sudamérica"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -53952,14 +54096,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España",
-      "Sudamérica"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781341279542_klgpy",
@@ -63198,6 +63340,7 @@
     "synopsis": "España, 1961.En un tiempo marcado por las apariencias y el silencio, Inés, la de la Corte, directora de un poderoso imperio textil, inicia un amor prohibido con Lina, una joven decidida que sabe exactamente lo que quiere… o eso cree.Barcelona se presenta como la promesa de una vida nueva, lejos de la familia y de todo lo conocido. Pero pronto descubren que empezar de cero no es tan sencillo como imaginaban, y que incluso la libertad puede traer dudas, miedos y grietas inesperadas.La llegada de una tercera figura, quebrará el frágil equilibrio entre ambas y abrirá la puerta a un mundo oculto, habitado por quienes aman en la sombra, obligando a Lina a cuestionarse si el miedo debe seguir marcando su manera de vivir y de amar.Porque no todas las formas de amor conducen al mismo destino… y algunas decisiones lo cambian todo.",
     "pages": 534,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63209,6 +63352,23 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Cataluña",
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
       "España"
     ],
     "ambientacion": [],
@@ -63241,13 +63401,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782031368185_2n9kq",
@@ -63260,6 +63419,7 @@
     "synopsis": "Seraphina Chapman tiene la vida perfecta dentro de la élite sanitaria de Má un marido influyente, dos hijos y una reputación impecable. Sin embargo, bajo esa superficie se esconde un secreto que lleva años consumiéndola a puerta Nerissa Ashcombe.\n\nNerissa es brillante, impulsiva y el único cabo suelto que Seraphina jamás ha podido controlar. Tras seis meses de un distanciamiento que prometía ser el definitivo, un nuevo encuentro reactiva una dinámica tan adictiva como destructiva. Volver a caer es inevitable; el problema es que las reglas del juego han cambiado.\n\nMientras Seraphina lucha desesperadamente por proteger a su familia y mantener intacta su fachada, Nerissa empieza a cansarse de los hoteles discretos y los encuentros esporádicos. En un mundo donde las apariencias lo son todo, prolongar un romance clandestino ya no es una opción. Y esta vez, el precio de la verdad no solo destruirá un matrimonio... porque cuando el estatus social empiezan a asfixiarlas, amar a la persona \"equivocada\" deja de ser un pacto privado.",
     "pages": 236,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63272,6 +63432,37 @@
     "edad": [],
     "pais_cultura": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Mánchester",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Chester",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Escocia",
+        "region": null,
+        "ciudad": "Edimburgo",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
     ],
     "ambientacion": [],
     "content_warnings": [
@@ -63291,13 +63482,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782031602774_y09lo",
@@ -63310,6 +63500,7 @@
     "synopsis": "Irune lleva años viviendo entre aeropuertos, hoteles impersonales y vuelos interminables. Como jefa de cabina, su vida está perfectamente organizada: cumplir su trabajo, cambiar de ciudad y no dejar que nadie se quede el tiempo suficiente como para complicarlo todo. Las escalas son temporales. Las personas también.\n\nHasta que Maia aparece en su vida.\n\nTras una noche en la que no llegan a más; Maia entra a formar parte de la tripulación como una turbulencia inesperada. Italiana, intensa y demasiado directa para el gusto de Irune, la atracción entre ellas es inmediata. Física e imposible de ignorar. Y lo que comienza como encuentros sin reglas alrededor del mundo, pronto se convierte en algo que ninguna de las dos había planeado sentir. Porque Irune sigue queriendo vivir entre escalas, pero Maia está dispuesta a enamorarla.",
     "pages": 285,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63322,7 +63513,26 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso de Poder",
@@ -63341,13 +63551,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782032180409_yu4pt",
@@ -63360,6 +63569,7 @@
     "synopsis": "Eva María se alejó de su familia y de su amiga de la infancia, Yolanda, por decisión propia y sin mirar atrás.\nAños después, regresa a su humilde barrio y se reencuentra con esa parte de su pasado no resuelto al que debe, y quiere, hacer frente.\n\nSolo sabe que necesita volver a sus raíces para encontrarse. Y, también, que sigue enamorada de la que una vez fue su amiga.\n\nDe la mano de Andrea, una vecina que siempre las quiso a ambas como a hijas, emprenden un viaje emocional donde el pasado y el presente se entrelazan, obligándolas a replantearse quiénes fueron y quiénes quieren ser.\n\nUn vestido azul turquesa, un esmoquin y una noche loca sellarán la amistad de estas tres mujeres para siempre, dejando una huella imborrable.\n\nAhora es cuando Eva María y Yolanda deben decidir si quieren luchar por ellas y por su amor.",
     "pages": 297,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [],
     "subgenres": [],
@@ -63373,6 +63583,28 @@
     "pais_cultura": [
       "España"
     ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Cataluña",
+        "ciudad": "Girona",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": "Toscana",
+        "ciudad": "Florencia",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Muerte"
@@ -63386,6 +63618,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -63618,6 +63852,7 @@
     "synopsis": "En medio de las Tierras Altas de Escocia, hay una universidad donde vampiros y humanos estudian juntos.\n\nRebecca Charity es una cazadora encubierta. Necesita hallar el misterioso Libro de Sangre y Rosas, un compendio perdido de formas de matar vampiros, porque con él estará un paso más cerca de vengar a sus padres.\n\nAliz Astra es descendiente de una de las familias de vampiros más poderosas... y la nueva compañera de cuarto de Rebecca. Ridículamente hermosa, es todo lo que la cazadora siempre ha odiado. Y también deseado.\n\nAhora la chica no sabe qué ansía más. Si matarla o besarla.\n\nPero cuando Aliz la rescate de un ataque vampírico y accidentalmente la convierta en su familiar, deberán trabajar juntas para romper la maldición. Sin embargo, acercarse para resolver el problema puede ser peligroso...\n¿Puede una cazadora amar a una vampira?",
     "pages": 454,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Paranormal",
@@ -63640,6 +63875,21 @@
       "Ambientación europea",
       "Reino Unido"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Muerte"
@@ -63653,13 +63903,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782033839579_tatiy",
@@ -63822,6 +64071,7 @@
     "synopsis": "Sienna Cole conquistó el mundo.\nMillones de discos vendidos, estadios llenos, premios, fama y una vida tan rota que está a punto de costarle la suya.\nTras sufrir un colapso en pleno concierto, la estrella internacional necesita una operación cardíaca que podría salvarle la vida. Su única esperanza tiene nombre y Emma Mitchell.\nLa misma Emma a la que amó.\nLa misma Emma a la que perdió.\nAhora convertida en una prestigiosa cardióloga de Londres, Emma no quiere volver a saber nada de la mujer que destruyó su corazón años atrás, pero negarse no es una opción.\nMientras Sienna lucha por recuperarse y Emma intenta mantener una distancia profesional imposible, los recuerdos regresan, las viejas heridas se abren y la verdad sobre su ruptura amenaza con cambiarlo todo.",
     "pages": 279,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63850,6 +64100,49 @@
       "Francia",
       "España"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Inglaterra",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Massachusetts",
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Irlanda",
+        "region": null,
+        "ciudad": "Dublín",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Drogas / Consumo de Sustancias",
@@ -63869,6 +64162,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -63885,6 +64180,7 @@
     "synopsis": "Una semana en México. Seis horas felices. Una bartender de la que Olivia Hart definitivamente no debería enamorarse.\n\nOlivia vino al Blue Tide Resort con un plan simple: olvidar su ruptura, ignorar su bandeja de entrada y recordar cómo relajarse.\n\nHasta ahora, fracasa en las tres.\n\nEntonces encuentra The Sandbar.\n\nCon sus vistas al océano, consejos cuestionables en la pizarra y cócteles que nunca llega a pedir, el bar de playa debería ser solo una parada más de vacaciones. En cambio, viene con Sofía Reyes: cálida, divertida, imposible de ignorar y demasiado buena descifrando la vida cuidadosamente controlada de Olivia.\n\nLo que comienza como una charla inofensiva en la hora feliz se convierte en conversaciones al atardecer, miradas robadas y un beso que ninguna de las dos puede fingir que fue casual.\n\nPero el vuelo de Olivia de regreso a Boston ya está reservado.\n\nY se supone que los romances de vacaciones terminan.\n\n¿O no?",
     "pages": 86,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63904,6 +64200,21 @@
     "pais_cultura": [
       "México"
     ],
+    "ubicaciones": [
+      {
+        "pais": "México",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Conflictos Familiares"
@@ -63917,6 +64228,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -63933,6 +64246,7 @@
     "synopsis": "A los cuarenta y tres años, Corinne Ashford hace algo que nunca había hecho: elegir. Tras vender la empresa logística que dirigió durante dos décadas, llega a Austin dispuesta a descubrir quién es cuando deja de ser una ejecutiva. El plan es sencillo: un trabajo sin peso, una vida sin urgencias. Lo que no estaba en el plan es Vivienne Hartwell.\nVivienne tiene cuarenta y seis años, una empresa tecnológica que fundó con sus propias manos y la certeza de que el éxito lo justifica todo. Hasta que conoce a su nueva asistente administrativa y descubre que hay personas que no puede leer a la primera.\nLo que empieza como atracción se convierte rápidamente en algo más difícil de gestionar: amor. El problema es que Corinne guarda un secreto que no es una mentira, pero que cuando salga a la luz lo cambiará todo.\nPorque hay una diferencia entre conocer a alguien y saber quién es. Y Vivienne está a punto de descubrirla.",
     "pages": 198,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -63952,6 +64266,21 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Texas",
+        "ciudad": "Austin",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Conflictos Familiares",
@@ -63967,6 +64296,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -63984,6 +64315,7 @@
     "synopsis": "Helen Müller tiene tres reglas para sobrevivir trabajando en un crucero: cumplir con las normativas de seguridad, tener todo perfectamente anotado y mantener las emociones bajo control. Pero cuando el nombre de Maika Aranda aparece en la lista de tripulantes de la nueva ruta, no habrá regla que pueda evitar el desastre.\n\nDesordenada, atrevida y con una sonrisa capaz de sacarle de quicio en menos de treinta segundos. Maika llega al Marine IV para convertir cada jornada laboral en un evento inolvidable. Su historia empezó y terminó hace tres años, cuando un malentendido —y el silencio de Maika— provocó que la atracción se convirtiera en un desengaño profundo.\n\nHelen no ha olvidado lo que hizo. Pero Maika está dispuesta a conseguirlo. Porque el rencor es muy difícil de mantener cuando la única persona que consigue hacerte reír también es capaz de acelerarte el corazón. Y Helen y Maika descubrirán que entre las cenizas, siempre quedan chispas. Aunque eso signifique naufragar juntas.",
     "pages": 341,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -64007,6 +64339,86 @@
     "pais_cultura": [
       "Ambientación europea"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Marsella",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Génova",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Civitavecchia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Roma",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Nápoles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Palermo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Cagliari",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Vaticano",
+        "region": null,
+        "ciudad": "Ciudad del Vaticano",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Palma de Mallorca",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Ibiza",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Conflictos Familiares"
@@ -64020,13 +64432,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782552447579_ngo95",
@@ -64501,6 +64912,7 @@
     "synopsis": "Brynn Mitchell no cree en las segundas oportunidades. Como periodista mordaz, vive de señalar las mentiras de quienes construyen su imagen sobre medias verdades.\nCuando una de sus columnas destroza públicamente a la actriz más intocable del momento, no se imagina que está firmando lo que puede ser el fin de su carrera.\n\nCameron Felton ha convertido el control en su única defensa. Fría, perfecta e inalcanzable… todo en ella está controlado, pero un escándalo amenaza con derrumbar la carrera que ha construido a base de silencios. Y la única forma de salvarlo implica acercarse demasiado a la mujer que más la ha expuesto.\n\nUn contrato. Tres meses. Una relación falsa para convencer al mundo.\nLo que empieza como estrategia pronto se convierte en algo más peligroso.\nPorque fingir es fácil. Lo difícil es saber cuándo dejar de hacerlo.",
     "pages": 243,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -64518,6 +64930,30 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso de Poder",
@@ -64534,13 +64970,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783148650057_3edb0",
@@ -65103,6 +65538,7 @@
     "synopsis": "Juliette Baxter lleva cincuenta años sobreviviendo detrás de una fachada de ejecutiva implacable, especialista en recortes de personal y experta en mantener a todo el mundo a distancia. Ha viajado a Nueva York a hacer lo que mejor sabe despedir gente, mantenerse fría y volver a Chicago antes de que los fantasmas del pasado vuelvan a alcanzarla.\nVivianne Fox dirige la oficina de Axis en Nueva York y no piensa entregar a su equipo sin luchar. Acostumbrada a controlar cualquier crisis, lo último que necesita es a una mujer arrogante, insoportablemente atractiva y capaz de desarmarla con una sola mirada entrando en su despacho.\nPorque Juliette no solo amenaza su trabajo. Amenaza todo lo que Vivianne creía saber sobre sí misma.\nTres semanas, un beso que jamás debió ocurrir y dos ejecutivas con carácter atrapadas en un despacho demasiado pequeño. Las dos tendrán que decidir si siguen escondiéndose detrás de sus fachadas profesionales o si se atreven a admitir lo que ya no pueden negar.",
     "pages": 191,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -65130,6 +65566,24 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España",
+      "Sudamérica"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abandono",
@@ -65145,14 +65599,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España",
-      "Sudamérica"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783775996949_fhz0h",
@@ -65165,6 +65617,7 @@
     "synopsis": "En la Akademie Vitek, las normas no se cuestionan.\nY quien las rompe, paga el precio.\nSadie Novák ha aprendido a sobrevivir en internados de élite sin dejar que nadie la controle, pero en Praga todo cambia cuando cruza la mirada con Margaret Blazek, la jefa de estudios: brillante, implacable e imposible de desafiar. Nadie sale indemne de su radar.\nExcepto Sadie.\nUn año después, tras un lago viaje que debía marcar un nuevo comienzo, Sadie descubre que hay decisiones —y personas— que no se quedan atrás.\nY que algunas historias solo empiezan cuando crees que han terminado.",
     "pages": 176,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [],
     "subgenres": [],
@@ -65192,6 +65645,21 @@
     "pais_cultura": [
       "Ambientación europea"
     ],
+    "ubicaciones": [
+      {
+        "pais": "República Checa",
+        "region": null,
+        "ciudad": "Praga",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Adulto con Menor (relación)",
@@ -65207,6 +65675,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -65223,6 +65693,7 @@
     "synopsis": "Camila Bennet se gana la vida persiguiendo tormentas, pero su regreso al pueblo de su infancia la va a meter de lleno en el ojo del huracán. Enviada a investigar un inusual y peligroso patrón eléctrico en un valle de Australia, su base de operaciones resulta ser el mismísimo Birdsong Hills, el lugar donde creció... y donde dejó atrás su antigua vida y un matrimonio roto con el hermano de Darana Calloway.\n\nDarana es ahora la jefa indiscutible de la extensión, una mujer de armas tomar con alergia a las explicaciones científicas y cero ganas de aguantar a su excuñada. No quería a Camila de vuelta, y mucho menos instalando aparatos científicos en sus tierras. Para ella, es la personificación de un pasado incómodo y de unos sentimientos que nunca reveló.\n\nObligadas a convivir, la fricción entre la meticulosa meteoróloga y la testaruda terrateniente se vuelve inevitable. Ambas han cambiado. Ambas han perdido. Sin embargo, bajo la amenaza de la tormenta y los recuerdos que no terminan de morir, renace algo que siempre estuvo ahí: una peligrosa electricidad que no está en las nubes, sino entre ellas.",
     "pages": 312,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -65249,6 +65720,23 @@
     "pais_cultura": [
       "Australia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Willow Creek",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Muerte de un Ser Querido"
@@ -65262,13 +65750,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783776656443_dlkod",
@@ -65281,6 +65768,7 @@
     "synopsis": "Harper Delaney lo tiene todo: un prometido perfecto, un futuro asegurado en la alta sociedad neoyorquina y una boda de ensueño a la vuelta de la esquina. Sin embargo, bajo esa fachada de éxito, Harper siente que se ahoga en una jaula de cristal, atada a un hombre que la exhibe como un trofeo y a un mundo al que no pertenece.\n\nCuando viaja a la imponente mansión de los Vance en los Hamptons para ultimar los preparativos del enlace, se encuentra a solas con la última persona a la que desearía enfrentarse: Victoria Vance. Su futura suegra no solo es la viuda implacable y CEO de un imperio tecnológico; es una mujer fría, dominante y peligrosamente perspicaz que parece capaz de leer cada una de sus inseguridades.\n\nLo que comienza como un cruce de miradas afiladas y una tensa convivencia se transforma en un juego psicológico que ninguna de las dos puede controlar. Aisladas durante una tormenta, la armadura de hielo de Victoria se resquebraja, dando paso a una pasión abrasadora, clandestina y absolutamente prohibida.\n\nA escasos días de caminar hacia el altar, Harper deberá enfrentarse a la decisión más difícil de su vida: cumplir el contrato social que asegura su futuro, o dejarse devorar por un incendio que amenaza con reducirlas a ambas a cenizas.",
     "pages": 312,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -65310,6 +65798,23 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Infidelidad",
@@ -65325,13 +65830,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783777126645_wnx86",
@@ -65344,6 +65848,7 @@
     "synopsis": "Cuando Natalia Costa Oliveira llega a Seattle, cree que solo está de paso: una cláusula obligatoria para lavar su imagen y un nuevo club donde todavía nadie sabe quién es de verdad.\nHasta que conoce a Holland Callow.\nCalma, control y una mirada que le roba el aire… Un choque. Un acuerdo. Un beso que lo cambia todo. Y, de pronto, Seattle amenaza con no ser algo temporal.\nPero cuando Holland debe luchar por la custodia de su hija y Natalia recibe una gran oferta desde Europa, el “para siempre” deja de ser un sueño. Se convierte en una elección que hay que construir cada día.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -65370,6 +65875,23 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": "Seattle",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -65381,13 +65903,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783778083902_76nf8",

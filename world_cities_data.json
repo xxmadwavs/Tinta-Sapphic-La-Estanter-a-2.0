@@ -1445,6 +1445,303 @@
       "aliases": [],
       "aprox": true,
       "nota": "Ubicación aproximada: distrito de Ban Pho (Chachoengsao)"
+    },
+    {
+      "id": "dk-copenhague",
+      "ciudad": "Copenhague",
+      "pais": "Dinamarca",
+      "pais_iso": "DK",
+      "region": "Región Capital",
+      "lat": 55.676,
+      "lon": 12.568,
+      "x": 529.8,
+      "y": 74.5,
+      "aliases": [
+        "Copenhagen",
+        "København"
+      ]
+    },
+    {
+      "id": "es-elche",
+      "ciudad": "Elche",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Alicante",
+      "lat": 38.267,
+      "lon": -0.698,
+      "x": 498.1,
+      "y": 129.9,
+      "aliases": [
+        "Elx"
+      ]
+    },
+    {
+      "id": "es-girona",
+      "ciudad": "Girona",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Cataluña",
+      "lat": 41.979,
+      "lon": 2.821,
+      "x": 507.2,
+      "y": 117.8,
+      "aliases": [
+        "Gerona"
+      ]
+    },
+    {
+      "id": "es-palma-de-mallorca",
+      "ciudad": "Palma de Mallorca",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Islas Baleares",
+      "lat": 39.57,
+      "lon": 2.65,
+      "x": 506.8,
+      "y": 125.7,
+      "aliases": [
+        "Palma"
+      ]
+    },
+    {
+      "id": "us-austin",
+      "ciudad": "Austin",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Texas",
+      "lat": 30.267,
+      "lon": -97.743,
+      "x": 237.1,
+      "y": 156.1,
+      "aliases": []
+    },
+    {
+      "id": "us-chicago",
+      "ciudad": "Chicago",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Illinois",
+      "lat": 41.878,
+      "lon": -87.63,
+      "x": 274.6,
+      "y": 118.2,
+      "aliases": []
+    },
+    {
+      "id": "us-san-diego",
+      "ciudad": "San Diego",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 32.716,
+      "lon": -117.161,
+      "x": 187.4,
+      "y": 148.1,
+      "aliases": []
+    },
+    {
+      "id": "fr-marsella",
+      "ciudad": "Marsella",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Provenza-Alpes-Costa Azul",
+      "lat": 43.296,
+      "lon": 5.37,
+      "x": 513.6,
+      "y": 113.6,
+      "aliases": [
+        "Marseille"
+      ]
+    },
+    {
+      "id": "hu-budapest",
+      "ciudad": "Budapest",
+      "pais": "Hungría",
+      "pais_iso": "HU",
+      "region": null,
+      "lat": 47.498,
+      "lon": 19.04,
+      "x": 547.5,
+      "y": 100.1,
+      "aliases": []
+    },
+    {
+      "id": "gb-chester",
+      "ciudad": "Chester",
+      "pais": "Inglaterra",
+      "pais_iso": "GB",
+      "region": "Cheshire",
+      "lat": 53.19,
+      "lon": -2.89,
+      "x": 492.9,
+      "y": 82.2,
+      "aliases": []
+    },
+    {
+      "id": "gb-manchester",
+      "ciudad": "Mánchester",
+      "pais": "Inglaterra",
+      "pais_iso": "GB",
+      "region": "Gran Mánchester",
+      "lat": 53.481,
+      "lon": -2.243,
+      "x": 494.5,
+      "y": 81.3,
+      "aliases": [
+        "Manchester"
+      ]
+    },
+    {
+      "id": "ie-dublin",
+      "ciudad": "Dublín",
+      "pais": "Irlanda",
+      "pais_iso": "IE",
+      "region": "Leinster",
+      "lat": 53.35,
+      "lon": -6.26,
+      "x": 484.8,
+      "y": 81.7,
+      "aliases": [
+        "Dublin"
+      ]
+    },
+    {
+      "id": "it-cagliari",
+      "ciudad": "Cagliari",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Cerdeña",
+      "lat": 39.223,
+      "lon": 9.122,
+      "x": 523.7,
+      "y": 126.8,
+      "aliases": []
+    },
+    {
+      "id": "it-civitavecchia",
+      "ciudad": "Civitavecchia",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Lacio",
+      "lat": 42.093,
+      "lon": 11.797,
+      "x": 530.2,
+      "y": 117.5,
+      "aliases": []
+    },
+    {
+      "id": "it-florencia",
+      "ciudad": "Florencia",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Toscana",
+      "lat": 43.77,
+      "lon": 11.256,
+      "x": 528.6,
+      "y": 112.0,
+      "aliases": [
+        "Firenze",
+        "Florence"
+      ]
+    },
+    {
+      "id": "it-genova",
+      "ciudad": "Génova",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Liguria",
+      "lat": 44.407,
+      "lon": 8.934,
+      "x": 522.6,
+      "y": 110.0,
+      "aliases": [
+        "Genova",
+        "Genoa"
+      ]
+    },
+    {
+      "id": "it-napoles",
+      "ciudad": "Nápoles",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Campania",
+      "lat": 40.852,
+      "lon": 14.268,
+      "x": 536.8,
+      "y": 121.5,
+      "aliases": [
+        "Napoli",
+        "Naples"
+      ]
+    },
+    {
+      "id": "it-palermo",
+      "ciudad": "Palermo",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Sicilia",
+      "lat": 38.116,
+      "lon": 13.361,
+      "x": 534.8,
+      "y": 130.4,
+      "aliases": []
+    },
+    {
+      "id": "jp-kioto",
+      "ciudad": "Kioto",
+      "pais": "Japón",
+      "pais_iso": "JP",
+      "region": "Kioto",
+      "lat": 35.012,
+      "lon": 135.768,
+      "x": 859.2,
+      "y": 140.5,
+      "aliases": [
+        "Kyoto",
+        "Kyōto"
+      ]
+    },
+    {
+      "id": "mv-ukulhas",
+      "ciudad": "Ukulhas",
+      "pais": "Maldivas",
+      "pais_iso": "MV",
+      "region": "Atolón Alif Alif",
+      "lat": 4.2,
+      "lon": 72.87,
+      "x": 704.6,
+      "y": 241.3,
+      "aliases": []
+    },
+    {
+      "id": "cz-praga",
+      "ciudad": "Praga",
+      "pais": "República Checa",
+      "pais_iso": "CZ",
+      "region": "Praga",
+      "lat": 50.075,
+      "lon": 14.438,
+      "x": 535.5,
+      "y": 91.9,
+      "aliases": [
+        "Praha",
+        "Prague"
+      ]
+    },
+    {
+      "id": "va-ciudad-del-vaticano",
+      "ciudad": "Ciudad del Vaticano",
+      "pais": "Vaticano",
+      "pais_iso": "VA",
+      "region": null,
+      "lat": 41.903,
+      "lon": 12.453,
+      "x": 531.9,
+      "y": 118.1,
+      "aliases": [
+        "Vaticano",
+        "Vatican City"
+      ]
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -1607,12 +1904,19 @@
       "ciudad": "China",
       "pais": "China",
       "motivo": "El campo ciudad contiene el nombre del país; probablemente un error en books_data.json"
+    },
+    {
+      "ciudad": "Inglaterra",
+      "pais": "Inglaterra",
+      "motivo": "El campo ciudad contiene el nombre del país (libro «Tú te lo pierdes»); probablemente un error en books_data.json"
     }
   ],
   "aliases_pais": {
     "Inglaterra": "GB",
     "Escocia": "GB",
-    "Unión Soviética": "RU"
+    "Unión Soviética": "RU",
+    "República Checa": "CZ",
+    "Vaticano": "VA"
   },
   "aliases_pais_nota": "Nombres de país que aparecen en books_data.json pero no existen como polígono en world_map_data.json (nación constituyente o estado histórico). Se resuelven al ISO-2 indicado para colocar ciudades y regiones; no se pintan como país."
 }
