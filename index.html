@@ -1732,15 +1732,34 @@ button.an-mopen{cursor:pointer}
 /* FASE E6.4 — estado actual de lectura (solo reading/want/dnf): texto secundario de una sola línea; si no cabe se trunca con elipsis. */
 .shelf-book .shelf-book-status{margin-top:3px;font-size:10.5px;line-height:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .shelf-book .shelf-book-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%)}
+/* FASE E9.2 — Lista compacta propia. Tres zonas: portada | info principal | metadatos.
+   <900px: 2 columnas (portada a la izquierda; info y metadatos apilados). ≥900px: 3 columnas. Sin alturas fijas en la fila. */
 .shelf-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
-.shelf-list-item{display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:center;padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--surface);cursor:pointer;transition:background .15s}
+.shelf-list-item{display:grid;grid-template-columns:42px minmax(0,1fr);grid-template-areas:"cover info" "cover meta";column-gap:.85rem;row-gap:.2rem;align-items:center;padding:.55rem .9rem;border-bottom:1px solid var(--border);background:var(--surface);cursor:pointer;transition:background .15s}
 .shelf-list-item:last-child{border-bottom:none}
-.shelf-list-cover{width:52px;height:78px;border-radius:7px;object-fit:cover;border:1px solid var(--border);flex-shrink:0;display:block}
-.shelf-list-cover-ph{width:52px;height:78px;border-radius:7px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--muted)}
-.shelf-list-info{min-width:0}
-.shelf-list-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.shelf-list-author{font-size:12px;color:var(--muted);margin-bottom:.4rem}
-.shelf-list-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;flex-shrink:0}
+.shelf-list-cover,.shelf-list-cover-ph{grid-area:cover;width:42px;height:63px;border-radius:5px;border:1px solid var(--border);flex-shrink:0}
+.shelf-list-cover{object-fit:cover;display:block}
+.shelf-list-cover-ph{background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--muted)}
+.shelf-list-info{grid-area:info;min-width:0}
+.shelf-list-title{font-size:14px;line-height:1.3;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-list-author{font-size:12px;line-height:1.3;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-list-saga{font-size:11px;line-height:1.3;color:var(--muted);opacity:.85;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-list-meta{grid-area:meta;min-width:0;display:flex;flex-direction:column;gap:.2rem}
+.shelf-list-meta-main{display:flex;align-items:baseline;min-width:0;font-size:11px;line-height:1.3;white-space:nowrap}
+.shelf-list-rate{flex:none;color:var(--gold)}
+.shelf-list-rate small{font-size:10px;color:var(--muted)}
+.shelf-list-state{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.shelf-list-rate+.shelf-list-state::before{content:'·';margin:0 .4em;color:var(--muted)}
+.shelf-list-state.is-want{color:var(--accent2)}
+.shelf-list-state.is-reading{color:var(--gold)}
+.shelf-list-state.is-dnf{color:var(--rose)}
+.shelf-list-state.is-read{color:var(--teal)}
+.shelf-list-state.is-read-nodate{color:var(--gold)}
+.shelf-list-meta-sub{display:flex;gap:.35rem;min-width:0;overflow:hidden}
+.shelf-list-tag{min-width:0;max-width:100%;padding:1px 8px;border:1px solid var(--border2);border-radius:999px;font-size:10.5px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (min-width:900px){
+  .shelf-list-item{grid-template-columns:42px minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"cover info meta";column-gap:1rem;padding:.55rem 1.1rem}
+}
 .shelf-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;color:var(--muted);text-align:center;gap:.75rem}
 .shelf-empty-icon{font-size:2.5rem;opacity:.5}
 .shelf-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
@@ -10299,35 +10318,58 @@ function _shelfRenderGrid(pageBooks){
     }).join('')}</div>`;
 }
 
-// FASE E5.1 — Representación Lista (HTML idéntico al previo).
+// FASE E9.2 — Representación Lista: fila compacta (portada | info principal | metadatos). Datos ya cargados, sin consultas.
+// Provisional hasta E10/E11: la zona de metadatos conserva lo que la Lista ya mostraba (valoración comunitaria + estado) en clases propias y añade 1–2 tags.
+// Tags de fila: genres → subgenres → tropes (solo oficiales), sin duplicados, máximo 2.
+function _shelfListTags(b){
+  const out=[];
+  for(const k of ['genres','subgenres','tropes']){
+    for(const v of (Array.isArray(b[k])?b[k]:[])){
+      if(typeof v==='string'&&v.trim()&&!out.includes(v)) out.push(v);
+      if(out.length>=2) return out;
+    }
+  }
+  return out;
+}
 function _shelfRenderList(pageBooks){
     return `<div class="shelf-list">${pageBooks.map(b=>{
       const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-list-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
       const r=ratingsMap[b.id]||{avg:0,count:0};
-      const badge=myReadingStatus[b.id]==='want'
-        ?`<span style="font-size:11px;color:var(--accent2)">＋ Quiero leer</span>`
-        :myReadingStatus[b.id]==='reading'
-        ?`<span style="font-size:11px;color:var(--gold)">📖 Leyendo</span>`
-        :myReadingStatus[b.id]==='dnf'
-        ?`<span style="font-size:11px;color:var(--rose)">✕ Lo dejé</span>`
-        :(()=>{
-          // FASE E3: fecha de la ÚLTIMA lectura completada vía modelo E2 (respeta year/month/day; sin new Date)
-          const rt=bookReadingTime(b.id);
-          const dateStr=rt.formattedDate;
-          const n=rt.completedCount;
-          const vecesStr=n>1?` · ${n} veces`:'';
-          return `<span style="font-size:11px;color:${rt.hasDate?'var(--teal)':'var(--gold)'}">✓ Leído${dateStr?' · '+dateStr:' · falta fecha'}${vecesStr}</span>`;
-        })();
+      const st=myReadingStatus[b.id];
+      let stCls='', stTxt='';
+      if(st==='want'){ stCls='is-want'; stTxt='＋ Quiero leer'; }
+      else if(st==='reading'){ stCls='is-reading'; stTxt='📖 Leyendo'; }
+      else if(st==='dnf'){ stCls='is-dnf'; stTxt='✕ Lo dejé'; }
+      else {
+        // Misma fuente de fecha que antes (bookReadingTime, modelo E2/E3); solo cambia el formato a fecha corta para que quepa en una línea.
+        const rt=bookReadingTime(b.id);
+        const n=rt.completedCount;
+        stCls=rt.hasDate?'is-read':'is-read-nodate';
+        stTxt='✓ Leído'+(rt.hasDate?' · '+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision):' · falta fecha')+(n>1?` · ${n} veces`:'');
+      }
+      // Valoración según el filtro activo (misma lógica que la Galería en E7): all/want = comunitaria; reading y dnf = ninguna; read = mi valoración + mi spicy.
+      let rate='';
+      if(shelfFilter==='all'||shelfFilter==='want'){
+        if(r.count>0) rate=`<span class="shelf-list-rate">★ ${r.avg.toFixed(1)} <small>(${r.count})</small></span>`;
+      } else if(shelfFilter==='read'){
+        const rv=myRatings[b.id], sv=mySpicy[b.id]; // spicy 0 se omite; se comprueba != null, nunca truthiness
+        const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+        const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
+        if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`🌶 ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
+      }
+      const tags=_shelfListTags(b).map(t=>`<span class="shelf-list-tag">${escHtml(t)}</span>`).join('');
+      const saga=b.sagaName?`<div class="shelf-list-saga">${escHtml(b.sagaName)}</div>`:'';
       return `<div class="shelf-list-item" onclick="openBookPage('${b.id}')">
         ${cov}
         <div class="shelf-list-info">
           <div class="shelf-list-title">${escHtml(b.title)}</div>
           <div class="shelf-list-author">${escHtml(auth)}</div>
-          ${badge}
+          ${saga}
         </div>
-        <div class="shelf-list-right">
-          ${r.count>0?`<span style="color:var(--gold);font-size:1.1rem;font-weight:300">★ ${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">${r.count} votos</span>`:''}
+        <div class="shelf-list-meta">
+          <div class="shelf-list-meta-main">${rate}<span class="shelf-list-state ${stCls}">${stTxt}</span></div>
+          ${tags?`<div class="shelf-list-meta-sub">${tags}</div>`:''}
         </div>
       </div>`;
     }).join('')}</div>`;
