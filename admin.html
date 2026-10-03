@@ -538,6 +538,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ctx-fld .chip-custom-add{margin-top:4px}
 .ctx-fld .chip-custom-add input{padding:3px 11px;font-size:11.5px}
 .ctx-fld .chip-custom-btn{padding:3px 11px;font-size:11.5px}
+/* UBICACIONES: alta rápida de varias ciudades del mismo país */
+.ub-fast-add{margin-top:6px;padding:8px 10px;border:1px dashed var(--border2);border-radius:10px;background:var(--surface2,var(--surface));}
+.ub-fast-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ub-fast-country{flex:1;min-width:180px}
+.ub-fast-country input,.ub-fast-cities textarea{width:100%;box-sizing:border-box;padding:6px 10px;border-radius:9px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font-size:12px;font-family:'Instrument Sans',sans-serif;outline:none}
+.ub-fast-country input:focus,.ub-fast-cities textarea:focus{border-color:var(--accent)}
+.ub-fast-cities{margin-top:6px}
+.ub-fast-cities textarea{min-height:72px;resize:vertical;line-height:1.45}
+.ub-fast-hint{font-size:10.5px;color:var(--muted);margin-top:4px}
+.ub-fast-add[hidden]{display:none}
 @media(max-width:750px){.ctx-row{grid-template-columns:1fr;gap:.2rem}.ctx-lbl{padding-top:0}}
 
 /* UBICACIONES: línea-resumen + detalle al pulsar */
@@ -1142,7 +1152,25 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="chip-section-body">
 <div class="ctx-row" id="sec-ubicacion"><div class="ctx-lbl">Ubicación</div><div class="ctx-fld">
 <div id="ubicacionesList"></div>
-<button type="button" class="ub-add-btn" onclick="addUbicacion()">+ Añadir ubicación</button>
+<div class="ub-fast-add" id="ubFastAdd" hidden>
+  <div class="ub-fast-actions">
+    <div class="ub-fast-country"><label class="form-label">País</label><input type="text" id="ubFastPais" list="ubPaisesList" placeholder="Ej: Estados Unidos"></div>
+  </div>
+  <div class="ub-fast-cities"><label class="form-label">Ciudades</label><textarea id="ubFastCiudades" placeholder="Una ciudad por línea:
+Miami
+Nueva York
+Boston
+Filadelfia"></textarea></div>
+  <div class="ub-fast-hint">Puedes pegar muchas ciudades de golpe. Se creará una ubicación por ciudad y todas compartirán este país.</div>
+  <div class="ub-fast-actions" style="margin-top:6px">
+    <button type="button" class="chip-custom-btn" onclick="addUbicacionesMultiples()">+ Añadir ciudades</button>
+    <button type="button" class="chip-custom-btn" onclick="toggleUbFastAdd(false)">Cancelar</button>
+  </div>
+</div>
+<div class="ub-fast-actions" style="margin-top:6px">
+  <button type="button" class="ub-add-btn" onclick="addUbicacion()">+ Añadir ubicación</button>
+  <button type="button" class="ub-add-btn" onclick="toggleUbFastAdd(true)">+ Añadir varias ciudades</button>
+</div>
 <datalist id="ubPaisesList"></datalist>
 <datalist id="ubLugaresList"></datalist>
 </div></div>
@@ -2287,6 +2315,37 @@ function renderUbicaciones(){
 }
 
 function updateUbicBadge(){ updateFoldSummaries(); }
+function toggleUbFastAdd(show){
+  const box=document.getElementById('ubFastAdd');
+  if(!box) return;
+  box.hidden=!show;
+  if(show){
+    openFold('sec-contexto');
+    const pais=document.getElementById('ubFastPais');
+    if(pais) pais.focus();
+  }
+}
+function addUbicacionesMultiples(){
+  const paisEl=document.getElementById('ubFastPais');
+  const citiesEl=document.getElementById('ubFastCiudades');
+  if(!paisEl||!citiesEl) return;
+  const pais=paisEl.value.trim();
+  const ciudades=[...new Set(citiesEl.value.split(/\r?\n/).map(v=>v.trim()).filter(Boolean))];
+  if(!pais){ showToast('Indica el país','error'); paisEl.focus(); return; }
+  if(!ciudades.length){ showToast('Añade al menos una ciudad','error'); citiesEl.focus(); return; }
+  let added=0,skipped=0;
+  for(const ciudad of ciudades){
+    const existe=ubicDraft.some(u=>u.pais.trim().toLocaleLowerCase()===pais.toLocaleLowerCase() && u.ciudad.trim().toLocaleLowerCase()===ciudad.toLocaleLowerCase());
+    if(existe){skipped++;continue;}
+    ubicDraft.push({pais,region:'',ciudad,localidad:'',lugares:[],pend:'',open:false,extra:{}});
+    added++;
+  }
+  citiesEl.value='';
+  toggleUbFastAdd(false);
+  renderUbicaciones();
+  const msg=added===1?'1 ciudad añadida':`${added} ciudades añadidas`;
+  showToast(skipped?`${msg} · ${skipped} repetida(s) omitida(s)`:msg,'success');
+}
 function addUbicacion(){
   ubicDraft.push({pais:'',region:'',ciudad:'',localidad:'',lugares:[],pend:'',open:true,extra:{}});
   openFold('sec-contexto');
