@@ -801,6 +801,84 @@
       "x": 283.7,
       "y": 150.1,
       "aliases": []
+    },
+    {
+      "id": "au-queensland",
+      "nombre": "Queensland",
+      "pais": "Australia",
+      "pais_iso": "AU",
+      "tipo": "estado",
+      "lat": -22.5,
+      "lon": 144.5,
+      "x": 896.5,
+      "y": 328.4,
+      "aliases": []
+    },
+    {
+      "id": "us-alaska",
+      "nombre": "Alaska",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 64.0,
+      "lon": -152.0,
+      "x": 160.9,
+      "y": 49.8,
+      "aliases": []
+    },
+    {
+      "id": "us-carolina-del-norte",
+      "nombre": "Carolina del Norte",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 35.5,
+      "lon": -79.4,
+      "x": 290.2,
+      "y": 138.9,
+      "aliases": [
+        "North Carolina"
+      ]
+    },
+    {
+      "id": "us-connecticut",
+      "nombre": "Connecticut",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 41.6,
+      "lon": -72.7,
+      "x": 312.7,
+      "y": 119.1,
+      "aliases": []
+    },
+    {
+      "id": "gb-inglaterra",
+      "nombre": "Inglaterra",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "tipo": "nación constituyente",
+      "lat": 52.8,
+      "lon": -1.5,
+      "x": 496.3,
+      "y": 83.4,
+      "aliases": [
+        "England"
+      ]
+    },
+    {
+      "id": "ve-caracas",
+      "nombre": "Caracas",
+      "pais": "Venezuela",
+      "pais_iso": "VE",
+      "tipo": "distrito capital",
+      "lat": 10.49,
+      "lon": -66.9,
+      "x": 312.8,
+      "y": 220.8,
+      "aliases": [
+        "Distrito Capital"
+      ]
     }
   ],
   "pendientes_verificacion": [
