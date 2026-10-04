@@ -879,6 +879,94 @@
       "aliases": [
         "Distrito Capital"
       ]
+    },
+    {
+      "id": "us-michigan",
+      "nombre": "Michigan",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 44.3,
+      "lon": -85.6,
+      "x": 282.4,
+      "y": 110.3,
+      "aliases": []
+    },
+    {
+      "id": "us-new-hampshire",
+      "nombre": "New Hampshire",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 43.7,
+      "lon": -71.6,
+      "x": 317.4,
+      "y": 112.3,
+      "aliases": [
+        "Nuevo Hampshire"
+      ]
+    },
+    {
+      "id": "us-nuevo-mexico",
+      "nombre": "Nuevo México",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 34.4,
+      "lon": -106.1,
+      "x": 218.5,
+      "y": 142.5,
+      "aliases": [
+        "New Mexico"
+      ]
+    },
+    {
+      "id": "us-rhode-island",
+      "nombre": "Rhode Island",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 41.7,
+      "lon": -71.5,
+      "x": 315.9,
+      "y": 118.7,
+      "aliases": []
+    },
+    {
+      "id": "us-tennessee",
+      "nombre": "Tennessee",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 35.8,
+      "lon": -86.4,
+      "x": 272.0,
+      "y": 138.0,
+      "aliases": []
+    },
+    {
+      "id": "gb-buckinghamshire",
+      "nombre": "Buckinghamshire",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "tipo": "condado",
+      "lat": 51.8,
+      "lon": -0.8,
+      "x": 498.0,
+      "y": 86.5,
+      "aliases": []
+    },
+    {
+      "id": "gb-wiltshire",
+      "nombre": "Wiltshire",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "tipo": "condado",
+      "lat": 51.3,
+      "lon": -1.9,
+      "x": 495.3,
+      "y": 88.1,
+      "aliases": []
     }
   ],
   "pendientes_verificacion": [
