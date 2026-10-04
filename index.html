@@ -1836,6 +1836,15 @@ button.an-mopen{cursor:pointer}
   .shelf-style-btn{min-height:44px;height:44px;padding:0 16px}
 }
 @media (pointer:coarse){.shelf-style-btn{min-height:44px;height:44px}}
+/* FASE E15.4 — selector AÑO de la estantería física en «Leídos» (select nativo, sin contadores; fuera de #shelfToolbar para no alterar Galería/Lista) */
+.shelf-year{display:inline-flex;align-items:center;gap:.55rem;margin:-.5rem 0 1rem .6rem;max-width:100%;vertical-align:top}
+.shelf-year[hidden]{display:none}
+.shelf-year label{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.shelf-year select{min-width:0;max-width:100%;height:36px;padding-top:0;padding-bottom:0}
+.shelf-year select:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+@media (max-width:639px){.shelf-year select{min-height:44px;height:44px}}
+@media (max-width:399px){.shelf-year{margin-left:0}} /* móvil estrecho: si el selector salta de línea queda alineado con el toggle; si cabe en la misma fila (375) también */
+@media (pointer:coarse){.shelf-year select{min-height:44px;height:44px}}
 
 /* ══════════════════════════════════════════════════════════════
    FIX MÓVIL — ventanas que no se cortan + proporciones uniformes
@@ -4499,6 +4508,10 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
         <button type="button" class="shelf-style-btn active" id="shelfStyleCovers" aria-pressed="true" onclick="setShelfStyle('covers')">Portadas</button>
         <button type="button" class="shelf-style-btn" id="shelfStyleSpines" aria-pressed="false" onclick="setShelfStyle('spines')">Lomos</button>
       </div>
+      <div class="shelf-year" id="shelfYearWrap" hidden>
+        <label for="shelfYearSelect">Año</label>
+        <select class="sort-select" id="shelfYearSelect" onchange="shelfSetYear(this.value)"></select>
+      </div>
       <div id="shelfBooksContainer"></div>
       <div id="shelfCalendarContainer" style="display:none"></div>
     </div>
@@ -4786,6 +4799,7 @@ let shelfSearch='';
 let shelfGenreFilter='';
 let shelfSort='recent';
 let shelfPage=1;
+let shelfYear=''; // FASE E15.4: '' = automático (no se escribe en la URL) | 'YYYY' | 'none' (Sin fecha); solo se aplica con Estantería física + «Leídos»
 const SHELF_PAGE_SIZE=18;
 // FASE E4.2 — listas válidas únicas para Mi estantería (las usan init(), popstate y la restauración desde la URL)
 const SHELF_FILTERS=['all','want','reading','read','dnf','calendar'];
@@ -4938,7 +4952,8 @@ function shelfUrlSync(filter,addEntry){
     put('shelfSearch',shelfSearch,'');
     put('shelfGenre',shelfGenreFilter,'');
     put('shelfSort',shelfSort,filter==='read'?'recentReading':'recent');
-    put('shelfPage',String(shelfPage),'1');
+    put('shelfYear',(shelfViewMode==='shelf'&&filter==='read')?shelfYear:'',''); // FASE E15.4: solo con elección explícita (el automático es '' y no se escribe)
+    put('shelfPage',shelfViewMode==='shelf'?'':String(shelfPage),'1'); // FASE E15.4: la estantería física no pagina → no escribe shelfPage
     const url='?'+params.toString();
     if(addEntry) history.pushState({myshelf:filter},'',url);
     else history.replaceState({myshelf:filter},'',url);
@@ -4948,7 +4963,7 @@ function shelfUrlClear(addEntry){
   try{
     const params=new URLSearchParams(location.search);
     params.delete('myshelf');
-    ['shelfView','shelfStyle','shelfSearch','shelfGenre','shelfSort','shelfPage'].forEach(k=>params.delete(k)); // FASE E4.2 (+E15.3.3 shelfStyle)
+    ['shelfView','shelfStyle','shelfYear','shelfSearch','shelfGenre','shelfSort','shelfPage'].forEach(k=>params.delete(k)); // FASE E4.2 (+E15.3.3 shelfStyle, +E15.4 shelfYear)
     const url=params.toString()?'?'+params.toString():location.pathname;
     if(addEntry) history.pushState(null,'',url);
     else history.replaceState(null,'',url);
@@ -4971,7 +4986,8 @@ function shelfRestoreFromUrl(params,normalize){
   const s=params.get('shelfSort');
   shelfSort=SHELF_SORTS.includes(s)?s:'recent';
   const pg=parseInt(params.get('shelfPage'),10);
-  shelfPage=pg>=1?pg:1;
+  shelfPage=(shelfViewMode!=='shelf'&&pg>=1)?pg:1; // FASE E15.4: en la estantería física se ignora shelfPage (enlaces antiguos incluidos)
+  const _sy=params.get('shelfYear'); shelfYear=(shelfViewMode==='shelf'&&filter==='read'&&(_sy==='none'||/^\d{4}$/.test(_sy||'')))?_sy:''; // FASE E15.4: validación sintáctica; la existencia real del año se valida al pintar
   openShelf(filter,true);
   // E3 convierte 'recent'→'recentReading' al entrar en «Leídos»; si la URL pedía 'recent' explícitamente, se respeta
   if(filter==='read' && s==='recent' && shelfSort!=='recent'){
@@ -10210,6 +10226,7 @@ function setShelfView(mode){
 function _shelfSyncStyleUI(){
   const wrap=document.getElementById('shelfStyleToggle'); if(!wrap) return;
   wrap.hidden=!(shelfViewMode==='shelf'&&shelfFilter!=='calendar');
+  if(!(shelfViewMode==='shelf'&&shelfFilter==='read')){ const yw=document.getElementById('shelfYearWrap'); if(yw) yw.hidden=true; } // FASE E15.4: el selector AÑO solo existe en Estantería + Leídos (si aplica, lo muestra _shelfYearFilter)
   const sp=shelfStyleMode==='spines';
   [['shelfStyleCovers',!sp],['shelfStyleSpines',sp]].forEach(([id,on])=>{
     const el=document.getElementById(id); if(!el) return;
@@ -10222,6 +10239,37 @@ function setShelfStyle(style){
   _shelfSyncStyleUI();
   _renderShelfBooks();
   shelfUrlSync(shelfFilter,false); // replaceState: cambiar de submodo no crea entrada de historial
+}
+
+// FASE E15.4 — selector AÑO (solo Estantería física + «Leídos»). El año sale SIEMPRE de bookReadingTime() (última lectura completada, E2/E3); nunca de book.year.
+// Las opciones salen del conjunto completo de Leídos (no del filtrado por búsqueda/género). Devuelve los libros del año resuelto y sincroniza el <select>.
+function _shelfYearFilter(books){
+  const wrap=document.getElementById('shelfYearWrap'), sel=document.getElementById('shelfYearSelect');
+  const rt=new Map(), years=new Set(); let none=false;
+  shelfBaseBooks().forEach(b=>{ const t=bookReadingTime(b.id); rt.set(b.id,t); if(t.hasDate) years.add(t.year); else none=true; });
+  const ys=[...years].sort((a,b)=>b-a);
+  let eff='';
+  if(shelfYear==='none'&&none) eff='none';
+  else if(/^\d{4}$/.test(shelfYear)&&years.has(parseInt(shelfYear,10))) eff=shelfYear;
+  else {
+    if(shelfYear&&readingStatusLoaded) shelfYear=''; // el año elegido ya no existe → vuelve al automático (sin datos cargados no se borra)
+    const cy=new Date().getFullYear();
+    eff=years.has(cy)?String(cy):(ys.length?String(ys[0]):(none?'none':''));
+  }
+  if(wrap&&sel){
+    if(!ys.length&&!none) wrap.hidden=true;
+    else{
+      sel.innerHTML=ys.map(y=>`<option value="${y}">${y}</option>`).join('')+(none?'<option value="none">Sin fecha</option>':'');
+      sel.value=eff; wrap.hidden=false;
+    }
+  }
+  return books.filter(b=>{ const t=rt.get(b.id); return eff==='none'?!t.hasDate:(t.hasDate&&String(t.year)===eff); });
+}
+function shelfSetYear(v){
+  if(!(v==='none'||/^\d{4}$/.test(v||''))) return;
+  shelfYear=v;
+  _renderShelfBooks();
+  shelfUrlSync(shelfFilter,false); // replaceState: cambiar de año no crea entrada de historial
 }
 
 function shelfBaseBooks(){
@@ -10666,7 +10714,8 @@ function _shelfPaginationHTML(totalPages,total){
 
 function _renderShelfBooks(){
   const titleMap={all:'Todos los libros',want:'Quiero leer',reading:'Leyendo',read:'Leídos',dnf:'Lo dejé'};
-  const {books,hadBooksBeforeFilters}=_shelfPrepareBooks();
+  let {books,hadBooksBeforeFilters}=_shelfPrepareBooks();
+  if(shelfViewMode==='shelf'&&shelfFilter==='read') books=_shelfYearFilter(books); // FASE E15.4: el filtro de año vive solo aquí (Galería/Lista reutilizan _shelfPrepareBooks)
   document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>(${books.length})</span>`;
   const container=document.getElementById('shelfBooksContainer');
 
@@ -10680,8 +10729,12 @@ function _renderShelfBooks(){
     return;
   }
 
-  const {totalPages,pageBooks}=_shelfPaginate(books);
-  container.innerHTML=_shelfRenderView(pageBooks)+_shelfPaginationHTML(totalPages,books.length);
+  if(shelfViewMode==='shelf'){ // FASE E15.4: estantería infinita — todos los libros del resultado, sin _shelfPaginate ni controles de página
+    container.innerHTML=_shelfRenderView(books);
+  } else {
+    const {totalPages,pageBooks}=_shelfPaginate(books);
+    container.innerHTML=_shelfRenderView(pageBooks)+_shelfPaginationHTML(totalPages,books.length);
+  }
   if(shelfViewMode==='shelf') container.querySelectorAll('.shelf-slot img').forEach(im=>{ if(im.complete&&im.naturalWidth===0&&im.getAttribute('src')) _shelfImgFallback(im); });
 }
 
