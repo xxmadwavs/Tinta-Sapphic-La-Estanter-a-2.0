@@ -1757,21 +1757,31 @@ button.an-mopen{cursor:pointer}
 .shelf-list-state.is-read-nodate{color:var(--gold)}
 .shelf-list-meta-sub{display:flex;gap:.35rem;min-width:0;overflow:hidden}
 .shelf-list-tag{min-width:0;max-width:100%;padding:1px 8px;border:1px solid var(--border2);border-radius:999px;font-size:10.5px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (min-width:900px){
+/* FASE E12.2 — móvil: valoración y estado/fecha apilados (evita recortar la fecha de «Leyendo» en Todos). */
+@media (max-width:639px){
+  .shelf-list-meta-main{flex-direction:column;align-items:flex-start}
+  .shelf-list-rate+.shelf-list-state::before{content:none}
+}
+@media (min-width:1000px){
   .shelf-list-item{grid-template-columns:42px minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"cover info meta";column-gap:1rem;padding:.55rem 1.1rem}
 }
 .shelf-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;color:var(--muted);text-align:center;gap:.75rem}
 .shelf-empty-icon{font-size:2.5rem;opacity:.5}
 .shelf-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
 /* FASE E5.3 — Estantería física: libros apoyados sobre baldas finas, integrada en el fondo (sin marco). Madera derivada de --gold (sigue los temas). */
-.shelf-physical{--shelf-gap:5px;display:flex;flex-direction:column;gap:1.1rem;min-width:0;margin-bottom:1.25rem;padding:.25rem 0 0}
+.shelf-physical{--shelf-gap:4px;--shelf-pad:8px;--shelf-bw:90;display:flex;flex-direction:column;gap:1.1rem;min-width:0;margin-bottom:1.25rem;padding:.25rem 0 0}
 .shelf-row{min-width:0}
-.shelf-books-area{display:flex;align-items:flex-end;gap:var(--shelf-gap);padding:0 .6rem}
-.shelf-slot{position:relative;flex:0 0 auto;width:calc((100% - (var(--shelf-cols) - 1)*var(--shelf-gap))/var(--shelf-cols)*var(--w,1));aspect-ratio:2/3;border-radius:1px 2px 2px 1px;background:var(--surface3);box-shadow:0 0 0 1px rgba(0,0,0,.28),2px 0 4px -1px rgba(0,0,0,.45)}
+/* FASE E15.2 — ancho de libro (--shelf-bw, px), gap y padding calculados en JS según el ancho REAL de la estantería; altura de balda reservada con el libro de escala 1 */
+.shelf-books-area{display:flex;align-items:flex-end;gap:var(--shelf-gap);padding:0 var(--shelf-pad);height:calc(var(--shelf-bw)*1.5px)}
+.shelf-slot{position:relative;flex:0 0 auto;width:calc(var(--shelf-bw)*var(--w,1)*1px);aspect-ratio:2/3;border-radius:1px 2px 2px 1px;background:var(--surface3);box-shadow:0 0 0 1px rgba(0,0,0,.28),2px 0 4px -1px rgba(0,0,0,.45)}
 .shelf-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 .shelf-slot::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.16) 5%,transparent 11%)}
-.shelf-book-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:.35rem;background:var(--surface3);color:var(--muted);text-align:center;border-radius:inherit}
-.shelf-book-ph span{font-family:var(--font-display);font-style:italic;font-size:11px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+/* Portada sin imagen / imagen rota: misma caja que una portada real (inset:0 del slot 2:3). Color determinista por id (--ph-bg), texto proporcional al ancho del libro. */
+.shelf-book-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--shelf-bw)*var(--w,1)*.03px);padding:calc(var(--shelf-bw)*var(--w,1)*.12px) calc(var(--shelf-bw)*var(--w,1)*.1px);background:var(--ph-bg,#4a3b34);color:#f2eadf;text-align:center;border-radius:inherit;overflow:hidden}
+.shelf-book-ph::before{content:"";position:absolute;inset:calc(var(--shelf-bw)*var(--w,1)*.06px);border:1px solid rgba(242,234,223,.26);border-radius:1px;pointer-events:none}
+.shelf-book-ph span,.shelf-book-ph small{position:relative;max-width:100%;overflow:hidden;overflow-wrap:anywhere;-webkit-box-orient:vertical;display:-webkit-box}
+.shelf-book-ph span{font-family:var(--font-display);font-style:italic;font-size:calc(var(--shelf-bw)*var(--w,1)*.125px);line-height:1.2;-webkit-line-clamp:5}
+.shelf-book-ph small{font-size:calc(var(--shelf-bw)*var(--w,1)*.085px);line-height:1.2;letter-spacing:.02em;opacity:.78;-webkit-line-clamp:2}
 .shelf-board{height:7px;border-radius:1px;border-top:1px solid rgba(255,255,255,.2);background:linear-gradient(to bottom,rgba(0,0,0,.18),rgba(0,0,0,.45)),var(--gold);box-shadow:0 3px 6px -2px rgba(0,0,0,.55)}
 /* FASE E5.4 — Interacción de los libros: cursor, hover sutil (solo ratón), foco visible, tooltip y reduced-motion. Todo limitado a .shelf-*. */
 .shelf-slot{cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -1794,11 +1804,8 @@ button.an-mopen{cursor:pointer}
   .shelf-board{height:6px}
 }
 @media (max-width:639px){
-  .shelf-physical{--shelf-gap:3px;gap:.8rem}
-  .shelf-books-area{padding:0 .35rem}
+  .shelf-physical{gap:.8rem}
   .shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.28),1px 0 3px -1px rgba(0,0,0,.45)}
-  .shelf-book-ph{padding:.2rem}
-  .shelf-book-ph span{font-size:9px;-webkit-line-clamp:4}
   .shelf-board{height:5px}
 }
 
@@ -10335,31 +10342,46 @@ function _shelfRenderList(pageBooks){
     return `<div class="shelf-list">${pageBooks.map(b=>{
       const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-list-cover-ph">📖</div>`;
       const auth=(b.authors||[]).join(', ');
-      const r=ratingsMap[b.id]||{avg:0,count:0};
+      // FASE E10.2 — información contextual de la Lista según el filtro activo (solo datos ya cargados, sin consultas).
       const st=myReadingStatus[b.id];
-      let stCls='', stTxt='';
-      if(st==='want'){ stCls='is-want'; stTxt='＋ Quiero leer'; }
-      else if(st==='reading'){ stCls='is-reading'; stTxt='📖 Leyendo'; }
-      else if(st==='dnf'){ stCls='is-dnf'; stTxt='✕ Lo dejé'; }
-      else {
-        // Misma fuente de fecha que antes (bookReadingTime, modelo E2/E3); solo cambia el formato a fecha corta para que quepa en una línea.
-        const rt=bookReadingTime(b.id);
-        const n=rt.completedCount;
-        stCls=rt.hasDate?'is-read':'is-read-nodate';
-        stTxt='✓ Leído'+(rt.hasDate?' · '+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision):' · falta fecha')+(n>1?` · ${n} veces`:'');
+      let rate='', stCls='', stTxt='';
+      const _comm=()=>{ const r=ratingsMap[b.id]; return (r&&r.count>0)?`<span class="shelf-list-rate">★ ${r.avg.toFixed(1)} <small>(${r.count})</small></span>`:''; };
+      switch(shelfFilter){
+        case 'want':
+          rate=_comm(); stCls='is-want'; stTxt='＋ Quiero leer';
+          break;
+        case 'reading': {
+          const since=_shelfStartedTxt(b.id);
+          stCls='is-reading'; stTxt='📖 Leyendo'+(since?' · desde '+since:'');
+          break;
+        }
+        case 'read': {
+          // Mismas reglas que la Galería (E6.2/E6.3): valoración y spicy solo 1–5, Math.round, spicy 0 se omite; fecha de la última lectura vía bookReadingTime.
+          const rv=myRatings[b.id], sv=mySpicy[b.id];
+          const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+          const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
+          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`🌶 ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
+          const rt=bookReadingTime(b.id);
+          if(rt.hasDate){ stCls='is-read'; stTxt=_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); }
+          break;
+        }
+        case 'dnf': {
+          const since=_shelfStartedTxt(b.id);
+          stCls='is-dnf'; stTxt=since?'✕ Empezado '+since:'✕ Lo dejé';
+          break;
+        }
+        default: { // 'all': valoración comunitaria + estado individual
+          rate=_comm();
+          if(st==='want'){ stCls='is-want'; stTxt='＋ Quiero leer'; }
+          else if(st==='reading'){ const since=_shelfStartedTxt(b.id); stCls='is-reading'; stTxt='📖 Leyendo'+(since?' · desde '+since:''); }
+          else if(st==='dnf'){ stCls='is-dnf'; stTxt='✕ Lo dejé'; }
+          else { stCls='is-read'; stTxt='✓ Leído'; }
+        }
       }
-      // Valoración según el filtro activo (misma lógica que la Galería en E7): all/want = comunitaria; reading y dnf = ninguna; read = mi valoración + mi spicy.
-      let rate='';
-      if(shelfFilter==='all'||shelfFilter==='want'){
-        if(r.count>0) rate=`<span class="shelf-list-rate">★ ${r.avg.toFixed(1)} <small>(${r.count})</small></span>`;
-      } else if(shelfFilter==='read'){
-        const rv=myRatings[b.id], sv=mySpicy[b.id]; // spicy 0 se omite; se comprueba != null, nunca truthiness
-        const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
-        const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
-        if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`🌶 ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
-      }
+      const mainLine=(rate||stTxt)?`<div class="shelf-list-meta-main">${rate}${stTxt?`<span class="shelf-list-state ${stCls}">${stTxt}</span>`:''}</div>`:'';
       const tags=_shelfListTags(b).map(t=>`<span class="shelf-list-tag">${escHtml(t)}</span>`).join('');
-      const saga=b.sagaName?`<div class="shelf-list-saga">${escHtml(b.sagaName)}</div>`:'';
+      const sagaTxt=b.sagaName?escHtml(b.sagaName)+(b.sagaNum!=null?' · #'+escHtml(String(b.sagaNum)):''):'';
+      const saga=sagaTxt?`<div class="shelf-list-saga">${sagaTxt}</div>`:'';
       return `<div class="shelf-list-item" onclick="openBookPage('${b.id}')">
         ${cov}
         <div class="shelf-list-info">
@@ -10367,21 +10389,16 @@ function _shelfRenderList(pageBooks){
           <div class="shelf-list-author">${escHtml(auth)}</div>
           ${saga}
         </div>
-        <div class="shelf-list-meta">
-          <div class="shelf-list-meta-main">${rate}<span class="shelf-list-state ${stCls}">${stTxt}</span></div>
+        ${(mainLine||tags)?`<div class="shelf-list-meta">
+          ${mainLine}
           ${tags?`<div class="shelf-list-meta-sub">${tags}</div>`:''}
-        </div>
+        </div>`:''}
       </div>`;
     }).join('')}</div>`;
 }
 
-// FASE E5.3 — Estantería física: filas (libros + balda) con los libros reales de la página actual.
-// Libros por fila según ancho: 4 (<640px), 6 (640–1279px), 9 (≥1280px); la última fila puede quedar parcial.
-function _shelfCols(){
-  if(window.matchMedia('(min-width:1280px)').matches) return 9;
-  if(window.matchMedia('(min-width:640px)').matches) return 6;
-  return 4;
-}
+// FASE E5.3 / E15.2 — Estantería física (modo Portadas): filas (libros + balda) con los libros reales de la página actual.
+// E15.2: los libros por balda se calculan con el ancho REAL de #shelfBooksContainer (no con el viewport).
 // Escala determinista (0.86 / 0.93 / 1) derivada solo del id: misma altura en cada render, filtro, página o recarga.
 function _shelfBookScale(id){
   const s=String(id); let h=2166136261;
@@ -10389,26 +10406,88 @@ function _shelfBookScale(id){
   h^=h>>>15; h=Math.imul(h,2246822507); h^=h>>>13;
   return [0.86,0.93,1][(h>>>0)%3];
 }
+let _shelfLastCw=0;
+// Ancho real disponible (px) del contenedor; si aún no tiene layout (vista oculta) usa la última medida o una estimación.
+function _shelfContainerWidth(){
+  const c=document.getElementById('shelfBooksContainer');
+  let w=c?Math.round(c.getBoundingClientRect().width):0;
+  if(w>0){ _shelfLastCw=w; return w; }
+  if(_shelfLastCw>0) return _shelfLastCw;
+  const vw=document.documentElement.clientWidth||window.innerWidth||360;
+  return Math.max(200,(vw>=900?Math.min(vw,1320)-220:vw)-64);
+}
+// Métricas continuas: Wmin 76→104, gap 3→5 y padding 5.6→9.6 interpolados con el ancho del contenedor (300→1000px), sin escalones.
+function _shelfMetrics(cw){
+  const t=Math.min(1,Math.max(0,(cw-300)/700));
+  const wmin=76+28*t, gap=3+2*t, pad=5.6+4*t;
+  const W=Math.max(1,cw-2*pad);
+  const n=Math.max(1,Math.floor((W+gap)/(wmin+gap)));
+  const wfill=(W-(n-1)*gap)/n;
+  const bw=Math.min(wfill,1.10*wmin,140);
+  return {n,bw:Math.round(bw*100)/100,gap:Math.round(gap*100)/100,pad:Math.round(pad*100)/100};
+}
+// Reparte los libros en baldas de n. Si la última balda tiene 1 solo libro (y hay otra anterior con margen), se le pasa un libro de la anterior.
+function _shelfSplitRows(list,n){
+  const rows=[];
+  for(let i=0;i<list.length;i+=n) rows.push(list.slice(i,i+n));
+  if(n>=3 && rows.length>1 && rows[rows.length-1].length===1) rows[rows.length-1].unshift(rows[rows.length-2].pop());
+  return rows;
+}
+// Color determinista del placeholder según el id (paleta de cubiertas apagadas).
+const _SHELF_PH_COLORS=['#4b3a3f','#3d4a52','#4a4a38','#473c52','#3b4d44','#59413a','#38465c','#52443a'];
+function _shelfPhColor(id){
+  const s=String(id); let h=5381;
+  for(let i=0;i<s.length;i++) h=Math.imul(h,33)^s.charCodeAt(i);
+  return _SHELF_PH_COLORS[(h>>>0)%_SHELF_PH_COLORS.length];
+}
+function _shelfPlaceholderHTML(title,auth){
+  return `<div class="shelf-book-ph" aria-hidden="true"><span>${escHtml(title)}</span>${auth?`<small>${escHtml(auth)}</small>`:''}</div>`;
+}
+let _shelfLastN=0;
+function _shelfApplyMetrics(el,m){
+  el.style.setProperty('--shelf-bw',m.bw); el.style.setProperty('--shelf-gap',m.gap+'px'); el.style.setProperty('--shelf-pad',m.pad+'px');
+}
 function _shelfRenderShelf(pageBooks){
-  const cols=_shelfCols();
-  let rows='';
-  for(let i=0;i<pageBooks.length;i+=cols){
-    const slots=pageBooks.slice(i,i+cols).map(b=>{
+  const m=_shelfMetrics(_shelfContainerWidth());
+  _shelfLastN=m.n;
+  const rows=_shelfSplitRows(pageBooks,m.n).map(row=>{
+    const slots=row.map(b=>{
+      const auth=(b.authors||[]).join(', ');
       const inner=b.cover
         ?`<img src="${escHtml(b.cover)}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`
-        :`<div class="shelf-book-ph"><span>${escHtml(b.title)}</span></div>`;
-      const auth=(b.authors||[]).join(', ');
+        :_shelfPlaceholderHTML(b.title,auth);
       const label=auth?`${b.title} — ${auth}`:String(b.title); // FASE E5.4: sin autor no se inventa texto
-      return `<div class="shelf-slot" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}" style="--w:${_shelfBookScale(b.id)}">${inner}</div>`;
+      return `<div class="shelf-slot" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}" style="--w:${_shelfBookScale(b.id)};--ph-bg:${_shelfPhColor(b.id)}">${inner}</div>`;
     }).join('');
-    rows+=`<div class="shelf-row"><div class="shelf-books-area">${slots}</div><div class="shelf-board"></div></div>`;
-  }
-  return `<div class="shelf-physical" style="--shelf-cols:${cols}">${rows}</div>`;
+    return `<div class="shelf-row"><div class="shelf-books-area">${slots}</div><div class="shelf-board"></div></div>`;
+  }).join('');
+  return `<div class="shelf-physical" style="--shelf-bw:${m.bw};--shelf-gap:${m.gap}px;--shelf-pad:${m.pad}px">${rows}</div>`;
 }
-// FASE E5.2/E5.3 — los libros por fila dependen del ancho: al cruzar un breakpoint se repinta (sin tocar URL ni estado).
-['(min-width:640px)','(min-width:1280px)'].forEach(q=>window.matchMedia(q).addEventListener('change',()=>{
-  if(shelfViewMode==='shelf' && shelfFilter!=='calendar' && document.getElementById('shelfView').classList.contains('active')) _renderShelfBooks();
-}));
+// E15.2 — Imagen rota → mismo placeholder (error no burbujea: captura en el contenedor persistente). Mismos datos reales del slot.
+function _shelfImgFallback(img){
+  const slot=img&&img.closest?img.closest('.shelf-slot'):null;
+  if(!slot||slot.querySelector('.shelf-book-ph')) return;
+  slot.insertAdjacentHTML('beforeend',_shelfPlaceholderHTML(slot.dataset.title||'',slot.dataset.author||''));
+  img.remove();
+}
+// E15.2 — los libros por balda dependen del ancho real del contenedor: si cambia n se repinta; si solo cambia el tamaño, se actualizan las variables CSS.
+(function(){
+  const c=document.getElementById('shelfBooksContainer'); if(!c) return;
+  c.addEventListener('error',e=>{ if(e.target&&e.target.tagName==='IMG') _shelfImgFallback(e.target); },true);
+  if(typeof ResizeObserver==='undefined') return;
+  let burst=0, timer=null;
+  new ResizeObserver(()=>{
+    if(shelfViewMode!=='shelf'||shelfFilter==='calendar') return;
+    const view=document.getElementById('shelfView'); if(!view||!view.classList.contains('active')) return;
+    const phys=c.querySelector('.shelf-physical'); if(!phys) return;
+    const m=_shelfMetrics(_shelfContainerWidth());
+    if(m.n!==_shelfLastN){
+      if(burst>=4) return; // freno anti-oscilación (p. ej. aparición de la barra de scroll al cambiar la altura)
+      burst++; clearTimeout(timer); timer=setTimeout(()=>{burst=0;},500);
+      _renderShelfBooks();
+    } else _shelfApplyMetrics(phys,m);
+  }).observe(c);
+})();
 
 // FASE E5.4 — Interacción de los libros de la estantería. Delegación sobre #shelfBooksContainer (persistente): sobrevive a cada repintado.
 // Abre la ficha con el openBookPage() existente (E4.3 detecta el origen por shelfView.active; no se toca nada de historial).
@@ -10493,6 +10572,7 @@ function _renderShelfBooks(){
 
   const {totalPages,pageBooks}=_shelfPaginate(books);
   container.innerHTML=_shelfRenderView(pageBooks)+_shelfPaginationHTML(totalPages,books.length);
+  if(shelfViewMode==='shelf') container.querySelectorAll('.shelf-slot img').forEach(im=>{ if(im.complete&&im.naturalWidth===0&&im.getAttribute('src')) _shelfImgFallback(im); });
 }
 
 /* ══════════════════════════ CALENDARIO DE LECTURAS ══════════════════════════ */
