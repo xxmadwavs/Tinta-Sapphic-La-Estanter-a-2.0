@@ -574,6 +574,233 @@
         "Tuscany",
         "Toscane"
       ]
+    },
+    {
+      "id": "ca-quebec",
+      "nombre": "Quebec",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "tipo": "provincia",
+      "lat": 52.0,
+      "lon": -72.0,
+      "x": 324.7,
+      "y": 85.9,
+      "aliases": [
+        "Québec"
+      ]
+    },
+    {
+      "id": "ca-yukon",
+      "nombre": "Yukón",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "tipo": "territorio",
+      "lat": 63.0,
+      "lon": -135.5,
+      "x": 195.2,
+      "y": 52.7,
+      "aliases": [
+        "Yukon"
+      ]
+    },
+    {
+      "id": "us-carolina-del-sur",
+      "nombre": "Carolina del Sur",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 33.9,
+      "lon": -80.9,
+      "x": 285.0,
+      "y": 144.2,
+      "aliases": [
+        "South Carolina"
+      ]
+    },
+    {
+      "id": "us-dakota-del-sur",
+      "nombre": "Dakota del Sur",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 44.4,
+      "lon": -100.2,
+      "x": 245.4,
+      "y": 110.0,
+      "aliases": [
+        "South Dakota"
+      ]
+    },
+    {
+      "id": "us-georgia",
+      "nombre": "Georgia",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 32.7,
+      "lon": -83.4,
+      "x": 277.4,
+      "y": 148.1,
+      "aliases": []
+    },
+    {
+      "id": "us-hawai",
+      "nombre": "Hawái",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 19.6,
+      "lon": -155.5,
+      "x": 70.6,
+      "y": 191.1,
+      "aliases": [
+        "Hawaii"
+      ]
+    },
+    {
+      "id": "us-kentucky",
+      "nombre": "Kentucky",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 37.5,
+      "lon": -85.3,
+      "x": 276.4,
+      "y": 132.4,
+      "aliases": []
+    },
+    {
+      "id": "us-luisiana",
+      "nombre": "Luisiana",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 31.0,
+      "lon": -92.0,
+      "x": 253.1,
+      "y": 153.7,
+      "aliases": [
+        "Louisiana"
+      ]
+    },
+    {
+      "id": "us-nevada",
+      "nombre": "Nevada",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 39.3,
+      "lon": -116.6,
+      "x": 196.6,
+      "y": 126.5,
+      "aliases": []
+    },
+    {
+      "id": "us-nueva-york-estado",
+      "nombre": "Nueva York",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 42.9,
+      "lon": -75.5,
+      "x": 306.7,
+      "y": 114.8,
+      "aliases": [
+        "New York"
+      ]
+    },
+    {
+      "id": "us-ohio",
+      "nombre": "Ohio",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 40.3,
+      "lon": -82.8,
+      "x": 285.5,
+      "y": 123.3,
+      "aliases": []
+    },
+    {
+      "id": "us-vermont",
+      "nombre": "Vermont",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 44.0,
+      "lon": -72.7,
+      "x": 314.9,
+      "y": 111.3,
+      "aliases": []
+    },
+    {
+      "id": "it-lombardia",
+      "nombre": "Lombardía",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "tipo": "región",
+      "lat": 45.6,
+      "lon": 9.8,
+      "x": 524.7,
+      "y": 106.2,
+      "aliases": [
+        "Lombardy",
+        "Lombardia"
+      ]
+    },
+    {
+      "id": "jp-kanto",
+      "nombre": "Kantō",
+      "pais": "Japón",
+      "pais_iso": "JP",
+      "tipo": "región",
+      "lat": 36.0,
+      "lon": 139.7,
+      "x": 868.2,
+      "y": 137.3,
+      "aliases": [
+        "Kanto"
+      ]
+    },
+    {
+      "id": "ch-grisones",
+      "nombre": "Grisones",
+      "pais": "Suiza",
+      "pais_iso": "CH",
+      "tipo": "cantón",
+      "lat": 46.7,
+      "lon": 9.6,
+      "x": 524.0,
+      "y": 102.6,
+      "aliases": [
+        "Graubünden",
+        "Graubunden",
+        "Grigioni"
+      ]
+    },
+    {
+      "id": "us-maui",
+      "nombre": "Maui",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "isla",
+      "lat": 20.8,
+      "lon": -156.3,
+      "x": 69.4,
+      "y": 187.1,
+      "aliases": []
+    },
+    {
+      "id": "us-daufuskie-island",
+      "nombre": "Daufuskie Island",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "isla",
+      "lat": 32.1,
+      "lon": -80.88,
+      "x": 283.7,
+      "y": 150.1,
+      "aliases": []
     }
   ],
   "pendientes_verificacion": [
@@ -603,6 +830,7 @@
     "Escocia": "GB",
     "Unión Soviética": "RU",
     "República Checa": "CZ",
-    "Vaticano": "VA"
+    "Vaticano": "VA",
+    "Fiyi": "FJ"
   }
 }

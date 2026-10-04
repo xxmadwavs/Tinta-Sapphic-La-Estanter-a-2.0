@@ -1742,6 +1742,348 @@
         "Vaticano",
         "Vatican City"
       ]
+    },
+    {
+      "id": "us-allentown",
+      "ciudad": "Allentown",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Pensilvania",
+      "lat": 40.608,
+      "lon": -75.49,
+      "x": 304.7,
+      "y": 122.3,
+      "aliases": []
+    },
+    {
+      "id": "us-charleston",
+      "ciudad": "Charleston",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Carolina del Sur",
+      "lat": 32.776,
+      "lon": -79.931,
+      "x": 286.7,
+      "y": 147.9,
+      "aliases": [],
+      "nota": "Homónimo elegido: Charleston (Carolina del Sur); también existe en Virginia Occidental"
+    },
+    {
+      "id": "us-frisco",
+      "ciudad": "Frisco",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Texas",
+      "lat": 33.151,
+      "lon": -96.824,
+      "x": 242.0,
+      "y": 146.6,
+      "aliases": [],
+      "nota": "Homónimo elegido: Frisco (Texas)"
+    },
+    {
+      "id": "us-houston",
+      "ciudad": "Houston",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Texas",
+      "lat": 29.76,
+      "lon": -95.37,
+      "x": 243.1,
+      "y": 157.8,
+      "aliases": []
+    },
+    {
+      "id": "us-king-of-prussia",
+      "ciudad": "King of Prussia",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Pensilvania",
+      "lat": 40.101,
+      "lon": -75.384,
+      "x": 304.5,
+      "y": 123.9,
+      "aliases": []
+    },
+    {
+      "id": "us-kingsford",
+      "ciudad": "Kingsford",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Nueva York",
+      "lat": 42.9,
+      "lon": -75.5,
+      "x": 306.7,
+      "y": 114.8,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro de Nueva York): no se ha localizado el punto exacto; la Kingsford conocida está en Míchigan"
+    },
+    {
+      "id": "us-lake-oswego",
+      "ciudad": "Lake Oswego",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oregón",
+      "lat": 45.42,
+      "lon": -122.67,
+      "x": 189.9,
+      "y": 106.7,
+      "aliases": []
+    },
+    {
+      "id": "us-las-vegas",
+      "ciudad": "Las Vegas",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Nevada",
+      "lat": 36.17,
+      "lon": -115.14,
+      "x": 196.6,
+      "y": 136.7,
+      "aliases": []
+    },
+    {
+      "id": "us-lumina-valley",
+      "ciudad": "Lumina Valley",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Colorado",
+      "lat": 39.0,
+      "lon": -105.55,
+      "x": 225.0,
+      "y": 127.5,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro de Colorado): no se ha localizado el punto exacto"
+    },
+    {
+      "id": "us-minneapolis",
+      "ciudad": "Minneapolis",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Minnesota",
+      "lat": 44.98,
+      "lon": -93.265,
+      "x": 263.7,
+      "y": 108.1,
+      "aliases": []
+    },
+    {
+      "id": "us-newton",
+      "ciudad": "Newton",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Massachusetts",
+      "lat": 42.337,
+      "lon": -71.209,
+      "x": 317.2,
+      "y": 116.7,
+      "aliases": []
+    },
+    {
+      "id": "us-nueva-orleans",
+      "ciudad": "Nueva Orleans",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Luisiana",
+      "lat": 29.951,
+      "lon": -90.072,
+      "x": 257.5,
+      "y": 157.1,
+      "aliases": [
+        "New Orleans"
+      ]
+    },
+    {
+      "id": "us-oakland",
+      "ciudad": "Oakland",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 37.804,
+      "lon": -122.271,
+      "x": 179.9,
+      "y": 131.4,
+      "aliases": []
+    },
+    {
+      "id": "us-portland",
+      "ciudad": "Portland",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oregón",
+      "lat": 45.515,
+      "lon": -122.679,
+      "x": 190.1,
+      "y": 106.4,
+      "aliases": [],
+      "nota": "Homónimo elegido: Portland (Oregón); también existe en Maine"
+    },
+    {
+      "id": "us-provincetown",
+      "ciudad": "Provincetown",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Massachusetts",
+      "lat": 42.052,
+      "lon": -70.186,
+      "x": 319.6,
+      "y": 117.6,
+      "aliases": []
+    },
+    {
+      "id": "us-savannah",
+      "ciudad": "Savannah",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Georgia",
+      "lat": 32.081,
+      "lon": -81.091,
+      "x": 283.1,
+      "y": 150.1,
+      "aliases": []
+    },
+    {
+      "id": "us-washington-d-c",
+      "ciudad": "Washington, D. C.",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": null,
+      "lat": 38.907,
+      "lon": -77.037,
+      "x": 299.2,
+      "y": 127.8,
+      "aliases": [
+        "Washington D.C.",
+        "Washington DC",
+        "Washington, D.C."
+      ]
+    },
+    {
+      "id": "us-watertown",
+      "ciudad": "Watertown",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Dakota del Sur",
+      "lat": 44.899,
+      "lon": -97.115,
+      "x": 253.9,
+      "y": 108.4,
+      "aliases": []
+    },
+    {
+      "id": "us-west-chester",
+      "ciudad": "West Chester",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Pensilvania",
+      "lat": 39.96,
+      "lon": -75.606,
+      "x": 303.8,
+      "y": 124.4,
+      "aliases": []
+    },
+    {
+      "id": "ca-montreal",
+      "ciudad": "Montreal",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "region": "Quebec",
+      "lat": 45.502,
+      "lon": -73.567,
+      "x": 314.1,
+      "y": 106.5,
+      "aliases": [
+        "Montréal"
+      ]
+    },
+    {
+      "id": "kr-seul",
+      "ciudad": "Seúl",
+      "pais": "Corea del Sur",
+      "pais_iso": "KR",
+      "region": null,
+      "lat": 37.567,
+      "lon": 126.978,
+      "x": 832.6,
+      "y": 132.2,
+      "aliases": [
+        "Seoul"
+      ]
+    },
+    {
+      "id": "br-rio-de-janeiro",
+      "ciudad": "Río de Janeiro",
+      "pais": "Brasil",
+      "pais_iso": "BR",
+      "region": "Río de Janeiro",
+      "lat": -22.907,
+      "lon": -43.173,
+      "x": 381.5,
+      "y": 329.7,
+      "aliases": [
+        "Rio de Janeiro"
+      ]
+    },
+    {
+      "id": "fr-saint-tropez",
+      "ciudad": "Saint-Tropez",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Provenza-Alpes-Costa Azul",
+      "lat": 43.272,
+      "lon": 6.64,
+      "x": 516.9,
+      "y": 113.6,
+      "aliases": [
+        "Saint Tropez"
+      ]
+    },
+    {
+      "id": "mc-montecarlo",
+      "ciudad": "Montecarlo",
+      "pais": "Mónaco",
+      "pais_iso": "MC",
+      "region": null,
+      "lat": 43.738,
+      "lon": 7.424,
+      "x": 518.8,
+      "y": 112.1,
+      "aliases": [
+        "Monte Carlo",
+        "Monte-Carlo"
+      ]
+    },
+    {
+      "id": "ch-st-moritz",
+      "ciudad": "St. Moritz",
+      "pais": "Suiza",
+      "pais_iso": "CH",
+      "region": "Grisones",
+      "lat": 46.49,
+      "lon": 9.836,
+      "x": 524.6,
+      "y": 103.3,
+      "aliases": [
+        "Sankt Moritz",
+        "Saint-Moritz",
+        "St Moritz"
+      ]
+    },
+    {
+      "id": "gr-coves",
+      "ciudad": "Coves",
+      "pais": "Grecia",
+      "pais_iso": "GR",
+      "region": null,
+      "lat": 39.07,
+      "lon": 21.82,
+      "x": 556.7,
+      "y": 127.3,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro de Grecia): no se ha localizado el punto exacto"
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -1916,7 +2258,8 @@
     "Escocia": "GB",
     "Unión Soviética": "RU",
     "República Checa": "CZ",
-    "Vaticano": "VA"
+    "Vaticano": "VA",
+    "Fiyi": "FJ"
   },
   "aliases_pais_nota": "Nombres de país que aparecen en books_data.json pero no existen como polígono en world_map_data.json (nación constituyente o estado histórico). Se resuelven al ISO-2 indicado para colocar ciudades y regiones; no se pintan como país."
 }

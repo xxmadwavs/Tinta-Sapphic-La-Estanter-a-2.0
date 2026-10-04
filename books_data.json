@@ -12308,6 +12308,8 @@
     "synopsis": "En esta novela que conecta las series de Kate Martinelli y Mary Russell, la detective de San Francisco se enfrenta a un caso insólito: un hombre obsesionado con Sherlock Holmes aparece asesinado en una sala que recrea fielmente el mundo del famoso detective. Philip Gilbert, experto coleccionista, poseía un misterioso manuscrito atribuido a Holmes… que parece predecir su propia muerte. Kate y su compañero Al Hawkin deben seguir una pista tan ingeniosa como peligrosa, digna de la mente de Holmes.",
     "pages": 368,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Misterio",
       "Thriller"
@@ -12317,7 +12319,29 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Principios de los 2000",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -12325,9 +12349,14 @@
     "sagaNum": 5,
     "source": "other",
     "editions": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1777799099685_8a0dd",
@@ -13518,6 +13547,8 @@
     "synopsis": "Las ideas de Sutton Spencer para su vida eran bastante simples: terminar el posgrado y enamorarse. Sería mucho más sencillo si pudiera determinar con precisión qué debería hacer cuando se gradúe en menos de un año. Ah, y si pudiera descubrir cómo hablar con una mujer sin sentirse completamente desesperanzada, también sería genial.\n\nCharlotte Thompson es todo lo contrario. Siempre ha tenido claros los pasos que le han guiado hacia el éxito, sin tiempo ni inclinación para el romance. Su floreciente carrera política lo es todo para ella y no está dispuesta a sacrificarla por algo tan insignificante como el amor. Lo fugaz, lo casual y lo discreto funcionaron a la perfección.\n\nCuando se conocen a través de una aplicación de citas, queda claro de inmediato que no son aptos para nada más que una amistad. ¿Verdad?",
     "pages": 632,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -13547,7 +13578,32 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Massachusetts",
+        "ciudad": "Newton",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -13557,14 +13613,13 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
       "Age Gap"
-    ],
-    "pais_origen": [
-      "Estados Unidos"
     ]
   },
   {
@@ -13578,6 +13633,8 @@
     "synopsis": "Lo bueno se hace esperar, y ahora Sutton Spencer y Charlotte Thompson pueden cosechar los frutos. Pasaron meses dándole vueltas a admitir sus sentimientos, pero el tiempo de negar su amor ha terminado.\nMientras el mundo observa, sus vidas no dejan de crecer. Lo único seguro es que, ante cualquier obstáculo que se les presente, lo enfrentarán juntos.\nUna colección de instantáneas de una vida vivida y amada.\nGracias Roo Bugin por la contribución",
     "pages": 108,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
       "Contemporánea"
@@ -13597,9 +13654,42 @@
       "25–39"
     ],
     "pais_cultura": [
+      "Estados Unidos",
+      "Italia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "ROMA",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -13609,13 +13699,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778008195772_jn2oc",
@@ -13685,6 +13774,8 @@
     "synopsis": "¿Y si...?\n\n¿Qué habría pasado si Charlotte y Sutton no se hubieran dado otra oportunidad?\n\nCharlotte, ahora senadora, parece tenerlo todo, salvo compañía. Sutton, feliz como madre y profesora, ha hecho las paces con su pasado. Pero cuando un reencuentro inesperado las vuelve a unir, ambas deberán preguntarse si el destino guarda segundas oportunidades… incluso en universos alternativos.\nGracias Roo Bugin por la contribución",
     "pages": 505,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -13710,7 +13801,39 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington D. C.",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Massachusetts",
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -13720,13 +13843,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778008428865_smkyr",
@@ -15970,6 +16092,8 @@
     "synopsis": "En el planeta Kander, habitado por la poderosa raza Kalmar y recientemente alterado por humanos, Charlie, una humana criada durante la guerra civil, regresa como adulta para un trabajo urgente: rescatar a un Omega secuestrado. Contratada junto a un equipo de mercenarios y bajo la guía del enigmático Alfa supremo Kal, Charlie descubre secretos sobre la rara naturaleza de Kal como “hembra” Alfa.\n\nLo que parecía un simple encargo se complica cuando Charlie empieza a sentir algo más que deber por el Omega y por Kal, viéndose atrapada en un fuego cruzado de lealtad, pasión y misterios que podrían cambiarlo todo.",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -15981,7 +16105,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -15990,7 +16124,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225621360_c497f",
@@ -16003,6 +16143,8 @@
     "synopsis": "Charlie juró irse con una explosión, pero Kal, el gobernante divino de Kander, la resucita de la muerte. Mientras lucha por aceptar la verdad, su relación secreta y peligrosa con Kal se profundiza, despertando sentimientos y cambios que ninguna de las dos esperaba.\n\nCuando Starr, la única superviviente de su tripulación, es secuestrada por un grupo de humanos en Serrato para ser subastada como esclava, Charlie debe formar un equipo y enfrentarse a un rescate imposible. ¿Llegará a tiempo para salvar a Starr y enfrentarse a las transformaciones que alterarán su mundo, su amor y el futuro de Kander?",
     "pages": 199,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16014,7 +16156,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -16023,7 +16175,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225654364_d2cmb",
@@ -16036,6 +16194,8 @@
     "synopsis": "Charlie nunca quiso que su relación con Kal se volviera más que sentimientos nacientes. Pero ahora debe enfrentarse a un Alfa en plena rutina mientras lucha por mantener su promesa de no ser marcada, un acto que podría desatar otra guerra civil en Kander.\n\nAl aceptar pasar seis meses en el planeta, Charlie encuentra momentos de paz, hasta que el Cuerpo Serrato pone una recompensa por su cabeza y los Sworne podrían regresar a la Vía Láctea. Kal la contrata para una peligrosa misión, con la esperanza de que descubra más sobre sus enemigos.\n\nSi Charlie sobrevive y cumple su objetivo, ambas deberán enfrentarse a secretos que podrían cambiar Kander para siempre.",
     "pages": 339,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16047,7 +16207,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -16056,7 +16226,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225697406_65y79",
@@ -16069,6 +16245,8 @@
     "synopsis": "Charlie vuelve a Nueva Tierra tras un aterrizaje forzoso en Kardos y descubre un asentamiento humano cambiado: seguro y pacífico… casi. La reciente ola de secuestros mantiene a todos en alerta, y Charlie está decidida a ayudar.\n\nKal llega con la misión de investigar a Alfa Prima, presunto responsable de los secuestros. Con la astuta ayuda de Charlie, descubren secretos ocultos que los arrastran a una sangrienta batalla civil.\n\n¿Podrán detener a Alfa Prima antes de que lleguen los Sworne? Y, mientras luchan, ¿sobrevivirá su relación naciente al caos que los rodea? La primera aventura juntos de Charlie y Kal está llena de peligros, pasión y secretos que podrían cambiarlo todo.",
     "pages": 353,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16080,7 +16258,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -16089,7 +16277,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225736638_vcn8z",
@@ -16102,6 +16296,8 @@
     "synopsis": "¡Los Sworne han vuelto a la Vía Láctea! Exigen la rendición de todos los terrícolas, pero Kal se niega, provocando enfrentamientos y rehenes en ambos bandos. Gracias a su astucia, Kal y Charlie logran un alto el fuego y acuerdan un intercambio de rehenes, recursos y la promesa de que los Sworne abandonen el sistema.\n\nAunque la victoria es parcial, saben que aún no están preparados para enfrentarlos definitivamente. Charlie y Kal trazan planes para fortalecer Kander, buscar aliados y conseguir armas, cuestionándose si aliarse con el Cuerpo Serrato podría ser un mal necesario en la guerra que se avecina.",
     "pages": 275,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16113,7 +16309,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -16122,7 +16328,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225771255_50oay",
@@ -16135,6 +16347,8 @@
     "synopsis": "¡Santo Kal! Sin el Espíritu de Kalatas, Kal vuelve a ser Sumner, enfrentándose a recuerdos del pasado y a su vulnerabilidad, mientras descubre la posibilidad de ser ella misma junto a Charlie.\n\nMientras tanto, Charlie debe protegerla y asegurar una arriesgada alianza con el Cuerpo Serrato. Sin el poder de Kalatas, la atracción entre ellas crece y Charlie se da cuenta de que se está enamorando cada vez más de Sumner, deseándola sólo para sí.\n\n¿Podrán Sumner y Charlie cumplir su misión fuera de Kander, o será esta la oportunidad que los Sworne necesitaban para atacar? Corazones, pasiones y destinos se verán puestos a prueba en el espacio.",
     "pages": 431,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16146,7 +16360,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -16155,7 +16379,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225910329_3e3u4",
@@ -16168,6 +16398,8 @@
     "synopsis": "¡Los Sworne se han llevado a Kal!\n\nCharlie, incapaz de aceptar su destino, se lanza sola a un arriesgado rescate, poniendo a prueba su fe en Kalatas y enfrentándose a dudas sobre el poder que los protege. Mientras tanto, la batalla en Clabonne deja más preguntas que respuestas, pero una chispa de esperanza surge con Talyn, un misterioso científico que podría contener la clave para derrotar a los Sworne… si accede a revelar sus secretos.\n\nEntre festivales, celebraciones y la valiente decisión de Charlie y Kal de proclamarse públicamente como compañeros, Kander se prepara para la guerra que se avecina. ¿Lograrán descubrir los secretos de Talyn y estar listos a tiempo para enfrentar a los Sworne?",
     "pages": 489,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16179,7 +16411,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -16188,7 +16430,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225957729_l8tgm",
@@ -16201,6 +16449,8 @@
     "synopsis": "Omnis, un poderoso nuevo vecino, irrumpe en Kander con demandas imposibles. Con los Sworne al acecho, Charlie y Kal enfrentan una amenaza mayor de lo que jamás imaginaron. Omnis-sar exige la sumisión de Kal, pero él nunca se inclinará ante ningún ser, ni siquiera ante un dios corrupto. La guerra es inminente.\n\nMientras la invasión de los Sworne revive los temores de la infancia de Charlie, ella luchará con todo para proteger a sus seres queridos y a su pareja. Kander guarda secretos capaces de salvarlos o de destruirlos a todos; ahora, Charlie y Kal deben descifrar las pistas y mantenerse un paso adelante. El destino de su mundo exigirá sangre, sacrificios y decisiones que cambiarán todo.",
     "pages": 393,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -16212,7 +16462,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -16221,7 +16481,13 @@
     "source": "other",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778226026158_7nxgm",
@@ -19918,6 +20184,8 @@
     "synopsis": "Los planes navideños de Holly y Mack se ven truncados cuando una ventisca los deja varados en el pequeño pueblo de Watertown, obligando a estos desconocidos enfrentados a convertirse en reticentes compañeros de piso.\n\nLa abogada corporativa Holly necesita volver a casa para reconciliarse con sus padres, mientras que el ingeniero de software Mack está desesperado por contactar a su hermana antes de que dé a luz.\n\nMientras esperan a que pase la tormenta en un pueblo obsesionado con la Navidad, rodeados de decoraciones cuestionables y arte mural aún más cuestionable, se ven envueltos en un romance navideño inesperado.\n\nPero con las tensas relaciones familiares de Holly y la carrera contrarreloj de Mack, ¿podrá su conexión navideña sobrevivir a la tormenta?",
     "pages": 146,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -19930,7 +20198,34 @@
     "tropes": [
       "Forced Proximity"
     ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Dakota del Sur",
+        "ciudad": "Watertown",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Minnesota",
+        "ciudad": "Minneapolis",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -19940,6 +20235,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -19956,6 +20253,8 @@
     "synopsis": "Todo lo que Reyna y Kianthe desean es abrir una librería que sirva té. Suelos de madera desgastada, plantas en cada mesa, la luz del fuego filtrándose entre las vigas... todo ello complementado con amor y buena compañía. El problema es que Reyna trabaja como guardia privada de la Reina, y Kianthe es la maga más poderosa del mundo. Dejar sus vidas no es fácil.\n\nPero después de que un asesino la tome como rehén, Reyna decide que ya no arriesgará su vida por una reina egocéntrica. Mientras tanto, Kianthe ha estado esperando una oportunidad para huir de la responsabilidad; mejor aún con su novia de su lado. Juntas, se establecen en Tawney, un pueblo con más dragones que personas, y abren la tienda de sus sueños.",
     "pages": 388,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -19966,7 +20265,19 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -19976,9 +20287,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778319125134_tsu5t",
@@ -20477,6 +20791,7 @@
     "synopsis": "Los Blanchard necesitaban dinero; los Rodwell lo ofrecieron. En una habitación privada sellaron un matrimonio de conveniencia entre dos mujeres que ni siquiera se conocían.\n\nDiez años después del sangriento acuerdo entre su padre y Edgar Rodwell, Hyun estaba lista para cumplir su parte. Ya no era una joven ingenua: ahora dirigía una de las mayores bodegas de EE. UU.\n\nAmélie Rodwell, marcada por el rencor, odiaba a los Blanchard, sobre todo a Hyun, la mujer que la manipuló años atrás. Su objetivo era romper el trato, pero al descubrir lo que se ocultaba tras la fachada de Hyun, sus certezas comenzaron a tambalearse. ¿Podría cambiar el pasado la verdad que ahora veía?",
     "pages": 687,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -20490,7 +20805,54 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Francia",
+      "Reino Unido",
+      "Mónaco",
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Saint-Tropez",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Mónaco",
+        "region": null,
+        "ciudad": "Montecarlo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Portugués",
     "pais_origen": [
       "Brasil"
     ],
@@ -20505,6 +20867,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -20521,6 +20885,7 @@
     "synopsis": "Tras dos meses desaparecida, Hyun Blanchard regresa a Manhattan decidida a olvidar a la mujer que la traicionó. Había caído por confiar, y su orgullo roto era la única armadura que le quedaba. Pero su corazón, testarudo, no estaba listo para dejar ir.\n\nAmélie Rodwell, ya no la heredera mimada sino una mujer hecha a sí misma, no esperaba que Hyun volviera... y menos aún con la intención de recuperarla. Sin embargo, los intentos de Hyun por reconstruir lo perdido chocan contra una dolorosa verdad: quizá nunca la quiso lo suficiente.\n\n¿Vale la pena luchar por un amor que se rompió antes de empezar?",
     "pages": 388,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -20534,7 +20899,30 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Texas",
+        "ciudad": "Houston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Portugués",
     "pais_origen": [
       "Brasil"
     ],
@@ -20549,6 +20937,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -20565,6 +20955,8 @@
     "synopsis": "Riley dejó la iglesia hace un año al sentirse rechazada por ser bisexual, pero fue el desprecio del pastor hacia su hermana por abortar lo que encendió su rabia. Tras abofetear a una chica que insultó a su hermana, la castigan con pasar las vacaciones de primavera en un campamento cristiano.\n\n¿La única parte buena? Estará con su mejor amiga Julia… aunque su padre, el pastor que dirige el campamento, es su mayor enemigo. En vez de arrepentirse, Riley planea romper las reglas cometiendo los siete pecados capitales para demostrar que ser un poco malo puede tener un propósito justo. Todo va bien… hasta que empieza a enamorarse de la hija del pastor.",
     "pages": 302,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Juvenil",
       "Romance",
@@ -20586,7 +20978,32 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Ohio",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Kentucky",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -20596,13 +21013,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778320249889_25qhd",
@@ -20615,6 +21031,8 @@
     "synopsis": "Seúl, 1988.\nLeona, estrella del voleibol estadounidense, y Zoya, prodigio soviética, solo deberían ser rivales en la cancha. Pero un documental las obliga a convivir fuera del juego, y la tensión inicial da paso a una conexión peligrosa. Entre miradas furtivas y confesiones, descubren que el verdadero premio quizá no sea el oro… sino el amor inesperado.",
     "pages": 253,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -20628,8 +21046,104 @@
       "Enemies to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Corea del Sur",
+      "Estados Unidos",
+      "Rusia",
+      "Japón",
+      "Canadá",
+      "Brasil",
+      "Perú",
+      "Alemania",
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Corea del Sur",
+        "region": null,
+        "ciudad": "Seúl",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Atlanta",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Rusia",
+        "region": null,
+        "ciudad": "Moscú",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Japón",
+        "region": "Kantō",
+        "ciudad": "Tokio",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": "Quebec",
+        "ciudad": "Montreal",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Brasil",
+        "region": null,
+        "ciudad": "Río de Janeiro",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Perú",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Alemania",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": "Cataluña",
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Años 90",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Portugués",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -20639,6 +21153,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -20655,6 +21171,8 @@
     "synopsis": "Un amor desesperado entre dos mujeres en bandos opuestos de una guerra postapocalíptica. Un héroe. Un villano. Hasta que el héroe se vuelve a la oscuridad, para siempre.\n\nAlcmene, la heredera al trono del Combatiente, desea acabar con la guerra más que nada. Y no le importa el derramamiento de sangre que sabe que seguirá.\n\nEmber, una Defensora que ha entrenado toda su vida para luchar contra los sanguinarios Luchadores, ha estado esperando a que la guerra llegara a su puerta. Pero cuando por fin llega, se encuentra completamente desprevenida y ocurre lo inimaginable.\n\nCuando se encuentran, planean luchar hasta la muerte. Hasta que se revela una magia oscura que cambia el mundo tal y como lo conocen.",
     "pages": 396,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -20667,7 +21185,15 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Dúo",
     "adaptacion": null,
@@ -20677,6 +21203,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -20792,6 +21320,8 @@
     "synopsis": "“Tú lo pediste, Rain. Vamos a capturar a un pirata.”\n\nMientras buscan unos huevos de dragón robados, Kianthe y Reyna, una pareja de recién prometidas, se ven envueltas en una caótica historia de amor con espadas de por medio.\n\nSerina, una exgranjera reconvertida en pirata fluvial, roba cereales y té, deshonrando al poderoso señor del río Nacean. Este recluta a Kianthe y a su temible prometida para capturarla.\n\nJunto a ellas va Bobbie, alguacil local y antigua amiga de Serina, decidida a detenerla... aunque Serina ahora la detesta.\n\nMientras las tensiones románticas y los errores se acumulan, Kianthe y Reyna descubren que estas lesbianas desastrosas necesitan una mano. Menos mal que Reyna adora emparejar a la gente. Los huevos de dragón pueden esperar.",
     "pages": 444,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -20804,7 +21334,19 @@
     ],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": "Saga",
     "adaptacion": null,
@@ -20814,9 +21356,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778321257392_v7rnq",
@@ -20829,6 +21374,8 @@
     "synopsis": "Kianthe y Reyna están listas para pasar por el altar y, en sólo siete días, la boda de sus vidas se hará realidad. Aún queda mucho por hacer pero, como todos los planes bien trazados, todo parece torcerse.\n\nSus crías de dragón están causando el caos en la ciudad de Tawney, y los estirados padres de Kianthe se han autoinvitado a la boda. Pero lo peor de todo es que Reyna se ha visto envuelta en un complot secreto para derrocar a la reina Tilaine. El mundo parece estar en su contra, ¿y cómo van a vivir lo suficiente para darse el \"sí, quiero\"?",
     "pages": 336,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -20841,7 +21388,19 @@
     ],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 2,
     "formato": "Saga",
     "adaptacion": null,
@@ -20851,9 +21410,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778321304601_r5dd8",
@@ -25702,6 +26264,8 @@
     "synopsis": "El verano pasado, las tres mejores amigas de Nan desaparecieron en Saltcedar Canyon.\n\nDesde entonces, ha pasado el año lamentando su pérdida y evitando preguntas sobre lo que sucedió esa noche. Ahora, en el aniversario, está lista para despedirse, al igual que las familias de las chicas, que se han reunido para celebrar un homenaje. Pero su vigilia se ve interrumpida por el impactante regreso con vida de una de las chicas desaparecidas. Todos están encantados. Todos, es decir, excepto Nan, que estaba bastante segura de que estaban muertas.\n\nDespués de todo, ella fue quien las mató.",
     "pages": 281,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Horror",
       "Misterio",
@@ -25713,7 +26277,29 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -25723,13 +26309,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778921510087_6n6eb",
@@ -30961,6 +31546,8 @@
     "synopsis": "Reyna y Kianthe son expertas en gobernar el Queendom, derrotar malvados alquimistas y rescatar adorables crías de dragón… pero ¿podrán salvar su ciudad de la avalancha de turistas?\n\nTras un secuestro inesperado, Reyna solo quería una taza de té, y Kianthe esperaba que el rescate fuera rápido. Pero un círculo de alquimistas radicales y el caos turístico en New Leaf amenazan con ponerlo todo patas arriba.\n\nEntre magia, librerías y amor, deberán enfrentarse a dilemas mucho más complicados que cualquier villano: ¿cómo salvar su pueblo sin perderse a sí mismas?",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -30971,7 +31558,19 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -30981,13 +31580,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779393005258_usglm",
@@ -31487,6 +32085,8 @@
     "synopsis": "En la primera entrega de una serie romántica sci-fi, Cedra, granjera galáctica, encarga un robot servicial para no morir de trabajo… y recibe a Twyla: aparentemente un Servana 200 con rizos, curvas y piel que transpira humanidad.\nTwyla ha huido de un compromiso forzado escondiéndose dentro de la caja del robot; escapar la salvó… y la puso en manos de otra tensión peligrosa.\nCedra la recibe a regañadientes; Twyla suplica quedarse. Entre cuchillos, amenazas y confesiones, surge una atracción feroz y urgente que ninguna podrá ignorar.A",
     "pages": 276,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -31498,7 +32098,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -31508,6 +32118,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -31524,6 +32136,8 @@
     "synopsis": "Divididas entre la supervivencia y el deseo, dos mujeres se enfrentan al destino en la segunda entrega de la serie romántica sci-fi de Lily X.\n\nKit huye sin descanso: un científico la persigue convencido de que sus genes son la clave de una nueva raza. La cazadora que le pisa los talones debería ser su peor amenaza, pero cada roce despierta un fuego imposible de negar.\n\nAna sólo quiere salvar a su hermano, aunque eso signifique cazar para un monstruo. Pero la misión se complica cuando la atracción por su presa se convierte en un riesgo mayor que cualquier enemigo.\n\nEntre persecuciones, secretos y pasiones prohibidas, ambas deberán elegir: ¿traicionar sus corazones o perderlo todo?",
     "pages": 309,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -31535,7 +32149,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -31545,6 +32169,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -31561,6 +32187,8 @@
     "synopsis": "La Domme más suave del Cúmulo de Cáncer encuentra a su pareja en Nuevo Mundo: Own Me de Lily X.\n\nAusty lleva casi diez años viendo a sus amigos encontrar Compañeros, fundar familias y vivir la vida que ella tanto anhela. A punto de cumplir treinta, lo único que desea es pertenecer a alguien. Pero entre la soledad y las deudas del negocio familiar, su mundo está lejos de ser perfecto.\n\nFia, inversora de sangre fría y éxito en la gran ciudad, no esperaba que la visita a una granja le pusiera frente a una joven dulce, nerviosa y fascinada por ella. Su inocencia es tan desarmante como irresistible.\n\nUn fin de semana juntas podría cambiarlo todo: ¿se atreverá Austy a rendirse y dejarse poseer?",
     "pages": 249,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -31572,7 +32200,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -31582,6 +32220,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -31598,6 +32238,8 @@
     "synopsis": "El viaje en el tiempo conduce a la lujuria —y al amor— en la cuarta entrega de la serie Nuevo Mundo de Lily X.\n\nAster nunca había visto un objeto como ese espejo dorado de la Vieja Tierra. Un accidente lo activa, y de repente, una misteriosa mujer de otra época aparece en su taller. Naia no sabe cómo ha llegado allí, solo que sus ojos violetas y su calma peligrosa la atraen como un imán.\n\nEn un mundo que no reconoce, lo único que parece real es la pasión entre ellas. Pero mientras Aster y Naia se dejan arrastrar por el deseo, surge una pregunta inevitable: ¿puede el amor sobrevivir cuando el tiempo mismo las separa?",
     "pages": 263,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -31609,7 +32251,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -31619,6 +32271,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -31635,6 +32289,8 @@
     "synopsis": "Una piloto de la Vieja Tierra aterriza en un Nuevo Mundo… y en los brazos de su médico de ensueño.\n\nHuir del colapso de la Tierra robando una nave no fue la mejor idea, pero para la capitana recién llegada era la única salida. Ahora, adaptarse a la vida como refugiada en el Nuevo Mundo es un reto, aunque la presencia de la doctora que la atiende lo hace un poco más llevadero… y mucho más tentador.\n\nElla está acostumbrada a que su vida sea puro trabajo y responsabilidad, no deseo. Pero mientras cuida de su paciente, descubre que la pasión también puede ser sanadora.\n\nCuando el pasado regrese para reclamar a la piloto, ambas deberán decidir si su vínculo puede sobrevivir a la prueba más difícil: elegir entre el deber y el corazón.",
     "pages": 300,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
       "Romance"
@@ -31646,7 +32302,17 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": "Saga",
     "adaptacion": null,
@@ -31656,6 +32322,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -42890,6 +43558,8 @@
     "synopsis": "Genéticamente perfecta, mágicamente maldita: Piper Frost es una muerta viviente. Cuando su magia descontrolada mata a su mejor amiga, su madre la envía a la Academia Silvestro, donde la maldición que amenaza su vida antes de cumplir 22 años sigue intacta.\n\nKailani Jauregui, vampira inmortal, lleva tiempo en la academia y mantiene todo bajo control, desde su equipo Styx hasta su dormitorio. No quiere una compañera de cuarto que no pueda controlar su magia, y mucho menos a una bruja como Piper.\n\nPero cuando el peligro y la atracción se mezclan, Piper y Kailani deberán unir fuerzas para desafiar la muerte, los secretos y los chispazos literales que saltan entre ellas.",
     "pages": 750,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -42923,9 +43593,40 @@
     "edad": [],
     "pais_cultura": [
       "Canadá",
-      "Estados Unidos"
+      "Estados Unidos",
+      "Grecia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": "Yukón",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Georgia",
+        "ciudad": "Savannah",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Grecia",
+        "region": null,
+        "ciudad": "Coves",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": null,
     "adaptacion": null,
@@ -42935,6 +43636,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -48067,6 +48770,8 @@
     "synopsis": "La detective Caitlin Reagan sobrevive al límite lidiando con el TEPT de su pasado en Irak. Su mundo se desmorona cuando el asesinato de una trabajadora la cruza con la carismática Marcella Carson, obligándola a cuestionar su propia identidad y su lesbianismo.\n\nCait es arrastrada a una subcultura de Boston donde criaturas de pesadilla y magia antigua luchan por sobrevivir. Mientras enfrenta sus demonios internos, deberá cazar a un asesino en serie no muerto en un mundo de fantasía urbana oscuro y peligroso.\n\n¿Podrá Cait redescubrir su pasado antes de que la oscuridad la consuma?",
     "pages": 369,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -48088,8 +48793,26 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Massachusetts",
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -48099,6 +48822,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -48115,6 +48840,8 @@
     "synopsis": "La detective Cait Reagan ha recuperado su mortalidad, pero su vida es un caos. Mientras cuida de su madre, debe criar a Katie, la joven vampira que ella misma convirtió. Su relación con su exenemiga es tensa y la poderosa Nastasia Volkova se niega a dejarla escapar de su radar.\n\nMarcella ha desaparecido y alguien caza a los vampiros supervivientes de la Puerta Negra. Mientras una amenaza siniestra emerge en Boston, Cait debe equilibrar su vida personal con las exigencias del consejo vampírico.\n\nEn un mundo de sombras, se enfrentará a la pregunta definitiva: ¿qué es el verdadero mal?",
     "pages": 522,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -48135,8 +48862,26 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Saga",
     "adaptacion": null,
@@ -48146,6 +48891,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -48162,6 +48909,8 @@
     "synopsis": "Dos mil años antes de Cait Reagan, la guerrera Weyna reveló un secreto divino que resonaría milenios después. En el presente, Aoife, hermana de Cait y experta del SWAT, llega a Boston para un funeral que no ocurrirá: Cait ha regresado como no muerta, pero su alma está en estasis.\n\nPara atrapar al culpable, Liz propone un plan: Aoife debe suplantar a su hermana y servir de cebo para el asesino. Mientras finge ser la detective, deberá dar caza a una criatura mítica que amenaza con destruir la ciudad.\n\nUna historia épica que une mitología celta y suspense. Entre traiciones y peligros, Aoife descubrirá que el linaje Reagan es más oscuro de lo que imaginaba",
     "pages": 452,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -48182,8 +48931,26 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": "Saga",
     "adaptacion": null,
@@ -48193,6 +48960,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -48209,6 +48978,8 @@
     "synopsis": "Cait Reagan viaja a Irlanda para salvar a su hermana, pero la isla es ahora una trampa. Las Hadas de la Luz se han vuelto crueles y sus alianzas son más frágiles que nunca. En este caos, Maggie, una médica secuestrada, parece esconder la clave de la victoria.\n\nSin embargo, el peligro real está en la propia Cait. Un poder oscuro se apodera de ella, volviéndola despiadada y amenazando con borrar quién es. Entre sospechas y cambios siniestros en su grupo, deberá enfrentarse a su propia destrucción.\n\nUna historia de sombras donde las líneas entre aliado y enemigo desaparecen. Salvar a su hermana podría costarle a Cait lo único que le queda: ella misma.",
     "pages": 373,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -48229,8 +49000,26 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": "Saga",
     "adaptacion": null,
@@ -48240,6 +49029,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -48940,6 +49731,8 @@
     "synopsis": "Alex Grey, futbolista profesional, solo buscaba un fin de semana de relax en Carolina del Sur, pero terminó arriesgando su vida para salvar a una mujer de morir ahogada. Lo que no sabía es que la persona a la que rescató es Catharine Cleveland, la esposa de un influyente senador de los Estados Unidos.\n\nA pesar del abismo social y político que las separa, el accidente crea un vínculo eléctrico e inevitable. Desde los estadios de Portland hasta el despiadado círculo de Washington D.C., su amistad se transforma en una pasión que pone en jaque sus carreras y reputaciones. Bajo la mirada implacable de la prensa, ambas deberán decidir si un amor prohibido vale la pena el escándalo que podría destruirlo todo.",
     "pages": 479,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -48965,7 +49758,33 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Carolina del Sur",
+        "ciudad": "Daufuskie Island",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso Sexual",
@@ -48982,13 +49801,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780836591513_qm9rs",
@@ -49001,6 +49819,8 @@
     "synopsis": "Catharine y Alex han encontrado una felicidad inesperada, pero caminan sobre cristales rotos. Mientras Alex brilla en la Selección de EE. UU. ante el Mundial, Catharine abraza su libertad en secreto. El problema es que el mundo no se detiene: el exmarido de Catharine está en plena campaña presidencial y los focos son más peligrosos que nunca.\n\nCuando un secreto devastador sale a la luz, la burbuja estalla. Ya no solo peligra su relación; la carrera de Alex, los negocios de Catharine y sus propias vidas están en la línea de fuego. En medio del colapso total, ambas deberán descubrir si su amor es lo suficientemente fuerte para sobrevivir al escándalo o si el precio de estar juntas es más de lo que pueden pagar.",
     "pages": 300,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -49026,7 +49846,33 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "Oakland",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso Sexual",
@@ -49043,13 +49889,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780836695467_dvdts",
@@ -49062,6 +49907,8 @@
     "synopsis": "Mientras la carrera de Alex sigue prosperando como estrella del fútbol estadounidense, Catharine lucha por evitar que su mundo se derrumbe. Lidiando con las repercusiones de un divorcio de alto perfil, mientras la campaña de Carlton avanza hacia las primarias, su único consuelo reside en su floreciente relación con Alex. Pero a medida que aumenta la presión publicitaria, no es solo su amor lo que se pone a prueba.\n\nVenganza. Engaño. Traición. Cada acción tiene una reacción. Y la venganza es...",
     "pages": 406,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -49088,7 +49935,85 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Inglaterra",
+      "Estados Unidos",
+      "Francia",
+      "Australia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Oakland",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington, D. C.",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Charleston",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Frisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Melbourne",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Portland",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Misoginia",
@@ -49105,13 +50030,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780836773819_hihar",
@@ -54474,6 +55398,34 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Filadelfia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "King of Prussia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "West Chester",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
@@ -54488,6 +55440,8 @@
     "safi_categories": [
       "2026"
     ],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -55168,6 +56122,7 @@
     "synopsis": "Silvia\n\nSi hay algo que necesitas saber sobre mí es esto:\n\nodio a los vampiros.\n\nSon monstruos inútiles que chupan almas y destruyen todo a su paso, incluso a mi propia familia.\n\nMe uní a la Orden y me convertí en cazadora de vampiros por venganza, pero jamás habría imaginado que mi trabajo implicaría cuidar a la heredera vampira del clan más poderoso del mundo.\n\nY si pensaba que iba a quebrar como los otros cazadores con los que ha lidiado... está muy equivocada.\n\nKeir\n\nOdio a los cazadores... pero odio aún más a mi imbécil de padre después de enterarme de que había colaborado con la Orden para conseguir uno que me protegiera a todas horas.\n\nIncluso después de haber lidiado con todos los mejores cazadores de la Orden, insistieron en enviarme uno más.\n\nPero era inútil, todos acabarían cediendo.\n\nYa fuera sexo, dinero o poder, ninguno podía resistir la tentación, incluso si eso significaba romper nuestro contrato.\n\nY yo estaba deseando demostrarles a la Orden y a mi padre que estaban equivocados.\n\n¿Cuál será tu vicio, pequeña cazadora?",
     "pages": 482,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -55196,6 +56151,23 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": "Seattle",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Violencia Gráfica",
@@ -55211,13 +56183,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781469313021_g5oxd",
@@ -55230,6 +56201,7 @@
     "synopsis": "Dos años después de su huida, Silvia vive como una fugitiva. Tras descubrir verdades que destruyeron su pasado, se niega a aceptar una carga que nunca pidió, decidida a no volver jamás junto a la mujer que cambió su destino.\n\nSin embargo, Keir no olvida. La heredera vampira ha pasado cada día esperando el regreso del \"fantasma\" que la abandonó. El clan la necesita, pero Keir la busca por una razón más oscura: la venganza. El tiempo de huir se agota y el reencuentro será un choque de voluntades y secretos. Un romance sáfico sobrenatural de segundas oportunidades teñidas de rencor y obsesión.",
     "pages": 306,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -55254,6 +56226,15 @@
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Violencia Gráfica"
@@ -55267,13 +56248,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781470068842_dthhm",
@@ -55451,6 +56431,7 @@
     "synopsis": "Siobhán Branigan, heredera de una banda criminal, se niega a ser el peón de un matrimonio pactado con sus rivales y huye para evitar una boda sin amor. Nessa Tobin, la letal ejecutora de los Cavanaugh, sale en su busca para evitar que la huida desate una guerra que destruya su posición.\n\nEn plena caza, ambas mujeres se ven atrapadas entre la lealtad familiar y una atracción inesperada. Mientras sus clanes se desmoronan, descubrirán que la verdadera amenaza no es el enemigo, sino su propia sangre. Un romance sáfico de mafia con tropos de enemies to lovers y captura en un mundo de violencia y traición.",
     "pages": 303,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -55477,6 +56458,13 @@
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Violencia Gráfica",
@@ -55495,6 +56483,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -55693,6 +56683,7 @@
     "synopsis": "Kadence llegó a Westhaven buscando un nuevo comienzo para sanar su pasado y esconderse de sus traumas. Sin embargo, su deseo de una vida tranquila se desmorona al conocer a Blaize, una mujer tan cruel como ardiente que desequilibra su mundo por completo.\nTras una noche de pasión desenfrenada, la indiferencia de Blaize deja a Kadence luchando por sacarla de su cabeza. Aunque el amor ya le rompió el corazón una vez, el despertar de sus sentidos la empuja hacia un destino peligroso. En esta espiral de tensión y deseo, entregarse de nuevo podría ser su salvación o su perdición absoluta.\n¿Será este amor el inicio de su nueva vida o el fuego que termine por consumirla?",
     "pages": 258,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -55717,7 +56708,24 @@
       "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Gordofobia / Fobia Corporal",
@@ -55739,6 +56747,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -56157,6 +57167,7 @@
     "synopsis": "Una impactante e imperdible novela debut, finalista del premio Women's Prize Discoveries, que explora la familia, el duelo, la identidad queer y el legado de la Iglesia Católica en Irlanda. \n\n¿Te lo imaginas?, les diría. ¿Te imaginas que yo esté allí, en primera fila en la Plaza de San Pedro? La hermana lesbiana de un santo.\n\nCriada en un hogar devoto en Irlanda, Jay ahora vive en Londres con su novia, decidida a vivir el día a día y no pensar demasiado ni en el futuro ni en el pasado. Pero cuando se entera de que su querido hermano mayor, que murió en un terrible accidente, podría ser canonizado, se da cuenta de que finalmente debe enfrentarse a su familia, a su infancia y a sí misma...",
     "pages": 368,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -56168,7 +57179,26 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Irlanda"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -56180,13 +57210,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Irlanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781512911430_j4wn0",
@@ -56817,6 +57846,7 @@
     "synopsis": "La\n\nvida de Poppy Peterson finalmente se ha encauzado y está triunfando como publicista del quarterback más prometedor de la NFL (y su mejor amigo de la infancia), Cash Curran. Por eso, no le hace ninguna gracia que él intente seducir impulsivamente y en público a la estrella del pop favorita de Estados Unidos, Lyric Adair. Cuando la infame publicista de Lyric, Rosaline Sinclair, se pone en contacto con ella, Poppy está preparada para enfrentarse a su ira, pero descubre que Lyric también está interesada.\n\nMientras Cash y Lyric se embarcan en su imprudente romance, Poppy y Rosaline se ven obligadas a trabajar juntas, cada una decidida a proteger a su cliente de la otra. Poppy se siente frustrada por la actitud fría de Rosaline, mientras que, al mismo tiempo, como leyenda de la industria, está decidida a impresionarla. Pero, haga lo que haga, no puede quitarse de la cabeza la sensación de que a Rosaline no le cae bien.\n\nEso cambia una noche apasionada, cuando las dos mujeres se enfrentan a sus inesperados sentimientos y comienzan un romance complicado. Pero con los paparazzi, los tabloides y los fans acosadores pisándoles los talones, la lealtad de Poppy y Rosaline se pondrá a prueba de maneras que jamás hubieran imaginado.",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -56842,6 +57872,37 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Oregón",
+        "ciudad": "Portland",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Oregón",
+        "ciudad": "Lake Oswego",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Alcohol",
@@ -56857,13 +57918,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781552325938_mvlhl",
@@ -58823,6 +59883,7 @@
     "synopsis": "Olvida los cuentos infantiles: las Hadas Oscuras maldicen reinos y destrozan vidas. Cait Reagan huyó a Shaddan para proteger a los suyos, pero tras un sueño gótico despierta transformada. Ahora está ciega y, para su horror, coronada princesa de un legado de sangre.\n\nCait hereda una corte en ruinas y una oscura sed de poder. Mientras es empujada a un compromiso político con la Princesa de la Corte Nocturna, su prometida Liz viaja desde la Tierra para reclamarla.\n\nAtrapada entre dos mundos y una corona no deseada, Cait debe sobrevivir a la letal política feérica y decidir en qué convertirse. Una lucha desesperada donde la guerra parece inevitable.",
     "pages": 335,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Fantasía",
@@ -58844,7 +59905,24 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -58856,6 +59934,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -59002,6 +60082,7 @@
     "synopsis": "Lilian es la mujer más rica del planeta, una CEO fría y calculadora que lo tiene todo bajo control. Pero tras la muerte de su socio, sus secretos más oscuros amenazan con ahogarla. En su caída, conoce a Kat, una sombra que mata por venganza y justicia. Kat desprecia a los poderosos, y Lilian es su objetivo número uno.\n\nLo que comienza como una cacería se convierte en una obsesión destructiva. Entre el comportamiento psicópata y el deseo más absoluto, ambas mujeres —peligrosas y calculadoras— colisionan en un romance oscuro donde la redención no es una opción. En este juego de depredadoras, el corazón tiene planes que la razón no puede contener.",
     "pages": 214,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -59016,7 +60097,26 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
@@ -59028,13 +60128,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781687696621_lay5g",
@@ -60596,6 +61695,7 @@
     "synopsis": "Iris Bennet siempre ha sido invisible en su escuela, evitando a chicas como Valeria Cruz. Popular y rica, Valeria ha pasado años complicándole la vida. Iris debería odiarla, y en parte lo hace, pero todo cambia cuando empieza a dar clases particulares a la hermana pequeña de su enemiga.\n\nLo que nace en la mansión Cruz se vuelve un secreto absoluto a puerta cerrada. Mientras Iris lucha por no enamorarse, Valeria se vuelve una presencia adictiva. En este juego de tensiones, Valeria es la única que tiene el poder de arruinar a Iris para siempre. ¿Es odio o un deseo prohibido?",
     "pages": 293,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -60622,7 +61722,26 @@
     "edad": [
       "Young Adult (15–18)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Abuso de Poder",
@@ -60639,6 +61758,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -61744,6 +62865,7 @@
     "synopsis": "Bajo las vidrieras de Howl Moor, el convento de la Iglesia del Altar de las Almas Perdidas oculta secretos entre pasillos oscuros y sermones retorcidos. La hermana Jezebella vive entregada a los deseos de su Madre Superiora hasta que la llegada de la hermana Lilith despierta en ella una vocación distinta: una pasión sagrada nacida de miradas furtivas y deseos prohibidos.\n\nMientras su atracción crece, un misterio sangriento acecha en el bosque: la gente desaparece y las viudas se multiplican bajo extraños ataques. Entre gritos nocturnos y aullidos, Jezebella y Lilith intentarán desentrañar la oscuridad que rodea al convento mientras exploran una intimidad que desafía sus votos. Un romance sáfico gótico cargado de suspense, fervor religioso y una tensión carnal que quema bajo los hábitos.",
     "pages": 311,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -61763,6 +62885,13 @@
       "25–39"
     ],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -61774,6 +62903,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -62338,6 +63469,7 @@
     "synopsis": "Para Ellie, de 16 años, ocultar su autismo para encajar es vital. Pero cuando su novio la deja antes de ir al Campamento SMASH de vóley playa, su mundo se derrumba. Desesperada por recuperar su estatus, asiste al campamento sola, pero nada sale como esperaba.\nAllí la emparejan con Sierra, una distante prodigio del deporte. Mientras juegan sobre la arena, Sierra se convierte en una inesperada distracción para los planes de Ellie, enseñándole que tanto en el vóley como en el amor se trata de tomar las decisiones correctas. Entre remates y confidencias, Ellie descubrirá quién es realmente y dónde reside su verdadera felicidad.",
     "pages": 256,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -62363,6 +63495,21 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Florida",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
@@ -62376,6 +63523,8 @@
     "safi_categories": [
       "2026"
     ],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -63724,6 +64873,7 @@
     "synopsis": "Huyó de su boda… y se topó con su siguiente problema.\n\nCuando Ella Franklin descubre que su prometido ya tiene prometida, hace lo que cualquier mujer racional haría: roba una bicicleta y se escapa.\n\nPor desgracia, la libertad trae consigo complicaciones. Principalmente, ser atropellada por un coche y caer de bruces en un montón de nieve.\n\n ¿La conductora? Kristen Mackenzie: guapísima, malhumorada y profundamente indiferente a la existencia de Ella.\n\nCon una ventisca acercándose, Kristen, a regañadientes, le ofrece el rescate menos entusiasta del mundo: una noche en un motel de carretera y luego no tendrán que volver a verse jamás. Así de simple.\n\nPronto Ella se ve envuelta en la caótica vida rural, un círculo social lésbico demasiado entrometido, animales descarriados y una mujer taciturna de la que es demasiado fácil enamorarse.\n\nLo cual es malo,\n\nporque enamorarse de la mujer que la atropelló parece una pésima decisión.\n\nPor desgracia, Ella quiere hacerlo de todos modos.",
     "pages": 328,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -63753,6 +64903,21 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Muerte de un Ser Querido"
@@ -63766,6 +64931,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": true,
@@ -64545,6 +65712,7 @@
     "synopsis": "Año nuevo, mismo desastre.\n\nMis propósitos eran mentira. Poner mi vida en orden. Quizás dejar de humillarme en público.\nEs febrero, y de alguna manera estoy peor que cuando empecé. Perdí mi trabajo, mi novia (no pregunten) y cualquier dignidad que me quedaba. ¿Las mentiras? Siguen presentes. Mentiras inofensivas, en su mayoría, hasta que un viaje en avión de pesadilla, demasiados cócteles y un desconocido atractivo me llevan a compartir demasiada información accidentalmente en algún lugar sobre Ohio.\n\nDe vuelta en casa y desesperada por empezar de cero, mi hermana me convence para que la sustituya en su trabajo en una agencia de publicidad. Parece la oportunidad perfecta para empezar de nuevo… hasta que conozco a mi nueva jefa, Ashley Morgan, que no está nada contenta.\n\nA continuación, encuentros fortuitos, un viaje de trabajo inesperado, pasos de baile lamentables y un enamoramiento del que no puedo librarme con mentiras.\n\nResulta que la aventura no ha terminado, sino que apenas comienza.",
     "pages": 329,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -64570,8 +65738,46 @@
       "25–39"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Fiyi",
+      "Reino Unido"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Illinois",
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Fiyi",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -64583,6 +65789,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -64599,6 +65807,7 @@
     "synopsis": "Hace diecisiete años, Quinn McKinley dejó su pequeño pueblo de Kingsford en busca de una vida mejor. Ahora, convertida en una exitosa agente inmobiliaria en la ciudad de Nueva York, regresa a su pueblo natal por encargo de un cliente, aceptando a regañadientes su vuelta para cerrar el negocio de su vida.\n\nSu regreso le abre puertas que ha intentado mantener cerradas durante todos estos años, concretamente, las relacionadas con sus sentimientos hacia su mejor amigo de la infancia, Sawyer Kent.\n\nSawyer ha pasado toda su vida en Kingsford, trabajando en la tienda de antigüedades de su familia e intentando complacer a todos. El regreso de Quinn es inesperado y trastoca su rutina. Aún le frustra cómo Quinn dejó las cosas entre ellas, y aunque tenga sentimientos encontrados, ahora mismo tiene problemas más importantes de los que preocuparse.",
     "pages": 288,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -64627,6 +65836,23 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": "Kingsford",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -64638,13 +65864,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1782553087790_t5vqg",
@@ -66064,6 +67289,7 @@
     "synopsis": "Yasmine Sokolov ha construido una vida envidiable. Es la vampira más rica del planeta, profesora con financiación casi ilimitada para su investigación y dueña de una mansión frente a Central Park. ¿\n\nLo único que no ha conseguido en mil años? Una novia estable.\n\nTras mudarse a Nueva York para ayudar a Sylvia y Aster a adaptarse a la inesperada paternidad, Yasmine vuelve a usar VampireMatch, donde una docena de citas decepcionantes la convencen de que su destino podría ser pasar otros mil años sola.\n\nHasta que conoce a alguien de quien no puede enamorarse: la deslumbrantemente bella y, a la vez, deslumbrantemente humana barista, Bella Dragomir.\n\nPero a medida que una serie de asesinatos vampíricos se extienden por Nueva York —asesinatos que parecen acercarse cada vez más a la propia Bella— Yasmine empieza a preguntarse si la verdad es más compleja de lo que quiere creer. Sobre todo cuando se trata de Bella.",
     "pages": 385,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -66085,7 +67311,45 @@
       "Slow Burn"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Provincetown",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Allentown",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Secuestro / Cautiverio"
@@ -66099,6 +67363,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -66732,6 +67998,7 @@
     "synopsis": "En New Chicago hay un asesino en serie. O dos.\n\nArya Skovsgaard es muchas cosas, pero una heroína no es una de ellas. Puede que haga cosas heroicas, pero desde que despertó hace diez años sin memoria, difícilmente puede presumir de ello.\n\nTampoco ayuda que, como Remanente, posea poderes extraños que gran parte del mundo no tiene. No está sola, pero los metahumanos no siempre son vistos con buenos ojos en este mundo. Sobre todo porque se les culpa de la Primera y la Segunda Disrupción que ocurrieron hace siglos.\n\nLo peor de todo es que sus poderes de comunión con los muertos son realmente útiles para resolver crímenes, pero para poco más.\n\nCuando una nueva serie de asesinatos resulta ser obra de dos culpables diferentes, se enfrenta de lleno a una verdad mucho más grande que ella misma. Una verdad que, en última instancia, cambiará el mundo tal como lo conoce",
     "pages": 531,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -66759,6 +68026,13 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Violencia Gráfica",
@@ -66775,6 +68049,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -67237,6 +68513,7 @@
     "synopsis": "Cuando el despreciable jefe de Caton le ofrece un puesto como asistente personal de su esposa, ella acepta con reservas, convencida de que Jack Halston tiene segundas intenciones.\n\nSin embargo, tras conocer a Amelia, la esposa de Jack, las verdaderas motivaciones de Caton comienzan a desmoronarse. Tan cruel como hermosa, Amelia amenaza la posición de Caton y su sentido de la decencia.\n\nA medida que la atracción entre ambas mujeres se convierte en un romance apasionado, Caton se ve cada vez más inmersa en el mundo de privilegios y prestigio de Jack y Amelia, donde todo está en juego y nada es lo que parece.",
     "pages": 365,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -67265,6 +68542,23 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Illinois",
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Infidelidad",
@@ -67284,13 +68578,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1784973268185_80fi3",
@@ -67303,6 +68596,7 @@
     "synopsis": "Diana Kelley es una terapeuta sexual de parejas con un problema: su trabajo consiste en convencer a sus clientes de la importancia de la intimidad sexual y emocional, pero tras sobrevivir a una relación tóxica con un ex abusivo, ha renunciado al amor y no puede imaginarse volviendo a ser vulnerable. Cuando su mejor amiga, Ava, se lesiona la noche en que tiene programado ayudarla en un taller práctico de educación sexual, Diana se ve obligada a buscar una sustituta temporal. Lo último que desea es un nuevo amante, ni siquiera uno pagado.\n\nTras un año viviendo en el apartamento de al lado, todo lo que Jude Monaco sabe de su vecina Diana es que es una mujer mayor y guapísima, y ​​la inspiración de más fantasías eróticas de las que está dispuesta a admitir. Así que cuando Diana llama a su puerta con un favor sorprendentemente tentador que pedirle, Jude aprovecha la oportunidad para saber más.\n\nSu relación profesional se supone que es un acuerdo erótico clínico entre una terapeuta sexual y su asistente, pero en la intersección del sexo y la intimidad, todo es posible. Incluso el amor.",
     "pages": 302,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -67335,6 +68629,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
@@ -67346,13 +68649,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1784973648936_ltjx6",
@@ -68167,6 +69469,7 @@
     "synopsis": "Desde que la actriz de primera línea y favorita de Hollywood, Wren Acker, salió del armario, no solo está en la cima del mundo de la actuación, sino que también es el amor platónico número uno para sus fans queer. Ama la vida, ama su trabajo, ama a su gato: todo es fantástico. Excepto por la falta de vida privada.\n\nCuando un accidente automovilístico la lleva a la sala de emergencias, su mundo se derrumba al darse cuenta de que la reservada doctora Taylor, su médica, es Madison Taylor, de un campamento de verano de su infancia. Y vaya si Madison guarda rencor por cómo terminó todo.\n\nCuando Madison termina trabajando en el set de Wren como consultora médica, de repente todos asumen que son pareja. Los medios enloquecen, su base de fans crece aún más y todo se descontrola.\n\nAl final, todo rencor se supera, ¿no?",
     "pages": 416,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -68192,6 +69495,20 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Australia"
     ],
@@ -68208,6 +69525,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -68224,6 +69543,7 @@
     "synopsis": "Cuando una ambiciosa empresaria de Boston se topa con un artista de espíritu libre en la ladera de una montaña de Vermont, comparten una noche memorable —y apasionada—, pero la vida pronto las enfrenta por el destino de un negocio familiar.\n\nEmily Janssen prefiere ir a lo seguro. A sus treinta y cinco años, sigue trabajando en la posada de su abuela mientras sueña con el día en que pueda vivir completamente de su arte. Y aunque todas sus amigas han subido a la cima de la montaña en su pueblo natal de Crescent Falls, Vermont, algo siempre ha frenado a Emily.\n\nDiana Devlin ya ha llegado a la cima. Bueno, casi. Está a punto de conseguir el ascenso que la pondrá en la línea para suceder a su padre como directora ejecutiva de la cadena hotelera familiar cuando se jubile. Todo va según lo planeado hasta que un encuentro inesperado con un artista seductor en la montaña desvía a Diana de su camino, dando como resultado una de las noches más apasionadas que ella o Emily hayan vivido jamás.\n\nTras su encuentro, Emily se siente inspirada para canalizar la confianza de Diana y finalmente perseguir sus sueños. Para Diana, es un recordatorio de que, con la mujer adecuada, es capaz de desear algo más que una noche.\n\nPero su creciente pasión amenaza con consumirlas a ambas cuando descubren que el hotel que Diana ha venido a comprar no es otro que la querida posada de la abuela de Emily. Es el hogar de Emily, y ningún forastero de la gran ciudad —ni siquiera Diana— se lo arrebatará.\n\n¿Valdrá la pena el esfuerzo para alcanzar la cima, o les espera una caída aún mayor?",
     "pages": 386,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -68255,6 +69575,27 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Vermont",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -68272,6 +69613,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -68288,6 +69631,7 @@
     "synopsis": "Avery Dimaano es buena en casi todo. No, es mejor. Tiene amigos increíbles, una familia solo un poco más disfuncional que otras y una forma afable de desenvolverse por el mundo que la convierte en la persona ideal para el puesto de Recursos Humanos en Gia, San Francisco. Solo hay un problema: no tiene con quién pasar los fines de semana.\n\nLa influencer de viajes Ky Logan no se rige por las reglas de nadie. Su vida de viajar por el mundo en avión es la envidia de dos millones de seguidores, aunque su familia no lo apruebe del todo. Es una existencia sencilla y aventurera sin tener que rendir cuentas a nadie más que a sí misma.\n\nSeis meses después de su viaje a Sídney, Ky todavía no puede dejar de pensar en la mujer que se sentó a su lado en el avión. Avery. La hermosa, inteligente y heterosexual Avery. Cuando una fuga en el apartamento de Avery las obliga a compartir cama durante dos semanas, los límites inevitablemente se desdibujan, especialmente después del beso que compartieron en el Aeropuerto Internacional de San Francisco.\n\nQuizás Ky sea la persona que Avery ha estado esperando, aunque nunca se haya planteado estar con una mujer. Pero, ¿será que el tiempo que Ky pasa con Avery es solo una escapada más?",
     "pages": 316,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
@@ -68318,6 +69662,27 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Hawái",
+        "ciudad": "Maui",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
@@ -68330,6 +69695,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -68346,6 +69713,7 @@
     "synopsis": "Salir del armario es más fácil cuando tienes a alguien a tu lado. Al menos así lo ve la extremadamente reservada Quinn Kincaid. Cuando su publicista le sugiere una buena y vieja farsa de relación al estilo de Hollywood, Quinn acepta a regañadientes. Y así es como la estrella de Jordan's Appeal, el drama legal más visto de la televisión, termina con una novia falsa: la muy real, muy sexy y muy lesbiana estrella de telenovelas, Lacey Matthews.\n\nLas dos chocan de inmediato, y a menudo de forma hilarante, mientras intentan fingir un romance incipiente. Y, por supuesto, las cosas nunca son tan simples como parecen. Un accidente inesperado, algunos cuidados a regañadientes y la oportunidad de trabajar juntas en Jordan's Appeal acercan a Quinn y Lacey, para bien o para mal.",
     "pages": 376,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [],
     "subgenres": [],
@@ -68374,6 +69742,27 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Angeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
@@ -68388,6 +69777,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -70955,6 +72346,7 @@
     "synopsis": "Fiestas salvajes, juegos crueles y un romance inesperado de proporciones sáficas.\n\nNicole sabe que entrar en la hermandad más exclusiva del campus significa que todas sus límites se verán llevados al extremo, que será degradada y humillada a diario, y que tendrá que soportar todo este sufrimiento en silencio porque, técnicamente, las novatadas no están permitidas.\n\nLo que no espera es enamorarse de su «hermana mayor» de la hermandad, Christina, una preciosa rubia explosiva a la que le encanta jugar con ella un poco más de la cuenta.\n\nChristina es una estrella del fútbol con una sonrisa arrolladora y un misterioso secreto. Nicole se convierte en la novata asignada a Christina, comparte habitación con ella y pasa cada minuto del día a su lado. La línea entre novata y miembro se difumina hasta que se ven obligadas a admitir la atracción que sienten la una por la otra.\n\nCuando el proceso de iniciación pasa de ser unos humillantes juegos mentales a convertirse en chantaje y, finalmente, en una polémica sin precedentes en el campus, Nicole y Christina deben decidir a quién deben su lealtad.",
     "pages": 181,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -70989,6 +72381,22 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Colorado",
+        "ciudad": "Lumina Valley",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -71008,6 +72416,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -71266,8 +72676,68 @@
       "New Adult (18–24)"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Italia",
+      "Francia",
+      "Australia",
+      "Singapur"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "Nueva Orleans",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": "Lombardía",
+        "ciudad": "Milán",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Roma",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Sydney",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Singapur",
+        "region": null,
+        "ciudad": "Singapur",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
@@ -71284,6 +72754,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -71788,8 +73260,37 @@
       "27"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Suiza"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Florida",
+        "ciudad": "Miami",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Illinois",
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Suiza",
+        "region": "Grisones",
+        "ciudad": "St. Moritz",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
@@ -71802,6 +73303,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -71859,6 +73362,27 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "Nueva Orleans",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nevada",
+        "ciudad": "Las Vegas",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
@@ -71871,6 +73395,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -71924,6 +73450,14 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
@@ -71946,6 +73480,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -71995,6 +73531,14 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
@@ -72007,6 +73551,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
