@@ -1808,6 +1808,34 @@ button.an-mopen{cursor:pointer}
   .shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.28),1px 0 3px -1px rgba(0,0,0,.45)}
   .shelf-board{height:5px}
 }
+/* FASE E15.3.3 — Estantería física, submodo Lomos (shelfStyle=spines). Mismo contenedor, balda, contrato y delegación de eventos que Portadas (.shelf-slot);
+   solo cambia el interior del libro. Altura = la de la portada equivalente (--shelf-bw × --h × 1.5); anchura propia (--sp-w × --ww). Sin canvas: el color llega de b.spine_color. */
+.shelf-style-toggle{display:inline-flex;gap:2px;margin:-.5rem 0 1rem;padding:3px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px}
+.shelf-style-toggle[hidden]{display:none}
+.shelf-style-btn{height:28px;padding:0 12px;border:none;background:transparent;border-radius:6px;cursor:pointer;color:var(--muted);font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .15s,background .15s}
+.shelf-style-btn:hover{color:var(--text)}
+.shelf-style-btn.active{background:var(--surface);color:var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.shelf-style-btn:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.shelf-slot.shelf-spine{--sp-bg:#4a3b34;--sp-fg:#f2eadf;--sp-band:color-mix(in srgb,var(--sp-bg) 58%,#000);
+  width:calc(var(--sp-w,30)*var(--ww,1)*1px);height:calc(var(--shelf-bw)*var(--h,1)*1.5px);aspect-ratio:auto;container-type:inline-size;
+  background-color:var(--sp-bg);color:var(--sp-fg);
+  background-image:linear-gradient(to bottom,var(--sp-band) 0 3px,rgba(255,255,255,.1) 3px 4px,transparent 4px),linear-gradient(to top,var(--sp-band) 0 3px,rgba(255,255,255,.1) 3px 4px,transparent 4px);
+  background-size:100% 5px,100% 5px;background-position:top,bottom;background-repeat:no-repeat}
+.shelf-slot.shelf-spine::after{background:linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 14%,rgba(0,0,0,0) 40%,rgba(0,0,0,.1) 78%,rgba(0,0,0,.26))}
+.shelf-slot.shelf-spine img{opacity:.2;object-position:50% 35%} /* textura sutil: imagen real mostrada, sin leer píxeles (no depende de CORS) */
+.shelf-spine-txt{position:absolute;left:0;right:0;top:8px;bottom:8px;display:flex;justify-content:center;align-items:stretch;overflow:hidden;pointer-events:none}
+.shelf-spine-cols{writing-mode:vertical-rl;min-width:0;max-width:100%;overflow:hidden;display:block;gap:0}
+.shelf-spine-t,.shelf-spine-a{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-body);line-height:1.15}
+.shelf-spine-t{font-size:10px;font-size:clamp(9px,32cqw,12px);font-weight:600;letter-spacing:.01em}
+.shelf-spine-a{display:none;font-size:8.5px;font-size:clamp(8px,25cqw,9.5px);font-weight:500;opacity:.78;margin-right:1.5px}
+@container (min-width:28px){.shelf-spine-a{display:block}}
+.shelf-slot.shelf-spine.sp-light .shelf-spine-cols{text-shadow:0 1px 1px rgba(0,0,0,.3)}
+@media (max-width:639px){
+  .shelf-slot.shelf-spine{background-size:100% 4px,100% 4px}
+  .shelf-spine-txt{top:6px;bottom:6px}
+  .shelf-style-btn{min-height:44px;height:44px;padding:0 16px}
+}
+@media (pointer:coarse){.shelf-style-btn{min-height:44px;height:44px}}
 
 /* ══════════════════════════════════════════════════════════════
    FIX MÓVIL — ventanas que no se cortan + proporciones uniformes
@@ -4467,6 +4495,10 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
         </select>
         <button class="shelf-clear-btn" onclick="shelfClearFilters()">✕ Limpiar</button>
       </div>
+      <div class="shelf-style-toggle" id="shelfStyleToggle" role="group" aria-label="Estilo de estantería" hidden>
+        <button type="button" class="shelf-style-btn active" id="shelfStyleCovers" aria-pressed="true" onclick="setShelfStyle('covers')">Portadas</button>
+        <button type="button" class="shelf-style-btn" id="shelfStyleSpines" aria-pressed="false" onclick="setShelfStyle('spines')">Lomos</button>
+      </div>
       <div id="shelfBooksContainer"></div>
       <div id="shelfCalendarContainer" style="display:none"></div>
     </div>
@@ -4749,6 +4781,7 @@ let myReadingReadAt={}; // bookId -> fecha ISO de la lectura MÁS RECIENTE (deri
 let myReadingLog={}; // bookId -> [{id, started_at, read_at, started_precision, read_precision}, ...] historial completo de lecturas, ordenado ascendente. read_at null = lectura en curso. *_precision: NULL en filas históricas (=fecha completa), 'year'|'month'|'day' en filas nuevas (Fase 2.6.5A)
 let shelfFilter='all'; // 'all' | 'want' | 'reading' | 'read' | 'calendar'
 let shelfViewMode='grid'; // 'grid' | 'list'
+let shelfStyleMode='covers'; // FASE E15.3.3: 'covers' | 'spines' (solo se usa con shelfViewMode==='shelf')
 let shelfSearch='';
 let shelfGenreFilter='';
 let shelfSort='recent';
@@ -4757,6 +4790,7 @@ const SHELF_PAGE_SIZE=18;
 // FASE E4.2 — listas válidas únicas para Mi estantería (las usan init(), popstate y la restauración desde la URL)
 const SHELF_FILTERS=['all','want','reading','read','dnf','calendar'];
 const SHELF_VIEWS=['grid','list','shelf'];
+const SHELF_STYLES=['covers','spines']; // FASE E15.3.3: submodo de la estantería física
 const SHELF_SORTS=['recent','recentReading','az','za','author','year_desc','year_asc'];
 let calYear=new Date().getFullYear();
 let calMonth=new Date().getMonth(); // 0-11
@@ -4900,6 +4934,7 @@ function shelfUrlSync(filter,addEntry){
     // (el calendario no usa estos controles, así que ahí solo va myshelf)
     const put=(k,v,def)=>{ if(filter!=='calendar'&&v&&v!==def) params.set(k,v); else params.delete(k); };
     put('shelfView',shelfViewMode,'grid');
+    put('shelfStyle',shelfViewMode==='shelf'?shelfStyleMode:'','covers'); // FASE E15.3.3: solo con la estantería física; 'covers' (defecto) no se escribe
     put('shelfSearch',shelfSearch,'');
     put('shelfGenre',shelfGenreFilter,'');
     put('shelfSort',shelfSort,filter==='read'?'recentReading':'recent');
@@ -4913,7 +4948,7 @@ function shelfUrlClear(addEntry){
   try{
     const params=new URLSearchParams(location.search);
     params.delete('myshelf');
-    ['shelfView','shelfSearch','shelfGenre','shelfSort','shelfPage'].forEach(k=>params.delete(k)); // FASE E4.2
+    ['shelfView','shelfStyle','shelfSearch','shelfGenre','shelfSort','shelfPage'].forEach(k=>params.delete(k)); // FASE E4.2 (+E15.3.3 shelfStyle)
     const url=params.toString()?'?'+params.toString():location.pathname;
     if(addEntry) history.pushState(null,'',url);
     else history.replaceState(null,'',url);
@@ -4926,6 +4961,7 @@ function shelfRestoreFromUrl(params,normalize){
   const filter=params.get('myshelf');
   const v=params.get('shelfView');
   shelfViewMode=SHELF_VIEWS.includes(v)?v:'grid';
+  const _st=params.get('shelfStyle'); shelfStyleMode=(shelfViewMode==='shelf'&&SHELF_STYLES.includes(_st))?_st:'covers'; // FASE E15.3.3 (ausente/inválido/fuera de Estantería → covers)
   document.getElementById('shelfBtnGrid')?.classList.toggle('active',shelfViewMode==='grid');
   document.getElementById('shelfBtnList')?.classList.toggle('active',shelfViewMode==='list');
   document.getElementById('shelfBtnShelf')?.classList.toggle('active',shelfViewMode==='shelf'); // FASE E5.2
@@ -10121,6 +10157,7 @@ function switchShelf(filter,silent){
 
 function _shelfRenderCurrent(){
   const isCal=shelfFilter==='calendar';
+  _shelfSyncStyleUI(); // FASE E15.3.3
   document.getElementById('shelfToolbar').style.display=isCal?'none':'';
   document.querySelector('.shelf-view-toggle').style.display=isCal?'none':'';
   document.getElementById('shelfBooksContainer').style.display=isCal?'none':'';
@@ -10164,8 +10201,27 @@ function setShelfView(mode){
   document.getElementById('shelfBtnGrid').classList.toggle('active',mode==='grid');
   document.getElementById('shelfBtnList').classList.toggle('active',mode==='list');
   document.getElementById('shelfBtnShelf').classList.toggle('active',mode==='shelf'); // FASE E5.2
+  _shelfSyncStyleUI(); // FASE E15.3.3
   _renderShelfBooks();
   shelfUrlSync(shelfFilter,false); // FASE E4.2
+}
+
+// FASE E15.3.3 — selector secundario PORTADAS | LOMOS: visible solo con la vista física Estantería (y no en el calendario). Solo cambia el submodo.
+function _shelfSyncStyleUI(){
+  const wrap=document.getElementById('shelfStyleToggle'); if(!wrap) return;
+  wrap.hidden=!(shelfViewMode==='shelf'&&shelfFilter!=='calendar');
+  const sp=shelfStyleMode==='spines';
+  [['shelfStyleCovers',!sp],['shelfStyleSpines',sp]].forEach(([id,on])=>{
+    const el=document.getElementById(id); if(!el) return;
+    el.classList.toggle('active',on); el.setAttribute('aria-pressed',on?'true':'false');
+  });
+}
+function setShelfStyle(style){
+  if(!SHELF_STYLES.includes(style)||style===shelfStyleMode) return;
+  shelfStyleMode=style;
+  _shelfSyncStyleUI();
+  _renderShelfBooks();
+  shelfUrlSync(shelfFilter,false); // replaceState: cambiar de submodo no crea entrada de historial
 }
 
 function shelfBaseBooks(){
@@ -10446,8 +10502,10 @@ function _shelfPlaceholderHTML(title,auth){
 let _shelfLastN=0;
 function _shelfApplyMetrics(el,m){
   el.style.setProperty('--shelf-bw',m.bw); el.style.setProperty('--shelf-gap',m.gap+'px'); el.style.setProperty('--shelf-pad',m.pad+'px');
+  if(m.sw!==undefined) el.style.setProperty('--sp-w',m.sw); // FASE E15.3.3: solo métricas de Lomos
 }
 function _shelfRenderShelf(pageBooks){
+  if(shelfStyleMode==='spines') return _shelfRenderSpines(pageBooks); // FASE E15.3.3: Portadas (abajo) queda intacto
   const m=_shelfMetrics(_shelfContainerWidth());
   _shelfLastN=m.n;
   const rows=_shelfSplitRows(pageBooks,m.n).map(row=>{
@@ -10466,10 +10524,62 @@ function _shelfRenderShelf(pageBooks){
 // E15.2 — Imagen rota → mismo placeholder (error no burbujea: captura en el contenedor persistente). Mismos datos reales del slot.
 function _shelfImgFallback(img){
   const slot=img&&img.closest?img.closest('.shelf-slot'):null;
+  if(slot&&slot.classList.contains('shelf-spine')){ img.remove(); return; } // FASE E15.3.3: Lomos → solo color (la textura es opcional)
   if(!slot||slot.querySelector('.shelf-book-ph')) return;
   slot.insertAdjacentHTML('beforeend',_shelfPlaceholderHTML(slot.dataset.title||'',slot.dataset.author||''));
   img.remove();
 }
+// FASE E15.3.3 — Lomos. Altura: la MISMA bw que calcula Portadas para ese ancho (Portadas→Lomos→Portadas no mueve las baldas verticalmente);
+// la anchura y el gap son propios. n se calcula con el lomo más ancho posible, así que ninguna fila puede desbordar.
+const _SHELF_SPINE_WF=[0.9,1,1.12], _SHELF_SPINE_WMAX=1.12;
+function _shelfSpineMetrics(cw){
+  const cm=_shelfMetrics(cw);
+  const t=Math.min(1,Math.max(0,(cw-280)/720));
+  const base=23+11*t, gap=2+t, pad=5+4*t;
+  const W=Math.max(1,cw-2*pad);
+  const n=Math.max(1,Math.floor((W+gap)/(base*_SHELF_SPINE_WMAX+gap)));
+  const sw=Math.min((W-(n-1)*gap)/(n*_SHELF_SPINE_WMAX),base,40);
+  const r2=v=>Math.round(v*100)/100;
+  return {n,bw:cm.bw,gap:r2(gap),pad:r2(pad),sw:r2(sw)};
+}
+function _shelfActiveMetrics(cw){ return shelfStyleMode==='spines'?_shelfSpineMetrics(cw):_shelfMetrics(cw); }
+// Variación determinista de anchura (hash propio, distinto del de la altura): mismo valor en cada render.
+function _shelfSpineWidthF(id){
+  const s='w|'+String(id); let h=374761393;
+  for(let i=0;i<s.length;i++) h=Math.imul(h^s.charCodeAt(i),2654435761);
+  h^=h>>>16; h=Math.imul(h,2246822507); h^=h>>>13;
+  return _SHELF_SPINE_WF[(h>>>0)%3];
+}
+// Color del lomo: campo dedicado b.spine_color ('#rrggbb', precalculado fuera del navegador). Si falta o no es válido → _shelfPhColor(id).
+function _shelfSpineColor(b){
+  const c=typeof b.spine_color==='string'?b.spine_color.trim():'';
+  return /^#[0-9a-fA-F]{6}$/.test(c)?c.toLowerCase():_shelfPhColor(b.id);
+}
+// Texto claro u oscuro por contraste WCAG (solo aritmética sobre el hex; no se leen píxeles).
+function _shelfSpineFg(hex){
+  const n=parseInt(hex.slice(1),16);
+  const f=v=>{v/=255; return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);};
+  const L=.2126*f(n>>16&255)+.7152*f(n>>8&255)+.0722*f(n&255);
+  return L>.18?'#1f1815':'#f2eadf';
+}
+function _shelfRenderSpines(pageBooks){
+  const m=_shelfSpineMetrics(_shelfContainerWidth());
+  _shelfLastN=m.n;
+  const rows=_shelfSplitRows(pageBooks,m.n).map(row=>{
+    const slots=row.map(b=>{
+      const auth=(b.authors||[]).join(', ');
+      const bg=_shelfSpineColor(b), fg=_shelfSpineFg(bg);
+      const tex=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async">`:'';
+      const cols=(b.title?`<span class="shelf-spine-t">${escHtml(b.title)}</span>`:'')+(auth?`<span class="shelf-spine-a">${escHtml(auth)}</span>`:'');
+      const txt=cols?`<div class="shelf-spine-txt" aria-hidden="true"><div class="shelf-spine-cols">${cols}</div></div>`:'';
+      const label=auth?`${b.title} — ${auth}`:String(b.title); // mismo aria-label que Portadas
+      return `<div class="shelf-slot shelf-spine${fg==='#f2eadf'?' sp-light':''}" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}" style="--h:${_shelfBookScale(b.id)};--ww:${_shelfSpineWidthF(b.id)};--sp-bg:${bg};--sp-fg:${fg}">${tex}${txt}</div>`;
+    }).join('');
+    return `<div class="shelf-row"><div class="shelf-books-area">${slots}</div><div class="shelf-board"></div></div>`;
+  }).join('');
+  return `<div class="shelf-physical" style="--shelf-bw:${m.bw};--shelf-gap:${m.gap}px;--shelf-pad:${m.pad}px;--sp-w:${m.sw}">${rows}</div>`;
+}
+
 // E15.2 — los libros por balda dependen del ancho real del contenedor: si cambia n se repinta; si solo cambia el tamaño, se actualizan las variables CSS.
 (function(){
   const c=document.getElementById('shelfBooksContainer'); if(!c) return;
@@ -10480,7 +10590,7 @@ function _shelfImgFallback(img){
     if(shelfViewMode!=='shelf'||shelfFilter==='calendar') return;
     const view=document.getElementById('shelfView'); if(!view||!view.classList.contains('active')) return;
     const phys=c.querySelector('.shelf-physical'); if(!phys) return;
-    const m=_shelfMetrics(_shelfContainerWidth());
+    const m=_shelfActiveMetrics(_shelfContainerWidth()); // FASE E15.3.3: métricas del submodo activo
     if(m.n!==_shelfLastN){
       if(burst>=4) return; // freno anti-oscilación (p. ej. aparición de la barra de scroll al cambiar la altura)
       burst++; clearTimeout(timer); timer=setTimeout(()=>{burst=0;},500);
