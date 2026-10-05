@@ -6453,6 +6453,7 @@ function openBookPage(id, pushState=true){
   const _fromShelf=!!document.getElementById('shelfView')?.classList.contains('active');
   const _fromView=_fromShelf?null:_pvActiveKey(); // FASE E4.5
   if(_fromShelf){
+    try{ history.scrollRestoration='manual'; }catch(e){}
     const sc=Math.round(window.scrollY);
     if(pushState){
       _bpOrigin={type:'shelf',scrollY:sc};
@@ -6487,6 +6488,7 @@ function openBookPage(id, pushState=true){
   if(pushState) history.pushState((_bpOrigin&&_bpOrigin.type==='shelf')?{bookId:id,bpFrom:'shelf',bpDepth:_bpDepth}
     :(_bpOrigin&&_bpOrigin.type==='view')?{bookId:id,bpFrom:'view',bpView:_bpOrigin.view,bpDepth:_bpDepth} // FASE E4.5
     :{bookId:id},'',`#libro/${id}`);
+  if(_fromShelf){ try{ history.scrollRestoration='auto'; }catch(e){} }
 }
 // FASE E4.5 — D1: texto del botón de retorno según el origen real (solo shelf y view tienen origen propio; el resto sigue siendo el catálogo)
 function _bpBackLabel(){

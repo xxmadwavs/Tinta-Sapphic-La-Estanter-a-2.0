@@ -967,6 +967,32 @@
       "x": 495.3,
       "y": 88.1,
       "aliases": []
+    },
+    {
+      "id": "ca-columbia-britanica",
+      "nombre": "Columbia Británica",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "tipo": "provincia",
+      "lat": 53.7,
+      "lon": -127.6,
+      "x": 192.8,
+      "y": 80.6,
+      "aliases": [
+        "British Columbia"
+      ]
+    },
+    {
+      "id": "us-oklahoma",
+      "nombre": "Oklahoma",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 35.5,
+      "lon": -97.5,
+      "x": 242.4,
+      "y": 138.9,
+      "aliases": []
     }
   ],
   "pendientes_verificacion": [

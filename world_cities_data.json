@@ -2651,6 +2651,130 @@
       "aliases": [],
       "aprox": true,
       "nota": "Ubicación aproximada (centro de EE. UU.): sin región en el libro, no se ha localizado el punto exacto"
+    },
+    {
+      "id": "ca-beaumont",
+      "ciudad": "Beaumont",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "region": "Ontario",
+      "lat": 49.0,
+      "lon": -83.0,
+      "x": 294.3,
+      "y": 95.3,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro de Ontario): no se ha localizado el punto exacto"
+    },
+    {
+      "id": "ca-londres",
+      "ciudad": "Londres",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "region": "Ontario",
+      "lat": 42.985,
+      "lon": -81.246,
+      "x": 292.1,
+      "y": 114.6,
+      "aliases": [
+        "London"
+      ],
+      "nota": "Londres de Ontario"
+    },
+    {
+      "id": "ca-vancouver",
+      "ciudad": "Vancouver",
+      "pais": "Canadá",
+      "pais_iso": "CA",
+      "region": "Columbia Británica",
+      "lat": 49.283,
+      "lon": -123.121,
+      "x": 195.4,
+      "y": 94.4,
+      "aliases": []
+    },
+    {
+      "id": "us-detroit",
+      "ciudad": "Detroit",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Michigan",
+      "lat": 42.331,
+      "lon": -83.046,
+      "x": 286.8,
+      "y": 116.7,
+      "aliases": []
+    },
+    {
+      "id": "us-ensfield",
+      "ciudad": "Ensfield",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 47.4,
+      "lon": -120.5,
+      "x": 198.6,
+      "y": 100.4,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro del estado de Washington): no se ha localizado el punto exacto"
+    },
+    {
+      "id": "us-stramford",
+      "ciudad": "Stramford",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oklahoma",
+      "lat": 35.5,
+      "lon": -97.5,
+      "x": 242.4,
+      "y": 138.9,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro de Oklahoma): no se ha localizado el punto exacto"
+    },
+    {
+      "id": "us-whistle-stop",
+      "ciudad": "Whistle Stop",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Alabama",
+      "lat": 32.8,
+      "lon": -86.8,
+      "x": 268.4,
+      "y": 147.8,
+      "aliases": [],
+      "aprox": true,
+      "nota": "Ubicación aproximada (centro de Alabama): no se ha localizado el punto exacto"
+    },
+    {
+      "id": "nl-la-haya",
+      "ciudad": "La Haya",
+      "pais": "Países Bajos",
+      "pais_iso": "NL",
+      "region": "Holanda Meridional",
+      "lat": 52.078,
+      "lon": 4.313,
+      "x": 510.4,
+      "y": 85.6,
+      "aliases": [
+        "Den Haag",
+        "The Hague"
+      ]
+    },
+    {
+      "id": "ru-sochi",
+      "ciudad": "Sochi",
+      "pais": "Rusia",
+      "pais_iso": "RU",
+      "region": "Krasnodar",
+      "lat": 43.585,
+      "lon": 39.72,
+      "x": 601.2,
+      "y": 112.6,
+      "aliases": [
+        "Sotchi"
+      ]
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
