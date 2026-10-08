@@ -23518,6 +23518,8 @@
     "synopsis": "Cameron Miller odia los cambios. Su ansiedad le hace temer lo peor, y descubrir que su casi rollo de una noche es su nueva jefa no ayuda en nada.\n\nViolet Wolfe, en pleno divorcio, no quiere saber nada del amor. Pero cuando la mujer con la que se lió en el baño de un bar aparece como su nueva compañera, se da cuenta de que ha roto su regla principal: nada de romances en el trabajo.\n\nAmbas intentan convencerse de que solo es atracción física, pero cuanto más se acercan, más difícil resulta ignorar que quizás hay algo más entre ellas.",
     "pages": 368,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Comedia Romántica",
       "Romance"
@@ -23545,7 +23547,30 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": "Greenrock Valley",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": "Clarkston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
     "formato": null,
     "adaptacion": null,
@@ -23555,6 +23580,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -25223,6 +25250,8 @@
     "synopsis": "Ganar la lotería arruina la vida de Opal Devlin, que se ve agobiada por quien pide dinero. Para protegerse, compra una granja en decadencia en Asheville y planea aislarse pintando.\n\nPero su plan se complica cuando Pepper Smith, la legítima propietaria, aparece dispuesta a quedarse. Entre peleas y atracción, ambas deberán decidir si pueden hacer realidad sus sueños juntas o si acabarán destruyéndolo todo.",
     "pages": 400,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -25249,7 +25278,32 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Carolina del Norte",
+        "ciudad": "Asheville",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Carolina del Norte",
+        "ciudad": "Charlotte",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": null,
     "adaptacion": null,
@@ -25259,13 +25313,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778498108681_f0n1v",
@@ -25339,6 +25392,8 @@
     "synopsis": "Grace Tang, una universitaria novata, nunca quiso reescribir las reglas del amor. Llegó a la universidad para dejar atrás un último año de instituto marcado por el dolor y empezar de nuevo. Así que sigue una rutina predecible: Asistir a clase, estudiar, volver a casa y visitar a su padre todos los fines de semana. \n\nEntonces, Grace idea un algoritmo para su clase de estadística que empareja a los estudiantes con sus parejas románticas perfectas. Aunque algunas personas se muestran escépticas, como Julia, la irritable compañera de trabajo de Grace, ésta confía en que su programa eliminará todo el drama de las relaciones. Por eso sigue intentando que las cosas funcionen con su pareja, un chico llamado Jamie. Pero a medida que avanza el semestre y se acerca más a Julia, Grace empieza a cuestionarse por quién se siente realmente atraída.",
     "pages": 400,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Juvenil",
       "Romance"
@@ -25348,7 +25403,25 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Vermont",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -25358,6 +25431,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -25374,6 +25449,8 @@
     "synopsis": "Nazeli \"Ellie\" Gregorian, de 27 años, está cansada de su trabajo en marketing tecnológico y de su ex novio con quien trabaja. Cuando sus padres le piden ir a PakCon en Chicago para promocionar su empresa familiar de alimentos, busca un respiro.\n\nAllí conoce a Vanya Simonian, una mujer ingeniosa con quien conecta al instante por su herencia armenia y su vínculo con la comida. Pero la sorpresa llega cuando sus padres reconocen a Vanya como hija de su mayor rival, dedicada a vender comida armenia para el público americano.",
     "pages": 304,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Comedia Romántica",
       "Romance"
@@ -25385,7 +25462,34 @@
     "tropes": [
       "Enemies to Lovers"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -25395,13 +25499,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778498234854_apuxu",
@@ -26754,6 +26857,8 @@
     "synopsis": "Lynda Fan, de dieciséis años, tiene las habilidades y el empuje para entrar en la Escuela de Diseño de Rhode Island, pero no el dinero. Sus padres están demasiado ocupados pagando las clases de violín de su hermanastra como para ayudar a Lynda a entrar en la escuela de arte.\n\nAsí que cuando su rica y arrogante compañera de clase, Angela Wu, le ofrece contratar a Lynda como diseñadora de personajes para un juego otome -un videojuego basado en una historia de amor-, ella aprovecha la oportunidad.\n\nLynda no es precisamente una romántica, pero en la persecución de sus sueños descubre cosas que no sabía sobre sí misma, al tiempo que encuentra el amor con cada corazón que dibuja.",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Juvenil",
       "Romance"
@@ -26765,7 +26870,25 @@
       "Rich × Poor"
     ],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Virginia",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -26775,6 +26898,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -26791,6 +26916,8 @@
     "synopsis": "Skyler Ruiz consigue el trabajo de sus sueños como reportera en San Diego, donde trabajará junto a su ídolo de siempre, la famosa presentadora Caroline McNamara. Pero la realidad no es como imaginaba: Caroline resulta ser fría y distante. Sin embargo, cuando deja ver su lado más humano, Skyler se siente cada vez más atraída. Justo entonces, la cadena las enfrenta, y Skyler deberá elegir entre su carrera y lo que empieza a sentir, preguntándose si el amor es solo otra noticia falsa.",
     "pages": 242,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -26802,7 +26929,27 @@
       "Enemies to Lovers",
       "Age Gap"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "San Diego",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -26812,13 +26959,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778571729614_na4gj",
@@ -26831,6 +26977,8 @@
     "synopsis": "Phoenix “Phee” Preston, la única mujer bombero de Tucker, fue criada por su abuelo, a quien admiraba profundamente. Tras su muerte, dejó el pueblo, pero al regresar un año después, conoció fugazmente a una mujer que la cautivó con su belleza… y un pastel de fresa.\n\nEsa mujer, Angel Savoie, vuelve tiempo después para hacerse cargo de la panadería de su abuela. Aunque los pueblos pequeños le traen malos recuerdos, Tucker y una encantadora bombera empiezan a cambiar su perspectiva.",
     "pages": 258,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -26839,7 +26987,39 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "Tucker",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "New South",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Florida",
+        "ciudad": "Miami",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
     "formato": null,
     "adaptacion": null,
@@ -26849,6 +27029,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -26865,6 +27047,8 @@
     "synopsis": "Solo necesitaba un trabajo. Conseguí una jefa imposible, un huracán… y un beso que no puedo olvidar.\n\nQuería ser escritora, pero terminé como asistente de Margot Montgomery, una leyenda literaria tan brillante como insoportable. Mi misión: mantener su vida en orden y no involucrarme.\n\nSpoiler: fracaso rotundamente.\n\nEntre el caos, su vulnerabilidad y una tormenta encerradas en un motel, empiezo a verla de verdad. Enamorarse de Margot es arriesgado. Convencerla de que podríamos escribir una historia juntas… quizás imposible.\n\nPero las historias imposibles son las mejores.",
     "pages": 207,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -26877,7 +27061,39 @@
     "tropes": [
       "Rich / Poor Romance"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Richmond",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Miami",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "San Marcos",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -26887,6 +27103,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -26904,6 +27122,8 @@
     "synopsis": "Bennet, una bibliotecaria amante de Jane Austen, viaja sola a Bath tras una ruptura inesperada. Allí conoce a Alice, camarera y escritora que odia a Austen. Lo que empieza como un intercambio de libros se convierte en una conexión inesperada.\n\nEntre lecturas, amistad y segundas oportunidades, tal vez descubran que su propia historia también merece un final feliz.",
     "pages": 400,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -26914,7 +27134,55 @@
     "tropes": [
       "Friends to Lovers"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Salem",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Inglaterra",
+        "region": null,
+        "ciudad": "Bath",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Rockport",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -26924,13 +27192,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778571847462_utusl",
@@ -26943,6 +27210,8 @@
     "synopsis": "Hannah Pascoe, joven e independiente, tiene una cita prometedora con la guapa Carrie… hasta que una bomba cambia su vida para siempre. Al despertar en el hospital, descubre que ha perdido la vista.\n\nMientras lucha por adaptarse, conoce a Erica, una voluntaria que le ofrece apoyo y esperanza. Con su ayuda, Hannah empieza a reconstruirse en un centro de rehabilitación. Pero cuanto más cerca están, más difícil resulta ignorar lo que empieza a sentir: se está enamorando.",
     "pages": 230,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -26951,7 +27220,25 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -26961,6 +27248,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -28896,6 +29185,8 @@
     "synopsis": "Logan y Rosemary fueron amigas inseparables hasta que un suceso las distanció antes del instituto. Diez años después, siguen atrapadas en su pequeño pueblo, trabajando como profesoras y evitando enfrentarse a su pasado.\n\nCuando su antiguo profesor les revela que está enfermo, acceden a acompañarlo en un último viaje por carretera. Obligadas a convivir, los recuerdos resurgen, los roces también… y quizás una segunda oportunidad.",
     "pages": 368,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -28906,7 +29197,99 @@
     "tropes": [
       "Second Chance Romance"
     ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Idaho",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Utah",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Arizona",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Colorado",
+        "ciudad": "Mesa Verde",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Colorado",
+        "ciudad": "Cortez",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nuevo México",
+        "ciudad": "Santa Fe",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nuevo México",
+        "ciudad": "Albuquerque",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Texas",
+        "ciudad": "Dallas",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "Shreveport",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Mississippi",
+        "ciudad": "Ocean Springs",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Viaje"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
     "formato": null,
     "adaptacion": null,
@@ -28916,13 +29299,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778922429992_d6z9y",
@@ -75067,6 +75449,7 @@
     "synopsis": "Un romance prohibido y adictivo entre una princesa falsa y su guardaespaldas…\n\nTras perderlo todo hace diez años, Sir Galeon ha dedicado su vida a servir a su reino como caballero. Cuando el príncipe le confía la protección de su futura esposa en su matrimonio concertado, Galeon no espera que la enigmática princesa le robe el corazón.\n\nDella guarda más de un secreto mortal. No solo se hace pasar por la princesa Cordelia, sino que también es una bruja en un mundo donde la magia es tan peligrosa como ilegal. Su habilidad para manipular la muerte es la razón por la que está aquí, y su única salida. Lo último que desea es un caballero demasiado leal que la siga a todas partes.\nDella sabe que Galeon jamás podrá descubrir sus secretos. Y Galeon sabe que la prometida del príncipe es intocable.\n\nA medida que la reticencia inicial se transforma en una confianza vacilante, la atracción inicial se convierte en un deseo ardiente. Lo que debería haber sido sencillo se complica terriblemente.\n\nSin embargo, nada impedirá que Della cumpla el pacto que hizo para salvar a su hermana. Ni siquiera un bebé fénix en un momento inoportuno ni rumores de identidad falsa. Ni siquiera cadáveres asesinados en la biblioteca ni un príncipe celoso.\n\nNi siquiera un caballero apuesto.\n\nLa primera de una serie de historias independientes ambientadas en el mismo mundo, este romance queer apasionado y de desarrollo lento se inspira en los cuentos de hadas clásicos y la leyenda artúrica, donde el caballero resplandeciente es una mujer con cicatrices, la princesa es también la bruja y el príncipe es cualquier cosa menos encantador.\n\nEsta historia contiene dolor, violencia, lenguaje explícito y un final feliz garantizado.",
     "pages": 247,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -75099,6 +75482,12 @@
     "pais_cultura": [
       "Mundo fantástico"
     ],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -75115,6 +75504,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -75131,6 +75522,7 @@
     "synopsis": "Una dama caballero desilusionada y la princesa a la que nunca pensó rescatar…\n\nEncarcelada en la torre de una bruja hace dieciocho años, la princesa Eliza no esperaba seguir esperando. Ahora, con más de treinta años y varias canas inquietantes en el cabello, los intentos de rescate son cada vez más raros, y sus únicas compañías son unas cuantas estanterías muy queridas y su propia mente, cada vez más solitaria.\n\nDesamparado y sin opciones, Sir Kaylen acepta la misión condenada al fracaso (y la recompensa) del rey de Alludan para rescatar a su hija. Lo que se supone que es su último acto para ayudar a su familia sale mal cuando llega a la torre de la bruja y descubre, no a la mortal hidra que la espera, sino algo completamente distinto.\n\nJuntos, el curtido caballero y la princesa protegida se enfrentan a un peligroso viaje de regreso a través de las tierras exteriores infestadas de monstruos hasta la civilización, donde los monstruos se vuelven aún más humanos. A medida que surge una atracción inoportuna, los límites entre ellos se desdibujan.\n\nEliza y Kaylen tienen expectativas que los separan. Nunca debieron conocerse. ¿Podrá la dama caballero que salvó accidentalmente a la princesa quedarse con ella?",
     "pages": 331,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
@@ -75163,6 +75555,12 @@
     "pais_cultura": [
       "Mundo fantástico"
     ],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -75177,6 +75575,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,

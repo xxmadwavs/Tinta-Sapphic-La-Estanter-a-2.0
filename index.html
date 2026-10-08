@@ -4930,6 +4930,19 @@ function shelfApplyFiltersDebounced(){
     if(document.getElementById('shelfView')?.classList.contains('active')) shelfApplyFilters();
   },180);
 }
+// FASE E26.2 — normalización ÚNICA para comparar texto en la búsqueda de Mi estantería (solo comparación; nunca altera los datos ni lo que muestra el input).
+// NFD → quita diacríticos combinantes (U+0300–U+036F; no se tocan otras marcas para no corromper escrituras no latinas) → NFC (recompone hangul/kana) → minúsculas → espacios colapsados + trim.
+// \s cubre tabulador, NBSP y los espacios Unicode; se añaden los de ancho cero (U+200B–U+200D, U+FEFF). Determinista e idempotente.
+function _shelfNorm(s){
+  return String(s==null?'':s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').normalize('NFC').toLowerCase()
+    .replace(/[\u200b-\u200d\ufeff]/g,'').split(/\s+/).filter(Boolean).join(' ');
+}
+// FASE E26.2 — coincidencia por campos SEPARADOS: título O cualquiera de las autoras (jamás título+autora concatenados). q ya normalizado y no vacío.
+function _shelfBookMatches(b,q){
+  if(_shelfNorm(b.title).includes(q)) return true;
+  const au=Array.isArray(b.authors)?b.authors:(b.authors?[b.authors]:[]);
+  return au.some(a=>_shelfNorm(a).includes(q));
+}
 function _shelfCancelPending(){ clearTimeout(_shelfApplyTimer); _shelfApplyTimer=null; }
 function _shelfFlushPending(){ if(_shelfApplyTimer!==null){ _shelfCancelPending(); shelfApplyFilters(); } }
 
@@ -5033,7 +5046,7 @@ function shelfRestoreFromUrl(params,normalize){
   document.getElementById('shelfBtnGrid')?.classList.toggle('active',shelfViewMode==='grid');
   document.getElementById('shelfBtnList')?.classList.toggle('active',shelfViewMode==='list');
   document.getElementById('shelfBtnShelf')?.classList.toggle('active',shelfViewMode==='shelf'); // FASE E5.2
-  shelfSearch=(params.get('shelfSearch')||'').toLowerCase().trim();
+  shelfSearch=_shelfNorm(params.get('shelfSearch')); // E26.2: shelfSearch guarda SIEMPRE el valor normalizado (es lo que va a la URL); el texto tal cual lo escribió la usuaria vive solo en el input
   document.getElementById('shelfSearchInput').value=shelfSearch;
   shelfGenreFilter=params.get('shelfGenre')||'';
   // FASE E25: el orden de la URL manda si es válido para ESTE filtro; ausente/desconocido/no válido (p. ej. recentReading fuera de «Leídos») → defecto del filtro.
@@ -10276,6 +10289,7 @@ function _shelfSyncSortForFilter(){
 }
 
 function setShelfView(mode){
+  _shelfFlushPending(); // E26.2 (R6)
   shelfViewMode=mode;
   document.getElementById('shelfBtnGrid').classList.toggle('active',mode==='grid');
   document.getElementById('shelfBtnList').classList.toggle('active',mode==='list');
@@ -10297,6 +10311,7 @@ function _shelfSyncStyleUI(){
   });
 }
 function setShelfStyle(style){
+  _shelfFlushPending(); // E26.2 (R6)
   if(!SHELF_STYLES.includes(style)||style===shelfStyleMode) return;
   shelfStyleMode=style;
   _shelfSyncStyleUI();
@@ -10306,16 +10321,20 @@ function setShelfStyle(style){
 
 // FASE E15.4 — selector AÑO (solo Estantería física + «Leídos»). El año sale SIEMPRE de bookReadingTime() (última lectura completada, E2/E3); nunca de book.year.
 // Las opciones salen del conjunto completo de Leídos (no del filtrado por búsqueda/género). Devuelve los libros del año resuelto y sincroniza el <select>.
+// FASE E26.2 (R1) — con búsqueda ACTIVA el universo de años pasa a ser el resultado ya filtrado (búsqueda + género): solo se ofrecen años con ≥1 resultado y, si el año
+// elegido no tiene ninguno, se resuelve uno que sí (mismo criterio automático: año en curso → más reciente → «Sin fecha»). En ese caso shelfYear NO se toca (la elección
+// explícita no se pierde al buscar; al quitar la búsqueda vuelve la regla normal de E15.4). Sin búsqueda: comportamiento E15.4 exacto.
 function _shelfYearFilter(books){
   const wrap=document.getElementById('shelfYearWrap'), sel=document.getElementById('shelfYearSelect');
+  const searching=!!shelfSearch;
   const rt=new Map(), years=new Set(); let none=false;
-  shelfBaseBooks().forEach(b=>{ const t=bookReadingTime(b.id); rt.set(b.id,t); if(t.hasDate) years.add(t.year); else none=true; });
+  (searching?books:shelfBaseBooks()).forEach(b=>{ const t=bookReadingTime(b.id); rt.set(b.id,t); if(t.hasDate) years.add(t.year); else none=true; });
   const ys=[...years].sort((a,b)=>b-a);
   let eff='';
   if(shelfYear==='none'&&none) eff='none';
   else if(/^\d{4}$/.test(shelfYear)&&years.has(parseInt(shelfYear,10))) eff=shelfYear;
   else {
-    if(shelfYear&&readingStatusLoaded) shelfYear=''; // el año elegido ya no existe → vuelve al automático (sin datos cargados no se borra)
+    if(!searching&&shelfYear&&readingStatusLoaded) shelfYear=''; // el año elegido ya no existe → vuelve al automático (sin datos cargados no se borra)
     const cy=new Date().getFullYear();
     eff=years.has(cy)?String(cy):(ys.length?String(ys[0]):(none?'none':''));
   }
@@ -10329,6 +10348,7 @@ function _shelfYearFilter(books){
   return books.filter(b=>{ const t=rt.get(b.id); return eff==='none'?!t.hasDate:(t.hasDate&&String(t.year)===eff); });
 }
 function shelfSetYear(v){
+  _shelfFlushPending(); // E26.2 (R6): una búsqueda recién tecleada se aplica ANTES de resolver el año
   if(!(v==='none'||/^\d{4}$/.test(v||''))) return;
   shelfYear=v;
   _renderShelfBooks();
@@ -10357,7 +10377,7 @@ function shelfPopulateGenres(){
 
 function shelfApplyFilters(){
   shelfPage=1;
-  shelfSearch=document.getElementById('shelfSearchInput').value.toLowerCase().trim();
+  shelfSearch=_shelfNorm(document.getElementById('shelfSearchInput').value); // E26.2: se lee el input pero NO se reescribe (conserva mayúsculas/acentos tecleados)
   shelfGenreFilter=document.getElementById('shelfGenreSelect').value;
   const _ssv=document.getElementById('shelfSortSelect').value; shelfSort=_shelfSortValid(shelfFilter,_ssv)?_ssv:_shelfSortDefault(shelfFilter); // E25
   _renderShelfBooks();
@@ -10374,6 +10394,7 @@ function shelfClearFilters(){
 }
 
 function shelfGoToPage(n){
+  _shelfFlushPending(); // E26.2 (R6): shelfApplyFilters repone la página 1; el destino se aplica después (y _shelfPaginate lo recorta si ya no existe)
   shelfPage=n;
   _renderShelfBooks();
   shelfUrlSync(shelfFilter,false); // FASE E4.2
@@ -10397,7 +10418,7 @@ function _shelfPrepareBooks(){
   let books=shelfBaseBooks();
   const hadBooksBeforeFilters=books.length>0;
 
-  if(shelfSearch) books=books.filter(b=>(b.title+' '+(b.authors||[]).join(' ')).toLowerCase().includes(shelfSearch));
+  if(shelfSearch) books=books.filter(b=>_shelfBookMatches(b,shelfSearch)); // E26.2: título O autora, normalizados, sin cruce entre campos
   if(shelfGenreFilter) books=books.filter(b=>(b.genres||[]).includes(shelfGenreFilter));
 
   if(shelfSort==='az') books=[...books].sort((a,b)=>a.title.localeCompare(b.title,'es'));
