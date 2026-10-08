@@ -63,7 +63,9 @@
       "lon": 99.958,
       "x": 778.9,
       "y": 214.0,
-      "aliases": []
+      "aliases": [
+        "Hua-Hin"
+      ]
     },
     {
       "id": "th-mae-sot",
@@ -2775,6 +2777,396 @@
       "aliases": [
         "Sotchi"
       ]
+    },
+    {
+      "id": "ar-pilar",
+      "ciudad": "Pilar",
+      "pais": "Argentina",
+      "pais_iso": "AR",
+      "region": "Buenos Aires",
+      "lat": -34.458,
+      "lon": -58.914,
+      "x": 343.7,
+      "y": 367.6,
+      "aliases": []
+    },
+    {
+      "id": "au-byron-bay",
+      "ciudad": "Byron Bay",
+      "pais": "Australia",
+      "pais_iso": "AU",
+      "region": "Nueva Gales del Sur",
+      "lat": -28.643,
+      "lon": 153.612,
+      "x": 915.0,
+      "y": 348.6,
+      "aliases": []
+    },
+    {
+      "id": "es-almeria",
+      "ciudad": "Almería",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 36.834,
+      "lon": -2.464,
+      "x": 493.4,
+      "y": 134.6,
+      "aliases": [
+        "Almeria"
+      ]
+    },
+    {
+      "id": "es-aviles",
+      "ciudad": "Avilés",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Principado de Asturias",
+      "lat": 43.556,
+      "lon": -5.924,
+      "x": 484.8,
+      "y": 112.7,
+      "aliases": [
+        "Aviles"
+      ]
+    },
+    {
+      "id": "es-bilbao",
+      "ciudad": "Bilbao",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "País Vasco",
+      "lat": 43.263,
+      "lon": -2.935,
+      "x": 492.4,
+      "y": 113.7,
+      "aliases": [
+        "Bilbo"
+      ]
+    },
+    {
+      "id": "es-catarroja",
+      "ciudad": "Catarroja",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad Valenciana",
+      "lat": 39.402,
+      "lon": -0.401,
+      "x": 498.9,
+      "y": 126.2,
+      "aliases": []
+    },
+    {
+      "id": "es-cudillero",
+      "ciudad": "Cudillero",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Principado de Asturias",
+      "lat": 43.563,
+      "lon": -6.145,
+      "x": 484.2,
+      "y": 112.7,
+      "aliases": []
+    },
+    {
+      "id": "es-cadiz",
+      "ciudad": "Cádiz",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 36.527,
+      "lon": -6.289,
+      "x": 483.4,
+      "y": 135.6,
+      "aliases": [
+        "Cadiz"
+      ]
+    },
+    {
+      "id": "es-el-ejido",
+      "ciudad": "El Ejido",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 36.776,
+      "lon": -2.815,
+      "x": 492.5,
+      "y": 134.8,
+      "aliases": []
+    },
+    {
+      "id": "es-gandia",
+      "ciudad": "Gandía",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad Valenciana",
+      "lat": 38.968,
+      "lon": -0.181,
+      "x": 499.4,
+      "y": 127.6,
+      "aliases": [
+        "Gandia"
+      ]
+    },
+    {
+      "id": "es-granada",
+      "ciudad": "Granada",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 37.177,
+      "lon": -3.599,
+      "x": 490.5,
+      "y": 133.5,
+      "aliases": []
+    },
+    {
+      "id": "es-mostoles",
+      "ciudad": "Móstoles",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad de Madrid",
+      "lat": 40.323,
+      "lon": -3.865,
+      "x": 489.9,
+      "y": 123.2,
+      "aliases": [
+        "Mostoles"
+      ]
+    },
+    {
+      "id": "es-santander",
+      "ciudad": "Santander",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Cantabria",
+      "lat": 43.462,
+      "lon": -3.81,
+      "x": 490.2,
+      "y": 113.0,
+      "aliases": []
+    },
+    {
+      "id": "es-tarifa",
+      "ciudad": "Tarifa",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 36.014,
+      "lon": -5.604,
+      "x": 485.1,
+      "y": 137.3,
+      "aliases": []
+    },
+    {
+      "id": "es-valencia",
+      "ciudad": "Valencia",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad Valenciana",
+      "lat": 39.47,
+      "lon": -0.376,
+      "x": 498.9,
+      "y": 126.0,
+      "aliases": [
+        "València"
+      ]
+    },
+    {
+      "id": "us-albuquerque",
+      "ciudad": "Albuquerque",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Nuevo México",
+      "lat": 35.084,
+      "lon": -106.651,
+      "x": 217.8,
+      "y": 140.3,
+      "aliases": []
+    },
+    {
+      "id": "us-asheville",
+      "ciudad": "Asheville",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Carolina del Norte",
+      "lat": 35.595,
+      "lon": -82.551,
+      "x": 282.0,
+      "y": 138.6,
+      "aliases": []
+    },
+    {
+      "id": "us-charlotte",
+      "ciudad": "Charlotte",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Carolina del Norte",
+      "lat": 35.227,
+      "lon": -80.843,
+      "x": 286.2,
+      "y": 139.8,
+      "aliases": []
+    },
+    {
+      "id": "us-clarkston",
+      "ciudad": "Clarkston",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 46.416,
+      "lon": -117.045,
+      "x": 205.7,
+      "y": 103.5,
+      "aliases": []
+    },
+    {
+      "id": "us-cortez",
+      "ciudad": "Cortez",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Colorado",
+      "lat": 37.349,
+      "lon": -108.586,
+      "x": 215.2,
+      "y": 132.9,
+      "aliases": []
+    },
+    {
+      "id": "us-honolulu",
+      "ciudad": "Honolulu",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Hawái",
+      "lat": 21.307,
+      "lon": -157.858,
+      "x": 65.6,
+      "y": 185.5,
+      "aliases": []
+    },
+    {
+      "id": "us-malibu",
+      "ciudad": "Malibú",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.026,
+      "lon": -118.781,
+      "x": 184.5,
+      "y": 143.8,
+      "aliases": [
+        "Malibu"
+      ]
+    },
+    {
+      "id": "us-ocean-springs",
+      "ciudad": "Ocean Springs",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Mississippi",
+      "lat": 30.411,
+      "lon": -88.828,
+      "x": 261.2,
+      "y": 155.6,
+      "aliases": []
+    },
+    {
+      "id": "us-orlando",
+      "ciudad": "Orlando",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 28.538,
+      "lon": -81.379,
+      "x": 280.0,
+      "y": 161.8,
+      "aliases": []
+    },
+    {
+      "id": "us-salem",
+      "ciudad": "Salem",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Massachusetts",
+      "lat": 42.519,
+      "lon": -70.896,
+      "x": 318.2,
+      "y": 116.1,
+      "aliases": []
+    },
+    {
+      "id": "us-santa-monica",
+      "ciudad": "Santa Mónica",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.019,
+      "lon": -118.491,
+      "x": 185.3,
+      "y": 143.8,
+      "aliases": [
+        "Santa Monica"
+      ]
+    },
+    {
+      "id": "us-shreveport",
+      "ciudad": "Shreveport",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Luisiana",
+      "lat": 32.525,
+      "lon": -93.75,
+      "x": 249.7,
+      "y": 148.7,
+      "aliases": []
+    },
+    {
+      "id": "us-snoqualmie",
+      "ciudad": "Snoqualmie",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 47.529,
+      "lon": -121.826,
+      "x": 195.5,
+      "y": 100.0,
+      "aliases": []
+    },
+    {
+      "id": "gb-bath",
+      "ciudad": "Bath",
+      "pais": "Inglaterra",
+      "pais_iso": "GB",
+      "region": "Somerset",
+      "lat": 51.381,
+      "lon": -2.359,
+      "x": 494.2,
+      "y": 87.8,
+      "aliases": []
+    },
+    {
+      "id": "gb-oxford",
+      "ciudad": "Oxford",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "region": "Oxfordshire",
+      "lat": 51.752,
+      "lon": -1.258,
+      "x": 496.9,
+      "y": 86.7,
+      "aliases": []
+    },
+    {
+      "id": "gb-gibraltar",
+      "ciudad": "Gibraltar",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "region": null,
+      "lat": 36.141,
+      "lon": -5.354,
+      "x": 485.8,
+      "y": 136.8,
+      "aliases": []
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -2942,6 +3334,56 @@
       "ciudad": "Inglaterra",
       "pais": "Inglaterra",
       "motivo": "El campo ciudad contiene el nombre del país (libro «Tú te lo pierdes»); probablemente un error en books_data.json"
+    },
+    {
+      "ciudad": "Manuel",
+      "pais": "España",
+      "motivo": "Aparece con Catarroja y Gandía (Comunidad Valenciana) en «Una luz tímida». Existe un municipio llamado Manuel en Valencia, pero no está confirmado que sea el del libro"
+    },
+    {
+      "ciudad": "Gainesville",
+      "pais": "Estados Unidos",
+      "motivo": "Sin estado en books_data.json; hay varias (Florida, Georgia, Texas…). Confirmar cuál"
+    },
+    {
+      "ciudad": "San Marcos",
+      "pais": "Estados Unidos",
+      "motivo": "Sin estado en books_data.json; hay varias (Texas, California…). Confirmar cuál"
+    },
+    {
+      "ciudad": "Rockport",
+      "pais": "Estados Unidos",
+      "motivo": "Sin estado en books_data.json; hay varias (Massachusetts, Maine, Texas…). Confirmar cuál"
+    },
+    {
+      "ciudad": "Greenrock Valley",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Puppy Love» (Washington)"
+    },
+    {
+      "ciudad": "Leesboro",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Who I Was with Her» (Carolina del Norte)"
+    },
+    {
+      "ciudad": "Winthrop",
+      "pais": "Estados Unidos",
+      "motivo": "No existe un Winthrop en Vermont; «Winthrop» parece el nombre de una copa/instituto en «It's a Love/Skate Relationship». Confirmar"
+    },
+    {
+      "ciudad": "Tucker",
+      "pais": "Estados Unidos",
+      "motivo": "No hay un Tucker en Luisiana (el real está en Georgia); probablemente ficticia en «Where There's Smoke»"
+    },
+    {
+      "ciudad": "New South",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Where There's Smoke» (Luisiana)"
+    },
+    {
+      "ciudad": "Akatoria",
+      "pais": "México",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Bajo las sombras»"
     }
   ],
   "aliases_pais": {

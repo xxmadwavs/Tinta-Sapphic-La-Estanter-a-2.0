@@ -4839,7 +4839,7 @@
       {
         "pais": "Tailandia",
         "region": null,
-        "ciudad": "Bangkok,",
+        "ciudad": "Bangkok",
         "localidad": null,
         "lugares": []
       },
@@ -14078,7 +14078,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
     "ubicaciones": [
       {
         "pais": "Reino Unido",
@@ -14136,7 +14138,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -14201,7 +14205,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -14359,7 +14365,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -17175,7 +17183,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -17279,7 +17289,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -18332,7 +18344,8 @@
       "25–39"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Canadá"
     ],
     "ubicaciones": [
       {
@@ -18399,7 +18412,7 @@
         "lugares": []
       },
       {
-        "pais": "Cánada",
+        "pais": "Canadá",
         "region": null,
         "ciudad": "Toronto",
         "localidad": null,
@@ -18594,7 +18607,9 @@
       "Young Adult (15–18)"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Reino Unido",
+      "Italia"
     ],
     "ubicaciones": [
       {
@@ -18833,7 +18848,9 @@
       "Slow Burn"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -19851,7 +19868,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -20279,7 +20298,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -20400,7 +20421,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -21590,7 +21613,9 @@
       "Age Gap"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -21650,7 +21675,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -21709,7 +21736,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -21768,7 +21797,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -23617,7 +23648,9 @@
     "edad": [
       "Young Adult (15–18)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -24506,7 +24539,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -25404,7 +25439,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -25463,7 +25500,9 @@
       "Enemies to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -25855,7 +25894,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Argentina"
+    ],
     "ubicaciones": [
       {
         "pais": "Argentina",
@@ -26031,7 +26072,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
     "ubicaciones": [
       {
         "pais": "Reino Unido",
@@ -26129,7 +26172,10 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Alemania",
+      "Francia"
+    ],
     "ubicaciones": [
       {
         "pais": "Alemania",
@@ -26194,7 +26240,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -26871,7 +26919,9 @@
     ],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -26930,7 +26980,9 @@
       "Age Gap"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -26988,7 +27040,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -27062,7 +27116,9 @@
       "Rich / Poor Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -27135,7 +27191,10 @@
       "Friends to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Inglaterra"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -27221,7 +27280,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
     "ubicaciones": [
       {
         "pais": "Reino Unido",
@@ -29198,7 +29259,9 @@
       "Second Chance Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -31947,7 +32010,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "México"
+    ],
     "ubicaciones": [
       {
         "pais": "México",
@@ -33558,7 +33623,9 @@
       "Second Chance Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -33963,7 +34030,10 @@
       "Enemies to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Francia"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -34441,7 +34511,9 @@
       "Friends to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -35090,7 +35162,9 @@
       "Age Gap"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -36014,7 +36088,9 @@
       "Young Adult (15–18)",
       "New Adult (18–24)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -36285,7 +36361,9 @@
       "Enemies to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -37792,7 +37870,8 @@
       "25–39"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Jamaica"
     ],
     "ubicaciones": [
       {
@@ -41483,7 +41562,9 @@
       "Forbidden Love"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
     "ubicaciones": [
       {
         "pais": "Reino Unido",
@@ -47188,7 +47269,9 @@
     "edad": [
       "New Adult (18–24)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -48233,7 +48316,9 @@
       "25–39",
       "+40"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -50817,7 +50902,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -50923,7 +51010,9 @@
       "Enemies to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -51111,7 +51200,10 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Australia"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -51183,7 +51275,10 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Grecia"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -53687,7 +53782,9 @@
       "Workplace Romance"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -56123,7 +56220,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -56431,7 +56530,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -56529,7 +56630,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Argentina"
+    ],
     "ubicaciones": [
       {
         "pais": "Argentina",
@@ -56592,7 +56695,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -56947,7 +57052,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -57047,7 +57154,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -57838,7 +57947,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -57911,7 +58022,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -57976,7 +58089,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -58350,7 +58465,12 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Argentina",
+      "España",
+      "Reino Unido",
+      "Irlanda"
+    ],
     "ubicaciones": [
       {
         "pais": "Argentina",
@@ -58493,7 +58613,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -58554,7 +58676,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -59176,7 +59300,7 @@
     ],
     "ubicaciones": [
       {
-        "pais": "Tailandi",
+        "pais": "Tailandia",
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
@@ -59617,11 +59741,12 @@
       "25–39"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Canadá"
     ],
     "ubicaciones": [
       {
-        "pais": "Cánada",
+        "pais": "Canadá",
         "region": null,
         "ciudad": "Toronto",
         "localidad": null,
@@ -65505,7 +65630,9 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -70677,11 +70804,13 @@
       "+40"
     ],
     "pais_cultura": [
-      "Canadá"
+      "Canadá",
+      "Francia",
+      "Reino Unido"
     ],
     "ubicaciones": [
       {
-        "pais": "Cánada",
+        "pais": "Canadá",
         "region": null,
         "ciudad": "Ottawa",
         "localidad": null,
@@ -72286,7 +72415,9 @@
     "edad": [
       "New Adult (18–24)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -76122,7 +76253,7 @@
     ],
     "ubicaciones": [
       {
-        "pais": "Estados Unidos.",
+        "pais": "Estados Unidos",
         "region": null,
         "ciudad": null,
         "localidad": null,
@@ -80013,7 +80144,7 @@
     ],
     "ubicaciones": [
       {
-        "pais": "Italia.",
+        "pais": "Italia",
         "region": null,
         "ciudad": "Amalfi",
         "localidad": null,
@@ -80987,7 +81118,9 @@
       "Opposites Attract"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -81455,7 +81588,10 @@
     "edad": [
       "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Canadá"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",

@@ -993,6 +993,131 @@
       "x": 242.4,
       "y": 138.9,
       "aliases": []
+    },
+    {
+      "id": "es-andalucia",
+      "nombre": "Andalucía",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 37.5,
+      "lon": -4.5,
+      "x": 488.1,
+      "y": 132.4,
+      "aliases": []
+    },
+    {
+      "id": "es-cantabria",
+      "nombre": "Cantabria",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 43.2,
+      "lon": -4.0,
+      "x": 489.7,
+      "y": 113.9,
+      "aliases": []
+    },
+    {
+      "id": "es-comunidad-valenciana",
+      "nombre": "Comunidad Valenciana",
+      "pais": "España",
+      "pais_iso": "ES",
+      "tipo": "comunidad",
+      "lat": 39.4,
+      "lon": -0.9,
+      "x": 497.6,
+      "y": 126.2,
+      "aliases": [
+        "Comunitat Valenciana"
+      ]
+    },
+    {
+      "id": "us-arizona",
+      "nombre": "Arizona",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 34.3,
+      "lon": -111.7,
+      "x": 203.6,
+      "y": 142.9,
+      "aliases": []
+    },
+    {
+      "id": "us-idaho",
+      "nombre": "Idaho",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 44.4,
+      "lon": -114.6,
+      "x": 208.8,
+      "y": 110.0,
+      "aliases": []
+    },
+    {
+      "id": "us-maine",
+      "nombre": "Maine",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 45.3,
+      "lon": -69.2,
+      "x": 325.0,
+      "y": 107.1,
+      "aliases": []
+    },
+    {
+      "id": "us-mississippi",
+      "nombre": "Mississippi",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 32.75,
+      "lon": -89.7,
+      "x": 260.7,
+      "y": 147.9,
+      "aliases": []
+    },
+    {
+      "id": "us-indiana",
+      "nombre": "Indiana",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "estado",
+      "lat": 40.0,
+      "lon": -86.3,
+      "x": 276.1,
+      "y": 124.3,
+      "aliases": []
+    },
+    {
+      "id": "us-outer-banks",
+      "nombre": "Outer Banks",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "tipo": "región costera",
+      "lat": 35.6,
+      "lon": -75.5,
+      "x": 300.6,
+      "y": 138.6,
+      "aliases": []
+    },
+    {
+      "id": "gr-santorini",
+      "nombre": "Santorini",
+      "pais": "Grecia",
+      "pais_iso": "GR",
+      "tipo": "isla",
+      "lat": 36.39,
+      "lon": 25.46,
+      "x": 566.9,
+      "y": 136.0,
+      "aliases": [
+        "Thira",
+        "Thera"
+      ]
     }
   ],
   "pendientes_verificacion": [
