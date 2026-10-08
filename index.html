@@ -1780,8 +1780,8 @@ button.an-mopen{cursor:pointer}
 .shelf-book-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--shelf-bw)*var(--w,1)*.03px);padding:calc(var(--shelf-bw)*var(--w,1)*.12px) calc(var(--shelf-bw)*var(--w,1)*.1px);background:var(--ph-bg,#4a3b34);color:#f2eadf;text-align:center;border-radius:inherit;overflow:hidden}
 .shelf-book-ph::before{content:"";position:absolute;inset:calc(var(--shelf-bw)*var(--w,1)*.06px);border:1px solid rgba(242,234,223,.26);border-radius:1px;pointer-events:none}
 .shelf-book-ph span,.shelf-book-ph small{position:relative;max-width:100%;overflow:hidden;overflow-wrap:anywhere;-webkit-box-orient:vertical;display:-webkit-box}
-.shelf-book-ph span{font-family:var(--font-display);font-style:italic;font-size:calc(var(--shelf-bw)*var(--w,1)*.125px);line-height:1.2;-webkit-line-clamp:5}
-.shelf-book-ph small{font-size:calc(var(--shelf-bw)*var(--w,1)*.085px);line-height:1.2;letter-spacing:.02em;opacity:.78;-webkit-line-clamp:2}
+.shelf-book-ph span{font-family:var(--font-display);font-style:italic;font-size:max(10px,calc(var(--shelf-bw)*var(--w,1)*.125px));line-height:1.2;-webkit-line-clamp:5}
+.shelf-book-ph small{font-size:max(8.5px,calc(var(--shelf-bw)*var(--w,1)*.085px));line-height:1.2;letter-spacing:.02em;opacity:.78;-webkit-line-clamp:2}
 .shelf-board{height:7px;border-radius:1px;border-top:1px solid rgba(255,255,255,.2);background:linear-gradient(to bottom,rgba(0,0,0,.18),rgba(0,0,0,.45)),var(--gold);box-shadow:0 3px 6px -2px rgba(0,0,0,.55)}
 /* FASE E5.4 — Interacción de los libros: cursor, hover sutil (solo ratón), foco visible, tooltip y reduced-motion. Todo limitado a .shelf-*. */
 .shelf-slot{cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -1836,6 +1836,41 @@ button.an-mopen{cursor:pointer}
   .shelf-style-btn{min-height:44px;height:44px;padding:0 16px}
 }
 @media (pointer:coarse){.shelf-style-btn{min-height:44px;height:44px}}
+/* FASE E17 */
+.shelf-books-area{background:linear-gradient(to top,rgba(0,0,0,.22),rgba(0,0,0,0) 24%)}
+.shelf-slot{--e17-tone:calc((1 - var(--w,1))*.55);box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 1px 3px -1px rgba(0,0,0,.5)}
+.shelf-slot.shelf-spine{--e17-tone:calc((1 - var(--h,1))*.55)}
+.shelf-slot::after{background-color:rgba(0,0,0,var(--e17-tone));background-image:linear-gradient(to bottom,rgba(255,255,255,.1),rgba(255,255,255,0) 3px),linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.16) 5%,transparent 11%),linear-gradient(to left,rgba(0,0,0,.16),rgba(0,0,0,0) 14%)}
+.shelf-slot.shelf-spine::after{background-color:rgba(0,0,0,var(--e17-tone));background-image:linear-gradient(to bottom,rgba(255,255,255,.1),rgba(255,255,255,0) 3px),linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 14%,rgba(0,0,0,0) 40%,rgba(0,0,0,.1) 78%,rgba(0,0,0,.26))}
+@media (hover:hover) and (pointer:fine){.shelf-slot:hover{box-shadow:0 0 0 1px rgba(0,0,0,.3),0 8px 10px -5px rgba(0,0,0,.65)}}
+@media (max-width:639px){.shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.3),1px 1px 2px -1px rgba(0,0,0,.5)}}
+/* FASE E18 */
+.shelf-slot:not(.shelf-spine)::after{border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+/* FASE E19.2 — la banda ::before bajo el libro solo recoge el puntero cuando el libro YA está en :hover (evita el parpadeo con el cursor a 2–5 px bajo el borde) */
+@media (hover:hover) and (pointer:fine){.shelf-slot:not(:hover)::before{pointer-events:none}}
+/* FASE E20.2 — barra de información contextual #shelfInfo: flujo normal bajo #shelfBooksContainer (sin sticky/fixed), solo Estantería física. Escritorio ≈56px en una línea; móvil apilada. */
+.shelf-info{display:flex;flex-wrap:wrap;align-items:center;gap:.15rem 1.1rem;box-sizing:border-box;min-width:0;max-width:100%;min-height:56px;margin:0;padding:.5rem .9rem;background:var(--surface2);border:1px solid var(--border2);border-radius:10px}
+.shelf-info[hidden],.si-meta[hidden],.si-a[hidden]{display:none}
+.si-main{display:flex;align-items:baseline;gap:.1rem .6rem;flex:1 1 18rem;min-width:0}
+.si-t{font-family:var(--font-display);font-size:15px;line-height:1.3;color:var(--text);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.si-a{font-size:12.5px;line-height:1.3;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.si-meta{display:flex;flex-wrap:wrap;align-items:center;min-width:0;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.si-meta span+span::before{content:"·";margin:0 .55em;opacity:.55}
+.si-meta .si-state{color:var(--text)}
+@media (max-width:639px){
+  .shelf-info{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:.3rem;min-height:0;padding:.65rem .8rem}
+  .si-main{flex:0 0 auto;flex-direction:column;align-items:stretch;gap:.1rem}
+  .si-t{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+}
+/* FASE E21.2 — variantes visuales por estado en la estantería física. Bloque independiente posterior a E17/E18/E19/E20: sin filter/box-shadow/outline/transform/transition en .shelf-slot; capas decorativas aria-hidden y pointer-events:none. «read» no tiene regla (aspecto actual). */
+.shelf-slot[data-status="want"]:not(.shelf-spine) :is(img,.shelf-book-ph){filter:saturate(.8) contrast(.94)}
+.shelf-slot[data-status="dnf"]:not(.shelf-spine) :is(img,.shelf-book-ph){filter:sepia(.2) saturate(.8) brightness(.94)}
+.shelf-state-tint{position:absolute;inset:0;pointer-events:none;border-radius:inherit}
+.shelf-slot[data-status="want"] .shelf-state-tint{background:rgba(128,128,136,.16)}
+.shelf-slot[data-status="dnf"] .shelf-state-tint{background:rgba(140,100,60,.22)}
+.shelf-reading-mark{position:absolute;z-index:1;top:0;right:calc(var(--shelf-bw)*var(--w,1)*.13px);box-sizing:border-box;width:max(4px,calc(var(--shelf-bw)*var(--w,1)*.065px));height:calc(var(--shelf-bw)*var(--w,1)*.3px);background:#efe6d8;border:1px solid rgba(0,0,0,.4);border-top:0;border-radius:0 0 1px 1px;pointer-events:none}
+.shelf-slot.shelf-spine .shelf-reading-mark{z-index:auto;left:22%;right:22%;width:auto;height:6px}
+@media (max-width:639px){ .shelf-slot.shelf-spine .shelf-reading-mark{height:5px} }
 /* FASE E15.4 — selector AÑO de la estantería física en «Leídos» (select nativo, sin contadores; fuera de #shelfToolbar para no alterar Galería/Lista) */
 .shelf-year{display:inline-flex;align-items:center;gap:.55rem;margin:-.5rem 0 1rem .6rem;max-width:100%;vertical-align:top}
 .shelf-year[hidden]{display:none}
@@ -4513,6 +4548,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
         <select class="sort-select" id="shelfYearSelect" onchange="shelfSetYear(this.value)"></select>
       </div>
       <div id="shelfBooksContainer"></div>
+      <div id="shelfInfo" class="shelf-info" hidden><div class="si-main"><span class="si-t"></span><span class="si-a" hidden></span></div><div class="si-meta" hidden></div></div>
       <div id="shelfCalendarContainer" style="display:none"></div>
     </div>
   </div>
@@ -4806,6 +4842,14 @@ const SHELF_FILTERS=['all','want','reading','read','dnf','calendar'];
 const SHELF_VIEWS=['grid','list','shelf'];
 const SHELF_STYLES=['covers','spines']; // FASE E15.3.3: submodo de la estantería física
 const SHELF_SORTS=['recent','recentReading','az','za','author','year_desc','year_asc'];
+// FASE E25 — ordenación contextual. Válidos: «Leídos» → los 7; todos/want/reading/dnf → los 6 sin 'recentReading'; calendario → ninguno (sin selector).
+// Defecto: 'recentReading' en «Leídos» (E22), 'recent' en el resto. Política única: valor válido → se conserva; inválido → defecto del filtro.
+function _shelfSortValid(filter,s){
+  if(filter==='calendar'||!SHELF_SORTS.includes(s)) return false;
+  return s!=='recentReading'||filter==='read';
+}
+function _shelfSortDefault(filter){ return filter==='read'?'recentReading':'recent'; }
+let _shelfSortLastFilter=null; // filtro con el que se sincronizó el orden por última vez; distingue ENTRAR en un filtro de un simple repintado dentro del mismo (H1)
 let calYear=new Date().getFullYear();
 let calMonth=new Date().getMonth(); // 0-11
 let calSelectedDay=null; // 'YYYY-MM-DD'
@@ -4951,7 +4995,7 @@ function shelfUrlSync(filter,addEntry){
     put('shelfStyle',shelfViewMode==='shelf'?shelfStyleMode:'','covers'); // FASE E15.3.3: solo con la estantería física; 'covers' (defecto) no se escribe
     put('shelfSearch',shelfSearch,'');
     put('shelfGenre',shelfGenreFilter,'');
-    put('shelfSort',shelfSort,filter==='read'?'recentReading':'recent');
+    put('shelfSort',shelfSort,_shelfSortDefault(filter)); // E25
     put('shelfYear',(shelfViewMode==='shelf'&&filter==='read')?shelfYear:'',''); // FASE E15.4: solo con elección explícita (el automático es '' y no se escribe)
     put('shelfPage',shelfViewMode==='shelf'?'':String(shelfPage),'1'); // FASE E15.4: la estantería física no pagina → no escribe shelfPage
     const url='?'+params.toString();
@@ -4969,6 +5013,15 @@ function shelfUrlClear(addEntry){
     else history.replaceState(null,'',url);
   }catch(e){}
 }
+// FASE E25 — quita de la URL un shelfSort no válido para el filtro actual sin crear entrada ni perder history.state ni el hash.
+function _shelfSortFixUrl(){
+  try{
+    const params=new URLSearchParams(location.search);
+    params.delete('shelfSort');
+    const qs=params.toString();
+    history.replaceState(history.state,'',location.pathname+(qs?'?'+qs:'')+location.hash);
+  }catch(e){}
+}
 // FASE E4.2 — reconstruye el estado de Mi estantería desde la URL y abre la vista (ausente/inválido → defecto actual).
 // normalize=true reescribe la URL con el estado final (solo en la carga inicial; en popstate no se toca el historial).
 function shelfRestoreFromUrl(params,normalize){
@@ -4983,18 +5036,16 @@ function shelfRestoreFromUrl(params,normalize){
   shelfSearch=(params.get('shelfSearch')||'').toLowerCase().trim();
   document.getElementById('shelfSearchInput').value=shelfSearch;
   shelfGenreFilter=params.get('shelfGenre')||'';
+  // FASE E25: el orden de la URL manda si es válido para ESTE filtro; ausente/desconocido/no válido (p. ej. recentReading fuera de «Leídos») → defecto del filtro.
+  // Se marca el filtro como ya sincronizado para que openShelf() no lo trate como una entrada nueva (no pisa un orden explícito: F5/Back/Forward).
   const s=params.get('shelfSort');
-  shelfSort=SHELF_SORTS.includes(s)?s:'recent';
+  shelfSort=_shelfSortValid(filter,s)?s:_shelfSortDefault(filter);
+  _shelfSortLastFilter=filter;
+  if(s!==null&&!_shelfSortValid(filter,s)) _shelfSortFixUrl(); // normaliza la URL (replaceState conservando history.state y hash)
   const pg=parseInt(params.get('shelfPage'),10);
   shelfPage=(shelfViewMode!=='shelf'&&pg>=1)?pg:1; // FASE E15.4: en la estantería física se ignora shelfPage (enlaces antiguos incluidos)
   const _sy=params.get('shelfYear'); shelfYear=(shelfViewMode==='shelf'&&filter==='read'&&(_sy==='none'||/^\d{4}$/.test(_sy||'')))?_sy:''; // FASE E15.4: validación sintáctica; la existencia real del año se valida al pintar
   openShelf(filter,true);
-  // E3 convierte 'recent'→'recentReading' al entrar en «Leídos»; si la URL pedía 'recent' explícitamente, se respeta
-  if(filter==='read' && s==='recent' && shelfSort!=='recent'){
-    shelfSort='recent';
-    document.getElementById('shelfSortSelect').value='recent';
-    _renderShelfBooks();
-  }
   // FASE E4.3: con #libro/ID en la URL (F5 sobre una ficha) no se reescribe, para no perder el hash ni el history.state de la ficha
   if(normalize && !location.hash.startsWith('#libro/')) shelfUrlSync(shelfFilter,false);
 }
@@ -9938,7 +9989,11 @@ function buildShelfButtonsHTML(bookId){
     const dStr=entry.read_precision
       ? formatPartialDate(entry.read_at, entry.read_precision)
       : new Date(entry.read_at).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
-    const startVal=entry.started_at?new Date(entry.started_at).toISOString().slice(0,10):'';
+    // E24: inicio con precisión month/year NO se pinta en <input type="date"> (inventaría día/mes):
+    // el input queda vacío y el texto parcial real se muestra al lado.
+    const startPartial=(entry.started_at&&(entry.started_precision==='month'||entry.started_precision==='year'));
+    const startVal=(entry.started_at&&!startPartial)?new Date(entry.started_at).toISOString().slice(0,10):'';
+    const startPartialTxt=startPartial?`<span class="e24-start-partial" style="color:var(--muted)">empezado ${formatPartialDate(entry.started_at, entry.started_precision)}</span>`:'';
     return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal-text);flex-wrap:wrap">
       <span style="display:flex;align-items:center;gap:.3em">📖
         <input type="date" max="${todayISO}" value="${startVal}"
@@ -9946,6 +10001,7 @@ function buildShelfButtonsHTML(bookId){
           style="padding:2px 6px;border-radius:8px;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
           onclick="event.stopPropagation()"
           onchange="event.stopPropagation();setLogStartDate('${bookId}','${entry.id}',this.value)">
+        ${startPartialTxt}
       </span>
       <span>→ 📅 ${dStr}</span>
       <button title="Eliminar esta fecha" onclick="event.stopPropagation();deleteReadLogEntry('${bookId}','${entry.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0;line-height:1">✕</button>
@@ -10157,6 +10213,7 @@ function openShelf(filter,silent){
 function closeShelf(silent){
   if(silent) _shelfCancelPending(); else _shelfFlushPending(); // FASE E4.4: la búsqueda tecleada se guarda en la entrada que se abandona
   document.getElementById('shelfView').classList.remove('active');
+  _shelfSortLastFilter=null; // E25: reabrir la estantería cuenta como entrar de nuevo (defecto del filtro en «Leídos»)
   switchTab(activeTab, true);
   if(!silent) shelfUrlClear(true);
 }
@@ -10182,7 +10239,9 @@ function _shelfRenderCurrent(){
   document.getElementById('shelfCalendarContainer').style.display=isCal?'':'none';
   renderShelfCounts();
   if(isCal){
+    _shelfSortLastFilter='calendar'; // E25: salir de «Leídos» (también hacia el calendario) y volver = entrada nueva
     document.getElementById('shelfMainTitle').innerHTML='Calendario de lecturas';
+    _shelfInfoSync(); // FASE E20.2: oculta #shelfInfo en Calendario
     renderReadingCalendar();
   } else {
     shelfPopulateGenres();
@@ -10191,10 +10250,10 @@ function _shelfRenderCurrent(){
   }
 }
 
-// FASE E3 — Orden "Última lectura" (recentReading): solo existe en «Leídos» y es allí el orden por defecto.
-// Se aplica al ENTRAR en un filtro (no al cambiar el selector), así que no pisa elecciones explícitas
-// de otros órdenes (A→Z, Autora, Año…). En el resto de filtros la opción no se ofrece y, si estaba activa,
-// se vuelve al orden anterior ('recent'), que no cambia.
+// FASE E3/E25 — Orden "Última lectura" (recentReading): solo se ofrece en «Leídos» y es allí el defecto AL ENTRAR (desde otro filtro,
+// desde la apertura de la estantería o sin shelfSort en la URL). Dentro de «Leídos» cualquier orden válido elegido a mano se conserva en los
+// repintados (búsqueda, género, vista, estado de un libro…). Fuera de «Leídos» la opción no existe; si estaba activa, vuelve al defecto 'recent'.
+// Política: valor válido para el filtro → se conserva; no válido → defecto del filtro (_shelfSortValid/_shelfSortDefault).
 let _shelfRecentReadingOpt=null;
 function _shelfSyncSortForFilter(){
   const sel=document.getElementById('shelfSortSelect'); if(!sel) return;
@@ -10203,14 +10262,16 @@ function _shelfSyncSortForFilter(){
     _shelfRecentReadingOpt.value='recentReading';
     _shelfRecentReadingOpt.textContent='📖 Última lectura';
   }
+  const entering=_shelfSortLastFilter!==shelfFilter;
+  _shelfSortLastFilter=shelfFilter;
   const has=sel.querySelector('option[value="recentReading"]');
   if(shelfFilter==='read'){
     if(!has) sel.insertBefore(_shelfRecentReadingOpt,sel.firstChild);
-    if(shelfSort==='recent') shelfSort='recentReading';
   } else {
     if(has) has.remove();
-    if(shelfSort==='recentReading') shelfSort='recent';
   }
+  if(entering&&shelfFilter==='read') shelfSort='recentReading';
+  else if(!_shelfSortValid(shelfFilter,shelfSort)) shelfSort=_shelfSortDefault(shelfFilter);
   sel.value=shelfSort;
 }
 
@@ -10298,13 +10359,13 @@ function shelfApplyFilters(){
   shelfPage=1;
   shelfSearch=document.getElementById('shelfSearchInput').value.toLowerCase().trim();
   shelfGenreFilter=document.getElementById('shelfGenreSelect').value;
-  shelfSort=document.getElementById('shelfSortSelect').value;
+  const _ssv=document.getElementById('shelfSortSelect').value; shelfSort=_shelfSortValid(shelfFilter,_ssv)?_ssv:_shelfSortDefault(shelfFilter); // E25
   _renderShelfBooks();
   shelfUrlSync(shelfFilter,false); // FASE E4.2
 }
 
 function shelfClearFilters(){
-  shelfSearch='';shelfGenreFilter='';shelfSort=shelfFilter==='read'?'recentReading':'recent';shelfPage=1;
+  shelfSearch='';shelfGenreFilter='';shelfSort=_shelfSortDefault(shelfFilter);shelfPage=1; // E25
   document.getElementById('shelfSearchInput').value='';
   document.getElementById('shelfGenreSelect').value='';
   document.getElementById('shelfSortSelect').value=shelfSort;
@@ -10512,12 +10573,13 @@ function _shelfBookScale(id){
   h^=h>>>15; h=Math.imul(h,2246822507); h^=h>>>13;
   return [0.86,0.93,1][(h>>>0)%3];
 }
-let _shelfLastCw=0;
+let _shelfLastCw=0, _shelfCwFloor=0;
 // Ancho real disponible (px) del contenedor; si aún no tiene layout (vista oculta) usa la última medida o una estimación.
+// FASE E16: _shelfCwFloor lo fija el detector de oscilación del ResizeObserver (ancho↔altura, p. ej. barra de scroll): mientras el ancho real esté a ≤24px por encima del suelo se usa el suelo (la distribución del menor de los dos anchos cabe en ambos); fuera de ese rango se descarta.
 function _shelfContainerWidth(){
   const c=document.getElementById('shelfBooksContainer');
   let w=c?Math.round(c.getBoundingClientRect().width):0;
-  if(w>0){ _shelfLastCw=w; return w; }
+  if(w>0){ if(_shelfCwFloor){ if(w>=_shelfCwFloor&&w-_shelfCwFloor<=24) w=_shelfCwFloor; else _shelfCwFloor=0; } _shelfLastCw=w; return w; }
   if(_shelfLastCw>0) return _shelfLastCw;
   const vw=document.documentElement.clientWidth||window.innerWidth||360;
   return Math.max(200,(vw>=900?Math.min(vw,1320)-220:vw)-64);
@@ -10532,11 +10594,26 @@ function _shelfMetrics(cw){
   const bw=Math.min(wfill,1.10*wmin,140);
   return {n,bw:Math.round(bw*100)/100,gap:Math.round(gap*100)/100,pad:Math.round(pad*100)/100};
 }
-// Reparte los libros en baldas de n. Si la última balda tiene 1 solo libro (y hay otra anterior con margen), se le pasa un libro de la anterior.
-function _shelfSplitRows(list,n){
-  const rows=[];
-  for(let i=0;i<list.length;i+=n) rows.push(list.slice(i,i+n));
-  if(n>=3 && rows.length>1 && rows[rows.length-1].length===1) rows[rows.length-1].unshift(rows[rows.length-2].pop());
+// FASE E16 — Distribución dinámica por ANCHO REAL. Cada balda toma libros, en orden, mientras la suma de sus anchos reales (los mismos que aplica el CSS:
+// bw×escala en Portadas, sw×factor en Lomos) más los gaps quepa en el interior de la balda. No hay n fijo: cada balda aloja los que realmente caben.
+// La última balda NO se rellena ni se reequilibra (1 libro → 1 libro) y, como todas, queda alineada a la izquierda (como libros apoyados en una balda real).
+function _shelfBookW(b,m){ return shelfStyleMode==='spines'?m.sw*_shelfSpineWidthF(b.id):m.bw*_shelfBookScale(b.id); }
+function _shelfPackRows(list,m,cw){
+  const W=cw-2*m.pad-0.5, rows=[]; // 0,5 px de holgura frente al redondeo subpíxel del layout
+  let row=[], used=0;
+  for(const b of list){
+    const w=_shelfBookW(b,m);
+    if(row.length&&used+m.gap+w>W){ rows.push(row); row=[]; used=0; }
+    used+=(row.length?m.gap:0)+w; row.push(b);
+  }
+  if(row.length) rows.push(row);
+  return rows;
+}
+// Firma de la distribución (libros por balda): el ResizeObserver repinta solo si cambia, no por cada variación de ancho.
+let _shelfLastSig='', _shelfLastList=null, _shelfLastRenderCw=0;
+function _shelfLayout(list,m,cw){
+  const rows=_shelfPackRows(list,m,cw);
+  _shelfLastSig=rows.map(r=>r.length).join(','); _shelfLastList=list; _shelfLastRenderCw=cw;
   return rows;
 }
 // Color determinista del placeholder según el id (paleta de cubiertas apagadas).
@@ -10549,23 +10626,31 @@ function _shelfPhColor(id){
 function _shelfPlaceholderHTML(title,auth){
   return `<div class="shelf-book-ph" aria-hidden="true"><span>${escHtml(title)}</span>${auth?`<small>${escHtml(auth)}</small>`:''}</div>`;
 }
-let _shelfLastN=0;
 function _shelfApplyMetrics(el,m){
   el.style.setProperty('--shelf-bw',m.bw); el.style.setProperty('--shelf-gap',m.gap+'px'); el.style.setProperty('--shelf-pad',m.pad+'px');
   if(m.sw!==undefined) el.style.setProperty('--sp-w',m.sw); // FASE E15.3.3: solo métricas de Lomos
 }
+// FASE E21.2 — estado visual por libro (solo Estantería física). Fuente única: myReadingStatus[b.id]; nunca shelfFilter.
+// Devuelve el atributo data-status y, si procede, UNA capa decorativa (aria-hidden, pointer-events:none): marca de «Leyendo» (Portadas y Lomos) o tinte de Lomos para want/dnf.
+function _shelfState(b,spine){
+  const s=myReadingStatus[b.id];
+  if(s!=='want'&&s!=='reading'&&s!=='read'&&s!=='dnf') return {attr:'',layer:''};
+  const layer=s==='reading'?'<span class="shelf-reading-mark" aria-hidden="true"></span>'
+    :(spine&&(s==='want'||s==='dnf')?'<span class="shelf-state-tint" aria-hidden="true"></span>':'');
+  return {attr:` data-status="${s}"`,layer};
+}
 function _shelfRenderShelf(pageBooks){
   if(shelfStyleMode==='spines') return _shelfRenderSpines(pageBooks); // FASE E15.3.3: Portadas (abajo) queda intacto
-  const m=_shelfMetrics(_shelfContainerWidth());
-  _shelfLastN=m.n;
-  const rows=_shelfSplitRows(pageBooks,m.n).map(row=>{
+  const cw=_shelfContainerWidth(), m=_shelfMetrics(cw);
+  const rows=_shelfLayout(pageBooks,m,cw).map(row=>{
     const slots=row.map(b=>{
       const auth=(b.authors||[]).join(', ');
       const inner=b.cover
-        ?`<img src="${escHtml(b.cover)}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`
+        ?`<img src="${escHtml(b.cover)}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" draggable="false">`
         :_shelfPlaceholderHTML(b.title,auth);
       const label=auth?`${b.title} — ${auth}`:String(b.title); // FASE E5.4: sin autor no se inventa texto
-      return `<div class="shelf-slot" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}" style="--w:${_shelfBookScale(b.id)};--ph-bg:${_shelfPhColor(b.id)}">${inner}</div>`;
+      const st=_shelfState(b,false); // FASE E21.2
+      return `<div class="shelf-slot" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}"${st.attr} style="--w:${_shelfBookScale(b.id)};--ph-bg:${_shelfPhColor(b.id)}">${inner}${st.layer}</div>`;
     }).join('');
     return `<div class="shelf-row"><div class="shelf-books-area">${slots}</div><div class="shelf-board"></div></div>`;
   }).join('');
@@ -10613,9 +10698,8 @@ function _shelfSpineFg(hex){
   return L>.18?'#1f1815':'#f2eadf';
 }
 function _shelfRenderSpines(pageBooks){
-  const m=_shelfSpineMetrics(_shelfContainerWidth());
-  _shelfLastN=m.n;
-  const rows=_shelfSplitRows(pageBooks,m.n).map(row=>{
+  const cw=_shelfContainerWidth(), m=_shelfSpineMetrics(cw);
+  const rows=_shelfLayout(pageBooks,m,cw).map(row=>{
     const slots=row.map(b=>{
       const auth=(b.authors||[]).join(', ');
       const bg=_shelfSpineColor(b), fg=_shelfSpineFg(bg);
@@ -10623,30 +10707,37 @@ function _shelfRenderSpines(pageBooks){
       const cols=(b.title?`<span class="shelf-spine-t">${escHtml(b.title)}</span>`:'')+(auth?`<span class="shelf-spine-a">${escHtml(auth)}</span>`:'');
       const txt=cols?`<div class="shelf-spine-txt" aria-hidden="true"><div class="shelf-spine-cols">${cols}</div></div>`:'';
       const label=auth?`${b.title} — ${auth}`:String(b.title); // mismo aria-label que Portadas
-      return `<div class="shelf-slot shelf-spine${fg==='#f2eadf'?' sp-light':''}" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}" style="--h:${_shelfBookScale(b.id)};--ww:${_shelfSpineWidthF(b.id)};--sp-bg:${bg};--sp-fg:${fg}">${tex}${txt}</div>`;
+      const st=_shelfState(b,true); // FASE E21.2
+      return `<div class="shelf-slot shelf-spine${fg==='#f2eadf'?' sp-light':''}" role="button" tabindex="0" aria-label="${escHtml(label)}" data-title="${escHtml(b.title)}" data-author="${escHtml(auth)}" data-book-id="${escHtml(b.id)}"${st.attr} style="--h:${_shelfBookScale(b.id)};--ww:${_shelfSpineWidthF(b.id)};--sp-bg:${bg};--sp-fg:${fg}">${tex}${st.layer}${txt}</div>`;
     }).join('');
     return `<div class="shelf-row"><div class="shelf-books-area">${slots}</div><div class="shelf-board"></div></div>`;
   }).join('');
   return `<div class="shelf-physical" style="--shelf-bw:${m.bw};--shelf-gap:${m.gap}px;--shelf-pad:${m.pad}px;--sp-w:${m.sw}">${rows}</div>`;
 }
 
-// E15.2 — los libros por balda dependen del ancho real del contenedor: si cambia n se repinta; si solo cambia el tamaño, se actualizan las variables CSS.
+// E15.2/E16 — la distribución depende del ancho real del contenedor: si cambia la composición de las baldas se repinta; si solo cambia el tamaño, se actualizan las variables CSS.
 (function(){
   const c=document.getElementById('shelfBooksContainer'); if(!c) return;
   c.addEventListener('error',e=>{ if(e.target&&e.target.tagName==='IMG') _shelfImgFallback(e.target); },true);
   if(typeof ResizeObserver==='undefined') return;
-  let burst=0, timer=null;
-  new ResizeObserver(()=>{
+  let trail=null, lastAt=0, rep=[];
+  const sync=()=>{
     if(shelfViewMode!=='shelf'||shelfFilter==='calendar') return;
     const view=document.getElementById('shelfView'); if(!view||!view.classList.contains('active')) return;
-    const phys=c.querySelector('.shelf-physical'); if(!phys) return;
-    const m=_shelfActiveMetrics(_shelfContainerWidth()); // FASE E15.3.3: métricas del submodo activo
-    if(m.n!==_shelfLastN){
-      if(burst>=4) return; // freno anti-oscilación (p. ej. aparición de la barra de scroll al cambiar la altura)
-      burst++; clearTimeout(timer); timer=setTimeout(()=>{burst=0;},500);
-      _renderShelfBooks();
-    } else _shelfApplyMetrics(phys,m);
-  }).observe(c);
+    const phys=c.querySelector('.shelf-physical'); if(!phys||!_shelfLastList) return;
+    const cw=_shelfContainerWidth();
+    if(cw===_shelfLastRenderCw) return; // solo cambió la altura (p. ej. tras repintar): el ancho es el ya calculado
+    const m=_shelfActiveMetrics(cw); // FASE E15.3.3: métricas del submodo activo
+    if(_shelfPackRows(_shelfLastList,m,cw).map(r=>r.length).join(',')===_shelfLastSig){ _shelfApplyMetrics(phys,m); _shelfLastRenderCw=cw; return; } // misma distribución: solo variables CSS
+    const now=performance.now(), wait=lastAt+100-now;
+    if(wait>0){ clearTimeout(trail); trail=setTimeout(sync,wait); return; } // freno de ritmo: ≤1 repintado/100ms; el último ancho siempre acaba pintándose
+    if(rep.some(r=>r.cw===cw&&now-r.t<1500)&&!_shelfCwFloor){ // anti-oscilación: se vuelve a un ancho ya repintado hace <1,5s → se fija el menor de los dos y se corta el bucle
+      _shelfCwFloor=Math.min(cw,_shelfLastRenderCw); rep=[]; return sync();
+    }
+    rep.push({cw,t:now}); if(rep.length>4) rep.shift();
+    lastAt=now; _renderShelfBooks();
+  };
+  new ResizeObserver(sync).observe(c);
 })();
 
 // FASE E5.4 — Interacción de los libros de la estantería. Delegación sobre #shelfBooksContainer (persistente): sobrevive a cada repintado.
@@ -10670,17 +10761,58 @@ function _shelfTipShow(slot){
   tip.style.left=left+'px'; tip.style.top=(above>=minTop?above:r.bottom+8)+'px';
   tip.classList.add('on');
 }
+// FASE E20.2 — Información contextual del libro (#shelfInfo). El id es SOLO contexto visual: la navegación (click/Enter/Space → openBookPage) no lo consulta ni lo espera.
+// Sin fuente de verdad propia: lee myRatings/ratingsMap/mySpicy/b.spicy/myReadingStatus y reutiliza bookReadingTime, _shelfStartedTxt y _shelfShortDateTxt. Dato ausente → se omite.
+let _shelfInfoId=null;
+function _shelfInfoParts(b){
+  const id=b.id, o={title:String(b.title||''),author:(b.authors||[]).join(', '),rating:'',spicy:'',state:''};
+  const rv=Number(myRatings[id]);
+  if(rv>=1&&rv<=5) o.rating=`Mi valoración ${Math.round(rv)}/5`;
+  else { const cr=ratingsMap[id]; if(cr&&cr.count>0) o.rating=`Comunidad ${cr.avg.toFixed(1).replace('.',',')}/5 (${cr.count})`; }
+  const sv=Number(mySpicy[id]);
+  if(sv>=1&&sv<=5) o.spicy=`Mi spicy ${Math.round(sv)}/5`;
+  else if(typeof b.spicy==='number'&&b.spicy>=1&&b.spicy<=5) o.spicy=`Spicy ${Math.round(b.spicy)}/5`; // catálogo directo (no la media de comunidad)
+  const st=myReadingStatus[id];
+  if(st==='read'){ o.state='Leído'; const rt=bookReadingTime(id); if(rt.hasDate) o.state+=' · '+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); }
+  else if(st==='reading'){ const d=_shelfStartedTxt(id); o.state='Leyendo'+(d?' · desde '+d:''); }
+  else if(st==='dnf'){ const d=_shelfStartedTxt(id); o.state='Lo dejé'+(d?' · empezado '+d:''); } // no existe fecha de abandono
+  else if(st==='want') o.state='Quiero leer';
+  return o;
+}
+// Pinta u oculta la barra según el contexto. Si el libro ya no está visible en la Estantería actual (o la vista es Galería/Lista/Calendario), el contexto se descarta.
+function _shelfInfoSync(){
+  const el=document.getElementById('shelfInfo'); if(!el) return;
+  let b=null;
+  if(_shelfInfoId!=null&&shelfViewMode==='shelf'&&shelfFilter!=='calendar'){
+    const c=document.getElementById('shelfBooksContainer');
+    if(c&&Array.prototype.some.call(c.querySelectorAll('.shelf-slot'),s=>s.dataset.bookId===_shelfInfoId)) b=allBooks.find(x=>String(x.id)===_shelfInfoId)||null;
+  }
+  const meta=el.querySelector('.si-meta');
+  if(!b){
+    _shelfInfoId=null; el.hidden=true;
+    el.querySelector('.si-t').textContent=''; el.querySelector('.si-a').textContent=''; meta.textContent='';
+    return;
+  }
+  const p=_shelfInfoParts(b), a=el.querySelector('.si-a');
+  el.querySelector('.si-t').textContent=p.title;
+  a.textContent=p.author; a.hidden=!p.author;
+  meta.textContent='';
+  [['si-rate',p.rating],['si-spicy',p.spicy],['si-state',p.state]].forEach(([cls,t])=>{ if(!t) return; const sp=document.createElement('span'); sp.className=cls; sp.textContent=t; meta.appendChild(sp); });
+  meta.hidden=!meta.firstChild;
+  el.hidden=false;
+}
+function _shelfInfoSet(id){ _shelfInfoId=id==null?null:String(id); _shelfInfoSync(); }
 (function(){
   const c=document.getElementById('shelfBooksContainer'); if(!c) return;
   const slotOf=t=>t&&t.closest?t.closest('.shelf-slot'):null;
-  c.addEventListener('pointerover',e=>{ if(e.pointerType==='touch') return; const s=slotOf(e.target); if(s) _shelfTipShow(s); }); // en táctil no hay tooltip
+  c.addEventListener('pointerover',e=>{ if(e.pointerType==='touch') return; const s=slotOf(e.target); if(s){ _shelfTipShow(s); _shelfInfoSet(s.dataset.bookId); } }); // en táctil no hay tooltip ni contexto previo (E20.2)
   c.addEventListener('pointerout',e=>{ const s=slotOf(e.target); if(s&&!s.contains(e.relatedTarget)) _shelfTipHide(); });
-  c.addEventListener('focusin',e=>{ const s=slotOf(e.target); if(s&&s.matches(':focus-visible')) _shelfTipShow(s); });
+  c.addEventListener('focusin',e=>{ const s=slotOf(e.target); if(s&&s.matches(':focus-visible')){ _shelfTipShow(s); _shelfInfoSet(s.dataset.bookId); } });
   c.addEventListener('focusout',_shelfTipHide);
-  c.addEventListener('click',e=>{ const s=slotOf(e.target); if(!s) return; _shelfTipHide(); openBookPage(s.dataset.bookId); });
+  c.addEventListener('click',e=>{ const s=slotOf(e.target); if(!s) return; _shelfInfoId=s.dataset.bookId; _shelfTipHide(); openBookPage(s.dataset.bookId); }); // E20.2: el id solo recuerda el contexto para el Back; no condiciona la apertura
   c.addEventListener('keydown',e=>{
     if(!e.target.classList||!e.target.classList.contains('shelf-slot')) return;
-    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(e.repeat) return; _shelfTipHide(); openBookPage(e.target.dataset.bookId); }
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(e.repeat) return; _shelfInfoId=e.target.dataset.bookId; _shelfTipHide(); openBookPage(e.target.dataset.bookId); }
   });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') _shelfTipHide(); });
   window.addEventListener('scroll',_shelfTipHide,{passive:true});
@@ -10715,6 +10847,7 @@ function _shelfPaginationHTML(totalPages,total){
 }
 
 function _renderShelfBooks(){
+  _shelfTipHide(); // E19.4: el repintado destruye el slot anclado; sin esto el tooltip queda huérfano con el cursor quieto
   const titleMap={all:'Todos los libros',want:'Quiero leer',reading:'Leyendo',read:'Leídos',dnf:'Lo dejé'};
   let {books,hadBooksBeforeFilters}=_shelfPrepareBooks();
   if(shelfViewMode==='shelf'&&shelfFilter==='read') books=_shelfYearFilter(books); // FASE E15.4: el filtro de año vive solo aquí (Galería/Lista reutilizan _shelfPrepareBooks)
@@ -10728,6 +10861,7 @@ function _renderShelfBooks(){
       const msgs={all:'Tu estantería está vacía. ¡Añade libros desde el catálogo!',want:'Aún no tienes libros en «Quiero leer».',reading:'Aún no tienes libros marcados como «Leyendo».',read:'Aún no has marcado ningún libro como leído.',dnf:'No has dejado ningún libro a medias (¡bien por ti! 🌸).'};
       container.innerHTML=`<div class="shelf-empty"><span class="shelf-empty-icon">${shelfFilter==='read'?'✨':shelfFilter==='dnf'?'✕':'📖'}</span><p>${msgs[shelfFilter]}</p></div>`;
     }
+    _shelfInfoSync(); // FASE E20.2
     return;
   }
 
@@ -10738,6 +10872,7 @@ function _renderShelfBooks(){
     container.innerHTML=_shelfRenderView(pageBooks)+_shelfPaginationHTML(totalPages,books.length);
   }
   if(shelfViewMode==='shelf') container.querySelectorAll('.shelf-slot img').forEach(im=>{ if(im.complete&&im.naturalWidth===0&&im.getAttribute('src')) _shelfImgFallback(im); });
+  _shelfInfoSync(); // FASE E20.2: contexto vigente tras repintar (o descartado si el libro ya no está)
 }
 
 /* ══════════════════════════ CALENDARIO DE LECTURAS ══════════════════════════ */
@@ -10754,14 +10889,25 @@ function buildReadingPeriods(){
     // no lo mostramos en el calendario aunque conserve historial de lecturas antiguas.
     if(!myReadingStatus[bookId]) return;
     (myReadingLog[bookId]||[]).forEach(entry=>{
-      const startISO=entry.started_at?entry.started_at.slice(0,10):(entry.read_at?entry.read_at.slice(0,10):null);
-      if(!startISO) return;
+      // E24: month/year NO se colocan en ninguna celda diaria (no se inventa día 01).
+      // precision NULL (histórico) o 'day' = fecha completa. Un extremo parcial se descarta;
+      // si solo queda un extremo con día conocido, se marca solo ese día (single).
+      const _isDay=(prec)=>prec!=='month'&&prec!=='year';
+      let startISO=(entry.started_at&&_isDay(entry.started_precision))?entry.started_at.slice(0,10):null;
       const ongoing=!entry.read_at;
+      let endISO=(!ongoing&&_isDay(entry.read_precision))?entry.read_at.slice(0,10):null;
       // Si la lectura sigue "abierta" (sin fecha de fin) pero el libro ya no está marcado como
       // "Leyendo" en la estantería, fue retirada/abandonada: no la mostramos como activa hasta hoy indefinidamente.
       if(ongoing && myReadingStatus[bookId]!=='reading') return;
-      const endISO=ongoing?todayISO:entry.read_at.slice(0,10);
-      periods.push({bookId,title:book.title,cover:book.cover,start:startISO,end:endISO,ongoing});
+      if(ongoing){
+        if(!startISO) return; // sin inicio con día conocido no hay desde cuándo extender hasta hoy
+        endISO=todayISO;
+      }
+      let single=false;
+      if(!startISO&&!endISO) return;
+      if(!startISO){ startISO=endISO; single=true; }
+      else if(!endISO){ endISO=startISO; single=true; }
+      periods.push({bookId,title:book.title,cover:book.cover,start:startISO,end:endISO,ongoing,single});
     });
   });
   return periods;
@@ -10809,7 +10955,7 @@ function renderReadingCalendar(){
       panelHtml=`<div class="cal-day-panel">
         <div class="cal-day-panel-title">${dStr}</div>
         ${active.map(p=>{
-          const rangeStr=`${new Date(p.start+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})} → ${p.ongoing?'ahora':new Date(p.end+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})}`;
+          const rangeStr=p.single?new Date(p.start+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'}):`${new Date(p.start+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})} → ${p.ongoing?'ahora':new Date(p.end+'T12:00:00').toLocaleDateString('es-ES',{day:'2-digit',month:'short'})}`;
           const cov=p.cover?`<img class="cal-panel-cover" src="${p.cover}" alt="" loading="lazy" decoding="async">`:`<div class="cal-panel-cover" style="display:flex;align-items:center;justify-content:center">📖</div>`;
           return `<div class="cal-panel-book" onclick="openBookPage('${p.bookId}')">
             ${cov}
