@@ -5281,6 +5281,46 @@ body.theme-christmas .topbar .user-dd-item.danger{color:var(--error)}
 
 
 
+/* F3.4 — pulido responsive de navegación móvil, áreas táctiles y aliases de Comunidad. */
+.mbn-more-group-label{
+  padding:8px 14px 4px;
+  margin:2px 4px 4px;
+  border-top:1px solid var(--border);
+  color:var(--accent2);
+  font:600 10px/1.3 var(--font-body);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.mbn-more-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:1px;line-height:1.3}
+.mbn-more-copy small{font-size:11px;font-weight:400;color:var(--muted);white-space:normal;line-height:1.3}
+.mbn-item:focus-visible,.mbn-more-item:focus-visible{
+  outline:2px solid var(--accent2);
+  outline-offset:-2px;
+  box-shadow:0 0 0 2px var(--surface);
+}
+.mbn-more-sheet{overscroll-behavior-y:contain;scrollbar-gutter:stable;}
+.mbn-more-item{touch-action:manipulation;}
+.mobile-bottom-nav{touch-action:manipulation;}
+@media (max-width:639px){
+  .topbar{width:100%;}
+  .topbar .logo{overflow:hidden;text-overflow:ellipsis;}
+  .topbar .topbar-search .search-input{touch-action:manipulation;}
+  .mbn-more-item{gap:12px;padding:11px 12px;min-height:48px;}
+  .mbn-more-icon{width:20px;height:20px;}
+  .mbn-more-copy small{overflow-wrap:anywhere;}
+  .mbn-more-sheet{padding-bottom:calc(1rem + 62px + env(safe-area-inset-bottom));}
+  #searchInput{scroll-margin-top:calc(16px + var(--mobile-topbar-height, 56px));}
+}
+@media (max-width:359px){
+  .topbar .logo{font-size:16px;}
+  .topbar .user-name{max-width:52px;}
+  .mbn-more-item{padding-inline:9px;}
+  .mbn-more-copy small{font-size:10px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .mbn-more-sheet,.mbn-item,.mbn-more-item{transition:none;}
+}
+
 /* ═══════════════════════════════════════════════════════════════
    FASE 3.5 — PRESENTACIÓN DE CATEGORÍAS Y BARRA DE FILTROS
    Solo capa visual: conserva nodos, IDs, eventos y lógica existentes.
@@ -6017,6 +6057,461 @@ body.theme-christmas .topbar .btn-login{color:#fff}
   .topbar .user-chip{transition:none}
 }
 
+
+/* F3.3 — menú Comunidad de escritorio; reutiliza los destinos de switchTab existentes. */
+.community-nav-wrap{position:relative;display:inline-flex;align-items:center;flex:0 0 auto}
+.community-nav-trigger{display:inline-flex;align-items:center;gap:5px}
+.community-nav-caret{font-size:13px;line-height:1;opacity:.7;transition:transform .18s}
+.community-nav-wrap.open .community-nav-caret{transform:rotate(180deg)}
+.community-nav-menu{
+  position:absolute;top:calc(100% + 8px);left:0;z-index:350;
+  display:none;min-width:245px;max-width:min(310px,80vw);padding:6px;
+  background:var(--surface);border:1px solid var(--border2);border-radius:13px;
+  box-shadow:0 16px 40px rgba(50,25,35,.18);max-height:min(70vh,520px);overflow-y:auto;
+}
+.community-nav-wrap.open .community-nav-menu{display:block;animation:ddFadeIn .14s ease}
+.community-nav-item{
+  display:block;width:100%;padding:9px 11px;border:0;border-radius:8px;
+  background:transparent;color:var(--text);text-align:left;white-space:normal;
+  font:500 12px/1.4 var(--font-body);cursor:pointer;transition:background .14s,color .14s;
+}
+.community-nav-item:hover,.community-nav-item:focus-visible{background:var(--accent-soft);color:var(--accent2);outline:none}
+.community-nav-item:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.community-nav-trigger[aria-expanded="true"]{color:var(--accent);background:var(--accent-soft);border-color:var(--border2)}
+/* F3 · Categorías de catálogo en la navegación principal (separadas de los filtros). */
+.categories-nav-wrap{position:relative;display:inline-flex;align-items:center;flex:0 0 auto}
+.categories-nav-trigger{display:inline-flex;align-items:center;gap:5px}
+.categories-nav-caret{font-size:13px;line-height:1;opacity:.7;transition:transform .18s}
+.categories-nav-wrap.open .categories-nav-caret{transform:rotate(180deg)}
+.categories-nav-menu{position:absolute;top:calc(100% + 8px);left:0;z-index:360;display:none;min-width:220px;max-width:min(310px,82vw);padding:6px;background:var(--surface);border:1px solid var(--border2);border-radius:13px;box-shadow:0 16px 40px rgba(50,25,35,.2);max-height:min(70vh,520px);overflow-y:auto}
+.categories-nav-wrap.open .categories-nav-menu{display:block;animation:ddFadeIn .14s ease}
+.categories-nav-item{display:block;width:100%;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--text);text-align:left;font:500 12.5px/1.4 var(--font-body);cursor:pointer;transition:background .14s,color .14s}
+.categories-nav-item:hover,.categories-nav-item:focus-visible,.categories-nav-item.active{background:var(--accent-soft);color:var(--accent2);outline:none}
+.categories-nav-item:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.categories-nav-trigger[aria-expanded="true"]{color:var(--accent);background:var(--accent-soft);border-color:var(--border2)}
+.mbn-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:7px 0 12px}
+.mbn-category-item{min-height:42px;padding:9px 10px;border:1px solid var(--border2);border-radius:10px;background:var(--surface2);color:var(--text);font:500 12px/1.35 var(--font-body);text-align:left;cursor:pointer}
+.mbn-category-item:hover,.mbn-category-item:focus-visible,.mbn-category-item.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2);outline:none}
+@media (min-width:640px) and (max-width:899px){
+  .community-nav-menu{top:calc(100% + 5px);min-width:225px}
+}
+@media (max-width:639px){
+  .community-nav-wrap{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   F3.5 · AJUSTE FINAL DE JERARQUÍA VISUAL
+   CSS exclusivamente: conserva estructura, IDs, eventos y lógica.
+   ═══════════════════════════════════════════════════════════════ */
+#sectionTabs{
+  align-items:center;
+  gap:clamp(6px,.65vw,10px);
+  padding:8px 2px 13px;
+  margin:0 0 14px;
+  border-bottom:1px solid var(--border2);
+}
+#sectionTabs .section-tab{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:42px;
+  padding:8px 13px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.25;
+  box-shadow:0 2px 7px rgba(65,30,43,.035);
+  transition:background .16s,border-color .16s,color .16s,box-shadow .16s;
+}
+#sectionTabs .section-tab:hover{
+  background:var(--surface2);
+  border-color:var(--border2);
+  color:var(--accent2);
+  transform:none;
+}
+#sectionTabs .section-tab[class*="active-"]{
+  background:var(--accent-soft);
+  color:var(--accent2);
+  border-color:var(--accent);
+  box-shadow:inset 0 -2px 0 var(--accent);
+}
+#sectionTabs .section-tab .tab-count{
+  min-width:22px;
+  min-height:21px;
+  padding:2px 6px;
+  border-radius:7px;
+  background:var(--surface2);
+  border-color:var(--border);
+  color:var(--muted);
+}
+#sectionTabs .section-tab[class*="active-"] .tab-count{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+}
+#sectionSelectMobile{margin:0 0 12px}
+#sectionSelectBtn{
+  min-height:46px;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:600;
+}
+#sectionSelectMenu{
+  max-height:min(65dvh,440px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.section-select-item{
+  min-height:44px;
+  padding:10px 13px;
+}
+.filter-shell{
+  margin-top:0;
+  border-radius:16px;
+  overflow:visible;
+}
+.filter-top{
+  justify-content:space-between;
+  gap:12px;
+  min-height:54px;
+  padding:8px 14px;
+}
+.filter-top::before{
+  content:"Ordenar catálogo";
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  line-height:1.3;
+}
+#sortSel{
+  margin-left:0;
+  min-width:178px;
+  max-width:100%;
+  border-radius:10px;
+}
+.filter-dropdowns{
+  gap:8px;
+  padding:12px 14px;
+}
+.filter-label-txt{
+  align-self:center;
+  margin-right:4px;
+  padding-right:8px;
+  border-right:1px solid var(--border2);
+}
+.dd-wrap{min-width:0}
+.dd-btn{
+  min-height:40px;
+  padding:8px 12px;
+  border-radius:10px;
+}
+.dd-btn:focus-visible,
+.sort-select:focus-visible,
+.section-tab:focus-visible,
+.section-select-btn:focus-visible,
+.section-select-item:focus-visible,
+.fp-panel-clear:focus-visible,
+.fp-sec-label:focus-visible{
+  outline:3px solid var(--accent);
+  outline-offset:2px;
+  position:relative;
+  z-index:3;
+}
+.filter-bottom{
+  gap:8px;
+  padding:9px 14px;
+}
+.active-filters{min-width:0}
+.af-pill{overflow-wrap:anywhere}
+.dd-panel,.more-filters-panel{
+  overscroll-behavior:contain;
+}
+.dd-item,.spicy-dd-item,.fp-sec-label,.fp-panel-clear{
+  touch-action:manipulation;
+}
+@media(max-width:767px){
+  #sectionTabs{
+    gap:6px;
+    padding:5px 1px 10px;
+    margin-bottom:10px;
+  }
+  #sectionTabs .section-tab{
+    min-height:42px;
+    padding:8px 10px;
+    font-size:12px;
+  }
+  .filter-top{
+    min-height:48px;
+    padding:7px 10px;
+    gap:8px;
+  }
+  .filter-top::before{font-size:10px}
+  #sortSel{
+    min-width:0;
+    width:auto;
+    max-width:min(72%,260px);
+    min-height:42px;
+    font-size:12px;
+  }
+  .filter-dropdowns{
+    gap:7px;
+    padding:10px;
+  }
+  .filter-label-txt{
+    flex:0 0 100%;
+    border-right:0;
+    border-bottom:1px solid var(--border);
+    padding:0 0 6px;
+    margin:0 0 1px;
+  }
+  .dd-wrap{flex:0 1 auto}
+  .dd-btn{max-width:100%;min-height:42px}
+  #ddMoreFilters{margin-left:auto}
+  .filter-bottom{padding:8px 10px}
+}
+@media(max-width:420px){
+  #sectionTabs .section-tab{
+    min-height:40px;
+    padding:7px 8px;
+    gap:5px;
+    font-size:11.5px;
+  }
+  #sectionTabs .tab-count{
+    min-width:19px;
+    min-height:19px;
+    padding:2px 4px;
+    font-size:10px;
+  }
+  .filter-top{align-items:center}
+  .filter-top::before{max-width:40%;letter-spacing:.04em}
+  #sortSel{max-width:68%;padding-left:8px;padding-right:28px}
+  .filter-dropdowns{gap:6px;padding:9px 8px}
+  .dd-btn{padding:7px 8px;font-size:11.5px;gap:5px}
+  #ddMoreFilters{margin-left:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  #sectionTabs .section-tab{transition:none}
+}
+
+
+/* F3.6 — sección estacional: jerarquía editorial compacta y estilos aislados por tema. */
+#panelEstanteria > .hw-forbidden,
+#panelEstanteria > .xm-collection{
+  margin-block:0;
+}
+#panelEstanteria > .hw-forbidden{
+  padding:clamp(.35rem,1vw,.7rem) clamp(.75rem,2vw,1.5rem) 1.15rem;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-head{
+  max-width:800px;
+  margin:0 auto .65rem;
+  padding:clamp(.45rem,1.2vw,.85rem) .75rem .55rem;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-head::after{
+  margin-top:.65rem;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-eyebrow{
+  margin-bottom:.35rem;
+  padding:.25rem .7rem;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-title{
+  margin-bottom:.35rem;
+  font-size:clamp(1.65rem,3.2vw,2.35rem);
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-sub{
+  margin-inline:auto;
+  font-size:clamp(12px,1.1vw,14px);
+  line-height:1.55;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-grid-head{
+  margin:.45rem auto .15rem;
+  padding:.35rem .75rem 0;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-grid-sub{
+  margin-top:.2rem;
+  font-size:12px;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-grid.hw-preview{
+  justify-content:center;
+  margin-top:.7rem;
+  gap:clamp(.55rem,1.2vw,.9rem);
+}
+#panelEstanteria > .hw-forbidden .hw-more-wrap{
+  margin-top:.65rem;
+}
+#panelEstanteria > .hw-forbidden .hw-oracle{
+  max-width:900px;
+  margin:1rem auto 0;
+  padding:clamp(.9rem,2vw,1.35rem);
+}
+#panelEstanteria > .hw-forbidden .hw-oracle-title{
+  font-size:clamp(1.2rem,2.3vw,1.6rem);
+  margin-bottom:.25rem;
+}
+#panelEstanteria > .hw-forbidden .hw-oracle-sub{
+  margin-bottom:.75rem;
+  font-size:12.5px;
+}
+#panelEstanteria > .hw-forbidden .hw-oracle-btn{
+  min-height:40px;
+  padding:8px 17px;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-empty{
+  min-height:100px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  padding:1.25rem 1rem;
+  border:1px dashed var(--border2);
+  border-radius:var(--radius);
+  background:var(--surface2);
+  line-height:1.5;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-empty.hw-loading-state::before{
+  content:"";
+  width:22px;height:22px;
+  border:2px solid var(--border2);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:hwF36Spin .8s linear infinite;
+}
+#panelEstanteria > .hw-forbidden .hw-forbidden-empty.hw-empty-state::before{
+  content:"✦";
+  color:var(--gold);
+  font-family:var(--font-display);
+  font-size:1.5rem;
+}
+@keyframes hwF36Spin{to{transform:rotate(360deg)}}
+
+/* Tema normal: editorial claro, sin importar colores de las ediciones estacionales. */
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden{
+  color:var(--text);
+}
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden .hw-forbidden-head,
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden .hw-oracle{
+  background:linear-gradient(135deg,var(--surface),var(--surface2));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+}
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden .hw-forbidden-head{
+  padding:.8rem 1rem .65rem;
+}
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden .hw-forbidden-eyebrow{
+  color:var(--accent2);
+  background:var(--surface);
+  letter-spacing:.12em;
+}
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden .hw-forbidden-grid-title{
+  color:var(--accent2);
+}
+body:not(.theme-halloween):not(.theme-christmas) #panelEstanteria > .hw-forbidden .hw-oracle{
+  margin-top:.85rem;
+}
+
+/* Halloween: contraste oscuro y detalles estacionales usando solo variables del tema activo. */
+body.theme-halloween #panelEstanteria > .hw-forbidden .hw-forbidden-head{
+  border:1px solid var(--border2);
+  border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,var(--surface),var(--surface2));
+}
+body.theme-halloween #panelEstanteria > .hw-forbidden .hw-forbidden-grid-title,
+body.theme-halloween #panelEstanteria > .hw-forbidden .hw-forbidden-eyebrow{
+  color:var(--gold);
+}
+body.theme-halloween #panelEstanteria > .hw-forbidden .hw-oracle{
+  border-color:var(--border2);
+  background:radial-gradient(ellipse at 50% 0%,var(--accent-soft),transparent 68%),linear-gradient(135deg,var(--surface),var(--surface2));
+}
+
+/* Navidad: la sección de octubre permanece oculta; se compacta su sección equivalente. */
+body.theme-christmas #panelEstanteria > .xm-collection{
+  padding-top:.35rem;
+}
+body.theme-christmas #panelEstanteria > .xm-collection .xm-collection-head{
+  margin-bottom:.65rem;
+  padding:clamp(.45rem,1.2vw,.85rem) .75rem .55rem;
+}
+body.theme-christmas #panelEstanteria > .xm-collection .xm-collection-grid-head{
+  margin:.45rem auto .15rem;
+  padding:.35rem .75rem 0;
+}
+body.theme-christmas #panelEstanteria > .xm-collection .xm-collection-grid{
+  margin-top:.7rem;
+}
+body.theme-christmas #panelEstanteria > .xm-collection .xm-gift{
+  margin-top:1rem;
+  padding:clamp(.9rem,2vw,1.35rem);
+}
+@media(max-width:767px){
+  #panelEstanteria > .hw-forbidden{padding:.35rem .55rem 1rem}
+  #panelEstanteria > .hw-forbidden .hw-forbidden-head{padding:.7rem .5rem .55rem;margin-bottom:.55rem}
+  #panelEstanteria > .hw-forbidden .hw-forbidden-grid-head{padding:.3rem .25rem 0}
+  #panelEstanteria > .hw-forbidden .hw-forbidden-grid.hw-preview{margin-top:.55rem}
+  #panelEstanteria > .hw-forbidden .hw-oracle{margin-top:.75rem;padding:.9rem .7rem}
+  body.theme-christmas #panelEstanteria > .xm-collection{padding-top:.35rem}
+  body.theme-christmas #panelEstanteria > .xm-collection .xm-collection-head{padding:.7rem .5rem .55rem;margin-bottom:.55rem}
+}
+@media(prefers-reduced-motion:reduce){
+  #panelEstanteria > .hw-forbidden .hw-forbidden-empty.hw-loading-state::before{animation:none}
+}
+
+
+
+/* F3 · Ajustes posteriores a la revisión visual: categorías desplegables,
+   navegación separada y eliminación de la barra de accesos duplicados. */
+.desktop-primary-nav{gap:clamp(7px,.8vw,13px);}
+.desktop-nav-link{flex-shrink:0;}
+.community-nav-menu{min-width:245px;}
+.community-nav-group-label{
+  padding:9px 14px 4px;margin:3px 5px 2px;border-top:1px solid var(--border);
+  color:var(--accent2);font:600 10px/1.3 var(--font-body);letter-spacing:.14em;text-transform:uppercase;
+}
+.community-club-item{padding-left:22px;}
+/* Las categorías viven en la navegación; se oculta el selector duplicado del catálogo. */
+.section-tabs{display:none!important;}
+.section-select-mobile{display:none!important;}
+.section-select-btn{
+  width:auto;min-width:min(260px,100%);max-width:100%;min-height:42px;
+  display:flex;align-items:center;gap:.65rem;padding:9px 15px;
+  border:1px solid var(--border2);border-radius:12px;
+  background:var(--surface2);color:var(--text);font:600 12.5px/1.35 var(--font-body);
+  cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+.section-select-btn:hover,.section-select-mobile.open .section-select-btn{
+  border-color:var(--accent);background:var(--accent-soft);
+}
+.section-select-arrow{margin-left:auto;}
+.section-select-menu{
+  display:none;position:absolute;top:calc(100% + 7px);left:0;right:auto;
+  min-width:min(290px,calc(100vw - 32px));max-height:60vh;overflow-y:auto;
+  padding:.4rem;background:var(--surface);border:1px solid var(--border2);
+  border-radius:14px;z-index:220;box-shadow:0 16px 40px rgba(0,0,0,.28);
+}
+.section-select-mobile.open .section-select-menu{display:block;}
+.section-select-item{
+  display:flex;align-items:center;gap:.5rem;width:100%;padding:10px 12px;
+  border:0;border-radius:10px;background:transparent;color:var(--muted);
+  font:500 13px/1.4 var(--font-body);text-align:left;cursor:pointer;
+}
+.section-select-item:hover,.section-select-item.active{background:var(--accent-soft);color:var(--accent2);}
+.section-select-item-count{margin-left:auto;font-size:10px;padding:1px 7px;border-radius:20px;font-weight:700;background:var(--surface3);color:var(--muted);}
+.section-select-item-count.hidden{display:none;}
+/* Comunidad ya contiene estos accesos; se retira la barra horizontal duplicada. */
+.main>.tab-bar{display:none!important;}
+@media(max-width:639px){
+  .topbar{gap:8px;}
+  .desktop-primary-nav{gap:3px;}
+  .categories-nav-wrap{display:none;}
+  .mbn-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
 </style>
 </head>
 <body>
@@ -6030,9 +6525,33 @@ body.theme-christmas .topbar .btn-login{color:#fff}
   <div class="desktop-primary-nav" aria-label="Secciones principales">
     <button class="desktop-nav-link" id="homeNavBtn" onclick="showHome()" aria-current="page">Inicio</button>
     <button class="desktop-nav-link" id="exploreNavBtn" onclick="navigateToExplore()">Explorar</button>
-    <button class="desktop-nav-link" id="categoriesNavBtn" onclick="navigateToCategories()" aria-controls="ddGenre">Categorías</button>
+    <div class="categories-nav-wrap" id="categoriesNavWrap">
+      <button class="desktop-nav-link categories-nav-trigger" id="categoriesNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="categoriesNavMenu" onclick="toggleCategoriesDropdown()">Categorías <span class="categories-nav-caret" aria-hidden="true">⌄</span></button>
+      <div class="categories-nav-menu" id="categoriesNavMenu" role="menu" aria-label="Categorías del catálogo">
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="thais" onclick="selectCatalogCategory('thais')">Libros Thais</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="other" onclick="selectCatalogCategory('other')">Libros Occidentales</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="spanish" onclick="selectCatalogCategory('spanish')">Libros en Español</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="baihee" onclick="selectCatalogCategory('baihee')">Baihee</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="asian" onclick="selectCatalogCategory('asian')">Asiáticas</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="african" onclick="selectCatalogCategory('african')">Africanas</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="wattpad" onclick="selectCatalogCategory('wattpad')">Wattpad</button>
+      </div>
+    </div>
     <button class="desktop-nav-link" id="recommendationsNavBtn" onclick="switchTab('myrec')">Recomendaciones</button>
-    <button class="desktop-nav-link" id="shelfNavBtn" onclick="location.href='https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria/?section=thais'" style="display:none"><span class="icon nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span> Estantería</button>
+    <div class="community-nav-wrap" id="communityNavWrap">
+      <button class="desktop-nav-link community-nav-trigger" id="communityNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="communityNavMenu" onclick="toggleCommunityDropdown()">Comunidad <span class="community-nav-caret" aria-hidden="true">⌄</span></button>
+      <div class="community-nav-menu" id="communityNavMenu" role="menu" aria-label="Secciones de comunidad">
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('top10');closeCommunityDropdown()">Las 10 de la noche en Tailandia</button>
+        <div class="community-nav-group-label">Clubs</div>
+        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('safi');closeCommunityDropdown()">El aquelarre Safi</button>
+        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('thaiclub');closeCommunityDropdown()">Thai Club</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('canal');closeCommunityDropdown()">El rincón de la bruja</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('myrec');closeCommunityDropdown()">Mi grimorio</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('solicitudes');closeCommunityDropdown()">Invoca un libro</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('ruleta');closeCommunityDropdown()">La ruleta maldita</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('bingo');closeCommunityDropdown()">Bingo de Halloween</button>
+      </div>
+    </div>
   </div>
   <div class="search-wrap topbar-search">
     <!-- trampa para el autocompletado del navegador -->
@@ -6074,46 +6593,57 @@ body.theme-christmas .topbar .btn-login{color:#fff}
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span>
     <span class="mbn-label">Estantería</span>
   </button>
-  <button class="mbn-item" id="mbnMore" type="button" onclick="toggleMobileMoreMenu()">
+  <button class="mbn-item" id="mbnMore" type="button" aria-expanded="false" aria-controls="mbnMoreSheet" onclick="toggleMobileMoreMenu()">
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="5" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></span>
     <span class="mbn-label">Más</span>
   </button>
 </nav>
 <div class="mbn-more-backdrop" id="mbnMoreBackdrop" onclick="closeMobileMoreMenu()"></div>
-<div class="mbn-more-sheet" id="mbnMoreSheet" role="menu" aria-label="Más secciones">
+<div class="mbn-more-sheet" id="mbnMoreSheet" role="menu" aria-label="Más secciones" aria-hidden="true">
   <div class="mbn-more-handle"></div>
   <div class="mbn-more-eyebrow">Más secciones</div>
+  <div class="mbn-more-group-label">Categorías</div>
+  <div class="mbn-category-grid" role="group" aria-label="Categorías del catálogo">
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('thais')">Libros Thais</button>
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('other')">Libros Occidentales</button>
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('spanish')">Libros en Español</button>
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('baihee')">Baihee</button>
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('asian')">Asiáticas</button>
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('african')">Africanas</button>
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('wattpad')">Wattpad</button>
+  </div>
+  <div class="mbn-more-group-label">Comunidad</div>
   <button class="mbn-more-item" id="mbnMoreTop10" type="button" onclick="showCatalog('top10');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span>
-    <span>Top 10 Thais</span>
+    <span class="mbn-more-copy"><span>Top 10 Thais</span><small>Las 10 de la noche en Tailandia</small></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreSafi" type="button" onclick="showCatalog('safi');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span>
-    <span>SafiClub</span>
+    <span class="mbn-more-copy"><span>SafiClub</span><small>El aquelarre Safi</small></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreThaiclub" type="button" onclick="showCatalog('thaiclub');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5 19v-3.5H4v-10Z"/></svg></span>
-    <span>Thai Club</span>
+    <span class="mbn-more-copy"><span>Thai Club</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreCanal" type="button" onclick="showCatalog('canal');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5v3l3 .6v-4.2l-3 .6Z"/><path d="M6 9.6l12-3.4v11.6L6 14.4V9.6Z"/><path d="M9 15.3v2.9c0 .7.6 1.2 1.2 1l1.8-.6"/></svg></span>
-    <span>Recomendaciones del Canal</span>
+    <span class="mbn-more-copy"><span>Recomendaciones del Canal</span><small>El rincón de la bruja</small></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreMyrec" type="button" onclick="showCatalog('myrec');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6v-17Z"/></svg></span>
-    <span>Mis Recomendaciones</span>
+    <span class="mbn-more-copy"><span>Mis Recomendaciones</span><small>Mi grimorio</small></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreSolicitudes" type="button" onclick="showCatalog('solicitudes');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16v13H4v-13Z"/><path d="M4 7l8 6 8-6"/></svg></span>
-    <span>Solicitudes</span>
+    <span class="mbn-more-copy"><span>Solicitudes</span><small>Invoca un libro</small></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreRuleta" type="button" onclick="showCatalog('ruleta');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></span>
-    <span>Ruleta</span>
+    <span class="mbn-more-copy"><span>Ruleta</span><small>La ruleta maldita</small></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreBingo" type="button" onclick="showCatalog('bingo');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span>
-    <span>Bingo</span>
+    <span class="mbn-more-copy"><span>Bingo</span><small>Bingo de Halloween</small></span>
   </button>
 </div>
 
@@ -6313,7 +6843,7 @@ body.theme-christmas .topbar .btn-login{color:#fff}
       <p class="hw-forbidden-grid-sub">Una selección de historias reunidas para la noche de octubre.</p>
     </div>
     <div class="hw-forbidden-grid hw-preview" id="hwForbiddenGrid">
-      <div class="hw-forbidden-empty">Buscando historias en la oscuridad…</div>
+      <div class="hw-forbidden-empty hw-loading-state" role="status" aria-live="polite">Buscando historias en la oscuridad…</div>
     </div>
     <div class="hw-more-wrap" id="hwMoreWrap" style="display:none">
       <button class="hw-oracle-btn" onclick="hwOpenCollection()">✦ Ver más ✦</button>
@@ -7166,6 +7696,18 @@ function syncSectionTabsUI(section){
   document.querySelectorAll('.section-select-item').forEach(el=>{
     el.classList.toggle('active', el.dataset.section===section);
   });
+  document.querySelectorAll('.categories-nav-item').forEach(el=>{
+    el.classList.toggle('active', el.dataset.section===section);
+    if(el.dataset.section===section) el.setAttribute('aria-current','true');
+    else el.removeAttribute('aria-current');
+  });
+  document.querySelectorAll('.mbn-category-item').forEach(el=>{
+    const active=el.getAttribute('onclick')?.includes("'"+section+"'");
+    el.classList.toggle('active',!!active);
+  });
+  const selected=document.querySelector('.section-select-item[data-section="'+section+'"]');
+  const label=document.getElementById('sectionSelectLabel');
+  if(selected && label) label.textContent=selected.childNodes[0].textContent.trim();
   closeSectionMenu();
 }
 function toggleSectionMenu(){
@@ -7619,7 +8161,7 @@ function hwRenderForbiddenShelf(){
   if(picks.length<3){ // colección muy corta: completamos con libros del catálogo para no dejar huecos
     picks=picks.concat(hwPickRandom(allBooks.filter(b=>!picks.includes(b)),3-picks.length));
   }
-  if(!picks.length){ grid.innerHTML='<div class="hw-forbidden-empty">La estantería prohibida está vacía… por ahora.</div>'; return; }
+  if(!picks.length){ grid.innerHTML='<div class="hw-forbidden-empty hw-empty-state" role="status">La estantería prohibida está vacía… por ahora.</div>'; return; }
   grid.innerHTML=picks.map(b=>hwForbiddenCardHtml(b,false)).join('');
   const more=document.getElementById('hwMoreWrap');
   if(more) more.style.display=collection.length>3?'':'none';
@@ -7634,7 +8176,7 @@ function hwOpenCollection(){
   if(sub) sub.textContent=`${list.length} historia${list.length===1?'':'s'} para la noche de octubre`;
   body.innerHTML=list.length
     ?`<div class="hw-forbidden-grid">${list.map(b=>hwForbiddenCardHtml(b,true)).join('')}</div>`
-    :'<div class="hw-forbidden-empty">La colección está vacía… por ahora.</div>';
+    :'<div class="hw-forbidden-empty hw-empty-state" role="status">La colección está vacía… por ahora.</div>';
   body.scrollTop=0;
   openAnimatedModalBg(modal);
   document.body.style.overflow='hidden';
@@ -10584,33 +11126,83 @@ function syncMobileNavActive(){
   syncDesktopNavActive();
 }
 function toggleMobileMoreMenu(){
-  const open=document.getElementById('mbnMoreSheet')?.classList.toggle('open');
+  const sheet=document.getElementById('mbnMoreSheet');
+  const open=sheet?.classList.toggle('open');
   document.getElementById('mbnMoreBackdrop')?.classList.toggle('open',!!open);
+  document.getElementById('mbnMore')?.setAttribute('aria-expanded',String(!!open));
+  if(open) sheet?.setAttribute('aria-hidden','false');
+  else sheet?.setAttribute('aria-hidden','true');
 }
 function closeMobileMoreMenu(){
   document.getElementById('mbnMoreSheet')?.classList.remove('open');
+  document.getElementById('mbnMoreSheet')?.setAttribute('aria-hidden','true');
   document.getElementById('mbnMoreBackdrop')?.classList.remove('open');
+  document.getElementById('mbnMore')?.setAttribute('aria-expanded','false');
 }
 /* "Buscar" no es una sección nueva: lleva a Estantería (misma llamada
    que el botón "Estantería") y enfoca el buscador ya existente del
    filtro. No crea estado paralelo — el resaltado activo tras aterrizar
    es el de Estantería, porque es la sección real en la que se está. */
 /* Accesos de escritorio enlazados a vistas y filtros existentes. */
+function toggleCommunityDropdown(){
+  const wrap=document.getElementById('communityNavWrap');
+  const trigger=document.getElementById('communityNavBtn');
+  if(!wrap || !trigger) return;
+  const open=wrap.classList.toggle('open');
+  trigger.setAttribute('aria-expanded',String(open));
+}
+function closeCommunityDropdown(){
+  const wrap=document.getElementById('communityNavWrap');
+  const trigger=document.getElementById('communityNavBtn');
+  if(!wrap || !trigger) return;
+  wrap.classList.remove('open');
+  trigger.setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('communityNavWrap');
+  if(wrap && !wrap.contains(e.target)) closeCommunityDropdown();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeCommunityDropdown();
+});
+
+function toggleCategoriesDropdown(){
+  const wrap=document.getElementById('categoriesNavWrap');
+  const trigger=document.getElementById('categoriesNavBtn');
+  if(!wrap || !trigger) return;
+  const open=wrap.classList.toggle('open');
+  trigger.setAttribute('aria-expanded',String(open));
+}
+function closeCategoriesDropdown(){
+  const wrap=document.getElementById('categoriesNavWrap');
+  const trigger=document.getElementById('categoriesNavBtn');
+  if(!wrap || !trigger) return;
+  wrap.classList.remove('open');
+  trigger.setAttribute('aria-expanded','false');
+}
+function selectCatalogCategory(section){
+  closeCategoriesDropdown();
+  closeMobileMoreMenu();
+  showCatalog('estanteria');
+  requestAnimationFrame(()=>{
+    switchSection(section);
+    syncDesktopNavActive();
+  });
+}
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('categoriesNavWrap');
+  if(wrap && !wrap.contains(e.target)) closeCategoriesDropdown();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeCategoriesDropdown();
+});
 function navigateToExplore(){
   const genrePanel=document.getElementById('ddGenre');
   if(genrePanel?.classList.contains('open')) toggleDD('ddGenre');
   showCatalog('estanteria');
 }
 function navigateToCategories(){
-  showCatalog('estanteria');
-  closeMobileMoreMenu();
-  requestAnimationFrame(()=>{
-    const panel=document.getElementById('ddGenre');
-    if(!panel) return;
-    if(!panel.classList.contains('open')) toggleDD('ddGenre');
-    panel.scrollIntoView({block:'center',behavior:'smooth'});
-    document.getElementById('categoriesNavBtn')?.classList.add('active');
-  });
+  toggleCategoriesDropdown();
 }
 function syncDesktopNavActive(){
   const home=document.body.classList.contains('home-active');
@@ -10637,6 +11229,19 @@ function focusMobileSearch(){
 document.addEventListener('click', e=>{
   const sheet=document.getElementById('mbnMoreSheet');
   if(sheet && sheet.classList.contains('open') && !sheet.contains(e.target) && !e.target.closest('#mbnMore')) closeMobileMoreMenu();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  const sheet=document.getElementById('mbnMoreSheet');
+  if(sheet?.classList.contains('open')){
+    e.preventDefault();
+    closeMobileMoreMenu();
+    sheet.classList.remove('open');
+    sheet.setAttribute('aria-hidden','true');
+    document.getElementById('mbnMoreBackdrop')?.classList.remove('open');
+    document.getElementById('mbnMore')?.setAttribute('aria-expanded','false');
+    document.getElementById('mbnMore')?.focus();
+  }
 });
 
 /* ── HOME VIEW ── */
