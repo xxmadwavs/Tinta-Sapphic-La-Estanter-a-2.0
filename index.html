@@ -3744,6 +3744,48 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
      muy estrecha, Rating y Spicy pasan a apilarse verticalmente. */
   .bp-mine-row{grid-template-columns:1fr}
 }
+
+
+/* E28.2 · paso 5 — selector de vistas de Mi estantería.
+   Pulido exclusivamente visual: conserva botones, estados, dimensiones táctiles móviles y lógica existentes. */
+.shelf-view-toggle{
+  gap:3px;
+  padding:4px;
+  border:1px solid var(--border2);
+  border-radius:11px;
+  background:linear-gradient(145deg,var(--surface2),color-mix(in srgb,var(--surface) 88%,var(--surface2)));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 2px 8px rgba(0,0,0,.16);
+}
+.shelf-view-btn{
+  border-radius:7px;
+  color:var(--muted);
+  transition:background-color .16s ease,color .16s ease,box-shadow .16s ease;
+}
+.shelf-view-btn.active{
+  background:var(--accent-soft);
+  color:var(--accent2);
+  box-shadow:inset 0 0 0 1px var(--border2),0 1px 3px rgba(0,0,0,.18);
+}
+.shelf-view-btn svg{
+  width:16px;
+  height:16px;
+}
+.shelf-view-btn:focus-visible{
+  outline:2px solid var(--accent2);
+  outline-offset:2px;
+  position:relative;
+  z-index:1;
+}
+@media (hover:hover) and (pointer:fine){
+  .shelf-view-btn:not(.active):hover{
+    background:rgba(192,111,196,.08);
+    color:var(--text);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .shelf-view-btn{transition:none}
+}
+
 </style>
 </head>
 <body>
