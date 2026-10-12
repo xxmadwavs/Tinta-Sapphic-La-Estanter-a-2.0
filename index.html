@@ -3921,7 +3921,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-locations{margin:1.25rem 0 1.4rem;padding:1rem;background:linear-gradient(145deg,var(--surface2),rgba(22,18,26,.94));border:1px solid var(--border2);border-radius:var(--radius-lg)}
 .book-locations-title{font-family:var(--font-display);font-size:1.35rem;font-weight:600;margin-bottom:.25rem;color:var(--text)}
 .book-locations-sub{font-size:12px;color:var(--muted);margin-bottom:.75rem}
-.book-locations-map{width:100%;aspect-ratio:1.8/1;min-height:190px;max-height:420px;overflow:hidden;border-radius:12px;background:rgba(8,5,10,.6);position:relative}
+.book-locations-map{width:100%;aspect-ratio:1.8/1;min-height:260px;max-height:500px;overflow:hidden;border-radius:12px;background:rgba(8,5,10,.6);position:relative}
 .book-locations-map svg{display:block;width:100%;height:100%;}
 .book-loc-land{fill:rgba(192,111,196,.14);stroke:rgba(218,153,222,.62);stroke-width:.55;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .book-loc-city{fill:var(--accent2);stroke:var(--bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
@@ -3933,7 +3933,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-loc-ring{width:9px;height:9px;border:1.5px solid var(--teal);border-radius:50%;display:inline-block}
 .book-locations-empty{font-size:12px;color:var(--muted);padding:.8rem 0}
 .bp-section .book-locations{margin:0}
-@media(max-width:639px){.book-locations{padding:.8rem;margin:1rem 0}.book-locations-map{min-height:180px;aspect-ratio:1.25/1}.book-loc-label{font-size:13px}}
+@media(max-width:639px){.book-locations{padding:.8rem;margin:1rem 0}.book-locations-map{min-height:250px;aspect-ratio:1.1/1}.book-loc-label{font-size:13px}}
 
 </style>
 </head>
@@ -6710,7 +6710,20 @@ async function renderBookLocations(book){
     paths.forEach(pth=>{try{const b=pth.getBBox();if(!b.width&&!b.height)return;if(!bb)bb={x:b.x,y:b.y,x2:b.x+b.width,y2:b.y+b.height};else{bb.x=Math.min(bb.x,b.x);bb.y=Math.min(bb.y,b.y);bb.x2=Math.max(bb.x2,b.x+b.width);bb.y2=Math.max(bb.y2,b.y+b.height);}}catch(_){}});
     const pts=[...cityById.values(),...regionById.values()];
     pts.forEach(pt=>{const x=Number(pt.x),y=Number(pt.y);if(!Number.isFinite(x)||!Number.isFinite(y))return;if(!bb)bb={x,y,x2:x,y2:y};else{bb.x=Math.min(bb.x,x);bb.y=Math.min(bb.y,y);bb.x2=Math.max(bb.x2,x);bb.y2=Math.max(bb.y2,y);}});
-    if(bb){let w=Math.max(12,bb.x2-bb.x),h=Math.max(12,bb.y2-bb.y),pad=Math.max(w,h)*.12;bb.x-=pad;bb.y-=pad;w+=pad*2;h+=pad*2;const aspect=1.8;if(w/h<aspect){const nw=h*aspect;bb.x-=(nw-w)/2;w=nw;}else{const nh=w/aspect;bb.y-=(nh-h)/2;h=nh;}svg.setAttribute('viewBox',`${bb.x} ${bb.y} ${w} ${h}`);}
+    if(bb){
+      let w=Math.max(12,bb.x2-bb.x),h=Math.max(12,bb.y2-bb.y);
+      const hostRect=host.getBoundingClientRect();
+      const aspect=Math.max(1.05,Math.min(2.6,(hostRect.width||900)/(hostRect.height||420)));
+      // Margen pequeño: el objetivo de esta ficha es enseñar las localizaciones, no el mapa mundial.
+      const pad=Math.max(w,h)*.035;
+      bb.x-=pad;bb.y-=pad;w+=pad*2;h+=pad*2;
+      if(w/h<aspect){const nw=h*aspect;bb.x-=(nw-w)/2;w=nw;}else{const nh=w/aspect;bb.y-=(nh-h)/2;h=nh;}
+      // Acerca el encuadre manteniendo centrados todos los países y marcadores relevantes.
+      // Para varias localizaciones, se calcula el zoom sobre la extensión conjunta.
+      const zoom=0.62,cx=bb.x+w/2,cy=bb.y+h/2;
+      w*=zoom;h*=zoom;bb.x=cx-w/2;bb.y=cy-h/2;
+      svg.setAttribute('viewBox',`${bb.x} ${bb.y} ${w} ${h}`);
+    }
     const unresolved=locs.filter(u=>u&&((u.ciudad&&!Array.from(cityById.values()).some(c=>wsCityNorm(c.ciudad)===wsCityNorm(u.ciudad)&&String(c.pais_iso).toUpperCase()===wsResolveIso(u.pais)))||(u.region&&!Array.from(regionById.values()).some(r=>wsCityNorm(r.nombre)===wsCityNorm(u.region)&&String(r.pais_iso).toUpperCase()===wsResolveIso(u.pais)))));
     if(unresolved.length){const note=document.createElement('p');note.className='book-locations-empty';note.textContent='Algunas ciudades o regiones no están disponibles en el catálogo cartográfico.';host.parentElement.appendChild(note);}
   }catch(e){console.warn('[Ficha libro] mapa de localizaciones:',e);host.innerHTML='<p class="book-locations-empty">No se ha podido cargar el mapa de localizaciones.</p>';}
