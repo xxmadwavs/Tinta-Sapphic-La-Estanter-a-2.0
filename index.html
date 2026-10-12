@@ -6727,6 +6727,7 @@ async function init(){
   if(!currentUser) readingStatusLoaded=true;
   renderAuthUI();
   await loadBooks();
+  bookLocWarmup();
   initHalloweenTheme();
   initChristmasTheme();
   if(currentUser){
@@ -7645,10 +7646,24 @@ function bookLocationsHtml(book){
   const empty=locs.length?'':'<p class="book-locations-empty">Este libro todavía no tiene localizaciones cartografiables.</p>';
   return `<section class="book-locations" data-book-locations="${escHtml(String(book.id))}"><h3 class="book-locations-title">Dónde transcurre la historia</h3><p class="book-locations-sub">Países, ciudades y regiones mencionados en esta ficha.</p>${empty||`<div class="book-locations-map" role="img" aria-label="Mapa de las localizaciones de ${escHtml(book.title||'este libro')}"><div class="book-locations-empty">Cargando mapa…</div></div><div class="book-locations-legend"><span><i class="book-loc-dot"></i> Ciudad</span><span><i class="book-loc-ring"></i> Región</span></div>`}</section>`;
 }
+// Precalienta los catálogos del mapa (world_map_data ≈722 KB + ciudades + regiones) en un momento ocioso tras cargar los libros,
+// para que la primera ficha abierta no tenga que descargarlos ni parsearlos. Reutiliza los cargadores existentes (promesas y caché compartidas).
+function bookLocWarmup(){
+  const go=()=>{ wsLoadMap().catch(()=>{}); wsLoadCities().catch(()=>{}); wsLoadRegions().catch(()=>{}); };
+  if('requestIdleCallback' in window) requestIdleCallback(go,{timeout:4000}); else setTimeout(go,1500);
+}
 async function renderBookLocations(book){
   if(!book||!Array.isArray(book.ubicaciones)||!book.ubicaciones.length) return;
-  const sections=[...document.querySelectorAll('.book-locations[data-book-locations]')].filter(el=>el.dataset.bookLocations===String(book.id)&&el.offsetParent!==null);
-  const section=sections[sections.length-1],host=section&&section.querySelector('.book-locations-map'); if(!host||host.dataset.rendered==='1') return;
+  // renderBookPage()/renderBookModal() llaman a esta función ANTES de que #bookPage reciba .active (o #bookModal .open),
+  // así que en el primer intento el contenedor aún no es visible (offsetParent null). Antes se abandonaba aquí y el mapa
+  // se quedaba en «Cargando mapa…» hasta refrescar; ahora se espera unos fotogramas a que la ficha se muestre.
+  const findHost=()=>{
+    const sections=[...document.querySelectorAll('.book-locations[data-book-locations]')].filter(el=>el.dataset.bookLocations===String(book.id)&&el.offsetParent!==null);
+    const section=sections[sections.length-1]; return section&&section.querySelector('.book-locations-map');
+  };
+  let host=findHost();
+  for(let i=0;!host&&i<30;i++){ await new Promise(r=>requestAnimationFrame(r)); host=findHost(); }
+  if(!host||host.dataset.rendered==='1') return;
   host.dataset.rendered='1';
   try{
     const NS='http://www.w3.org/2000/svg',locs=book.ubicaciones;
