@@ -3916,44 +3916,6 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
   .shelf-nav-item,.shelf-list-item{transition:none}
 }
 
-
-/* Mi mundo sáfico — controles de zoom accesibles en móvil y ordenador */
-.ws-map-tools{display:flex;align-items:center;justify-content:flex-end;gap:.4rem;flex-wrap:wrap;margin:-.1rem 0 .55rem}
-.ws-zoom-btn{display:inline-flex;align-items:center;justify-content:center;min-width:38px;min-height:38px;padding:6px 12px;border:1px solid var(--border2);border-radius:10px;background:var(--surface2);color:var(--text);font:500 13px var(--font-body);cursor:pointer;touch-action:manipulation}
-.ws-zoom-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
-.ws-zoom-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
-.ws-zoom-btn:first-child,.ws-map-tools .ws-zoom-btn[data-ws-zoom="in"],.ws-fullscreen-tools .ws-zoom-btn{font-size:20px;padding:4px 12px}
-.ws-mapwrap{touch-action:pan-y}
-.ws-mapwrap .ws-svg{transition:transform .12s ease-out;will-change:transform}
-.ws-mapwrap.ws-zoomed{touch-action:none}
-.ws-map-fullscreen{display:none;position:fixed;inset:0;z-index:1200;background:rgba(8,5,10,.94);padding:clamp(8px,2vw,24px);align-items:stretch;justify-content:center}
-.ws-map-fullscreen.open{display:flex}
-.ws-fullscreen-panel{width:100%;max-width:1600px;min-height:0;display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:clamp(10px,2vw,20px);box-shadow:0 24px 90px rgba(0,0,0,.5)}
-.ws-fullscreen-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.ws-fullscreen-title{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.7rem);font-weight:600}
-.ws-fullscreen-tools{display:flex;gap:6px;flex-wrap:wrap}
-.ws-fullscreen-map{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px;background:rgba(14,11,16,.55)}
-.ws-fullscreen-map .ws-mapwrap{width:100%;height:100%;aspect-ratio:auto!important}
-.ws-fullscreen-map .ws-svg{width:100%;height:100%;object-fit:contain;preserveAspectRatio:xMidYMid meet;image-rendering:auto}
-/* El mapa se mueve al overlay durante pantalla completa; replicamos aquí los selectores
-   dependientes de .ws-card para conservar el color de los países descubiertos. */
-#wsMapFullscreen[data-map="origen"] .ws-c.is-found,#wsMapFullscreen[data-map="origen"] .ws-dot.is-found{fill:var(--accent)}
-#wsMapFullscreen[data-map="cultura"] .ws-c.is-found,#wsMapFullscreen[data-map="cultura"] .ws-dot.is-found{fill:var(--teal)}
-#wsMapFullscreen .ws-c.is-found{cursor:pointer;stroke:rgba(255,255,255,.5)}
-#wsMapFullscreen .ws-c.is-sel{stroke:#fff;stroke-width:1}
-#wsMapFullscreen .ws-mapwrap{touch-action:none}
-#wsMapFullscreen .ws-svg{touch-action:none;vector-effect:non-scaling-stroke}
-.ws-zoom-hint{font-size:12px;color:var(--muted);line-height:1.4;margin-top:-2px}
-body.ws-map-modal-open{overflow:hidden}
-@media(max-width:640px){
- .ws-map-tools{justify-content:flex-start;padding:0 .2rem}
- .ws-zoom-btn{min-height:42px}
- .ws-map-tools .ws-fullscreen{margin-left:auto}
- .ws-fullscreen-panel{border-radius:12px}
- .ws-fullscreen-map{min-height:0}
-}
-@media(prefers-reduced-motion:reduce){.ws-mapwrap .ws-svg{transition:none}}
-
 </style>
 </head>
 <body>
@@ -12712,106 +12674,12 @@ function wsSetYear(v){
   wsYear=y; renderWorldSapphic();
 }
 
-// Ampliación y desplazamiento visual independiente para los dos mapas.
-const _wsZoom={};
-function wsZoomState(key){
-  if(!_wsZoom[key]) _wsZoom[key]={scale:1,x:0,y:0,drag:null,moved:false};
-  return _wsZoom[key];
-}
-function wsZoomApply(key){
-  const wrap=document.getElementById('wsWrap_'+key),svg=wrap&&wrap.querySelector('svg');
-  if(!wrap||!svg) return;
-  const z=wsZoomState(key),W=_wsMap.w,H=_wsMap.h;
-  /* Zoom vectorial mediante viewBox: evita ampliar una capa ya rasterizada. */
-  const vw=W/z.scale,vh=H/z.scale;
-  const maxX=W-vw,maxY=H-vh;
-  z.x=Math.max(-maxX/2,Math.min(maxX/2,z.x));
-  z.y=Math.max(-maxY/2,Math.min(maxY/2,z.y));
-  svg.setAttribute('viewBox',`${(W-vw)/2+z.x} ${(H-vh)/2+z.y} ${vw} ${vh}`);
-  svg.style.transform='none';
-  svg.style.cursor=z.scale>1?'grab':'';
-  wrap.classList.toggle('ws-zoomed',z.scale>1);
-}
-function wsZoomChange(key,action){
-  const z=wsZoomState(key);
-  // En el mapa de cultura, la selección de país controla el viewBox. No se debe
-  // sobrescribir con el zoom genérico porque eso descoloca el país y sus ciudades.
-  if(key===WS_CITY_MAP&&_wsCountrySel){
-    if(action==='full'){
-      const card=document.querySelector('.ws-card[data-map="'+key+'"]');
-      if(card) wsOpenMapFullscreen(key,card);
-      return;
-    }
-    if(action==='reset'){
-      z.scale=1;z.x=0;z.y=0;
-      wsCountrySet(null);
-      return;
-    }
-    if(action==='in'||action==='out'){
-      const svg=wsCitySvg(); if(!svg) return;
-      const v=svg.viewBox.baseVal,fac=action==='in'?1/1.35:1.35;
-      const W=_wsMap.w,H=_wsMap.h;
-      let w=Math.min(W,v.width*fac),h=Math.min(H,v.height*fac);
-      const cx=v.x+v.width/2,cy=v.y+v.height/2;
-      wsViewTo([Math.max(0,Math.min(W-w,cx-w/2)),Math.max(0,Math.min(H-h,cy-h/2)),w,h]);
-      return;
-    }
-  }
-  if(action==='reset'){z.scale=1;z.x=0;z.y=0;}
-  else if(action==='in'||action==='out'){
-    const next=Math.max(1,Math.min(8,z.scale*(action==='in'?1.35:1/1.35)));
-    if(next===1){z.x=0;z.y=0;} z.scale=next;
-  }else if(action==='full'){
-    const card=document.querySelector('.ws-card[data-map="'+key+'"]');
-    if(!card) return;
-    wsOpenMapFullscreen(key,card);
-    return;
-  }
-  wsZoomApply(key);
-}
-function wsOpenMapFullscreen(key,card){
-  let overlay=document.getElementById('wsMapFullscreen');
-  if(!overlay){
-    overlay=document.createElement('div'); overlay.id='wsMapFullscreen'; overlay.className='ws-map-fullscreen';
-    overlay.innerHTML=`<div class="ws-fullscreen-panel" role="dialog" aria-modal="true" aria-label="Mapa ampliado">
-      <div class="ws-fullscreen-head"><strong class="ws-fullscreen-title"></strong><button type="button" class="ws-zoom-btn ws-fullscreen-close" aria-label="Cerrar mapa ampliado">Cerrar ✕</button></div>
-      <div class="ws-fullscreen-tools">
-        <button type="button" class="ws-zoom-btn" data-fs-zoom="out">−</button><button type="button" class="ws-zoom-btn" data-fs-zoom="in">+</button><button type="button" class="ws-zoom-btn" data-fs-zoom="reset">Restablecer</button>
-      </div><p class="ws-zoom-hint">Móvil: junta o separa dos dedos para ampliar; arrastra para moverte. También puedes usar + y −.</p><div class="ws-fullscreen-map"></div>
-    </div>`;
-    document.body.appendChild(overlay);
-    overlay.addEventListener('click',e=>{
-      if(e.target===overlay||e.target.closest('.ws-fullscreen-close')){wsCloseMapFullscreen();}
-      const b=e.target.closest('[data-fs-zoom]'); if(b){const keyNow=overlay.dataset.map;if(keyNow) wsZoomChange(keyNow,b.dataset.fsZoom);}
-    });
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open')){wsCloseMapFullscreen();}});
-  }
-  const mapWrap=card.querySelector('.ws-mapwrap'),target=overlay.querySelector('.ws-fullscreen-map');
-  overlay.dataset.map=key;
-  overlay.querySelector('.ws-fullscreen-title').textContent=card.querySelector('.ws-card-title')?.textContent||'Mapa';
-  target.replaceChildren(mapWrap);
-  overlay.classList.add('open');document.body.classList.add('ws-map-modal-open');
-  wsZoomApply(key);
-}
-function wsCloseMapFullscreen(){
-  const overlay=document.getElementById('wsMapFullscreen');
-  if(!overlay||!overlay.classList.contains('open')) return;
-  const key=overlay.dataset.map,card=document.querySelector('.ws-card[data-map="'+key+'"]'),target=overlay.querySelector('.ws-fullscreen-map');
-  if(card&&target.firstElementChild) card.insertBefore(target.firstElementChild,card.querySelector('.ws-info'));
-  overlay.classList.remove('open');document.body.classList.remove('ws-map-modal-open');
-}
 function wsBuild(){
   const NS='http://www.w3.org/2000/svg',W=_wsMap.w,H=_wsMap.h;
   const host=document.getElementById('wsCards');
   host.innerHTML=WS_MAPS.map(m=>`
     <section class="ws-card" data-map="${m.key}">
       <h3 class="ws-card-title">${m.title}</h3>
-      <div class="ws-map-tools" role="group" aria-label="Controles de ampliación del mapa">
-        <button type="button" class="ws-zoom-btn" data-ws-zoom="out" data-map="${m.key}" aria-label="Reducir mapa" title="Reducir">−</button>
-        <button type="button" class="ws-zoom-btn" data-ws-zoom="in" data-map="${m.key}" aria-label="Ampliar mapa" title="Ampliar">+</button>
-        <button type="button" class="ws-zoom-btn ws-zoom-reset" data-ws-zoom="reset" data-map="${m.key}">Restablecer</button>
-        <button type="button" class="ws-zoom-btn ws-fullscreen" data-ws-zoom="full" data-map="${m.key}">Pantalla completa</button>
-      </div>
       <div class="ws-mapwrap" id="wsWrap_${m.key}" style="aspect-ratio:${W}/${H}"></div>
       <div class="ws-info" id="wsInfo_${m.key}" aria-live="polite"></div>
       <div class="ws-counters" id="wsCnt_${m.key}"></div>
@@ -12856,8 +12724,6 @@ function wsBuild(){
     // Táctil/lápiz: se usa el punto EXACTO del pointerup. El 'click' sintetizado en móvil pasa por el
     // «touch adjustment» del navegador y puede caer en un país vecino (p. ej. Tailandia → Myanmar).
     svg.addEventListener('pointerup',e=>{
-      const zoomState=wsZoomState(m.key);
-      if(zoomState.moved){zoomState.suppressUntil=Date.now()+500;return;}
       if(e.pointerType==='mouse') return;
       _wsTouchAt=Date.now();
       const t=document.elementFromPoint(e.clientX,e.clientY);
@@ -12874,57 +12740,6 @@ function wsBuild(){
     _wsDocBound=true;
     document.addEventListener('pointerdown',e=>{ if(!(e.target.closest&&e.target.closest('.ws-mapwrap'))) WS_MAPS.forEach(m=>wsHideTip(m.key)); });
   }
-  if(!window._wsZoomControlsBound){
-    window._wsZoomControlsBound=true;
-    document.addEventListener('click',e=>{
-      const b=e.target.closest&&e.target.closest('[data-ws-zoom]');
-      if(b){wsZoomChange(b.dataset.map,b.dataset.wsZoom);return;}
-    });
-  }
-  // Pan táctil/ratón cuando el mapa está ampliado; el gesto no selecciona accidentalmente países.
-  WS_MAPS.forEach(m=>{
-    const wrap=document.getElementById('wsWrap_'+m.key),svg=wrap&&wrap.querySelector('svg');
-    if(!svg||svg.dataset.zoomPanBound) return;
-    svg.dataset.zoomPanBound='1';
-    svg.addEventListener('pointerdown',e=>{
-      const z=wsZoomState(m.key);if(z.scale<=1||e.target.closest('.ws-tip'))return;
-      z.drag={x:e.clientX,y:e.clientY,ox:z.x,oy:z.y,id:e.pointerId};z.moved=false;
-      try{svg.setPointerCapture(e.pointerId);}catch(_){}
-    });
-    svg.addEventListener('pointermove',e=>{
-      const z=wsZoomState(m.key);if(!z.drag)return;
-      const dx=e.clientX-z.drag.x,dy=e.clientY-z.drag.y;
-      if(Math.abs(dx)+Math.abs(dy)>4)z.moved=true;
-      if(z.moved){
-        const rect=wrap.getBoundingClientRect();
-        z.x=z.drag.ox-dx*(_wsMap.w/Math.max(1,rect.width))/z.scale;
-        z.y=z.drag.oy-dy*(_wsMap.h/Math.max(1,rect.height))/z.scale;
-        wsZoomApply(m.key);
-      }
-    });
-    const endDrag=e=>{const z=wsZoomState(m.key);if(z.drag&&z.moved){z.suppressUntil=Date.now()+500;}z.drag=null;};
-    svg.addEventListener('pointerup',endDrag);svg.addEventListener('pointercancel',endDrag);
-    svg.addEventListener('click',e=>{const z=wsZoomState(m.key);if(z.suppressUntil>Date.now()){e.preventDefault();e.stopImmediatePropagation();}},true);
-    // Pinch-to-zoom real en pantallas táctiles; dos dedos amplían/reducen y un dedo sigue seleccionando.
-    if(!svg.dataset.pinchBound){
-      svg.dataset.pinchBound='1';
-      let pinch=null;
-      const distance=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-      svg.addEventListener('touchstart',e=>{
-        if(e.touches.length===2){
-          const z=wsZoomState(m.key);pinch={distance:distance(e.touches[0],e.touches[1]),scale:z.scale,x:z.x,y:z.y};z.drag=null;z.moved=true;
-        }
-      },{passive:true});
-      svg.addEventListener('touchmove',e=>{
-        if(!pinch||e.touches.length!==2)return;
-        e.preventDefault();const z=wsZoomState(m.key),d=distance(e.touches[0],e.touches[1]);
-        z.scale=Math.max(1,Math.min(8,pinch.scale*(d/Math.max(1,pinch.distance))));
-        if(z.scale===1){z.x=0;z.y=0;}wsZoomApply(m.key);
-      },{passive:false});
-      const endPinch=()=>{if(pinch){pinch=null;const z=wsZoomState(m.key);z.suppressUntil=Date.now()+500;z.moved=false;}};
-      svg.addEventListener('touchend',endPinch,{passive:true});svg.addEventListener('touchcancel',endPinch,{passive:true});
-    }
-  });
   _wsBuilt=true;
 }
 
@@ -13139,9 +12954,6 @@ function wsCityApplyScale(){
   const rr=(mk*WS_REG_RING_K/m.a).toFixed(3);   // anillo de región: algo mayor que el punto de ciudad
   svg.querySelectorAll('.ws-reg').forEach(el=>el.setAttribute('r',rr));
   svg.querySelectorAll('.ws-reg-hit').forEach(el=>el.setAttribute('r',rh));
-  // Mantener los puntos por encima de las siluetas al cambiar el viewBox.
-  const cities=svg.querySelector('.ws-cities'); if(cities) svg.appendChild(cities);
-  const regions=svg.querySelector('.ws-regions'); if(regions) svg.appendChild(regions);
 }
 
 // El catálogo está proyectado sobre un viewBox concreto; si no coincide con el mapa, no se usa
