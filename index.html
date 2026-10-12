@@ -3934,7 +3934,16 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .ws-fullscreen-tools{display:flex;gap:6px;flex-wrap:wrap}
 .ws-fullscreen-map{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px;background:rgba(14,11,16,.55)}
 .ws-fullscreen-map .ws-mapwrap{width:100%;height:100%;aspect-ratio:auto!important}
-.ws-fullscreen-map .ws-svg{width:100%;height:100%;object-fit:contain}
+.ws-fullscreen-map .ws-svg{width:100%;height:100%;object-fit:contain;preserveAspectRatio:xMidYMid meet;image-rendering:auto}
+/* El mapa se mueve al overlay durante pantalla completa; replicamos aquí los selectores
+   dependientes de .ws-card para conservar el color de los países descubiertos. */
+#wsMapFullscreen[data-map="origen"] .ws-c.is-found,#wsMapFullscreen[data-map="origen"] .ws-dot.is-found{fill:var(--accent)}
+#wsMapFullscreen[data-map="cultura"] .ws-c.is-found,#wsMapFullscreen[data-map="cultura"] .ws-dot.is-found{fill:var(--teal)}
+#wsMapFullscreen .ws-c.is-found{cursor:pointer;stroke:rgba(255,255,255,.5)}
+#wsMapFullscreen .ws-c.is-sel{stroke:#fff;stroke-width:1}
+#wsMapFullscreen .ws-mapwrap{touch-action:none}
+#wsMapFullscreen .ws-svg{touch-action:none;vector-effect:non-scaling-stroke}
+.ws-zoom-hint{font-size:12px;color:var(--muted);line-height:1.4;margin-top:-2px}
 body.ws-map-modal-open{overflow:hidden}
 @media(max-width:640px){
  .ws-map-tools{justify-content:flex-start;padding:0 .2rem}
@@ -12740,7 +12749,7 @@ function wsOpenMapFullscreen(key,card){
       <div class="ws-fullscreen-head"><strong class="ws-fullscreen-title"></strong><button type="button" class="ws-zoom-btn ws-fullscreen-close" aria-label="Cerrar mapa ampliado">Cerrar ✕</button></div>
       <div class="ws-fullscreen-tools">
         <button type="button" class="ws-zoom-btn" data-fs-zoom="out">−</button><button type="button" class="ws-zoom-btn" data-fs-zoom="in">+</button><button type="button" class="ws-zoom-btn" data-fs-zoom="reset">Restablecer</button>
-      </div><div class="ws-fullscreen-map"></div>
+      </div><p class="ws-zoom-hint">Móvil: junta o separa dos dedos para ampliar; arrastra para moverte. También puedes usar + y −.</p><div class="ws-fullscreen-map"></div>
     </div>`;
     document.body.appendChild(overlay);
     overlay.addEventListener('click',e=>{
@@ -12863,6 +12872,25 @@ function wsBuild(){
     const endDrag=e=>{const z=wsZoomState(m.key);if(z.drag&&z.moved){z.suppressUntil=Date.now()+500;}z.drag=null;};
     svg.addEventListener('pointerup',endDrag);svg.addEventListener('pointercancel',endDrag);
     svg.addEventListener('click',e=>{const z=wsZoomState(m.key);if(z.suppressUntil>Date.now()){e.preventDefault();e.stopImmediatePropagation();}},true);
+    // Pinch-to-zoom real en pantallas táctiles; dos dedos amplían/reducen y un dedo sigue seleccionando.
+    if(!svg.dataset.pinchBound){
+      svg.dataset.pinchBound='1';
+      let pinch=null;
+      const distance=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+      svg.addEventListener('touchstart',e=>{
+        if(e.touches.length===2){
+          const z=wsZoomState(m.key);pinch={distance:distance(e.touches[0],e.touches[1]),scale:z.scale,x:z.x,y:z.y};z.drag=null;z.moved=true;
+        }
+      },{passive:true});
+      svg.addEventListener('touchmove',e=>{
+        if(!pinch||e.touches.length!==2)return;
+        e.preventDefault();const z=wsZoomState(m.key),d=distance(e.touches[0],e.touches[1]);
+        z.scale=Math.max(1,Math.min(8,pinch.scale*(d/Math.max(1,pinch.distance))));
+        if(z.scale===1){z.x=0;z.y=0;}wsZoomApply(m.key);
+      },{passive:false});
+      const endPinch=()=>{if(pinch){pinch=null;const z=wsZoomState(m.key);z.suppressUntil=Date.now()+500;z.moved=false;}};
+      svg.addEventListener('touchend',endPinch,{passive:true});svg.addEventListener('touchcancel',endPinch,{passive:true});
+    }
   });
   _wsBuilt=true;
 }
