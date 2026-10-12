@@ -12734,6 +12734,29 @@ function wsZoomApply(key){
 }
 function wsZoomChange(key,action){
   const z=wsZoomState(key);
+  // En el mapa de cultura, la selección de país controla el viewBox. No se debe
+  // sobrescribir con el zoom genérico porque eso descoloca el país y sus ciudades.
+  if(key===WS_CITY_MAP&&_wsCountrySel){
+    if(action==='full'){
+      const card=document.querySelector('.ws-card[data-map="'+key+'"]');
+      if(card) wsOpenMapFullscreen(key,card);
+      return;
+    }
+    if(action==='reset'){
+      z.scale=1;z.x=0;z.y=0;
+      wsCountrySet(null);
+      return;
+    }
+    if(action==='in'||action==='out'){
+      const svg=wsCitySvg(); if(!svg) return;
+      const v=svg.viewBox.baseVal,fac=action==='in'?1/1.35:1.35;
+      const W=_wsMap.w,H=_wsMap.h;
+      let w=Math.min(W,v.width*fac),h=Math.min(H,v.height*fac);
+      const cx=v.x+v.width/2,cy=v.y+v.height/2;
+      wsViewTo([Math.max(0,Math.min(W-w,cx-w/2)),Math.max(0,Math.min(H-h,cy-h/2)),w,h]);
+      return;
+    }
+  }
   if(action==='reset'){z.scale=1;z.x=0;z.y=0;}
   else if(action==='in'||action==='out'){
     const next=Math.max(1,Math.min(8,z.scale*(action==='in'?1.35:1/1.35)));
@@ -13116,6 +13139,9 @@ function wsCityApplyScale(){
   const rr=(mk*WS_REG_RING_K/m.a).toFixed(3);   // anillo de región: algo mayor que el punto de ciudad
   svg.querySelectorAll('.ws-reg').forEach(el=>el.setAttribute('r',rr));
   svg.querySelectorAll('.ws-reg-hit').forEach(el=>el.setAttribute('r',rh));
+  // Mantener los puntos por encima de las siluetas al cambiar el viewBox.
+  const cities=svg.querySelector('.ws-cities'); if(cities) svg.appendChild(cities);
+  const regions=svg.querySelector('.ws-regions'); if(regions) svg.appendChild(regions);
 }
 
 // El catálogo está proyectado sobre un viewBox concreto; si no coincide con el mapa, no se usa
