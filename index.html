@@ -3786,6 +3786,136 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
   .shelf-view-btn{transition:none}
 }
 
+
+
+/* E28.2 · acabado integrado — controles y superficies de Mi estantería.
+   Solo presentación CSS: no cambia estructura, semántica de estados ni comportamiento. */
+.shelf-main-header{row-gap:.85rem}
+.shelf-toolbar{
+  gap:.65rem;
+  margin-bottom:1.35rem;
+}
+.shelf-toolbar .search-input,
+.shelf-toolbar .sort-select{
+  min-height:40px;
+  border-color:var(--border2);
+  background-color:var(--surface2);
+  border-radius:11px;
+}
+.shelf-toolbar .search-input:focus-visible,
+.shelf-toolbar .sort-select:focus-visible,
+.shelf-year select:focus-visible{
+  outline:2px solid var(--accent2);
+  outline-offset:2px;
+}
+.shelf-clear-btn{
+  min-height:40px;
+  border-radius:11px;
+  background:rgba(255,255,255,.012);
+}
+.shelf-clear-btn:focus-visible,
+.shelf-nav-item:focus-visible,
+.shelf-back-link:focus-visible,
+.shelf-progress-item:focus-visible,
+.shelf-style-btn:focus-visible{
+  outline:2px solid var(--accent2);
+  outline-offset:2px;
+  position:relative;
+  z-index:1;
+}
+.shelf-nav-item{
+  min-height:36px;
+  gap:.6rem;
+  transition:background-color .16s ease,color .16s ease;
+}
+.shelf-nav-item.active{
+  box-shadow:inset 2px 0 0 var(--accent2);
+}
+.shelf-nav-count{
+  font-variant-numeric:tabular-nums;
+  border:1px solid rgba(180,120,200,.08);
+}
+.shelf-progress-item{
+  border-radius:10px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+.shelf-grid{row-gap:1rem}
+.shelf-book{
+  border-color:color-mix(in srgb,var(--border2) 62%,transparent);
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.shelf-book .shelf-book-body{padding:.7rem .75rem}
+.shelf-list-item{
+  transition:background-color .15s ease;
+}
+.shelf-list-cover,.shelf-list-cover-ph{
+  border-color:var(--border2);
+}
+.shelf-list-tag{
+  background:rgba(255,255,255,.018);
+}
+.shelf-info{
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+.shelf-style-toggle{
+  gap:3px;
+  padding:4px;
+  border-radius:10px;
+  background:linear-gradient(145deg,var(--surface2),color-mix(in srgb,var(--surface) 88%,var(--surface2)));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+.shelf-style-btn{
+  border-radius:7px;
+}
+.shelf-style-btn.active{
+  background:var(--accent-soft);
+  color:var(--accent2);
+  box-shadow:inset 0 0 0 1px var(--border2);
+}
+.shelf-year select{
+  border-radius:10px;
+  border-color:var(--border2);
+  background-color:var(--surface2);
+}
+.shelf-empty{
+  border:1px dashed var(--border2);
+  border-radius:var(--radius-lg);
+  background:linear-gradient(145deg,rgba(255,255,255,.018),transparent 60%);
+}
+.shelf-empty-icon{color:var(--accent2)}
+@media (hover:hover) and (pointer:fine){
+  .shelf-nav-item:not(.active):hover{
+    background:rgba(192,111,196,.07);
+    color:var(--text);
+  }
+  .shelf-clear-btn:hover{
+    background:var(--accent-soft);
+    border-color:var(--accent);
+    color:var(--accent2);
+  }
+  .shelf-style-btn:not(.active):hover{
+    background:rgba(192,111,196,.08);
+    color:var(--text);
+  }
+}
+@media (max-width:899px){
+  .shelf-main{padding:1.5rem 1.25rem 3rem}
+  .shelf-sidebar{padding-top:1.5rem}
+}
+@media (max-width:639px){
+  .shelf-main{padding:1.25rem .9rem 2.5rem}
+  .shelf-main-header{align-items:flex-start}
+  .shelf-toolbar{gap:.5rem;margin-bottom:1.1rem}
+  .shelf-toolbar .search-wrap{min-width:min(100%,180px);flex-basis:100%}
+  .shelf-toolbar .sort-select{max-width:none;flex:1}
+  .shelf-clear-btn{min-height:44px}
+  .shelf-book .shelf-book-body{padding:.6rem .65rem}
+  .shelf-empty{padding:3rem 1.25rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .shelf-nav-item,.shelf-list-item{transition:none}
+}
+
 </style>
 </head>
 <body>
