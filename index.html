@@ -12,13 +12,38 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
-  --bg:#0e0b10;--surface:#16121a;--surface2:#1e1924;--surface3:#251f2e;
-  --border:rgba(180,120,200,0.1);--border2:rgba(180,120,200,0.22);
-  --text:#f0eaf5;--muted:#8a7898;
-  --accent:#c06fc4;--accent2:#da99de;--accent-soft:rgba(192,111,196,0.12);
-  --rose:#d4607a;--rose-soft:rgba(212,96,122,0.12);
-  --gold:#c9975a;--gold-soft:rgba(201,151,90,0.12);
-  --teal:#5bbcb0;--teal-text:#5bbcb0;
+  /* Sistema cromático base: marfil, blush y borgoña editorial. */
+  --bg:#FFF9F5;
+  --surface:#FFFFFF;
+  --surface2:#F8E9EC;
+  --surface3:#F1DDE3;
+  --border:rgba(118,43,69,0.12);
+  --border2:rgba(118,43,69,0.28);
+  --text:#33232B;
+  --muted:#6F5963;
+  --accent:#762B45;
+  --accent2:#8A3452;
+  --accent-soft:rgba(118,43,69,0.10);
+  --rose:#A83E5B;
+  --rose-soft:rgba(168,62,91,0.10);
+  --gold:#79551F;
+  --gold-soft:rgba(121,85,31,0.11);
+  --gold-decorative:#C4A46A;
+  --lavender:#625078;
+  --lavender-soft:rgba(98,80,120,0.10);
+  --teal:#286A61;
+  --teal-text:#286A61;
+  /* Estados semánticos: no sustituir por tonos decorativos. */
+  --success:#286A4B;
+  --success-soft:rgba(40,106,75,0.10);
+  --progress:#286A61;
+  --progress-soft:rgba(40,106,97,0.10);
+  --warning:#79551F;
+  --warning-soft:rgba(121,85,31,0.11);
+  --error:#A12E43;
+  --error-soft:rgba(161,46,67,0.10);
+  --info:#405E86;
+  --info-soft:rgba(64,94,134,0.10);
   --radius:14px;--radius-lg:20px;
   --font-display:'Cormorant Garamond',Georgia,serif;
   --font-body:'Instrument Sans',system-ui,sans-serif;
@@ -1916,17 +1941,21 @@ body.theme-halloween .hw-only-inline{display:inline-block}
 /* Paleta y tipografía: al vivir en variables CSS, redefinirlas aquí
    recolorea automáticamente nav, botones, tarjetas, filtros, etc. */
 body.theme-halloween{
-  --bg:#09070a;--surface:#140f13;--surface2:#1c1417;--surface3:#241a1a;
-  --border:rgba(139,58,58,0.14);--border2:rgba(159,80,50,0.28);
-  --text:#ece3d6;--muted:#9c8c86;
-  --accent:#7a2333;--accent2:#a8442a;--accent-soft:rgba(122,35,51,0.16);
-  --rose:#7a2333;--rose-soft:rgba(122,35,51,0.14);
-  --gold:#b5652c;--gold-soft:rgba(181,101,44,0.16);--shelf-wood:#613a24;
-  --teal:#5c4a3a;--teal-text:#c2ad92;
+  /* Halloween conserva ciruela, calabaza y lavanda sobre una base luminosa. */
+  --bg:#FFF8F2;--surface:#FFFFFF;--surface2:#F7E8E5;--surface3:#EED9D5;
+  --border:rgba(118,43,69,0.14);--border2:rgba(118,43,69,0.30);
+  --text:#352329;--muted:#6D5558;
+  --accent:#762B45;--accent2:#9A442D;--accent-soft:rgba(118,43,69,0.10);
+  --rose:#A33D52;--rose-soft:rgba(163,61,82,0.10);
+  --gold:#79551F;--gold-soft:rgba(121,85,31,0.11);--gold-decorative:#B98655;--shelf-wood:#613A24;
+  --lavender:#625078;--lavender-soft:rgba(98,80,120,0.10);
+  --teal:#355F55;--teal-text:#355F55;
+  --success:#286A4B;--success-soft:rgba(40,106,75,0.10);--progress:#355F55;--progress-soft:rgba(53,95,85,0.10);
+  --warning:#79551F;--warning-soft:rgba(121,85,31,0.11);--error:#A12E43;--error-soft:rgba(161,46,67,0.10);--info:#405E86;--info-soft:rgba(64,94,134,0.10);
   --radius:6px;--radius-lg:8px;
   --font-display:'Cinzel','Cormorant Garamond',Georgia,serif;
-  --hw-blood:#6e1423;
-  --hw-purple:#2a1a30;
+  --hw-blood:#6E1423;
+  --hw-purple:#625078;
   font-family:var(--font-body);
 }
 body.theme-halloween::before{
@@ -1938,7 +1967,7 @@ body.theme-halloween::before{
 
 /* ── Topbar: tratamiento editorial oscuro ── */
 body.theme-halloween .topbar{
-  background:rgba(9,7,10,0.92);
+  background:rgba(255,248,242,0.94);
   border-bottom:1px solid var(--border2);
 }
 body.theme-halloween .logo-tinta{color:var(--text)}
@@ -1972,7 +2001,7 @@ body.theme-halloween .section-tab.active-thais{border-color:var(--border2)}
 /* ── Tarjetas de libros: sombras profundas y reflejo cobre/borgoña ── */
 body.theme-halloween .book-card{
   border-color:var(--border);
-  box-shadow:0 10px 28px rgba(0,0,0,.5);
+  box-shadow:0 10px 28px rgba(83,43,53,.12);
   transition:all .28s;
 }
 
@@ -2135,13 +2164,17 @@ body.theme-christmas .xm-only-inline{display:inline-block}
    Vive en las mismas variables CSS que usa toda la web, así que recolorea
    automáticamente nav, botones, tarjetas y filtros sin tocar su lógica. */
 body.theme-christmas{
-  --bg:#0a0d0c;--surface:#121613;--surface2:#181f1a;--surface3:#1f2721;
-  --border:rgba(180,150,90,0.12);--border2:rgba(180,150,90,0.24);
-  --text:#efe6d8;--muted:#9a9086;
-  --accent:#6e1423;--accent2:#b8863c;--accent-soft:rgba(110,20,35,0.16);
-  --rose:#7a1f2e;--rose-soft:rgba(122,31,46,0.14);
-  --gold:#c9a04a;--gold-soft:rgba(201,160,74,0.14);--shelf-wood:#5a422c;
-  --teal:#2f5b45;--teal-text:#8fd0ab;
+  /* Navidad conserva verde pino y borgoña con superficies crema y salvia. */
+  --bg:#F8FAF5;--surface:#FFFFFF;--surface2:#EAF1E9;--surface3:#DCE8DB;
+  --border:rgba(38,99,74,0.14);--border2:rgba(38,99,74,0.30);
+  --text:#26332A;--muted:#56685B;
+  --accent:#762B35;--accent2:#79551F;--accent-soft:rgba(118,43,53,0.10);
+  --rose:#963B4A;--rose-soft:rgba(150,59,74,0.10);
+  --gold:#79551F;--gold-soft:rgba(121,85,31,0.11);--gold-decorative:#C4A46A;--shelf-wood:#5A422C;
+  --lavender:#625078;--lavender-soft:rgba(98,80,120,0.10);
+  --teal:#28634A;--teal-text:#28634A;
+  --success:#286A4B;--success-soft:rgba(40,106,75,0.10);--progress:#28634A;--progress-soft:rgba(40,99,74,0.10);
+  --warning:#79551F;--warning-soft:rgba(121,85,31,0.11);--error:#A12E43;--error-soft:rgba(161,46,67,0.10);--info:#405E86;--info-soft:rgba(64,94,134,0.10);
   --radius:6px;--radius-lg:8px;
   font-family:var(--font-body);
 }
@@ -2154,7 +2187,7 @@ body.theme-christmas::before{
 
 /* ── Topbar ── */
 body.theme-christmas .topbar{
-  background:rgba(10,13,12,0.92);
+  background:rgba(248,250,245,0.94);
   border-bottom:1px solid var(--border2);
   position:sticky;
 }
@@ -2186,7 +2219,7 @@ body.theme-christmas .section-tab.active-thais{border-color:var(--border2)}
 /* ── Tarjetas de libros: cada libro, un pequeño regalo ── */
 body.theme-christmas .book-card{
   border-color:var(--border);
-  box-shadow:0 10px 26px rgba(0,0,0,.45);
+  box-shadow:0 10px 26px rgba(38,65,48,.12);
   transition:all .28s;
 }
 /* Lacito dorado en la esquina de cada portada — puramente decorativo */
@@ -2201,8 +2234,8 @@ body.theme-christmas .book-cover-wrap::before{
 
 /* ── Badges y etiquetas: reinterpretadas en dorado / borgoña / verde botella / crema ── */
 body.theme-christmas .tag-genre{background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,160,74,.3)}
-body.theme-christmas .tag-trope{background:var(--rose-soft);color:#e2a3ad;border:1px solid rgba(122,31,46,.3)}
-body.theme-christmas .tag-dinamica{background:rgba(122,31,46,.18);color:#eab2ba;border:1px solid rgba(122,31,46,.4);font-weight:600}
+body.theme-christmas .tag-trope{background:var(--rose-soft);color:var(--rose);border:1px solid rgba(150,59,74,.3)}
+body.theme-christmas .tag-dinamica{background:var(--rose-soft);color:var(--rose);border:1px solid rgba(150,59,74,.4);font-weight:600}
 body.theme-christmas .tag-subgenre{background:rgba(47,91,69,.18);color:var(--teal-text);border:1px solid rgba(47,91,69,.4)}
 body.theme-christmas .tag-formato{background:rgba(47,91,69,.16);color:var(--teal-text);border:1px solid rgba(47,91,69,.35)}
 body.theme-christmas .tag-edad{background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,160,74,.3)}
@@ -3943,6 +3976,505 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .bp-section .book-locations{margin:0}
 @media(max-width:639px){.book-locations{padding:.75rem;margin:1rem 0}.book-locations-zone{height:clamp(220px,70vw,310px);border-radius:12px}.book-locations-map.has-multiple-zones .book-locations-zone{height:clamp(190px,55vw,250px)}.book-loc-label{stroke-width:2px}.book-locations-accessible{grid-template-columns:1fr 1fr}}
 
+
+
+/* ── FASE 2.2 · Escala tipográfica reutilizable (solo presentación) ── */
+:root{
+  --type-page-title-size:clamp(2.1rem,4.2vw,3.4rem);
+  --type-page-title-weight:600;
+  --type-page-title-line:1.06;
+  --type-section-title-size:clamp(1.4rem,2.2vw,1.85rem);
+  --type-section-title-weight:600;
+  --type-section-title-line:1.16;
+  --type-book-title-size:1.05rem;
+  --type-book-title-weight:600;
+  --type-book-title-line:1.24;
+  --type-subtitle-size:1rem;
+  --type-subtitle-weight:400;
+  --type-subtitle-line:1.45;
+  --type-body-size:14px;
+  --type-body-weight:400;
+  --type-body-line:1.6;
+  --type-secondary-size:12.5px;
+  --type-secondary-weight:400;
+  --type-secondary-line:1.45;
+  --type-metadata-size:12px;
+  --type-metadata-weight:400;
+  --type-metadata-line:1.4;
+  --type-label-size:11px;
+  --type-label-weight:600;
+  --type-label-line:1.3;
+  --type-control-size:13px;
+  --type-control-weight:500;
+  --type-control-line:1.35;
+  --type-logo-size:21px;
+}
+
+/* Marca y encabezados editoriales: Cormorant con peso suficiente en fondos claros. */
+.logo{
+  font-size:var(--type-logo-size);
+  font-weight:600;
+  line-height:1.15;
+}
+.hero-title,
+body.theme-halloween .hero-title,
+body.theme-christmas .hero-title{
+  font-family:var(--font-display);
+  font-size:var(--type-page-title-size);
+  font-weight:var(--type-page-title-weight);
+  line-height:var(--type-page-title-line);
+}
+.fp-panel-title,
+.modal-title{
+  font-family:var(--font-display);
+  font-size:var(--type-section-title-size);
+  font-weight:var(--type-section-title-weight);
+  line-height:var(--type-section-title-line);
+  overflow-wrap:anywhere;
+}
+.bp-title{
+  font-family:var(--font-display);
+  font-size:var(--type-section-title-size);
+  font-weight:var(--type-section-title-weight);
+  line-height:var(--type-section-title-line);
+  overflow-wrap:anywhere;
+}
+.book-title{
+  font-family:var(--font-display);
+  font-size:var(--type-book-title-size);
+  font-weight:var(--type-book-title-weight);
+  line-height:var(--type-book-title-line);
+  overflow-wrap:anywhere;
+}
+.hero-sub{
+  font-size:var(--type-subtitle-size);
+  font-weight:var(--type-subtitle-weight);
+  line-height:var(--type-subtitle-line);
+}
+body{font-size:var(--type-body-size);font-weight:var(--type-body-weight);line-height:var(--type-body-line)}
+.book-author,
+.bp-author,
+.user-name,
+.results-count{
+  font-size:var(--type-secondary-size);
+  font-weight:var(--type-secondary-weight);
+  line-height:var(--type-secondary-line);
+}
+.bp-section-title,
+.ctags-section-header,
+.stat-label{
+  font-size:var(--type-metadata-size);
+  font-weight:var(--type-label-weight);
+  line-height:var(--type-metadata-line);
+}
+.tag,
+.book-tags .tag,
+.modal-tags .tag,
+.modal-warnings-block .tag{
+  font-size:var(--type-label-size);
+  font-weight:var(--type-label-weight);
+  line-height:var(--type-label-line);
+}
+.search-input,
+.sort-select,
+.dd-btn,
+.btn-login{
+  font-size:var(--type-control-size);
+  font-weight:var(--type-control-weight);
+  line-height:var(--type-control-line);
+}
+
+/* Escala compacta móvil: mantiene la lectura y evita que los títulos desplacen el contenido. */
+@media(max-width:639px){
+  :root{
+    --type-page-title-size:clamp(1.9rem,7.5vw,2.35rem);
+    --type-section-title-size:1.35rem;
+    --type-book-title-size:1rem;
+    --type-subtitle-size:0.95rem;
+    --type-secondary-size:12px;
+    --type-metadata-size:12px;
+    --type-label-size:11px;
+    --type-control-size:12px;
+    --type-logo-size:15px;
+  }
+  .search-input{font-size:16px;line-height:1.35}
+  .book-title{line-height:1.22}
+  .book-author{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+
+
+/* ── FASE 2.3 · Componentes visuales base (solo CSS) ── */
+:root{
+  --component-radius-control:10px;
+  --component-radius-card:16px;
+  --component-radius-panel:16px;
+  --component-shadow-card:0 5px 18px rgba(75,35,49,.07);
+  --component-shadow-panel:0 8px 28px rgba(75,35,49,.08);
+  --component-shadow-float:0 18px 48px rgba(55,29,40,.18);
+  --component-focus-ring:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent);
+}
+
+/* Acciones principales y secundarias: se conservan sus selectores y comportamiento. */
+.btn-primary,
+.vote-submit,
+.bingo-btn-primary{
+  border-radius:var(--component-radius-control);
+  font-family:var(--font-body);
+  font-weight:600;
+  transition:background-color .18s,border-color .18s,color .18s,box-shadow .18s,transform .18s;
+}
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+  border:1px solid var(--accent);
+  min-height:44px;
+}
+.btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
+.btn-login,
+.vote-mini-btn,
+.modal-share-btn,
+.buy-link,
+.wattpad-link{
+  border-radius:var(--component-radius-control);
+  transition:background-color .18s,border-color .18s,color .18s,box-shadow .18s;
+}
+.btn-login{
+  background:var(--accent-soft);
+  color:var(--accent);
+  border-color:var(--border2);
+  min-height:40px;
+}
+.btn-login:hover{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
+.vote-mini-btn{min-height:32px;border-color:var(--border2);color:var(--text)}
+.vote-mini-btn.voted{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+
+/* Campos y desplegables: una receta común sin cambiar su estructura ni su apertura. */
+.search-input,
+.sort-select,
+.dd-search input,
+.auth-form input,
+.sol-input,
+.ruleta-dd-search input,
+.bingo-book-search input,
+.bingo-manual-input{
+  border-radius:var(--component-radius-control);
+  border-color:var(--border2);
+  color:var(--text);
+  background-color:var(--surface);
+  min-height:40px;
+}
+.search-input::placeholder,
+.dd-search input::placeholder,
+.auth-form input::placeholder,
+.sol-input::placeholder,
+.bingo-book-search input::placeholder,
+.bingo-manual-input::placeholder{color:var(--muted);opacity:1}
+.search-input:focus,
+.sort-select:focus,
+.dd-search input:focus,
+.auth-form input:focus,
+.sol-input:focus,
+.ruleta-dd-search input:focus,
+.bingo-book-search input:focus,
+.bingo-manual-input:focus{
+  outline:2px solid transparent;
+  border-color:var(--accent);
+  box-shadow:var(--component-focus-ring);
+}
+.dd-btn{
+  min-height:36px;
+  border:1px solid var(--border);
+  border-radius:var(--component-radius-control);
+  background:var(--surface);
+  color:var(--text);
+}
+.dd-btn.has-sel,
+.dd-wrap.open .dd-btn{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.dd-panel,
+.more-filters-panel,
+.user-dropdown{
+  border-color:var(--border2);
+  border-radius:12px;
+  background:var(--surface);
+  box-shadow:var(--component-shadow-float);
+}
+
+/* Etiquetas semánticas: se permite envolver texto largo, sin eliminar ni truncar tags. */
+.tag,
+.book-tags .tag,
+.modal-tags .tag,
+.modal-warnings-block .tag{
+  white-space:normal;
+  overflow-wrap:anywhere;
+  max-width:100%;
+  border-radius:999px;
+  padding:3px 8px;
+}
+.tag-genre{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+.tag-trope{background:var(--rose-soft);color:var(--rose);border-color:color-mix(in srgb,var(--rose) 28%,transparent)}
+.tag-dinamica{background:color-mix(in srgb,var(--rose) 13%,var(--surface));color:var(--rose);border-color:color-mix(in srgb,var(--rose) 34%,transparent)}
+.tag-identidad,
+.tag-adaptacion{background:var(--lavender-soft);color:var(--lavender);border-color:color-mix(in srgb,var(--lavender) 30%,transparent)}
+.tag-subgenre,
+.tag-formato{background:color-mix(in srgb,var(--teal) 10%,var(--surface));color:var(--teal-text);border-color:color-mix(in srgb,var(--teal) 28%,transparent)}
+.tag-character,
+.tag-year{background:var(--surface2);color:var(--text);border-color:var(--border)}
+.tag-edad{background:var(--gold-soft);color:var(--gold);border-color:color-mix(in srgb,var(--gold) 30%,transparent)}
+.tag-warning{background:var(--error-soft);color:var(--error);border-color:color-mix(in srgb,var(--error) 38%,transparent)}
+
+/* Tarjetas: portada e insignias siguen intactas; solo superficie, borde y estados. */
+.book-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--component-radius-card);
+  box-shadow:var(--component-shadow-card);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.book-card:hover{border-color:var(--border2);box-shadow:var(--component-shadow-panel);transform:translateY(-2px)}
+.book-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.book-card-body{min-width:0}
+.book-title{overflow-wrap:anywhere}
+.book-author{color:var(--muted)}
+
+/* Paneles principales, secundarios y flotantes conservan distribuciones particulares. */
+.filter-shell,
+#bookPage .bp-header,
+#bookPage .bp-section,
+.shelf-main,
+.ws-card{
+  border-color:var(--border);
+}
+.filter-shell{background:var(--surface);box-shadow:var(--component-shadow-panel);border-radius:var(--component-radius-panel)}
+#bookPage .bp-section,
+#bookPage .bp-ficha-box,
+#bookPage .bp-sobre-grid > *{background-color:var(--surface2)}
+.modal,
+.info-modal,
+.auth-modal,
+#bookModal .modal,
+#sagaModal .modal{
+  background:var(--surface);
+  border-color:var(--border2);
+  border-radius:var(--component-radius-panel);
+  box-shadow:var(--component-shadow-float);
+}
+.loading,
+.empty-state{color:var(--muted)}
+.empty-state{overflow-wrap:anywhere}
+
+/* Estados existentes: foco de teclado visible y deshabilitado reconocible. */
+button:focus-visible,
+[role="button"]:focus-visible,
+select:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+a:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+button:disabled,
+button[disabled],
+input:disabled,
+select:disabled,
+[aria-disabled="true"]{
+  opacity:.55;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+button:disabled:hover,
+button[disabled]:hover{transform:none}
+
+/* Misma jerarquía de controles y paneles en los temas estacionales. */
+body.theme-halloween .btn-primary,
+body.theme-halloween .vote-submit,
+body.theme-halloween .bingo-btn-primary,
+body.theme-christmas .btn-primary,
+body.theme-christmas .vote-submit,
+body.theme-christmas .bingo-btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+body.theme-halloween .btn-primary:hover,
+body.theme-halloween .vote-submit:hover,
+body.theme-christmas .btn-primary:hover,
+body.theme-christmas .vote-submit:hover{background:var(--accent2);border-color:var(--accent2)}
+body.theme-halloween .tag-warning,
+body.theme-christmas .tag-warning{background:var(--error-soft);color:var(--error);border-color:var(--error)}
+
+@media(max-width:639px){
+  .book-card{border-radius:12px}
+  .book-card-body{padding:.75rem .7rem}
+  .tag,.book-tags .tag,.modal-tags .tag,.modal-warnings-block .tag{padding:3px 7px}
+  .filter-shell{border-radius:12px}
+}
+
+
+/* ── HALLOWEEN PALETTE CORRECTION · F2.3 · CSS ONLY ── */
+body.theme-halloween{
+  color-scheme:dark;
+  --bg:#17121E;
+  --surface:#2B2034;
+  --surface2:#352740;
+  --surface3:#40304D;
+  --border:rgba(244,234,240,.14);
+  --border2:rgba(244,234,240,.28);
+  --text:#F4EAF0;
+  --muted:#C8B9CC;
+  --accent:#E87532;
+  --accent2:#FF985B;
+  --accent-soft:rgba(232,117,50,.16);
+  --rose:#F08A9A;
+  --rose-soft:rgba(240,138,154,.14);
+  --gold:#B7A16A;
+  --gold-soft:rgba(183,161,106,.14);
+  --gold-decorative:#B7A16A;
+  --lavender:#B99BCF;
+  --lavender-soft:rgba(141,107,168,.22);
+  --teal:#80C7B8;
+  --teal-text:#80C7B8;
+  --success:#8FD5A9;
+  --success-soft:rgba(143,213,169,.14);
+  --progress:#80C7B8;
+  --progress-soft:rgba(128,199,184,.14);
+  --warning:#F2C879;
+  --warning-soft:rgba(242,200,121,.15);
+  --error:#FF9BAA;
+  --error-soft:rgba(255,155,170,.14);
+  --info:#A9C8F2;
+  --info-soft:rgba(169,200,242,.14);
+  --hw-blood:#E87532;
+  --hw-purple:#B99BCF;
+}
+body.theme-halloween::before{
+  background:
+    radial-gradient(ellipse at 12% -5%,rgba(141,107,168,.18) 0%,transparent 52%),
+    radial-gradient(ellipse at 90% 10%,rgba(232,117,50,.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 100%,rgba(8,5,12,.52) 0%,transparent 60%);
+}
+body.theme-halloween .topbar{
+  background:rgba(23,18,30,.96);
+  border-bottom:1px solid rgba(183,161,106,.42);
+}
+body.theme-halloween .logo,
+body.theme-halloween .logo-tinta,
+body.theme-halloween .user-name{color:var(--text)}
+body.theme-halloween .logo em,
+body.theme-halloween .hero-title em,
+body.theme-halloween .stat-num em{color:var(--accent)}
+body.theme-halloween .logo-sep,
+body.theme-halloween .logo-sub{color:var(--muted)}
+body.theme-halloween .filter-shell{
+  background:linear-gradient(160deg,#302339 0%,#211927 100%);
+  border-color:var(--border2);
+  box-shadow:0 8px 40px rgba(0,0,0,.35);
+}
+body.theme-halloween .filter-shell::before{
+  background:linear-gradient(90deg,var(--accent),#8D6BA8,#B7A16A);opacity:1;
+}
+body.theme-halloween .top10-gold{
+  background:linear-gradient(135deg,rgba(183,161,106,.16),rgba(183,161,106,.05));
+  border-color:rgba(183,161,106,.48);
+}
+body.theme-halloween .top10-gold .t10-pos,
+body.theme-halloween .top10-gold .t10-avg,
+body.theme-halloween .top10-gold .t10-stars,
+body.theme-halloween .star,
+body.theme-halloween .star-btn.lit,
+body.theme-halloween .star-btn.selected{color:#D9C58D}
+body.theme-halloween .top10-silver,
+body.theme-halloween .book-card,
+body.theme-halloween .modal,
+body.theme-halloween .auth-modal,
+body.theme-halloween .reset-modal,
+body.theme-halloween .info-modal,
+body.theme-halloween .hito-card,
+body.theme-halloween .user-dropdown,
+body.theme-halloween .dd-panel,
+body.theme-halloween .more-filters-panel,
+body.theme-halloween .fp-panel,
+body.theme-halloween .shelf-panel,
+body.theme-halloween .shelf-modal{
+  background-color:var(--surface);color:var(--text);border-color:var(--border2);
+}
+body.theme-halloween .top10-silver,
+body.theme-halloween .book-card{background:var(--surface);border-color:var(--border2)}
+body.theme-halloween .search-input,
+body.theme-halloween .sort-select,
+body.theme-halloween .dd-btn,
+body.theme-halloween .dd-search input,
+body.theme-halloween .auth-form input,
+body.theme-halloween .reset-modal .auth-form input,
+body.theme-halloween .tg-input-wrap,
+body.theme-halloween .user-chip,
+body.theme-halloween .rating-section,
+body.theme-halloween .buy-link,
+body.theme-halloween .buy-lang,
+body.theme-halloween .fp-sec-body input[type=checkbox],
+body.theme-halloween .fp-sec-body input[type=radio]{
+  background-color:var(--surface2);color:var(--text);border-color:var(--border2);
+}
+body.theme-halloween input,
+body.theme-halloween select,
+body.theme-halloween textarea{color-scheme:dark}
+body.theme-halloween input::placeholder,
+body.theme-halloween textarea::placeholder{color:#C8B9CC;opacity:1}
+body.theme-halloween .dd-search,
+body.theme-halloween .fp-panel-header{background:var(--surface2)}
+body.theme-halloween .dd-btn.has-sel,
+body.theme-halloween .dd-wrap.open .dd-btn,
+body.theme-halloween .tab-btn.active,
+body.theme-halloween .section-tab.active,
+body.theme-halloween .fp-sec-body .dd-item:has(input:checked),
+body.theme-halloween .fp-sec-body .spicy-dd-item:has(input:checked){
+  background:rgba(232,117,50,.18);border-color:var(--accent);color:#FFD0B2;
+}
+body.theme-halloween .dd-count,
+body.theme-halloween .hv-cta-main,
+body.theme-halloween .vote-submit,
+body.theme-halloween .btn-primary,
+body.theme-halloween .pg-btn.active{
+  background:var(--accent);border-color:var(--accent);color:#21131B;
+}
+body.theme-halloween .hv-cta-main:hover,
+body.theme-halloween .vote-submit:hover,
+body.theme-halloween .btn-primary:hover,
+body.theme-halloween .pg-btn.active:hover{background:#FF985B;border-color:#FF985B;color:#21131B}
+body.theme-halloween .btn-login,
+body.theme-halloween .home-nav-btn,
+body.theme-halloween .hv-cta,
+body.theme-halloween .tab-btn,
+body.theme-halloween .section-tab,
+body.theme-halloween .dd-btn,
+body.theme-halloween .pg-btn,
+body.theme-halloween .vote-mini-btn{border-color:var(--border2);color:var(--text)}
+body.theme-halloween .book-card:hover{border-color:var(--accent);box-shadow:0 16px 36px rgba(0,0,0,.42),0 0 0 1px rgba(232,117,50,.22)}
+body.theme-halloween .tag-genre,
+body.theme-halloween .af-pill{background:rgba(232,117,50,.16);color:#FFD0B2;border-color:rgba(232,117,50,.48)}
+body.theme-halloween .tag-trope,
+body.theme-halloween .tag-dinamica{background:rgba(240,138,154,.14);color:#FFC0CB;border-color:rgba(240,138,154,.4)}
+body.theme-halloween .tag-identidad,
+body.theme-halloween .tag-adaptacion{background:rgba(141,107,168,.24);color:#DCC8EF;border-color:rgba(185,155,207,.55)}
+body.theme-halloween .tag-subgenre,
+body.theme-halloween .tag-formato{background:rgba(128,199,184,.14);color:#A8E6D8;border-color:rgba(128,199,184,.4)}
+body.theme-halloween .tag-edad{background:rgba(183,161,106,.14);color:#E3D09B;border-color:rgba(183,161,106,.42)}
+body.theme-halloween .tag-character,
+body.theme-halloween .tag-year{background:var(--surface3);color:var(--text);border-color:var(--border2)}
+body.theme-halloween .tag-warning{background:#8B1A2A;color:#FFE1E6;border-color:#FF9BAA}
+body.theme-halloween .card-saga-sub,
+body.theme-halloween .saga-map-trigger{color:var(--teal-text)}
+body.theme-halloween .saga-map-trigger:hover{background:var(--progress-soft);border-color:var(--teal-text)}
+body.theme-halloween .wattpad-link{background:rgba(232,117,50,.16);border-color:var(--accent);color:#FFB18A}
+body.theme-halloween .modal-close,
+body.theme-halloween .modal-share-btn{background:#211927;color:var(--text);border-color:var(--border2)}
+body.theme-halloween .modal-close:hover{background:var(--rose);border-color:var(--rose);color:#21131B}
+body.theme-halloween .toast.success{background:#8FD5A9;color:#17251D}
+body.theme-halloween .toast.error{background:#FF9BAA;color:#32131A}
+body.theme-halloween .sm-node-num{background:rgba(23,18,30,.96);color:#FFD0B2}
+body.theme-halloween .sm-node.branch .sm-node-num{color:#D9C58D}
+body.theme-halloween :focus-visible{outline:2px solid #FF985B;outline-offset:3px}
+body.theme-halloween .topbar,
+body.theme-halloween .filter-shell,
+body.theme-halloween .book-card,
+body.theme-halloween .modal,
+body.theme-halloween .auth-modal,
+body.theme-halloween .reset-modal{color:var(--text)}
 
 </style>
 </head>
@@ -10278,15 +10810,17 @@ function _refreshShelfUI(bookId){
 // bloque .shelf-btns más cercano al elemento pulsado — el mismo criterio
 // anti-IDs-duplicados (#bookModalContent vs #bpWrap) que ya usa el resto del
 // código, para no reintroducir el bug corregido en el paso anterior.
-function buildPartialDateInputHTML(idPrefix, bookId){
+function buildPartialDateInputHTML(idPrefix, bookId, prefill){
+  // prefill (opcional): {year, month, day} para repintar una fecha ya guardada tras re-renderizar.
+  const pf=prefill||{};
   const yearId=`${idPrefix}Year_${bookId}`;
   const monthId=`${idPrefix}Month_${bookId}`;
   const dayId=`${idPrefix}Day_${bookId}`;
   const inputStyle='padding:4px 6px;border-radius:8px;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);outline:none';
-  const monthOptions=_MESES_ES.map((m,i)=>`<option value="${i+1}">${m.charAt(0).toUpperCase()+m.slice(1)}</option>`).join('');
-  const dayOptions=Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
+  const monthOptions=_MESES_ES.map((m,i)=>`<option value="${i+1}"${pf.month===i+1?' selected':''}>${m.charAt(0).toUpperCase()+m.slice(1)}</option>`).join('');
+  const dayOptions=Array.from({length:31},(_,i)=>`<option value="${i+1}"${pf.day===i+1?' selected':''}>${i+1}</option>`).join('');
   return `<div class="partial-date-picker" style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center">
-    <input type="number" id="${yearId}" placeholder="Año" min="1900" max="2100" inputmode="numeric"
+    <input type="number" id="${yearId}" placeholder="Año" min="1900" max="2100" inputmode="numeric"${pf.year?` value="${pf.year}"`:''}
       style="${inputStyle};width:64px" onclick="event.stopPropagation()">
     <select id="${monthId}" style="${inputStyle};cursor:pointer" onclick="event.stopPropagation()">
       <option value="">Mes</option>${monthOptions}
@@ -10431,10 +10965,22 @@ function buildShelfButtonsHTML(bookId){
   // entryId vacío hace que setLogStartDate() inserte una entrada abierta; si ya
   // existe, se actualiza y se conserva su fecha de inicio hasta que la usuaria la cambie.
   const needsStartDate=(s==='reading'||!!openEntry);
+  // Repinta la fecha de inicio ya guardada (leída del string ISO, sin Date → sin desfase horario)
+  // respetando started_precision: year → año; month → año+mes; day/NULL → año+mes+día.
+  let startPrefill=null;
+  if(openEntry&&typeof openEntry.started_at==='string'){
+    const _m=/^(\d{4})-(\d{2})-(\d{2})/.exec(openEntry.started_at);
+    if(_m){
+      const _p=openEntry.started_precision;
+      startPrefill={year:parseInt(_m[1],10)};
+      if(_p!=='year') startPrefill.month=parseInt(_m[2],10);
+      if(_p!=='year'&&_p!=='month') startPrefill.day=parseInt(_m[3],10);
+    }
+  }
   const startDateBlock=needsStartDate?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
-      ${buildPartialDateInputHTML('startDateOpen',bookId)}
+      ${buildPartialDateInputHTML('startDateOpen',bookId,startPrefill)}
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry?openEntry.id:''}','startDateOpen')">Guardar inicio</button>
     </div>`:'';
