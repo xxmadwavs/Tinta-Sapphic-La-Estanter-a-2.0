@@ -1782,7 +1782,7 @@ button.an-mopen{cursor:pointer}
 .shelf-book-ph span,.shelf-book-ph small{position:relative;max-width:100%;overflow:hidden;overflow-wrap:anywhere;-webkit-box-orient:vertical;display:-webkit-box}
 .shelf-book-ph span{font-family:var(--font-display);font-style:italic;font-size:max(10px,calc(var(--shelf-bw)*var(--w,1)*.125px));line-height:1.2;-webkit-line-clamp:5}
 .shelf-book-ph small{font-size:max(8.5px,calc(var(--shelf-bw)*var(--w,1)*.085px));line-height:1.2;letter-spacing:.02em;opacity:.78;-webkit-line-clamp:2}
-.shelf-board{height:7px;border-radius:1px;border-top:1px solid rgba(255,255,255,.2);background:linear-gradient(to bottom,rgba(0,0,0,.18),rgba(0,0,0,.45)),var(--gold);box-shadow:0 3px 6px -2px rgba(0,0,0,.55)}
+.shelf-board{height:5px;border-radius:0 0 2px 2px;border-top:1px solid rgba(255,255,255,.12);background:linear-gradient(to bottom,rgba(255,255,255,.05),rgba(0,0,0,0) 40%),linear-gradient(to bottom,rgba(0,0,0,.42),rgba(0,0,0,.66)),var(--gold);box-shadow:0 1px 0 rgba(0,0,0,.35),0 4px 7px -3px rgba(0,0,0,.5)} /* E28.2 v1: balda delicada (5/4/4 px), canto superior sutil, oscurecida con la misma base var(--gold); sin texturas ni imágenes */
 /* FASE E5.4 — Interacción de los libros: cursor, hover sutil (solo ratón), foco visible, tooltip y reduced-motion. Todo limitado a .shelf-*. */
 .shelf-slot{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .shelf-slot::before{content:"";position:absolute;left:0;right:0;top:100%;height:5px} /* área de hover bajo el libro: evita el parpadeo al elevarse */
@@ -1801,12 +1801,12 @@ button.an-mopen{cursor:pointer}
 }
 @media (max-width:899px){
   .shelf-physical{gap:.95rem}
-  .shelf-board{height:6px}
+  .shelf-board{height:4px}
 }
 @media (max-width:639px){
   .shelf-physical{gap:.8rem}
   .shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.28),1px 0 3px -1px rgba(0,0,0,.45)}
-  .shelf-board{height:5px}
+  .shelf-board{height:4px}
 }
 /* FASE E15.3.3 — Estantería física, submodo Lomos (shelfStyle=spines). Mismo contenedor, balda, contrato y delegación de eventos que Portadas (.shelf-slot);
    solo cambia el interior del libro. Altura = la de la portada equivalente (--shelf-bw × --h × 1.5); anchura propia (--sp-w × --ww). Sin canvas: el color llega de b.spine_color. */
@@ -4976,8 +4976,13 @@ function pushState(addEntry){
     else history.replaceState(null,'',url);
   }catch(e){}
 }
-function loadState(){
+function loadState(reset){
   const params=new URLSearchParams(location.search);
+  if(reset){ // E27-F2: restauración desde el historial → parte de los valores por defecto para que no queden filtros de la entrada anterior (parámetro ausente = defecto)
+    filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+    currentPage=1;
+    document.getElementById('searchInput').value='';
+  }
   if(params.get('tab')) activeTab=params.get('tab');
   if(params.get('section')) activeSection=params.get('section');
   if(params.get('cat')) activeMyrecCat=params.get('cat');
@@ -4993,6 +4998,23 @@ function loadState(){
   if(params.get('valoracion')) filters.valoracion=params.get('valoracion');
   if(params.get('pages')) filters.pages=params.get('pages');
   if(params.get('leido')) filters.leido=params.get('leido');
+}
+
+// E27-F2 — restaura el estado COMPLETO del catálogo (sección, página, búsqueda, filtros, exclusiones y controles) desde la URL de la entrada de historial activa.
+// Se usa desde popstate tanto si la sección cambia como si no. No crea entradas: applyFilters(false) solo hace replaceState con el estado ya restaurado.
+function _restoreCatalogFromHistory(params){
+  const sec=params.get('section')||'thais';
+  const pg=parseInt(params.get('page'),10);
+  loadState(true);                       // filtros + q (campo visible incluido) + exclusiones; ausentes → defecto
+  activeSection=sec;
+  currentPage=pg>=1?pg:1;                // la página se recorta en applyFilters si ya no existe
+  syncSectionTabsUI(sec);
+  buildDropdowns();                      // reconstruye listas con las selecciones restauradas (+ contadores)
+  updateValoracionBtns();updateAdaptacionBtn();updateLeidoBtn();
+  const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display=filters.pages?'':'none';
+  renderActivePills();
+  applyFilters(false);
+  updateDDCounts();
 }
 
 /* ── URL de la estantería personal (Mi estantería: todos/quiero leer/leídos) ── */
@@ -8722,15 +8744,8 @@ window.addEventListener('popstate', ()=>{
     bingoInit();
     if(currentUser){ localStorage.setItem('bingoHitosSeenAt_'+currentUser.id, new Date().toISOString()); bingoUpdateNotifDot(); }
   }
-  // If on estantería, restore section without pushing history
-  if(tab==='estanteria' && section!==activeSection){
-    activeSection=section;
-    currentPage=parseInt(params.get('page'))||1;
-    syncSectionTabsUI(section);
-    buildDropdowns();
-    renderActivePills();
-    applyFilters(false);
-  }
+  // E27-F2: restaura SIEMPRE el estado del catálogo de la entrada activa (antes solo si cambiaba la sección → quedaban q/filtros de la entrada posterior)
+  _restoreCatalogFromHistory(params);
   syncMobileNavActive();
 });
 
@@ -10326,7 +10341,7 @@ function setShelfStyle(style){
 // explícita no se pierde al buscar; al quitar la búsqueda vuelve la regla normal de E15.4). Sin búsqueda: comportamiento E15.4 exacto.
 function _shelfYearFilter(books){
   const wrap=document.getElementById('shelfYearWrap'), sel=document.getElementById('shelfYearSelect');
-  const searching=!!shelfSearch;
+  const searching=!!shelfSearch||!!shelfGenreFilter; // E27-F1: con búsqueda O género activos, el universo de años es el conjunto ya filtrado (`books`); el año automático nunca sale de libros excluidos
   const rt=new Map(), years=new Set(); let none=false;
   (searching?books:shelfBaseBooks()).forEach(b=>{ const t=bookReadingTime(b.id); rt.set(b.id,t); if(t.hasDate) years.add(t.year); else none=true; });
   const ys=[...years].sort((a,b)=>b-a);
