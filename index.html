@@ -7577,6 +7577,9 @@ function renderBookModal(){
 }
 
 /* MAPA POR FICHA: dibuja solo los países declarados en book.ubicaciones y muestra ciudades/regiones disponibles en los catálogos. */
+/* Caché en memoria de las partes geométricas independientes del libro. Solo guarda datos
+   derivados de world_map_data.json; puntos, encuadre y marcadores se calculan por ficha. */
+const _bookLocGeometryCache=new Map();
 function bookLocationsHtml(book){
   const locs=Array.isArray(book&&book.ubicaciones)?book.ubicaciones.filter(u=>u&&typeof u.pais==='string'&&u.pais.trim()):[];
   const empty=locs.length?'':'<p class="book-locations-empty">Este libro todavía no tiene localizaciones cartografiables.</p>';
@@ -7588,9 +7591,16 @@ async function renderBookLocations(book){
   const section=sections[sections.length-1],host=section&&section.querySelector('.book-locations-map'); if(!host||host.dataset.rendered==='1') return;
   host.dataset.rendered='1';
   try{
-    // Cargas compartidas y cacheadas: no se vuelve a descargar ni a indexar un catálogo ya disponible.
-    await Promise.all([wsLoadMap(),wsLoadCities(),wsLoadRegions().catch(()=>null)]);
     const NS='http://www.w3.org/2000/svg',locs=book.ubicaciones;
+    // Cargar en paralelo solo las fuentes necesarias para esta ficha. Los cargadores
+    // existentes siguen compartiendo promesas y caché; no se espera a ciudades/regiones
+    // cuando el libro no tiene ese tipo de localización.
+    const needsCities=locs.some(u=>u&&typeof u.ciudad==='string'&&u.ciudad.trim());
+    const needsRegions=locs.some(u=>u&&typeof u.region==='string'&&u.region.trim());
+    const tasks=[wsLoadMap()];
+    if(needsCities) tasks.push(wsLoadCities());
+    if(needsRegions) tasks.push(wsLoadRegions().catch(()=>null));
+    await Promise.all(tasks);
     const isos=new Set(),cityById=new Map(),regionById=new Map();
     locs.forEach(u=>{
       if(!u||typeof u.pais!=='string') return;
@@ -7606,22 +7616,42 @@ async function renderBookLocations(book){
     const countryPaths=_wsMap.c.filter(c=>c.i&&isos.has(String(c.i).toUpperCase()));
     if(!countryPaths.length){host.innerHTML='<p class="book-locations-empty">No hay geometrías cartográficas disponibles para estas localizaciones.</p>';return;}
 
-    // Bounds reales de cada geometría. Se usa un SVG de medición temporal, sin simplificar ni alterar los datos fuente.
-    const measure=document.createElementNS(NS,'svg');
-    measure.setAttribute('viewBox',`0 0 ${_wsMap.w} ${_wsMap.h}`);
-    measure.style.cssText='position:absolute;width:1000px;height:444px;left:-10000px;top:0;visibility:hidden';
-    document.body.appendChild(measure);
+    // Bounds reales de cada geometría. Se miden una sola vez por país y se conservan
+    // en memoria: el catálogo no cambia entre fichas. El SVG temporal solo se crea si
+    // hay geometrías nuevas que medir; no se simplifican ni alteran los datos fuente.
+    let measure=null;
+    const getMeasure=()=>{
+      if(measure) return measure;
+      measure=document.createElementNS(NS,'svg');
+      measure.setAttribute('viewBox',`0 0 ${_wsMap.w} ${_wsMap.h}`);
+      measure.style.cssText='position:absolute;width:1000px;height:444px;left:-10000px;top:0;visibility:hidden';
+      document.body.appendChild(measure);
+      return measure;
+    };
     const rawPoints=[...cityById.values(),...regionById.values()];
+    const pointsByIso=new Map();
+    rawPoints.forEach(p=>{
+      const iso=String(p.pais_iso||'').toUpperCase();
+      if(!pointsByIso.has(iso)) pointsByIso.set(iso,[]);
+      pointsByIso.get(iso).push(p);
+    });
     const countries=countryPaths.map(c=>{
-      // El catálogo agrupa varios polígonos desconectados en un solo path (p. ej. Alaska/territorios).
-      // Separar subpaths permite encuadrar la masa territorial vinculada a las ubicaciones reales sin alterar sus coordenadas.
-      const chunks=String(c.d).match(/M[^M]*/g)||[c.d],parts=[];
-      chunks.forEach(d=>{
-        const p=document.createElementNS(NS,'path');p.setAttribute('d',d);measure.appendChild(p);
-        let b;try{b=p.getBBox()}catch(_){b={x:0,y:0,width:0,height:0};}p.remove();
-        if(b.width||b.height) parts.push({d,box:{x:b.x,y:b.y,x2:b.x+b.width,y2:b.y+b.height},area:b.width*b.height});
-      });
-      const pts=rawPoints.filter(p=>String(p.pais_iso).toUpperCase()===String(c.i).toUpperCase()).map(p=>({x:Number(p.x),y:Number(p.y)})).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
+      const iso=String(c.i||'').toUpperCase();
+      let parts=_bookLocGeometryCache.get(iso);
+      if(!parts){
+        parts=[];
+        const target=getMeasure();
+        // El catálogo agrupa varios polígonos desconectados en un solo path (p. ej. Alaska/territorios).
+        // Separar subpaths permite encuadrar la masa territorial vinculada a las ubicaciones reales sin alterar sus coordenadas.
+        const chunks=String(c.d).match(/M[^M]*/g)||[c.d];
+        chunks.forEach(d=>{
+          const p=document.createElementNS(NS,'path');p.setAttribute('d',d);target.appendChild(p);
+          let b;try{b=p.getBBox()}catch(_){b={x:0,y:0,width:0,height:0};}p.remove();
+          if(b.width||b.height) parts.push({d,box:{x:b.x,y:b.y,x2:b.x+b.width,y2:b.y+b.height},area:b.width*b.height});
+        });
+        _bookLocGeometryCache.set(iso,parts);
+      }
+      const pts=(pointsByIso.get(iso)||[]).map(p=>({x:Number(p.x),y:Number(p.y)})).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
       const nearestPart=pt=>parts.reduce((best,part)=>{
         const b=part.box,dx=Math.max(b.x-pt.x,0,pt.x-b.x2),dy=Math.max(b.y-pt.y,0,pt.y-b.y2),dist=Math.hypot(dx,dy);
         return !best||dist<best.dist?{part,dist}:best;
@@ -7636,7 +7666,7 @@ async function renderBookLocations(book){
       const cy=pts.length?pts.reduce((s,p)=>s+p.y,0)/pts.length:(box.y+box.y2)/2;
       return {data:c,paths:chosen.map(p=>p.d),box,cx,cy};
     }).filter(c=>c.box.x2>c.box.x||c.box.y2>c.box.y);
-    measure.remove();
+    if(measure) measure.remove();
     // Agrupa por posición de las localizaciones; las zonas geográficas muy separadas usan mapas independientes.
     const clusters=[];
     countries.forEach(country=>{
