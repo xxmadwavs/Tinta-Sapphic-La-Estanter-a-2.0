@@ -10406,12 +10406,17 @@ function buildShelfButtonsHTML(bookId){
   // STEP 6.2: interfaz de fecha parcial (año/mes/día) para cualquier lectura
   // abierta, sea la primera o una relectura — mismo prefijo 'startDateOpen'
   // y misma función _submitSetLogStartDatePartial ya usadas en STEP 5.
-  const startDateBlock=openEntry?`
+  // Si el estado es «Leyendo» pero aún no existe una entrada abierta en reading_log,
+  // permitir crearla guardando SOLO la fecha de inicio (read_at queda NULL).
+  // entryId vacío hace que setLogStartDate() inserte una entrada abierta; si ya
+  // existe, se actualiza y se conserva su fecha de inicio hasta que la usuaria la cambie.
+  const needsStartDate=(s==='reading'||!!openEntry);
+  const startDateBlock=needsStartDate?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
       <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
       ${buildPartialDateInputHTML('startDateOpen',bookId)}
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry.id}','startDateOpen')">Guardar</button>
+        onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry?openEntry.id:''}','startDateOpen')">Guardar inicio</button>
     </div>`:'';
   // Sin lectura abierta: al guardar la fecha de fin, permitimos indicar también la
   // de inicio (ambas opcionales salvo la de fin). STEP 6.2: interfaz de fecha
@@ -10419,9 +10424,9 @@ function buildShelfButtonsHTML(bookId){
   // "+ Añadir relectura" — mismos prefijos (readDateOpen / startDateNewP,
   // readDateNew) y mismas funciones (_submitAddReadLogEntryPartial,
   // addReadLogEntry) ya usadas en STEP 5, sin duplicarlas.
-  const finishRow=openEntry?`
+  const finishRow=(openEntry||(s==='reading'))?`
     <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
+      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste? (opcional)</span>
       ${buildPartialDateInputHTML('readDateOpen',bookId)}
       <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
         onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateOpen',null)">✓ Marcar como terminado</button>
