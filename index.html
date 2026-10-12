@@ -10345,6 +10345,26 @@ async function _submitSetLogStartDatePartial(btnEl, bookId, entryId, idPrefix){
   const res=_readPartialDateParts(scopeEl, idPrefix, bookId);
   if(!res.ok){ showToast(res.error,'error'); return; }
   if(!res.parts){ showToast('Elige al menos el año 📅','error'); return; }
+
+  // Guardar una fecha de inicio significa que la lectura está en curso.
+  // Persistimos el estado mediante upsert explícito (no setReadingStatus(),
+  // que interpreta pulsar el estado actual como una petición para quitarlo).
+  if(!currentUser){ openAuthModal(); return; }
+  const previousStatus=myReadingStatus[bookId];
+  myReadingStatus[bookId]='reading';
+  _refreshShelfUI(bookId);
+  const {error:statusError}=await sb.from('reading_status').upsert(
+    {user_id:currentUser.id, book_id:bookId, status:'reading'},
+    {onConflict:'user_id,book_id'}
+  );
+  if(statusError){
+    if(previousStatus) myReadingStatus[bookId]=previousStatus;
+    else delete myReadingStatus[bookId];
+    _refreshShelfUI(bookId);
+    showToast('No se pudo guardar el estado «Leyendo» 😞','error');
+    console.error(statusError);
+    return;
+  }
   await setLogStartDate(bookId, entryId, res.parts);
 }
 
