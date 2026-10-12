@@ -3921,8 +3921,8 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-locations{margin:1.25rem 0 1.4rem;padding:1rem;background:linear-gradient(145deg,var(--surface2),rgba(22,18,26,.94));border:1px solid var(--border2);border-radius:var(--radius-lg)}
 .book-locations-title{font-family:var(--font-display);font-size:1.35rem;font-weight:600;margin-bottom:.25rem;color:var(--text)}
 .book-locations-sub{font-size:12px;color:var(--muted);margin-bottom:.75rem}
-.book-locations-map{width:100%;aspect-ratio:1.8/1;min-height:260px;max-height:500px;overflow:hidden;border-radius:12px;background:rgba(8,5,10,.6);position:relative}
-.book-locations-map svg{display:block;width:100%;height:100%;}
+.book-locations-map{width:100%;aspect-ratio:1.8/1;min-height:260px;max-height:500px;overflow:hidden;border-radius:24px;background:radial-gradient(ellipse at 50% 45%,rgba(35,24,39,.52),rgba(8,5,10,.82) 76%);position:relative;isolation:isolate;box-shadow:inset 0 0 0 1px rgba(218,153,222,.06),inset 0 0 36px rgba(0,0,0,.18);}
+.book-locations-map svg{display:block;width:100%;height:100%;overflow:hidden;border-radius:inherit;}
 .book-loc-land{fill:rgba(192,111,196,.14);stroke:rgba(218,153,222,.62);stroke-width:.55;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .book-loc-city{fill:var(--accent2);stroke:var(--bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
 .book-loc-region{fill:none;stroke:var(--teal);stroke-width:1.7;vector-effect:non-scaling-stroke}
@@ -3933,7 +3933,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-loc-ring{width:9px;height:9px;border:1.5px solid var(--teal);border-radius:50%;display:inline-block}
 .book-locations-empty{font-size:12px;color:var(--muted);padding:.8rem 0}
 .bp-section .book-locations{margin:0}
-@media(max-width:639px){.book-locations{padding:.8rem;margin:1rem 0}.book-locations-map{min-height:250px;aspect-ratio:1.1/1}.book-loc-label{font-size:13px}}
+@media(max-width:639px){.book-locations{padding:.8rem;margin:1rem 0}.book-locations-map{min-height:250px;aspect-ratio:1.1/1;border-radius:20px}.book-loc-label{font-size:13px}}
 
 </style>
 </head>
@@ -6681,9 +6681,13 @@ async function renderBookLocations(book){
   const section=sections[sections.length-1],host=section&&section.querySelector('.book-locations-map'); if(!host||host.dataset.rendered==='1') return;
   host.dataset.rendered='1';
   try{
-    await wsLoadMap();
-    await wsLoadCities();
-    await wsLoadRegions().catch(()=>null);
+    // Cargar los tres catálogos en paralelo; las promesas compartidas evitan descargas duplicadas
+    // cuando se abren varias fichas seguidas.
+    const [, , regionLoad] = await Promise.all([
+      wsLoadMap(),
+      wsLoadCities(),
+      wsLoadRegions().catch(()=>null)
+    ]);
     const NS='http://www.w3.org/2000/svg',locs=book.ubicaciones;
     const isos=new Set(),cityById=new Map(),regionById=new Map();
     locs.forEach(u=>{
@@ -6702,8 +6706,8 @@ async function renderBookLocations(book){
     _wsMap.c.forEach(c=>{if(!c.i||!isos.has(String(c.i).toUpperCase()))return;const pth=document.createElementNS(NS,'path');pth.setAttribute('d',c.d);pth.setAttribute('class','book-loc-land');pth.dataset.iso=c.i;land.appendChild(pth);paths.push(pth);});
     svg.appendChild(land);
     const marks=document.createElementNS(NS,'g');
-    cityById.forEach(c=>{const g=document.createElementNS(NS,'g');const dot=document.createElementNS(NS,'circle');dot.setAttribute('cx',c.x);dot.setAttribute('cy',c.y);dot.setAttribute('r','2.6');dot.setAttribute('class','book-loc-city');g.appendChild(dot);const t=document.createElementNS(NS,'text');t.setAttribute('x',Number(c.x)+4);t.setAttribute('y',Number(c.y)-4);t.setAttribute('class','book-loc-label');t.textContent=c.ciudad;g.appendChild(t);marks.appendChild(g);});
-    regionById.forEach(r=>{const g=document.createElementNS(NS,'g');const ring=document.createElementNS(NS,'circle');ring.setAttribute('cx',r.x);ring.setAttribute('cy',r.y);ring.setAttribute('r','4.5');ring.setAttribute('class','book-loc-region');g.appendChild(ring);const t=document.createElementNS(NS,'text');t.setAttribute('x',Number(r.x)+6);t.setAttribute('y',Number(r.y)-5);t.setAttribute('class','book-loc-label');t.textContent=r.nombre;g.appendChild(t);marks.appendChild(g);});
+    cityById.forEach(c=>{const g=document.createElementNS(NS,'g');const dot=document.createElementNS(NS,'circle');dot.setAttribute('cx',c.x);dot.setAttribute('cy',c.y);dot.setAttribute('r','1.8');dot.setAttribute('class','book-loc-city');g.appendChild(dot);const t=document.createElementNS(NS,'text');t.setAttribute('x',Number(c.x)+2.8);t.setAttribute('y',Number(c.y)-2.8);t.setAttribute('class','book-loc-label');t.textContent=c.ciudad;g.appendChild(t);marks.appendChild(g);});
+    regionById.forEach(r=>{const g=document.createElementNS(NS,'g');const ring=document.createElementNS(NS,'circle');ring.setAttribute('cx',r.x);ring.setAttribute('cy',r.y);ring.setAttribute('r','3');ring.setAttribute('class','book-loc-region');g.appendChild(ring);const t=document.createElementNS(NS,'text');t.setAttribute('x',Number(r.x)+4);t.setAttribute('y',Number(r.y)-3.5);t.setAttribute('class','book-loc-label');t.textContent=r.nombre;g.appendChild(t);marks.appendChild(g);});
     svg.appendChild(marks); host.replaceChildren(svg);
     // Encuadra únicamente los países de la ficha y sus puntos de ciudad/región.
     let bb=null;
@@ -6723,6 +6727,11 @@ async function renderBookLocations(book){
       const zoom=0.62,cx=bb.x+w/2,cy=bb.y+h/2;
       w*=zoom;h*=zoom;bb.x=cx-w/2;bb.y=cy-h/2;
       svg.setAttribute('viewBox',`${bb.x} ${bb.y} ${w} ${h}`);
+      // Los textos y marcadores mantienen un tamaño visual razonable aunque el encuadre sea cercano.
+      const labelSize=Math.max(.65,Math.min(2.8,w*.012));
+      svg.querySelectorAll('.book-loc-label').forEach(t=>t.style.setProperty('font-size',String(labelSize)+'px','important'));
+      svg.querySelectorAll('.book-loc-city').forEach(t=>t.setAttribute('r',String(labelSize*.16)));
+      svg.querySelectorAll('.book-loc-region').forEach(t=>t.setAttribute('r',String(labelSize*.28)));
     }
     const unresolved=locs.filter(u=>u&&((u.ciudad&&!Array.from(cityById.values()).some(c=>wsCityNorm(c.ciudad)===wsCityNorm(u.ciudad)&&String(c.pais_iso).toUpperCase()===wsResolveIso(u.pais)))||(u.region&&!Array.from(regionById.values()).some(r=>wsCityNorm(r.nombre)===wsCityNorm(u.region)&&String(r.pais_iso).toUpperCase()===wsResolveIso(u.pais)))));
     if(unresolved.length){const note=document.createElement('p');note.className='book-locations-empty';note.textContent='Algunas ciudades o regiones no están disponibles en el catálogo cartográfico.';host.parentElement.appendChild(note);}
@@ -12951,7 +12960,7 @@ function wsLoadCities(){
   if(_wsCityIndex) return Promise.resolve(_wsCityIndex);
   if(Date.now()-_wsCitiesFailAt<WS_CITY_RETRY_MS) return Promise.reject(new Error('catálogo de ciudades no disponible'));
   if(!_wsCitiesPromise){
-    _wsCitiesPromise=fetch(WS_CITIES_URL+'?v='+Date.now(),{cache:'no-store'})
+    _wsCitiesPromise=fetch(WS_CITIES_URL,{cache:'force-cache'})
       .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
       .then(d=>{ _wsCityIndex=wsBuildCityIndex(d); return _wsCityIndex; })
       .catch(e=>{ _wsCitiesPromise=null; _wsCitiesFailAt=Date.now(); throw e; });
@@ -13409,7 +13418,7 @@ function wsLoadRegions(){
   if(_wsRegIndex) return Promise.resolve(_wsRegIndex);
   if(Date.now()-_wsRegFailAt<WS_CITY_RETRY_MS) return Promise.reject(new Error('catálogo de regiones no disponible'));
   if(!_wsRegPromise){
-    _wsRegPromise=fetch(WS_REGCAT_URL+'?v='+Date.now(),{cache:'no-store'})
+    _wsRegPromise=fetch(WS_REGCAT_URL,{cache:'force-cache'})
       .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
       .then(d=>{ _wsRegIndex=wsBuildRegionIndex(d); return _wsRegIndex; })
       .catch(e=>{ _wsRegPromise=null; _wsRegFailAt=Date.now(); throw e; });
