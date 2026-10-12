@@ -6512,6 +6512,21 @@ body.theme-christmas #panelEstanteria > .xm-collection .xm-gift{
   .categories-nav-wrap{display:none;}
   .mbn-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
+
+/* F3 — La cabecera editorial con título y estadísticas se reserva para Inicio.
+   En las demás vistas se ocultan estos bloques para preservar la estética
+   y reducir el espacio vertical, sin alterar datos ni funciones. */
+body:not(.home-active) #heroEyebrow,
+body:not(.home-active) #heroTitle,
+body:not(.home-active) #heroSub,
+body:not(.home-active) .hero-stats{
+  display:none !important;
+}
+body:not(.home-active) .hero{
+  padding-top:.55rem !important;
+  padding-bottom:.35rem !important;
+  min-height:0 !important;
+}
 </style>
 </head>
 <body>
@@ -6898,7 +6913,8 @@ body.theme-christmas #panelEstanteria > .xm-collection .xm-gift{
       <span class="section-select-arrow">▾</span>
     </button>
     <div class="section-select-menu" id="sectionSelectMenu">
-      <button class="section-select-item active" data-section="thais" onclick="switchSection('thais')" type="button">Libros Thais <span class="section-select-item-count" id="scountThais">0</span></button>
+      <button class="section-select-item" data-section="all" onclick="switchSection('all')" type="button">Todos los libros <span class="section-select-item-count" id="scountAll">0</span></button>
+      <button class="section-select-item" data-section="thais" onclick="switchSection('thais')" type="button">Libros Thais <span class="section-select-item-count" id="scountThais">0</span></button>
       <button class="section-select-item" data-section="other" onclick="switchSection('other')" type="button">Libros Occidentales <span class="section-select-item-count hidden" id="scountOther">0</span></button>
       <button class="section-select-item" data-section="spanish" onclick="switchSection('spanish')" type="button">Libros en Español <span class="section-select-item-count hidden" id="scountSpanish">0</span></button>
       <button class="section-select-item" data-section="baihee" onclick="switchSection('baihee')" type="button">Baihee <span class="section-select-item-count hidden" id="scountBaihee">0</span></button>
@@ -7676,8 +7692,9 @@ let calYear=new Date().getFullYear();
 let calMonth=new Date().getMonth(); // 0-11
 let calSelectedDay=null; // 'YYYY-MM-DD'
 let bingoChallenges=[], bingoActiveChallengeId=null, bingoProgress=[], bingoActiveCellIdx=null, bingoLinkMode='catalogo', bingoPendingBookId=null, bingoPendingBookTitle=null, bingoPendingBookCover=null, bingoManualConfirmed=false, bingoHitos=[];
-let activeSection='thais';
+let activeSection='all';
 const SECTION_META={
+  all:{icon:'✦',label:'Todos los libros'},
   thais:{icon:'🌸',label:'Libros Thais'},
   other:{icon:'🌍',label:'Libros Occidentales'},
   spanish:{icon:'💜',label:'Libros en Español'},
@@ -7837,7 +7854,7 @@ function loadState(reset){
 // E27-F2 — restaura el estado COMPLETO del catálogo (sección, página, búsqueda, filtros, exclusiones y controles) desde la URL de la entrada de historial activa.
 // Se usa desde popstate tanto si la sección cambia como si no. No crea entradas: applyFilters(false) solo hace replaceState con el estado ya restaurado.
 function _restoreCatalogFromHistory(params){
-  const sec=params.get('section')||'thais';
+  const sec=params.get('section')||'all';
   const pg=parseInt(params.get('page'),10);
   loadState(true);                       // filtros + q (campo visible incluido) + exclusiones; ausentes → defecto
   activeSection=sec;
@@ -8655,7 +8672,7 @@ function updateStats(){
 /* ── DROPDOWNS ── */
 // Helper to get sorted unique values from a book field
 function uniqVals(key){
-  const sectionBooks=allBooks.filter(b=>b.source===activeSection);
+  const sectionBooks=activeSection==='all'?[...allBooks]:allBooks.filter(b=>b.source===activeSection);
   if(key==='authors') return [...new Set(sectionBooks.flatMap(b=>b.authors||[]))].sort();
   if(key==='years')   return [...new Set(sectionBooks.map(b=>b.year).filter(Boolean))].sort((a,z)=>z-a).map(String);
   if(key==='sagas')   return [...new Set(sectionBooks.map(b=>getSaga(b)).filter(Boolean))].sort();
@@ -9052,9 +9069,9 @@ function applyFilters(resetPage=true){
   else if(sort==='year_desc') books.sort((a,b)=>(b.year||0)-(a.year||0));
   else if(sort==='year_asc') books.sort((a,b)=>(a.year||0)-(b.year||0));
   // Filter by active section
-  books=books.filter(b=>b.source===activeSection);
+  if(activeSection!=='all') books=books.filter(b=>b.source===activeSection);
   const total=books.length;
-  const secAll=allBooks.filter(b=>b.source===activeSection).length;
+  const secAll=activeSection==='all'?allBooks.length:allBooks.filter(b=>b.source===activeSection).length;
   const totalPages=Math.max(1,Math.ceil(total/PAGE_SIZE));
   if(currentPage>totalPages) currentPage=totalPages;
   document.getElementById('resultsCount').textContent=`${total} de ${secAll} libros`;
@@ -11199,7 +11216,9 @@ document.addEventListener('keydown',e=>{
 function navigateToExplore(){
   const genrePanel=document.getElementById('ddGenre');
   if(genrePanel?.classList.contains('open')) toggleDD('ddGenre');
+  closeCategoriesDropdown();
   showCatalog('estanteria');
+  requestAnimationFrame(()=>switchSection('all'));
 }
 function navigateToCategories(){
   toggleCategoriesDropdown();
@@ -11560,7 +11579,7 @@ function switchSection(section,silent){
   }catch(e){}
   filters.authors=[];
   filters.sagas=[];
-  const sectionBooks=allBooks.filter(b=>b.source===section);
+  const sectionBooks=section==='all'?[...allBooks]:allBooks.filter(b=>b.source===section);
   ['genres','subgenres','dinamicas','tropes','characters','years','spicy'].forEach(key=>{
     if(!filters[key].length) return;
     if(key==='spicy'){ filters[key]=filters[key].filter(v=>sectionBooks.some(b=>b.spicy===v)); return; }
@@ -12032,7 +12051,7 @@ window.addEventListener('popstate', ()=>{
   // Restore tab and section from URL
   const params=new URLSearchParams(location.search);
   const tab=params.get('tab')||'estanteria';
-  const section=params.get('section')||'thais';
+  const section=params.get('section')||'all';
   // Switch tab without pushing a new history entry (we're already restoring)
   activeTab=tab;
   activeMyrecCat=tab==='myrec'?params.get('cat'):null;
