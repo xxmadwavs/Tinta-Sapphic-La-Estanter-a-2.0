@@ -4740,6 +4740,102 @@ body.theme-christmas .shelf-back-link,body.theme-christmas .an-link{color:#28563
   body.theme-christmas *,body:not(.theme-halloween):not(.theme-christmas) *{scroll-behavior:auto}
 }
 
+
+/* ── CORRECCIÓN INTEGRAL · mapas de fichas, Spicy y valoraciones ── */
+/* Halloween conserva sus reglas originales. Estas correcciones solo afectan a Normal y Navidad. */
+body:not(.theme-halloween):not(.theme-christmas) .book-locations{
+  background:linear-gradient(145deg,#FFFDFB 0%,#F7E9EC 100%);
+  border-color:#D8C2C9;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-locations-map{
+  background:radial-gradient(ellipse at 50% 45%,#F8EEF0 0%,#F1E3E7 78%);
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-locations-zone{
+  background:linear-gradient(145deg,#FBF5F2 0%,#F0E3E6 100%);
+  box-shadow:inset 0 0 0 1px #D9C4CB;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-loc-land{
+  fill:#E5D2D9;stroke:#A98B98;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-loc-city{
+  fill:#762B45;stroke:#FFF9F5;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-loc-region{
+  fill:#F8E9EC;stroke:#286A61;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-loc-label{
+  fill:#33232B;stroke:#F8EEF0;stroke-width:3px;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-locations-zone-title{
+  color:#5D424D;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-locations-legend{
+  color:#5D424D;
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-loc-dot{background:#762B45}
+body:not(.theme-halloween):not(.theme-christmas) .book-loc-ring{border-color:#286A61}
+
+/* Navidad: marfil, verde bosque y burdeos; no hereda los morados del mapa base. */
+body.theme-christmas .book-locations{
+  background:linear-gradient(145deg,#FFFCF5 0%,#E9EEE3 100%);
+  border-color:#B7C7B2;
+}
+body.theme-christmas .book-locations-map{
+  background:radial-gradient(ellipse at 50% 45%,#F5F3E9 0%,#E7EBDD 78%);
+}
+body.theme-christmas .book-locations-zone{
+  background:linear-gradient(145deg,#FAF8EF 0%,#E4EBDD 100%);
+  box-shadow:inset 0 0 0 1px #B7C7B2;
+}
+body.theme-christmas .book-loc-land{
+  fill:#C9D8C7;stroke:#718D78;
+}
+body.theme-christmas .book-loc-city{
+  fill:#762B35;stroke:#FFFCF5;
+}
+body.theme-christmas .book-loc-region{
+  fill:#F3E7C9;stroke:#28563E;
+}
+body.theme-christmas .book-loc-label{
+  fill:#25372C;stroke:#F5F3E9;stroke-width:3px;
+}
+body.theme-christmas .book-locations-zone-title,
+body.theme-christmas .book-locations-legend{color:#425849}
+body.theme-christmas .book-loc-dot{background:#762B35}
+body.theme-christmas .book-loc-ring{border-color:#28563E}
+
+/* Insignias sobre portadas: fondo opaco y contraste estable sin filtrar ni tapar las portadas. */
+body:not(.theme-halloween):not(.theme-christmas) .spicy-badge{
+  background:rgba(42,27,35,.96);color:#FFF9F5;
+  border:1px solid #C4A46A;box-shadow:0 1px 5px rgba(30,18,24,.24);
+  font-size:11px;padding:3px 8px;
+}
+body:not(.theme-halloween):not(.theme-christmas) .avg-badge{
+  background:rgba(255,249,245,.97);color:#33232B;
+  border:1px solid #BDA4AD;box-shadow:0 1px 5px rgba(30,18,24,.18);
+}
+body.theme-christmas .spicy-badge{
+  background:rgba(37,55,44,.97);color:#FFFCF5;
+  border:1px solid #C3A567;box-shadow:0 1px 5px rgba(25,43,32,.22);
+  font-size:11px;padding:3px 8px;
+}
+body.theme-christmas .avg-badge{
+  background:rgba(255,252,245,.98);color:#25372C;
+  border:1px solid #A9B9A5;box-shadow:0 1px 5px rgba(25,43,32,.16);
+}
+body:not(.theme-halloween):not(.theme-christmas) .rating-section{
+  background:#F8E9EC;border-color:#D8C2C9;
+}
+body.theme-christmas .rating-section{
+  background:#E9EEE3;border-color:#B7C7B2;
+}
+body:not(.theme-halloween):not(.theme-christmas) .rating-title{color:#5D424D}
+body.theme-christmas .rating-title{color:#425849}
+body:not(.theme-halloween):not(.theme-christmas) .avg-stars-row,
+body.theme-christmas .avg-stars-row{color:var(--gold)}
+body:not(.theme-halloween):not(.theme-christmas) .book-locations-details summary{color:#762B45}
+body.theme-christmas .book-locations-details summary{color:#28563E}
+
 </style>
 </head>
 <body>
@@ -6258,6 +6354,9 @@ function hwUrlOverride(){
 }
 
 const HALLOWEEN_THEME = (()=>{
+  // Si Navidad se fuerza explícitamente, Halloween no puede activarse a la vez.
+  const xmasOv=xmUrlOverride();
+  if(xmasOv===true) return false;
   const urlOv=hwUrlOverride();
   if(urlOv!==null) return urlOv;
   return (HALLOWEEN_THEME_OVERRIDE===null) ? hwIsOctober() : !!HALLOWEEN_THEME_OVERRIDE;
@@ -6444,7 +6543,10 @@ function xmUrlOverride(){
 
 const XMAS_THEME = (()=>{
   const urlOv=xmUrlOverride();
+  // Navidad tiene prioridad si se solicita expresamente; si no, una activación
+  // explícita de Halloween impide que se mezclen ambos temas.
   if(urlOv!==null) return urlOv;
+  if(hwUrlOverride()===true) return false;
   return (XMAS_THEME_OVERRIDE===null) ? xmIsInSeason() : !!XMAS_THEME_OVERRIDE;
 })();
 
@@ -7619,7 +7721,13 @@ async function renderBookLocations(book){
     if(accessible.children.length){const wrap=document.createElement('details');wrap.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';wrap.appendChild(summary);wrap.appendChild(accessible);host.after(wrap);}
     const unresolved=locs.filter(u=>u&&((u.ciudad&&!Array.from(cityById.values()).some(c=>wsCityNorm(c.ciudad)===wsCityNorm(u.ciudad)&&String(c.pais_iso).toUpperCase()===wsResolveIso(u.pais)))||(u.region&&!Array.from(regionById.values()).some(r=>wsCityNorm(r.nombre)===wsCityNorm(u.region)&&String(r.pais_iso).toUpperCase()===wsResolveIso(u.pais)))));
     if(unresolved.length){const note=document.createElement('p');note.className='book-locations-empty';note.textContent='Algunas ciudades o regiones no están disponibles en el catálogo cartográfico.';host.parentElement.appendChild(note);}
-  }catch(e){console.warn('[Ficha libro] mapa de localizaciones:',e);host.innerHTML='<p class="book-locations-empty">No se ha podido cargar el mapa de localizaciones.</p>';}
+  }catch(e){
+    console.warn('[Ficha libro] mapa de localizaciones:',e);
+    // Un fallo recuperable no debe dejar el contenedor marcado como renderizado:
+    // permite volver a intentarlo cuando se vuelva a abrir la ficha.
+    host.dataset.rendered='0';
+    if(host.isConnected) host.innerHTML='<p class="book-locations-empty">No se ha podido cargar el mapa de localizaciones.</p>';
+  }
 }
 
 /* ── SI TE GUSTÓ ESTE LIBRO… (recomendaciones dinámicas por género/trope) ── */
