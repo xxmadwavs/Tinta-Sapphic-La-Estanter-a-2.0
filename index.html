@@ -4476,6 +4476,270 @@ body.theme-halloween .modal,
 body.theme-halloween .auth-modal,
 body.theme-halloween .reset-modal{color:var(--text)}
 
+
+/* ── CORRECCIÓN DE LEGIBILIDAD TEMÁTICA · 12/10/2026
+   Sobrescrituras exclusivamente visuales. Halloween queda deliberadamente fuera.
+   No se modifican HTML, JavaScript, datos ni mecanismos de activación. */
+
+/* Tema normal: marfil rosado, superficies diferenciadas y tinta de alto contraste. */
+:root{
+  --bg:#FBF3F0;
+  --surface:#FFFCFA;
+  --surface2:#F5E7E5;
+  --surface3:#EEDBD9;
+  --border:rgba(105,47,65,.16);
+  --border2:rgba(105,47,65,.34);
+  --text:#33232B;
+  --muted:#65505A;
+  --accent:#762B45;
+  --accent2:#87334F;
+  --accent-soft:rgba(118,43,69,.10);
+  --rose:#A83E5B;
+  --rose-soft:rgba(168,62,91,.10);
+  --teal:#286A61;
+  --teal-text:#286A61;
+}
+/* Mantener la cabecera clara y legible en el tema normal. */
+body:not(.theme-halloween):not(.theme-christmas) .topbar{
+  background:rgba(255,252,250,.96);
+  border-bottom:1px solid var(--border2);
+  box-shadow:0 4px 18px rgba(70,35,48,.06);
+}
+body:not(.theme-halloween):not(.theme-christmas) .logo,
+body:not(.theme-halloween):not(.theme-christmas) .logo-tinta,
+body:not(.theme-halloween):not(.theme-christmas) .logo-sub,
+body:not(.theme-halloween):not(.theme-christmas) .user-name{color:var(--text)}
+body:not(.theme-halloween):not(.theme-christmas) .logo em{color:var(--accent)}
+body:not(.theme-halloween):not(.theme-christmas) .logo-sep,
+body:not(.theme-halloween):not(.theme-christmas) .btn-logout{color:var(--muted)}
+body:not(.theme-halloween):not(.theme-christmas) .btn-login,
+body:not(.theme-halloween):not(.theme-christmas) .home-nav-btn{
+  color:var(--accent);background:var(--surface2);border:1px solid var(--border2);
+}
+body:not(.theme-halloween):not(.theme-christmas) .user-chip{
+  background:var(--surface2);border-color:var(--border2);
+}
+body:not(.theme-halloween):not(.theme-christmas) .user-avatar{color:#fff}
+body:not(.theme-halloween):not(.theme-christmas) .btn-login:hover,
+body:not(.theme-halloween):not(.theme-christmas) .home-nav-btn:hover,
+body:not(.theme-halloween):not(.theme-christmas) .user-dd-item:hover{background:var(--surface3)}
+body:not(.theme-halloween):not(.theme-christmas) :focus-visible{
+  outline:2px solid #762B45;outline-offset:3px;
+}
+/* Fondos oscuros fijos heredados que contradecían la paleta normal. */
+body:not(.theme-halloween):not(.theme-christmas)::before{
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(168,62,91,.075) 0%,transparent 55%),
+    radial-gradient(ellipse at 88% 100%,rgba(40,106,97,.045) 0%,transparent 55%);
+}
+body:not(.theme-halloween):not(.theme-christmas) .filter-shell{
+  background:linear-gradient(160deg,#FFFCFA 0%,#F5E7E5 100%);
+  box-shadow:0 8px 28px rgba(70,35,48,.08);
+}
+body:not(.theme-halloween):not(.theme-christmas) .book-card{
+  background:var(--surface);border-color:var(--border);box-shadow:0 5px 18px rgba(70,35,48,.055);
+}
+body:not(.theme-halloween):not(.theme-christmas) .tag-trope,
+body:not(.theme-halloween):not(.theme-christmas) .tag-dinamica{
+  background:#F8E5E8;color:#812B43;border-color:#DDB0B9;
+}
+body:not(.theme-halloween):not(.theme-christmas) .tag-identidad,
+body:not(.theme-halloween):not(.theme-christmas) .tag-adaptacion{
+  background:#EEE8F5;color:#55416F;border-color:#C8B9D9;
+}
+body:not(.theme-halloween):not(.theme-christmas) .tag-subgenre,
+body:not(.theme-halloween):not(.theme-christmas) .tag-formato{
+  background:#E4F0EB;color:#20594F;border-color:#A8C9BD;
+}
+body:not(.theme-halloween):not(.theme-christmas) .tag-edad,
+body:not(.theme-halloween):not(.theme-christmas) .tag-genre{
+  background:#F5EBD8;color:#694817;border-color:#DCC69D;
+}
+body:not(.theme-halloween):not(.theme-christmas) .tag-character,
+body:not(.theme-halloween):not(.theme-christmas) .tag-year{
+  background:var(--surface2);color:#594650;border-color:var(--border);
+}
+body:not(.theme-halloween):not(.theme-christmas) .tag-warning{
+  background:#8B1A2A;color:#FFF4F4;border-color:#A12E43;
+}
+body:not(.theme-halloween):not(.theme-christmas) .similar-title{color:#87334F}
+/* Mapas mundiales: el archivo genera paths SVG con clases ws-c; solo se recolorea su presentación. */
+body:not(.theme-halloween):not(.theme-christmas) .ws-mapwrap{
+  background:#F1E8E2;border:1px solid #D8C5BE;
+}
+body:not(.theme-halloween):not(.theme-christmas) .ws-c{
+  fill:#E1D6D0;stroke:#B7A29A;stroke-width:.4;
+}
+body:not(.theme-halloween):not(.theme-christmas) .ws-c.is-found{stroke:#FFFCFA}
+body:not(.theme-halloween):not(.theme-christmas) .ws-card[data-map="origen"] .ws-c.is-found,
+body:not(.theme-halloween):not(.theme-christmas) .ws-card[data-map="origen"] .ws-dot.is-found{fill:#87334F}
+body:not(.theme-halloween):not(.theme-christmas) .ws-card[data-map="cultura"] .ws-c.is-found,
+body:not(.theme-halloween):not(.theme-christmas) .ws-card[data-map="cultura"] .ws-dot.is-found{fill:#286A61}
+body:not(.theme-halloween):not(.theme-christmas) .ws-c.is-sel{stroke:#33232B;stroke-width:1.2}
+body:not(.theme-halloween):not(.theme-christmas) .ws-city{fill:#762B45;stroke:#FFFCFA}
+body:not(.theme-halloween):not(.theme-christmas) .ws-reg{fill:#87334F;stroke:#87334F}
+body:not(.theme-halloween):not(.theme-christmas) .ws-reg.is-sel{stroke:#33232B}
+body:not(.theme-halloween):not(.theme-christmas) .ws-c.is-active:not(.is-found){fill:#C9A7B1}
+body:not(.theme-halloween):not(.theme-christmas) .ws-tip,
+body:not(.theme-halloween):not(.theme-christmas) .ws-city-tip,
+body:not(.theme-halloween):not(.theme-christmas) .ws-reg-tip{
+  background:#FFFCFA;color:#33232B;border-color:#C7AAB3;box-shadow:0 8px 24px rgba(51,35,43,.18);
+}
+/* Mi año sapphic: se elimina el panel de aspecto nocturno que ocultaba texto oscuro. */
+body:not(.theme-halloween):not(.theme-christmas) .an-hero{
+  background:radial-gradient(120% 140% at 0% 0%,rgba(168,62,91,.10) 0%,transparent 58%),linear-gradient(160deg,#F5E7E5 0%,#FFFCFA 78%);
+}
+body:not(.theme-halloween):not(.theme-christmas) .an-stat{
+  background:#FFFCFA;border-color:var(--border2);
+}
+body:not(.theme-halloween):not(.theme-christmas) .an-stat-l,
+body:not(.theme-halloween):not(.theme-christmas) .an-stat-note{color:#65505A}
+body:not(.theme-halloween):not(.theme-christmas) .an-mtrack,
+body:not(.theme-halloween):not(.theme-christmas) .an-rank-track{background:#E8DAD9}
+body:not(.theme-halloween):not(.theme-christmas) .an-favrow{background:#FFFCFA;border-color:var(--border)}
+/* Elementos generales con color fijo que deben respetar el tema normal. */
+body:not(.theme-halloween):not(.theme-christmas) .modal,
+body:not(.theme-halloween):not(.theme-christmas) .auth-modal,
+body:not(.theme-halloween):not(.theme-christmas) .reset-modal,
+body:not(.theme-halloween):not(.theme-christmas) .info-modal,
+body:not(.theme-halloween):not(.theme-christmas) .hito-card{
+  background-color:var(--surface);color:var(--text);border-color:var(--border2);
+}
+body:not(.theme-halloween):not(.theme-christmas) .search-input,
+body:not(.theme-halloween):not(.theme-christmas) .sort-select,
+body:not(.theme-halloween):not(.theme-christmas) .dd-search input,
+body:not(.theme-halloween):not(.theme-christmas) input,
+body:not(.theme-halloween):not(.theme-christmas) textarea,
+body:not(.theme-halloween):not(.theme-christmas) select{
+  color:var(--text);
+}
+body:not(.theme-halloween):not(.theme-christmas) input::placeholder,
+body:not(.theme-halloween):not(.theme-christmas) textarea::placeholder{color:#705C64;opacity:1}
+
+/* Navidad: paleta completa bosque, burdeos, marfil y oro antiguo. */
+body.theme-christmas{
+  --bg:#F7F3E9;--surface:#FFFCF5;--surface2:#E9EEE3;--surface3:#D9E3D4;
+  --border:rgba(35,76,56,.18);--border2:rgba(35,76,56,.38);
+  --text:#25372C;--muted:#526357;
+  --accent:#762B35;--accent2:#28563E;--accent-soft:rgba(40,86,62,.11);
+  --rose:#873744;--rose-soft:rgba(135,55,68,.11);
+  --gold:#74501C;--gold-soft:rgba(116,80,28,.12);--gold-decorative:#B18A45;
+  --teal:#28563E;--teal-text:#28563E;
+  --success:#24613E;--success-soft:rgba(36,97,62,.11);
+  --progress:#28563E;--progress-soft:rgba(40,86,62,.12);
+  --warning:#74501C;--warning-soft:rgba(116,80,28,.12);
+  --error:#922B3A;--error-soft:rgba(146,43,58,.11);
+  --info:#345A7A;--info-soft:rgba(52,90,122,.11);
+}
+body.theme-christmas::before{
+  background:radial-gradient(ellipse at 12% 0%,rgba(118,43,53,.10) 0%,transparent 54%),
+             radial-gradient(ellipse at 88% 100%,rgba(40,86,62,.09) 0%,transparent 56%);
+}
+body.theme-christmas .topbar{
+  background:rgba(247,243,233,.97);border-bottom:1px solid var(--border2);
+  box-shadow:0 4px 20px rgba(37,55,44,.08);
+}
+body.theme-christmas .logo,body.theme-christmas .logo-tinta,
+body.theme-christmas .logo-sub,body.theme-christmas .user-name{color:var(--text)}
+body.theme-christmas .logo em{color:var(--accent)}
+body.theme-christmas .logo-sep,body.theme-christmas .btn-logout{color:var(--muted)}
+body.theme-christmas .btn-login,body.theme-christmas .home-nav-btn{
+  background:var(--surface2);color:var(--accent);border:1px solid var(--border2);
+}
+body.theme-christmas .user-chip{background:var(--surface2);border-color:var(--border2)}
+body.theme-christmas .user-dropdown{background:var(--surface);border-color:var(--border2)}
+body.theme-christmas .user-dd-item{color:var(--text)}
+body.theme-christmas .user-dd-item:hover{background:var(--surface2)}
+body.theme-christmas .hero-title,body.theme-christmas .hero-title em{color:var(--text);text-shadow:none}
+body.theme-christmas .hero-title em{color:var(--accent)}
+body.theme-christmas .hero-eyebrow,body.theme-christmas .stat-num em{color:var(--accent2)}
+body.theme-christmas .hero-sub,body.theme-christmas .stat-label{color:var(--muted)}
+body.theme-christmas .filter-shell{
+  background:linear-gradient(160deg,#FFFCF5 0%,#E9EEE3 100%);
+  box-shadow:0 8px 28px rgba(37,55,44,.09);
+}
+body.theme-christmas .filter-shell::before{background:linear-gradient(90deg,#28563E,#762B35,#B18A45);opacity:.9}
+body.theme-christmas .book-card{background:var(--surface);border-color:var(--border);box-shadow:0 6px 18px rgba(37,55,44,.08)}
+body.theme-christmas .book-title{color:var(--text)}
+body.theme-christmas .book-author,body.theme-christmas .no-ratings{color:var(--muted)}
+body.theme-christmas .tag-genre,body.theme-christmas .tag-edad{
+  background:#F2E7CE;color:#684719;border-color:#D8C18E;
+}
+body.theme-christmas .tag-trope,body.theme-christmas .tag-dinamica{
+  background:#F4E1E3;color:#7D2D3B;border-color:#D8AAB1;
+}
+body.theme-christmas .tag-subgenre,body.theme-christmas .tag-formato{
+  background:#E0EBE0;color:#24553B;border-color:#A8C2AC;
+}
+body.theme-christmas .tag-identidad,body.theme-christmas .tag-adaptacion{
+  background:#E8E6EF;color:#514669;border-color:#C5BED8;
+}
+body.theme-christmas .tag-character,body.theme-christmas .tag-year{
+  background:#E9EEE3;color:#526357;border-color:#C5D2C2;
+}
+body.theme-christmas .tag-warning{background:#922B3A;color:#FFF7F4;border-color:#922B3A}
+body.theme-christmas .search-input,body.theme-christmas .sort-select,
+body.theme-christmas .dd-btn,body.theme-christmas .dd-search input,
+body.theme-christmas .ws-year select,body.theme-christmas input,
+body.theme-christmas textarea,body.theme-christmas select{
+  background-color:var(--surface);color:var(--text);border-color:var(--border2);
+}
+body.theme-christmas input::placeholder,body.theme-christmas textarea::placeholder{color:#617064;opacity:1}
+body.theme-christmas .dd-panel,body.theme-christmas .more-filters-panel,
+body.theme-christmas .user-dropdown{background:var(--surface);border-color:var(--border2)}
+body.theme-christmas .dd-item label,body.theme-christmas .fp-sec-label{color:var(--text)}
+body.theme-christmas .dd-item.excluded label{color:#873744}
+body.theme-christmas .af-pill{color:#28563E;border-color:#B7C9B6}
+body.theme-christmas .clear-all-btn{color:#873744;border-color:#D8AAB1}
+body.theme-christmas .tab-btn.active,body.theme-christmas .section-tab.active,
+body.theme-christmas .section-tab.active-thais{
+  color:#28563E;background:#E0EBE0;border-color:#9DB9A2;
+}
+body.theme-christmas .hv-cta-main,body.theme-christmas .btn-primary,
+body.theme-christmas .vote-submit,body.theme-christmas .bingo-btn-primary{
+  background:#762B35;color:#FFFCF5;border-color:#762B35;
+}
+body.theme-christmas .hv-cta-main:hover,body.theme-christmas .btn-primary:hover,
+body.theme-christmas .vote-submit:hover{background:#5F202A;color:#fff;border-color:#5F202A}
+body.theme-christmas .modal,body.theme-christmas .auth-modal,
+body.theme-christmas .reset-modal,body.theme-christmas .info-modal,
+body.theme-christmas .hito-card{
+  background-color:var(--surface);color:var(--text);border-color:var(--border2);
+}
+body.theme-christmas .modal-title,body.theme-christmas .sagamap-title,
+body.theme-christmas .an-title,body.theme-christmas .an-sec-title{color:var(--text)}
+body.theme-christmas .modal-author,body.theme-christmas .modal-synopsis,
+body.theme-christmas .an-lead,body.theme-christmas .an-stat-l,
+body.theme-christmas .an-stat-note,body.theme-christmas .an-notes,
+body.theme-christmas .an-muted,body.theme-christmas .an-sec-sub{color:var(--muted)}
+body.theme-christmas .an-hero{
+  background:radial-gradient(120% 140% at 0% 0%,rgba(118,43,53,.10) 0%,transparent 58%),linear-gradient(160deg,#E9EEE3 0%,#FFFCF5 78%);
+}
+body.theme-christmas .an-stat{background:#FFFCF5;border-color:var(--border2)}
+body.theme-christmas .an-mtrack,body.theme-christmas .an-rank-track{background:#D9E3D4}
+body.theme-christmas .an-favrow{background:#FFFCF5;border-color:var(--border)}
+body.theme-christmas .ws-mapwrap{background:#E6E8DC;border:1px solid #C3CDBD}
+body.theme-christmas .ws-c{fill:#D4DCCF;stroke:#9BAA98;stroke-width:.4}
+body.theme-christmas .ws-card[data-map="origen"] .ws-c.is-found,
+body.theme-christmas .ws-card[data-map="origen"] .ws-dot.is-found{fill:#762B35}
+body.theme-christmas .ws-card[data-map="cultura"] .ws-c.is-found,
+body.theme-christmas .ws-card[data-map="cultura"] .ws-dot.is-found{fill:#28563E}
+body.theme-christmas .ws-c.is-found,body.theme-christmas .ws-dot.is-found{stroke:#FFFCF5}
+body.theme-christmas .ws-c.is-sel,body.theme-christmas .ws-card[data-map="cultura"] .ws-c.is-active{stroke:#25372C}
+body.theme-christmas .ws-c.is-active:not(.is-found){fill:#B6C8B2}
+body.theme-christmas .ws-city{fill:#762B35;stroke:#FFFCF5}
+body.theme-christmas .ws-reg{fill:#762B35;stroke:#762B35}
+body.theme-christmas .ws-tip,body.theme-christmas .ws-city-tip,body.theme-christmas .ws-reg-tip{
+  background:#FFFCF5;color:#25372C;border-color:#A9B9A5;box-shadow:0 8px 24px rgba(37,55,44,.18);
+}
+body.theme-christmas :focus-visible{outline:2px solid #28563E;outline-offset:3px}
+body.theme-christmas .empty-state,body.theme-christmas .loading{color:var(--muted)}
+body.theme-christmas .spinner{border-color:#C5D2C2;border-top-color:#762B35}
+body.theme-christmas .shelf-back-link,body.theme-christmas .an-link{color:#28563E}
+@media (prefers-reduced-motion:reduce){
+  body.theme-christmas *,body:not(.theme-halloween):not(.theme-christmas) *{scroll-behavior:auto}
+}
+
 </style>
 </head>
 <body>
