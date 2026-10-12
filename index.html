@@ -3930,7 +3930,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-loc-land{fill:rgba(192,111,196,.16);stroke:rgba(218,153,222,.7);stroke-width:.42;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
 .book-loc-city{fill:var(--accent2);stroke:var(--bg);stroke-width:1.2;vector-effect:non-scaling-stroke}
 .book-loc-region{fill:rgba(14,11,16,.25);stroke:var(--teal);stroke-width:1.35;vector-effect:non-scaling-stroke}
-.book-loc-label{fill:var(--text);font-family:var(--font-body);font-weight:500;paint-order:stroke;stroke:rgba(14,11,16,.96);stroke-width:2.4px;stroke-linejoin:round;pointer-events:auto}
+.book-loc-label{fill:var(--text);font-family:var(--font-body);font-weight:500;paint-order:stroke;stroke:rgba(14,11,16,.96);stroke-width:2.2px;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:auto}
 .book-loc-label title{pointer-events:auto}
 .book-locations-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.65rem;font-size:11px;color:var(--muted)}
 .book-locations-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -3941,7 +3941,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-locations-details summary{cursor:pointer;color:var(--accent2);width:max-content;max-width:100%}
 .book-locations-accessible{padding:.45rem 0 .2rem 1.2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.2rem .8rem}
 .bp-section .book-locations{margin:0}
-@media(max-width:639px){.book-locations{padding:.75rem;margin:1rem 0}.book-locations-zone{height:clamp(220px,70vw,310px);border-radius:12px}.book-locations-map.has-multiple-zones .book-locations-zone{height:clamp(190px,55vw,250px)}.book-loc-label{stroke-width:2.8px}.book-locations-accessible{grid-template-columns:1fr 1fr}}
+@media(max-width:639px){.book-locations{padding:.75rem;margin:1rem 0}.book-locations-zone{height:clamp(220px,70vw,310px);border-radius:12px}.book-locations-map.has-multiple-zones .book-locations-zone{height:clamp(190px,55vw,250px)}.book-loc-label{stroke-width:2px}.book-locations-accessible{grid-template-columns:1fr 1fr}}
 
 
 </style>
@@ -6776,14 +6776,23 @@ async function renderBookLocations(book){
       const relevantRegions=[...regionById.values()].filter(r=>clusterIsos.has(String(r.pais_iso).toUpperCase()));
       const allPoints=[...relevantCities.map(c=>({...c,_kind:'city'})),...relevantRegions.map(r=>({...r,_kind:'region'}))];
       const boxes=cluster.items.map(c=>c.box);
-      let bb={x:Math.min(...boxes.map(b=>b.x)),y:Math.min(...boxes.map(b=>b.y)),x2:Math.max(...boxes.map(b=>b.x2)),y2:Math.max(...boxes.map(b=>b.y2))};
-      allPoints.forEach(p=>{const x=Number(p.x),y=Number(p.y);if(Number.isFinite(x)&&Number.isFinite(y)){bb.x=Math.min(bb.x,x);bb.y=Math.min(bb.y,y);bb.x2=Math.max(bb.x2,x);bb.y2=Math.max(bb.y2,y);}});
+      let bb;
+      if(cluster.items.length>1 && allPoints.length){
+        // En mapas multinacionales se priorizan los puntos reales; los polígonos de países extensos (p. ej. Rusia/Canadá) no deben aplastar el encuadre.
+        const xs=allPoints.map(p=>Number(p.x)).filter(Number.isFinite),ys=allPoints.map(p=>Number(p.y)).filter(Number.isFinite);
+        bb={x:Math.min(...xs),y:Math.min(...ys),x2:Math.max(...xs),y2:Math.max(...ys)};
+        const spread=Math.max(bb.x2-bb.x,bb.y2-bb.y,18),context=spread*.22+8;
+        bb={x:bb.x-context,y:bb.y-context,x2:bb.x2+context,y2:bb.y2+context};
+      }else{
+        bb={x:Math.min(...boxes.map(b=>b.x)),y:Math.min(...boxes.map(b=>b.y)),x2:Math.max(...boxes.map(b=>b.x2)),y2:Math.max(...boxes.map(b=>b.y2))};
+        allPoints.forEach(p=>{const x=Number(p.x),y=Number(p.y);if(Number.isFinite(x)&&Number.isFinite(y)){bb.x=Math.min(bb.x,x);bb.y=Math.min(bb.y,y);bb.x2=Math.max(bb.x2,x);bb.y2=Math.max(bb.y2,y);}});
+      }
       let w=Math.max(8,bb.x2-bb.x),h=Math.max(8,bb.y2-bb.y);
       // El margen se calcula sobre la extensión real, nunca se aplica un zoom arbitrario.
       const longestLabel=Math.max(0,...allPoints.map(p=>String(p._kind==='city'?p.ciudad:p.nombre||'').length));
       const padX=Math.max(w*.075+2,w*Math.min(.24,longestLabel*.009));
       const labelUnitsForPadding=Math.max(10,Math.min(13,hostWidth*.018))*w/hostWidth;
-      const labelLanes=[-2,0,2,0,3,1,-1,4,-4];
+      const labelLanes=[-1.5,1.5,-2.5,2.5,0,-3,3];
       const maxLane=allPoints.length?Math.max(...allPoints.map((_,i)=>Math.abs(labelLanes[i%labelLanes.length]))):0;
       const padY=Math.max(h*.075+2,labelUnitsForPadding*(maxLane*2.5+6));
       bb.x-=padX;bb.y-=padY;w+=padX*2;h+=padY*2;
@@ -6791,7 +6800,7 @@ async function renderBookLocations(book){
       if(w/h<aspect){const nw=h*aspect;bb.x-=(nw-w)/2;w=nw;}else{const nh=w/aspect;bb.y-=(nh-h)/2;h=nh;}
       svg.setAttribute('viewBox',`${bb.x} ${bb.y} ${w} ${h}`);
       // Fuente en unidades SVG compensadas por la escala del viewBox: tamaño de pantalla acotado.
-      const fontPx=Math.max(10,Math.min(13,hostWidth*.018));
+      const fontPx=Math.max(9,Math.min(11.5,hostWidth*.015));
       const fontUnits=fontPx*w/hostWidth;
       const markerUnits=Math.max(.08,4.1*w/hostWidth);
       const labelRects=[];
@@ -6802,9 +6811,9 @@ async function renderBookLocations(book){
         const t=document.createElementNS(NS,'text');t.setAttribute('class','book-loc-label');t.setAttribute('font-size',fontUnits);t.setAttribute('x',x+markerUnits*1.8);t.setAttribute('y',y-fontUnits*.45);t.textContent=p._kind==='city'?p.ciudad:p.nombre;
         const title=document.createElementNS(NS,'title');title.textContent=(p._kind==='city'?'Ciudad: ':'Región: ')+(p._kind==='city'?p.ciudad:p.nombre);t.appendChild(title);
         // Carriles verticales alternos: reducen choques entre ciudades cercanas; el título conserva el nombre completo.
-        const lanes=[-2,0,2,0,3,1,-1,4,-4];
+        const lanes=[-1.5,1.5,-2.5,2.5,0,-3,3];
         const lane=lanes[i%lanes.length];
-        t.setAttribute('y',y+lane*fontUnits*2.5);
+        t.setAttribute('y',y+lane*fontUnits*1.65);
         if(i%2===1){t.setAttribute('x',x-markerUnits*2.0);t.setAttribute('text-anchor','end');}
         g.appendChild(t);marks.appendChild(g);
       });
