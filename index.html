@@ -3961,10 +3961,12 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 .book-locations-zone svg{display:block;width:100%;height:100%;overflow:visible}
 .book-locations-zone-title{font-size:11px;color:var(--muted);padding:.45rem .65rem 0;letter-spacing:.04em}
 .book-loc-land{fill:rgba(192,111,196,.16);stroke:rgba(218,153,222,.7);stroke-width:.42;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.book-loc-context-land{fill:rgba(111,89,99,.035);stroke:var(--border2);stroke-opacity:.78;stroke-width:.32;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke;pointer-events:none}
 .book-loc-city{fill:var(--accent2);stroke:var(--bg);stroke-width:1.2;vector-effect:non-scaling-stroke}
 .book-loc-region{fill:rgba(14,11,16,.25);stroke:var(--teal);stroke-width:1.35;vector-effect:non-scaling-stroke}
 .book-loc-label{fill:var(--text);font-family:var(--font-body);font-weight:500;paint-order:stroke;stroke:rgba(14,11,16,.96);stroke-width:2.2px;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:auto}
 .book-loc-label title{pointer-events:auto}
+.book-loc-leader{stroke:var(--muted);stroke-width:.7;stroke-opacity:.78;fill:none;vector-effect:non-scaling-stroke;pointer-events:none}
 .book-locations-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.65rem;font-size:11px;color:var(--muted)}
 .book-locations-legend span{display:inline-flex;align-items:center;gap:6px}
 .book-loc-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);display:inline-block}
@@ -7580,8 +7582,21 @@ function renderBookModal(){
 /* Caché en memoria de las partes geométricas independientes del libro. Solo guarda datos
    derivados de world_map_data.json; puntos, encuadre y marcadores se calculan por ficha. */
 const _bookLocGeometryCache=new Map();
+const _bookLocCountryBoundsCache=new WeakMap();
+function bookLocCountryBounds(country){
+  if(!country||typeof country!=='object') return null;
+  if(_bookLocCountryBoundsCache.has(country)) return _bookLocCountryBoundsCache.get(country);
+  // El catálogo usa pares x,y en el mismo espacio SVG que las geometrías.
+  // Esta caja sirve solo para decidir qué fronteras reales quedan cerca del encuadre.
+  const re=/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g,d=String(country.d||'');
+  let x=Infinity,y=Infinity,x2=-Infinity,y2=-Infinity,m;
+  while((m=re.exec(d))){const px=Number(m[1]),py=Number(m[2]);if(!Number.isFinite(px)||!Number.isFinite(py))continue;x=Math.min(x,px);y=Math.min(y,py);x2=Math.max(x2,px);y2=Math.max(y2,py);}
+  const box=x===Infinity?null:{x,y,x2,y2};
+  _bookLocCountryBoundsCache.set(country,box);
+  return box;
+}
 function bookLocationsHtml(book){
-  const locs=Array.isArray(book&&book.ubicaciones)?book.ubicaciones.filter(u=>u&&typeof u.pais==='string'&&u.pais.trim()):[];
+  const locs=Array.isArray(book&&book.ubicaciones)?book.ubicaciones.filter(u=>u&&['pais','ciudad','region'].some(k=>typeof u[k]==='string'&&u[k].trim())):[];
   const empty=locs.length?'':'<p class="book-locations-empty">Este libro todavía no tiene localizaciones cartografiables.</p>';
   return `<section class="book-locations" data-book-locations="${escHtml(String(book.id))}"><h3 class="book-locations-title">Dónde transcurre la historia</h3><p class="book-locations-sub">Países, ciudades y regiones mencionados en esta ficha.</p>${empty||`<div class="book-locations-map" role="img" aria-label="Mapa de las localizaciones de ${escHtml(book.title||'este libro')}"><div class="book-locations-empty">Cargando mapa…</div></div><div class="book-locations-legend"><span><i class="book-loc-dot"></i> Ciudad</span><span><i class="book-loc-ring"></i> Región</span></div>`}</section>`;
 }
@@ -7598,23 +7613,77 @@ async function renderBookLocations(book){
     const needsCities=locs.some(u=>u&&typeof u.ciudad==='string'&&u.ciudad.trim());
     const needsRegions=locs.some(u=>u&&typeof u.region==='string'&&u.region.trim());
     const tasks=[wsLoadMap()];
-    if(needsCities) tasks.push(wsLoadCities());
+    if(needsCities) tasks.push(wsLoadCities().catch(()=>null));
     if(needsRegions) tasks.push(wsLoadRegions().catch(()=>null));
     await Promise.all(tasks);
-    const isos=new Set(),cityById=new Map(),regionById=new Map();
+    const isos=new Set(),cityById=new Map(),regionById=new Map(),unverifiedLocs=[];
+    // Los catálogos declaran el viewBox en el que se proyectaron sus x/y.
+    // Si la proyección está declarada y no coincide con el mapa base, no se dibujan
+    // puntos desplazados: se conservan los nombres en la alternativa textual.
+    const projectionStatus=index=>{
+      if(!index||!index.viewBox) return 'undeclared';
+      const vb=String(index.viewBox).trim().split(/[\s,]+/).map(Number);
+      if(vb.length!==4||!vb.every(Number.isFinite)) return 'invalid';
+      return Math.abs(vb[0])<.01&&Math.abs(vb[1])<.01&&Math.abs(vb[2]-_wsMap.w)<.01&&Math.abs(vb[3]-_wsMap.h)<.01?'ok':'mismatch';
+    };
+    const cityProjection=projectionStatus(_wsCityIndex),regionProjection=projectionStatus(_wsRegIndex);
+    const cityProjectionOk=cityProjection==='ok'||cityProjection==='undeclared';
+    const regionProjectionOk=regionProjection==='ok'||regionProjection==='undeclared';
+    const coordinateInMap=p=>Number.isFinite(Number(p&&p.x))&&Number.isFinite(Number(p&&p.y))&&Number(p.x)>=0&&Number(p.y)>=0&&Number(p.x)<=_wsMap.w&&Number(p.y)<=_wsMap.h;
     locs.forEach(u=>{
-      if(!u||typeof u.pais!=='string') return;
-      const iso=wsResolveIso(u.pais); if(!iso) return; isos.add(String(iso).toUpperCase());
+      if(!u) return;
+      if(typeof u.pais!=='string'||!u.pais.trim()){
+        if(u.ciudad||u.region) unverifiedLocs.push([u.ciudad,u.region].filter(Boolean).join(' · ')+' (país no especificado)');
+        return;
+      }
+      const iso=wsResolveIso(u.pais); if(!iso) { if(u.ciudad||u.region) unverifiedLocs.push([u.ciudad,u.region,u.pais].filter(Boolean).join(' · ')); return; }
+      isos.add(String(iso).toUpperCase());
       if(typeof u.ciudad==='string'&&u.ciudad.trim()){
-        const c=wsResolveCity(u); if(c.status==='ok'){const obj=_wsCityIndex.byId.get(c.id); if(obj) cityById.set(obj.id,obj);}
+        if(!_wsCityIndex||!cityProjectionOk){ unverifiedLocs.push('Ciudad: '+u.ciudad+' ('+u.pais+')'); }
+        else {
+          const c=wsResolveCity(u);
+          if(c.status==='ok'){
+            const obj=_wsCityIndex.byId.get(c.id);
+            if(obj&&coordinateInMap(obj)) cityById.set(obj.id,obj);
+            else unverifiedLocs.push('Ciudad: '+u.ciudad+' ('+u.pais+')');
+          }else unverifiedLocs.push('Ciudad: '+u.ciudad+' ('+u.pais+')');
+        }
       }
       if(typeof u.region==='string'&&u.region.trim()&&_wsRegIndex){
-        const r=wsResolveRegion(u); if(r.status==='ok'){const obj=_wsRegIndex.byId.get(r.id); if(obj) regionById.set(obj.id,obj);}
+        if(!regionProjectionOk){ unverifiedLocs.push('Región: '+u.region+' ('+u.pais+')'); }
+        else {
+          const r=wsResolveRegion(u);
+          if(r.status==='ok'){
+            const obj=_wsRegIndex.byId.get(r.id);
+            if(obj&&coordinateInMap(obj)) regionById.set(obj.id,obj);
+            else unverifiedLocs.push('Región: '+u.region+' ('+u.pais+')');
+          }else unverifiedLocs.push('Región: '+u.region+' ('+u.pais+')');
+        }
       }
     });
-    if(!isos.size){host.innerHTML='<p class="book-locations-empty">No hay localizaciones cartografiables en el catálogo.</p>';return;}
+    if(!isos.size){
+      host.innerHTML='<p class="book-locations-empty">No se puede situar esta ficha en el mapa porque falta un país reconocible en el catálogo.</p>';
+      const list=document.createElement('ul');list.className='book-locations-accessible';
+      locs.forEach(u=>{
+        if(!u) return;
+        const name=[u.ciudad&&('Ciudad: '+u.ciudad),u.region&&('Región: '+u.region),u.pais&&('País: '+u.pais)].filter(Boolean).join(' · ');
+        if(name){const li=document.createElement('li');li.textContent=name+' (posición no verificada)';list.appendChild(li);}
+      });
+      if(list.children.length){const details=document.createElement('details');details.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';details.appendChild(summary);details.appendChild(list);host.after(details);}
+      return;
+    }
     const countryPaths=_wsMap.c.filter(c=>c.i&&isos.has(String(c.i).toUpperCase()));
-    if(!countryPaths.length){host.innerHTML='<p class="book-locations-empty">No hay geometrías cartográficas disponibles para estas localizaciones.</p>';return;}
+    if(!countryPaths.length){
+      host.innerHTML='<p class="book-locations-empty">No hay geometrías cartográficas disponibles para estas localizaciones.</p>';
+      const list=document.createElement('ul');list.className='book-locations-accessible';
+      locs.forEach(u=>{
+        if(!u) return;
+        const name=[u.ciudad&&('Ciudad: '+u.ciudad),u.region&&('Región: '+u.region),u.pais&&('País: '+u.pais)].filter(Boolean).join(' · ');
+        if(name){const li=document.createElement('li');li.textContent=name+' (posición no verificada)';list.appendChild(li);}
+      });
+      if(list.children.length){const details=document.createElement('details');details.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';details.appendChild(summary);details.appendChild(list);host.after(details);}
+      return;
+    }
 
     // Bounds reales de cada geometría. Se miden una sola vez por país y se conservan
     // en memoria: el catálogo no cambia entre fichas. El SVG temporal solo se crea si
@@ -7686,7 +7755,21 @@ async function renderBookLocations(book){
     const addAccessible=(kind,name,x,y)=>{const li=document.createElement('li');li.textContent=kind+': '+name;accessible.appendChild(li);};
     cityById.forEach(c=>addAccessible('Ciudad',c.ciudad,c.x,c.y));
     regionById.forEach(r=>addAccessible('Región',r.nombre,r.x,r.y));
-    if(!cityById.size&&!regionById.size){
+    const seenAccessible=new Set([...cityById.values()].map(c=>'Ciudad: '+wsCityNorm(c.ciudad)+'|'+String(c.pais_iso).toUpperCase()).concat([...regionById.values()].map(r=>'Región: '+wsCityNorm(r.nombre)+'|'+String(r.pais_iso).toUpperCase())));
+    locs.forEach(u=>{
+      if(!u) return;
+      const iso=typeof u.pais==='string'&&u.pais.trim()?wsResolveIso(u.pais):null,parts=[];
+      if(typeof u.ciudad==='string'&&u.ciudad.trim()){
+        const key='Ciudad: '+wsCityNorm(u.ciudad)+'|'+String(iso||'').toUpperCase();
+        if(!seenAccessible.has(key)){parts.push('Ciudad: '+u.ciudad);seenAccessible.add(key);}
+      }
+      if(typeof u.region==='string'&&u.region.trim()){
+        const key='Región: '+wsCityNorm(u.region)+'|'+String(iso||'').toUpperCase();
+        if(!seenAccessible.has(key)){parts.push('Región: '+u.region);seenAccessible.add(key);}
+      }
+      parts.forEach(label=>{const li=document.createElement('li');li.textContent=label+(u.pais?' · '+u.pais:'')+' (posición no verificada)';accessible.appendChild(li);});
+    });
+    if(!cityById.size&&!regionById.size&&!accessible.children.length){
       const li=document.createElement('li');li.textContent='Países: '+countryPaths.map(c=>c.n).join(', ');accessible.appendChild(li);
     }
     if(clusters.length>1) host.classList.add('has-multiple-zones');
@@ -7718,7 +7801,7 @@ async function renderBookLocations(book){
       let w=Math.max(8,bb.x2-bb.x),h=Math.max(8,bb.y2-bb.y);
       // El margen se calcula sobre la extensión real, nunca se aplica un zoom arbitrario.
       const longestLabel=Math.max(0,...allPoints.map(p=>String(p._kind==='city'?p.ciudad:p.nombre||'').length));
-      const padX=Math.max(w*.075+2,w*Math.min(.24,longestLabel*.009));
+      const padX=Math.max(w*.075+2,w*Math.min(.45,longestLabel*.012));
       const labelUnitsForPadding=Math.max(10,Math.min(13,hostWidth*.018))*w/hostWidth;
       const labelLanes=[-1.5,1.5,-2.5,2.5,0,-3,3];
       const maxLane=allPoints.length?Math.max(...allPoints.map((_,i)=>Math.abs(labelLanes[i%labelLanes.length]))):0;
@@ -7727,22 +7810,67 @@ async function renderBookLocations(book){
       const aspect=hostWidth/hostHeight;
       if(w/h<aspect){const nw=h*aspect;bb.x-=(nw-w)/2;w=nw;}else{const nh=w/aspect;bb.y-=(nh-h)/2;h=nh;}
       svg.setAttribute('viewBox',`${bb.x} ${bb.y} ${w} ${h}`);
+      // Contexto geográfico: añade únicamente fronteras existentes del catálogo cuyos
+      // límites geométricos se acercan al encuadre. No se inventan países ni coordenadas.
+      const contextMargin=Math.max(3,Math.min(24,Math.max(w,h)*.055));
+      const contextBox={x:bb.x-contextMargin,y:bb.y-contextMargin,x2:bb.x+w+contextMargin,y2:bb.y+h+contextMargin};
+      const contextLand=document.createElementNS(NS,'g');
+      contextLand.setAttribute('aria-hidden','true');
+      _wsMap.c.forEach(c=>{
+        if(!c||!c.i||clusterIsos.has(String(c.i).toUpperCase())) return;
+        const cb=bookLocCountryBounds(c); if(!cb) return;
+        if(cb.x2<contextBox.x||cb.x>contextBox.x2||cb.y2<contextBox.y||cb.y>contextBox.y2) return;
+        const path=document.createElementNS(NS,'path');path.setAttribute('d',c.d);path.setAttribute('class','book-loc-context-land');contextLand.appendChild(path);
+      });
+      if(contextLand.childNodes.length) svg.appendChild(contextLand);
       // Fuente en unidades SVG compensadas por la escala del viewBox: tamaño de pantalla acotado.
       const fontPx=Math.max(9,Math.min(11.5,hostWidth*.015));
       const fontUnits=fontPx*w/hostWidth;
       const markerUnits=Math.max(.08,4.1*w/hostWidth);
       const labelRects=[];
+      const pointCoords=allPoints.map(p=>({x:Number(p.x),y:Number(p.y)})).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
+      const overlaps=(a,b,gap)=>a.x1<b.x2+gap&&a.x2>b.x1-gap&&a.y1<b.y2+gap&&a.y2>b.y1-gap;
       allPoints.forEach((p,i)=>{
-        const x=Number(p.x),y=Number(p.y);if(!Number.isFinite(x)||!Number.isFinite(y))return;
+        const x=Number(p.x),y=Number(p.y);if(!Number.isFinite(x)||!Number.isFinite(y)||x<0||y<0||x>_wsMap.w||y>_wsMap.h)return;
         const g=document.createElementNS(NS,'g');g.setAttribute('class',p._kind==='city'?'book-loc-city-group':'book-loc-region-group');
         const mark=document.createElementNS(NS,'circle');mark.setAttribute('cx',x);mark.setAttribute('cy',y);mark.setAttribute('r',p._kind==='city'?markerUnits:markerUnits*1.45);mark.setAttribute('class',p._kind==='city'?'book-loc-city':'book-loc-region');g.appendChild(mark);
-        const t=document.createElementNS(NS,'text');t.setAttribute('class','book-loc-label');t.setAttribute('font-size',fontUnits);t.setAttribute('x',x+markerUnits*1.8);t.setAttribute('y',y-fontUnits*.45);t.textContent=p._kind==='city'?p.ciudad:p.nombre;
-        const title=document.createElementNS(NS,'title');title.textContent=(p._kind==='city'?'Ciudad: ':'Región: ')+(p._kind==='city'?p.ciudad:p.nombre);t.appendChild(title);
-        // Carriles verticales alternos: reducen choques entre ciudades cercanas; el título conserva el nombre completo.
-        const lanes=[-1.5,1.5,-2.5,2.5,0,-3,3];
-        const lane=lanes[i%lanes.length];
-        t.setAttribute('y',y+lane*fontUnits*1.65);
-        if(i%2===1){t.setAttribute('x',x-markerUnits*2.0);t.setAttribute('text-anchor','end');}
+        const name=String(p._kind==='city'?p.ciudad:p.nombre||'');
+        const t=document.createElementNS(NS,'text');t.setAttribute('class','book-loc-label');t.setAttribute('font-size',fontUnits);t.textContent=name;
+        const title=document.createElementNS(NS,'title');title.textContent=(p._kind==='city'?'Ciudad: ':'Región: ')+name;t.appendChild(title);
+        const gap=Math.max(fontUnits*.42,markerUnits*1.4),step=Math.max(fontUnits*1.25,markerUnits*2.2);
+        const candidates=[
+          {dx:step,dy:-fontUnits*.45,a:'start'}, {dx:-step,dy:-fontUnits*.45,a:'end'},
+          {dx:step,dy:fontUnits*1.15,a:'start'}, {dx:-step,dy:fontUnits*1.15,a:'end'},
+          {dx:step*1.7,dy:-fontUnits*1.8,a:'start'}, {dx:-step*1.7,dy:-fontUnits*1.8,a:'end'},
+          {dx:step*1.7,dy:fontUnits*2.0,a:'start'}, {dx:-step*1.7,dy:fontUnits*2.0,a:'end'},
+          {dx:0,dy:-fontUnits*1.9,a:'middle'}, {dx:0,dy:fontUnits*2.3,a:'middle'}
+        ];
+        const approxWidth=Math.max(fontUnits*2,name.length*fontUnits*.56);
+        let best=null;
+        candidates.forEach((c,ci)=>{
+          const tx=x+c.dx,ty=y+c.dy;
+          const rect={x1:c.a==='end'?tx-approxWidth: c.a==='middle'?tx-approxWidth/2:tx,
+                      x2:c.a==='end'?tx: c.a==='middle'?tx+approxWidth/2:tx+approxWidth,
+                      y1:ty-fontUnits*.95,y2:ty+fontUnits*.3};
+          let score=ci*.0001;
+          labelRects.forEach(r=>{if(overlaps(rect,r,gap)) score+=Math.max(1,Math.min(rect.x2,r.x2)-Math.max(rect.x1,r.x1))*Math.max(1,Math.min(rect.y2,r.y2)-Math.max(rect.y1,r.y1));});
+          pointCoords.forEach(pt=>{
+            if(Math.hypot(pt.x-x,pt.y-y)<.01) return;
+            const near={x1:pt.x-markerUnits*1.8,x2:pt.x+markerUnits*1.8,y1:pt.y-markerUnits*1.8,y2:pt.y+markerUnits*1.8};
+            if(overlaps(rect,near,gap*.5)) score+=fontUnits*fontUnits*2;
+          });
+          // Prefer placements inside the intended map bounds; the viewBox padding is expanded below for long labels.
+          if(rect.x1<bb.x+padX*.1||rect.x2>bb.x+w-padX*.1) score+=fontUnits*fontUnits*4;
+          if(rect.y1<bb.y+padY*.1||rect.y2>bb.y+h-padY*.1) score+=fontUnits*fontUnits*4;
+          if(!best||score<best.score) best={...c,tx,ty,rect,score};
+        });
+        t.setAttribute('x',best.tx);t.setAttribute('y',best.ty);t.setAttribute('text-anchor',best.a);
+        labelRects.push(best.rect);
+        if(Math.hypot(best.tx-x,best.ty-y)>step*1.6){
+          const ex=Math.max(best.rect.x1,Math.min(x,best.rect.x2)),ey=Math.max(best.rect.y1,Math.min(y,best.rect.y2));
+          const dx=ex-x,dy=ey-y,len=Math.hypot(dx,dy)||1,startX=x+dx/len*markerUnits*1.25,startY=y+dy/len*markerUnits*1.25;
+          const line=document.createElementNS(NS,'line');line.setAttribute('x1',startX);line.setAttribute('y1',startY);line.setAttribute('x2',ex);line.setAttribute('y2',ey);line.setAttribute('class','book-loc-leader');g.appendChild(line);
+        }
         g.appendChild(t);marks.appendChild(g);
       });
       svg.appendChild(marks);
@@ -7750,7 +7878,11 @@ async function renderBookLocations(book){
     });
     if(accessible.children.length){const wrap=document.createElement('details');wrap.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';wrap.appendChild(summary);wrap.appendChild(accessible);host.after(wrap);}
     const unresolved=locs.filter(u=>u&&((u.ciudad&&!Array.from(cityById.values()).some(c=>wsCityNorm(c.ciudad)===wsCityNorm(u.ciudad)&&String(c.pais_iso).toUpperCase()===wsResolveIso(u.pais)))||(u.region&&!Array.from(regionById.values()).some(r=>wsCityNorm(r.nombre)===wsCityNorm(u.region)&&String(r.pais_iso).toUpperCase()===wsResolveIso(u.pais)))));
-    if(unresolved.length){const note=document.createElement('p');note.className='book-locations-empty';note.textContent='Algunas ciudades o regiones no están disponibles en el catálogo cartográfico.';host.parentElement.appendChild(note);}
+    const notes=[];
+    if(unresolved.length||unverifiedLocs.length) notes.push('Algunas localizaciones se conservan en el listado textual, pero no se han podido verificar y colocar en el mapa.');
+    if(cityById.size&&cityProjection==='undeclared'||regionById.size&&regionProjection==='undeclared') notes.push('El catálogo no declara la proyección de todas las coordenadas; sus posiciones se muestran sin verificación automática de referencia.');
+    if(cityProjection==='mismatch'||regionProjection==='mismatch'||cityProjection==='invalid'||regionProjection==='invalid') notes.push('Se han omitido puntos cuyo catálogo declara una proyección incompatible con el mapa base; sus nombres siguen disponibles en el listado textual.');
+    if(notes.length){const note=document.createElement('p');note.className='book-locations-empty';note.textContent=[...new Set(notes)].join(' ');host.parentElement.appendChild(note);}
   }catch(e){
     console.warn('[Ficha libro] mapa de localizaciones:',e);
     // Un fallo recuperable no debe dejar el contenedor marcado como renderizado:
