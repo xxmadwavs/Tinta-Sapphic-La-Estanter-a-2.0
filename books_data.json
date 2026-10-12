@@ -14603,6 +14603,8 @@
     "synopsis": "Mina tiene dieciséis años y un secreto que ignora: su padre, un poderoso mago, reemplazó su corazón por uno de cristal. Decidida a conocer el amor, planea enamorar al rey y convertirse en reina, aunque eso signifique ser madrastra. Lynet, de quince años, es su hijastra, una joven creada con nieve a imagen de su madre muerta.\n\nLa paz se quiebra cuando Lynet es nombrada reina del sur, destituyendo a Mina. La rivalidad surge y el odio parece inevitable entre dos mujeres condenadas a enfrentarse por el poder. Sin embargo, en un mundo de magia y traiciones, ambas deberán decidir si destruirse o reconstruir su historia juntas. Una reinvención sáfica y oscura de los cuentos de hadas sobre la identidad y los lazos que elegimos.",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana"
@@ -14612,7 +14614,19 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 0,
     "formato": null,
     "adaptacion": null,
@@ -14620,9 +14634,14 @@
     "sagaNum": null,
     "source": "spanish",
     "editions": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778009537704_1kzl1",
@@ -24801,6 +24820,8 @@
     "synopsis": "En un castillo aislado, en lo profundo del bosque austríaco, la joven Laura lleva una vida solitaria junto a su padre, su asistente y su tutor como única compañía. Hasta que, una noche iluminada por la luna, un carruaje tirado por caballos irrumpe en escena, trayendo consigo a una huésped inesperada: la hermosa Carmilla.\n\nAsí comienza una amistad febril entre Laura y su fascinante nueva compañera, marcada por sucesos misteriosos y una erotismo implícito pero innegable. A medida que Carmilla se vuelve cada vez más extraña e inestable, propensa a deambular por las noches de forma inquietante, Laura empieza a ser atormentada por pesadillas… y a debilitarse cada día más.",
     "pages": 108,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
@@ -24813,7 +24834,29 @@
     ],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Austria"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Austria",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Medieval",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Irlanda"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
     "formato": null,
     "adaptacion": null,
@@ -24823,9 +24866,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Irlanda"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778489436537_65wke",
@@ -56350,6 +56396,8 @@
     "synopsis": "¿Qué ocurre cuando el amor llega para empujarnos a superar nuestros mayores miedos? Clara no planea volver a enamorarse; arrastra una historia rota y el temor persistente a no ser suficiente. Viajar a Florencia es su oportunidad para silenciar el pasado, pero el destino le prepara un encuentro que lo removerá todo. Allí conoce a Mara: libre, aventurera e incómodamente honesta, una mujer que también carga con sus propios fantasmas y huye de la estabilidad.\n\nJuntas descubren una ciudad eterna que las llevará de la desconfianza inicial a un vínculo marcado por la curiosidad y una atracción inesperada. Porque amar no es solo elegir a alguien, sino tener el valor de enfrentar las heridas que impiden la felicidad. Un romance sáfico de sanación y descubrimiento bajo el sol de la Toscana.",
     "pages": 264,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -56360,6 +56408,44 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Italia",
+        "region": "Toscana",
+        "ciudad": "Florencia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Pisa",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "Siena",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": "San Gimignano",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -56371,13 +56457,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165132288_3a6yt",
@@ -56760,6 +56845,8 @@
     "synopsis": "Cassidy Boone es una forajida implacable, rápida con el revólver y experta en no dejar que nadie la vuelva vulnerable. En el salvaje Oeste, su única regla es no mirar atrás. Pero su camino se cruza con el de Adelita Garza, una joven mexicana que huye del hambre y el miedo, perdida en un país extraño donde no sabe disparar ni pertenecer.\n\nUn atraco fallido las encadena por unas monedas de oro, forzando una alianza entre la pistolera que no quiere compañía y la fugitiva que solo busca sobrevivir. Entre desiertos y balas, lo que empieza como pura necesidad se transforma en una tensión peligrosa. ¿Podrán superar sus secretos antes de que el pasado las alcance en la frontera?",
     "pages": 356,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -56769,7 +56856,26 @@
     "dinamicas": [],
     "tropes": [],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
@@ -56781,13 +56887,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165529985_b807z",
@@ -57101,6 +57206,8 @@
     "synopsis": "En el año 2300, la tecnología permite ver recuerdos y alcanzar la longevidad, pero nuevas enfermedades terminales azotan a los más jóvenes. Para ellos existe Valle Cielo, un entorno virtual donde, al pulsar un botón, sus almas pueden cumplir cualquier sueño. Allí, la realidad física desaparece y las limitaciones biológicas dejan de existir.\n\nAllie, diagnosticada con esclerosis múltiple a los 22 años, ingresa en el hospital sin esperanza, hasta que se traslada a este refugio digital. En Valle Cielo conoce a Nina, otra alma errante con quien establece una conexión instantánea. Juntas descubren un vínculo que desafía el tiempo, el espacio y la frontera entre la vida y la muerte. Una historia sáfica de ciencia ficción sobre el amor eterno en un mundo que se desvanece.",
     "pages": null,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -57112,6 +57219,15 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "México"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
@@ -57123,13 +57239,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "México"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165675515_x56ee",
@@ -57385,6 +57500,8 @@
     "synopsis": "A veces, las mejores historias de amor comienzan con una mentira.\n\nAlejandra Prado lo tiene todo y siente que no tiene nada.\n\nIrene Verdejo solo tiene a su hijo, y hace lo que sea necesario para sacarlo adelante, incluyendo prostituirse.\nCuando la hija menor de los Prado es fotografiada en actitud cariñosa con una prostituta de lujo, Ernesto Prado ve amenazada la salida a bolsa de su farmacéutica y elabora un plan en el que obliga a las dos mujeres a fingir una relación con el fin de evitar que la prensa especule y dañe la reputación de la familia.\n\nIrene acepta el pacto para proteger a su hijo. Alejandra para proteger a Irene, y lo que empieza con una relación fingida llena de situaciones tensas y reproches, pronto empieza a dejar paso a la espontaneidad y la complicidad, provocando que ambas teman el momento de zanjar el pacto.",
     "pages": 201,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -57396,6 +57513,24 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España",
+      "Sudamérica"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -57407,14 +57542,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España",
-      "Sudamérica"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165909771_pfhg7",
@@ -57993,6 +58126,8 @@
     "synopsis": "Una joven cirujana. Una mentora brillante y distante. Una noche que lo cambia todo.\n\nLa doctora Lillian Harrington lleva un apellido legendario: el de una familia de cirujanas famosas. Decidida a demostrar que merece su lugar en el quirófano, trabaja sin descanso, soportando turnos interminables, presión constante y la sombra de las expectativas familiares.\n\nUna noche, cansada y buscando desconectar, se une a una aplicación de citas. Allí conoce a una mujer fascinante: mayor, segura de sí misma, intensamente atractiva. La conexión entre ellas es inmediata, irresistible.\n\nA la mañana siguiente, Lillian la vuelve a ver... en el hospital.\nLa doctora Rebecca Lang, la enigmática desconocida de la noche anterior, es la nueva jefa de cirugía cardíaca — y su mentora.\n\nLo que sigue es una historia de deseo prohibido, tensión y pasión bajo la superficie. Rebecca intenta mantener las distancias, pero la calidez y determinación de Lillian derriten poco a poco su frialdad. Entre noches de guardia, operaciones urgentes y decisiones imposibles, ambas descubrirán que el amor puede ser el riesgo más grande… y la más dulce de las curas.",
     "pages": 260,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance"
@@ -58004,6 +58139,15 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -58015,13 +58159,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168109319_5wu6t",
@@ -58595,6 +58738,8 @@
     "synopsis": "En un domingo de octubre de 1937, Dolores conoce a Isabel durante una guardia en el hospital. Valencia iba a cumplir casi un año desde que se hubiese convertido en la capital de la República Española y en sus calles se constataba el hambre y el temor constante a los bombardeos. En ese breve instante, tan simple como el aleteo de una pequeña libélula, su destino cambiará, irremediablemente.\n\nDe la mano de Isabel y Dolores formaremos parte de Mujeres Libres, una organización reivindicativa y audaz; nos sumergiremos en el París de los años cuarenta, en pleno auge del jazz, del existencialismo, de la intelectualidad y de la libertad sexual. Contendremos el aliento al producirse la ocupación de Francia por parte de los nazis o nos emocionaremos al ser testigos de las capacidades humanas de amar o de sobrevivir, sin importar la circunstancia.",
     "pages": 293,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -58605,6 +58750,51 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Valencia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Tuéjar",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Titaguas",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Argelès-sur-Mer",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "1937-1945",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": null,
@@ -58616,13 +58806,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168557970_n8ni7",
@@ -70764,6 +70953,7 @@
     "synopsis": "Un ataque de rebeldía, un poco de tequila y una mala decisión. Esa desastrosa combinación hará que los caminos de Abigail y Gretel se crucen en el momento menos oportuno.\nLa primera está cansada de hacer siempre lo correcto, la segunda ha sido la mujer perfecta para un marido capullo que la ha abandonado por otra.\nLa casualidad hace que ambas decidan ahogar las penas en el mismo bar. Una se convierte en el pañuelo de la otra y viceversa y, al final, algo perjudicadas por el alcohol, concluyen que ha llegado el momento de rebelarse y hacer una travesura que las haga sentirse vivas.\nSu pequeña fechoría consistirá en robar un coche, nada grave, piensan ellas. Lo robarán, se darán una vuelta y lo dejarán aparcado en un lugar seguro. A su modo de ver, nada puede salir mal. Enseguida eligen a su víctima y elaboran un pequeño plan de distracción hasta que consiguen su objetivo.\nTodo va sobre ruedas y las dos mujeres se sienten eufóricas por haberlo logrado, hasta que descubren que no viajan solas.",
     "pages": 220,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -70781,6 +70971,23 @@
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Andalucía",
+        "ciudad": "Málaga",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [
       "Abuso de Poder",
@@ -70796,13 +71003,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783148830629_n75ga",
@@ -70870,6 +71076,7 @@
     "synopsis": "El amor mueve al mundo, eso dicen; pero para María Fernanda, el amor no ha sido más que dolor, amargura e incomprensión. Para escapar de su sufrimiento, se aleja de todo lo que ha sido su vida, dispuesta a encontrar un poco de sosiego. ¿Encontrará lo que busca? ¿Se olvidará de ese amor que le causó tanto dolor? ¿Hallará a la mujer perfecta? ¿Será Valeria, su compañera de cuarto, quien le muestre que el amor no es solo dolor? Al final, será su corazón quien le muestre el camino.",
     "pages": 296,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -70885,6 +71092,28 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Venezuela",
+        "region": null,
+        "ciudad": "Mérida",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Venezuela",
+        "region": null,
+        "ciudad": "Valencia",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
       "Ansiedad / Ataques de Pánico",
@@ -70901,6 +71130,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -72932,6 +73163,7 @@
     "synopsis": "¿Te gustaría saber qué rumbo tomó el grupo de amigos que conocimos en Tal y como eres?\n\nUnos terminaron la carrera y siguieron estudiando; otros se pusieron a trabajar. Incluso uno de ellos se fue a vivir a Australia una temporada.\n\nClara continúa compartiendo piso con su hermano Kevin, lo que le ha permitido estudiar un máster, seguir dando clases de refuerzo a niños y ahorrar algo de dinero. Ella se niega a reconocerlo, pero en su corazón hay alguien con quien no se atrevió a dar el paso en su momento.\n\nDidi terminó el doble grado y decidió ponerse a trabajar para poder pagarse un máster de Educación Inclusiva. Aunque sigue sin creer en el amor (eso no es para ella), le encanta ver a sus amigos enamorados. Hasta que se topa con la persona que le hace volver a sentir ese «algo especial» que había experimentado tiempo atrás.\n\n¿Se dejarán llevar Clara y Didi por sus sentimientos o, por miedo, se quedarán con las ganas?\n\nEn Ese algo especial descubrirás que siempre es mejor ser valiente y arriesgarse.",
     "pages": 416,
     "isbn": "978-8408262077",
+    "wattpad": null,
     "ship": [],
     "genres": [
       "YA",
@@ -72956,6 +73188,23 @@
       "Australia",
       "España"
     ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
@@ -72973,13 +73222,12 @@
     ],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1784971674224_fqgvw",
@@ -72992,6 +73240,7 @@
     "synopsis": "Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas.\n\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar.\n\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial en la que trabajan. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.",
     "pages": 191,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance"
@@ -73017,6 +73266,30 @@
     "pais_cultura": [
       "España"
     ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "madrid",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Escocia",
+        "region": null,
+        "ciudad": "Edimburgo",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
@@ -73028,13 +73301,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1784972743136_8btm6",
@@ -79631,6 +79903,12 @@
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Colombia"
     ],
@@ -79645,6 +79923,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -79701,6 +79981,20 @@
     "pais_cultura": [
       "España"
     ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
@@ -79713,6 +80007,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
