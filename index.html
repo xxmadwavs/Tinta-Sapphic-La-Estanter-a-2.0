@@ -1783,7 +1783,7 @@ button.an-mopen{cursor:pointer}
 .shelf-row{min-width:0}
 /* FASE E15.2 — ancho de libro (--shelf-bw, px), gap y padding calculados en JS según el ancho REAL de la estantería; altura de balda reservada con el libro de escala 1 */
 .shelf-books-area{display:flex;align-items:flex-end;gap:var(--shelf-gap);padding:0 var(--shelf-pad);height:calc(var(--shelf-bw)*1.5px)}
-.shelf-slot{position:relative;flex:0 0 auto;width:calc(var(--shelf-bw)*var(--w,1)*1px);aspect-ratio:2/3;border-radius:1px 2px 2px 1px;background:var(--surface3);box-shadow:0 0 0 1px rgba(0,0,0,.28),2px 0 4px -1px rgba(0,0,0,.45)}
+.shelf-slot{position:relative;flex:0 0 auto;width:calc(var(--shelf-bw)*var(--w,1)*1px);aspect-ratio:2/3;border-radius:1px 2px 2px 1px;background:var(--surface3);box-shadow:0 0 0 1px rgba(0,0,0,.32),1px 2px 4px -1px rgba(0,0,0,.42),0 3px 7px -4px rgba(0,0,0,.58)}
 .shelf-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 .shelf-slot::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.16) 5%,transparent 11%)}
 /* Portada sin imagen / imagen rota: misma caja que una portada real (inset:0 del slot 2:3). Color determinista por id (--ph-bg), texto proporcional al ancho del libro. */
@@ -1799,7 +1799,7 @@ button.an-mopen{cursor:pointer}
 .shelf-slot:focus-visible{outline:2px solid var(--gold);outline-offset:3px;z-index:2}
 @media (hover:hover) and (pointer:fine){
   .shelf-slot{transition:transform .16s ease,box-shadow .16s ease}
-  .shelf-slot:hover{z-index:2;transform:translateY(-4px);box-shadow:0 0 0 1px rgba(0,0,0,.28),0 7px 10px -4px rgba(0,0,0,.65)}
+  .shelf-slot:hover{z-index:2;transform:translateY(-4px);box-shadow:0 0 0 1px rgba(0,0,0,.34),1px 3px 5px -2px rgba(0,0,0,.46),0 8px 12px -5px rgba(0,0,0,.62)}
 }
 .shelf-tip{position:fixed;left:0;top:0;z-index:20;max-width:min(240px,calc(100vw - 16px));padding:.4rem .6rem;border-radius:4px;background:var(--surface3);border:1px solid var(--border2);color:var(--text);box-shadow:0 4px 12px -2px rgba(0,0,0,.6);pointer-events:none;visibility:hidden;opacity:0;transition:opacity .12s ease}
 .shelf-tip.on{visibility:visible;opacity:1}
@@ -1815,7 +1815,7 @@ button.an-mopen{cursor:pointer}
 }
 @media (max-width:639px){
   .shelf-physical{gap:.8rem}
-  .shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.28),1px 0 3px -1px rgba(0,0,0,.45)}
+  .shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.32),1px 2px 3px -1px rgba(0,0,0,.42),0 2px 5px -4px rgba(0,0,0,.52)}
   .shelf-board{height:4px}
 }
 /* FASE E15.3.3 — Estantería física, submodo Lomos (shelfStyle=spines). Mismo contenedor, balda, contrato y delegación de eventos que Portadas (.shelf-slot);
