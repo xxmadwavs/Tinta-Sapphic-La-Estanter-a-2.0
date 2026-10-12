@@ -4838,19 +4838,932 @@ body.theme-christmas .avg-stars-row{color:var(--gold)}
 body:not(.theme-halloween):not(.theme-christmas) .book-locations-details summary{color:#762B45}
 body.theme-christmas .book-locations-details summary{color:#28563E}
 
+
+
+/* FASE 3.2 — Marca, cabecera y búsqueda global reutilizada.
+   Solo presentación de cabecera/buscador; no crea otro input ni altera su lógica. */
+.topbar{
+  height:auto;
+  min-height:72px;
+  gap:clamp(12px,1.8vw,26px);
+  padding:10px clamp(16px,2.4vw,36px);
+  background:rgba(255,252,250,.96);
+  border-bottom:1px solid var(--border2);
+  box-shadow:0 4px 18px rgba(70,35,48,.06);
+}
+.topbar .logo{
+  flex:0 0 auto;
+  gap:.24em;
+  font-size:clamp(19px,1.65vw,25px);
+  white-space:nowrap;
+  color:var(--text);
+}
+.topbar .logo-tinta{letter-spacing:.105em}
+.topbar .logo em{color:var(--accent2)}
+.topbar .logo-sep{margin-left:.08em}
+.topbar .logo-sub{font-size:10px;letter-spacing:.09em}
+.topbar .topbar-search{
+  flex:1 1 260px;
+  min-width:160px;
+  max-width:430px;
+  margin-inline:auto;
+}
+.topbar .topbar-search .search-input{
+  min-height:42px;
+  padding:9px 14px 9px 40px;
+  border-radius:10px;
+  background:var(--surface2);
+  border-color:var(--border2);
+  color:var(--text);
+  font-size:13px;
+}
+.topbar .topbar-search .search-input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
+}
+.topbar .topbar-search .search-input::placeholder{color:var(--muted);opacity:1}
+.topbar .topbar-search .search-icon{left:14px;color:var(--muted);opacity:.9}
+.topbar .topbar-right{
+  flex:0 0 auto;
+  gap:8px;
+  margin-left:auto;
+}
+.topbar .home-nav-btn{
+  border-radius:8px;
+  border-color:transparent;
+}
+.topbar .btn-login{
+  padding:7px 13px;
+  border-radius:9px;
+}
+.filter-top{
+  justify-content:flex-end;
+}
+#sortSel{margin-left:auto;max-width:100%}
+body.theme-halloween .topbar{
+  background:rgba(255,248,242,.96);
+  border-bottom-color:var(--border2);
+  box-shadow:0 4px 18px rgba(75,35,35,.10);
+}
+body.theme-christmas .topbar{
+  background:rgba(247,243,233,.97);
+  border-bottom-color:var(--border2);
+  box-shadow:0 4px 20px rgba(37,55,44,.08);
+}
+body.theme-halloween .topbar .logo em{color:var(--accent2)}
+body.theme-christmas .topbar .logo em{color:var(--accent)}
+body.theme-halloween .topbar .search-input,
+body.theme-christmas .topbar .search-input{
+  background:var(--surface2);
+  color:var(--text);
+  border-color:var(--border2);
+}
+@media (min-width:900px){
+  .topbar .logo{max-width:310px}
+}
+@media (min-width:640px) and (max-width:899px){
+  .topbar{gap:12px;padding:10px 16px}
+  .topbar .logo{font-size:18px}
+  .topbar .logo-sub{display:none}
+  .topbar .topbar-search{flex-basis:180px;min-width:150px}
+  .topbar .topbar-right{gap:5px}
+}
+@media (max-width:639px){
+  .topbar{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:7px 10px;
+    min-height:0;
+    height:auto;
+    padding:8px 12px 10px;
+  }
+  .topbar .logo{
+    order:1;
+    flex:1 1 auto;
+    min-width:0;
+    font-size:19px;
+  }
+  .topbar .logo-sep,.topbar .logo-sub{display:none}
+  .topbar .topbar-right{
+    order:2;
+    flex:0 0 auto;
+    margin-left:auto;
+    gap:5px;
+  }
+  .topbar .topbar-search{
+    order:3;
+    flex:1 1 100%;
+    width:100%;
+    min-width:0;
+    max-width:none;
+    margin:0;
+  }
+  .topbar .topbar-search .search-input{
+    width:100%;
+    min-height:44px;
+    padding:9px 12px 9px 36px;
+    font-size:16px;
+  }
+  .topbar .topbar-search .search-icon{left:12px}
+  .topbar .btn-login{padding:6px 10px;font-size:11px}
+  .topbar .user-chip{padding:3px 7px 3px 3px;gap:5px}
+  .topbar .user-avatar{width:25px;height:25px;font-size:11px}
+  .topbar .user-name{max-width:68px;font-size:11px}
+  .topbar .user-chip-caret{display:none}
+  .filter-top{padding:.5rem .8rem .45rem;justify-content:flex-end}
+}
+@media (max-width:359px){
+  .topbar{padding-inline:9px;gap:6px}
+  .topbar .logo{font-size:17px}
+  .topbar .btn-login{padding:5px 7px;font-size:10.5px}
+}
+
+
+
+/* FASE 3.3 — Navegación de escritorio y menú de cuenta.
+   Los destinos apuntan a vistas/acciones ya existentes; móvil conserva su barra inferior. */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:clamp(10px,1.25vw,20px);
+  padding-inline:clamp(14px,2vw,30px);
+}
+.topbar .logo{flex:0 0 auto;max-width:none}
+.desktop-primary-nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(2px,.35vw,7px);
+  flex:0 1 auto;
+  min-width:0;
+}
+.desktop-nav-link{
+  appearance:none;
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--muted);
+  border-radius:9px;
+  padding:8px clamp(7px,.75vw,12px);
+  font:500 12.5px/1.25 var(--font-body);
+  white-space:nowrap;
+  cursor:pointer;
+  transition:color .16s,background .16s,border-color .16s;
+}
+.desktop-nav-link:hover{
+  color:var(--accent);
+  background:var(--accent-soft);
+  border-color:var(--border);
+}
+.desktop-nav-link.active,
+.desktop-nav-link[aria-current="page"]{
+  color:var(--accent);
+  background:var(--accent-soft);
+  border-color:var(--border2);
+  font-weight:600;
+}
+.desktop-nav-link:focus-visible,
+.topbar .logo:focus-visible,
+.topbar .user-chip:focus-visible,
+.topbar .btn-login:focus-visible,
+.user-dd-item:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+.topbar .topbar-search{
+  flex:1 1 190px;
+  min-width:150px;
+  max-width:330px;
+  margin-inline:0;
+}
+.topbar .topbar-right{margin-left:0;flex:0 0 auto}
+.topbar #shelfNavBtn{display:inline-flex;align-items:center;gap:5px}
+.topbar .home-nav-btn{font:inherit}
+.topbar .user-chip-wrap{position:relative}
+.topbar .user-chip{
+  min-height:38px;
+  gap:8px;
+  padding:4px 10px 4px 4px;
+  border-radius:999px;
+  box-shadow:0 1px 4px rgba(65,35,45,.04);
+}
+.topbar .user-chip:hover{background:var(--surface3);border-color:var(--border2)}
+.topbar .user-dropdown{
+  min-width:238px;
+  width:max-content;
+  max-width:min(300px,calc(100vw - 24px));
+  padding:6px;
+  border-radius:14px;
+  border-color:var(--border2);
+  box-shadow:0 16px 42px rgba(40,20,30,.18),0 3px 10px rgba(40,20,30,.08);
+  color:var(--text);
+}
+.topbar .user-dd-item{
+  min-height:39px;
+  padding:9px 12px;
+  gap:10px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.35;
+}
+.topbar .user-dd-item:hover{background:var(--accent-soft);color:var(--accent)}
+.topbar .user-dd-item.danger{
+  margin-top:5px;
+  color:var(--error);
+  border-top:1px solid var(--border);
+  border-radius:0 0 8px 8px;
+  padding-top:12px;
+}
+.topbar .user-dd-item.danger:hover{background:var(--error-soft);color:var(--error)}
+.topbar .user-dd-sep{margin:5px 4px;background:var(--border2)}
+body.theme-halloween .topbar .desktop-nav-link:hover,
+body.theme-halloween .topbar .desktop-nav-link.active,
+body.theme-halloween .topbar .desktop-nav-link[aria-current="page"]{
+  background:var(--accent-soft);border-color:var(--border2);color:var(--accent);
+}
+body.theme-christmas .topbar .desktop-nav-link:hover,
+body.theme-christmas .topbar .desktop-nav-link.active,
+body.theme-christmas .topbar .desktop-nav-link[aria-current="page"]{
+  background:var(--accent-soft);border-color:var(--border2);color:var(--accent);
+}
+body.theme-halloween .topbar .user-dd-item.danger,
+body.theme-christmas .topbar .user-dd-item.danger{color:var(--error)}
+@media (min-width:1200px){
+  .topbar .logo{font-size:clamp(20px,1.55vw,25px)}
+  .topbar .topbar-search{max-width:360px}
+}
+@media (min-width:900px) and (max-width:1199px){
+  .topbar{gap:10px;padding-inline:14px}
+  .topbar .logo{font-size:18px}
+  .topbar .logo-sep,.topbar .logo-sub{display:none}
+  .desktop-nav-link{font-size:11.5px;padding:7px 6px}
+  .topbar .topbar-search{flex-basis:155px;min-width:130px}
+  .topbar .user-name{max-width:72px}
+}
+@media (min-width:640px) and (max-width:899px){
+  .topbar{flex-wrap:wrap;gap:8px 12px}
+  .desktop-primary-nav{order:3;flex:1 1 100%;justify-content:flex-start}
+  .topbar .topbar-search{flex:1 1 200px;max-width:none}
+  .topbar .topbar-right{margin-left:auto}
+}
+@media (max-width:639px){
+  .desktop-primary-nav{display:none}
+  .topbar .logo{max-width:calc(100% - 100px)}
+  .topbar .topbar-search{order:3}
+  .topbar .topbar-right{order:2}
+  .topbar .user-dropdown{right:0;max-width:calc(100vw - 24px)}
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 3.4 — ADAPTACIÓN RESPONSIVE DE CABECERA Y NAVEGACIÓN
+   Ajustes visuales aislados: no modifica destinos, IDs ni funciones.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Foco visible coherente para navegación y controles de cuenta. */
+.topbar a:focus-visible,
+.topbar button:focus-visible,
+.mobile-bottom-nav button:focus-visible,
+.mbn-more-sheet button:focus-visible,
+.section-select-mobile button:focus-visible{
+  outline:2px solid var(--accent2);
+  outline-offset:2px;
+}
+.topbar .user-dropdown{
+  max-width:min(320px,calc(100vw - 24px));
+  max-height:min(70vh,560px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.user-dd-item{
+  min-height:42px;
+  line-height:1.35;
+}
+.user-dd-item:hover,
+.user-dd-item:focus-visible{
+  background:var(--accent-soft);
+}
+.user-dd-item.danger{
+  border-top:1px solid var(--border);
+  margin-top:4px;
+  padding-top:12px;
+}
+
+/* En escritorio/tablet, permitir que los elementos se encojan sin
+   generar desbordamiento horizontal; la composición existente sigue intacta. */
+.topbar .logo{min-width:0}
+.topbar .topbar-search{min-width:0}
+.desktop-primary-nav{min-width:0}
+.desktop-nav-link{flex-shrink:0}
+.topbar .topbar-right{flex-shrink:0}
+
+/* La hoja «Más» conserva sus ocho destinos y permite desplazarse con
+   seguridad en dispositivos con poca altura o zona inferior reservada. */
+.mbn-more-sheet{
+  max-height:min(70vh,calc(100dvh - 24px - env(safe-area-inset-top)));
+  padding-bottom:calc(1rem + 62px + env(safe-area-inset-bottom));
+  overscroll-behavior:contain;
+}
+.mobile-bottom-nav{
+  padding-bottom:max(9px,env(safe-area-inset-bottom));
+}
+.mbn-item{min-height:44px}
+.mbn-more-item{min-height:44px}
+
+/* Evita que el campo enfocado quede oculto bajo la cabecera sticky. */
+#searchInput{scroll-margin-top:calc(16px + var(--mobile-topbar-height, 56px))}
+@media (min-width:640px){
+  :root{--mobile-topbar-height:62px}
+}
+
+/* Móvil: cabecera de dos filas, sin comprimir marca, cuenta ni búsqueda.
+   Se conserva el mismo #searchInput y la misma navegación inferior. */
+@media (max-width:639px){
+  .topbar{
+    height:auto;
+    min-height:56px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:7px 10px;
+    padding:8px max(12px,env(safe-area-inset-right)) 9px max(12px,env(safe-area-inset-left));
+  }
+  .topbar .logo{
+    order:1;
+    flex:1 1 auto;
+    min-width:0;
+    max-width:calc(100% - 58px);
+    font-size:clamp(17px,4.8vw,20px);
+    line-height:1.15;
+    gap:.22em;
+    white-space:nowrap;
+  }
+  .topbar .logo-sep,
+  .topbar .logo-sub{display:none}
+  .topbar .topbar-right{
+    order:2;
+    flex:0 0 auto;
+    margin-left:auto;
+    gap:6px;
+  }
+  .topbar .topbar-search{
+    order:3;
+    flex:1 0 100%;
+    width:100%;
+    max-width:none;
+    min-width:0;
+  }
+  .topbar .search-input{
+    min-height:42px;
+    padding-top:9px;
+    padding-bottom:9px;
+    font-size:16px;
+  }
+  .topbar .search-icon{left:13px}
+  .topbar .user-chip{
+    min-height:40px;
+    padding:4px 8px 4px 4px;
+    gap:6px;
+  }
+  .topbar .user-name{max-width:100px}
+  .topbar .user-dropdown{
+    position:absolute;
+    top:calc(100% + 6px);
+    right:0;
+    width:min(300px,calc(100vw - 24px));
+    max-width:calc(100vw - 24px);
+    max-height:min(65vh,calc(100dvh - 130px));
+    overflow-y:auto;
+  }
+  .mobile-bottom-nav{
+    padding-left:max(4px,env(safe-area-inset-left));
+    padding-right:max(4px,env(safe-area-inset-right));
+  }
+  .mbn-item{
+    min-width:0;
+    padding:6px 3px;
+    font-size:10px;
+  }
+  .mbn-label{
+    max-width:100%;
+    overflow-wrap:anywhere;
+    line-height:1.2;
+  }
+  .mbn-more-sheet{
+    left:0;
+    right:0;
+    width:100%;
+    max-height:calc(78dvh - env(safe-area-inset-top));
+    padding-left:max(.6rem,env(safe-area-inset-left));
+    padding-right:max(.6rem,env(safe-area-inset-right));
+    padding-bottom:calc(1rem + 62px + env(safe-area-inset-bottom));
+  }
+  .main,#homeView{
+    padding-bottom:calc(78px + env(safe-area-inset-bottom));
+  }
+  .toast{
+    bottom:calc(78px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Móviles estrechos: evitar que los nombres largos compitan con el avatar. */
+@media (max-width:359px){
+  .topbar .logo{font-size:17px;letter-spacing:-.01em}
+  .topbar .user-name{max-width:72px}
+  .topbar .user-chip{gap:4px;padding-right:6px}
+  .mbn-item{font-size:9px}
+}
+
+/* En escritorio la barra inferior sigue oculta; no se cambia su inventario. */
+@media (min-width:640px){
+  .mobile-bottom-nav,.mbn-more-sheet,.mbn-more-backdrop{display:none}
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FASE 3.5 — PRESENTACIÓN DE CATEGORÍAS Y BARRA DE FILTROS
+   Solo capa visual: conserva nodos, IDs, eventos y lógica existentes.
+   Los colores proceden de las variables del tema activo.
+   ═══════════════════════════════════════════════════════════════ */
+.section-tabs{
+  display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;
+  margin:0 0 1rem;padding:.35rem .1rem .75rem;
+  border-bottom:1px solid var(--border);
+}
+.section-tab{
+  min-height:40px;gap:.5rem;padding:8px 15px;
+  border:1px solid var(--border);border-radius:11px;
+  background:var(--surface);color:var(--muted);
+  box-shadow:0 2px 8px rgba(50,25,35,.035);
+  transition:background .18s,border-color .18s,color .18s,box-shadow .18s,transform .18s;
+  white-space:normal;line-height:1.25;
+}
+.section-tab:hover{background:var(--surface2);border-color:var(--border2);color:var(--text);transform:translateY(-1px)}
+.section-tab:focus-visible,.section-select-btn:focus-visible,.dd-btn:focus-visible,
+.sort-select:focus-visible,.af-pill button:focus-visible,.clear-all-btn:focus-visible,
+.fp-sec-label:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.section-tab.active-thais,.section-tab.active-other,.section-tab.active-spanish,
+.section-tab.active-baihee,.section-tab.active-asian,.section-tab.active-african,
+.section-tab.active-wattpad{
+  box-shadow:0 2px 0 var(--accent);font-weight:600;
+}
+.section-tab .tab-count{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:24px;min-height:22px;padding:2px 7px;
+  background:var(--surface2);color:var(--text);border:1px solid var(--border);
+  font-size:11px;font-variant-numeric:tabular-nums;line-height:1;
+}
+.section-tab.active-thais .tab-count{background:var(--accent);border-color:var(--accent);color:#fff}
+.section-select-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  min-height:44px;border:1px solid var(--border2);border-radius:12px;
+  background:var(--surface);color:var(--text);box-shadow:0 3px 12px rgba(50,25,35,.045);
+}
+.section-select-count{font-variant-numeric:tabular-nums}
+
+.filter-shell{
+  background:var(--surface);border:1px solid var(--border2);border-radius:16px;
+  box-shadow:0 6px 24px rgba(50,25,35,.055);overflow:visible;
+}
+.filter-shell::before{border-radius:16px 16px 0 0;opacity:.85}
+.filter-top{
+  display:flex;align-items:center;justify-content:flex-end;gap:.75rem;
+  min-height:56px;padding:.7rem 1rem;border-bottom:1px solid var(--border);
+  background:var(--surface);border-radius:16px 16px 0 0;overflow:visible;
+}
+.sort-select{
+  min-height:40px;max-width:100%;padding:8px 36px 8px 13px;
+  border-color:var(--border2);background-color:var(--surface2);color:var(--text);
+  font-size:12.5px;font-weight:500;
+}
+.sort-select:hover{border-color:var(--accent)}
+.filter-dropdowns{
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+  padding:.85rem 1rem;background:var(--surface);
+}
+.filter-label-txt{font-size:10px;letter-spacing:.12em;color:var(--muted);opacity:1;margin-right:.2rem}
+.dd-wrap{max-width:100%}
+.dd-btn{
+  min-height:38px;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:7px 12px;border:1px solid var(--border);border-radius:10px;
+  background:var(--surface2);color:var(--text);font-size:12px;font-weight:500;
+  box-shadow:0 1px 3px rgba(50,25,35,.025);
+}
+.dd-btn:hover{background:var(--surface3);border-color:var(--border2);color:var(--accent2)}
+.dd-btn.has-sel{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+.dd-wrap.open .dd-btn{background:var(--surface3);border-color:var(--accent);color:var(--accent2)}
+.dd-count{min-width:18px;text-align:center;background:var(--accent);color:#fff;font-size:10px;padding:2px 6px}
+.dd-panel{
+  max-width:min(320px,calc(100vw - 24px));max-height:min(360px,65vh);
+  border-color:var(--border2);box-shadow:0 14px 38px rgba(45,20,30,.18);
+}
+.dd-search{z-index:2}
+.dd-search input{min-height:36px;font-size:13px}
+.dd-item,.spicy-dd-item{min-height:38px;gap:10px;padding:8px 12px}
+.dd-item input[type=checkbox],.spicy-dd-item input[type=checkbox]{width:16px;height:16px}
+.dd-item:focus-within,.spicy-dd-item:focus-within{background:var(--accent-soft)}
+.more-filters-panel{width:min(390px,calc(100vw - 24px));min-width:min(290px,calc(100vw - 24px));max-height:min(72vh,620px)}
+.fp-panel-header{background:var(--surface2)}
+.fp-sec-label{min-height:44px;padding:11px 15px}
+.fp-sec-body .dd-item,.fp-sec-body .spicy-dd-item{min-height:40px}
+.filter-bottom{
+  display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;
+  padding:.7rem 1rem;min-height:44px;border-top:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface2) 38%,var(--surface));border-radius:0 0 16px 16px;
+}
+.active-filters{gap:.4rem}
+.af-pill{min-height:30px;align-items:center;background:var(--accent-soft);border-color:var(--border2);border-radius:9px;padding:4px 9px;font-size:11px}
+.af-pill button{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:6px;opacity:1}
+.af-pill button:hover{background:var(--surface3)}
+.clear-all-btn{min-height:32px;margin-left:auto;border-color:var(--border2);border-radius:9px;padding:5px 11px}
+.results-count{font-size:12px;letter-spacing:0;font-weight:500;color:var(--muted)}
+
+/* Temas estacionales: misma geometría, solo variables cromáticas del tema. */
+body:not(.theme-halloween):not(.theme-christmas) .filter-shell{background-image:none;background-color:var(--surface);border-color:var(--border2);box-shadow:0 6px 24px rgba(50,25,35,.055)}
+body.theme-halloween .filter-shell,body.theme-christmas .filter-shell{background-image:none;background-color:var(--surface);border-color:var(--border2);box-shadow:0 6px 24px rgba(20,10,15,.08)}
+body.theme-halloween .filter-top,body.theme-christmas .filter-top,
+body.theme-halloween .filter-dropdowns,body.theme-christmas .filter-dropdowns{background:var(--surface)}
+body.theme-halloween .dd-btn,body.theme-christmas .dd-btn{background:var(--surface2);color:var(--text);border-color:var(--border)}
+body.theme-halloween .dd-btn.has-sel,body.theme-christmas .dd-btn.has-sel{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+body.theme-halloween .section-tab,body.theme-christmas .section-tab{background:var(--surface);color:var(--muted);border-color:var(--border)}
+body.theme-halloween .section-tab.active-thais,body.theme-christmas .section-tab.active-thais{background:var(--accent-soft);color:var(--accent2);border-color:var(--accent)}
+body.theme-halloween .filter-bottom,body.theme-christmas .filter-bottom{background:var(--surface2)}
+
+@media(max-width:767px){
+  .section-tabs{gap:.35rem;margin-bottom:.65rem;padding:.2rem 0 .6rem}
+  .section-tab{min-height:40px;padding:8px 11px;font-size:12px;gap:.35rem}
+  .section-tab .tab-count{min-width:22px;min-height:21px;padding:2px 5px;font-size:10.5px}
+  .filter-shell{margin-bottom:.8rem;border-radius:13px}
+  .filter-shell::before{border-radius:13px 13px 0 0}
+  .filter-top{min-height:48px;padding:.55rem .7rem;justify-content:flex-end}
+  .sort-select{width:auto;max-width:100%;min-height:40px;font-size:12px}
+  .filter-dropdowns{gap:.4rem;padding:.65rem .7rem;align-items:stretch}
+  .filter-label-txt{flex:0 0 100%;margin:0 0 .1rem}
+  .dd-wrap{flex:0 0 auto;max-width:100%}
+  .dd-btn{min-height:42px;padding:8px 10px;font-size:12px}
+  #ddMoreFilters{margin-left:auto}
+  #leidoFilter .dd-btn{white-space:normal;max-width:100%}
+  .filter-bottom{padding:.6rem .7rem;gap:.45rem}
+  .results-count{flex:1 1 100%;order:3}
+  .clear-all-btn{margin-left:auto}
+  .more-filters-panel{position:fixed;top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 24px));min-width:0;max-height:min(78dvh,680px);z-index:201}
+  .dd-wrap.open .more-filters-panel{transform:translate(-50%,-50%)}
+  .dd-panel:not(.more-filters-panel){max-width:calc(100vw - 24px);max-height:min(55dvh,380px)}
+  .fp-sec-label{min-height:46px}
+}
+@media(max-width:380px){
+  .section-tab{padding:7px 9px;font-size:11.5px}
+  .filter-dropdowns{gap:.35rem}
+  .dd-btn{padding:7px 8px;font-size:11.5px;gap:5px}
+  .dd-btn svg{width:8px;height:8px}
+  .sort-select{padding-left:9px;padding-right:29px;font-size:11.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .section-tab,.dd-btn,.sort-select{transition:none}
+}
+
+</style>
+<style id="f36-seasonal-editorial">
+
+/* ══════════════════════════════════════════════════════════════
+   F3.6 — Pulido editorial de la navegación y colección estacional
+   Capa exclusivamente visual: conserva contenido, IDs, eventos y lógica.
+   ══════════════════════════════════════════════════════════════ */
+.tab-bar:has(#tabEstanteria){
+  display:flex;
+  align-items:center;
+  gap:clamp(.35rem,.7vw,.65rem);
+  flex-wrap:wrap;
+  padding:.55rem;
+  margin:0 0 1.35rem;
+  border:1px solid var(--border);
+  border-radius:calc(var(--radius-lg) + 2px);
+  background:linear-gradient(135deg,var(--surface),color-mix(in srgb,var(--surface2) 52%,var(--surface)));
+  box-shadow:0 8px 24px rgba(60,25,39,.045);
+}
+.tab-bar:has(#tabEstanteria) .tab-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.4rem;
+  min-height:39px;
+  max-width:100%;
+  padding:8px clamp(10px,1.05vw,16px);
+  border:1px solid transparent;
+  border-radius:10px;
+  white-space:normal;
+  text-align:center;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+  transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.tab-bar:has(#tabEstanteria) .tab-btn:hover{
+  background:var(--accent-soft);
+  border-color:var(--border);
+  color:var(--accent2);
+}
+.tab-bar:has(#tabEstanteria) .tab-btn.active{
+  color:var(--accent2);
+  background:var(--surface);
+  border-color:var(--border2);
+  box-shadow:0 3px 10px rgba(60,25,39,.07),inset 0 -2px 0 var(--accent);
+}
+.tab-bar:has(#tabEstanteria) .tab-btn:focus-visible,
+.tab-bar:has(#tabEstanteria) .tab-share-btn:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  outline-offset:2px;
+}
+.tab-bar:has(#tabEstanteria) .tab-share-btn{
+  margin-left:auto;
+  min-height:36px;
+  padding:7px 11px;
+  border-radius:9px;
+  border-color:var(--border);
+  background:transparent;
+  flex:0 0 auto;
+}
+.tab-bar:has(#tabEstanteria) .tab-share-btn:hover,
+.tab-bar:has(#tabEstanteria) .tab-share-btn.copied{
+  background:var(--accent-soft);
+  border-color:var(--border2);
+  color:var(--accent2);
+}
+.hw-forbidden{
+  max-width:1180px;
+  padding:clamp(.85rem,2vw,1.5rem) clamp(.85rem,2.5vw,2rem) 2rem;
+}
+.hw-forbidden-head{
+  max-width:760px;
+  margin:0 auto 1.55rem;
+  padding:clamp(1rem,2.5vw,1.8rem) 1rem 1.2rem;
+  position:relative;
+}
+.hw-forbidden-head::after{
+  content:"";
+  display:block;
+  width:min(150px,34%);
+  height:1px;
+  margin:1.1rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold-decorative,var(--gold)),var(--rose),transparent);
+  opacity:.75;
+}
+.hw-forbidden-eyebrow{
+  display:inline-block;
+  padding:.32rem .75rem;
+  margin-bottom:.7rem;
+  border:1px solid var(--border2);
+  border-radius:999px;
+  background:var(--surface2);
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.hw-forbidden-title{
+  font-size:clamp(1.8rem,4.2vw,2.8rem);
+  line-height:1.05;
+  margin-bottom:.65rem;
+  text-wrap:balance;
+}
+.hw-forbidden-sub{
+  max-width:540px;
+  font-size:clamp(13px,1.3vw,15px);
+  line-height:1.7;
+}
+.hw-forbidden-grid-head{
+  max-width:680px;
+  margin:1.25rem auto .35rem;
+  padding:.85rem 1rem 0;
+}
+.hw-forbidden-grid-title{
+  font-size:clamp(13px,1.5vw,16px);
+  letter-spacing:.06em;
+}
+.hw-forbidden-grid-sub{
+  max-width:480px;
+  margin:.35rem auto 0;
+  line-height:1.55;
+}
+.hw-forbidden-grid{
+  gap:clamp(.65rem,1.4vw,1rem);
+  margin-top:1.2rem;
+}
+.hw-forbidden-grid.hw-preview{
+  grid-template-columns:repeat(3,minmax(0,150px));
+  gap:clamp(.65rem,1.5vw,1.1rem);
+  margin-top:1.1rem;
+}
+.hw-forbidden-card{
+  border-radius:var(--radius-lg);
+  box-shadow:0 6px 18px rgba(60,25,39,.06);
+}
+.hw-forbidden-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 26px rgba(60,25,39,.12);
+}
+.hw-forbidden-cover{width:100%;aspect-ratio:2/3;object-fit:cover}
+.hw-forbidden-info{padding:.7rem .75rem .8rem}
+.hw-forbidden-book-title{
+  font-size:clamp(11px,1vw,13px);
+  line-height:1.4;
+  overflow-wrap:anywhere;
+}
+.hw-forbidden-book-author{font-size:11px;line-height:1.45}
+.hw-more-wrap{margin-top:1.15rem}
+.hw-oracle{
+  position:relative;
+  isolation:isolate;
+  max-width:820px;
+  margin:2rem auto 0;
+  padding:clamp(1.25rem,3vw,2rem);
+  overflow:hidden;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border2);
+  background:
+    radial-gradient(ellipse at 50% 0%,var(--accent-soft),transparent 68%),
+    linear-gradient(135deg,var(--surface),var(--surface2));
+  box-shadow:0 12px 32px rgba(60,25,39,.07);
+}
+.hw-oracle::before{
+  content:"✦";
+  position:absolute;
+  top:.45rem;
+  right:1rem;
+  z-index:-1;
+  color:var(--gold);
+  font-family:var(--font-display);
+  font-size:clamp(3rem,8vw,5.5rem);
+  line-height:1;
+  opacity:.12;
+}
+.hw-oracle-title{
+  font-size:clamp(1.35rem,3vw,1.9rem);
+  line-height:1.2;
+  margin-bottom:.5rem;
+  text-wrap:balance;
+}
+.hw-oracle-sub{
+  max-width:500px;
+  margin:0 auto 1.1rem;
+  line-height:1.6;
+}
+.hw-oracle-btn{
+  min-height:42px;
+  padding:10px 20px;
+  border-radius:10px;
+  letter-spacing:.1em;
+  line-height:1.4;
+  text-align:center;
+}
+.hw-oracle-btn:hover,
+.hw-oracle-btn:focus-visible{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--surface);
+}
+.hw-oracle-btn:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  outline-offset:3px;
+}
+.hw-oracle-result{
+  width:100%;
+  padding:1rem;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--surface);
+  box-shadow:0 5px 18px rgba(60,25,39,.06);
+}
+.hw-oracle-book-title{overflow-wrap:anywhere;line-height:1.35}
+.hw-oracle-book-author{overflow-wrap:anywhere}
+
+/* Navidad: misma composición, sin heredar la identidad cromática de Halloween. */
+body.theme-christmas .hw-forbidden,
+body.theme-christmas .hw-oracle{display:none}
+body.theme-christmas .xm-collection{
+  max-width:1180px;
+  margin:0 auto;
+  padding:clamp(.85rem,2vw,1.5rem) clamp(.85rem,2.5vw,2rem) 2rem;
+}
+body.theme-christmas .xm-collection-head{
+  max-width:760px;
+  margin:0 auto 1.55rem;
+  padding:clamp(1rem,2.5vw,1.8rem) 1rem 1.2rem;
+}
+body.theme-christmas .xm-collection-title{
+  font-size:clamp(1.8rem,4.2vw,2.8rem);
+  line-height:1.05;
+  text-wrap:balance;
+}
+body.theme-christmas .xm-collection-sub{
+  max-width:540px;
+  margin:.5rem auto 0;
+  line-height:1.7;
+}
+body.theme-christmas .xm-collection-grid-head{
+  max-width:680px;
+  margin:1.25rem auto .35rem;
+  padding:.85rem 1rem 0;
+}
+body.theme-christmas .xm-collection-grid{
+  gap:clamp(.65rem,1.4vw,1rem);
+  margin-top:1.2rem;
+}
+body.theme-christmas .xm-collection-grid.xm-preview{
+  grid-template-columns:repeat(3,minmax(0,150px));
+  justify-content:center;
+  gap:clamp(.65rem,1.5vw,1.1rem);
+}
+body.theme-christmas .xm-gift{
+  max-width:820px;
+  margin:2rem auto 0;
+  padding:clamp(1.25rem,3vw,2rem);
+  border-radius:var(--radius-lg);
+}
+body.theme-christmas .xm-gift-title{
+  font-size:clamp(1.35rem,3vw,1.9rem);
+  line-height:1.2;
+  text-wrap:balance;
+}
+body.theme-christmas .xm-gift-btn{
+  min-height:42px;
+  padding:10px 20px;
+  border-radius:10px;
+  line-height:1.4;
+  text-align:center;
+}
+@media(max-width:767px){
+  .tab-bar:has(#tabEstanteria){
+    gap:.35rem;
+    padding:.45rem;
+    margin-bottom:1rem;
+    align-items:stretch;
+  }
+  .tab-bar:has(#tabEstanteria) .tab-btn{
+    flex:1 1 calc(50% - .35rem);
+    min-width:0;
+    min-height:42px;
+    padding:8px 9px;
+    font-size:12px;
+  }
+  .tab-bar:has(#tabEstanteria) .tab-share-btn{
+    flex:1 1 100%;
+    justify-content:center;
+    margin:0;
+    min-height:38px;
+  }
+  .hw-forbidden{padding:.6rem .75rem 1.4rem}
+  .hw-forbidden-head{padding:1rem .35rem .8rem;margin-bottom:1rem}
+  .hw-forbidden-grid.hw-preview,
+  body.theme-christmas .xm-collection-grid.xm-preview{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:.55rem;
+  }
+  .hw-preview .hw-forbidden-info{padding:.45rem .45rem .55rem}
+  .hw-preview .hw-forbidden-book-title{font-size:11px}
+  .hw-preview .hw-forbidden-book-author{font-size:10px}
+  .hw-oracle{margin-top:1.5rem;padding:1.2rem .9rem}
+  .hw-oracle-result{gap:.8rem;padding:.75rem;text-align:left}
+  .hw-oracle-cover{width:68px;height:102px}
+  body.theme-christmas .xm-collection{padding:.6rem .75rem 1.4rem}
+  body.theme-christmas .xm-collection-head{padding:1rem .35rem .8rem;margin-bottom:1rem}
+}
+@media(max-width:380px){
+  .tab-bar:has(#tabEstanteria) .tab-btn{font-size:11px;padding:8px 6px}
+  .hw-forbidden-grid.hw-preview,
+  body.theme-christmas .xm-collection-grid.xm-preview{gap:.4rem}
+  .hw-preview .hw-forbidden-info{padding:.4rem}
+  .hw-preview .hw-forbidden-book-title{font-size:10px}
+  .hw-oracle-btn,body.theme-christmas .xm-gift-btn{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .tab-bar:has(#tabEstanteria) .tab-btn,
+  .hw-forbidden-card,.hw-oracle-btn{transition:none}
+}
+
 </style>
 </head>
 <body>
 
-<nav class="topbar">
-  <a class="logo" href="#" onclick="showHome();return false;" style="text-decoration:none">
+<nav class="topbar" aria-label="Navegación principal">
+  <a class="logo" href="#" onclick="showHome();return false;" style="text-decoration:none" aria-label="Tinta Sapphic — La Estantería">
     <span class="logo-tinta">Tinta</span><em>Sapphic</em>
     <span class="logo-sep">~</span>
     <span class="logo-sub">La Estantería</span>
   </a>
-  <div class="topbar-right" style="display:flex;align-items:center;gap:8px">
-    <button class="home-nav-btn" id="homeNavBtn" onclick="showHome()"><span class="icon nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 4l8 7.5"/><path d="M6 10.3V20a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9.7"/></svg></span> Inicio</button>
-    <button class="home-nav-btn" id="shelfNavBtn" onclick="location.href='https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria/?section=thais'" style="display:none"><span class="icon nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span> Estantería</button>
+  <div class="desktop-primary-nav" aria-label="Secciones principales">
+    <button class="desktop-nav-link" id="homeNavBtn" onclick="showHome()" aria-current="page">Inicio</button>
+    <button class="desktop-nav-link" id="exploreNavBtn" onclick="navigateToExplore()">Explorar</button>
+    <button class="desktop-nav-link" id="categoriesNavBtn" onclick="navigateToCategories()" aria-controls="ddGenre">Categorías</button>
+    <button class="desktop-nav-link" id="recommendationsNavBtn" onclick="switchTab('myrec')">Recomendaciones</button>
+    <button class="desktop-nav-link" id="shelfNavBtn" onclick="location.href='https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria/?section=thais'" style="display:none"><span class="icon nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span> Estantería</button>
+  </div>
+  <div class="search-wrap topbar-search">
+    <!-- trampa para el autocompletado del navegador -->
+    <input type="text" style="display:none" name="username" autocomplete="username">
+    <input type="password" style="display:none" name="password" autocomplete="current-password">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="search" placeholder="Buscar por título o autora…" oninput="applyFiltersDebounced()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="q" readonly onfocus="this.removeAttribute('readonly')">
+  </div>
+  <div class="topbar-right">
     <div id="authArea">
       <button class="btn-login" onclick="openAuthModal()">Entrar para votar</button>
     </div>
@@ -5188,13 +6101,6 @@ body.theme-christmas .book-locations-details summary{color:#28563E}
   </div>
   <div class="filter-shell">
     <div class="filter-top">
-      <div class="search-wrap">
-        <!-- trampa para el autocompletado del navegador -->
-        <input type="text" style="display:none" name="username" autocomplete="username">
-        <input type="password" style="display:none" name="password" autocomplete="current-password">
-        <span class="search-icon">🔍</span>
-        <input class="search-input" id="searchInput" type="search" placeholder="Buscar por título o autora…" oninput="applyFiltersDebounced()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="q" readonly onfocus="this.removeAttribute('readonly')">
-      </div>
       <select class="sort-select" id="sortSel" onchange="applyFilters()">
         <option value="nuevo">✨ Recién añadidos</option>
         <option value="top">🏆 Mejor valorados</option>
@@ -9103,21 +10009,21 @@ function renderAuthUI(){
   if(currentUser){
     const tg=currentUser.user_metadata?.telegram_username||currentUser.email.split('@')[0];
     el.innerHTML=`<div class="user-chip-wrap" id="userChipWrap">
-      <div class="user-chip" onclick="toggleUserDropdown()">
-        <div class="user-avatar">${tg.slice(0,2).toUpperCase()}</div>
+      <button type="button" class="user-chip" onclick="toggleUserDropdown()" aria-haspopup="true" aria-expanded="false" aria-controls="userAccountDropdown">
+        <span class="user-avatar">${tg.slice(0,2).toUpperCase()}</span>
         <span class="user-name">@${tg}</span>
         <span class="user-chip-caret">▾</span>
-      </div>
-      <div class="user-dropdown">
-        <button class="user-dd-item" onclick="toggleUserDropdown();openShelf()">Mi estantería</button>
-        <button class="user-dd-item" onclick="toggleUserDropdown();openLogrosModal()">Mis logros</button>
-        <button class="user-dd-item" onclick="toggleUserDropdown();openStatsModal()">Mis estadísticas</button>
-        <button class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown();openMundoModal()">Mi mundo sapphic</button>
-        <button class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown();openRecorridoModal()">Mi recorrido sapphic</button>
-        <button class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown();openAnioModal()">Mi año sapphic</button>
-        <button class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
+      </button>
+      <div class="user-dropdown" id="userAccountDropdown" role="menu" aria-label="Menú de cuenta">
+        <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openShelf()">Mi estantería</button>
+        <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openLogrosModal()">Mis logros</button>
+        <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openStatsModal()">Mis estadísticas</button>
+        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown();openMundoModal()">Mi mundo sapphic</button>
+        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown();openRecorridoModal()">Mi recorrido sapphic</button>
+        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown();openAnioModal()">Mi año sapphic</button>
+        <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
         <div class="user-dd-sep"></div>
-        <button class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
+        <button type="button" role="menuitem" class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
       </div>
     </div>`;
     document.getElementById('valoracionFilter').style.display='flex';
@@ -9223,12 +10129,16 @@ async function logout(){await sb.auth.signOut();myRatings={};myReadingStatus={};
 function toggleUserDropdown(){
   const wrap=document.getElementById('userChipWrap');
   if(!wrap) return;
-  wrap.classList.toggle('open');
+  const open=wrap.classList.toggle('open');
+  wrap.querySelector('.user-chip')?.setAttribute('aria-expanded',String(open));
 }
 // Cerrar dropdown al clicar fuera
 document.addEventListener('click',e=>{
   const wrap=document.getElementById('userChipWrap');
-  if(wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
+  if(wrap && !wrap.contains(e.target)){
+    wrap.classList.remove('open');
+    wrap.querySelector('.user-chip')?.setAttribute('aria-expanded','false');
+  }
 });
 
 /* ── RESET PASSWORD ── */
@@ -9393,6 +10303,7 @@ function syncMobileNavActive(){
     document.getElementById(id)?.classList.toggle('active',t===tabName);
   });
   document.getElementById('mbnMore')?.classList.toggle('active', !!t && Object.prototype.hasOwnProperty.call(moreTabs,t));
+  syncDesktopNavActive();
 }
 function toggleMobileMoreMenu(){
   const open=document.getElementById('mbnMoreSheet')?.classList.toggle('open');
@@ -9406,6 +10317,35 @@ function closeMobileMoreMenu(){
    que el botón "Estantería") y enfoca el buscador ya existente del
    filtro. No crea estado paralelo — el resaltado activo tras aterrizar
    es el de Estantería, porque es la sección real en la que se está. */
+/* Accesos de escritorio enlazados a vistas y filtros existentes. */
+function navigateToExplore(){
+  const genrePanel=document.getElementById('ddGenre');
+  if(genrePanel?.classList.contains('open')) toggleDD('ddGenre');
+  showCatalog('estanteria');
+}
+function navigateToCategories(){
+  showCatalog('estanteria');
+  closeMobileMoreMenu();
+  requestAnimationFrame(()=>{
+    const panel=document.getElementById('ddGenre');
+    if(!panel) return;
+    if(!panel.classList.contains('open')) toggleDD('ddGenre');
+    panel.scrollIntoView({block:'center',behavior:'smooth'});
+    document.getElementById('categoriesNavBtn')?.classList.add('active');
+  });
+}
+function syncDesktopNavActive(){
+  const home=document.body.classList.contains('home-active');
+  const explore=document.getElementById('exploreNavBtn');
+  const categories=document.getElementById('categoriesNavBtn');
+  const recommendations=document.getElementById('recommendationsNavBtn');
+  document.getElementById('homeNavBtn')?.classList.toggle('active',home);
+  if(home) document.getElementById('homeNavBtn')?.setAttribute('aria-current','page');
+  else document.getElementById('homeNavBtn')?.removeAttribute('aria-current');
+  explore?.classList.toggle('active',!home && activeTab==='estanteria' && !document.getElementById('ddGenre')?.classList.contains('open'));
+  categories?.classList.toggle('active',!home && activeTab==='estanteria' && !!document.getElementById('ddGenre')?.classList.contains('open'));
+  recommendations?.classList.toggle('active',!home && activeTab==='myrec');
+}
 function focusMobileSearch(){
   showCatalog('estanteria');
   closeMobileMoreMenu();
