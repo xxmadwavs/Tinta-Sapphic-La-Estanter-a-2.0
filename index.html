@@ -8346,7 +8346,11 @@ function emptyExcl(){return {genres:[],subgenres:[],dinamicas:[],tropes:[],chara
 let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
 const EXCL_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'];
 let currentPage=1;
-const PAGE_SIZE=24;
+// F5.4 — límite absoluto solicitado. Se conserva PAGE_SIZE=24, ya configurado
+// en F5.3: es coherente con el máximo de 50 y evita cambiar innecesariamente
+// la cantidad habitual de tarjetas por página.
+const MAX_BOOKS_PER_PAGE=50;
+const PAGE_SIZE=Math.min(24,MAX_BOOKS_PER_PAGE);
 
 /* ── UTILIDADES ── */
 function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms);};}
@@ -9655,7 +9659,9 @@ function applyFilters(resetPage=true){
   const total=books.length;
   const secAll=activeSection==='all'?allBooks.length:allBooks.filter(b=>b.source===activeSection).length;
   const totalPages=Math.max(1,Math.ceil(total/PAGE_SIZE));
-  if(currentPage>totalPages) currentPage=totalPages;
+  // Normaliza páginas procedentes de URL/historial y evita índices negativos,
+  // fraccionarios o superiores al total tras aplicar búsqueda y filtros.
+  currentPage=Math.min(totalPages,Math.max(1,Number.isFinite(currentPage)?Math.floor(currentPage):1));
   document.getElementById('resultsCount').textContent=`${total} de ${secAll} libros`;
   const start=(currentPage-1)*PAGE_SIZE;
   renderGrid(books.slice(start,start+PAGE_SIZE), total, totalPages);
