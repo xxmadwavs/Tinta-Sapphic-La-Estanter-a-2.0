@@ -17581,5 +17581,104 @@ document.getElementById('bingoCellModal').addEventListener('click',e=>{if(e.targ
 
 </script>
 
+
+<style id="f55-ficha-tarjetas-visual">
+/* F5 · corrección visual limitada a la ficha completa y las tarjetas del catálogo.
+   Solo presentación: mantiene intactos datos, estructura, eventos y funciones. */
+
+/* A. Ficha completa: los bloques interiores siguen la superficie del tema activo. */
+#bookPage .bp-section{
+  background-color:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1rem 1.1rem;
+  margin-bottom:1rem;
+}
+#bookPage .bp-section:last-child{
+  margin-bottom:0;
+  padding-bottom:1rem;
+}
+#bookPage .bp-ficha-box{
+  background-color:var(--surface);
+  border-color:var(--border);
+  box-shadow:none;
+}
+#bookPage .bp-ficha-box .meta-item{
+  border-color:var(--border);
+}
+#bookPage .bp-section-title{
+  color:var(--muted);
+}
+#bookPage .bp-section + .bp-section{
+  border-top-color:var(--border);
+}
+
+/* B. Catálogo: menos columnas en escritorio y tarjetas más legibles.
+   Las portadas conservan la proporción 2:3 y las acciones siguen en su footer. */
+#booksContainer .books-grid{
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));
+  column-gap:clamp(.8rem,1.25vw,1.15rem);
+  row-gap:clamp(.9rem,1.4vw,1.25rem);
+  align-items:stretch;
+  grid-auto-rows:1fr;
+}
+#booksContainer .book-card{
+  min-width:0;
+}
+#booksContainer .book-card-body{
+  padding:clamp(.7rem,1.05vw,1rem);
+}
+#booksContainer .book-title{
+  min-height:2.32em;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+#booksContainer .book-author{
+  line-height:1.4;
+}
+#booksContainer .book-tags{
+  align-items:flex-start;
+  align-content:flex-start;
+}
+#booksContainer .book-footer{
+  margin-top:auto;
+}
+
+/* Tablet: mantiene tarjetas cómodas sin forzar una columna estrecha. */
+@media (min-width:641px) and (max-width:900px){
+  #booksContainer .books-grid{
+    grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));
+    gap:.9rem;
+  }
+}
+
+/* Móvil: dos columnas cuando caben; una sola en pantallas muy estrechas. */
+@media (max-width:640px){
+  #booksContainer .books-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.75rem;
+  }
+  #booksContainer .book-card-body{
+    padding:.58rem;
+  }
+  #booksContainer .book-title{
+    font-size:.96rem;
+    min-height:2.32em;
+  }
+  #booksContainer .book-author{
+    font-size:.72rem;
+  }
+  #booksContainer .book-tags .tag{
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+}
+@media (max-width:339px){
+  #booksContainer .books-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+</style>
+
 </body>
 </html>
