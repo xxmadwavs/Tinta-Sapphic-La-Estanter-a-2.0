@@ -6943,6 +6943,171 @@ body:not(.home-active) .hero{
 </style>
 
 
+<style id="f54-results-toolbar">
+/* F5.4 — pulido visual de ordenación, recuento y navegación de resultados.
+   Solo presentación: no se añaden controles ni se modifican criterios o eventos. */
+#panelEstanteria .filter-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-width:0;
+}
+#panelEstanteria .filter-top::before{
+  content:"Ordenar catálogo";
+  flex:0 1 auto;
+  min-width:0;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.075em;
+  text-transform:uppercase;
+}
+#panelEstanteria #sortSel{
+  flex:0 1 260px;
+  width:auto;
+  min-width:178px;
+  max-width:100%;
+  min-height:42px;
+  border:1px solid var(--border2);
+  border-radius:11px;
+  box-shadow:0 2px 7px rgba(50,25,35,.035);
+}
+#panelEstanteria #sortSel:hover{border-color:var(--accent)}
+#panelEstanteria #sortSel:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  outline-offset:2px;
+}
+#panelEstanteria .filter-bottom{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+#panelEstanteria .active-filters{
+  display:flex;
+  flex:1 1 auto;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  min-width:0;
+}
+#panelEstanteria .results-count{
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1.25;
+  letter-spacing:0;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+#panelEstanteria .clear-all-btn{
+  flex:0 0 auto;
+  margin-left:0;
+  min-height:32px;
+}
+#panelEstanteria #booksContainer .pg-info{
+  width:fit-content;
+  max-width:100%;
+  margin:28px auto 0;
+  padding:7px 13px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:12px;
+  font-weight:500;
+  line-height:1.4;
+  font-variant-numeric:tabular-nums;
+}
+#panelEstanteria #booksContainer .pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  max-width:100%;
+  margin:0 auto;
+  padding:12px 0 22px;
+}
+#panelEstanteria #booksContainer .pg-btn{
+  min-width:40px;
+  min-height:40px;
+  padding:0 11px;
+  border:1px solid var(--border2);
+  border-radius:11px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:600;
+  line-height:1;
+  touch-action:manipulation;
+  box-shadow:0 2px 5px rgba(50,25,35,.025);
+}
+#panelEstanteria #booksContainer .pg-btn:hover:not(:disabled){
+  border-color:var(--accent);
+  background:var(--accent-soft);
+  color:var(--accent2);
+}
+#panelEstanteria #booksContainer .pg-btn.active{
+  border-color:var(--accent);
+  background:var(--accent);
+  color:#fff;
+  box-shadow:0 3px 9px color-mix(in srgb,var(--accent) 20%,transparent);
+}
+#panelEstanteria #booksContainer .pg-btn:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  outline-offset:2px;
+}
+#panelEstanteria #booksContainer .pg-btn:disabled{
+  opacity:.35;
+  box-shadow:none;
+}
+#panelEstanteria #booksContainer .pg-btn.pg-arrow{font-size:19px}
+#panelEstanteria #booksContainer .pg-dots{
+  min-width:16px;
+  text-align:center;
+  color:var(--muted);
+}
+#panelEstanteria #booksContainer .loading,
+#panelEstanteria #booksContainer .empty-state{
+  margin:12px 0;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--surface);
+}
+@media(max-width:767px){
+  #panelEstanteria .filter-top{gap:8px;padding:8px 10px}
+  #panelEstanteria .filter-top::before{font-size:10px;letter-spacing:.045em}
+  #panelEstanteria #sortSel{flex:0 1 auto;min-width:0;width:auto;max-width:72%;min-height:42px;font-size:12px}
+  #panelEstanteria .filter-bottom{gap:7px;padding:8px 10px;align-items:flex-start}
+  #panelEstanteria .active-filters{flex:1 1 100%;order:1}
+  #panelEstanteria .clear-all-btn{order:2;margin-left:auto}
+  #panelEstanteria .results-count{flex:0 1 auto;order:3;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  #panelEstanteria #booksContainer .pg-info{margin-top:20px;font-size:11.5px}
+  #panelEstanteria #booksContainer .pagination{gap:5px;padding:10px 0 18px}
+  #panelEstanteria #booksContainer .pg-btn{min-width:40px;min-height:42px;padding:0 10px}
+}
+@media(max-width:380px){
+  #panelEstanteria .filter-top::before{max-width:36%;line-height:1.25}
+  #panelEstanteria #sortSel{max-width:64%;padding-left:8px;padding-right:27px;font-size:11.5px}
+  #panelEstanteria #booksContainer .pagination{gap:4px}
+  #panelEstanteria #booksContainer .pg-btn{min-width:36px;min-height:40px;padding:0 8px;border-radius:9px}
+  #panelEstanteria .results-count{font-size:11px;padding:5px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+  #panelEstanteria #booksContainer .pg-btn{transition:none}
+}
+</style>
 </head>
 <body>
 
@@ -8181,7 +8346,7 @@ function emptyExcl(){return {genres:[],subgenres:[],dinamicas:[],tropes:[],chara
 let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
 const EXCL_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'];
 let currentPage=1;
-const PAGE_SIZE=24;
+const PAGE_SIZE=50;
 
 /* ── UTILIDADES ── */
 function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms);};}
@@ -17415,6 +17580,111 @@ async function bingoUnmarkCell(){
 document.getElementById('bingoCellModal').addEventListener('click',e=>{if(e.target.id==='bingoCellModal')closeBingoCellModal();});
 
 </script>
+
+
+<style id="f55-ficha-tarjetas-visual">
+/* F5 · corrección visual limitada a la ficha completa y las tarjetas del catálogo.
+   Solo presentación: mantiene intactos datos, estructura, eventos y funciones. */
+
+/* A. Ficha completa: los bloques interiores siguen la superficie del tema activo. */
+#bookPage .bp-section{
+  background-color:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1rem 1.1rem;
+  margin-bottom:1rem;
+}
+#bookPage .bp-section:last-child{
+  margin-bottom:0;
+  padding-bottom:1rem;
+}
+#bookPage .bp-ficha-box{
+  background-color:var(--surface);
+  border-color:var(--border);
+  box-shadow:none;
+}
+#bookPage .bp-ficha-box .meta-item{
+  border-color:var(--border);
+}
+#bookPage .bp-section-title{
+  color:var(--muted);
+}
+#bookPage .bp-section + .bp-section{
+  border-top-color:var(--border);
+}
+
+/* B. Catálogo: menos columnas en escritorio y tarjetas más legibles.
+   Las portadas conservan la proporción 2:3 y las acciones siguen en su footer. */
+#booksContainer .books-grid{
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  column-gap:clamp(.8rem,1.25vw,1.15rem);
+  row-gap:clamp(.9rem,1.4vw,1.25rem);
+  align-items:stretch;
+  grid-auto-rows:1fr;
+}
+#booksContainer .book-card{
+  min-width:0;
+}
+#booksContainer .book-card-body{
+  padding:clamp(.7rem,1.05vw,1rem);
+}
+#booksContainer .book-title{
+  min-height:2.32em;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+#booksContainer .book-author{
+  line-height:1.4;
+}
+#booksContainer .book-tags{
+  align-items:flex-start;
+  align-content:flex-start;
+}
+#booksContainer .book-footer{
+  margin-top:auto;
+}
+
+/* Tablet: mantiene tarjetas cómodas sin forzar una columna estrecha. */
+@media (min-width:641px) and (max-width:779px){
+  #booksContainer .books-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.9rem;
+  }
+}
+@media (min-width:780px) and (max-width:900px){
+  #booksContainer .books-grid{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:.9rem;
+  }
+}
+
+/* Móvil: dos columnas cuando caben; una sola en pantallas muy estrechas. */
+@media (max-width:640px){
+  #booksContainer .books-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.75rem;
+  }
+  #booksContainer .book-card-body{
+    padding:.58rem;
+  }
+  #booksContainer .book-title{
+    font-size:.96rem;
+    min-height:2.32em;
+  }
+  #booksContainer .book-author{
+    font-size:.72rem;
+  }
+  #booksContainer .book-tags .tag{
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+}
+@media (max-width:339px){
+  #booksContainer .books-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+</style>
 
 </body>
 </html>
