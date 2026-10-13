@@ -7184,7 +7184,7 @@ body:not(.home-active) .hero{
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.3" cy="10.3" r="6.3"/><path d="M19.5 19.5l-4.8-4.8"/></svg></span>
     <span class="mbn-label">Buscar</span>
   </button>
-  <button class="mbn-item" id="mbnEstanteria" type="button" onclick="showCatalog('estanteria')">
+  <button class="mbn-item" id="mbnEstanteria" type="button" onclick="navigateToExplore()">
     <span class="icon mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span>
     <span class="mbn-label">Estantería</span>
   </button>
@@ -7199,6 +7199,7 @@ body:not(.home-active) .hero{
   <div class="mbn-more-eyebrow">Más secciones</div>
   <div class="mbn-more-group-label">Categorías</div>
   <div class="mbn-category-grid" role="group" aria-label="Categorías del catálogo">
+    <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('all')">Todos los libros</button>
     <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('thais')">Libros Thais</button>
     <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('other')">Libros Occidentales</button>
     <button class="mbn-category-item" type="button" onclick="selectCatalogCategory('spanish')">Libros en Español</button>
