@@ -56,7 +56,15 @@ html{scroll-behavior:smooth}
 .icon svg{width:100%;height:100%;display:block}
 .nav-icon{width:14px;height:14px;color:currentColor;opacity:.85}
 .cta-icon{width:15px;height:15px;color:currentColor}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+body{
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);color:var(--text);font-family:var(--font-body);
+  font-size:14px;line-height:1.6;
+  min-height:100vh;
+  min-height:100dvh;
+  overflow-x:hidden;
+}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 0%,rgba(192,111,196,0.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 100%,rgba(91,188,176,0.06) 0%,transparent 55%);pointer-events:none;z-index:0}
 
 .topbar{position:sticky;top:0;z-index:100;background:rgba(14,11,16,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border2);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
@@ -93,7 +101,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .stat-num em{font-style:italic;color:var(--accent)}
 .stat-label{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
 
-.main{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.main{position:relative;z-index:1;flex:1 0 auto;max-width:1320px;margin:0 auto;padding:2rem 1.5rem 5rem}
 
 /* ── FILTERS – Rediseño elegante ── */
 .filter-shell{
@@ -732,7 +740,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 /* ── HOME VIEW ─────────────────────────────────────── */
 #homeView{display:none;position:relative;z-index:1}
-#homeView.active{display:block}
+#homeView.active{display:block;flex:1 0 auto}
 body.home-active .hero,body.home-active .main{display:none!important}
 
 .home-nav-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:30px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body);transition:all .18s}
@@ -742,20 +750,26 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .mobile-bottom-nav,.mbn-more-sheet,.mbn-more-backdrop{display:none}
 
 /* Hero */
-.hv-hero{padding:5.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(192,111,196,0.1) 0%,transparent 65%)}
-.hv-hero::before{content:'TS';position:absolute;right:-.01em;top:50%;transform:translateY(-55%);font-family:var(--font-display);font-size:clamp(9rem,22vw,18rem);font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(192,111,196,0.07);pointer-events:none;user-select:none;line-height:1}
-.hv-eyebrow{font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem;display:flex;align-items:center;justify-content:center;gap:.8em}
+/* F4.1 — Presentación principal: identidad editorial. Solo variables de tema (sin paletas fijas). */
+.hv-hero{--hv-flora:var(--rose);padding:3rem 2rem 2.4rem;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,var(--rose-soft) 0%,transparent 68%),linear-gradient(180deg,var(--accent-soft) 0%,transparent 55%)}
+.hv-hero::before{content:'TS';position:absolute;right:2%;top:50%;transform:translateY(-52%);font-family:var(--font-display);font-size:clamp(8rem,20vw,15rem);font-weight:700;font-style:italic;color:transparent;-webkit-text-stroke:1px var(--border);pointer-events:none;user-select:none;line-height:1;opacity:.7}
+.hv-hero>*{position:relative;z-index:1}
+.hv-hero>.hv-flora{position:absolute;z-index:0;top:50%;width:clamp(90px,13vw,170px);height:auto;transform:translateY(-50%);color:var(--hv-flora);opacity:.5;pointer-events:none}
+.hv-flora-l{left:max(.5rem,2vw)}
+.hv-hero>.hv-flora-r{right:max(.5rem,2vw);transform:translateY(-50%) scaleX(-1)}
+.hv-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;display:flex;align-items:center;justify-content:center;gap:.8em}
 .hv-eyebrow::before,.hv-eyebrow::after{content:'';display:inline-block;width:32px;height:1px;background:currentColor;opacity:.4}
-.hv-h1{font-family:var(--font-display);font-size:clamp(3.2rem,10vw,7rem);font-weight:300;line-height:.93;letter-spacing:-.02em;margin-bottom:.7rem}
+.hv-h1{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5.2rem);font-weight:400;line-height:.98;letter-spacing:-.015em;margin-bottom:.55rem;color:var(--text)}
 .hv-h1 em{font-style:italic;font-weight:600;color:var(--accent)}
-.hv-jp{font-size:11px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.6rem;opacity:.7}
-.hv-desc{max-width:480px;margin:0 auto 2.8rem;font-size:15px;color:var(--muted);line-height:1.8}
+.hv-jp{display:flex;align-items:center;justify-content:center;gap:.9em;font-family:var(--font-display);font-style:italic;font-size:15px;color:var(--rose);letter-spacing:.06em;margin-bottom:1.1rem}
+.hv-jp::before,.hv-jp::after{content:'';width:5px;height:5px;background:var(--gold-decorative);transform:rotate(45deg);flex:none}
+.hv-desc{max-width:540px;margin:0 auto 1.6rem;font-size:15px;color:var(--muted);line-height:1.7}
 .hv-ctas{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.hv-url-row{margin-top:1.2rem;text-align:center}
+.hv-url-row{margin-top:.9rem;text-align:center}
 .hv-url-link{font-family:var(--font-body);font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.03em;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
 .hv-cta{display:inline-flex;align-items:center;gap:.45em;padding:13px 28px;border-radius:30px;font-size:13.5px;font-weight:600;font-family:var(--font-body);border:none;cursor:pointer;text-decoration:none;transition:all .22s}
-.hv-cta-main{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(192,111,196,.25)}
-.hv-cta-reads{background:var(--rose-soft);color:var(--rose);border:1px solid rgba(212,96,122,.35)}
+.hv-cta-main{background:var(--accent);color:#fff;box-shadow:0 4px 20px color-mix(in srgb,var(--accent) 28%,transparent)}
+.hv-cta-reads{background:var(--rose-soft);color:var(--rose);border:1px solid color-mix(in srgb,var(--rose) 38%,transparent)}
 .hv-cta-sec{background:transparent;color:var(--muted);border:1px solid var(--border2)}
 
 /* Stats band con animación counter-up */
@@ -2829,11 +2843,12 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 /* Primera pantalla (home) más compacta: menos aire arriba/abajo y
    menos elementos de baja prioridad antes del CTA principal, para
    que "Ver la estantería" quede visible mucho antes al entrar. */
-.hv-hero{padding:2.2rem 1.1rem 1.8rem}
+.hv-hero{padding:1.7rem 1.1rem 1.4rem}
+.hv-hero>.hv-flora{display:none}
 .hv-eyebrow{margin-bottom:.8rem;font-size:9px}
 .hv-h1{font-size:2.5rem;margin-bottom:.4rem}
-.hv-jp{display:none}
-.hv-desc{font-size:13px;line-height:1.65;margin:0 auto 1.3rem;max-width:340px}
+.hv-jp{font-size:13px;margin-bottom:.8rem}
+.hv-desc{font-size:13px;line-height:1.6;margin:0 auto 1.1rem;max-width:340px}
 .hv-ctas{flex-direction:column;gap:.55rem;width:100%}
 .hv-cta{width:100%;justify-content:center;padding:14px 18px;font-size:13px}
 .hv-url-row{display:none}
@@ -3194,10 +3209,10 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .hv-url-link:hover{color:var(--accent2);border-bottom-color:var(--accent2)}
 
 
-.hv-cta-main:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(192,111,196,.38)}
+.hv-cta-main:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 28px color-mix(in srgb,var(--accent) 36%,transparent)}
 
 
-.hv-cta-reads:hover{background:rgba(212,96,122,.22);transform:translateY(-2px)}
+.hv-cta-reads:hover{background:color-mix(in srgb,var(--rose) 20%,transparent);transform:translateY(-2px)}
 
 
 .hv-cta-sec:hover{border-color:var(--accent);color:var(--accent2);transform:translateY(-2px)}
@@ -5463,6 +5478,11 @@ body.theme-halloween .filter-bottom,body.theme-christmas .filter-bottom{backgrou
   .section-tab,.dd-btn,.sort-select{transition:none}
 }
 
+/* F4.1 — color de la decoración botánica por tema */
+body.theme-christmas .hv-hero{--hv-flora:var(--accent2)}
+body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
+/* F4.1 — tablet */
+@media(min-width:640px) and (max-width:1023px){.hv-hero{padding:2.6rem 1.6rem 2rem}.hv-hero>.hv-flora{width:84px;opacity:.4}}
 </style>
 <style id="f36-seasonal-editorial">
 
@@ -6528,6 +6548,125 @@ body:not(.home-active) .hero{
   min-height:0 !important;
 }
 </style>
+
+<style id="f42-home-editorial">
+/* F4.2 · Jerarquía editorial de módulos existentes de Inicio.
+   Solo presentación: no modifica datos, consultas, orden ni acciones. */
+#homeView{--home-card-radius:16px}
+#homeView .hv-stats-band{
+  background:linear-gradient(180deg,var(--surface) 0%,var(--surface2) 100%);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:clamp(1.35rem,3vw,2.1rem) clamp(1rem,3vw,2rem);
+}
+#homeView .hv-stats-band::before{height:1px;opacity:.8}
+#homeView .hv-stats-band::after{opacity:.35}
+#homeView .hv-stat{padding:.35rem clamp(1rem,3.2vw,3rem);min-width:0}
+#homeView .hv-stat-n{font-size:clamp(2.1rem,4vw,3rem);text-shadow:none}
+#homeView .hv-stat-icon{margin-bottom:.45rem}
+#homeView .hv-features{
+  padding:clamp(2rem,4vw,3.25rem) clamp(1rem,3vw,2rem) 0;
+  gap:clamp(.65rem,1.2vw,1rem);background:transparent;
+}
+#homeView .hv-feat-card{
+  border:1px solid var(--border);border-radius:var(--home-card-radius);
+  padding:clamp(1.25rem,2.2vw,2rem);
+  box-shadow:0 5px 20px rgba(60,30,42,.045);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+#homeView .hv-feat-card::before{
+  right:12px;bottom:-9px;-webkit-text-stroke:1px var(--border);opacity:.65;
+}
+#homeView .hv-feat-card.clickable:hover{
+  background:var(--surface);border-color:var(--border2);
+  transform:translateY(-3px);box-shadow:0 12px 28px rgba(60,30,42,.08);
+}
+#homeView .hv-feat-icon{width:44px;height:44px;margin-bottom:.85rem}
+#homeView .hv-feat-icon svg{width:21px;height:21px}
+#homeView .hv-feat-h3{font-size:clamp(1.15rem,1.6vw,1.35rem);line-height:1.15;margin-bottom:.55rem}
+#homeView .hv-feat-p{font-size:12.8px;line-height:1.7}
+#homeView .hv-feat-link{margin-top:.85rem;position:relative;z-index:2}
+#homeView .hv-safi-block{
+  margin:clamp(.75rem,1.6vw,1.25rem) auto 0!important;
+  width:calc(100% - clamp(2rem,6vw,4rem));
+  border:1px solid var(--border);border-radius:var(--home-card-radius);
+  box-shadow:0 6px 24px rgba(60,30,42,.055);
+}
+#homeView .hv-safi-block::before{height:2px}
+#homeView .hv-safi-inner{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+#homeView .hv-safi-left{padding:clamp(1.35rem,3vw,2.5rem)}
+#homeView .hv-safi-right{padding:clamp(1.2rem,2.5vw,2rem)}
+#homeView .hv-safi-eyebrow{letter-spacing:.15em;font-size:9.5px}
+#homeView .hv-safi-h2{font-size:clamp(1.9rem,3.4vw,2.45rem);line-height:1.02}
+#homeView .hv-safi-p{font-size:13px;line-height:1.72;margin-bottom:1rem;max-width:42ch}
+#homeView .hv-safi-covers{gap:.55rem;margin-top:1.1rem!important}
+#homeView .hv-safi-cover,#homeView .hv-safi-cover-ph{
+  width:clamp(42px,5vw,58px);height:auto;aspect-ratio:2/3;border-radius:7px;
+  box-shadow:0 4px 12px rgba(40,20,30,.12);
+}
+#homeView .hv-safi-cat-row{
+  border-radius:9px;padding:.7rem .85rem;background:var(--surface2);
+  border-color:var(--border);gap:.65rem;
+}
+#homeView .hv-safi-cat-name{font-size:12px}
+#homeView .hv-safi-cat-count{font-size:10.5px}
+#homeView .hv-how{margin-top:clamp(2.5rem,5vw,4rem);padding:0 clamp(1rem,3vw,2rem) 3.5rem}
+#homeView .hv-how-title{font-size:clamp(2rem,3.8vw,2.55rem);margin-bottom:.2rem}
+#homeView .hv-how-sub{margin-bottom:1.6rem;letter-spacing:.14em}
+#homeView .hv-how-grid{gap:clamp(.65rem,1.2vw,1rem);background:transparent}
+#homeView .hv-how-card{
+  border:1px solid var(--border);border-radius:var(--home-card-radius);
+  padding:clamp(1.2rem,2vw,1.8rem);box-shadow:0 4px 18px rgba(60,30,42,.035);
+}
+#homeView .hv-how-card::before{-webkit-text-stroke:1px var(--border)}
+#homeView .hv-how-h3{line-height:1.2;margin-bottom:.5rem}
+#homeView .hv-how-p{font-size:12.8px;line-height:1.7}
+#homeView .hv-footer{border-top:1px solid var(--border);padding:1.5rem 1rem 2rem}
+#homeView .hv-hero{padding:clamp(2.5rem,5vw,4rem) 1.5rem clamp(2rem,4vw,3rem)}
+#homeView .hv-desc{max-width:500px;font-size:14px;line-height:1.75}
+#homeView .hv-cta{padding:11px 22px}
+#homeView .hv-url-link{font-size:11px}
+@media(max-width:850px){
+  #homeView .hv-features{grid-template-columns:1fr 1fr}
+  #homeView .hv-feat-card:last-child{grid-column:1/-1}
+  #homeView .hv-safi-inner{grid-template-columns:1fr 1fr}
+  #homeView .hv-safi-right{padding-left:0}
+  #homeView .hv-stat{flex:1 1 40%;border-right:0;border-bottom:1px solid var(--border);padding:1rem}
+  #homeView .hv-stat:nth-last-child(-n+2){border-bottom:0}
+}
+@media(max-width:560px){
+  #homeView .hv-hero{padding:2.4rem 1rem 2rem}
+  #homeView .hv-hero>.hv-flora{width:68px;opacity:.28}
+  #homeView .hv-h1{font-size:clamp(2.5rem,13vw,3.8rem)}
+  #homeView .hv-desc{font-size:13px;margin-bottom:1.2rem}
+  #homeView .hv-ctas{gap:.5rem}
+  #homeView .hv-cta{padding:10px 14px;font-size:12px}
+  #homeView .hv-stats-band{padding:1rem .65rem}
+  #homeView .hv-stat{padding:.8rem .35rem}
+  #homeView .hv-stat-n{font-size:2rem}
+  #homeView .hv-stat-icon{width:19px;height:19px;margin-bottom:.3rem}
+  #homeView .hv-stat-l{font-size:9px;letter-spacing:.05em}
+  #homeView .hv-features{grid-template-columns:1fr;padding:1.4rem 1rem 0;gap:.65rem}
+  #homeView .hv-feat-card:last-child{grid-column:auto}
+  #homeView .hv-feat-card{padding:1.2rem 1.15rem}
+  #homeView .hv-feat-icon{width:38px;height:38px;margin-bottom:.65rem}
+  #homeView .hv-safi-block{width:calc(100% - 2rem);margin-top:.75rem!important}
+  #homeView .hv-safi-inner{grid-template-columns:1fr}
+  #homeView .hv-safi-left{padding:1.35rem 1.2rem 1rem}
+  #homeView .hv-safi-right{padding:0 1.2rem 1.25rem}
+  #homeView .hv-safi-h2{font-size:2rem}
+  #homeView .hv-safi-covers{margin-top:.85rem!important}
+  #homeView .hv-how{margin-top:2.5rem;padding:0 1rem 2.5rem}
+  #homeView .hv-how-grid{grid-template-columns:1fr;gap:.65rem}
+  #homeView .hv-how-card{padding:1.2rem}
+  #homeView .hv-how-sub{margin-bottom:1.2rem}
+}
+/* Los tokens semánticos activos siguen gobernando los tres temas. */
+@media(prefers-reduced-motion:reduce){
+  #homeView .hv-feat-card,#homeView .hv-safi-block{transition:none}
+  #homeView .hv-feat-card.clickable:hover{transform:none}
+}
+</style>
+
 </head>
 <body>
 
@@ -6666,6 +6805,8 @@ body:not(.home-active) .hero{
 <div id="homeView">
 
   <div class="hv-hero">
+    <svg class="hv-flora hv-flora-l" viewBox="0 0 120 220" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 214C34 160 44 110 70 12"/><path d="M36 172c-14-4-22-14-24-26 14 0 24 8 24 26Z"/><path d="M42 140c14-2 24-12 26-24-14-2-25 8-26 24Z"/><path d="M50 108c-14-4-20-14-22-26 13 0 22 9 22 26Z"/><path d="M58 76c13-3 21-12 22-23-13-1-22 8-22 23Z"/><circle cx="72" cy="12" r="3.2"/><circle cx="66" cy="30" r="2.4"/><circle cx="82" cy="150" r="9"/><path d="M82 141c3 3 3 15 0 18M73 150c3-3 15-3 18 0"/></svg>
+    <svg class="hv-flora hv-flora-r" viewBox="0 0 120 220" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 214C34 160 44 110 70 12"/><path d="M36 172c-14-4-22-14-24-26 14 0 24 8 24 26Z"/><path d="M42 140c14-2 24-12 26-24-14-2-25 8-26 24Z"/><path d="M50 108c-14-4-20-14-22-26 13 0 22 9 22 26Z"/><path d="M58 76c13-3 21-12 22-23-13-1-22 8-22 23Z"/><circle cx="72" cy="12" r="3.2"/><circle cx="66" cy="30" r="2.4"/><circle cx="82" cy="150" r="9"/><path d="M82 141c3 3 3 15 0 18M73 150c3-3 15-3 18 0"/></svg>
     <div class="hv-eyebrow">Libros Sapphic · F/F · SafiClub</div>
     <h1 class="hv-h1">La <em>estantería</em><br>sapphic</h1>
     <p class="hv-jp">Tinta Sapphic · Curadas con amor</p>
