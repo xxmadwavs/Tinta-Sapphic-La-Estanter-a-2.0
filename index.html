@@ -9792,20 +9792,10 @@ function closeBookModal(){
 
 function renderBookModal(){
   const b=activeBook;
-  const r=ratingsMap[b.id]||{avg:0,count:0};
-  const myScore=myRatings[b.id]||0;
   const authorStr=(b.authors||[]).length
     ? (b.authors).map(a=>`<button class="modal-author-link" onclick="filterByAuthorFromModal(decodeURIComponent('${encodeURIComponent(a)}'))">${escHtml(a)}</button>`).join(', ')
     : '—';
   const coverEl=b.cover?`<div class="modal-cover-strip"><img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async"></div>`:`<div class="modal-cover-ph">📖</div>`;
-  const stars=avg=>[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
-  const communityRating=r.count>0
-    ?`<div class="community-rating"><div class="avg-big">${r.avg.toFixed(1)}</div><div><div class="avg-stars-row">${stars(r.avg)}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
-    :`<p style="font-size:13px;color:var(--muted);font-style:italic;margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)">Aún sin valoraciones. ¡Sé la primera!</p>`;
-  const starInput=[1,2,3,4,5].map(i=>`<button class="star-btn${i<=(pendingStar||myScore)?' selected':''}" data-n="${i}">★</button>`).join('');
-  let voteArea='';
-  if(!currentUser) voteArea=`<p class="login-to-vote"><a onclick="closeBookModal();openAuthModal()">Inicia sesión</a> para valorar este libro.</p>`;
-  else voteArea=`<div><p class="vote-prompt">${myScore>0?`Tu valoración: ${'★'.repeat(myScore)} — puedes cambiarla`:'¿Qué te pareció?'}</p><div class="stars-input" id="starInput">${starInput}</div><div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="vote-submit" id="voteBtn" onclick="submitVote()" ${!pendingStar?'disabled':''}>${pendingStar>0?`Guardar ${pendingStar} ★`:myScore>0?'Actualizar':'Guardar'}</button>${myScore>0?`<button class="vote-delete" id="deleteBtn" onclick="deleteVote()">✕ Eliminar mi voto</button>`:''}</div></div>`;
 
   const genreTags=(b.genres||[]).map(g=>`<span class="tag tag-genre tag-clickable" onclick="filterByTagFromModal('genres',decodeURIComponent('${encodeURIComponent(g)}'))">${g}</span>`).join('');
   const subgenreTags=(b.subgenres||[]).map(s=>`<span class="tag tag-subgenre tag-clickable" onclick="filterByTagFromModal('subgenres',decodeURIComponent('${encodeURIComponent(s)}'))">${s}</span>`).join('');
@@ -9891,7 +9881,7 @@ function renderBookModal(){
         </a>
       </div>`:''}
       ${currentUser
-        ? `<div class="rating-section" id="modalRatingSection"><div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}</div>`
+        ? `<div class="rating-section" id="modalRatingSection">${buildRatingHTML()}</div>`
         : `<div class="rating-section" id="modalRatingSection" style="text-align:center;padding:1.4rem">
             <div style="font-size:1.5rem;margin-bottom:.5rem">🔒</div>
             <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;line-height:1.6">Las valoraciones de la comunidad son solo para usuarias registradas.</p>
@@ -9977,6 +9967,17 @@ function bookLocWarmup(){
   const go=()=>{ wsLoadMap().catch(()=>{}); wsLoadCities().catch(()=>{}); wsLoadRegions().catch(()=>{}); };
   if('requestIdleCallback' in window) requestIdleCallback(go,{timeout:4000}); else setTimeout(go,1500);
 }
+/* Lista de localizaciones en texto cuando el mapa no se puede dibujar (compartido por los dos casos de fallback). */
+function _blTextFallback(host,locs){
+  const list=document.createElement('ul');list.className='book-locations-accessible';
+  locs.forEach(u=>{
+    if(!u) return;
+    const name=[u.ciudad&&('Ciudad: '+u.ciudad),u.region&&('Región: '+u.region),u.pais&&('País: '+u.pais)].filter(Boolean).join(' · ');
+    if(name){const li=document.createElement('li');li.textContent=name+' (posición no verificada)';list.appendChild(li);}
+  });
+  if(list.children.length){const details=document.createElement('details');details.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';details.appendChild(summary);details.appendChild(list);host.after(details);}
+}
+
 async function renderBookLocations(book){
   if(!book||!Array.isArray(book.ubicaciones)||!book.ubicaciones.length) return;
   // renderBookPage()/renderBookModal() llaman a esta función ANTES de que #bookPage reciba .active (o #bookModal .open),
@@ -10048,13 +10049,7 @@ async function renderBookLocations(book){
     });
     if(!isos.size){
       host.innerHTML='<p class="book-locations-empty">No se puede situar esta ficha en el mapa porque falta un país reconocible en el catálogo.</p>';
-      const list=document.createElement('ul');list.className='book-locations-accessible';
-      locs.forEach(u=>{
-        if(!u) return;
-        const name=[u.ciudad&&('Ciudad: '+u.ciudad),u.region&&('Región: '+u.region),u.pais&&('País: '+u.pais)].filter(Boolean).join(' · ');
-        if(name){const li=document.createElement('li');li.textContent=name+' (posición no verificada)';list.appendChild(li);}
-      });
-      if(list.children.length){const details=document.createElement('details');details.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';details.appendChild(summary);details.appendChild(list);host.after(details);}
+      _blTextFallback(host,locs);
       return;
     }
     const countryPathsByIso=new Map();
@@ -10067,13 +10062,7 @@ async function renderBookLocations(book){
     const countryPaths=[...countryPathsByIso.values()];
     if(!countryPaths.length){
       host.innerHTML='<p class="book-locations-empty">No hay geometrías cartográficas disponibles para estas localizaciones.</p>';
-      const list=document.createElement('ul');list.className='book-locations-accessible';
-      locs.forEach(u=>{
-        if(!u) return;
-        const name=[u.ciudad&&('Ciudad: '+u.ciudad),u.region&&('Región: '+u.region),u.pais&&('País: '+u.pais)].filter(Boolean).join(' · ');
-        if(name){const li=document.createElement('li');li.textContent=name+' (posición no verificada)';list.appendChild(li);}
-      });
-      if(list.children.length){const details=document.createElement('details');details.className='book-locations-details';const summary=document.createElement('summary');summary.textContent='Consultar localizaciones en texto';details.appendChild(summary);details.appendChild(list);host.after(details);}
+      _blTextFallback(host,locs);
       return;
     }
 
@@ -11659,13 +11648,8 @@ function closeAllSpecialViews(){
   document.body.classList.remove('bp-active'); // FASE 2.5 — restaura .hero/.main si veníamos de una ficha
 }
 
-function switchTab(tab, silent){
-  activeTab=tab;
-  if(!silent) activeMyrecCat=null;
-  sessionStorage.setItem('ts_active_tab', tab);
-  // Restaura cualquier hijo directo de <main> (p.ej. la barra de pestañas)
-  // que se haya quedado oculto al pasar por Logros/Estadísticas/Cartas.
-  document.querySelectorAll('main > *').forEach(el=>el.style.display='');
+/* Estado visual de las pestañas (botones, paneles y render de la activa). Lo comparten switchTab() y el manejador de popstate. */
+function _applyTabState(tab){
   document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
   document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
   document.getElementById('tabSafi').classList.toggle('active',tab==='safi');
@@ -11695,6 +11679,16 @@ function switchTab(tab, silent){
     bingoInit();
     if(currentUser){ localStorage.setItem('bingoHitosSeenAt_'+currentUser.id, new Date().toISOString()); bingoUpdateNotifDot(); }
   }
+}
+
+function switchTab(tab, silent){
+  activeTab=tab;
+  if(!silent) activeMyrecCat=null;
+  sessionStorage.setItem('ts_active_tab', tab);
+  // Restaura cualquier hijo directo de <main> (p.ej. la barra de pestañas)
+  // que se haya quedado oculto al pasar por Logros/Estadísticas/Cartas.
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='');
+  _applyTabState(tab);
   // Update URL so the tab is shareable and the back button works
   if(!silent) try{
     const params=new URLSearchParams(location.search);
@@ -11955,6 +11949,25 @@ function updateHomeThaiClub(){
   }
 }
 
+/* Tarjetas de libro compartidas por SafiClub y Thai Club. */
+function _safiItemsHTML(items){
+  return items.map(b=>{
+          const r=ratingsMap[b.id];
+          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${r.avg.toFixed(1)}</span></div>`:'';
+          const authorStr=(b.authors||[]).join(', ')||'—';
+          return `<div class="safi-item" onclick="openBookPage('${b.id}')">
+            <div class="safi-item-cover">
+              ${b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=safi-item-ph>📖</div>'">`:`<div class="safi-item-ph">📖</div>`}
+              ${avgBadge}
+            </div>
+            <div class="safi-item-body">
+              <div class="safi-item-title" title="${escHtml(b.title)}">${escHtml(b.title)}</div>
+              <div class="safi-item-author">${escHtml(authorStr)}</div>
+            </div>
+          </div>`;
+        }).join('');
+}
+
 /* ── Thai Club tab: grid de portadas por categoría ── */
 function renderThaiClub(){
   const c=document.getElementById('thaiClubContainer');
@@ -11975,21 +11988,7 @@ function renderThaiClub(){
         <span class="safi-section-count">${items.length} libro${items.length!==1?'s':''}</span>
       </div>
       <div class="safi-items">
-        ${items.map(b=>{
-          const r=ratingsMap[b.id];
-          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${r.avg.toFixed(1)}</span></div>`:'';
-          const authorStr=(b.authors||[]).join(', ')||'—';
-          return `<div class="safi-item" onclick="openBookPage('${b.id}')">
-            <div class="safi-item-cover">
-              ${b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=safi-item-ph>📖</div>'">`:`<div class="safi-item-ph">📖</div>`}
-              ${avgBadge}
-            </div>
-            <div class="safi-item-body">
-              <div class="safi-item-title" title="${escHtml(b.title)}">${escHtml(b.title)}</div>
-              <div class="safi-item-author">${escHtml(authorStr)}</div>
-            </div>
-          </div>`;
-        }).join('')}
+        ${_safiItemsHTML(items)}
       </div>
     </div>`).join('');
 }
@@ -12016,21 +12015,7 @@ function renderSafi(){
         <span class="safi-section-count">${items.length} libro${items.length!==1?'s':''}</span>
       </div>
       <div class="safi-items">
-        ${items.map(b=>{
-          const r=ratingsMap[b.id];
-          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${r.avg.toFixed(1)}</span></div>`:'';
-          const authorStr=(b.authors||[]).join(', ')||'—';
-          return `<div class="safi-item" onclick="openBookPage('${b.id}')">
-            <div class="safi-item-cover">
-              ${b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=safi-item-ph>📖</div>'">`:`<div class="safi-item-ph">📖</div>`}
-              ${avgBadge}
-            </div>
-            <div class="safi-item-body">
-              <div class="safi-item-title" title="${escHtml(b.title)}">${escHtml(b.title)}</div>
-              <div class="safi-item-author">${escHtml(authorStr)}</div>
-            </div>
-          </div>`;
-        }).join('')}
+        ${_safiItemsHTML(items)}
       </div>
     </div>`).join('');
 }
@@ -12638,35 +12623,7 @@ window.addEventListener('popstate', ()=>{
   activeTab=tab;
   activeMyrecCat=tab==='myrec'?params.get('cat'):null;
   sessionStorage.setItem('ts_active_tab', tab);
-  document.getElementById('tabEstanteria').classList.toggle('active',tab==='estanteria');
-  document.getElementById('tabTop10').classList.toggle('active',tab==='top10');
-  document.getElementById('tabSafi').classList.toggle('active',tab==='safi');
-  document.getElementById('tabThaiClub').classList.toggle('active',tab==='thaiclub');
-  document.getElementById('tabCanal').classList.toggle('active',tab==='canal');
-  document.getElementById('tabMyrec').classList.toggle('active',tab==='myrec');
-  document.getElementById('tabSolicitudes').classList.toggle('active',tab==='solicitudes');
-  document.getElementById('tabRuleta').classList.toggle('active',tab==='ruleta');
-  document.getElementById('tabBingo').classList.toggle('active',tab==='bingo');
-  document.getElementById('panelEstanteria').style.display=tab==='estanteria'?'':'none';
-  document.getElementById('panelTop10').style.display=tab==='top10'?'':'none';
-  document.getElementById('panelSafi').style.display=tab==='safi'?'':'none';
-  document.getElementById('panelThaiClub').style.display=tab==='thaiclub'?'':'none';
-  document.getElementById('panelCanal').style.display=tab==='canal'?'':'none';
-  document.getElementById('panelMyrec').style.display=tab==='myrec'?'':'none';
-  document.getElementById('panelSolicitudes').style.display=tab==='solicitudes'?'':'none';
-  document.getElementById('panelRuleta').style.display=tab==='ruleta'?'':'none';
-  document.getElementById('panelBingo').style.display=tab==='bingo'?'':'none';
-  if(tab==='top10') renderTop10();
-  if(tab==='safi') renderSafi();
-  if(tab==='thaiclub') renderThaiClub();
-  if(tab==='canal') renderCanal();
-  if(tab==='myrec') renderMyrec();
-  if(tab==='solicitudes') renderSolicitudes();
-  if(tab==='ruleta') ruletaInit();
-  if(tab==='bingo'){
-    bingoInit();
-    if(currentUser){ localStorage.setItem('bingoHitosSeenAt_'+currentUser.id, new Date().toISOString()); bingoUpdateNotifDot(); }
-  }
+  _applyTabState(tab);
   // E27-F2: restaura SIEMPRE el estado del catálogo de la entrada activa (antes solo si cambiaba la sección → quedaban q/filtros de la entrada posterior)
   _restoreCatalogFromHistory(params);
   syncMobileNavActive();
