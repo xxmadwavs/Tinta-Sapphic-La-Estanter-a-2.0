@@ -3624,6 +3624,8 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
    nunca los ocultaban las vistas .active existentes. Mismo patrón que
    body.home-active ya usa para ocultar estos dos elementos. */
 body.bp-active .hero,body.bp-active .main{display:none!important}
+/* FIX — con la ficha abierta, ninguna vista personal puede verse aunque una apertura asíncrona la reactive tarde */
+body.bp-active #shelfView,body.bp-active #logrosView,body.bp-active #statsView,body.bp-active #mundoView,body.bp-active #recorridoView,body.bp-active #anioView,body.bp-active #cartasView{display:none!important}
 /* Vistas personales (Mi estantería, logros, estadísticas, mundo, recorrido, año, cartas):
    ocultar solo la cabecera global .hero ("Nuestra estantería" + Libros/Valoraciones).
    Se apaga sola al cerrar la vista, porque closeAllSpecialViews() quita .active. */
@@ -9114,13 +9116,20 @@ async function init(){
     if(currentUser){
       // FASE E4.5: con #libro/ID (F5 sobre una ficha abierta desde una vista) no se reescribe la URL/estado de la ficha; y se conserva
       // el estado de la entrada ({view,pvOwn,pvPrev}) que init() habría perdido al normalizar la estantería
-      if(!location.hash.startsWith('#libro/')) viewUrlSync(_viewParam,false,null,_bootHistState);
-      if(_viewParam==='logros') await openLogrosModal(true);
-      else if(_viewParam==='stats') await openStatsModal(true);
-      else if(_viewParam==='cartas') await openCartasModal(true);
-      else if(_viewParam==='mundo') await openMundoModal(true);
-      else if(_viewParam==='recorrido') await openRecorridoModal(true);
-      else if(_viewParam==='anio') await openAnioModal(true);
+      if(location.hash.startsWith('#libro/')){
+        // FIX — la ficha manda: abrir también la vista la dejaba superpuesta (Logros/Mundo/Estadísticas/Año + ficha a la vez).
+        // Solo se recuerda el origen; «Volver» reabre la vista (history.go o _pvOpenByKey).
+        if(document.getElementById('bookPage')?.classList.contains('active')){ if(!_bpOrigin) _bpOrigin={type:'view',view:_viewParam}; }
+        else _bootViewKey=_viewParam;
+      } else {
+        viewUrlSync(_viewParam,false,null,_bootHistState);
+        if(_viewParam==='logros') await openLogrosModal(true);
+        else if(_viewParam==='stats') await openStatsModal(true);
+        else if(_viewParam==='cartas') await openCartasModal(true);
+        else if(_viewParam==='mundo') await openMundoModal(true);
+        else if(_viewParam==='recorrido') await openRecorridoModal(true);
+        else if(_viewParam==='anio') await openAnioModal(true);
+      }
     } else {
       // Sin sesión no podemos mostrar estas vistas: limpiamos el parámetro
       viewUrlClear(false);
@@ -10339,6 +10348,7 @@ let _bpScrollBefore=0;
 /* FASE E4.5 — segundo origen: 'view' (una de las 6 vistas personales). Misma mecánica: la entrada #libro/ID se marca
    {bpFrom:'view', bpView, bpDepth:n} y «Volver» = history.go(-n); el popstate reabre la vista (su URL lleva ?view=). */
 let _bpOrigin=null; // null | {type:'shelf', scrollY:number|null} | {type:'view', view:string}
+let _bootViewKey=null; // FIX — vista personal que debía restaurarse bajo una ficha (?view=…#libro/ID) en la carga inicial
 let _bpGoingBack=false; // evita doble clic en «Volver» (un segundo history.go saldría de la estantería)
 function openBookPage(id, pushState=true){
   const book=allBooks.find(b=>String(b.id)===String(id));
@@ -10349,7 +10359,8 @@ function openBookPage(id, pushState=true){
   _bpScrollBefore=window.scrollY;
   // FASE E4.3 — registrar el origen ANTES de ocultar la estantería
   const _fromShelf=!!document.getElementById('shelfView')?.classList.contains('active');
-  const _fromView=_fromShelf?null:_pvActiveKey(); // FASE E4.5
+  const _fromView=_fromShelf?null:(_pvActiveKey()||_bootViewKey); // FASE E4.5 (+FIX arranque)
+  _bootViewKey=null;
   if(_fromShelf){
     try{ history.scrollRestoration='manual'; }catch(e){}
     const sc=Math.round(window.scrollY);
