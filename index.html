@@ -6826,6 +6826,288 @@ body:not(.home-active) .hero{
 }
 </style>
 
+<style id="f53-cover-states">
+/* F5.3 — Estados visuales de portada. Solo presentación; URLs y datos permanecen intactos. */
+#booksContainer .book-cover-wrap{
+  isolation:isolate;
+  background:var(--surface2);
+  overflow:hidden;
+}
+#booksContainer .book-cover-wrap::after{
+  /* Evita la viñeta oscura intensa sobre la portada real. */
+  background:linear-gradient(180deg,rgba(51,35,43,0) 78%,rgba(51,35,43,.08) 100%);
+}
+#booksContainer .book-cover{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:none;
+  opacity:1;
+  transition:opacity .18s ease;
+}
+#booksContainer .book-cover-wrap.cover-pending{
+  background:
+    linear-gradient(100deg,transparent 25%,rgba(255,255,255,.58) 45%,transparent 65%),
+    var(--surface2);
+  background-size:220% 100%,auto;
+  animation:f53-cover-shimmer 1.35s ease-in-out infinite;
+}
+#booksContainer .book-cover-wrap.cover-pending .book-cover{
+  opacity:.18;
+}
+#booksContainer .book-cover-wrap.cover-pending::before{
+  content:'';
+  position:absolute;
+  z-index:1;
+  width:22px;
+  height:22px;
+  left:calc(50% - 11px);
+  top:calc(50% - 11px);
+  border:2px solid var(--border2);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:f53-cover-spin .8s linear infinite;
+  pointer-events:none;
+}
+#booksContainer .book-cover-wrap.cover-pending::after{
+  opacity:.35;
+}
+#booksContainer .book-cover-wrap.cover-error,
+#booksContainer .book-cover-wrap.cover-missing{
+  background:linear-gradient(145deg,var(--surface2),var(--surface3));
+}
+#booksContainer .book-cover-ph{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  padding:.75rem;
+  color:var(--accent2);
+  background:linear-gradient(145deg,var(--surface2),var(--surface3));
+  text-align:center;
+  font-family:var(--font-display);
+  font-size:2rem;
+}
+#booksContainer .book-cover-ph span{
+  display:grid;
+  place-items:center;
+  width:2.6rem;
+  height:2.6rem;
+  border:1px solid var(--border2);
+  border-radius:50%;
+  color:var(--accent);
+  font-size:1.45rem;
+}
+#booksContainer .book-cover-ph small{
+  max-width:12ch;
+  color:var(--muted);
+  font-family:var(--font-body);
+  font-size:.68rem;
+  line-height:1.35;
+  letter-spacing:.025em;
+}
+#booksContainer .book-cover-wrap.cover-error .book-cover-ph{
+  background:linear-gradient(145deg,var(--surface2),var(--surface));
+}
+#booksContainer .book-cover-wrap.cover-error .book-cover-ph::after{
+  content:'No se pudo cargar';
+  display:block;
+  max-width:12ch;
+  color:var(--muted);
+  font-family:var(--font-body);
+  font-size:.68rem;
+  line-height:1.35;
+  letter-spacing:.025em;
+  text-align:center;
+}
+#booksContainer .book-cover-wrap .spicy-badge,
+#booksContainer .book-cover-wrap .avg-badge,
+#booksContainer .book-cover-wrap .rank-badge{
+  z-index:3;
+}
+@keyframes f53-cover-spin{to{transform:rotate(360deg)}}
+@keyframes f53-cover-shimmer{to{background-position:-220% 0,0 0}}
+@media(prefers-reduced-motion:reduce){
+  #booksContainer .book-cover-wrap.cover-pending{animation:none}
+  #booksContainer .book-cover-wrap.cover-pending::before{animation:none;border-top-color:var(--border2)}
+  #booksContainer .book-cover{transition:none}
+}
+</style>
+
+
+<style id="f54-results-toolbar">
+/* F5.4 — pulido visual de ordenación, recuento y navegación de resultados.
+   Solo presentación: no se añaden controles ni se modifican criterios o eventos. */
+#panelEstanteria .filter-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-width:0;
+}
+#panelEstanteria .filter-top::before{
+  content:"Ordenar catálogo";
+  flex:0 1 auto;
+  min-width:0;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.075em;
+  text-transform:uppercase;
+}
+#panelEstanteria #sortSel{
+  flex:0 1 260px;
+  width:auto;
+  min-width:178px;
+  max-width:100%;
+  min-height:42px;
+  border:1px solid var(--border2);
+  border-radius:11px;
+  box-shadow:0 2px 7px rgba(50,25,35,.035);
+}
+#panelEstanteria #sortSel:hover{border-color:var(--accent)}
+#panelEstanteria #sortSel:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  outline-offset:2px;
+}
+#panelEstanteria .filter-bottom{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+#panelEstanteria .active-filters{
+  display:flex;
+  flex:1 1 auto;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  min-width:0;
+}
+#panelEstanteria .results-count{
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1.25;
+  letter-spacing:0;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+#panelEstanteria .clear-all-btn{
+  flex:0 0 auto;
+  margin-left:0;
+  min-height:32px;
+}
+#panelEstanteria #booksContainer .pg-info{
+  width:fit-content;
+  max-width:100%;
+  margin:28px auto 0;
+  padding:7px 13px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:12px;
+  font-weight:500;
+  line-height:1.4;
+  font-variant-numeric:tabular-nums;
+}
+#panelEstanteria #booksContainer .pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  max-width:100%;
+  margin:0 auto;
+  padding:12px 0 22px;
+}
+#panelEstanteria #booksContainer .pg-btn{
+  min-width:40px;
+  min-height:40px;
+  padding:0 11px;
+  border:1px solid var(--border2);
+  border-radius:11px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:600;
+  line-height:1;
+  touch-action:manipulation;
+  box-shadow:0 2px 5px rgba(50,25,35,.025);
+}
+#panelEstanteria #booksContainer .pg-btn:hover:not(:disabled){
+  border-color:var(--accent);
+  background:var(--accent-soft);
+  color:var(--accent2);
+}
+#panelEstanteria #booksContainer .pg-btn.active{
+  border-color:var(--accent);
+  background:var(--accent);
+  color:#fff;
+  box-shadow:0 3px 9px color-mix(in srgb,var(--accent) 20%,transparent);
+}
+#panelEstanteria #booksContainer .pg-btn:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  outline-offset:2px;
+}
+#panelEstanteria #booksContainer .pg-btn:disabled{
+  opacity:.35;
+  box-shadow:none;
+}
+#panelEstanteria #booksContainer .pg-btn.pg-arrow{font-size:19px}
+#panelEstanteria #booksContainer .pg-dots{
+  min-width:16px;
+  text-align:center;
+  color:var(--muted);
+}
+#panelEstanteria #booksContainer .loading,
+#panelEstanteria #booksContainer .empty-state{
+  margin:12px 0;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--surface);
+}
+@media(max-width:767px){
+  #panelEstanteria .filter-top{gap:8px;padding:8px 10px}
+  #panelEstanteria .filter-top::before{font-size:10px;letter-spacing:.045em}
+  #panelEstanteria #sortSel{flex:0 1 auto;min-width:0;width:auto;max-width:72%;min-height:42px;font-size:12px}
+  #panelEstanteria .filter-bottom{gap:7px;padding:8px 10px;align-items:flex-start}
+  #panelEstanteria .active-filters{flex:1 1 100%;order:1}
+  #panelEstanteria .clear-all-btn{order:2;margin-left:auto}
+  #panelEstanteria .results-count{flex:0 1 auto;order:3;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  #panelEstanteria #booksContainer .pg-info{margin-top:20px;font-size:11.5px}
+  #panelEstanteria #booksContainer .pagination{gap:5px;padding:10px 0 18px}
+  #panelEstanteria #booksContainer .pg-btn{min-width:40px;min-height:42px;padding:0 10px}
+}
+@media(max-width:380px){
+  #panelEstanteria .filter-top::before{max-width:36%;line-height:1.25}
+  #panelEstanteria #sortSel{max-width:64%;padding-left:8px;padding-right:27px;font-size:11.5px}
+  #panelEstanteria #booksContainer .pagination{gap:4px}
+  #panelEstanteria #booksContainer .pg-btn{min-width:36px;min-height:40px;padding:0 8px;border-radius:9px}
+  #panelEstanteria .results-count{font-size:11px;padding:5px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+  #panelEstanteria #booksContainer .pg-btn{transition:none}
+}
+</style>
 </head>
 <body>
 
@@ -9406,7 +9688,7 @@ function renderGrid(books, total, totalPages){
     const r=ratingsMap[b.id]||{avg:0,count:0};
     const myScore=myRatings[b.id]||0;
     const authorStr=(b.authors||[]).join(', ')||'—';
-    const coverEl=b.cover?`<img class="book-cover" src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=book-cover-ph>📖</div>'">`:`<div class="book-cover-ph">📖</div>`;
+    const coverEl=b.cover?`<img class="book-cover" src="${b.cover}" alt="${escHtml(b.title)}" data-cover-state="loading" loading="lazy" decoding="async" onload="this.dataset.coverState='loaded';this.parentElement.classList.remove('cover-pending')" onerror="this.parentElement.classList.remove('cover-pending');this.parentElement.classList.add('cover-error');this.outerHTML='<div class=book-cover-ph>✦</div>'">`:`<div class="book-cover-ph book-cover-ph--missing" role="img" aria-label="Portada no disponible"><span aria-hidden="true">✦</span><small>Portada no disponible</small></div>`;
     const avgBadge=currentUser&&r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
     const spicyEff=effectiveSpicy(b);
     const spicyBadge=currentUser?((spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:''):`<div class="spicy-badge" title="Regístrate para ver el nivel spicy" style="opacity:.5;cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒</div>`;
@@ -9421,7 +9703,7 @@ function renderGrid(books, total, totalPages){
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${escHtml(cardSagaName)}${cardSagaNum}</div>`:'';
     const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
     return `<div class="book-card" onclick="openBookPage('${b.id}')">
-      <div class="book-cover-wrap">${spicyBadge}${coverEl}${avgBadge}</div>
+      <div class="book-cover-wrap${b.cover?' cover-pending':' cover-missing'}">${spicyBadge}${coverEl}${avgBadge}</div>
       <div class="book-card-body">
         <div class="book-title">${escHtml(b.title)}</div>
         ${cardSagaSub}
