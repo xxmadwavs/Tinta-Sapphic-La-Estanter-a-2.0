@@ -8347,6 +8347,28 @@ async function diaryEnsureLoaded(force){
 }
 
 function _dyPctOf(last,total){ return (last>0&&total>0&&last<=total)?Math.round(last/total*1000)/10:null; }
+function _dyTotN(f){ const n=parseInt(f.total,10); return n>0?n:0; }
+function _dyLastN(f){ const l=parseInt(f.last,10), t=_dyTotN(f); return l>0?(t>0?Math.min(l,t):l):0; }
+function _dyPctN(f){ const p=parseFloat(String(f.pct).trim().replace(',','.')); return isFinite(p)?Math.min(100,Math.max(0,p)):0; }
+function _dyAutoHTML(f){
+  const l=parseInt(f.last,10), t=parseInt(f.total,10);
+  if(f.mode==='pages'){
+    const p=_dyPctOf(l,t);
+    if(p!=null) return '<strong>'+_dyFmtPct(p)+' %</strong>';
+    if(l>0&&t>0&&l>t) return '<span class="dy-warn">Supera el total</span>';
+    return '<span class="dy-dim">— %</span>';
+  }
+  const p=parseFloat(String(f.pct).trim().replace(',','.'));
+  return (t>0&&p>=0&&p<=100)?'<span class="dy-dim">≈ pág. '+Math.round(p/100*t)+'</span>':'';
+}
+// Sincroniza porcentaje calculado y deslizador con los campos sin volver a pintar el formulario (mantiene el foco)
+function _dySyncProg(){
+  const f=diaryForm; if(!f) return;
+  const au=document.getElementById('dyAuto'); if(au) au.innerHTML=_dyAutoHTML(f);
+  const sl=document.getElementById('dySlider'); if(!sl) return;
+  if(f.mode==='pages'){ const t=_dyTotN(f); sl.disabled=!(t>0); sl.max=String(t>0?t:0); sl.value=String(t>0?_dyLastN(f):0); }
+  else { sl.value=String(_dyPctN(f)); }
+}
 function _dyFmtDate(iso){ try{ return new Date(iso+'T12:00:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}); }catch(e){ return iso; } }
 function _dyFmtPct(n){ return (Math.round(n*10)/10).toString().replace('.',','); }
 function _dyBookRows(bookId){ return diaryRows.filter(r=>r.book_id===String(bookId)).sort((a,b)=>a.read_date<b.read_date?1:a.read_date>b.read_date?-1:0); }
@@ -8396,22 +8418,34 @@ function diaryRenderBp(){
         <label class="dy-chip${f.did?' on':''}"><input type="radio" name="dyDid" data-dyf="did" value="1" ${f.did?'checked':''}>Sí leí</label>
         <label class="dy-chip${!f.did?' on':''}"><input type="radio" name="dyDid" data-dyf="did" value="0" ${!f.did?'checked':''}>No leí</label>
       </div>
-      ${f.did?`<div class="dy-row">
-        <label class="dy-lbl" for="dyMode">Progreso (opcional)</label>
-        <select id="dyMode" class="dy-in" data-dyf="mode">
-          <option value="none"${f.mode==='none'?' selected':''}>Solo marcar el día</option>
-          <option value="pages"${f.mode==='pages'?' selected':''}>Por páginas</option>
-          <option value="pct"${f.mode==='pct'?' selected':''}>Por porcentaje</option>
-        </select>
+      ${f.did&&f.mode==='none'?`<div class="dy-row dy-progopen">
+        <button type="button" class="dy-btn dy-add" data-dy="prog-on"${diaryBusy?' disabled':''}>+ Añadir progreso</button>
       </div>`:''}
-      ${f.did&&f.mode==='pages'?`<div class="dy-row dy-pair">
-        <div><label class="dy-lbl" for="dyLast">Última página leída</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyLast" class="dy-in" data-dyf="last" value="${escHtml(f.last)}"></div>
-        <div><label class="dy-lbl" for="dyTotal">Total de páginas</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyTotal" class="dy-in" data-dyf="total" value="${escHtml(f.total)}"></div>
-      </div>
-      <p class="dy-auto" id="dyAuto">${pctNow!=null?'Porcentaje: <strong>'+_dyFmtPct(pctNow)+' %</strong>':'El porcentaje se calcula al indicar última página y total.'}</p>`:''}
-      ${f.did&&f.mode==='pct'?`<div class="dy-row dy-pair">
-        <div><label class="dy-lbl" for="dyPct">Porcentaje leído</label><input type="number" inputmode="decimal" min="0" max="100" step="0.1" id="dyPct" class="dy-in" data-dyf="pct" value="${escHtml(f.pct)}"></div>
-        <div><label class="dy-lbl" for="dyTotal2">Total de páginas (opcional)</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyTotal2" class="dy-in" data-dyf="total" value="${escHtml(f.total)}"></div>
+      ${f.did&&f.mode!=='none'?`<div class="dy-row dy-progbar" role="group" aria-label="Tipo de progreso (opcional)">
+        <button type="button" class="dy-seg${f.mode==='pages'?' on':''}" data-dy="prog-pages" aria-pressed="${f.mode==='pages'}">Páginas</button>
+        <button type="button" class="dy-seg${f.mode==='pct'?' on':''}" data-dy="prog-pct" aria-pressed="${f.mode==='pct'}">Porcentaje</button>
+        <button type="button" class="dy-btn dy-off" data-dy="prog-off">Quitar progreso</button>
+      </div>`:''}
+      ${f.did&&f.mode==='pages'?`<div class="dy-pcard">
+        <div class="dy-cap">Página actual · total</div>
+        <div class="dy-stepper" role="group" aria-label="Página actual y total de páginas">
+          <button type="button" class="dy-step" data-dy="step" data-dir="-1" aria-label="Una página menos">−</button>
+          <div class="dy-numwrap"><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyLast" class="dy-in dy-num" data-dyf="last" aria-label="Página actual" placeholder="Pág." value="${escHtml(f.last)}"><span class="dy-of" aria-hidden="true">/</span><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyTotal" class="dy-in dy-num" data-dyf="total" aria-label="Total de páginas" placeholder="Total" value="${escHtml(f.total)}"></div>
+          <button type="button" class="dy-step" data-dy="step" data-dir="1" aria-label="Una página más">+</button>
+          <span class="dy-pctbig" id="dyAuto" aria-live="polite">${_dyAutoHTML(f)}</span>
+        </div>
+        <input type="range" id="dySlider" class="dy-slider" min="0" max="${_dyTotN(f)>0?_dyTotN(f):0}" step="1" value="${_dyLastN(f)}"${_dyTotN(f)>0?'':' disabled'} aria-label="Deslizar para indicar la página actual">
+      </div>`:''}
+      ${f.did&&f.mode==='pct'?`<div class="dy-pcard">
+        <div class="dy-cap">Porcentaje leído</div>
+        <div class="dy-stepper" role="group" aria-label="Porcentaje leído">
+          <button type="button" class="dy-step" data-dy="step" data-dir="-1" aria-label="Un uno por ciento menos">−</button>
+          <div class="dy-numwrap"><input type="number" inputmode="decimal" min="0" max="100" step="0.1" id="dyPct" class="dy-in dy-num" data-dyf="pct" aria-label="Porcentaje leído" placeholder="0" value="${escHtml(f.pct)}"><span class="dy-of" aria-hidden="true">%</span></div>
+          <button type="button" class="dy-step" data-dy="step" data-dir="1" aria-label="Un uno por ciento más">+</button>
+          <span class="dy-pctbig" id="dyAuto" aria-live="polite">${_dyAutoHTML(f)}</span>
+        </div>
+        <input type="range" id="dySlider" class="dy-slider" min="0" max="100" step="1" value="${_dyPctN(f)}" aria-label="Deslizar para indicar el porcentaje">
+        <div class="dy-totrow"><label class="dy-lbl" for="dyTotal2">Total de páginas (opcional)</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyTotal2" class="dy-in" data-dyf="total" value="${escHtml(f.total)}"></div>
       </div>`:''}
       ${diaryMsg?`<p class="dy-note dy-err" role="alert">${escHtml(diaryMsg)}</p>`:''}
       <div class="dy-actions">
@@ -8521,15 +8555,39 @@ document.addEventListener('click',e=>{
   else if(a==='del-no'){ diaryConfirmId=null; diaryRenderBp(); }
   else if(a==='del-yes') diaryDelete(id);
   else if(a==='retry') diaryEnsureLoaded(true);
+  else if(a==='prog-on'||a==='prog-pages'||a==='prog-pct'){
+    diaryForm.mode=(a==='prog-pct')?'pct':'pages'; diaryMsg=''; diaryRenderBp();
+    const fld=document.getElementById(diaryForm.mode==='pct'?'dyPct':'dyLast'); if(fld) fld.focus();
+  }
+  else if(a==='step'){
+    const dir=parseInt(b.dataset.dir,10)||0, f=diaryForm; diaryMsg='';
+    if(f.mode==='pages'){
+      const t=_dyTotN(f); let n=(parseInt(f.last,10)||0)+dir; if(t>0&&n>t) n=t; f.last=n>=1?String(n):'';
+      const i=document.getElementById('dyLast'); if(i) i.value=f.last;
+    } else {
+      let n=Math.round(((parseFloat(String(f.pct).trim().replace(',','.'))||0)+dir)*100)/100; n=Math.min(100,Math.max(0,n)); f.pct=String(n);
+      const i=document.getElementById('dyPct'); if(i) i.value=f.pct;
+    }
+    _dySyncProg();
+  }
+  else if(a==='prog-off'){
+    diaryForm.mode='none'; diaryForm.last=''; diaryForm.pct=''; diaryMsg=''; diaryRenderBp();
+    const bt=document.querySelector('#bpDiary [data-dy="prog-on"]'); if(bt) bt.focus();
+  }
 });
 document.addEventListener('input',e=>{
   const t=e.target; if(!t.closest||!t.closest('#bpDiary')||!diaryForm) return;
   const k=t.dataset.dyf; if(!k||k==='did'||k==='mode') return;
   diaryForm[k]=t.value; diaryMsg='';
-  if(k==='last'||k==='total'){
-    const au=document.getElementById('dyAuto');
-    if(au&&diaryForm.mode==='pages'){ const p=_dyPctOf(parseInt(diaryForm.last,10),parseInt(diaryForm.total,10)); au.innerHTML=p!=null?'Porcentaje: <strong>'+_dyFmtPct(p)+' %</strong>':'El porcentaje se calcula al indicar última página y total.'; }
-  }
+  if(k==='last'||k==='total'||k==='pct') _dySyncProg();
+});
+// F8.6.3 — deslizador de progreso
+document.addEventListener('input',e=>{
+  const t=e.target; if(!t||t.id!=='dySlider'||!diaryForm||!t.closest('#bpDiary')) return;
+  const v=Number(t.value); diaryMsg='';
+  if(diaryForm.mode==='pages'){ diaryForm.last=v>0?String(v):''; const i=document.getElementById('dyLast'); if(i) i.value=diaryForm.last; }
+  else { diaryForm.pct=String(v); const i=document.getElementById('dyPct'); if(i) i.value=diaryForm.pct; }
+  _dySyncProg();
 });
 document.addEventListener('change',e=>{
   const t=e.target; if(!t.closest||!t.closest('#bpDiary')||!diaryForm) return;
@@ -8539,18 +8597,6 @@ document.addEventListener('change',e=>{
   else diaryForm[k]=t.value;
 });
 
-// Calendario: días leídos del diario como tramos de un solo día (sin duplicar el libro si ya está cubierto por un período)
-function diaryCalendarPeriods(existing){
-  if(diaryState!=='ready') return [];
-  const out=[];
-  diaryRows.forEach(r=>{
-    if(!r.did_read) return;
-    const book=allBooks.find(b=>String(b.id)===r.book_id); if(!book) return;
-    if(existing.some(p=>p.bookId===r.book_id&&p.start<=r.read_date&&r.read_date<=p.end)) return;
-    out.push({bookId:r.book_id,title:book.title,cover:book.cover,start:r.read_date,end:r.read_date,ongoing:false,single:true,diary:true});
-  });
-  return out;
-}
 function diaryCalNoteHTML(){
   if(!currentUser) return '';
   if(diaryState==='error') return '<p class="cal-empty-msg dy-err" role="alert">No se ha podido cargar el diario de lectura. <button type="button" class="dy-btn" onclick="diaryEnsureLoaded(true)">Reintentar</button></p>';
@@ -15406,7 +15452,39 @@ function buildReadingPeriods(){
       periods.push({bookId,title:book.title,cover:book.cover,start:startISO,end:endISO,ongoing,single});
     });
   });
-  return periods.concat(diaryCalendarPeriods(periods)); // FASE 8 — días leídos del diario
+  return buildCalendarDayEvents(periods); // F8.6.4 — una portada solo en los días con registro real
+}
+
+// F8.6.4 — Eventos del calendario (uno por libro y día). Una portada aparece solo cuando ese día hay:
+//   · un registro del diario con «Sí leí» (did_read=true), o
+//   · el día de inicio o de fin de una lectura (reading_log), que conservan sus indicadores Inicio/Fin.
+// Los días intermedios de un período ya NO muestran portada por sí solos.
+// Un registro «No leí» (did_read=false) de ese libro y día anula cualquier portada de ese día.
+function buildCalendarDayEvents(periods){
+  const events=[], seen=new Set();
+  const key=(bookId,day)=>bookId+'|'+day;
+  const noRead=new Set();
+  if(diaryState==='ready') diaryRows.forEach(r=>{ if(!r.did_read) noRead.add(key(r.book_id,r.read_date)); });
+  const push=(p,day)=>{
+    const k=key(p.bookId,day);
+    if(seen.has(k)||noRead.has(k)) return;
+    seen.add(k); events.push({...p,day});
+  };
+  // 1) Inicio y fin de cada lectura (solo esos días; una lectura en curso aporta solo su día de inicio)
+  periods.forEach(p=>{
+    push(p,p.start);
+    if(!p.ongoing&&p.end!==p.start) push(p,p.end);
+  });
+  // 2) Días con registro de lectura real en el diario
+  if(diaryState==='ready') diaryRows.forEach(r=>{
+    if(!r.did_read) return;
+    const k=key(r.book_id,r.read_date); if(seen.has(k)||noRead.has(k)) return;
+    const per=periods.find(p=>p.bookId===r.book_id&&p.start<=r.read_date&&r.read_date<=p.end);
+    if(per){ push(per,r.read_date); return; }
+    const book=allBooks.find(b=>String(b.id)===r.book_id); if(!book) return;
+    push({bookId:r.book_id,title:book.title,cover:book.cover,start:r.read_date,end:r.read_date,ongoing:false,single:true,diary:true},r.read_date);
+  });
+  return events;
 }
 
 function _calCoverThumbHTML(p,dateStr){
@@ -15435,7 +15513,7 @@ function renderReadingCalendar(){
   for(let i=0;i<startWeekday;i++) cells+=`<div class="cal-day empty-cell"></div>`;
   for(let d=1;d<=daysInMonth;d++){
     const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const active=periods.filter(p=>p.start<=dateStr && dateStr<=p.end);
+    const active=periods.filter(p=>p.day===dateStr); // F8.6.4: solo eventos de ese día
     if(active.length) monthHas=true;
     const wd=(startWeekday+d-1)%7;
     const isToday=dateStr===todayISO;
@@ -15452,7 +15530,7 @@ function renderReadingCalendar(){
 
   let panelHtml='';
   if(calSelectedDay){
-    const active=periods.filter(p=>p.start<=calSelectedDay && calSelectedDay<=p.end);
+    const active=periods.filter(p=>p.day===calSelectedDay); // F8.6.4
     if(active.length){
       const dStr=new Date(calSelectedDay+'T12:00:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
       const _f=(iso,y)=>new Date(iso+'T12:00:00').toLocaleDateString('es-ES',y?{day:'numeric',month:'short',year:'numeric'}:{day:'numeric',month:'short'}); // F8.3.2: día sin cero; el año solo si difiere del día seleccionado
@@ -19092,6 +19170,55 @@ html:has(.modal-bg.open,.info-modal-bg.open,.hito-modal-bg.open){overflow:hidden
 }
 @media (max-width:330px){
   #bookPage .bp-diary .dy-pair{flex-direction:column}
+}
+
+/* F8.6.2 — progreso opcional: solo se muestra al pulsar «Añadir progreso» */
+#bookPage .bp-diary .dy-progopen{flex:0 0 auto}
+#bookPage .bp-diary .dy-add{border-style:dashed;color:var(--accent2,var(--accent));min-height:34px;padding:5px 12px;font-size:12.5px}
+#bookPage .bp-diary .dy-progbar{flex:1 1 100%;max-width:none;flex-direction:row;flex-wrap:wrap;align-items:center;gap:.35rem}
+#bookPage .bp-diary .dy-seg{padding:5px 12px;min-height:32px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--text);font:inherit;font-size:12.5px;cursor:pointer}
+#bookPage .bp-diary .dy-seg.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#bookPage .bp-diary .dy-seg:focus-visible,#bookPage .bp-diary .dy-add:focus-visible,#bookPage .bp-diary .dy-off:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+#bookPage .bp-diary .dy-off{margin-left:auto;border-color:transparent;color:var(--muted);min-height:30px}
+@media (max-width:639px){
+  #bookPage .bp-diary .dy-progopen{flex:1 1 100%}
+  #bookPage .bp-diary .dy-add{width:100%;min-height:40px}
+  #bookPage .bp-diary .dy-seg{flex:1 1 0;min-height:38px}
+  #bookPage .bp-diary .dy-off{flex:1 1 100%;margin-left:0;min-height:34px}
+  #bookPage .bp-diary .dy-chip{min-height:40px}
+  #bookPage .bp-diary .dy-actions .dy-btn.dy-primary{min-height:40px}
+}
+
+/* F8.6.3 — editor de progreso (referencia: panel de progreso de Mistbook) */
+#bookPage .bp-diary .dy-pcard{flex:1 1 100%;max-width:none;display:flex;flex-direction:column;gap:.5rem;padding:.6rem .7rem .7rem;border:1px solid var(--border);border-radius:12px;background:var(--bg)}
+#bookPage .bp-diary .dy-cap{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#bookPage .bp-diary .dy-stepper{display:flex;align-items:center;gap:.5rem;flex-wrap:nowrap}
+#bookPage .bp-diary .dy-step{flex:0 0 auto;width:34px;height:34px;padding:0;border-radius:50%;border:0;background:var(--accent-soft);color:var(--accent2,var(--accent));font:inherit;font-size:20px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+#bookPage .bp-diary .dy-step:hover{background:var(--accent);color:#fff}
+#bookPage .bp-diary .dy-step:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+#bookPage .bp-diary .dy-numwrap{display:flex;align-items:center;gap:.3rem;min-width:0}
+#bookPage .bp-diary .dy-num{width:5.2em;min-width:0;text-align:center;font-size:16px;font-weight:600;padding:4px 6px;-moz-appearance:textfield;appearance:textfield}
+#bookPage .bp-diary .dy-num::-webkit-outer-spin-button,#bookPage .bp-diary .dy-num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+#bookPage .bp-diary .dy-of{color:var(--muted);font-size:15px}
+#bookPage .bp-diary .dy-pctbig{margin-left:auto;font-size:15px;color:var(--accent2,var(--accent));white-space:nowrap}
+#bookPage .bp-diary .dy-pctbig .dy-dim{font-size:13px}
+#bookPage .bp-diary .dy-warn{font-size:12px;color:#B3261E}
+#bookPage .bp-diary .dy-slider{width:100%;margin:.1rem 0;accent-color:var(--accent);height:24px;cursor:pointer}
+#bookPage .bp-diary .dy-slider:disabled{opacity:.4;cursor:not-allowed}
+#bookPage .bp-diary .dy-totrow{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+#bookPage .bp-diary .dy-totrow .dy-in{width:7.5em}
+@media (min-width:1024px){
+  #bookPage .bp-diary .dy-pcard{flex:1 1 360px;max-width:460px}
+}
+@media (max-width:639px){
+  #bookPage .bp-diary .dy-step{width:42px;height:42px}
+  #bookPage .bp-diary .dy-num{width:4.6em;padding:6px 4px}
+  #bookPage .bp-diary .dy-slider{height:32px}
+  #bookPage .bp-diary .dy-totrow .dy-in{font-size:16px}
+}
+@media (max-width:360px){
+  #bookPage .bp-diary .dy-stepper{flex-wrap:wrap}
+  #bookPage .bp-diary .dy-pctbig{flex:1 1 100%;margin-left:0;text-align:center}
 }
 </style>
 </body>
