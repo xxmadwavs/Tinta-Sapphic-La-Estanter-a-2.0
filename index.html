@@ -9111,7 +9111,9 @@ async function init(){
   if(!currentUser) readingStatusLoaded=true;
   renderAuthUI();
   // FIX móvil — las 3 llamadas de la usuaria solo dependen de currentUser: arrancan a la vez que loadBooks (antes esperaban a que terminara)
-  const _userP=currentUser?Promise.all([loadMyRatings(), loadMyReadingStatus(), bingoLoadHitos()]):null;
+  // OJO: loadMyReadingStatus/bingoLoadHitos viven en el 2.º <script>, que se evalúa DESPUÉS de que init() arranque: se esperan a DOMContentLoaded
+  const _scriptsReady=document.readyState==='loading'?new Promise(r=>document.addEventListener('DOMContentLoaded',r,{once:true})):Promise.resolve();
+  const _userP=currentUser?_scriptsReady.then(()=>Promise.all([loadMyRatings(), loadMyReadingStatus(), bingoLoadHitos()])):null;
   await loadBooks();
   bookLocWarmup();
   initHalloweenTheme();
