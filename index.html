@@ -17892,5 +17892,72 @@ body.theme-christmas .xm-gift-btn{color:var(--accent2);border-color:var(--accent
   color:var(--muted)!important;margin-bottom:.6rem;
 }
 </style>
+<style id="f712-encabezado-ficha">
+/* F7.1.2 · Encabezado de la ficha: composición editorial.
+   Solo presentación: no cambia el HTML, los datos, los controles ni los enlaces. Colores solo con variables de tema. */
+#bookPage .bp-header{
+  grid-template-columns:minmax(0,248px) minmax(0,1fr);
+  gap:clamp(1.75rem,4vw,3rem);
+  align-items:stretch;
+  margin-bottom:2rem;
+}
+/* Portada: más grande, proporción 2:3, sombra contenida y borde fino */
+#bookPage .bp-cover{
+  border-radius:8px;
+  border:1px solid var(--border);
+  box-shadow:0 12px 30px rgba(55,29,40,.18),0 2px 6px rgba(55,29,40,.12);
+  align-self:start;
+}
+body.theme-halloween #bookPage .bp-cover{box-shadow:0 14px 34px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35)}
+#bookPage .bp-cover-ph{font-size:2.2rem;color:var(--muted)}
+
+/* Columna de texto: título y autora arriba; acciones y datos personales debajo */
+#bookPage .bp-content{display:flex;flex-direction:column;align-items:flex-start;padding-top:.25rem}
+#bookPage .bp-title{
+  font-size:clamp(2.1rem,4.4vw,3.1rem);font-weight:600;line-height:1.08;letter-spacing:-.01em;
+  text-wrap:balance;hyphens:manual;margin:0 0 .6rem;
+}
+#bookPage .bp-author{font-size:17px;font-weight:400;line-height:1.35;color:var(--muted);margin:0 0 1rem}
+#bookPage .bp-author .bp-link{color:var(--text);font-weight:500}
+#bookPage .bp-author .bp-link:hover,#bookPage .bp-author .bp-link:focus-visible{color:var(--accent2)}
+
+/* Datos secundarios: saga y orden de lectura en una línea tranquila; valoración y spicy generales debajo */
+#bookPage .bp-saga-row{font-size:14px;gap:.4rem .75rem;margin:0 0 .65rem}
+#bookPage .bp-saga-row .saga-map-trigger{font-size:var(--fs-label,11px);padding:3px 10px 3px 8px}
+#bookPage .bp-general-row{gap:.5rem .9rem;margin:0 0 1.25rem}
+#bookPage .bp-mini-rating:empty{display:none}
+
+/* Acciones: justo bajo los datos, en fila ordenada */
+#bookPage .bp-actions{order:1;margin:0 0 1.25rem}
+#bookPage .bp-actions:empty{display:none}
+#bookPage .bp-actions .shelf-btns{gap:.5rem}
+#bookPage .bp-actions .shelf-btn{min-height:40px;padding:8px 16px}
+
+/* Tu valoración / Tu spicy: bloque compacto anclado al pie de la portada, sin doble línea */
+#bookPage .bp-mine-row{
+  order:2;margin:auto 0 0;padding:1rem 0 0;border-top:1px solid var(--border);border-bottom:0;
+  grid-template-columns:repeat(2,max-content);column-gap:clamp(1.5rem,4vw,3rem);justify-content:start;width:100%;
+}
+#bookPage .bp-mine-label{font-size:var(--fs-label,11px)}
+#bookPage .bp-readonly-note{text-align:left;margin:.5rem 0 0}
+
+@media(max-width:899px){
+  #bookPage .bp-header{grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:1.5rem}
+}
+@media(max-width:639px){
+  #bookPage .bp-header{grid-template-columns:minmax(0,1fr);gap:1.1rem;text-align:center;margin-bottom:1.5rem}
+  #bookPage .bp-cover{width:min(58vw,210px);max-width:none;margin:0 auto}
+  #bookPage .bp-content{align-items:center;padding-top:0}
+  #bookPage .bp-title{font-size:clamp(1.75rem,8vw,2.2rem);margin-bottom:.45rem}
+  #bookPage .bp-author{font-size:16px;margin-bottom:.85rem}
+  #bookPage .bp-saga-row,#bookPage .bp-general-row{justify-content:center}
+  #bookPage .bp-actions{width:100%}
+  #bookPage .bp-actions .shelf-btns{justify-content:stretch}
+  #bookPage .bp-actions .shelf-btn{flex:1 1 calc(50% - .5rem);min-height:44px}
+  #bookPage .bp-mine-row{margin-top:0;grid-template-columns:1fr 1fr;justify-content:stretch;column-gap:.9rem}
+  #bookPage .bp-readonly-note{text-align:center}
+}
+@media(max-width:359px){#bookPage .bp-mine-row{grid-template-columns:1fr}}
+</style>
 </body>
 </html>
