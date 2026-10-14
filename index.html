@@ -7942,6 +7942,7 @@ body:not(.home-active) .hero{
           <span class="shelf-nav-label"><svg class="shelf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6m0-6-6 6"/></svg>Lo dejé</span>
           <span class="shelf-nav-count" id="shelfDnfCount">0</span>
         </button>
+        <div class="shelf-state-bar" id="shelfStateBar" role="img" aria-label="Distribución por estado" hidden></div>
       </div>
       <div class="shelf-sidebar-section">
         <div class="shelf-sidebar-label">Tu progreso</div>
@@ -8006,7 +8007,7 @@ body:not(.home-active) .hero{
       </div>
       <div id="shelfBooksContainer"></div>
       <div id="shelfInfo" class="shelf-info" hidden><div class="si-main"><span class="si-t"></span><span class="si-a" hidden></span></div><div class="si-meta" hidden></div></div>
-      <div id="shelfLegend" class="shelf-legend" role="group" aria-label="Leyenda de estados" hidden><span class="sl-want" data-k="want"><i aria-hidden="true"></i>Quiero leer</span><span class="sl-reading" data-k="reading"><i aria-hidden="true"></i>Leyendo</span><span class="sl-dnf" data-k="dnf"><i aria-hidden="true"></i>Lo dejé</span></div>
+      <div id="shelfLegend" class="shelf-legend" role="group" aria-label="Leyenda de estados" hidden><span class="sl-want" data-k="want"><i aria-hidden="true"></i>Quiero leer</span><span class="sl-reading" data-k="reading"><i aria-hidden="true"></i>Leyendo</span><span class="sl-dnf" data-k="dnf"><i aria-hidden="true"></i>Lo dejé</span><span class="sl-read" data-k="read"><i aria-hidden="true"></i>Sin marca: leído</span></div>
       <div id="shelfCalendarContainer" style="display:none"></div>
     </div>
   </div>
@@ -14161,21 +14162,21 @@ function buildShelfButtonsHTML(bookId){
       ${historyHtml}
       ${finishRow}
     </div>`:'';
-  return `<div class="shelf-btns" id="shelfBtns_${bookId}">
-    <button class="shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">＋ Quiero leer</button>
-    <button class="shelf-btn${s==='reading'?' reading':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')">📖 Leyendo</button>
-    <button class="shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">✓ Leído</button>
-    <button class="shelf-btn${s==='dnf'?' dnf':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','dnf')">✕ Lo dejé</button>
+  return `<div class="shelf-btns" id="shelfBtns_${bookId}" role="group" aria-label="Estado de lectura">
+    <button class="shelf-btn${s==='want'?' want':''}" aria-pressed="${s==='want'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">${_shelfIco('want')}Quiero leer</button>
+    <button class="shelf-btn${s==='reading'?' reading':''}" aria-pressed="${s==='reading'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')">${_shelfIco('reading')}Leyendo</button>
+    <button class="shelf-btn${s==='read'?' read':''}" aria-pressed="${s==='read'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">${_shelfIco('read')}Leído</button>
+    <button class="shelf-btn${s==='dnf'?' dnf':''}" aria-pressed="${s==='dnf'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','dnf')">${_shelfIco('dnf')}Lo dejé</button>
     ${readDatePicker}
   </div>`;
 }
 
 function buildCardShelfBtnsHTML(bookId){
   const s=myReadingStatus[bookId];
-  return `<div class="card-shelf-btns" id="cardShelf_${bookId}">
-    <button class="card-shelf-btn${s==='want'?' want':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')"><span class="card-shelf-icon">${s==='want'?'♥':'♡'}</span> Quiero leer</button>
-    <button class="card-shelf-btn${s==='reading'?' reading':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')"><span class="card-shelf-icon">📖</span> Leyendo</button>
-    <button class="card-shelf-btn${s==='read'?' read':''}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')"><span class="card-shelf-icon">${s==='read'?'✓':'○'}</span> Leído</button>
+  return `<div class="card-shelf-btns" id="cardShelf_${bookId}" role="group" aria-label="Estado de lectura">
+    <button class="card-shelf-btn${s==='want'?' want':''}" aria-pressed="${s==='want'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">${_shelfIco('want')}Quiero leer</button>
+    <button class="card-shelf-btn${s==='reading'?' reading':''}" aria-pressed="${s==='reading'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')">${_shelfIco('reading')}Leyendo</button>
+    <button class="card-shelf-btn${s==='read'?' read':''}" aria-pressed="${s==='read'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">${_shelfIco('read')}Leído</button>
   </div>`;
 }
 
@@ -14510,11 +14511,23 @@ function renderShelfCounts(){
   const readingBooks=allBooks.filter(b=>myReadingStatus[b.id]==='reading');
   const readBooks=allBooks.filter(b=>myReadingStatus[b.id]==='read');
   const dnfBooks=allBooks.filter(b=>myReadingStatus[b.id]==='dnf');
-  document.getElementById('shelfCountAll').textContent=wantBooks.length+readingBooks.length+readBooks.length;
-  document.getElementById('shelfWantCount').textContent=wantBooks.length;
-  document.getElementById('shelfReadingCount').textContent=readingBooks.length;
-  document.getElementById('shelfReadCount').textContent=readBooks.length;
-  document.getElementById('shelfDnfCount').textContent=dnfBooks.length;
+  // F8.4.2: mismo número visible; el texto oculto «libro/libros» da la etiqueta accesible. Los valores no cambian.
+  const _setCnt=(id,n)=>{ const el=document.getElementById(id); if(el) el.innerHTML=n+'<span class="st-sr"> '+(n===1?'libro':'libros')+'</span>'; };
+  _setCnt('shelfCountAll',wantBooks.length+readingBooks.length+readBooks.length);
+  _setCnt('shelfWantCount',wantBooks.length);
+  _setCnt('shelfReadingCount',readingBooks.length);
+  _setCnt('shelfReadCount',readBooks.length);
+  _setCnt('shelfDnfCount',dnfBooks.length);
+  _shelfStateBarRender(wantBooks.length,readingBooks.length,readBooks.length,dnfBooks.length);
+}
+// F8.4.2: barra fina segmentada con la distribución por estado (solo presentación, calculada con los mismos contadores).
+function _shelfStateBarRender(w,r,rd,d){
+  const bar=document.getElementById('shelfStateBar'); if(!bar) return;
+  const segs=[['want','Quiero leer',w],['reading','Leyendo',r],['read','Leídos',rd],['dnf','Lo dejé',d]].filter(x=>x[2]>0);
+  if(!segs.length){ bar.hidden=true; bar.innerHTML=''; bar.setAttribute('aria-label','Distribución por estado'); return; }
+  bar.hidden=false;
+  bar.setAttribute('aria-label','Distribución por estado: '+segs.map(x=>x[1]+' '+x[2]).join(', '));
+  bar.innerHTML=segs.map(x=>`<span class="st-seg is-${x[0]}" style="flex-grow:${x[2]}" title="${x[1]}: ${x[2]}"></span>`).join('');
 }
 
 // FASE E5.1 — Fase de DATOS: base → búsqueda/género → ordenación (E3 incluido). Sin DOM ni paginación.
@@ -14565,6 +14578,30 @@ function _shelfStartedTxt(bookId){
 }
 const _SHELF_ICO={want:'<path d="M6 4h12v17l-6-4-6 4z"/>',reading:'<path d="M12 6C10 4.5 7 4 4 4.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13C17 4 14 4.5 12 6zM12 6v13"/>',read:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',dnf:'<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6m0-6-6 6"/>',spicy:'<path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.2 2-4 0 1.5.8 2.2 1.5 2.5C11 9 10.5 6 12 3z"/>'};
 function _shelfIco(k){ return `<svg class="shelf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${_SHELF_ICO[k]||''}</svg>`; } // F8.2.2: iconos de línea de estado
+// F8.4.2 — textos derivados (SOLO presentación). Se calculan con fechas ya guardadas y solo si la precisión es de día; nunca escriben ni cambian datos.
+function _shelfDayDiff(a,b){
+  const ma=/^(\d{4})-(\d{2})-(\d{2})/.exec(a), mb=/^(\d{4})-(\d{2})-(\d{2})/.exec(b);
+  if(!ma||!mb) return null;
+  return Math.round((Date.UTC(+mb[1],+mb[2]-1,+mb[3])-Date.UTC(+ma[1],+ma[2]-1,+ma[3]))/86400000);
+}
+function _shelfTodayISO(){ const n=new Date(), p=v=>String(v).padStart(2,'0'); return n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate()); }
+function _shelfOpenAgoTxt(id){
+  const e=getOpenLogEntry(id);
+  if(!e||typeof e.started_at!=='string'||e.started_precision==='month'||e.started_precision==='year') return '';
+  const n=_shelfDayDiff(e.started_at.slice(0,10),_shelfTodayISO());
+  return (n==null||n<0)?'':(n===0?'hoy':n===1?'hace 1 día':'hace '+n+'\u00a0días');
+}
+function _shelfReadingTxt(id,since){ const ago=since?_shelfOpenAgoTxt(id):''; return 'Leyendo'+(since?' · desde '+since+(ago?' · '+ago:''):''); }
+function _shelfReadExtras(id){
+  const rt=bookReadingTime(id), out={dur:'',reread:'',all:''}, e=rt.latestReading;
+  if(e&&typeof e.started_at==='string'&&typeof e.read_at==='string'&&e.started_precision!=='month'&&e.started_precision!=='year'&&e.read_precision!=='month'&&e.read_precision!=='year'){
+    const n=_shelfDayDiff(e.started_at.slice(0,10),e.read_at.slice(0,10));
+    if(n!=null&&n>=0) out.dur=n===0?'en el mismo día':(n===1?'en 1 día':'en '+n+'\u00a0días');
+  }
+  if(rt.completedCount>=2) out.reread=rt.completedCount+'\u00a0lecturas';
+  out.all=[out.dur,out.reread].filter(Boolean).join(' · ');
+  return out;
+}
 function _shelfRenderGrid(pageBooks){
     return `<div class="shelf-grid">${pageBooks.map(b=>{
       const cov=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-book-cover-ph"><span>${escHtml(b.title)}</span></div>`;
@@ -14587,7 +14624,8 @@ function _shelfRenderGrid(pageBooks){
         case 'reading': {
           // «Leyendo» + («· desde <fecha>» solo si la entrada abierta tiene started_at). La fecha va en un 2.º span nowrap: si no cabe salta a la 2.ª línea de .shelf-book-meta (alto fijo, overflow oculto) y queda recortada; el texto accesible la conserva siempre.
           const since=_shelfStartedTxt(b.id);
-          meta=`<div class="shelf-book-meta"><span class="shelf-book-sr">Leyendo${since?` desde ${since}`:''}</span><span aria-hidden="true">Leyendo</span>${since?`<span aria-hidden="true">&nbsp;· desde ${since}</span>`:''}</div>`;
+          const ago=since?_shelfOpenAgoTxt(b.id):''; // F8.4.2: «hace N días» solo en tooltip y texto accesible (la línea visible tiene alto fijo)
+          meta=`<div class="shelf-book-meta" title="${_shelfReadingTxt(b.id,since)}"><span class="shelf-book-sr">Leyendo${since?` desde ${since}`:''}${ago?`, ${ago}`:''}</span><span aria-hidden="true">Leyendo</span>${since?`<span aria-hidden="true">&nbsp;· desde ${since}</span>`:''}</div>`;
           break;
         }
         case 'read': {
@@ -14599,13 +14637,15 @@ function _shelfRenderGrid(pageBooks){
           meta=(rN||sN)?`<div class="shelf-book-meta"><span class="shelf-book-sr">${[rN?`Mi valoración ${rN} de 5`:'',sN?`${rN?'spicy':'Mi spicy'} ${sN} de 5`:''].filter(Boolean).join(', ')}</span>${rN?`<span class="shelf-book-stars" aria-hidden="true">${'★'.repeat(rN)+'☆'.repeat(5-rN)}</span>`:''}${sN?`<span class="shelf-book-spicy" aria-hidden="true">🌶 ${sN}</span>`:''}</div>`:'';
           // FASE E6.3/E6.3.1 — fecha corta de la ÚLTIMA lectura completada, tomada de bookReadingTime (modelo E2/E3; sin lógica de fechas propia). Respeta la precisión (día / mes / año); sin fecha → sin línea.
           const rt=bookReadingTime(b.id);
-          if(rt.hasDate) dateLine=`<div class="shelf-book-date">${_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision)}</div>`;
+          const _rx=_shelfReadExtras(b.id); // F8.4.2: «en N días» y «N lecturas» en tooltip y texto accesible; sin fecha → «Leído · sin fecha»
+          if(rt.hasDate){ const _dt=_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); dateLine=`<div class="shelf-book-date"${_rx.all?` title="${_dt} · ${_rx.all}"`:''}>${_dt}${_rx.all?`<span class="shelf-book-sr">, ${_rx.all.replace(/ · /g,', ')}</span>`:''}</div>`; }
+          else dateLine=`<div class="shelf-book-date">Leído · sin fecha</div>`;
           break;
         }
         case 'dnf': {
           // «Empezado <fecha>» solo con started_at de la entrada abierta. Nunca «Dejado» (no hay fecha real de abandono) ni bookReadingTime.
           const since=_shelfStartedTxt(b.id);
-          if(since) dateLine=`<div class="shelf-book-date">Empezado ${since}</div>`;
+          if(since) dateLine=`<div class="shelf-book-date" title="Lo dejé · empezado ${since}">Lo dejé · empezado ${since}</div>`;
           break;
         }
       }
@@ -14640,7 +14680,7 @@ function _shelfRenderList(pageBooks){
       const auth=(b.authors||[]).join(', ');
       // FASE E10.2 — información contextual de la Lista según el filtro activo (solo datos ya cargados, sin consultas).
       const st=myReadingStatus[b.id];
-      let rate='', stCls='', stTxt='';
+      let rate='', stCls='', stTxt='', stTip='';
       const _comm=()=>{ const r=ratingsMap[b.id]; return (r&&r.count>0)?`<span class="shelf-list-rate">★ ${r.avg.toFixed(1)} <small>(${r.count})</small></span>`:''; };
       switch(shelfFilter){
         case 'want':
@@ -14648,7 +14688,7 @@ function _shelfRenderList(pageBooks){
           break;
         case 'reading': {
           const since=_shelfStartedTxt(b.id);
-          stCls='is-reading'; stTxt=_shelfIco('reading')+'Leyendo'+(since?' · desde '+since:'');
+          stCls='is-reading'; stTip=_shelfReadingTxt(b.id,since); stTxt=_shelfIco('reading')+stTip;
           break;
         }
         case 'read': {
@@ -14658,23 +14698,25 @@ function _shelfRenderList(pageBooks){
           const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
           if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`${_shelfIco('spicy')} ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
           const rt=bookReadingTime(b.id);
-          if(rt.hasDate){ stCls='is-read'; stTxt=_shelfIco('read')+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); }
+          const _rx=_shelfReadExtras(b.id); // F8.4.2
+          if(rt.hasDate){ stCls='is-read'; stTip=_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision)+(_rx.all?' · '+_rx.all:''); stTxt=_shelfIco('read')+stTip; }
+          else { stCls='is-read is-read-nodate'; stTip='Leído · sin fecha'+(_rx.reread?' · '+_rx.reread:''); stTxt=_shelfIco('read')+stTip; }
           break;
         }
         case 'dnf': {
           const since=_shelfStartedTxt(b.id);
-          stCls='is-dnf'; stTxt=_shelfIco('dnf')+(since?'Empezado '+since:'Lo dejé');
+          stCls='is-dnf'; stTip='Lo dejé'+(since?' · empezado '+since:''); stTxt=_shelfIco('dnf')+stTip;
           break;
         }
         default: { // 'all': valoración comunitaria + estado individual
           rate=_comm();
           if(st==='want'){ stCls='is-want'; stTxt=_shelfIco('want')+'Quiero leer'; }
-          else if(st==='reading'){ const since=_shelfStartedTxt(b.id); stCls='is-reading'; stTxt=_shelfIco('reading')+'Leyendo'+(since?' · desde '+since:''); }
+          else if(st==='reading'){ const since=_shelfStartedTxt(b.id); stCls='is-reading'; stTip=_shelfReadingTxt(b.id,since); stTxt=_shelfIco('reading')+stTip; }
           else if(st==='dnf'){ stCls='is-dnf'; stTxt=_shelfIco('dnf')+'Lo dejé'; }
           else { stCls='is-read'; stTxt=_shelfIco('read')+'Leído'; }
         }
       }
-      const mainLine=(rate||stTxt)?`<div class="shelf-list-meta-main">${rate}${stTxt?`<span class="shelf-list-state ${stCls}">${stTxt}</span>`:''}</div>`:'';
+      const mainLine=(rate||stTxt)?`<div class="shelf-list-meta-main">${rate}${stTxt?`<span class="shelf-list-state ${stCls}"${stTip?` title="${stTip}"`:''}>${stTxt}</span>`:''}</div>`:'';
       const tags=_shelfListTags(b).map(t=>`<span class="shelf-list-tag">${escHtml(t)}</span>`).join('');
       const sagaTxt=b.sagaName?escHtml(b.sagaName)+(b.sagaNum!=null?' · #'+escHtml(String(b.sagaNum)):''):'';
       const saga=sagaTxt?`<div class="shelf-list-saga">${sagaTxt}</div>`:'';
@@ -14902,8 +14944,8 @@ function _shelfInfoParts(b){
   if(sv>=1&&sv<=5) o.spicy=`Mi spicy ${Math.round(sv)}/5`;
   else if(typeof b.spicy==='number'&&b.spicy>=1&&b.spicy<=5) o.spicy=`Spicy ${Math.round(b.spicy)}/5`; // catálogo directo (no la media de comunidad)
   const st=myReadingStatus[id];
-  if(st==='read'){ o.state='Leído'; const rt=bookReadingTime(id); if(rt.hasDate) o.state+=' · '+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); }
-  else if(st==='reading'){ const d=_shelfStartedTxt(id); o.state='Leyendo'+(d?' · desde '+d:''); }
+  if(st==='read'){ o.state='Leído'; const rt=bookReadingTime(id); if(rt.hasDate) o.state+=' · '+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); const _rx=_shelfReadExtras(id); if(_rx.all) o.state+=' · '+_rx.all; }
+  else if(st==='reading'){ const d=_shelfStartedTxt(id); o.state=_shelfReadingTxt(id,d); }
   else if(st==='dnf'){ const d=_shelfStartedTxt(id); o.state='Lo dejé'+(d?' · empezado '+d:''); } // no existe fecha de abandono
   else if(st==='want') o.state='Quiero leer';
   return o;
@@ -15051,7 +15093,7 @@ function _calCoverThumbHTML(p,dateStr){
   const cls=p.ongoing?'dot-reading':'dot-read';
   const t=p.title.replace(/"/g,'&quot;');
   const isStart=!!dateStr&&p.start===dateStr, isEnd=!!dateStr&&!p.ongoing&&p.end===dateStr; // F8.3.2: marcas de inicio/fin solo de presentación; los períodos no cambian
-  const sr=`${escHtml(p.title)}: ${p.ongoing?'Leyendo':'Terminado'}${isStart?', inicio':''}${isEnd?', fin':''}`;
+  const sr=`${escHtml(p.title)}: ${p.ongoing?'Leyendo':'Leído'}${isStart?', inicio':''}${isEnd?', fin':''}`;
   const img=p.cover
     ?`<img class="cal-cover-thumb" src="${p.cover}" alt="" title="${t}" loading="lazy" decoding="async">`
     :`<div class="cal-cover-ph" title="${t}">${_shelfIco('reading')}</div>`;
@@ -15098,13 +15140,14 @@ function renderReadingCalendar(){
         <div class="cal-day-panel-title">${dStr}</div>
         ${active.map(p=>{
           const sY=p.start.slice(0,4)!==selY, eY=p.end.slice(0,4)!==selY;
-          const rangeStr=p.single?_f(p.start,sY):`${_f(p.start,sY)} → ${p.ongoing?'ahora':_f(p.end,eY)}`;
+          const _dn=p.ongoing?_shelfDayDiff(p.start,_shelfTodayISO()):null; // F8.4.2: «día N» = días transcurridos desde el inicio, contando el primero
+          const rangeStr=p.single?_f(p.start,sY):`${_f(p.start,sY)} → ${p.ongoing?('ahora'+(_dn!=null&&_dn>=0?' · día '+(_dn+1):'')):_f(p.end,eY)}`;
           const cov=p.cover?`<img class="cal-panel-cover" src="${p.cover}" alt="" loading="lazy" decoding="async">`:`<div class="cal-panel-cover cal-panel-cover-ph">${_shelfIco('reading')}</div>`;
           return `<div class="cal-panel-book" role="button" tabindex="0" onclick="openBookPage('${p.bookId}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBookPage('${p.bookId}')}">
             ${cov}
             <div class="cal-panel-info">
               <div class="cal-panel-title">${escHtml(p.title)}</div>
-              <div class="cal-panel-range"><span class="cal-panel-state ${p.ongoing?'dot-reading':'dot-read'}">${_shelfIco(p.ongoing?'reading':'read')}${p.ongoing?'Leyendo':'Terminado'}</span><span>${rangeStr}</span></div>
+              <div class="cal-panel-range"><span class="cal-panel-state ${p.ongoing?'dot-reading':'dot-read'}">${_shelfIco(p.ongoing?'reading':'read')}${p.ongoing?'Leyendo':'Leído'}</span><span>${rangeStr}</span></div>
             </div>
           </div>`;
         }).join('')}
@@ -15123,7 +15166,7 @@ function renderReadingCalendar(){
     </div>
     <div class="cal-legend" role="group" aria-label="Leyenda del calendario">
       <span><span class="cal-key dot-reading">${_shelfIco('reading')}</span>Leyendo</span>
-      <span><span class="cal-key dot-read">${_shelfIco('read')}</span>Terminado</span>
+      <span><span class="cal-key dot-read">${_shelfIco('read')}</span>Leído</span>
       <span><span class="cal-key cal-key-today">12</span>Hoy</span>
       <span><span class="cal-key cal-key-more">+N</span>Más lecturas ese día</span>
       <span><span class="cal-key cal-key-start"></span>Inicio</span>
@@ -18501,6 +18544,44 @@ html:has(.modal-bg.open,.info-modal-bg.open,.hito-modal-bg.open){overflow:hidden
 /* 7 · Ficha completa: los estados vacíos del mapa no conservan la altura del mapa */
 #bookPage .book-locations-zone:has(>.book-locations-empty),
 #bookPage .book-locations-map .book-locations-zone:has(>.book-locations-empty){height:auto;min-height:0}
+/* ═══ F8.4.2 — Estados de lectura y progreso: sistema único (etiqueta + icono + color, nunca solo color). Solo presentación. ═══ */
+.st-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+/* El texto oculto se posiciona respecto a su contenedor: en los chips móviles (fila con scroll) no debe ampliar el ancho de la página */
+.shelf-nav-count,.shelf-book .shelf-book-date{position:relative}
+.shelf-btn .shelf-ico,.card-shelf-btn .shelf-ico{width:14px;height:14px;flex:none}
+.card-shelf-btn .shelf-ico{width:13px;height:13px}
+/* Color por estado: Quiero leer = lavanda · Leyendo = dorado · Leído = verde azulado · Lo dejé = rosa */
+.shelf-btn.want,.card-shelf-btn.want{background:color-mix(in srgb,var(--lavender) 12%,transparent);border-color:color-mix(in srgb,var(--lavender) 50%,transparent);color:var(--lavender)}
+.shelf-btn.reading,.card-shelf-btn.reading{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 50%,transparent);color:var(--gold)}
+.shelf-btn.read,.card-shelf-btn.read{background:color-mix(in srgb,var(--teal-text) 12%,transparent);border-color:color-mix(in srgb,var(--teal-text) 45%,transparent);color:var(--teal-text)}
+.shelf-btn.dnf{background:var(--rose-soft);border-color:color-mix(in srgb,var(--rose) 50%,transparent);color:var(--rose)}
+/* Estado actual (aria-pressed=true): icono relleno, trazo más firme y anillo; el hover no cambia su aspecto. Disponible: icono de línea. */
+.shelf-btn[aria-pressed="true"],.card-shelf-btn[aria-pressed="true"]{font-weight:600;box-shadow:inset 0 0 0 1px currentColor}
+.shelf-btn[aria-pressed="true"] .shelf-ico>:first-child,.card-shelf-btn[aria-pressed="true"] .shelf-ico>:first-child{fill:currentColor;fill-opacity:.26}
+/* Panel «Estanterías»: icono de estado con su color; el número y la etiqueta conservan el color del texto */
+#shelfView #shelfNavWant .shelf-ico{color:var(--lavender)}
+#shelfView #shelfNavReading .shelf-ico{color:var(--gold)}
+#shelfView #shelfNavRead .shelf-ico{color:var(--teal-text)}
+#shelfView #shelfNavDnf .shelf-ico{color:var(--rose)}
+#shelfView .shelf-state-bar{display:flex;gap:2px;height:6px;margin:.7rem .75rem .25rem;border-radius:3px;overflow:hidden}
+#shelfView .st-seg{flex:1 1 0;min-width:4px;border-radius:2px}
+#shelfView .st-seg.is-want{background:var(--lavender)}
+#shelfView .st-seg.is-reading{background:var(--gold)}
+#shelfView .st-seg.is-read{background:var(--teal-text)}
+#shelfView .st-seg.is-dnf{background:var(--rose)}
+/* Galería y Lista: mismos colores que los botones */
+#shelfView .shelf-book-state.is-want{color:var(--lavender)}
+#shelfView .shelf-list-state.is-want{color:var(--lavender)}
+#shelfView .shelf-list-state.is-read{color:var(--teal-text)}
+/* Lista: el texto de estado puede pasar a una segunda línea (no se recorta «en 9 días · 2 lecturas») */
+#shelfView .shelf-list-state{align-items:flex-start;white-space:normal;overflow:visible;line-height:1.3}
+#shelfView .shelf-list-state .shelf-ico{margin-top:1px}
+/* Chips móviles: el icono de estado se mantiene (no solo texto) */
+@media (max-width:639px){
+  #shelfView .shelf-nav-item .shelf-ico{display:inline-block}
+  #shelfView .shelf-nav-item .shelf-nav-label{gap:.45rem}
+  #shelfView .shelf-state-bar{display:none!important}
+}
 </style>
 <script>
 /* F7.6.2 — Teclado y foco de los modales (aditivo: no sustituye ninguna función existente).
