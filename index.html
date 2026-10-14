@@ -10546,12 +10546,35 @@ function renderBookPage(book){
   // FICHA TÉCNICA — Año, Páginas, País de origen y Ship (FASE 2.6.4: Ship
   // pasa a mostrarse exclusivamente aquí, ya no en "Sobre este libro").
   const shipVal=(b.ship&&b.ship.length)?b.ship.join(' · '):'';
-  const metaItems=[
-    b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:'',
-    b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:'',
-    b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:'',
-    shipVal?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${b.ship.map(x=>`<button type="button" class="bp-link" data-bpf="ship" data-bpv="${escHtml(x)}">${escHtml(x)}</button>`).join(' · ')}</span></div>`:''
-  ].filter(Boolean).join('');
+  // F7.2.2 — la ficha técnica se agrupa (Edición · Origen · Historia). Mismos datos, mismo criterio de campos vacíos
+  // (si falta el dato no se pinta ni etiqueta ni hueco). Solo se muestran valores que existen en books_data.json.
+  const _fArr=v=>Array.isArray(v)?v.filter(Boolean):(v?[v]:[]);
+  const _fItem=(key,val,wide)=>`<div class="meta-item${wide?' meta-item-wide':''}"><span class="meta-key">${key}</span><span class="meta-val">${val}</span></div>`;
+  const _paisOri=_fArr(b.pais_origen), _paisCul=_fArr(b.pais_cultura);
+  const _paisIgual=_paisOri.length===_paisCul.length&&_paisOri.every(x=>_paisCul.includes(x));
+  const _isbnOk=b.isbn&&/^(\d{9}[\dXx]|\d{13})$/.test(String(b.isbn).replace(/[\s-]/g,''));
+  const _entornos=_fArr(b.entornos);
+  const _fGroups=[
+    ['Edición',[
+      b.year?_fItem('Año',b.year):'',
+      b.pages?_fItem('Páginas',b.pages):'',
+      b.formato?_fItem('Formato',escHtml(b.formato)):'',
+      _isbnOk?_fItem('ISBN',escHtml(String(b.isbn))):''
+    ]],
+    ['Origen',[
+      b.pais_origen?_fItem('País de origen',escHtml(_paisOri.join(' · '))):'',
+      (_paisCul.length&&!_paisIgual)?_fItem('País de la cultura',escHtml(_paisCul.join(' · '))):'',
+      b.idioma_original?_fItem('Idioma original',escHtml(b.idioma_original)):''
+    ]],
+    ['Historia',[
+      b.epoca?_fItem('Época',escHtml(b.epoca)):'',
+      b.tipo_mundo?_fItem('Tipo de mundo',escHtml(b.tipo_mundo)):'',
+      _entornos.length?_fItem('Entornos',escHtml(_entornos.join(' · ')),_entornos.length>1):'',
+      (b.adaptacion&&b.adaptacion!=='Sin adaptación')?_fItem('Adaptación',escHtml(b.adaptacion)):'',
+      shipVal?_fItem('Ship',b.ship.map(x=>`<button type="button" class="bp-link" data-bpf="ship" data-bpv="${escHtml(x)}">${escHtml(x)}</button>`).join(' · '),b.ship.length>1):''
+    ]]
+  ].map(([t,items])=>{const h=items.filter(Boolean).join('');return h?`<div class="bp-ficha-group"><div class="bp-ficha-group-title">${t}</div><div class="modal-meta-grid bp-ficha-box">${h}</div></div>`:'';}).join('');
+  const metaItems=_fGroups;
 
   // FASE 2.6.4.1 — Géneros + Subgéneros + Ficha técnica ahora comparten UNA
   // sola bp-section ("clasificación/ficha" del brief) en vez de tres
@@ -10560,15 +10583,18 @@ function renderBookPage(book){
   const clasBlocks=[
     genreTags?`<div class="bp-class-block"><div class="bp-section-title">Géneros</div><div class="modal-tags">${genreTags}</div></div>`:'',
     subgenreTags?`<div class="bp-class-block"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:'',
-    metaItems?`<div class="bp-class-block"><div class="bp-section-title">Ficha técnica</div><div class="modal-meta-grid bp-ficha-box">${metaItems}</div></div>`:''
+    ''
   ].filter(Boolean).join('');
-  const clasificacionFicha=clasBlocks?`<div class="bp-section">${clasBlocks}</div>`:'';
+  const fichaTecnicaSec=metaItems?`<div class="bp-section bp-ficha-section"><div class="bp-section-title">Ficha técnica</div><div class="bp-ficha-groups">${metaItems}</div></div>`:'';
+  const clasificacionFicha=(clasBlocks?`<div class="bp-section">${clasBlocks}</div>`:'')+fichaTecnicaSec;
 
   // SINOPSIS
   const sinopsis=b.synopsis?(()=>{
     const paras=b.synopsis.split(/\n\n+/).map(p=>p.replace(/\n/g,' ').trim()).filter(Boolean);
     const full=paras.map(p=>`<p class="modal-synopsis">${p}</p>`).join('');
-    return `<div class="bp-section"><div class="bp-section-title">Sinopsis</div><div class="modal-synopsis-wrap">${full}</div></div>`;
+    // F7.3.2 — sinopsis larga (>900 caracteres): se pliega a ~6 líneas con «Leer más». El texto completo sigue en el DOM.
+    const long=b.synopsis.length>900;
+    return `<div class="bp-section"><div class="bp-section-title">Sinopsis</div><div class="modal-synopsis-wrap${long?' bp-syn-fold is-collapsed':''}">${full}</div>${long?'<button type="button" class="bp-syn-toggle" aria-expanded="false">Leer más</button>':''}</div>`;
   })():'';
 
   // SOBRE ESTE LIBRO — 6 categorías interactivas (ver buildBpTagsSectionHTML).
@@ -10644,6 +10670,33 @@ function _bpNavActivate(el){
   });
 })();
 
+/* F7.3.2 — «Leer más» de la sinopsis y «+N más» de las etiquetas (delegado sobre #bpWrap,
+   que se re-renderiza). Solo alterna visibilidad y aria-expanded; no toca datos. */
+(function(){
+  const wrap=document.getElementById('bpWrap'); if(!wrap) return;
+  wrap.addEventListener('click',e=>{
+    const st=e.target.closest('.bp-syn-toggle');
+    if(st&&wrap.contains(st)){
+      const body=st.parentElement.querySelector('.bp-syn-fold'); if(!body) return;
+      const open=!body.classList.toggle('is-collapsed');
+      st.setAttribute('aria-expanded',String(open));
+      st.textContent=open?'Leer menos':'Leer más';
+      return;
+    }
+    const mt=e.target.closest('.bp-more-toggle');
+    if(mt&&wrap.contains(mt)){
+      const box=mt.closest('.modal-tags'); if(!box) return;
+      const n=mt.dataset.n, lb=(mt.dataset.label||'').toLowerCase();
+      const open=mt.getAttribute('aria-expanded')!=='true';
+      box.querySelectorAll('.bp-tag-extra').forEach(el=>{el.hidden=!open;});
+      mt.setAttribute('aria-expanded',String(open));
+      mt.setAttribute('aria-label',open?`Mostrar menos ${lb}`:`Mostrar ${n} ${lb} más`);
+      mt.textContent=open?'Ver menos':`+${n} más`;
+      if(open) _bpTagsOpen.types.add(mt.dataset.type); else _bpTagsOpen.types.delete(mt.dataset.type);
+    }
+  });
+})();
+
 /* ── TAGS EN BOOKPAGE ("Sobre este libro") ──
    Reutiliza getEffectiveTags(), VALID_TAGS, myTags, handleTagAdderChange() y
    removeMyTag() tal cual. Sin ids nuevos: los controles llevan data-type/
@@ -10658,19 +10711,33 @@ const BP_TAG_TYPES=[
   {type:'warning',label:'Advertencias',cls:'tag-warning',emoji:'⚠',noun:'advertencia'}
 ];
 const BP_TAG_FILTER_KEY={trope:'tropes',dinamica:'dinamicas',character:'characters',identidad:'identidades',edad:'edad',warning:'warnings'};
+/* F7.3.2 — listas largas: con más de 8 chips se muestran 8 y el resto se pliega tras «+N más»
+   (Advertencias: 6). Nada se elimina; los chips plegados siguen en el DOM con [hidden]. */
+const BP_TAG_FOLD=8, BP_TAG_FOLD_WARN=6;
+let _bpTagsOpen={id:null,types:new Set()};
 function buildBpTagsGridHTML(b){
+  if(_bpTagsOpen.id!==b.id) _bpTagsOpen={id:b.id,types:new Set()};
   return BP_TAG_TYPES.map(({type,label,cls,emoji,noun})=>{
     const {official,merged}=getEffectiveTags(b,type);
     // Igual que el modal: sin sesión, las categorías vacías no se muestran.
     if(!currentUser&&!merged.length) return '';
     const mine=(myTags[b.id]||{})[type]||[];
-    const chips=merged.map(v=>{
+    const limit=type==='warning'?BP_TAG_FOLD_WARN:BP_TAG_FOLD;
+    const foldable=merged.length>limit;
+    const folded=foldable&&!_bpTagsOpen.types.has(type);
+    const chips=merged.map((v,i)=>{
       const isOff=official.includes(v);
       const isMine=!isOff&&mine.includes(v);
       const ev=escHtml(v);
+      const extra=foldable&&i>=limit;
       const rm=isMine?`<button type="button" class="bp-tag-rm" data-type="${type}" data-value="${ev}" aria-label="Quitar mi tag de ${noun}: ${ev}" title="Quitar mi tag" onclick="removeMyTag(this.dataset.type,this.dataset.value,event)">×</button>`:'';
-      return `<span class="tag ${cls}${isOff?'':' tag-comm-added'} bp-tag-link" role="button" tabindex="0" data-bpf="${BP_TAG_FILTER_KEY[type]}" data-bpv="${ev}">${emoji?emoji+' ':''}${ev}${isOff?'':`<span class="tag-comm-dot"> ·com</span>`}${rm}</span>`;
+      return `<span class="tag ${cls}${isOff?'':' tag-comm-added'} bp-tag-link${extra?' bp-tag-extra':''}"${extra&&folded?' hidden':''} role="button" tabindex="0" data-bpf="${BP_TAG_FILTER_KEY[type]}" data-bpv="${ev}">${emoji?emoji+' ':''}${ev}${isOff?'':`<span class="tag-comm-dot"> ·com</span>`}${rm}</span>`;
     }).join('');
+    let more='';
+    if(foldable){
+      const n=merged.length-limit, lb=label.toLowerCase();
+      more=`<button type="button" class="bp-more-toggle" data-type="${type}" data-n="${n}" data-label="${label}" aria-expanded="${folded?'false':'true'}" aria-label="${folded?`Mostrar ${n} ${lb} más`:`Mostrar menos ${lb}`}">${folded?`+${n} más`:'Ver menos'}</button>`;
+    }
     let add='';
     if(currentUser){
       const avail=(VALID_TAGS[type]||[]).filter(t=>!merged.includes(t));
@@ -10678,7 +10745,8 @@ function buildBpTagsGridHTML(b){
     } else {
       add=`<button type="button" class="bp-add-btn" onclick="openAuthModal()" aria-label="Iniciar sesión para añadir ${noun}" title="Inicia sesión para añadir">+ Añadir</button>`;
     }
-    return `<div class="bp-group"><div class="bp-group-label">${label}</div><div class="modal-tags">${chips}${add}</div></div>`;
+    const wide=(type==='trope'||type==='warning');
+    return `<div class="bp-group${wide?' bp-group-wide':''}"><div class="bp-group-label">${label}${merged.length?`<span class="bp-group-count"> · ${merged.length}</span>`:''}</div><div class="modal-tags">${chips}${more}${add}</div></div>`;
   }).filter(Boolean).join('');
 }
 function buildBpTagsSectionHTML(b){
@@ -10699,6 +10767,11 @@ function renderBpTagsSection(focusType){
   const grid=wrap.querySelector('[data-bp-tags-section] .bp-sobre-grid');
   if(!grid) return;
   const hadFocus=grid.contains(document.activeElement);
+  // F7.3.2 — al añadir/quitar un tag, esa categoría queda desplegada para que el cambio se vea.
+  if(focusType){
+    if(_bpTagsOpen.id!==activeBook.id) _bpTagsOpen={id:activeBook.id,types:new Set()};
+    _bpTagsOpen.types.add(focusType);
+  }
   grid.innerHTML=buildBpTagsGridHTML(activeBook);
   if(hadFocus&&focusType) wrap.querySelector('.bp-tag-adder[data-type="'+focusType+'"]')?.focus({preventScroll:true});
 }
@@ -17958,6 +18031,134 @@ body.theme-halloween #bookPage .bp-cover{box-shadow:0 14px 34px rgba(0,0,0,.5),0
   #bookPage .bp-readonly-note{text-align:center}
 }
 @media(max-width:359px){#bookPage .bp-mine-row{grid-template-columns:1fr}}
+</style>
+<style id="f722b-ficha-tecnica-agrupada">
+/* F7.2.2 · Ficha técnica en grupos (Edición · Origen · Historia) con cuadrícula flexible.
+   Solo presentación; colores con variables de tema. */
+#bookPage .bp-ficha-groups{display:flex;flex-direction:column}
+#bookPage .bp-ficha-group{padding:1.05rem 0;border-top:1px solid var(--border)}
+#bookPage .bp-ficha-group:first-child{padding-top:0;border-top:0}
+#bookPage .bp-ficha-group:last-child{padding-bottom:0}
+#bookPage .bp-ficha-group-title{
+  font-size:var(--fs-label,11px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:.65rem;
+}
+#bookPage .bp-ficha-groups .bp-ficha-box{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,10.5rem),1fr));
+  gap:1rem 1.75rem;width:100%;max-width:100%;padding:0;margin:0;
+  background:transparent;background-color:transparent;border:0;border-radius:0;align-items:start;
+}
+#bookPage .bp-ficha-groups .bp-ficha-box .meta-item{padding:0;border:0;text-align:left;gap:.3rem;min-width:0}
+#bookPage .bp-ficha-groups .bp-ficha-box .meta-key{font-size:var(--fs-label,11px);letter-spacing:.08em;text-transform:uppercase;font-weight:600;line-height:1.35}
+#bookPage .bp-ficha-groups .bp-ficha-box .meta-val{font-size:var(--fs-body,14px);line-height:1.45;overflow-wrap:anywhere}
+#bookPage .bp-ficha-groups .bp-ficha-box .meta-item-wide{grid-column:span 2}
+@media(max-width:639px){
+  #bookPage .bp-ficha-groups .bp-ficha-box{grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.25rem}
+  #bookPage .bp-ficha-groups .bp-ficha-box .meta-item{text-align:left}
+  #bookPage .bp-ficha-groups .bp-ficha-box .meta-item-wide{grid-column:1/-1}
+}
+</style>
+<style id="f732-sinopsis-clasificaciones">
+/* F7.3.2 · Sinopsis y clasificaciones de la ficha (BookPage).
+   Presentación acotada a #bookPage: el modal y las tarjetas del catálogo no cambian.
+   Colores solo con variables de tema (claro, Halloween y Navidad); contraste de texto >= 4,5:1. */
+#bookPage{--f732-chip-min:30px}
+@media(max-width:639px),(pointer:coarse){#bookPage{--f732-chip-min:32px}}
+
+/* 1 · Sinopsis: columna de lectura (~70 caracteres), 15 px, interlineado 1,75, texto sin atenuar */
+#bookPage .modal-synopsis-wrap{max-width:62ch;margin:0;font-size:15px;line-height:1.75}
+#bookPage .modal-synopsis-wrap .modal-synopsis{
+  font-size:15px;line-height:1.75;color:var(--text);margin:0 0 1.15em;overflow-wrap:break-word;
+}
+#bookPage .modal-synopsis-wrap .modal-synopsis:last-child{margin-bottom:0}
+/* Sinopsis larga: ~6 líneas visibles con degradado; el texto completo sigue en el DOM */
+#bookPage .bp-syn-fold.is-collapsed{
+  max-height:calc(1.75em * 6);overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 2.75em),transparent);
+  mask-image:linear-gradient(to bottom,#000 calc(100% - 2.75em),transparent);
+}
+#bookPage .bp-syn-toggle{
+  display:inline-flex;align-items:center;min-height:36px;margin-top:.4rem;padding:0;
+  background:none;border:0;border-radius:4px;cursor:pointer;
+  color:var(--accent2);font:600 13px/1 var(--font-body);
+  text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent2) 40%,transparent);text-underline-offset:4px;
+}
+#bookPage .bp-syn-toggle:hover{text-decoration-color:currentColor}
+#bookPage .bp-syn-toggle:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+@media(max-width:639px){
+  #bookPage .modal-synopsis-wrap{max-width:100%}
+  #bookPage .bp-syn-toggle{min-height:44px}
+}
+
+/* 2 · Chips: un único sistema (misma altura, radio, 12 px, separación de 8 px) */
+#bookPage .modal-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0}
+#bookPage .modal-tags .tag{
+  display:inline-block;box-sizing:border-box;max-width:100%;
+  min-height:var(--f732-chip-min);padding:calc((var(--f732-chip-min) - 20px) / 2) 12px;
+  font-size:12px;font-weight:500;line-height:18px;letter-spacing:0;
+  border:1px solid var(--border2);border-radius:999px;
+  background:transparent;color:var(--text);
+  white-space:normal;overflow-wrap:anywhere;
+}
+/* Géneros y Subgéneros: un tinte propio */
+#bookPage .modal-tags .tag-genre,
+#bookPage .modal-tags .tag-subgenre{
+  background:color-mix(in srgb,var(--accent) 10%,var(--surface));
+  border-color:color-mix(in srgb,var(--accent) 38%,var(--surface));
+  color:var(--accent2);
+}
+/* Edad: otro tinte */
+#bookPage .modal-tags .tag-edad{
+  background:color-mix(in srgb,var(--gold) 12%,var(--surface));
+  border-color:color-mix(in srgb,var(--gold) 40%,var(--surface));
+  color:var(--gold);
+}
+/* 3 · Advertencias: rojo suave con borde (antes macizo); el icono ⚠ se mantiene */
+#bookPage .modal-tags .tag-warning{
+  background:color-mix(in srgb,var(--error) 9%,var(--surface));
+  border-color:color-mix(in srgb,var(--error) 45%,var(--surface));
+  color:color-mix(in srgb,var(--error) 80%,var(--text));
+}
+/* Tags de la comunidad: se distinguen por el borde discontinuo y «·com»; sin bajar la opacidad del texto */
+#bookPage .modal-tags .tag-comm-added{opacity:1}
+#bookPage .modal-tags .bp-tag-link:hover{opacity:1;transform:none;border-color:var(--accent)}
+#bookPage .modal-tags .bp-tag-link:focus-visible{border-radius:999px}
+#bookPage .modal-tags .bp-tag-extra[hidden]{display:none}
+
+/* 4 · «+N más», «+ Añadir» (selector nativo y botón sin sesión): misma altura que los chips */
+#bookPage .bp-sobre-grid .tag-adder-select,
+#bookPage .bp-sobre-grid .bp-add-btn,
+#bookPage .bp-sobre-grid .bp-more-toggle{
+  box-sizing:border-box;width:auto;height:var(--f732-chip-min);min-height:var(--f732-chip-min);
+  padding:0 12px;border-radius:999px;background:transparent;
+  font:500 12px/1 var(--font-body);white-space:nowrap;cursor:pointer;
+}
+#bookPage .bp-sobre-grid .tag-adder-select,
+#bookPage .bp-sobre-grid .bp-add-btn{border:1px dashed var(--border2);color:var(--muted)}
+#bookPage .bp-sobre-grid .tag-adder-select{max-width:min(100%,170px)}
+#bookPage .bp-sobre-grid .tag-adder-select:hover,
+#bookPage .bp-sobre-grid .bp-add-btn:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
+#bookPage .bp-sobre-grid .bp-more-toggle{border:1px solid var(--border2);color:var(--accent2);font-weight:600}
+#bookPage .bp-sobre-grid .bp-more-toggle:hover{border-color:var(--accent);background:var(--accent-soft)}
+#bookPage .bp-sobre-grid .bp-more-toggle:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+/* 5 · «Sobre este libro»: Tropos y Advertencias a ancho completo; el resto se reparte sin huecos */
+#bookPage .bp-sobre-grid{display:flex;flex-wrap:wrap;gap:1.4rem 2rem}
+#bookPage .bp-sobre-grid .bp-group{flex:1 1 13rem;min-width:min(100%,13rem)}
+#bookPage .bp-sobre-grid .bp-group-wide{flex:1 1 100%}
+
+/* 6 · Etiquetas de grupo: mismo estilo que los subtítulos de la ficha técnica, con contador */
+#bookPage .bp-sobre-grid .bp-group-label{
+  font-size:var(--fs-label,11px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.35;
+  color:var(--accent2);margin:0 0 .65rem;
+}
+#bookPage .bp-group-count{color:var(--muted);font-weight:500;letter-spacing:.08em}
+
+/* 8 · Móvil: una columna */
+@media(max-width:639px){
+  #bookPage .bp-sobre-grid{gap:1.2rem}
+  #bookPage .bp-sobre-grid .bp-group{flex-basis:100%}
+}
 </style>
 </body>
 </html>
