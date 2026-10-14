@@ -12,20 +12,20 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
-  /* Sistema cromático base: marfil, blush y borgoña editorial. */
-  --bg:#FFF9F5;
-  --surface:#FFFFFF;
-  --surface2:#F8E9EC;
-  --surface3:#F1DDE3;
-  --border:rgba(118,43,69,0.12);
-  --border2:rgba(118,43,69,0.28);
+  /* Sistema cromático base: marfil rosado, blush y borgoña editorial (valores finales consolidados). */
+  --bg:#FBF3F0;
+  --surface:#FFFCFA;
+  --surface2:#F5E7E5;
+  --surface3:#EEDBD9;
+  --border:rgba(105,47,65,.16);
+  --border2:rgba(105,47,65,.34);
   --text:#33232B;
-  --muted:#6F5963;
+  --muted:#65505A;
   --accent:#762B45;
-  --accent2:#8A3452;
-  --accent-soft:rgba(118,43,69,0.10);
+  --accent2:#87334F;
+  --accent-soft:rgba(118,43,69,.10);
   --rose:#A83E5B;
-  --rose-soft:rgba(168,62,91,0.10);
+  --rose-soft:rgba(168,62,91,.10);
   --gold:#79551F;
   --gold-soft:rgba(121,85,31,0.11);
   --gold-decorative:#C4A46A;
@@ -457,7 +457,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .spinner{width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 1rem}
 @keyframes spin{to{transform:rotate(360deg)}}
 .empty-state{text-align:center;padding:4rem 2rem;color:var(--muted)}
-.empty-big{font-family:var(--font-display);font-size:3rem;font-style:italic;color:var(--surface3);margin-bottom:.5rem}
+.empty-big{font-family:var(--font-display);font-size:3rem;font-style:italic;color:var(--muted);margin-bottom:.5rem}
 
 /* BOOK MODAL */
 .modal-bg{position:fixed;inset:0;background:rgba(8,5,10,0.75);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:300;padding:2rem 1rem;overflow-y:auto}
@@ -491,6 +491,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .modal-close:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 .modal-share-btn{position:absolute;top:14px;right:54px;width:32px;height:32px;border-radius:50%;background:rgba(14,11,16,0.75);border:1px solid var(--border2);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .15s;line-height:1}
 .modal-share-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+body:not(.theme-halloween) .modal-share-btn:hover{background:rgba(14,11,16,.9);color:#fff}
+body:not(.theme-halloween) .modal-close:not(:hover),
+body:not(.theme-halloween) .info-modal-close:not(:hover),
+body:not(.theme-halloween) .modal-share-btn:not(:hover){color:#fff}
 .modal-cover-strip{aspect-ratio:16/7;overflow:hidden;position:relative}
 .modal-cover-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
 .modal-cover-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--surface) 0%,transparent 60%)}
@@ -824,7 +828,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 /* Cómo funciona */
 .hv-how{max-width:1100px;margin:4.5rem auto 0;padding:0 2rem 5.5rem}
 .hv-how-title{font-family:var(--font-display);font-size:2.6rem;font-weight:300;font-style:italic;text-align:center;margin-bottom:.3rem;color:var(--text)}
-.hv-how-sub{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:2.8rem;opacity:.7}
+.hv-how-sub{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:2.8rem}
 .hv-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
 .hv-how-card{background:var(--surface);padding:2.2rem 2rem;position:relative;overflow:hidden}
 .hv-how-card::before{content:attr(data-n);position:absolute;bottom:-14px;right:6px;font-family:var(--font-display);font-size:5.5rem;font-weight:800;font-style:italic;color:transparent;-webkit-text-stroke:1.5px rgba(180,120,200,.06);pointer-events:none;line-height:1}
@@ -836,7 +840,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .hv-footer{background:var(--surface);border-top:1px solid var(--border2);padding:2.5rem 2rem;text-align:center}
 .hv-footer-logo{font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--text);margin-bottom:.3rem}
 .hv-footer-logo em{font-style:italic;color:var(--accent);font-weight:600}
-.hv-footer-sub{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.hv-footer-sub{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
 
 /* ── SafiClub tab panel ─────────────────────────────── */
 .safi-wrap{max-width:1100px;margin:0 auto;padding-bottom:4rem}
@@ -1027,7 +1031,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
 /* ── RULETA FILTROS PROPIOS ── */
 .ruleta-dd-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin-bottom:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
-.ruleta-dd-row-label{font-size:9.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap;opacity:.7;flex-shrink:0;margin-right:.1rem}
+.ruleta-dd-row-label{font-size:9.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap;flex-shrink:0;margin-right:.1rem}
 /* dropdown de ruleta — reutiliza estructura .dd-wrap pero con scope propio */
 .ruleta-dd-wrap{position:relative;display:inline-block}
 .ruleta-dd-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:1px solid transparent;background:var(--surface2);color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .18s;white-space:nowrap;user-select:none;letter-spacing:.01em}
@@ -1042,7 +1046,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .main:has(.ruleta-dd-wrap.open){z-index:auto}
 .ruleta-dd-search{padding:.5rem .8rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px)}
 .ruleta-dd-search input{width:100%;padding:5px 9px;border-radius:7px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12px;font-family:var(--font-body);outline:none;transition:border-color .15s}
-.ruleta-dd-search input::placeholder{color:var(--muted);opacity:.6}
+.ruleta-dd-search input::placeholder{color:var(--muted);opacity:1}
 .ruleta-dd-search input:focus{border-color:var(--accent)}
 .ruleta-dd-list{padding:.3rem 0}
 .ruleta-dd-clear{padding:6px 12px;border-bottom:1px solid var(--border);font-size:11px;color:var(--rose);cursor:pointer;transition:background .12s;letter-spacing:.04em;font-weight:500}
@@ -1104,7 +1108,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .footer-logo em{font-style:italic;color:var(--accent);font-weight:600}
 .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem}
 .footer-link{padding:6px 16px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;text-decoration:none;transition:all .18s;letter-spacing:.02em}
-.footer-copy{font-size:11px;color:var(--muted);opacity:.5;letter-spacing:.05em;text-align:center}
+.footer-copy{font-size:11px;color:var(--muted);letter-spacing:.05em;text-align:center}
 /* ── COMMUNITY TAGS ── */
 .community-tags-block{margin-top:1rem}
 .ctags-section{margin-bottom:.75rem}
@@ -1686,7 +1690,7 @@ button.an-mopen{cursor:pointer}
 .cc-back-progress-fill{height:100%;background:linear-gradient(90deg,var(--tier-c1),var(--tier-c2))}
 .cc-back-progress2{height:4px;border-radius:3px;background:var(--surface3);overflow:hidden;margin-top:2px}
 .cc-back-progress2-fill{height:100%;background:var(--teal)}
-.cc-flip-hint{text-align:center;font-size:9px;color:var(--muted);margin-top:.3rem;opacity:.7}
+.cc-flip-hint{text-align:center;font-size:9px;color:var(--muted);margin-top:.3rem}
 .cc-locked-msg{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:11px;padding:0 .3rem;line-height:1.6}
 
 .stats-block{margin-bottom:2.5rem}
@@ -1726,7 +1730,7 @@ button.an-mopen{cursor:pointer}
 .shelf-sidebar-name{font-family:var(--font-display);font-size:1.4rem;font-weight:600;font-style:italic;color:var(--text);line-height:1.1}
 .shelf-sidebar-sub{font-size:10.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
 .shelf-sidebar-section{padding:1rem 1.5rem .4rem}
-.shelf-sidebar-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-bottom:.4rem}
+.shelf-sidebar-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
 .shelf-nav-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:8px;cursor:pointer;transition:all .15s;font-size:13px;color:var(--muted);font-family:var(--font-body);background:transparent;border:none;width:100%;text-align:left}
 .shelf-nav-item.active{background:var(--accent-soft);color:var(--accent2);font-weight:500}
 .shelf-nav-count{font-size:11px;padding:1px 7px;border-radius:10px;background:var(--surface3);color:var(--muted)}
@@ -1955,21 +1959,22 @@ body.theme-halloween .hw-only-inline{display:inline-block}
 /* Paleta y tipografía: al vivir en variables CSS, redefinirlas aquí
    recolorea automáticamente nav, botones, tarjetas, filtros, etc. */
 body.theme-halloween{
-  /* Halloween conserva ciruela, calabaza y lavanda sobre una base luminosa. */
-  --bg:#FFF8F2;--surface:#FFFFFF;--surface2:#F7E8E5;--surface3:#EED9D5;
-  --border:rgba(118,43,69,0.14);--border2:rgba(118,43,69,0.30);
-  --text:#352329;--muted:#6D5558;
-  --accent:#762B45;--accent2:#9A442D;--accent-soft:rgba(118,43,69,0.10);
-  --rose:#A33D52;--rose-soft:rgba(163,61,82,0.10);
-  --gold:#79551F;--gold-soft:rgba(121,85,31,0.11);--gold-decorative:#B98655;--shelf-wood:#613A24;
-  --lavender:#625078;--lavender-soft:rgba(98,80,120,0.10);
-  --teal:#355F55;--teal-text:#355F55;
-  --success:#286A4B;--success-soft:rgba(40,106,75,0.10);--progress:#355F55;--progress-soft:rgba(53,95,85,0.10);
-  --warning:#79551F;--warning-soft:rgba(121,85,31,0.11);--error:#A12E43;--error-soft:rgba(161,46,67,0.10);--info:#405E86;--info-soft:rgba(64,94,134,0.10);
+  /* Halloween: base nocturna con calabaza, rosa y lavanda (valores finales consolidados). */
+  --bg:#17121E;--surface:#2B2034;--surface2:#352740;--surface3:#40304D;
+  --border:rgba(244,234,240,.14);--border2:rgba(244,234,240,.28);
+  --text:#F4EAF0;--muted:#C8B9CC;
+  --accent:#E87532;--accent2:#FF985B;--accent-soft:rgba(232,117,50,.16);
+  --rose:#F08A9A;--rose-soft:rgba(240,138,154,.14);
+  --gold:#B7A16A;--gold-soft:rgba(183,161,106,.14);--gold-decorative:#B7A16A;--shelf-wood:#613A24;
+  --lavender:#B99BCF;--lavender-soft:rgba(141,107,168,.22);
+  --teal:#80C7B8;--teal-text:#80C7B8;
+  --success:#8FD5A9;--success-soft:rgba(143,213,169,.14);--progress:#80C7B8;--progress-soft:rgba(128,199,184,.14);
+  --warning:#F2C879;--warning-soft:rgba(242,200,121,.15);--error:#FF9BAA;--error-soft:rgba(255,155,170,.14);--info:#A9C8F2;--info-soft:rgba(169,200,242,.14);
   --radius:6px;--radius-lg:8px;
   --font-display:'Cinzel','Cormorant Garamond',Georgia,serif;
-  --hw-blood:#6E1423;
-  --hw-purple:#625078;
+  --hw-blood:#E87532;
+  --hw-purple:#B99BCF;
+  color-scheme:dark;
   font-family:var(--font-body);
 }
 body.theme-halloween::before{
@@ -2178,17 +2183,17 @@ body.theme-christmas .xm-only-inline{display:inline-block}
    Vive en las mismas variables CSS que usa toda la web, así que recolorea
    automáticamente nav, botones, tarjetas y filtros sin tocar su lógica. */
 body.theme-christmas{
-  /* Navidad conserva verde pino y borgoña con superficies crema y salvia. */
-  --bg:#F8FAF5;--surface:#FFFFFF;--surface2:#EAF1E9;--surface3:#DCE8DB;
-  --border:rgba(38,99,74,0.14);--border2:rgba(38,99,74,0.30);
-  --text:#26332A;--muted:#56685B;
-  --accent:#762B35;--accent2:#79551F;--accent-soft:rgba(118,43,53,0.10);
-  --rose:#963B4A;--rose-soft:rgba(150,59,74,0.10);
-  --gold:#79551F;--gold-soft:rgba(121,85,31,0.11);--gold-decorative:#C4A46A;--shelf-wood:#5A422C;
+  /* Navidad: bosque, burdeos, marfil y oro antiguo (valores finales consolidados). */
+  --bg:#F7F3E9;--surface:#FFFCF5;--surface2:#E9EEE3;--surface3:#D9E3D4;
+  --border:rgba(35,76,56,.18);--border2:rgba(35,76,56,.38);
+  --text:#25372C;--muted:#526357;
+  --accent:#762B35;--accent2:#28563E;--accent-soft:rgba(40,86,62,.11);
+  --rose:#873744;--rose-soft:rgba(135,55,68,.11);
+  --gold:#74501C;--gold-soft:rgba(116,80,28,.12);--gold-decorative:#B18A45;--shelf-wood:#5A422C;
   --lavender:#625078;--lavender-soft:rgba(98,80,120,0.10);
-  --teal:#28634A;--teal-text:#28634A;
-  --success:#286A4B;--success-soft:rgba(40,106,75,0.10);--progress:#28634A;--progress-soft:rgba(40,99,74,0.10);
-  --warning:#79551F;--warning-soft:rgba(121,85,31,0.11);--error:#A12E43;--error-soft:rgba(161,46,67,0.10);--info:#405E86;--info-soft:rgba(64,94,134,0.10);
+  --teal:#28563E;--teal-text:#28563E;
+  --success:#24613E;--success-soft:rgba(36,97,62,.11);--progress:#28563E;--progress-soft:rgba(40,86,62,.12);
+  --warning:#74501C;--warning-soft:rgba(116,80,28,.12);--error:#922B3A;--error-soft:rgba(146,43,58,.11);--info:#345A7A;--info-soft:rgba(52,90,122,.11);
   --radius:6px;--radius-lg:8px;
   font-family:var(--font-body);
 }
@@ -2276,7 +2281,7 @@ body.theme-christmas .hero-title em{color:var(--gold);font-style:italic;font-wei
 body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:var(--font-display);font-size:16px}
 .xm-hero-note{
   margin-top:.6rem;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gold);opacity:.75;
+  color:var(--gold);
 }
 
 /* Decoración del hero — estrellas, vela, carta. Sin ramas ni marco. */
@@ -4381,42 +4386,7 @@ body.theme-christmas .tag-warning{background:var(--error-soft);color:var(--error
 }
 
 
-/* ── HALLOWEEN PALETTE CORRECTION · F2.3 · CSS ONLY ── */
-body.theme-halloween{
-  color-scheme:dark;
-  --bg:#17121E;
-  --surface:#2B2034;
-  --surface2:#352740;
-  --surface3:#40304D;
-  --border:rgba(244,234,240,.14);
-  --border2:rgba(244,234,240,.28);
-  --text:#F4EAF0;
-  --muted:#C8B9CC;
-  --accent:#E87532;
-  --accent2:#FF985B;
-  --accent-soft:rgba(232,117,50,.16);
-  --rose:#F08A9A;
-  --rose-soft:rgba(240,138,154,.14);
-  --gold:#B7A16A;
-  --gold-soft:rgba(183,161,106,.14);
-  --gold-decorative:#B7A16A;
-  --lavender:#B99BCF;
-  --lavender-soft:rgba(141,107,168,.22);
-  --teal:#80C7B8;
-  --teal-text:#80C7B8;
-  --success:#8FD5A9;
-  --success-soft:rgba(143,213,169,.14);
-  --progress:#80C7B8;
-  --progress-soft:rgba(128,199,184,.14);
-  --warning:#F2C879;
-  --warning-soft:rgba(242,200,121,.15);
-  --error:#FF9BAA;
-  --error-soft:rgba(255,155,170,.14);
-  --info:#A9C8F2;
-  --info-soft:rgba(169,200,242,.14);
-  --hw-blood:#E87532;
-  --hw-purple:#B99BCF;
-}
+
 body.theme-halloween::before{
   background:
     radial-gradient(ellipse at 12% -5%,rgba(141,107,168,.18) 0%,transparent 52%),
@@ -4519,6 +4489,7 @@ body.theme-halloween .section-tab,
 body.theme-halloween .dd-btn,
 body.theme-halloween .pg-btn,
 body.theme-halloween .vote-mini-btn{border-color:var(--border2);color:var(--text)}
+body.theme-halloween .hv-cta.hv-cta-main{color:#21131B}
 body.theme-halloween .book-card:hover{border-color:var(--accent);box-shadow:0 16px 36px rgba(0,0,0,.42),0 0 0 1px rgba(232,117,50,.22)}
 body.theme-halloween .tag-genre,
 body.theme-halloween .af-pill{background:rgba(232,117,50,.16);color:#FFD0B2;border-color:rgba(232,117,50,.48)}
@@ -4556,24 +4527,7 @@ body.theme-halloween .reset-modal{color:var(--text)}
    Sobrescrituras exclusivamente visuales. Halloween queda deliberadamente fuera.
    No se modifican HTML, JavaScript, datos ni mecanismos de activación. */
 
-/* Tema normal: marfil rosado, superficies diferenciadas y tinta de alto contraste. */
-:root{
-  --bg:#FBF3F0;
-  --surface:#FFFCFA;
-  --surface2:#F5E7E5;
-  --surface3:#EEDBD9;
-  --border:rgba(105,47,65,.16);
-  --border2:rgba(105,47,65,.34);
-  --text:#33232B;
-  --muted:#65505A;
-  --accent:#762B45;
-  --accent2:#87334F;
-  --accent-soft:rgba(118,43,69,.10);
-  --rose:#A83E5B;
-  --rose-soft:rgba(168,62,91,.10);
-  --teal:#286A61;
-  --teal-text:#286A61;
-}
+
 /* Mantener la cabecera clara y legible en el tema normal. */
 body:not(.theme-halloween):not(.theme-christmas) .topbar{
   background:rgba(255,252,250,.96);
@@ -4691,21 +4645,7 @@ body:not(.theme-halloween):not(.theme-christmas) select{
 body:not(.theme-halloween):not(.theme-christmas) input::placeholder,
 body:not(.theme-halloween):not(.theme-christmas) textarea::placeholder{color:#705C64;opacity:1}
 
-/* Navidad: paleta completa bosque, burdeos, marfil y oro antiguo. */
-body.theme-christmas{
-  --bg:#F7F3E9;--surface:#FFFCF5;--surface2:#E9EEE3;--surface3:#D9E3D4;
-  --border:rgba(35,76,56,.18);--border2:rgba(35,76,56,.38);
-  --text:#25372C;--muted:#526357;
-  --accent:#762B35;--accent2:#28563E;--accent-soft:rgba(40,86,62,.11);
-  --rose:#873744;--rose-soft:rgba(135,55,68,.11);
-  --gold:#74501C;--gold-soft:rgba(116,80,28,.12);--gold-decorative:#B18A45;
-  --teal:#28563E;--teal-text:#28563E;
-  --success:#24613E;--success-soft:rgba(36,97,62,.11);
-  --progress:#28563E;--progress-soft:rgba(40,86,62,.12);
-  --warning:#74501C;--warning-soft:rgba(116,80,28,.12);
-  --error:#922B3A;--error-soft:rgba(146,43,58,.11);
-  --info:#345A7A;--info-soft:rgba(52,90,122,.11);
-}
+
 body.theme-christmas::before{
   background:radial-gradient(ellipse at 12% 0%,rgba(118,43,53,.10) 0%,transparent 54%),
              radial-gradient(ellipse at 88% 100%,rgba(40,86,62,.09) 0%,transparent 56%);
@@ -5152,7 +5092,7 @@ body.theme-christmas .topbar .search-input{
 body.theme-halloween .topbar .desktop-nav-link:hover,
 body.theme-halloween .topbar .desktop-nav-link.active,
 body.theme-halloween .topbar .desktop-nav-link[aria-current="page"]{
-  background:var(--accent-soft);border-color:var(--border2);color:var(--accent);
+  background:var(--accent-soft);border-color:var(--border2);color:var(--accent2);
 }
 body.theme-christmas .topbar .desktop-nav-link:hover,
 body.theme-christmas .topbar .desktop-nav-link.active,
@@ -6031,7 +5971,7 @@ body.theme-christmas .topbar{
   border-bottom-color:var(--border2);
   box-shadow:0 5px 22px rgba(37,55,44,.09);
 }
-body.theme-halloween .topbar .btn-login{color:var(--text)}
+body.theme-halloween .topbar .btn-login{color:#21131B}
 body.theme-christmas .topbar .btn-login{color:var(--accent)}
 
 @media (min-width:1200px){
@@ -7376,7 +7316,7 @@ body:not(.home-active) .hero{
       </div>
       <div class="hv-safi-right">
         <div class="hv-safi-cats" id="hvSafiCats">
-          <div class="hv-safi-cat-row" style="opacity:.4"><span>🌹</span><span class="hv-safi-cat-name">Cargando…</span></div>
+          <div class="hv-safi-cat-row"><span>🌹</span><span class="hv-safi-cat-name">Cargando…</span></div>
         </div>
       </div>
     </div>
@@ -7394,7 +7334,7 @@ body:not(.home-active) .hero{
       </div>
       <div class="hv-safi-right">
         <div class="hv-safi-cats" id="hvThaiCats">
-          <div class="hv-safi-cat-row" style="opacity:.4"><span>🌺</span><span class="hv-safi-cat-name">Cargando…</span></div>
+          <div class="hv-safi-cat-row"><span>🌺</span><span class="hv-safi-cat-name">Cargando…</span></div>
         </div>
       </div>
     </div>
@@ -12016,7 +11956,7 @@ function updateHomeStats(){
     }));
     const ICONS=['🌹','📖','⭐','🔖','✨','💜','🌸'];
     catsEl.innerHTML=catMap.size===0
-      ?`<div class="hv-safi-cat-row" style="opacity:.45"><span>🌹</span><span class="hv-safi-cat-name">Aún sin lecturas del club</span></div>`
+      ?`<div class="hv-safi-cat-row" style="opacity:.8"><span>🌹</span><span class="hv-safi-cat-name">Aún sin lecturas del club</span></div>`
       :[...catMap.entries()].map(([cat,count],i)=>`
         <div class="hv-safi-cat-row">
           <span>${ICONS[i%ICONS.length]}</span>
@@ -12049,7 +11989,7 @@ function updateHomeThaiClub(){
     }));
     const ICONS=['🌺','📖','⭐','🔖','✨','🌸'];
     catsEl.innerHTML=catMap.size===0
-      ?`<div class="hv-safi-cat-row" style="opacity:.45"><span>🌺</span><span class="hv-safi-cat-name">Aún sin lecturas del club</span></div>`
+      ?`<div class="hv-safi-cat-row" style="opacity:.8"><span>🌺</span><span class="hv-safi-cat-name">Aún sin lecturas del club</span></div>`
       :[...catMap.entries()].map(([cat,count],i)=>`
         <div class="hv-safi-cat-row">
           <span>${ICONS[i%ICONS.length]}</span>
@@ -17810,6 +17750,146 @@ document.getElementById('bingoCellModal').addEventListener('click',e=>{if(e.targ
   max-width:100%;
   overflow-wrap:anywhere;
   white-space:normal;
+}
+</style>
+<style id="f432-jerarquia-tipografica">
+/* F4.3.2 · Corrección tipográfica aprobada en F4.3.1.
+   Solo presentación: tamaños, tracking, peso y opacidad de texto. Cormorant Garamond e Instrument Sans se conservan;
+   no se fija ningún color propio salvo variables existentes, así que Normal, Halloween y Navidad siguen sus tokens. */
+:root{
+  --fs-label:11px;   /* suelo absoluto de texto legible */
+  --fs-meta:12px;    /* datos secundarios */
+  --fs-ui:13px;      /* interfaz y párrafo pequeño */
+  --fs-body:14px;    /* párrafo normal */
+  --fs-lead:16px;    /* texto de introducción */
+}
+
+/* ── 1. Inicio: textos de entrada, párrafos y datos ── */
+#homeView .hv-desc{font-size:var(--fs-lead);line-height:1.7;max-width:540px}
+#homeView .hv-feat-p,#homeView .hv-how-p{font-size:13.5px;line-height:1.7}
+#homeView .hv-safi-p{font-size:var(--fs-body);line-height:1.72}
+#homeView .hv-feat-link{font-size:var(--fs-ui)}
+#homeView .hv-url-link{font-size:var(--fs-meta)}
+#homeView .hv-cta{font-size:13.5px}
+#homeView .hv-safi-cat-name{font-size:var(--fs-ui)}
+#homeView .hv-safi-cat-count{font-size:var(--fs-meta)}
+
+/* Eyebrow único para el mismo papel (tamaño, peso y tracking); Safi conserva --rose */
+#homeView .hv-eyebrow,
+#homeView .hv-how-sub,
+#homeView .hv-safi-eyebrow{
+  font-size:var(--fs-label);font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+}
+#homeView .hv-eyebrow,#homeView .hv-how-sub{color:var(--muted)}
+#homeView .hv-safi-eyebrow{color:var(--rose)}
+#homeView .hv-stat-l{font-size:var(--fs-label);letter-spacing:.08em}
+#homeView .hv-safi-badge{
+  font-size:10.5px;letter-spacing:.1em;
+  color:var(--rose);background:var(--rose-soft);
+  border-color:color-mix(in srgb,var(--rose) 35%,transparent);
+}
+.hero-eyebrow,.stat-label{font-size:var(--fs-label)}
+
+/* ── 2. Catálogo: tarjetas ── */
+#booksContainer .book-title{font-size:clamp(1.06rem,1.2vw,1.25rem)}
+#booksContainer .book-author{font-size:var(--fs-meta)}
+#booksContainer .card-saga-sub{font-size:11.5px}
+#booksContainer .book-tags .tag{font-size:clamp(11px,.4vw + 7px,12px)}
+#booksContainer .vote-mini-btn{font-size:var(--fs-label)}
+#booksContainer .no-ratings{font-size:var(--fs-label)}
+#booksContainer .card-shelf-btn{font-size:var(--fs-label)}
+
+/* ── 3. Filtros y barra de resultados ── */
+.filter-label-txt{font-size:var(--fs-label);opacity:1}
+.dd-count{font-size:var(--fs-label)}
+.user-chip-caret{opacity:.85}
+#panelEstanteria .filter-top::before{font-size:var(--fs-label)}
+
+/* ── 4. Ficha del libro: rótulo de sección > etiqueta de dato < valor ── */
+.bp-section-title{font-size:12.5px;letter-spacing:.12em}
+.meta-key{font-size:var(--fs-label);letter-spacing:.06em;font-weight:500}
+.meta-val{font-size:var(--fs-body)}
+.bp-group-label{font-size:var(--fs-label)}
+.bp-mine-label{font-size:var(--fs-label)}
+
+/* ── 5. Móvil ── */
+@media(max-width:700px){
+  #booksContainer .book-title{font-size:1.02rem}
+  #booksContainer .book-author{font-size:11.5px}
+  #booksContainer .book-tags .tag{font-size:var(--fs-label);padding:.2rem .42rem}
+  #booksContainer .vote-mini-btn{font-size:var(--fs-label);padding:.3rem .5rem}
+  #booksContainer .card-shelf-btn{font-size:var(--fs-label);padding:5px 4px}
+}
+@media(max-width:560px){
+  #homeView .hv-desc{font-size:15px}
+  #homeView .hv-cta{font-size:13px}
+  #homeView .hv-eyebrow{font-size:var(--fs-label)}
+  #homeView .hv-stat-l{font-size:var(--fs-label);letter-spacing:.06em}
+}
+@media(max-width:380px){
+  #booksContainer .book-title{font-size:1rem}
+  #panelEstanteria .filter-top::before{font-size:var(--fs-label)}
+}
+</style>
+<style id="f442-correcciones-aprobadas">
+/* F4.4.2 · Correcciones aprobadas en F4.4.1 (puntos 1 a 7). Solo presentación; sin cambios de datos, lógica ni estructura.
+   Todos los colores salen de variables existentes, así que Normal, Halloween y Navidad siguen sus tokens. */
+
+/* 1 · Barra inferior móvil: fondo claro en Normal y Navidad (Halloween conserva el oscuro) y etiquetas a 11px */
+body:not(.theme-halloween) .mobile-bottom-nav{
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:0 -6px 20px rgba(60,30,42,.10);
+}
+.mbn-item{font-size:var(--fs-label)}
+@media(max-width:700px){.mbn-item{font-size:var(--fs-label)}}
+@media(max-width:359px){.mbn-item{font-size:var(--fs-label)}}
+
+/* 2 · Estadísticas de Inicio: rejilla 2×2 en ≤850px, con divisores coherentes */
+@media(max-width:850px){
+  #homeView .hv-stats-band{flex-direction:row;flex-wrap:wrap;justify-content:center;padding-left:.75rem;padding-right:.75rem}
+  #homeView .hv-stat{flex:0 0 50%;max-width:50%;box-sizing:border-box;border-right:0;border-bottom:0;padding:1rem .5rem}
+  #homeView .hv-stat:nth-child(odd){border-right:1px solid var(--border)}
+  #homeView .hv-stat:nth-child(-n+2){border-bottom:1px solid var(--border)}
+}
+
+/* 3 · Bloques de club alineados con las rejillas de funciones y «Cómo funciona» */
+#homeView .hv-safi-block{
+  width:calc(100% - 2*clamp(1rem,3vw,2rem));
+  max-width:calc(1100px - 2*clamp(1rem,3vw,2rem))!important;
+}
+
+/* 4 · Navidad: panel «¿Qué historia te espera bajo el árbol?» sin degradado oscuro residual */
+body.theme-christmas .xm-gift{
+  background:linear-gradient(180deg,var(--surface),var(--surface2));
+}
+body.theme-christmas .xm-gift-sub{color:var(--muted)}
+body.theme-christmas .xm-gift-btn{color:var(--accent2);border-color:var(--accent2)}
+
+/* 5 · Suelo de 11px */
+#homeView .hv-safi-badge{font-size:var(--fs-label)}
+.topbar .logo-sub{font-size:var(--fs-label)}
+.similar-item-author{font-size:var(--fs-label)}
+#booksContainer .book-cover-ph small,.book-cover-ph small{font-size:var(--fs-label)}
+.mbn-more-eyebrow,.mbn-more-group-label{font-size:var(--fs-label)}
+.hw-forbidden-eyebrow,#panelEstanteria > .hw-forbidden .hw-forbidden-eyebrow,
+.hw-forbidden-book-author,.hw-preview .hw-forbidden-book-author{font-size:var(--fs-label)}
+.xm-collection-eyebrow,
+.xm-collection-book-author,.xm-preview .xm-collection-book-author{font-size:var(--fs-label)}
+.xm-letter{font-size:var(--fs-label);width:124px;padding:10px 12px}
+@media(max-width:700px){.xm-letter{font-size:var(--fs-label);width:110px}}
+
+/* 6 · Estilos sin efecto: puntos de la banda de estadísticas y borde del número de «Cómo funciona» */
+.hv-stats-band::after,#homeView .hv-stats-band::after{
+  background-image:radial-gradient(color-mix(in srgb,var(--accent) 38%,transparent) 1px,transparent 1px);
+  opacity:.5;
+}
+.hv-how-step{border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+
+/* 7 · Ficha: un único estilo de título de sección (el de .bp-section-title) */
+.book-locations-title,.similar-title{
+  font-family:var(--font-body);font-size:12.5px;font-weight:600;font-style:normal;
+  letter-spacing:.12em;text-transform:uppercase;line-height:1.3;
+  color:var(--muted)!important;margin-bottom:.6rem;
 }
 </style>
 </body>
