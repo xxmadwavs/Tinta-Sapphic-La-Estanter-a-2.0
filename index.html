@@ -8044,10 +8044,10 @@ body:not(.home-active) .hero{
         <input type="text" id="authTelegram" placeholder="usuario_telegram" autocomplete="off" autocapitalize="none" spellcheck="false" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'')">
       </div>
       <input type="email" id="authEmail" placeholder="Email" autocomplete="email">
-      <input type="password" id="authPass" placeholder="Contraseña (mín. 6 caracteres)" autocomplete="current-password" onkeydown="if(event.key==='Enter')handleAuth()">
+      <div class="pass-wrap"><input type="password" id="authPass" placeholder="Contraseña (mín. 6 caracteres)" autocomplete="current-password" onkeydown="if(event.key==='Enter')handleAuth()"><button type="button" class="pass-toggle" aria-label="Mostrar contraseña" aria-pressed="false" onclick="const i=this.previousElementSibling,h=i.type==='password';i.type=h?'text':'password';this.setAttribute('aria-pressed',h);this.setAttribute('aria-label',h?'Ocultar contraseña':'Mostrar contraseña');this.textContent=h?'Ocultar':'Mostrar'">Mostrar</button></div>
       <button class="btn-primary" id="authBtn" onclick="handleAuth()">Entrar</button>
     </div>
-    <div class="auth-error" id="authError"></div>
+    <div class="auth-error" id="authError" role="alert" aria-live="assertive"></div>
     <p class="auth-toggle" id="authToggle">¿No tienes cuenta? <a onclick="toggleAuthMode()">Regístrate aquí</a></p>
     <p class="auth-toggle" id="authForgotWrap" style="margin-top:.35rem"><a onclick="handleForgotPassword()">¿Olvidaste tu contraseña?</a></p>
   </div>
@@ -8061,6 +8061,7 @@ body:not(.home-active) .hero{
 
     <!-- Paso 1: pedir email -->
     <div id="resetStep1">
+      <div class="reset-step-tag">Paso 1 de 2</div>
       <div class="auth-title">Recuperar cuenta</div>
       <p class="auth-sub">Te enviaremos un código de 8 dígitos a tu email.</p>
       <div class="auth-form">
@@ -8072,6 +8073,7 @@ body:not(.home-active) .hero{
 
     <!-- Paso 2: introducir código + nueva contraseña -->
     <div id="resetStep2" style="display:none">
+      <div class="reset-step-tag">Paso 2 de 2</div>
       <div class="auth-title">Nueva contraseña</div>
       <p class="auth-sub" id="resetStep2Sub">Introduce el código que te hemos enviado y elige una nueva contraseña.</p>
       <div class="auth-form">
@@ -8264,7 +8266,7 @@ body:not(.home-active) .hero{
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 const SUPABASE_URL = document.querySelector('meta[name="sb-url"]').content;
@@ -11592,14 +11594,18 @@ function renderAuthUI(){
         <span class="user-chip-caret">▾</span>
       </button>
       <div class="user-dropdown" id="userAccountDropdown" role="menu" aria-label="Menú de cuenta">
+        <div class="user-dd-head" role="presentation"><span class="user-dd-avatar" aria-hidden="true">${tg.slice(0,2).toUpperCase()}</span><span class="user-dd-id"><strong>@${tg}</strong><small>${currentUser.email}</small></span></div>
+        <div class="user-dd-group" role="presentation">Mi lectura</div>
         <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openShelf()">Mi estantería</button>
+        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown();openAnioModal()">Mi año sapphic</button>
+        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown();openRecorridoModal()">Mi recorrido sapphic</button>
+        <div class="user-dd-group" role="presentation">Mi progreso</div>
         <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openLogrosModal()">Mis logros</button>
         <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openStatsModal()">Mis estadísticas</button>
         <button type="button" role="menuitem" class="user-dd-item" data-personal-view="mundo" onclick="toggleUserDropdown();openMundoModal()">Mi mundo sapphic</button>
-        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="recorrido" onclick="toggleUserDropdown();openRecorridoModal()">Mi recorrido sapphic</button>
-        <button type="button" role="menuitem" class="user-dd-item" data-personal-view="anio" onclick="toggleUserDropdown();openAnioModal()">Mi año sapphic</button>
         <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
         <div class="user-dd-sep"></div>
+        <div class="user-dd-group" role="presentation">Cuenta</div>
         <button type="button" role="menuitem" class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
       </div>
     </div>`;
@@ -11646,7 +11652,7 @@ function updateAuthUI(){
   document.getElementById('authBtn').textContent=isReg?'Registrarse':'Entrar';
   document.getElementById('authToggle').innerHTML=isReg?'¿Ya tienes cuenta? <a onclick="toggleAuthMode()">Inicia sesión</a>':'¿No tienes cuenta? <a onclick="toggleAuthMode()">Regístrate aquí</a>';
   document.getElementById('authForgotWrap').style.display=isReg?'none':'block';
-  document.getElementById('authError').textContent='';
+  setAuthError('');
 }
 async function handleForgotPassword(){
   closeAuthModal();
@@ -11700,7 +11706,16 @@ async function handleAuth(){
   if(error) setAuthError(error.message==='Invalid login credentials'?'Email o contraseña incorrectos.':error.message);
   btn.disabled=false;btn.textContent=authMode==='register'?'Registrarse':'Entrar';
 }
-function setAuthError(msg){document.getElementById('authError').textContent=msg;}
+function setAuthError(msg){
+  const e=document.getElementById('authError');e.textContent=msg;
+  e.setAttribute('role','alert');e.classList.toggle('has-msg',!!msg);
+  const f=document.querySelector('#authModal .auth-form, .auth-form');
+  document.querySelectorAll('#authEmail,#authPass,#authTelegram').forEach(i=>{
+    const bad=!!msg&&(i.id==='authEmail'?/email/i.test(msg):i.id==='authPass'?/contrase|caracteres|incorrect/i.test(msg)&&!/telegram/i.test(msg):/telegram/i.test(msg));
+    i.setAttribute('aria-invalid',bad?'true':'false');
+    const w=i.closest('.tg-input-wrap')||i;w.classList.toggle('field-invalid',bad);
+  });
+}
 async function logout(){await sb.auth.signOut();myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};showToast('Hasta pronto 🌹','success');applyFilters();}
 
 function toggleUserDropdown(){
@@ -11744,20 +11759,20 @@ async function handleResetPassword(){
   let otpData, otpErr;
   ({data:otpData,error:otpErr}=await sb.auth.verifyOtp({email:window._resetEmail,token:otp,type:'recovery'}));
   if(otpErr){
-    err.textContent='[recovery] '+otpErr.message+' — probando email…';
+    err.textContent='Comprobando el código…';
     ({data:otpData,error:otpErr}=await sb.auth.verifyOtp({email:window._resetEmail,token:otp,type:'email'}));
   }
   if(otpErr){
-    err.textContent='Error OTP: '+otpErr.message;
+    err.textContent='El código no es válido o ha caducado. Pide uno nuevo e inténtalo otra vez.';
     btn.disabled=false;btn.textContent='Guardar contraseña';
     return;
   }
-  err.textContent='Código OK. Estableciendo sesión…';
+  err.textContent='Código correcto. Iniciando tu sesión…';
   if(otpData?.session){
     const {error:sessErr}=await sb.auth.setSession({access_token:otpData.session.access_token,refresh_token:otpData.session.refresh_token});
-    if(sessErr){err.textContent='Error sesión: '+sessErr.message;btn.disabled=false;btn.textContent='Guardar contraseña';return;}
+    if(sessErr){err.textContent='No se pudo iniciar la sesión. Inténtalo de nuevo.';btn.disabled=false;btn.textContent='Guardar contraseña';return;}
   }
-  err.textContent='Sesión lista. Guardando contraseña…';
+  err.textContent='Guardando tu nueva contraseña…';
   let updateError=null;
   try{
     const updatePromise=sb.auth.updateUser({password:pass});
@@ -11778,7 +11793,20 @@ async function handleResetPassword(){
 }
 document.getElementById('resetModal').addEventListener('click',e=>{if(e.target.id==='resetModal')closeResetModal();});
 
-function showToast(msg,type='success'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast ${type}`;setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>t.classList.remove('show'),3200);}
+var _toastTimer=null;
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.setAttribute('role',type==='error'?'alert':'status');t.setAttribute('aria-live',type==='error'?'assertive':'polite');
+  t.innerHTML='';
+  const ic=document.createElement('span');ic.className='toast-ic';ic.setAttribute('aria-hidden','true');ic.textContent=type==='error'?'!':'✓';
+  const tx=document.createElement('span');tx.className='toast-tx';tx.textContent=msg;
+  const x=document.createElement('button');x.type='button';x.className='toast-x';x.setAttribute('aria-label','Cerrar mensaje');x.textContent='✕';
+  x.onclick=()=>t.classList.remove('show');
+  t.append(ic,tx,x);t.className=`toast ${type}`;
+  clearTimeout(_toastTimer);
+  setTimeout(()=>t.classList.add('show'),10);
+  _toastTimer=setTimeout(()=>t.classList.remove('show'),Math.min(9000,Math.max(3200,String(msg).length*70)));
+}
 
 function copyTabLink(){
   try{
@@ -18655,5 +18683,65 @@ html:has(.modal-bg.open,.info-modal-bg.open,.hito-modal-bg.open){overflow:hidden
   });
 })();
 </script>
+<style id="f852-perfil-cuenta">
+/* F8.5.2 · Perfil y herramientas de cuenta. Solo presentación; sin cambios de datos, permisos ni autenticación. */
+/* Menú de cuenta */
+.user-dropdown{min-width:240px;padding:6px}
+.user-dd-head{display:flex;align-items:center;gap:10px;padding:10px 12px 12px;margin-bottom:2px;border-bottom:1px solid var(--border2)}
+.user-dd-avatar{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:12px;font-weight:700;letter-spacing:.03em}
+.user-dd-id{min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.user-dd-id strong{font-size:13px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.user-dd-id small{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.user-dd-group{padding:10px 12px 4px;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.user-dd-item{min-height:40px;border-radius:10px}
+/* Formularios de acceso */
+.auth-form input{min-height:44px}
+.auth-form input:focus-visible,.tg-input-wrap:focus-within{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.auth-form input[aria-invalid="true"],.field-invalid{border-color:var(--error)!important;box-shadow:0 0 0 3px var(--error-soft)}
+.auth-error{display:none;align-items:flex-start;justify-content:center;gap:6px;text-align:left;font-size:12.5px;line-height:1.45;color:var(--error);background:var(--error-soft);border:1px solid var(--error);border-radius:10px;padding:8px 10px;margin-top:.6rem;min-height:0}
+.auth-error:not(:empty){display:flex}
+.auth-error:not(:empty)::before{content:'!';flex:none;width:16px;height:16px;margin-top:1px;border-radius:50%;background:var(--error);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+.pass-wrap{position:relative;display:flex}
+.auth-form .tg-input-wrap input{background:transparent;border:0;box-shadow:none;min-height:42px}
+.pass-wrap{width:100%}
+.pass-wrap input{flex:1;min-width:0;width:100%;box-sizing:border-box;padding-right:84px}
+.pass-toggle{position:absolute;right:6px;top:50%;transform:translateY(-50%);min-height:32px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:var(--accent2);font:600 12px var(--font-body);cursor:pointer}
+.pass-toggle:hover{background:var(--accent-soft)}
+.pass-toggle:focus-visible{outline:2px solid var(--accent)}
+.reset-step-tag{display:inline-block;margin-bottom:.6rem;padding:3px 10px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.reset-modal .auth-form input,.reset-modal .auth-form{min-height:0}
+.reset-modal .auth-form input{min-height:44px}
+/* Botones: primario relleno, secundario contorno, destructivo rosa */
+.btn-primary{min-height:44px;border-radius:12px}
+.btn-primary:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
+.btn-primary:disabled{opacity:.55;cursor:not-allowed;filter:saturate(.6)}
+.shelf-back-link{min-height:44px;padding:0 16px!important;border:1px solid var(--border2);border-radius:12px;background:var(--surface);color:var(--accent);font-weight:600;font-size:13px;display:inline-flex;align-items:center}
+.shelf-back-link:hover{background:var(--accent-soft);border-color:var(--accent)}
+.shelf-back-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* Estadísticas personales */
+.mystat-n{font-weight:500}
+.mystat{box-shadow:0 1px 0 var(--border) inset}
+.mystat-l{font-weight:600}
+.curio-card{transition:border-color .15s,transform .15s}
+.curio-card:hover{border-color:var(--accent)}
+.stats-block-note:empty{display:none}
+.stats-block{padding-bottom:.5rem}
+/* Toast accesible */
+.toast{display:flex;align-items:center;gap:10px;max-width:min(420px,calc(100vw - 2rem));padding:10px 12px 10px 14px;border-radius:14px;line-height:1.4;pointer-events:none;box-shadow:0 8px 24px rgba(60,20,35,.22)}
+.toast.show{pointer-events:auto}
+.toast-ic{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.28);font-size:12px;font-weight:800}
+.toast-tx{flex:1;min-width:0}
+.toast-x{flex:none;min-width:28px;min-height:28px;border:0;border-radius:8px;background:transparent;color:inherit;opacity:.8;cursor:pointer;font-size:12px}
+.toast-x:hover{background:rgba(255,255,255,.2);opacity:1}
+.toast.success{background:var(--teal);color:#fff}
+.toast.error{background:var(--error);color:#fff}
+/* Estados de carga y vacíos */
+.loading{display:flex;flex-direction:column;align-items:center;gap:.4rem;font-size:13px}
+.loading .spinner{margin-bottom:.4rem}
+.empty-state{border:1px dashed var(--border2);border-radius:var(--radius-lg);background:var(--surface)}
+@media (prefers-reduced-motion:reduce){.toast,.spinner{transition:none;animation-duration:2s}}
+@media(max-width:600px){.toast{left:1rem;right:1rem;max-width:none}.user-dropdown{min-width:min(260px,calc(100vw - 2rem))}}
+
+</style>
 </body>
 </html>
