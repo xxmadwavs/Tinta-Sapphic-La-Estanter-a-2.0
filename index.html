@@ -10512,12 +10512,14 @@ function renderBookPage(book){
   // el nivel PERSONAL ("tu spicy") va aparte, en el panel bajo la portada.
   const spicyEff=effectiveSpicy(b);
   const spicyIsUnknown=spicyEff==null;
+  // F7.4.2 — escala de 5 chiles de solo lectura + etiqueta (mismo nivel, mismo filtro al pulsar).
+  const _spChiles=n=>`<span class="bp-sp-chiles" aria-hidden="true">${[1,2,3,4,5].map(i=>`<span class="bp-sp-chile ${i<=n?'on':'off'}">🌶</span>`).join('')}</span>`;
   const spicyGeneralTag=currentUser
     ?(spicyIsUnknown
-      ?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicyUnknown" data-bpv="1" style="background:color-mix(in srgb,var(--muted) 15%,transparent);color:var(--muted);border:1px solid color-mix(in srgb,var(--muted) 30%,transparent)">${SPICY_UNKNOWN_ICON} ${SPICY_UNKNOWN_LABEL}</span>`
-      :(spicyEff>0?`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="${spicyEff}" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 25%,transparent)">${SPICY_ICONS[spicyEff]} ${SPICY_LABELS[spicyEff]}</span>`
-      :`<span class="tag bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="0" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 25%,transparent)">${SPICY_LABELS[0]}</span>`))
-    :`<span class="tag" style="background:color-mix(in srgb,var(--muted) 10%,transparent);color:var(--muted);border:1px dashed color-mix(in srgb,var(--muted) 30%,transparent);cursor:pointer" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</span>`;
+      ?`<span class="bp-spicy-general is-unknown bp-tag-link" role="button" tabindex="0" data-bpf="spicyUnknown" data-bpv="1">${_spChiles(0)}<span class="bp-sp-text">${SPICY_UNKNOWN_LABEL}</span></span>`
+      :(spicyEff>0?`<span class="bp-spicy-general bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="${spicyEff}">${_spChiles(spicyEff)}<span class="bp-sp-text">${SPICY_LABELS[spicyEff]}</span></span>`
+      :`<span class="bp-spicy-general is-zero bp-tag-link" role="button" tabindex="0" data-bpf="spicy" data-bpv="0"><span class="bp-sp-zero" aria-hidden="true">🚫</span><span class="bp-sp-text">${SPICY_LABELS[0]}</span></span>`))
+    :`<button type="button" class="bp-spicy-general is-hidden" onclick="openAuthModal()" title="Regístrate para ver el nivel spicy">🔒 Spicy oculto</button>`;
   const generalRow=`<div class="bp-general-row">${miniRating}${spicyGeneralTag}</div>`;
 
   // SAGA (cabecera + mapa de orden de lectura reutilizado tal cual)
@@ -10790,9 +10792,13 @@ function renderBpTagsSection(focusType){
    votar/eliminar. */
 function buildBpMiniRatingHTML(){
   const r=activeBook?(ratingsMap[activeBook.id]||{avg:0,count:0}):{avg:0,count:0};
-  if(!(r.count>0)) return '';
+  // F7.4.2 — solo presentación: nota grande + estrellas + recuento; sin votos se muestra un estado vacío.
+  if(!(r.count>0)){
+    const off=[1,2,3,4,5].map(()=>`<span class="star off">★</span>`).join('');
+    return `<span class="bp-rate-detail"><span class="avg-stars-row" aria-hidden="true">${off}</span><span class="bp-rate-count">Sin valoraciones todavía</span></span>`;
+  }
   const stars=[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(r.avg)?'on':'off'}">★</span>`).join('');
-  return `<span class="avg-stars-row">${stars}</span><span>${r.avg.toFixed(1)} · ${r.count} valoración${r.count!==1?'es':''}</span>`;
+  return `<span class="bp-rate-avg">${r.avg.toFixed(1)}</span><span class="bp-rate-detail"><span class="avg-stars-row" role="img" aria-label="Valoración media ${r.avg.toFixed(1)} de 5">${stars}</span><span class="bp-rate-count">${r.count} ${r.count!==1?'valoraciones':'valoración'}</span></span>`;
 }
 function _refreshBpGeneralRating(){
   const el=document.getElementById('bpMiniRating');
@@ -18158,6 +18164,107 @@ body.theme-halloween #bookPage .bp-cover{box-shadow:0 14px 34px rgba(0,0,0,.5),0
 @media(max-width:639px){
   #bookPage .bp-sobre-grid{gap:1.2rem}
   #bookPage .bp-sobre-grid .bp-group{flex-basis:100%}
+}
+</style>
+<style id="f742-valoraciones-spicy">
+/* F7.4.2 · Valoraciones y spicy de la ficha (BookPage). Solo presentación, acotada a #bookPage.
+   Valoración = dorado, Spicy = rosa cálido. Colores solo con variables de tema; las estrellas apagadas
+   alcanzan >= 3:1 de contraste (antes 1,3:1). */
+#bookPage{--f742-off:color-mix(in srgb,var(--muted) 70%,var(--surface))}
+
+/* 1 · Valoración general: nota grande, estrellas y recuento legibles */
+#bookPage .bp-general-row{align-items:center;gap:.75rem 1.75rem}
+#bookPage .bp-mini-rating{display:flex;align-items:center;gap:.7rem;font-size:12px;color:var(--text)}
+#bookPage .bp-rate-avg{font-family:var(--font-display);font-size:2.3rem;font-weight:500;line-height:1;color:var(--text)}
+#bookPage .bp-rate-detail{display:flex;flex-direction:column;gap:3px}
+#bookPage .bp-rate-count{font-size:12px;line-height:1.3;color:var(--text)}
+#bookPage .bp-mini-rating .avg-stars-row,
+#bookPage .bp-mine-block .avg-stars-row{display:flex;gap:3px;margin:0}
+#bookPage .bp-mini-rating .star,
+#bookPage .bp-mine-block .star{font-size:20px;line-height:1}
+#bookPage .bp-mini-rating .star.on,
+#bookPage .bp-mine-block .star.on{color:var(--gold)}
+#bookPage .bp-mini-rating .star.off,
+#bookPage .bp-mine-block .star.off{color:var(--f742-off)}
+body.theme-halloween #bookPage .bp-mini-rating .star.on,
+body.theme-halloween #bookPage .bp-mine-block .star.on,
+body.theme-halloween #bookPage #bpStarInput .bp-rating-star.selected{color:#D9C58D}
+
+/* 2 · Spicy general: escala de 5 chiles de solo lectura + etiqueta, separada de la valoración */
+#bookPage .bp-spicy-general{
+  display:inline-flex;align-items:center;gap:.6rem;min-height:36px;margin:0;padding:0 0 0 1.75rem;
+  border:0;border-left:1px solid var(--border2);border-radius:0;background:none;
+  font:600 12px/1.3 var(--font-body);color:var(--rose);cursor:pointer;
+}
+#bookPage .bp-spicy-general:hover{opacity:1;transform:none;text-decoration:underline;text-underline-offset:3px}
+#bookPage .bp-spicy-general:focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:6px}
+#bookPage .bp-spicy-general.is-hidden,#bookPage .bp-spicy-general.is-unknown{color:var(--muted)}
+#bookPage .bp-sp-chiles{display:inline-flex;gap:2px}
+#bookPage .bp-sp-chile,#bookPage .bp-sp-zero{font-size:18px;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+#bookPage .bp-sp-chile.off{filter:grayscale(1) opacity(55%)}
+
+/* 3 · «Tu valoración» / «Tu spicy»: dos tarjetas alineadas, cada una con su color */
+#bookPage .bp-mine-row{
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;justify-content:stretch;align-items:stretch;
+  padding:1rem 0 0;border-bottom:0;
+}
+#bookPage .bp-mine-block{
+  --ind:var(--gold);min-width:0;align-items:flex-start;text-align:left;
+  padding:.8rem .9rem .9rem;background:var(--surface);
+  border:1px solid var(--border2);border-radius:12px;box-shadow:inset 0 3px 0 0 var(--ind);
+}
+#bookPage #bpSpicyBlock{--ind:var(--rose)}
+#bookPage .bp-mine-label{
+  font-size:var(--fs-label,11px);font-weight:700;letter-spacing:.14em;color:var(--ind);margin:0 0 .45rem;
+}
+#bookPage .bp-rating-interactive .vote-prompt,
+#bookPage .bp-spicy-interactive .vote-prompt{font-size:12px;line-height:1.35;color:var(--muted);margin:0 0 .35rem}
+
+/* Controles: misma altura de fila (32 px) y misma lógica de estados en estrellas y chiles */
+#bookPage #bpStarInput.bp-rating-stars,
+#bookPage #bpSpicyInput.bp-spicy-input,
+#bookPage .bp-mine-chiles:not(.bp-spicy-input){display:flex;align-items:center;gap:2px;height:32px;margin:0}
+#bookPage #bpStarInput .bp-rating-star,
+#bookPage #bpSpicyInput .bp-spicy-btn{
+  width:30px;height:32px;min-width:0;min-height:0;padding:0;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;line-height:1;
+}
+#bookPage #bpStarInput .bp-rating-star{font-size:20px;color:var(--f742-off)}
+#bookPage #bpStarInput .bp-rating-star.selected{color:var(--gold)}
+#bookPage #bpSpicyInput .bp-spicy-btn{font-size:18px;filter:grayscale(1) opacity(55%)}
+#bookPage #bpSpicyInput .bp-spicy-btn.selected{filter:none}
+#bookPage #bpStarInput .bp-rating-star:hover,
+#bookPage #bpSpicyInput .bp-spicy-btn:hover{background:color-mix(in srgb,var(--ind) 14%,transparent)}
+#bookPage #bpStarInput .bp-rating-star:focus-visible,
+#bookPage #bpSpicyInput .bp-spicy-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:1px}
+#bookPage .bp-mine-chile{font-size:18px;filter:grayscale(1) opacity(55%)}
+#bookPage .bp-mine-chile.on{filter:none}
+
+/* Voto pendiente de guardar (botón Guardar activo): tarjeta con su color y selección con brillo */
+#bookPage .bp-mine-block:has(.vote-submit:not(:disabled)){border-color:var(--ind)}
+#bookPage .bp-rating-interactive:has(.bp-rating-submit:not(:disabled)) .vote-prompt::after,
+#bookPage .bp-spicy-interactive:has(.bp-spicy-submit:not(:disabled)) .vote-prompt::after{content:" · Sin guardar";color:var(--ind);font-weight:600}
+#bookPage .bp-rating-interactive:has(.bp-rating-submit:not(:disabled)) .bp-rating-star.selected{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--gold) 60%,transparent))}
+#bookPage .bp-spicy-interactive:has(.bp-spicy-submit:not(:disabled)) .bp-spicy-btn.selected{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--rose) 60%,transparent))}
+
+/* Botones Guardar / Eliminar: 12 px y 32 px de alto */
+#bookPage .bp-mine-btns{margin-top:.55rem;padding-top:0;gap:.5rem;justify-content:flex-start;align-items:center}
+#bookPage .bp-rating-submit,#bookPage .bp-spicy-submit{min-height:32px;padding:0 16px;font-size:12px}
+#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:32px;padding:0 12px;font-size:12px}
+
+/* Sin sesión: nota legible con enlace visible */
+#bookPage .bp-readonly-note{grid-column:1/-1;text-align:left;font-style:normal;font-size:12px;color:var(--text);margin:.1rem 0 0}
+#bookPage .bp-readonly-note a{color:var(--accent2);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* Móvil: una columna y zonas táctiles de >= 32 px */
+@media(max-width:639px){
+  #bookPage .bp-mine-row{grid-template-columns:1fr;gap:.6rem}
+  #bookPage .bp-spicy-general{padding-left:0;border-left:0}
+}
+@media(max-width:639px),(pointer:coarse){
+  #bookPage #bpStarInput .bp-rating-star,#bookPage #bpSpicyInput .bp-spicy-btn{width:34px;height:36px}
+  #bookPage #bpStarInput.bp-rating-stars,#bookPage #bpSpicyInput.bp-spicy-input{height:36px}
+  #bookPage .bp-rating-submit,#bookPage .bp-spicy-submit,#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:36px}
 }
 </style>
 </body>
