@@ -3625,7 +3625,7 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
    body.home-active ya usa para ocultar estos dos elementos. */
 body.bp-active .hero,body.bp-active .main{display:none!important}
 /* FIX — con la ficha abierta, ninguna vista personal puede verse aunque una apertura asíncrona la reactive tarde */
-body.bp-active #shelfView,body.bp-active #logrosView,body.bp-active #statsView,body.bp-active #mundoView,body.bp-active #recorridoView,body.bp-active #anioView,body.bp-active #cartasView{display:none!important}
+body.bp-active #homeView,body.bp-active #shelfView,body.bp-active #logrosView,body.bp-active #statsView,body.bp-active #mundoView,body.bp-active #recorridoView,body.bp-active #anioView,body.bp-active #cartasView{display:none!important}
 /* Vistas personales (Mi estantería, logros, estadísticas, mundo, recorrido, año, cartas):
    ocultar solo la cabecera global .hero ("Nuestra estantería" + Libros/Valoraciones).
    Se apaga sola al cerrar la vista, porque closeAllSpecialViews() quita .active. */
@@ -9110,16 +9110,15 @@ async function init(){
   // el real, así que se puede dar por "cargado" desde ya.
   if(!currentUser) readingStatusLoaded=true;
   renderAuthUI();
+  // FIX móvil — las 3 llamadas de la usuaria solo dependen de currentUser: arrancan a la vez que loadBooks (antes esperaban a que terminara)
+  const _userP=currentUser?Promise.all([loadMyRatings(), loadMyReadingStatus(), bingoLoadHitos()]):null;
   await loadBooks();
   bookLocWarmup();
   initHalloweenTheme();
   initChristmasTheme();
   if(currentUser){
-    // Las 3 llamadas de abajo solo dependen de currentUser, no entre sí
-    // (ratings/spicy/tags propios, estado de lectura propio, hitos de bingo
-    // propios), así que se lanzan en paralelo con Promise.all en vez de
-    // esperarlas en cadena (Fase 10.5B).
-    await Promise.all([loadMyRatings(), loadMyReadingStatus(), bingoLoadHitos()]);
+    await _userP;
+    _bpRefreshIfOpen();
     bingoUpdateNotifDot();
     checkNewLogros();
   }
@@ -9137,7 +9136,14 @@ async function init(){
   const urlTab=urlParams.get('tab');
   const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','identidades','warnings','ship','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/') || location.hash.startsWith('#fichabeta/');
   const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
-  if(savedTab && savedTab !== 'home') {
+  if(location.hash.startsWith('#libro/')) {
+    // FIX móvil — URL de una ficha (#libro/ID): jamás pasar por showHome() (cierra la ficha y su replaceState borra el hash,
+    // por eso al refrescar caía en la estantería/home). Se prepara el catálogo detrás para el «Volver».
+    document.getElementById('homeView').classList.remove('active');
+    document.body.classList.remove('home-active');
+    document.getElementById('homeNavBtn').classList.remove('active');
+    switchTab((savedTab && savedTab!=='home')?savedTab:'estanteria', true);
+  } else if(savedTab && savedTab !== 'home') {
     // estaba en el catálogo — restaurar sin ir al home
     document.getElementById('homeView').classList.remove('active');
     document.body.classList.remove('home-active');
@@ -9215,29 +9221,39 @@ async function init(){
 // (Supabase limita cada consulta a 1000 filas por defecto, esto evita que se pierdan datos)
 // applyFilters (opcional) recibe el query builder para encadenar .eq()/.order()/etc antes de paginar
 async function sbFetchAll(table, columns, applyFilters){
-  let all=[];
-  let from=0;
-  const pageSize=1000;
-  while(true){
-    let q=sb.from(table).select(columns);
-    if(applyFilters) q=applyFilters(q);
-    const {data, error} = await q.range(from, from+pageSize-1);
-    if(error){ console.error(table, error); break; }
-    if(!data || data.length===0) break;
-    all=all.concat(data);
-    if(data.length<pageSize) break; // última página
-    from+=pageSize;
+  // FIX móvil — las páginas de 1000 filas se piden en lotes de 3 en paralelo (antes: una tras otra, con la latencia de red sumada cada vez)
+  const pageSize=1000, batch=3;
+  let all=[], from=0, done=false;
+  while(!done){
+    const reqs=[];
+    for(let i=0;i<batch;i++){
+      let q=sb.from(table).select(columns);
+      if(applyFilters) q=applyFilters(q);
+      reqs.push(q.range(from+i*pageSize, from+(i+1)*pageSize-1));
+    }
+    const res=await Promise.all(reqs);
+    for(const {data,error} of res){
+      if(error){ console.error(table, error); done=true; break; }
+      if(!data || data.length===0){ done=true; break; }
+      all=all.concat(data);
+      if(data.length<pageSize){ done=true; break; } // última página
+    }
+    from+=batch*pageSize;
   }
   return all;
 }
 
 async function loadBooks(){
+  // FIX móvil — las 3 consultas de comunidad no dependen del JSON: se lanzan YA, en paralelo con su descarga
+  const _communityP=Promise.all([
+    sbFetchAll('ratings','book_id,score'),
+    sbFetchAll('spicy_votes','book_id,level'),
+    sbFetchAll('community_tags','book_id,tag_type,tag_value')
+  ]);
   try{
-    // cache:'no-store' + un parámetro de versión evita que GitHub Pages, el
-    // navegador o un CDN sirvan una copia vieja de books_data.json cuando lo
-    // actualizas — si no, puedes ver datos "atrasados" (o vacíos, si el
-    // esquema cambió) aunque el archivo en el repo ya esté actualizado.
-    const res=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store'});
+    // cache:'no-cache' = el navegador revalida siempre con el servidor (ETag → 304 sin descargar de nuevo si no cambió),
+    // así nunca ves una copia vieja de books_data.json pero tampoco se baja entero en cada carga (antes: no-store + ?v=Date.now()).
+    const res=await fetch(DATA_URL,{cache:'no-cache'});
     if(!res.ok) throw new Error();
     const data=await res.json();
     // Support both old (author: string) and new (authors: array) format
@@ -9253,11 +9269,7 @@ async function loadBooks(){
   // Las 3 consultas de abajo son independientes entre sí (no comparten datos
   // ni dependen una de otra), así que se lanzan en paralelo con Promise.all
   // en vez de esperarlas una detrás de otra (Fase 10.5B).
-  const [rData,svData,ctData]=await Promise.all([
-    sbFetchAll('ratings','book_id,score'),
-    sbFetchAll('spicy_votes','book_id,level'),
-    sbFetchAll('community_tags','book_id,tag_type,tag_value')
-  ]);
+  const [rData,svData,ctData]=await _communityP;
   ratingsMap={};
   if(rData){
     const grouped={};
@@ -9284,6 +9296,7 @@ async function loadBooks(){
     });
   }
   updateStats();
+  _bpRefreshIfOpen(); // FIX móvil — la ficha puede haberse abierto antes de llegar valoraciones/tags de la comunidad
 }
 
 async function loadMyRatings(){
@@ -10404,6 +10417,17 @@ let _bpScrollBefore=0;
 /* FASE E4.5 — segundo origen: 'view' (una de las 6 vistas personales). Misma mecánica: la entrada #libro/ID se marca
    {bpFrom:'view', bpView, bpDepth:n} y «Volver» = history.go(-n); el popstate reabre la vista (su URL lleva ?view=). */
 let _bpOrigin=null; // null | {type:'shelf', scrollY:number|null} | {type:'view', view:string}
+// FIX móvil — repinta la ficha abierta cuando llegan datos que no estaban al abrirla (sin pisar un voto a medias ni perder el scroll)
+function _bpRefreshIfOpen(){
+  try{
+    const bp=document.getElementById('bookPage');
+    if(!bp||!bp.classList.contains('active')||!activeBook) return;
+    if(bpPendingStar||bpPendingSpicy!==-1||bpRatingBusy||bpSpicyBusy) return;
+    const y=window.scrollY;
+    renderBookPage(activeBook);
+    window.scrollTo(0,y);
+  }catch(e){ console.warn('[bookPage] refresco',e); }
+}
 let _bootViewKey=null; // FIX — vista personal que debía restaurarse bajo una ficha (?view=…#libro/ID) en la carga inicial
 let _bpGoingBack=false; // evita doble clic en «Volver» (un segundo history.go saldría de la estantería)
 function openBookPage(id, pushState=true){
@@ -12601,24 +12625,22 @@ function tryOpenFromHash(){
   // misma clase que openBookPage()/closeBookPage() ya usan para esto— para
   // no mostrar la estantería mientras se espera allBooks/readingStatusLoaded.
   document.body.classList.add('bp-active');
-  if(allBooks.length && readingStatusLoaded){
+  // FIX móvil — antes esperaba a libros + estado de lectura y, pasados 8 s (habitual en móvil), abandonaba y mostraba la estantería.
+  // Ahora abre la ficha en cuanto llega books_data.json; el estado de lectura y las valoraciones se pintan al llegar
+  // (loadMyReadingStatus → _refreshShelfUI, y _bpRefreshIfOpen). Solo se rinde si tras 60 s no hay libros.
+  if(allBooks.length){
     openBookPage(id, false);
   } else {
-    // Esperar a que los libros Y el estado de lectura real estén listos
-    // (readingStatusLoaded evita abrir BookPage con myReadingStatus todavía
-    // vacío mientras loadMyReadingStatus() sigue en curso).
     const waitFor = setInterval(()=>{
-      if(allBooks.length && readingStatusLoaded){
+      if(allBooks.length){
         clearInterval(waitFor);
         openBookPage(id, false);
       }
-    },100);
+    },80);
     setTimeout(()=>{
       clearInterval(waitFor);
-      // Si el id no era válido y BookPage nunca llegó a abrirse, no dejar el
-      // catálogo oculto indefinidamente: revertir el ocultamiento preventivo.
       if(!document.getElementById('bookPage').classList.contains('active')) document.body.classList.remove('bp-active');
-    },8000);
+    },60000);
   }
 }
 
@@ -17729,6 +17751,47 @@ document.getElementById('bingoCellModal').addEventListener('click',e=>{if(e.targ
     border:1px solid var(--border2);font-size:20px;line-height:1;
     box-shadow:0 4px 14px rgba(0,0,0,.35);
   }
+}
+</style>
+<style id="f722-metadatos-bibliograficos">
+/* F7.2.2 — mejora exclusivamente visual de la ficha técnica bibliográfica.
+   No altera contenido, estructura, condiciones de renderizado ni interacciones. */
+#bookPage .bp-ficha-box{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,9.5rem),1fr));
+  width:min(100%,48rem);
+  max-width:100%;
+  gap:.9rem 0;
+  align-items:start;
+  padding:.95rem .35rem;
+}
+#bookPage .bp-ficha-box .meta-item{
+  min-width:0;
+  padding:.2rem .9rem;
+  border-right:0;
+  text-align:left;
+  gap:.2rem;
+}
+#bookPage .bp-ficha-box .meta-key{
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+#bookPage .bp-ficha-box .meta-val{
+  min-width:0;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+#bookPage .bp-ficha-box .meta-val:has(.bp-link){
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:.2rem .45rem;
+}
+#bookPage .bp-ficha-box .meta-val .bp-link{
+  max-width:100%;
+  overflow-wrap:anywhere;
+  white-space:normal;
 }
 </style>
 </body>
