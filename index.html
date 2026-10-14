@@ -8866,6 +8866,8 @@ function pushState(addEntry){
   try{
     // No escribir la URL antes de que init() decida la vista inicial (si no, ?section= interno se confunde con uno de la URL)
     if(!urlSyncReady) return;
+    // F5 sobre una ficha (#libro/ID): applyFilters() tardío (carga de sesión/valoraciones) no debe reescribir la URL ni borrar history.state (perdería el origen estantería/vista y el «Volver»)
+    if(location.hash.startsWith('#libro/')) return;
     // Don't touch URL if home is active
     if(sessionStorage.getItem('ts_active_tab')==='home') return;
     // No reescribir la URL mientras haya una vista personal abierta (conserva ?view= / ?myshelf=)
