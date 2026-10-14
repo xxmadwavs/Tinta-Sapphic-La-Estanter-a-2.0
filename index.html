@@ -9129,6 +9129,7 @@ async function init(){
   renderAuthUI(); // re-aplicar estado auth tras cargar dropdowns
   applyFilters(false);
   updateDDCounts();renderActivePills();
+  _initDone=true; // FIX rendimiento: a partir de aquí, la llegada de datos de la comunidad repinta el catálogo
   updateValoracionBtns();updateAdaptacionBtn();updateLeidoBtn();
   if(filters.pages){const _cp=document.getElementById('cntPages');if(_cp)_cp.style.display='';}
   // Restore active tab from URL if present, otherwise use sessionStorage or home
@@ -9250,6 +9251,7 @@ async function loadBooks(){
     sbFetchAll('spicy_votes','book_id,level'),
     sbFetchAll('community_tags','book_id,tag_type,tag_value')
   ]);
+  _communityP.catch(()=>{}); // evita «unhandled rejection» si el JSON falla y se sale antes
   try{
     // cache:'no-cache' = el navegador revalida siempre con el servidor (ETag → 304 sin descargar de nuevo si no cambió),
     // así nunca ves una copia vieja de books_data.json pero tampoco se baja entero en cada carga (antes: no-store + ?v=Date.now()).
@@ -9266,10 +9268,14 @@ async function loadBooks(){
     document.getElementById('booksContainer').innerHTML=`<div class="empty-state"><div class="empty-big">Sin libros</div><p>No se encontró el archivo books_data.json.</p></div>`;
     return;
   }
-  // Las 3 consultas de abajo son independientes entre sí (no comparten datos
-  // ni dependen una de otra), así que se lanzan en paralelo con Promise.all
-  // en vez de esperarlas una detrás de otra (Fase 10.5B).
-  const [rData,svData,ctData]=await _communityP;
+  // FIX rendimiento — antes se esperaba aquí a bajar TODAS las valoraciones, votos spicy y tags de TODA la comunidad (decenas de
+  // peticiones seguidas) antes de pintar nada. Ahora el catálogo se pinta en cuanto llegan los libros y estos datos se aplican
+  // al terminar, en segundo plano (_applyCommunityData → _onCommunityLoaded repinta).
+  _communityP.then(([rData,svData,ctData])=>{ _applyCommunityData(rData,svData,ctData); _onCommunityLoaded(); })
+    .catch(e=>console.warn('[comunidad] no se pudieron cargar valoraciones/tags',e));
+}
+
+function _applyCommunityData(rData,svData,ctData){
   ratingsMap={};
   if(rData){
     const grouped={};
@@ -9295,8 +9301,18 @@ async function loadBooks(){
         communityTagsMap[r.book_id][r.tag_type].push(r.tag_value);
     });
   }
+}
+
+// FIX rendimiento — repinta lo que depende de los datos de la comunidad cuando llegan (catálogo, estantería personal, ficha abierta)
+let _initDone=false;
+function _onCommunityLoaded(){
   updateStats();
-  _bpRefreshIfOpen(); // FIX móvil — la ficha puede haberse abierto antes de llegar valoraciones/tags de la comunidad
+  if(!_initDone) return; // si init() aún no ha pintado, lo hará ya con los datos cargados
+  try{
+    applyFilters(false); updateDDCounts();
+    if(document.getElementById('shelfView')?.classList.contains('active')) _renderShelfBooks();
+    _bpRefreshIfOpen();
+  }catch(e){ console.warn('[comunidad] repintado',e); }
 }
 
 async function loadMyRatings(){
