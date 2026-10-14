@@ -5518,6 +5518,37 @@ body.theme-christmas .hv-hero{--hv-flora:var(--accent2)}
 body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 /* F4.1 — tablet */
 @media(min-width:640px) and (max-width:1023px){.hv-hero{padding:2.6rem 1.6rem 2rem}.hv-hero>.hv-flora{width:84px;opacity:.4}}
+/* FASE 8 — diario de lectura */
+.bp-diary .dy-note{font-size:13px;color:var(--muted);margin:.3rem 0}
+.bp-diary .dy-err,.dy-err{color:#B3261E}
+.bp-diary .dy-dim{color:var(--muted);font-size:12.5px}
+.bp-diary .dy-prog{font-size:13.5px;margin:.2rem 0 .8rem}
+.bp-diary .dy-form{display:flex;flex-direction:column;gap:.7rem;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:.9rem;max-width:520px}
+.bp-diary .dy-editing{font-size:12px;font-weight:600;color:var(--accent)}
+.bp-diary .dy-row{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.bp-diary .dy-pair{flex-direction:row;gap:.7rem}
+.bp-diary .dy-pair>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:.3rem}
+.bp-diary .dy-lbl{font-size:12px;color:var(--muted)}
+.bp-diary .dy-in{width:100%;box-sizing:border-box;min-width:0;padding:8px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--bg);color:var(--text);font:inherit;font-size:14px}
+.bp-diary .dy-toggle{flex-direction:row;gap:.5rem}
+.bp-diary .dy-chip{display:inline-flex;align-items:center;gap:.4rem;padding:7px 14px;border-radius:30px;border:1px solid var(--border2);cursor:pointer;font-size:13px;color:var(--text)}
+.bp-diary .dy-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.bp-diary .dy-chip input{position:absolute;opacity:0;width:0;height:0}
+.bp-diary .dy-chip:focus-within{outline:2px solid var(--accent2);outline-offset:2px}
+.bp-diary .dy-auto{font-size:13px;color:var(--muted);margin:0}
+.bp-diary .dy-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.dy-btn{padding:7px 14px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--text);font:inherit;font-size:12.5px;cursor:pointer}
+.dy-btn:disabled{opacity:.5;cursor:not-allowed}
+.dy-btn.dy-primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.dy-btn.dy-danger{background:#B3261E;border-color:#B3261E;color:#fff}
+.bp-diary .dy-sub{margin-top:1.2rem}
+.bp-diary .dy-list{list-style:none;margin:.4rem 0 0;padding:0;display:flex;flex-direction:column;gap:.4rem;max-width:520px}
+.bp-diary .dy-item{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.55rem .7rem;border:1px solid var(--border);border-radius:10px}
+.bp-diary .dy-item-main{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;font-size:13.5px;min-width:0}
+.bp-diary .dy-state{font-weight:600}
+.bp-diary .dy-no .dy-state{color:var(--muted);font-weight:500}
+.bp-diary .dy-item-act{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+@media (max-width:420px){.bp-diary .dy-pair{flex-direction:column}}
 </style>
 <style id="f36-seasonal-editorial">
 
@@ -8269,6 +8300,264 @@ body:not(.home-active) .hero{
 <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
+
+/* ══════════════════════════════════════════════════════════════
+   FASE 8 — DIARIO DE LECTURA (tabla public.reading_diary)
+   Columnas: id, user_id, book_id(text), read_date(date), did_read, last_page,
+   total_pages, progress_pct, created_at. Única por (user_id, book_id, read_date).
+   Un registro solo se muestra como guardado si Supabase lo confirma.
+   ══════════════════════════════════════════════════════════════ */
+let diaryRows=[];            // todas las filas de la usuaria actual
+let diaryState='idle';       // 'idle' | 'loading' | 'ready' | 'error'
+let diaryUid=null;           // usuaria a la que pertenecen diaryRows
+let diaryBusy=false;         // guardando/eliminando (evita doble clic)
+let diaryForm=null;          // {bookId, editId, date, did, mode, last, total, pct}
+let diaryConfirmId=null;     // id pendiente de confirmar eliminación
+let diaryMsg='';             // mensaje de error del formulario
+let diaryLoadSeq=0;
+
+function diaryReset(){ diaryRows=[]; diaryState='idle'; diaryUid=null; diaryBusy=false; diaryForm=null; diaryConfirmId=null; diaryMsg=''; diaryLoadSeq++; }
+function diaryOnAuth(){
+  const uid=currentUser?currentUser.id:null;
+  if(uid!==diaryUid){ diaryReset(); diaryUid=uid; }
+  if(uid) diaryEnsureLoaded(); 
+  diaryRefreshViews();
+}
+function diaryRefreshViews(){
+  try{ diaryRenderBp(); }catch(e){ console.warn('[diario]',e); }
+  try{ if(typeof shelfFilter!=='undefined'&&shelfFilter==='calendar'&&document.getElementById('shelfCalendarContainer')&&document.getElementById('shelfCalendarContainer').children.length) renderReadingCalendar(); }catch(e){ console.warn('[diario]',e); }
+}
+async function diaryEnsureLoaded(force){
+  if(!currentUser){ return; }
+  if(diaryUid!==currentUser.id){ diaryReset(); diaryUid=currentUser.id; }
+  if(!force&&diaryState!=='idle') return; // 'error' solo se reintenta con el botón
+  const seq=++diaryLoadSeq, uid=currentUser.id;
+  diaryState='loading'; diaryRefreshViews();
+  try{
+    const data=await sbFetchAll('reading_diary','id,book_id,read_date,did_read,last_page,total_pages,progress_pct',q=>q.eq('user_id',uid).order('read_date',{ascending:false}).order('id',{ascending:true}));
+    if(seq!==diaryLoadSeq||!currentUser||currentUser.id!==uid) return;
+    diaryRows=(data||[]).map(r=>({...r,book_id:String(r.book_id),read_date:String(r.read_date).slice(0,10)}));
+    diaryState='ready';
+  }catch(e){
+    console.warn('[diario] carga',e);
+    if(seq!==diaryLoadSeq) return;
+    diaryState='error';
+  }
+  diaryRefreshViews();
+}
+
+function _dyPctOf(last,total){ return (last>0&&total>0&&last<=total)?Math.round(last/total*1000)/10:null; }
+function _dyFmtDate(iso){ try{ return new Date(iso+'T12:00:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}); }catch(e){ return iso; } }
+function _dyFmtPct(n){ return (Math.round(n*10)/10).toString().replace('.',','); }
+function _dyBookRows(bookId){ return diaryRows.filter(r=>r.book_id===String(bookId)).sort((a,b)=>a.read_date<b.read_date?1:a.read_date>b.read_date?-1:0); }
+function _dyProgressText(r){
+  if(!r.did_read) return '';
+  const parts=[];
+  if(r.last_page!=null){
+    parts.push('p. '+r.last_page+(r.total_pages!=null?' de '+r.total_pages:''));
+    const p=_dyPctOf(r.last_page,r.total_pages); if(p!=null) parts.push(_dyFmtPct(p)+' %');
+  } else if(r.progress_pct!=null){ parts.push(_dyFmtPct(Number(r.progress_pct))+' %'); if(r.total_pages!=null) parts.push(r.total_pages+' págs. en total'); }
+  else if(r.total_pages!=null){ parts.push(r.total_pages+' págs. en total'); }
+  return parts.join(' · ');
+}
+function _dyNewForm(bookId){
+  const rows=_dyBookRows(bookId);
+  let tp=''; const withTotal=rows.find(r=>r.total_pages!=null);
+  if(withTotal) tp=String(withTotal.total_pages);
+  else { const bp=parseInt(activeBook&&activeBook.pages,10); if(bp>0&&bp<=100000) tp=String(bp); }
+  return {bookId:String(bookId),editId:null,date:_shelfTodayISO(),did:true,mode:'none',last:'',total:tp,pct:''};
+}
+
+function diarySectionHTML(){ return '<div class="bp-section bp-diary" id="bpDiary" aria-live="polite"></div>'; }
+function diaryRenderBp(){
+  const el=document.getElementById('bpDiary'); if(!el) return;
+  if(!activeBook||!currentUser) return;
+  const bookId=String(activeBook.id);
+  if(!diaryForm||diaryForm.bookId!==bookId){ diaryForm=_dyNewForm(bookId); diaryConfirmId=null; diaryMsg=''; }
+  const f=diaryForm;
+  let body='';
+  if(diaryState==='loading'||diaryState==='idle'){
+    body='<p class="dy-note">Cargando tu diario…</p>';
+  } else if(diaryState==='error'){
+    body='<p class="dy-note dy-err" role="alert">No se ha podido cargar el diario de lectura.</p><button type="button" class="dy-btn" data-dy="retry">Reintentar</button>';
+  } else {
+    const rows=_dyBookRows(bookId);
+    const lastProg=rows.find(r=>r.did_read&&(r.last_page!=null||r.progress_pct!=null));
+    const prog=lastProg?`<p class="dy-prog">Progreso actual: <strong>${escHtml(_dyProgressText(lastProg))}</strong> <span class="dy-dim">(${escHtml(_dyFmtDate(lastProg.read_date))})</span></p>`:'';
+    const pctNow=(f.mode==='pages')?_dyPctOf(parseInt(f.last,10),parseInt(f.total,10)):null;
+    const editing=f.editId!=null;
+    const form=`<div class="dy-form" role="group" aria-label="${editing?'Editar registro':'Nuevo registro'}">
+      ${editing?'<div class="dy-editing">Editando un registro</div>':''}
+      <div class="dy-row">
+        <label class="dy-lbl" for="dyDate">Fecha</label>
+        <input type="date" id="dyDate" class="dy-in" data-dyf="date" min="1900-01-01" max="2100-12-31" value="${escHtml(f.date)}">
+      </div>
+      <div class="dy-row dy-toggle" role="radiogroup" aria-label="¿Leíste ese día?">
+        <label class="dy-chip${f.did?' on':''}"><input type="radio" name="dyDid" data-dyf="did" value="1" ${f.did?'checked':''}>Sí leí</label>
+        <label class="dy-chip${!f.did?' on':''}"><input type="radio" name="dyDid" data-dyf="did" value="0" ${!f.did?'checked':''}>No leí</label>
+      </div>
+      ${f.did?`<div class="dy-row">
+        <label class="dy-lbl" for="dyMode">Progreso (opcional)</label>
+        <select id="dyMode" class="dy-in" data-dyf="mode">
+          <option value="none"${f.mode==='none'?' selected':''}>Solo marcar el día</option>
+          <option value="pages"${f.mode==='pages'?' selected':''}>Por páginas</option>
+          <option value="pct"${f.mode==='pct'?' selected':''}>Por porcentaje</option>
+        </select>
+      </div>`:''}
+      ${f.did&&f.mode==='pages'?`<div class="dy-row dy-pair">
+        <div><label class="dy-lbl" for="dyLast">Última página leída</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyLast" class="dy-in" data-dyf="last" value="${escHtml(f.last)}"></div>
+        <div><label class="dy-lbl" for="dyTotal">Total de páginas</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyTotal" class="dy-in" data-dyf="total" value="${escHtml(f.total)}"></div>
+      </div>
+      <p class="dy-auto" id="dyAuto">${pctNow!=null?'Porcentaje: <strong>'+_dyFmtPct(pctNow)+' %</strong>':'El porcentaje se calcula al indicar última página y total.'}</p>`:''}
+      ${f.did&&f.mode==='pct'?`<div class="dy-row dy-pair">
+        <div><label class="dy-lbl" for="dyPct">Porcentaje leído</label><input type="number" inputmode="decimal" min="0" max="100" step="0.1" id="dyPct" class="dy-in" data-dyf="pct" value="${escHtml(f.pct)}"></div>
+        <div><label class="dy-lbl" for="dyTotal2">Total de páginas (opcional)</label><input type="number" inputmode="numeric" min="1" max="100000" step="1" id="dyTotal2" class="dy-in" data-dyf="total" value="${escHtml(f.total)}"></div>
+      </div>`:''}
+      ${diaryMsg?`<p class="dy-note dy-err" role="alert">${escHtml(diaryMsg)}</p>`:''}
+      <div class="dy-actions">
+        <button type="button" class="dy-btn dy-primary" data-dy="save"${diaryBusy?' disabled':''}>${diaryBusy?'Guardando…':(editing?'Guardar cambios':'Guardar registro')}</button>
+        ${editing?'<button type="button" class="dy-btn" data-dy="cancel"'+(diaryBusy?' disabled':'')+'>Cancelar</button>':''}
+      </div>
+    </div>`;
+    const hist=rows.length?`<ul class="dy-list">${rows.map(r=>{
+      const pt=_dyProgressText(r);
+      const conf=diaryConfirmId===r.id;
+      return `<li class="dy-item${r.did_read?'':' dy-no'}"><div class="dy-item-main"><span class="dy-date">${escHtml(_dyFmtDate(r.read_date))}</span><span class="dy-state">${r.did_read?'Leí':'No leí'}</span>${pt?`<span class="dy-dim">${escHtml(pt)}</span>`:''}</div>
+        <div class="dy-item-act">${conf
+          ?`<span class="dy-dim">¿Eliminar?</span><button type="button" class="dy-btn dy-danger" data-dy="del-yes" data-id="${escHtml(r.id)}"${diaryBusy?' disabled':''}>Sí, eliminar</button><button type="button" class="dy-btn" data-dy="del-no">No</button>`
+          :`<button type="button" class="dy-btn" data-dy="edit" data-id="${escHtml(r.id)}"${diaryBusy?' disabled':''}>Editar</button><button type="button" class="dy-btn" data-dy="del" data-id="${escHtml(r.id)}"${diaryBusy?' disabled':''}>Eliminar</button>`}</div></li>`;
+    }).join('')}</ul>`:'<p class="dy-note">Aún no hay registros de este libro en tu diario.</p>';
+    body=prog+form+'<div class="bp-section-title dy-sub">Registros anteriores</div>'+hist;
+  }
+  el.innerHTML='<div class="bp-section-title">Diario de lectura</div>'+body;
+}
+
+function _dyValidate(f){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(f.date)||isNaN(new Date(f.date+'T12:00:00'))) return {err:'Indica una fecha válida.'};
+  if(f.date<'1900-01-01'||f.date>'2100-12-31') return {err:'La fecha debe estar entre 1900 y 2100.'};
+  const out={read_date:f.date,did_read:!!f.did,last_page:null,total_pages:null,progress_pct:null};
+  if(!f.did) return {row:out};
+  const intOk=(s,label)=>{ if(String(s).trim()==='') return null; if(!/^\d+$/.test(String(s).trim())) return {err:label+' debe ser un número entero.'}; const n=parseInt(s,10); if(n<1||n>100000) return {err:label+' debe estar entre 1 y 100000.'}; return n; };
+  if(f.mode==='pages'){
+    const l=intOk(f.last,'La última página'); if(l&&l.err) return l;
+    const t=intOk(f.total,'El total de páginas'); if(t&&t.err) return t;
+    if(l!=null&&t!=null&&l>t) return {err:'La última página no puede ser mayor que el total.'};
+    out.last_page=l; out.total_pages=t;
+  } else if(f.mode==='pct'){
+    const s=String(f.pct).trim().replace(',','.');
+    if(s!==''){ if(!/^\d+(\.\d{1,2})?$/.test(s)) return {err:'El porcentaje debe ser un número entre 0 y 100.'}; const p=parseFloat(s); if(p<0||p>100) return {err:'El porcentaje debe estar entre 0 y 100.'}; out.progress_pct=p; }
+    const t=intOk(f.total,'El total de páginas'); if(t&&t.err) return t;
+    out.total_pages=t;
+  }
+  return {row:out};
+}
+
+async function diarySave(){
+  if(diaryBusy||!diaryForm||!currentUser||diaryState!=='ready') return;
+  const f=diaryForm, uid=currentUser.id, bookId=f.bookId;
+  const v=_dyValidate(f);
+  if(v.err){ diaryMsg=v.err; diaryRenderBp(); return; }
+  const row=v.row;
+  // Aviso de duplicado al crear: la fecha ya tiene registro de este libro → se pide editarlo
+  const dup=diaryRows.find(r=>r.book_id===bookId&&r.read_date===row.read_date&&r.id!==f.editId);
+  if(dup){ diaryMsg='Ya existe un registro de este libro en esa fecha. Edítalo desde «Registros anteriores».'; diaryRenderBp(); return; }
+  diaryBusy=true; diaryMsg=''; diaryRenderBp();
+  try{
+    let res;
+    if(f.editId!=null){
+      res=await sb.from('reading_diary').update(row).eq('id',f.editId).eq('user_id',uid).select('id,book_id,read_date,did_read,last_page,total_pages,progress_pct');
+    } else {
+      res=await sb.from('reading_diary').upsert({user_id:uid,book_id:bookId,...row},{onConflict:'user_id,book_id,read_date'}).select('id,book_id,read_date,did_read,last_page,total_pages,progress_pct');
+    }
+    if(res.error) throw res.error;
+    const saved=Array.isArray(res.data)?res.data[0]:res.data;
+    if(!saved) throw new Error('Sin confirmación de Supabase');
+    if(!currentUser||currentUser.id!==uid) return;
+    const norm={...saved,book_id:String(saved.book_id),read_date:String(saved.read_date).slice(0,10)};
+    diaryRows=diaryRows.filter(r=>r.id!==norm.id&&!(r.book_id===norm.book_id&&r.read_date===norm.read_date)); diaryRows.push(norm);
+    const wasEdit=f.editId!=null;
+    diaryForm=_dyNewForm(bookId); diaryForm.total=norm.total_pages!=null?String(norm.total_pages):diaryForm.total;
+    diaryBusy=false; showToast(wasEdit?'Registro actualizado':'Registro guardado','success');
+  }catch(e){
+    console.warn('[diario] guardar',e);
+    diaryBusy=false;
+    diaryMsg=(e&&e.code==='23505')?'Ya existe un registro de este libro en esa fecha.':'No se ha podido guardar. Inténtalo de nuevo.';
+  }
+  diaryRefreshViews();
+}
+async function diaryDelete(id){
+  if(diaryBusy||!currentUser) return;
+  const uid=currentUser.id;
+  diaryBusy=true; diaryRenderBp();
+  try{
+    const {error}=await sb.from('reading_diary').delete().eq('id',id).eq('user_id',uid);
+    if(error) throw error;
+    if(!currentUser||currentUser.id!==uid) return;
+    diaryRows=diaryRows.filter(r=>r.id!==id);
+    if(diaryForm&&diaryForm.editId===id) diaryForm=_dyNewForm(diaryForm.bookId);
+    diaryConfirmId=null; diaryBusy=false; showToast('Registro eliminado','success');
+  }catch(e){
+    console.warn('[diario] eliminar',e);
+    diaryBusy=false; diaryMsg='No se ha podido eliminar. Inténtalo de nuevo.';
+  }
+  diaryRefreshViews();
+}
+function diaryStartEdit(id){
+  const r=diaryRows.find(x=>x.id===id); if(!r) return;
+  diaryForm={bookId:r.book_id,editId:r.id,date:r.read_date,did:!!r.did_read,
+    mode:r.last_page!=null?'pages':(r.progress_pct!=null?'pct':(r.total_pages!=null?'pages':'none')),
+    last:r.last_page!=null?String(r.last_page):'',total:r.total_pages!=null?String(r.total_pages):'',pct:r.progress_pct!=null?String(Number(r.progress_pct)):''};
+  diaryMsg=''; diaryConfirmId=null; diaryRenderBp();
+  const d=document.getElementById('dyDate'); if(d) d.focus({preventScroll:false});
+}
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#bpDiary [data-dy]'); if(!b) return;
+  const a=b.dataset.dy, id=b.dataset.id;
+  if(a==='save') diarySave();
+  else if(a==='cancel'){ diaryForm=_dyNewForm(diaryForm.bookId); diaryMsg=''; diaryRenderBp(); }
+  else if(a==='edit') diaryStartEdit(id);
+  else if(a==='del'){ diaryConfirmId=id; diaryMsg=''; diaryRenderBp(); }
+  else if(a==='del-no'){ diaryConfirmId=null; diaryRenderBp(); }
+  else if(a==='del-yes') diaryDelete(id);
+  else if(a==='retry') diaryEnsureLoaded(true);
+});
+document.addEventListener('input',e=>{
+  const t=e.target; if(!t.closest||!t.closest('#bpDiary')||!diaryForm) return;
+  const k=t.dataset.dyf; if(!k||k==='did'||k==='mode') return;
+  diaryForm[k]=t.value; diaryMsg='';
+  if(k==='last'||k==='total'){
+    const au=document.getElementById('dyAuto');
+    if(au&&diaryForm.mode==='pages'){ const p=_dyPctOf(parseInt(diaryForm.last,10),parseInt(diaryForm.total,10)); au.innerHTML=p!=null?'Porcentaje: <strong>'+_dyFmtPct(p)+' %</strong>':'El porcentaje se calcula al indicar última página y total.'; }
+  }
+});
+document.addEventListener('change',e=>{
+  const t=e.target; if(!t.closest||!t.closest('#bpDiary')||!diaryForm) return;
+  const k=t.dataset.dyf; if(!k) return;
+  if(k==='did'){ diaryForm.did=t.value==='1'; diaryMsg=''; diaryRenderBp(); }
+  else if(k==='mode'){ diaryForm.mode=t.value; diaryMsg=''; diaryRenderBp(); const m=document.getElementById('dyMode'); if(m) m.focus(); }
+  else diaryForm[k]=t.value;
+});
+
+// Calendario: días leídos del diario como tramos de un solo día (sin duplicar el libro si ya está cubierto por un período)
+function diaryCalendarPeriods(existing){
+  if(diaryState!=='ready') return [];
+  const out=[];
+  diaryRows.forEach(r=>{
+    if(!r.did_read) return;
+    const book=allBooks.find(b=>String(b.id)===r.book_id); if(!book) return;
+    if(existing.some(p=>p.bookId===r.book_id&&p.start<=r.read_date&&r.read_date<=p.end)) return;
+    out.push({bookId:r.book_id,title:book.title,cover:book.cover,start:r.read_date,end:r.read_date,ongoing:false,single:true,diary:true});
+  });
+  return out;
+}
+function diaryCalNoteHTML(){
+  if(!currentUser) return '';
+  if(diaryState==='error') return '<p class="cal-empty-msg dy-err" role="alert">No se ha podido cargar el diario de lectura. <button type="button" class="dy-btn" onclick="diaryEnsureLoaded(true)">Reintentar</button></p>';
+  if(diaryState==='loading') return '<p class="cal-empty-msg">Cargando días del diario…</p>';
+  return '';
+}
+
 const SUPABASE_URL = document.querySelector('meta[name="sb-url"]').content;
 const SUPABASE_KEY = document.querySelector('meta[name="sb-key"]').content;
 const DATA_URL     = 'books_data.json';
@@ -9194,6 +9483,7 @@ async function init(){
     currentUser=session?.user||null;
     renderAuthUI();
     debouncedLoadRatings();
+    diaryOnAuth(); // FASE 8
     if(currentUser){ bingoLoadHitos().then(bingoUpdateNotifDot); checkNewLogros(); } else { bingoHitos=[]; bingoUpdateNotifDot(); }
     if(activeTab==='solicitudes') renderSolicitudes();
     if(activeTab==='ruleta') ruletaInit();
@@ -10678,6 +10968,7 @@ function renderBookPage(book){
         <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
       </div>
     </div>
+    ${currentUser?diarySectionHTML():''}
     ${clasificacionFicha}
     ${sinopsis}
     ${bookLocationsHtml(b)}
@@ -10687,6 +10978,7 @@ function renderBookPage(book){
   renderBookLocations(b);
   attachBpStarTouch();
   attachBpSpicyTouch();
+  if(currentUser){ diaryRenderBp(); diaryEnsureLoaded(); } // FASE 8 — diario
 }
 
 /* FASE 8 — clics de navegación en BookPage (autora, saga, chips, ship, spicy).
@@ -11716,7 +12008,7 @@ function setAuthError(msg){
     const w=i.closest('.tg-input-wrap')||i;w.classList.toggle('field-invalid',bad);
   });
 }
-async function logout(){await sb.auth.signOut();myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};showToast('Hasta pronto 🌹','success');applyFilters();}
+async function logout(){await sb.auth.signOut();diaryReset();myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};showToast('Hasta pronto 🌹','success');applyFilters();}
 
 function toggleUserDropdown(){
   const wrap=document.getElementById('userChipWrap');
@@ -15114,14 +15406,14 @@ function buildReadingPeriods(){
       periods.push({bookId,title:book.title,cover:book.cover,start:startISO,end:endISO,ongoing,single});
     });
   });
-  return periods;
+  return periods.concat(diaryCalendarPeriods(periods)); // FASE 8 — días leídos del diario
 }
 
 function _calCoverThumbHTML(p,dateStr){
   const cls=p.ongoing?'dot-reading':'dot-read';
   const t=p.title.replace(/"/g,'&quot;');
   const isStart=!!dateStr&&p.start===dateStr, isEnd=!!dateStr&&!p.ongoing&&p.end===dateStr; // F8.3.2: marcas de inicio/fin solo de presentación; los períodos no cambian
-  const sr=`${escHtml(p.title)}: ${p.ongoing?'Leyendo':'Leído'}${isStart?', inicio':''}${isEnd?', fin':''}`;
+  const sr=`${escHtml(p.title)}: ${p.ongoing?'Leyendo':(p.diary?'Día de lectura':'Leído')}${isStart?', inicio':''}${isEnd?', fin':''}`;
   const img=p.cover
     ?`<img class="cal-cover-thumb" src="${p.cover}" alt="" title="${t}" loading="lazy" decoding="async">`
     :`<div class="cal-cover-ph" title="${t}">${_shelfIco('reading')}</div>`;
@@ -15129,6 +15421,7 @@ function _calCoverThumbHTML(p,dateStr){
 }
 
 function renderReadingCalendar(){
+  if(currentUser) diaryEnsureLoaded(); // FASE 8 — carga el diario (no repite si ya está cargado o falló)
   const periods=buildReadingPeriods();
   const container=document.getElementById('shelfCalendarContainer');
   const monthNames=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
@@ -15175,7 +15468,7 @@ function renderReadingCalendar(){
             ${cov}
             <div class="cal-panel-info">
               <div class="cal-panel-title">${escHtml(p.title)}</div>
-              <div class="cal-panel-range"><span class="cal-panel-state ${p.ongoing?'dot-reading':'dot-read'}">${_shelfIco(p.ongoing?'reading':'read')}${p.ongoing?'Leyendo':'Leído'}</span><span>${rangeStr}</span></div>
+              <div class="cal-panel-range"><span class="cal-panel-state ${p.ongoing?'dot-reading':'dot-read'}">${_shelfIco(p.ongoing?'reading':'read')}${p.ongoing?'Leyendo':(p.diary?'Día de lectura':'Leído')}</span><span>${rangeStr}</span></div>
             </div>
           </div>`;
         }).join('')}
@@ -15205,6 +15498,7 @@ function renderReadingCalendar(){
       ${cells}
     </div>
     ${panelHtml}
+    ${diaryCalNoteHTML()}
     ${periods.length===0?`<p class="cal-empty-msg">Aún no hay lecturas registradas. Marca un libro como «Leyendo» o añade una fecha de lectura para verlo aquí.</p>`:(!monthHas?`<p class="cal-empty-msg">Sin lecturas este mes.</p>`:'')}
   `;
 }
