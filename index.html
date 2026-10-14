@@ -3795,6 +3795,61 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
   .bp-mine-row{grid-template-columns:1fr}
 }
 
+/* F7.1.2 · ajuste conservador de composición del encabezado de la ficha.
+   Solo CSS de presentación; conserva estructura, datos y controles existentes. */
+#bookPage .bp-header{
+  grid-template-columns:minmax(0,190px) minmax(0,1fr);
+}
+#bookPage .bp-cover{
+  min-width:0;
+}
+#bookPage .bp-cover img{
+  max-width:100%;
+}
+#bookPage .bp-content{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+#bookPage .bp-title{
+  max-width:100%;
+  overflow-wrap:anywhere;
+  hyphens:auto;
+}
+#bookPage .bp-author,
+#bookPage .bp-saga-row,
+#bookPage .bp-general-row,
+#bookPage .bp-actions{
+  min-width:0;
+  max-width:100%;
+}
+#bookPage .bp-saga-row,
+#bookPage .bp-general-row{
+  row-gap:.4rem;
+}
+#bookPage .bp-actions .shelf-btns{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  min-width:0;
+}
+@media (max-width:899px){
+  #bookPage .bp-header{
+    grid-template-columns:minmax(0,160px) minmax(0,1fr);
+  }
+}
+@media (max-width:639px){
+  #bookPage .bp-header{
+    grid-template-columns:minmax(0,1fr);
+  }
+  #bookPage .bp-title{
+    line-height:1.12;
+    overflow-wrap:anywhere;
+  }
+  #bookPage .bp-actions .shelf-btns{
+    justify-content:center;
+  }
+}
+
 
 /* E28.2 · paso 5 — selector de vistas de Mi estantería.
    Pulido exclusivamente visual: conserva botones, estados, dimensiones táctiles móviles y lógica existentes. */
