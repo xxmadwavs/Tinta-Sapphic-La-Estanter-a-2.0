@@ -18173,15 +18173,15 @@ body.theme-halloween #bookPage .bp-cover{box-shadow:0 14px 34px rgba(0,0,0,.5),0
 #bookPage{--f742-off:color-mix(in srgb,var(--muted) 70%,var(--surface))}
 
 /* 1 · Valoración general: nota grande, estrellas y recuento legibles */
-#bookPage .bp-general-row{align-items:center;gap:.75rem 1.75rem}
-#bookPage .bp-mini-rating{display:flex;align-items:center;gap:.7rem;font-size:12px;color:var(--text)}
-#bookPage .bp-rate-avg{font-family:var(--font-display);font-size:2.3rem;font-weight:500;line-height:1;color:var(--text)}
-#bookPage .bp-rate-detail{display:flex;flex-direction:column;gap:3px}
+#bookPage .bp-general-row{align-items:center;gap:.4rem 1.25rem}
+#bookPage .bp-mini-rating{display:flex;align-items:center;gap:.5rem;font-size:12px;color:var(--text)}
+#bookPage .bp-rate-avg{font-family:var(--font-display);font-size:1.6rem;font-weight:500;line-height:1;color:var(--text)}
+#bookPage .bp-rate-detail{display:flex;flex-direction:column;gap:1px}
 #bookPage .bp-rate-count{font-size:12px;line-height:1.3;color:var(--text)}
 #bookPage .bp-mini-rating .avg-stars-row,
-#bookPage .bp-mine-block .avg-stars-row{display:flex;gap:3px;margin:0}
+#bookPage .bp-mine-block .avg-stars-row{display:flex;gap:2px;margin:0}
 #bookPage .bp-mini-rating .star,
-#bookPage .bp-mine-block .star{font-size:20px;line-height:1}
+#bookPage .bp-mine-block .star{font-size:16px;line-height:1}
 #bookPage .bp-mini-rating .star.on,
 #bookPage .bp-mine-block .star.on{color:var(--gold)}
 #bookPage .bp-mini-rating .star.off,
@@ -18192,7 +18192,7 @@ body.theme-halloween #bookPage #bpStarInput .bp-rating-star.selected{color:#D9C5
 
 /* 2 · Spicy general: escala de 5 chiles de solo lectura + etiqueta, separada de la valoración */
 #bookPage .bp-spicy-general{
-  display:inline-flex;align-items:center;gap:.6rem;min-height:36px;margin:0;padding:0 0 0 1.75rem;
+  display:inline-flex;align-items:center;gap:.45rem;min-height:28px;margin:0;padding:0 0 0 1.25rem;
   border:0;border-left:1px solid var(--border2);border-radius:0;background:none;
   font:600 12px/1.3 var(--font-body);color:var(--rose);cursor:pointer;
 }
@@ -18200,44 +18200,47 @@ body.theme-halloween #bookPage #bpStarInput .bp-rating-star.selected{color:#D9C5
 #bookPage .bp-spicy-general:focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:6px}
 #bookPage .bp-spicy-general.is-hidden,#bookPage .bp-spicy-general.is-unknown{color:var(--muted)}
 #bookPage .bp-sp-chiles{display:inline-flex;gap:2px}
-#bookPage .bp-sp-chile,#bookPage .bp-sp-zero{font-size:18px;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+#bookPage .bp-sp-chile,#bookPage .bp-sp-zero{font-size:15px;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
 #bookPage .bp-sp-chile.off{filter:grayscale(1) opacity(55%)}
 
 /* 3 · «Tu valoración» / «Tu spicy»: dos tarjetas alineadas, cada una con su color */
 #bookPage .bp-mine-row{
-  grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;justify-content:stretch;align-items:stretch;
-  padding:1rem 0 0;border-bottom:0;
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;justify-content:stretch;align-items:stretch;
+  padding:.6rem 0 0;border-bottom:0;
 }
 #bookPage .bp-mine-block{
   --ind:var(--gold);min-width:0;align-items:flex-start;text-align:left;
-  padding:.8rem .9rem .9rem;background:var(--surface);
-  border:1px solid var(--border2);border-radius:12px;box-shadow:inset 0 3px 0 0 var(--ind);
+  padding:.5rem .7rem .6rem;background:var(--surface);
+  border:1px solid var(--border2);border-radius:10px;box-shadow:inset 0 2px 0 0 var(--ind);
 }
 #bookPage #bpSpicyBlock{--ind:var(--rose)}
 #bookPage .bp-mine-label{
-  font-size:var(--fs-label,11px);font-weight:700;letter-spacing:.14em;color:var(--ind);margin:0 0 .45rem;
+  font-size:var(--fs-label,11px);font-weight:700;letter-spacing:.14em;color:var(--ind);margin:0 0 .2rem;
 }
 #bookPage .bp-rating-interactive .vote-prompt,
-#bookPage .bp-spicy-interactive .vote-prompt{font-size:12px;line-height:1.35;color:var(--muted);margin:0 0 .35rem}
+#bookPage .bp-spicy-interactive .vote-prompt{flex:0 0 100%;font-size:11.5px;line-height:1.3;color:var(--muted);margin:0}
+/* Estrellas/chiles y botones en la misma fila (se parten solo si no caben) */
+#bookPage .bp-rating-interactive,
+#bookPage .bp-spicy-interactive{flex-direction:row;flex-wrap:wrap;align-items:center;gap:.2rem .6rem}
 
 /* Controles: misma altura de fila (32 px) y misma lógica de estados en estrellas y chiles */
 #bookPage #bpStarInput.bp-rating-stars,
 #bookPage #bpSpicyInput.bp-spicy-input,
-#bookPage .bp-mine-chiles:not(.bp-spicy-input){display:flex;align-items:center;gap:2px;height:32px;margin:0}
+#bookPage .bp-mine-chiles:not(.bp-spicy-input){display:flex;align-items:center;gap:1px;height:28px;margin:0}
 #bookPage #bpStarInput .bp-rating-star,
 #bookPage #bpSpicyInput .bp-spicy-btn{
-  width:30px;height:32px;min-width:0;min-height:0;padding:0;border-radius:8px;
+  width:26px;height:28px;min-width:0;min-height:0;padding:0;border-radius:7px;
   display:flex;align-items:center;justify-content:center;line-height:1;
 }
-#bookPage #bpStarInput .bp-rating-star{font-size:20px;color:var(--f742-off)}
+#bookPage #bpStarInput .bp-rating-star{font-size:17px;color:var(--f742-off)}
 #bookPage #bpStarInput .bp-rating-star.selected{color:var(--gold)}
-#bookPage #bpSpicyInput .bp-spicy-btn{font-size:18px;filter:grayscale(1) opacity(55%)}
+#bookPage #bpSpicyInput .bp-spicy-btn{font-size:15px;filter:grayscale(1) opacity(55%)}
 #bookPage #bpSpicyInput .bp-spicy-btn.selected{filter:none}
 #bookPage #bpStarInput .bp-rating-star:hover,
 #bookPage #bpSpicyInput .bp-spicy-btn:hover{background:color-mix(in srgb,var(--ind) 14%,transparent)}
 #bookPage #bpStarInput .bp-rating-star:focus-visible,
 #bookPage #bpSpicyInput .bp-spicy-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:1px}
-#bookPage .bp-mine-chile{font-size:18px;filter:grayscale(1) opacity(55%)}
+#bookPage .bp-mine-chile{font-size:15px;filter:grayscale(1) opacity(55%)}
 #bookPage .bp-mine-chile.on{filter:none}
 
 /* Voto pendiente de guardar (botón Guardar activo): tarjeta con su color y selección con brillo */
@@ -18248,9 +18251,9 @@ body.theme-halloween #bookPage #bpStarInput .bp-rating-star.selected{color:#D9C5
 #bookPage .bp-spicy-interactive:has(.bp-spicy-submit:not(:disabled)) .bp-spicy-btn.selected{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--rose) 60%,transparent))}
 
 /* Botones Guardar / Eliminar: 12 px y 32 px de alto */
-#bookPage .bp-mine-btns{margin-top:.55rem;padding-top:0;gap:.5rem;justify-content:flex-start;align-items:center}
-#bookPage .bp-rating-submit,#bookPage .bp-spicy-submit{min-height:32px;padding:0 16px;font-size:12px}
-#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:32px;padding:0 12px;font-size:12px}
+#bookPage .bp-mine-btns{margin:0;padding:0;gap:.4rem;justify-content:flex-start;align-items:center}
+#bookPage .bp-rating-submit,#bookPage .bp-spicy-submit{min-height:28px;padding:0 12px;font-size:12px}
+#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:28px;padding:0 10px;font-size:12px}
 
 /* Sin sesión: nota legible con enlace visible */
 #bookPage .bp-readonly-note{grid-column:1/-1;text-align:left;font-style:normal;font-size:12px;color:var(--text);margin:.1rem 0 0}
@@ -18258,13 +18261,13 @@ body.theme-halloween #bookPage #bpStarInput .bp-rating-star.selected{color:#D9C5
 
 /* Móvil: una columna y zonas táctiles de >= 32 px */
 @media(max-width:639px){
-  #bookPage .bp-mine-row{grid-template-columns:1fr;gap:.6rem}
+  #bookPage .bp-mine-row{grid-template-columns:1fr;gap:.5rem}
   #bookPage .bp-spicy-general{padding-left:0;border-left:0}
 }
 @media(max-width:639px),(pointer:coarse){
-  #bookPage #bpStarInput .bp-rating-star,#bookPage #bpSpicyInput .bp-spicy-btn{width:34px;height:36px}
-  #bookPage #bpStarInput.bp-rating-stars,#bookPage #bpSpicyInput.bp-spicy-input{height:36px}
-  #bookPage .bp-rating-submit,#bookPage .bp-spicy-submit,#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:36px}
+  #bookPage #bpStarInput .bp-rating-star,#bookPage #bpSpicyInput .bp-spicy-btn{width:30px;height:32px}
+  #bookPage #bpStarInput.bp-rating-stars,#bookPage #bpSpicyInput.bp-spicy-input{height:32px}
+  #bookPage .bp-rating-submit,#bookPage .bp-spicy-submit,#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:32px}
 }
 </style>
 </body>
