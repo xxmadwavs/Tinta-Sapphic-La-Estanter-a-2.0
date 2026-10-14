@@ -1746,6 +1746,150 @@ button.an-mopen{cursor:pointer}
 .shelf-toolbar .sort-select{max-width:200px}
 .shelf-clear-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:10px;padding:8px 12px;font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .15s;white-space:nowrap}
 .shelf-main-title{font-family:var(--font-display);font-size:1.6rem;font-weight:600;font-style:italic;color:var(--text)}
+.shelf-view-toggle{display:flex;gap:2px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:3px}
+.shelf-view-btn{width:30px;height:30px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .15s}
+.shelf-view-btn.active{background:var(--surface);color:var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.shelf-view-btn svg{width:15px;height:15px}
+.shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
+@media (min-width:2501px){
+  .shelf-grid{
+    grid-template-columns:repeat(8,minmax(130px,1fr));
+  }
+}
+.shelf-book{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .22s}
+.shelf-book .shelf-book-cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--surface2)}
+.shelf-book .shelf-book-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.shelf-book-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--muted)}
+.shelf-book .shelf-book-body{padding:.6rem .7rem}
+.shelf-book .shelf-book-title{font-size:12px;font-weight:500;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
+.shelf-book .shelf-book-author{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* FASE E6.2 — línea meta (mi valoración · mi spicy). Una sola línea de alto fijo: si el spicy no cabe, salta a una 2.ª línea recortada
+   y desaparece junto a su separador (el «·» es su ::before); la valoración se mantiene siempre. */
+.shelf-book .shelf-book-meta{position:relative;display:flex;flex-wrap:wrap;height:14px;margin-top:3px;overflow:hidden;font-size:10.5px;line-height:14px;color:var(--muted)}
+.shelf-book .shelf-book-meta>span{white-space:nowrap}
+.shelf-book .shelf-book-stars{color:var(--gold);letter-spacing:.5px}
+.shelf-book .shelf-book-stars+.shelf-book-spicy::before{content:'·';margin:0 .4em}
+/* FASE E6.3 — fecha corta de última lectura: una sola línea; si no cabe se trunca con elipsis antes que desbordar. */
+.shelf-book .shelf-book-date{margin-top:3px;font-size:10.5px;line-height:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* FASE E6.4 — estado actual de lectura (solo reading/want/dnf): texto secundario de una sola línea; si no cabe se trunca con elipsis. */
+.shelf-book .shelf-book-status{margin-top:3px;font-size:10.5px;line-height:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-book .shelf-book-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%)}
+/* FASE E9.2 — Lista compacta propia. Tres zonas: portada | info principal | metadatos.
+   <900px: 2 columnas (portada a la izquierda; info y metadatos apilados). ≥900px: 3 columnas. Sin alturas fijas en la fila. */
+.shelf-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
+.shelf-list-item{display:grid;grid-template-columns:42px minmax(0,1fr);grid-template-areas:"cover info" "cover meta";column-gap:.85rem;row-gap:.2rem;align-items:center;padding:.55rem .9rem;border-bottom:1px solid var(--border);background:var(--surface);cursor:pointer;transition:background .15s}
+.shelf-list-item:last-child{border-bottom:none}
+.shelf-list-cover,.shelf-list-cover-ph{grid-area:cover;width:42px;height:63px;border-radius:5px;border:1px solid var(--border);flex-shrink:0}
+.shelf-list-cover{object-fit:cover;display:block}
+.shelf-list-cover-ph{background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--muted)}
+.shelf-list-info{grid-area:info;min-width:0}
+.shelf-list-title{font-size:14px;line-height:1.3;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-list-author{font-size:12px;line-height:1.3;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-list-saga{font-size:11px;line-height:1.3;color:var(--muted);opacity:.85;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf-list-meta{grid-area:meta;min-width:0;display:flex;flex-direction:column;gap:.2rem}
+.shelf-list-meta-main{display:flex;align-items:baseline;min-width:0;font-size:11px;line-height:1.3;white-space:nowrap}
+.shelf-list-rate{flex:none;color:var(--gold)}
+.shelf-list-rate small{font-size:10px;color:var(--muted)}
+.shelf-list-state{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.shelf-list-rate+.shelf-list-state::before{content:'·';margin:0 .4em;color:var(--muted)}
+.shelf-list-state.is-want{color:var(--accent2)}
+.shelf-list-state.is-reading{color:var(--gold)}
+.shelf-list-state.is-dnf{color:var(--rose)}
+.shelf-list-state.is-read{color:var(--teal)}
+.shelf-list-state.is-read-nodate{color:var(--gold)}
+.shelf-list-meta-sub{display:flex;gap:.35rem;min-width:0;overflow:hidden}
+.shelf-list-tag{min-width:0;max-width:100%;padding:1px 8px;border:1px solid var(--border2);border-radius:999px;font-size:10.5px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* FASE E12.2 — móvil: valoración y estado/fecha apilados (evita recortar la fecha de «Leyendo» en Todos). */
+@media (max-width:639px){
+  .shelf-list-meta-main{flex-direction:column;align-items:flex-start}
+  .shelf-list-rate+.shelf-list-state::before{content:none}
+}
+@media (min-width:1000px){
+  .shelf-list-item{grid-template-columns:42px minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"cover info meta";column-gap:1rem;padding:.55rem 1.1rem}
+}
+.shelf-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;color:var(--muted);text-align:center;gap:.75rem}
+.shelf-empty-icon{font-size:2.5rem;opacity:.5}
+.shelf-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
+/* FASE E5.3 — Estantería física: libros apoyados sobre baldas finas, integrada en el fondo (sin marco). Madera derivada de --gold (sigue los temas). */
+.shelf-physical{--shelf-gap:4px;--shelf-pad:8px;--shelf-bw:90;display:flex;flex-direction:column;gap:1.1rem;min-width:0;margin-bottom:1.25rem;padding:.25rem 0 0}
+.shelf-row{min-width:0}
+/* FASE E15.2 — ancho de libro (--shelf-bw, px), gap y padding calculados en JS según el ancho REAL de la estantería; altura de balda reservada con el libro de escala 1 */
+.shelf-books-area{display:flex;align-items:flex-end;gap:var(--shelf-gap);padding:0 var(--shelf-pad);height:calc(var(--shelf-bw)*1.5px)}
+.shelf-slot{position:relative;flex:0 0 auto;width:calc(var(--shelf-bw)*var(--w,1)*1px);aspect-ratio:2/3;border-radius:1px 2px 2px 1px;background:var(--surface3);box-shadow:0 0 0 1px rgba(0,0,0,.32),1px 2px 4px -1px rgba(0,0,0,.42),0 3px 7px -4px rgba(0,0,0,.58)}
+.shelf-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.shelf-slot::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.16) 5%,transparent 11%)}
+/* Portada sin imagen / imagen rota: misma caja que una portada real (inset:0 del slot 2:3). Color determinista por id (--ph-bg), texto proporcional al ancho del libro. */
+.shelf-book-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--shelf-bw)*var(--w,1)*.03px);padding:calc(var(--shelf-bw)*var(--w,1)*.12px) calc(var(--shelf-bw)*var(--w,1)*.1px);background:var(--ph-bg,#4a3b34);color:#f2eadf;text-align:center;border-radius:inherit;overflow:hidden}
+.shelf-book-ph::before{content:"";position:absolute;inset:calc(var(--shelf-bw)*var(--w,1)*.06px);border:1px solid rgba(242,234,223,.26);border-radius:1px;pointer-events:none}
+.shelf-book-ph span,.shelf-book-ph small{position:relative;max-width:100%;overflow:hidden;overflow-wrap:anywhere;-webkit-box-orient:vertical;display:-webkit-box}
+.shelf-book-ph span{font-family:var(--font-display);font-style:italic;font-size:max(10px,calc(var(--shelf-bw)*var(--w,1)*.125px));line-height:1.2;-webkit-line-clamp:5}
+.shelf-book-ph small{font-size:max(8.5px,calc(var(--shelf-bw)*var(--w,1)*.085px));line-height:1.2;letter-spacing:.02em;opacity:.78;-webkit-line-clamp:2}
+.shelf-board{height:6px;border-radius:0 0 2px 2px;border-top:1px solid rgba(255,238,215,.15);background:linear-gradient(to bottom,rgba(255,255,255,.04),rgba(0,0,0,0) 45%,rgba(0,0,0,.24)),var(--shelf-wood,#5b3f2d);box-shadow:0 1px 1px rgba(0,0,0,.45),0 3px 6px -2px rgba(0,0,0,.42)} /* E28.2 v2: nogal oscuro mate (6/5/4 px); color por tema vía --shelf-wood */
+/* FASE E5.4 — Interacción de los libros: cursor, hover sutil (solo ratón), foco visible, tooltip y reduced-motion. Todo limitado a .shelf-*. */
+.shelf-slot{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.shelf-slot::before{content:"";position:absolute;left:0;right:0;top:100%;height:5px} /* área de hover bajo el libro: evita el parpadeo al elevarse */
+.shelf-slot:focus-visible{outline:2px solid var(--gold);outline-offset:3px;z-index:2}
+@media (hover:hover) and (pointer:fine){
+  .shelf-slot{transition:transform .16s ease,box-shadow .16s ease}
+  .shelf-slot:hover{z-index:2;transform:translateY(-4px);box-shadow:0 0 0 1px rgba(0,0,0,.34),1px 3px 5px -2px rgba(0,0,0,.46),0 8px 12px -5px rgba(0,0,0,.62)}
+}
+.shelf-tip{position:fixed;left:0;top:0;z-index:20;max-width:min(240px,calc(100vw - 16px));padding:.4rem .6rem;border-radius:4px;background:var(--surface3);border:1px solid var(--border2);color:var(--text);box-shadow:0 4px 12px -2px rgba(0,0,0,.6);pointer-events:none;visibility:hidden;opacity:0;transition:opacity .12s ease}
+.shelf-tip.on{visibility:visible;opacity:1}
+.shelf-tip-t{font-family:var(--font-display);font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.shelf-tip-a{margin-top:2px;font-size:11.5px;line-height:1.3;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+@media (prefers-reduced-motion:reduce){
+  .shelf-slot,.shelf-tip{transition:none}
+  .shelf-slot:hover{transform:none}
+}
+@media (max-width:899px){
+  .shelf-physical{gap:.95rem}
+  .shelf-board{height:5px}
+}
+@media (max-width:639px){
+  .shelf-physical{gap:.8rem}
+  .shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.32),1px 2px 3px -1px rgba(0,0,0,.42),0 2px 5px -4px rgba(0,0,0,.52)}
+  .shelf-board{height:4px}
+}
+/* FASE E15.3.3 — Estantería física, submodo Lomos (shelfStyle=spines). Mismo contenedor, balda, contrato y delegación de eventos que Portadas (.shelf-slot);
+   solo cambia el interior del libro. Altura = la de la portada equivalente (--shelf-bw × --h × 1.5); anchura propia (--sp-w × --ww). Sin canvas: el color llega de b.spine_color. */
+.shelf-style-toggle{display:inline-flex;gap:2px;margin:-.5rem 0 1rem;padding:3px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px}
+.shelf-style-toggle[hidden]{display:none}
+.shelf-style-btn{height:28px;padding:0 12px;border:none;background:transparent;border-radius:6px;cursor:pointer;color:var(--muted);font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .15s,background .15s}
+.shelf-style-btn:hover{color:var(--text)}
+.shelf-style-btn.active{background:var(--surface);color:var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.shelf-style-btn:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.shelf-slot.shelf-spine{--sp-bg:#4a3b34;--sp-fg:#f2eadf;--sp-band:color-mix(in srgb,var(--sp-bg) 58%,#000);
+  width:calc(var(--sp-w,30)*var(--ww,1)*1px);height:calc(var(--shelf-bw)*var(--h,1)*1.5px);aspect-ratio:auto;container-type:inline-size;
+  background-color:var(--sp-bg);color:var(--sp-fg);
+  background-image:linear-gradient(to bottom,var(--sp-band) 0 3px,rgba(255,255,255,.1) 3px 4px,transparent 4px),linear-gradient(to top,var(--sp-band) 0 3px,rgba(255,255,255,.1) 3px 4px,transparent 4px);
+  background-size:100% 5px,100% 5px;background-position:top,bottom;background-repeat:no-repeat}
+.shelf-slot.shelf-spine::after{background:linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 14%,rgba(0,0,0,0) 40%,rgba(0,0,0,.1) 78%,rgba(0,0,0,.26))}
+.shelf-slot.shelf-spine img{opacity:.2;object-position:50% 35%} /* textura sutil: imagen real mostrada, sin leer píxeles (no depende de CORS) */
+.shelf-spine-txt{position:absolute;left:0;right:0;top:8px;bottom:8px;display:flex;justify-content:center;align-items:stretch;overflow:hidden;pointer-events:none}
+.shelf-spine-cols{writing-mode:vertical-rl;min-width:0;max-width:100%;overflow:hidden;display:block;gap:0}
+.shelf-spine-t,.shelf-spine-a{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-body);line-height:1.15}
+.shelf-spine-t{font-size:10px;font-size:clamp(9px,32cqw,12px);font-weight:600;letter-spacing:.01em}
+.shelf-spine-a{display:none;font-size:8.5px;font-size:clamp(8px,25cqw,9.5px);font-weight:500;opacity:.78;margin-right:1.5px}
+@container (min-width:28px){.shelf-spine-a{display:block}}
+.shelf-slot.shelf-spine.sp-light .shelf-spine-cols{text-shadow:0 1px 1px rgba(0,0,0,.3)}
+@media (max-width:639px){
+  .shelf-slot.shelf-spine{background-size:100% 4px,100% 4px}
+  .shelf-spine-txt{top:6px;bottom:6px}
+  .shelf-style-btn{min-height:44px;height:44px;padding:0 16px}
+}
+@media (pointer:coarse){.shelf-style-btn{min-height:44px;height:44px}}
+/* FASE E17 */
+.shelf-books-area{background:linear-gradient(to top,rgba(0,0,0,.22),rgba(0,0,0,0) 24%)}
+.shelf-slot{--e17-tone:calc((1 - var(--w,1))*.55);box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 1px 3px -1px rgba(0,0,0,.5)}
+.shelf-slot.shelf-spine{--e17-tone:calc((1 - var(--h,1))*.55)}
+.shelf-slot::after{background-color:rgba(0,0,0,var(--e17-tone));background-image:linear-gradient(to bottom,rgba(255,255,255,.1),rgba(255,255,255,0) 3px),linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.16) 5%,transparent 11%),linear-gradient(to left,rgba(0,0,0,.16),rgba(0,0,0,0) 14%)}
+.shelf-slot.shelf-spine::after{background-color:rgba(0,0,0,var(--e17-tone));background-image:linear-gradient(to bottom,rgba(255,255,255,.1),rgba(255,255,255,0) 3px),linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 14%,rgba(0,0,0,0) 40%,rgba(0,0,0,.1) 78%,rgba(0,0,0,.26))}
+@media (hover:hover) and (pointer:fine){.shelf-slot:hover{box-shadow:0 0 0 1px rgba(0,0,0,.3),0 8px 10px -5px rgba(0,0,0,.65)}}
+@media (max-width:639px){.shelf-slot{box-shadow:0 0 0 1px rgba(0,0,0,.3),1px 1px 2px -1px rgba(0,0,0,.5)}}
+/* FASE E18 */
+.shelf-slot:not(.shelf-spine)::after{border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+/* FASE E19.2 — la banda ::before bajo el libro solo recoge el puntero cuando el libro YA está en :hover (evita el parpadeo con el cursor a 2–5 px bajo el borde) */
+@media (hover:hover) and (pointer:fine){.shelf-slot:not(:hover)::before{pointer-events:none}}
 /* FASE E20.2 — barra de información contextual #shelfInfo: flujo normal bajo #shelfBooksContainer (sin sticky/fixed), solo Estantería física. Escritorio ≈56px en una línea; móvil apilada. */
 .shelf-info{display:flex;flex-wrap:wrap;align-items:center;gap:.15rem 1.1rem;box-sizing:border-box;min-width:0;max-width:100%;min-height:56px;margin:0;padding:.5rem .9rem;background:var(--surface2);border:1px solid var(--border2);border-radius:10px}
 .shelf-info[hidden],.si-meta[hidden],.si-a[hidden]{display:none}
@@ -3815,6 +3959,71 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 }
 @media (pointer:coarse){#shelfView .shelf-view-btn,#shelfView .shelf-style-btn,#shelfView .shelf-year select,#shelfView .shelf-clear-btn{min-width:44px;min-height:44px}}
 @media (prefers-reduced-motion:reduce){#shelfView .shelf-nav-item,#shelfView .shelf-progress-item,#shelfView .shelf-view-btn,#shelfView .shelf-book,#shelfView .shelf-list-item{transition:none}}
+
+/* ── F8.2.2 · Modos de vista: cada uno con su propio carácter ── */
+/* A · Cuadrícula — la portada es la protagonista */
+#shelfView .shelf-ico{width:16px;height:16px}
+@media (min-width:640px){#shelfView .shelf-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1.7rem 1.2rem}}
+#shelfView .shelf-book{overflow:visible}
+#shelfView .shelf-book .shelf-book-cover{border-radius:var(--radius);box-shadow:0 10px 22px -12px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.16);transition:transform .2s ease,box-shadow .2s ease}
+#shelfView .shelf-book:hover{box-shadow:none}
+#shelfView .shelf-book:hover .shelf-book-cover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--border2),0 16px 28px -12px rgba(0,0,0,.6)}
+#shelfView .shelf-book .shelf-book-body{padding:.7rem .1rem 0}
+#shelfView .shelf-book .shelf-book-title{font-size:13px;font-weight:500;line-height:1.3}
+#shelfView .shelf-book .shelf-book-author{font-size:11.5px;margin-top:1px}
+#shelfView .shelf-book-state{position:absolute;top:8px;left:8px;z-index:2;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+#shelfView .shelf-book-state .shelf-ico{width:15px;height:15px}
+#shelfView .shelf-book-state.is-want{color:var(--accent2)}
+#shelfView .shelf-book-state.is-reading{color:var(--gold)}
+#shelfView .shelf-book-state.is-read{color:var(--teal-text)}
+#shelfView .shelf-book-state.is-dnf{color:var(--rose)}
+#shelfView .shelf-book-cover-ph{position:relative;padding:1rem;background:linear-gradient(160deg,var(--surface3),var(--surface2))}
+#shelfView .shelf-book-cover-ph::before{content:"";position:absolute;inset:8px;border:1px solid var(--border2);border-radius:2px;opacity:.6}
+#shelfView .shelf-book-cover-ph span{position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden;
+  font-family:var(--font-display);font-style:italic;font-size:.95rem;line-height:1.25;text-align:center;color:var(--text);opacity:.85}
+
+/* B · Lista — consulta rápida: columnas alineadas, estado con icono, etiquetas como texto */
+#shelfView .shelf-list-head{display:none}
+#shelfView .shelf-list-item{min-height:60px}
+#shelfView .shelf-list-cover,#shelfView .shelf-list-cover-ph{border-radius:4px}
+#shelfView .shelf-list-cover-ph .shelf-ico{opacity:.7}
+#shelfView .shelf-list-state{display:inline-flex;align-items:center;gap:.4rem}
+#shelfView .shelf-list-state .shelf-ico,#shelfView .shelf-list-rate .shelf-ico{width:14px;height:14px;flex:none}
+#shelfView .shelf-list-rate{white-space:nowrap;font-variant-numeric:tabular-nums}
+#shelfView .shelf-list-rate .shelf-ico{vertical-align:-2px}
+#shelfView .shelf-list-meta-sub{flex-wrap:nowrap;gap:0}
+#shelfView .shelf-list-tag{padding:0;border:0;border-radius:0;background:none;font-size:11.5px;color:var(--muted)}
+#shelfView .shelf-list-tag+.shelf-list-tag::before{content:"·";margin:0 .45em}
+@media (min-width:900px){
+  #shelfView .shelf-list-head,#shelfView .shelf-list-item{display:grid;grid-template-columns:36px minmax(0,1fr) 190px 130px minmax(0,220px);grid-template-areas:none;column-gap:1.1rem;align-items:center;padding:.5rem .75rem}
+  #shelfView .shelf-list-head{position:sticky;top:62px;z-index:1;padding-top:.2rem;padding-bottom:.5rem;background:var(--bg);border-bottom:1px solid var(--border);
+    font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  #shelfView .slh-book{grid-column:2}#shelfView .slh-state{grid-column:3}#shelfView .slh-rate{grid-column:4}#shelfView .slh-tags{grid-column:5}
+  #shelfView .shelf-list-head>span{grid-row:1}
+  #shelfView .shelf-list-meta,#shelfView .shelf-list-meta-main{display:contents}
+  #shelfView .shelf-list-item>*{grid-area:auto;grid-row:1}
+  #shelfView .shelf-list-cover,#shelfView .shelf-list-cover-ph{grid-column:1;width:36px;height:54px}
+  #shelfView .shelf-list-info{grid-column:2}
+  #shelfView .shelf-list-state{grid-column:3;min-width:0}
+  #shelfView .shelf-list-rate{grid-column:4}
+  #shelfView .shelf-list-meta-sub{grid-column:5}
+  #shelfView .shelf-list-rate+.shelf-list-state::before{content:none}
+}
+
+/* C · Estantería física — los libros no cambian; se añade contexto */
+#shelfView .si-t{font-size:16px}
+#shelfView .si-state.is-want{color:var(--accent2)}
+#shelfView .si-state.is-reading{color:var(--gold)}
+#shelfView .si-state.is-read{color:var(--teal-text)}
+#shelfView .si-state.is-dnf{color:var(--rose)}
+#shelfView .shelf-legend{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;margin:.9rem .15rem 0;font-size:11.5px;color:var(--muted)}
+#shelfView .shelf-legend span{display:inline-flex;align-items:center;gap:.5rem}
+#shelfView .shelf-legend i{position:relative;display:inline-block;width:9px;height:14px;border-radius:1px;background:var(--surface3);box-shadow:0 0 0 1px var(--border2)}
+#shelfView .sl-want i{background:rgba(128,128,136,.5)}
+#shelfView .sl-dnf i{background:rgba(140,100,60,.6)}
+#shelfView .sl-reading i::after{content:"";position:absolute;top:0;right:1px;width:3px;height:6px;background:#efe6d8;border-radius:0 0 1px 1px}
+@media (prefers-reduced-motion:reduce){#shelfView .shelf-book .shelf-book-cover{transition:none}#shelfView .shelf-book:hover .shelf-book-cover{transform:none}}
 
 
 /* MAPA DE LOCALIZACIONES EN FICHA DE LIBRO — geometrías originales, encuadre por bounds reales */
@@ -7759,6 +7968,7 @@ body:not(.home-active) .hero{
       </div>
       <div id="shelfBooksContainer"></div>
       <div id="shelfInfo" class="shelf-info" hidden><div class="si-main"><span class="si-t"></span><span class="si-a" hidden></span></div><div class="si-meta" hidden></div></div>
+      <div id="shelfLegend" class="shelf-legend" role="group" aria-label="Leyenda de estados" hidden><span class="sl-want" data-k="want"><i aria-hidden="true"></i>Quiero leer</span><span class="sl-reading" data-k="reading"><i aria-hidden="true"></i>Leyendo</span><span class="sl-dnf" data-k="dnf"><i aria-hidden="true"></i>Lo dejé</span></div>
       <div id="shelfCalendarContainer" style="display:none"></div>
     </div>
   </div>
@@ -14315,10 +14525,14 @@ function _shelfStartedTxt(bookId){
   if(sp==='month') return _shelfShortDateTxt(y,mo,null,'month');
   return d>=1&&d<=31?_shelfShortDateTxt(y,mo,d,'day'):'';
 }
+const _SHELF_ICO={want:'<path d="M6 4h12v17l-6-4-6 4z"/>',reading:'<path d="M12 6C10 4.5 7 4 4 4.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13C17 4 14 4.5 12 6zM12 6v13"/>',read:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',dnf:'<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6m0-6-6 6"/>',spicy:'<path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.2 2-4 0 1.5.8 2.2 1.5 2.5C11 9 10.5 6 12 3z"/>'};
+function _shelfIco(k){ return `<svg class="shelf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${_SHELF_ICO[k]||''}</svg>`; } // F8.2.2: iconos de línea de estado
 function _shelfRenderGrid(pageBooks){
     return `<div class="shelf-grid">${pageBooks.map(b=>{
-      const cov=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-book-cover-ph">📖</div>`;
+      const cov=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-book-cover-ph"><span>${escHtml(b.title)}</span></div>`;
       const auth=(b.authors||[]).join(', ');
+      let badge=''; // F8.2.2: estado como marca sobre la portada (solo en «Todos»; en los demás filtros el estado ya es el filtro)
+      if(shelfFilter==='all'){ const st0=myReadingStatus[b.id]; const k0=(st0==='want'||st0==='reading'||st0==='dnf')?st0:'read'; const lb0={want:'Quiero leer',reading:'Leyendo',dnf:'Lo dejé',read:'Leído'}[k0]; badge=`<span class="shelf-book-state is-${k0}" title="${lb0}">${_shelfIco(k0)}<span class="shelf-book-sr">${lb0}</span></span>`; }
       // FASE E7.2 — información contextual según shelfFilter (solo datos ya cargados, sin consultas). Un único bloque de decisión por estado.
       let meta='', dateLine='';
       switch(shelfFilter){
@@ -14358,7 +14572,7 @@ function _shelfRenderGrid(pageBooks){
         }
       }
       return `<div class="shelf-book" onclick="openBookPage('${b.id}')">
-        <div class="shelf-book-cover">${cov}</div>
+        <div class="shelf-book-cover">${cov}${badge}</div>
         <div class="shelf-book-body">
           <div class="shelf-book-title">${escHtml(b.title)}</div>
           <div class="shelf-book-author">${escHtml(auth)}</div>
@@ -14383,8 +14597,8 @@ function _shelfListTags(b){
   return out;
 }
 function _shelfRenderList(pageBooks){
-    return `<div class="shelf-list">${pageBooks.map(b=>{
-      const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-list-cover-ph">📖</div>`;
+    return `<div class="shelf-list"><div class="shelf-list-head" aria-hidden="true"><span class="slh-book">Libro</span><span class="slh-state">Estado</span><span class="slh-rate">Valoración</span><span class="slh-tags">Etiquetas</span></div>${pageBooks.map(b=>{
+      const cov=b.cover?`<img class="shelf-list-cover" src="${b.cover}" alt="${escHtml(b.title)}" loading="lazy" decoding="async">`:`<div class="shelf-list-cover-ph">${_shelfIco('reading')}</div>`;
       const auth=(b.authors||[]).join(', ');
       // FASE E10.2 — información contextual de la Lista según el filtro activo (solo datos ya cargados, sin consultas).
       const st=myReadingStatus[b.id];
@@ -14392,11 +14606,11 @@ function _shelfRenderList(pageBooks){
       const _comm=()=>{ const r=ratingsMap[b.id]; return (r&&r.count>0)?`<span class="shelf-list-rate">★ ${r.avg.toFixed(1)} <small>(${r.count})</small></span>`:''; };
       switch(shelfFilter){
         case 'want':
-          rate=_comm(); stCls='is-want'; stTxt='＋ Quiero leer';
+          rate=_comm(); stCls='is-want'; stTxt=_shelfIco('want')+'Quiero leer';
           break;
         case 'reading': {
           const since=_shelfStartedTxt(b.id);
-          stCls='is-reading'; stTxt='📖 Leyendo'+(since?' · desde '+since:'');
+          stCls='is-reading'; stTxt=_shelfIco('reading')+'Leyendo'+(since?' · desde '+since:'');
           break;
         }
         case 'read': {
@@ -14404,22 +14618,22 @@ function _shelfRenderList(pageBooks){
           const rv=myRatings[b.id], sv=mySpicy[b.id];
           const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
           const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
-          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`🌶 ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
+          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`${_shelfIco('spicy')} ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
           const rt=bookReadingTime(b.id);
-          if(rt.hasDate){ stCls='is-read'; stTxt=_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); }
+          if(rt.hasDate){ stCls='is-read'; stTxt=_shelfIco('read')+_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision); }
           break;
         }
         case 'dnf': {
           const since=_shelfStartedTxt(b.id);
-          stCls='is-dnf'; stTxt=since?'✕ Empezado '+since:'✕ Lo dejé';
+          stCls='is-dnf'; stTxt=_shelfIco('dnf')+(since?'Empezado '+since:'Lo dejé');
           break;
         }
         default: { // 'all': valoración comunitaria + estado individual
           rate=_comm();
-          if(st==='want'){ stCls='is-want'; stTxt='＋ Quiero leer'; }
-          else if(st==='reading'){ const since=_shelfStartedTxt(b.id); stCls='is-reading'; stTxt='📖 Leyendo'+(since?' · desde '+since:''); }
-          else if(st==='dnf'){ stCls='is-dnf'; stTxt='✕ Lo dejé'; }
-          else { stCls='is-read'; stTxt='✓ Leído'; }
+          if(st==='want'){ stCls='is-want'; stTxt=_shelfIco('want')+'Quiero leer'; }
+          else if(st==='reading'){ const since=_shelfStartedTxt(b.id); stCls='is-reading'; stTxt=_shelfIco('reading')+'Leyendo'+(since?' · desde '+since:''); }
+          else if(st==='dnf'){ stCls='is-dnf'; stTxt=_shelfIco('dnf')+'Lo dejé'; }
+          else { stCls='is-read'; stTxt=_shelfIco('read')+'Leído'; }
         }
       }
       const mainLine=(rate||stTxt)?`<div class="shelf-list-meta-main">${rate}${stTxt?`<span class="shelf-list-state ${stCls}">${stTxt}</span>`:''}</div>`:'';
@@ -14659,6 +14873,10 @@ function _shelfInfoParts(b){
 // Pinta u oculta la barra según el contexto. Si el libro ya no está visible en la Estantería actual (o la vista es Galería/Lista/Calendario), el contexto se descarta.
 function _shelfInfoSync(){
   const el=document.getElementById('shelfInfo'); if(!el) return;
+  const lg=document.getElementById('shelfLegend'); // F8.2.2: leyenda de estados, solo en Estantería física + «Todos» y solo los estados presentes
+  if(lg){ const c0=document.getElementById('shelfBooksContainer'); let any=false;
+    lg.querySelectorAll('[data-k]').forEach(x=>{ const on=!!(shelfViewMode==='shelf'&&shelfFilter==='all'&&c0&&c0.querySelector('.shelf-slot[data-status="'+x.dataset.k+'"]')); x.hidden=!on; any=any||on; });
+    lg.hidden=!any; }
   let b=null;
   if(_shelfInfoId!=null&&shelfViewMode==='shelf'&&shelfFilter!=='calendar'){
     const c=document.getElementById('shelfBooksContainer');
@@ -14670,11 +14888,11 @@ function _shelfInfoSync(){
     el.querySelector('.si-t').textContent=''; el.querySelector('.si-a').textContent=''; meta.textContent='';
     return;
   }
-  const p=_shelfInfoParts(b), a=el.querySelector('.si-a');
+  const p=_shelfInfoParts(b), a=el.querySelector('.si-a'), st=myReadingStatus[b.id];
   el.querySelector('.si-t').textContent=p.title;
   a.textContent=p.author; a.hidden=!p.author;
   meta.textContent='';
-  [['si-rate',p.rating],['si-spicy',p.spicy],['si-state',p.state]].forEach(([cls,t])=>{ if(!t) return; const sp=document.createElement('span'); sp.className=cls; sp.textContent=t; meta.appendChild(sp); });
+  [['si-rate',p.rating],['si-spicy',p.spicy],['si-state',p.state]].forEach(([cls,t])=>{ if(!t) return; const sp=document.createElement('span'); sp.className=cls+(cls==='si-state'&&st?' is-'+st:''); sp.textContent=t; meta.appendChild(sp); });
   meta.hidden=!meta.firstChild;
   el.hidden=false;
 }
