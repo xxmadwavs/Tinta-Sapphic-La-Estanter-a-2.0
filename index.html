@@ -7975,25 +7975,25 @@ body:not(.home-active) .hero{
 
 <!-- BOOK MODAL -->
 <div class="modal-bg" id="bookModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeBookModal()">✕</button>
-    <button class="modal-share-btn" id="modalShareBtn" onclick="shareBook()" title="Copiar enlace a esta ficha">🔗</button>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Ficha del libro">
+    <button class="modal-close" onclick="closeBookModal()" aria-label="Cerrar">✕</button>
+    <button class="modal-share-btn" id="modalShareBtn" onclick="shareBook()" title="Copiar enlace a esta ficha" aria-label="Copiar enlace a esta ficha">🔗</button>
     <div id="bookModalContent"></div>
   </div>
 </div>
 
 <!-- SAGA MAP MODAL (constelación de orden de lectura) -->
 <div class="modal-bg" id="sagaModal">
-  <div class="modal sagamap-modal">
-    <button class="modal-close" onclick="closeSagaModal()">✕</button>
+  <div class="modal sagamap-modal" role="dialog" aria-modal="true" aria-label="Mapa de la saga">
+    <button class="modal-close" onclick="closeSagaModal()" aria-label="Cerrar">✕</button>
     <div class="sagamap-body" id="sagaMapBody"></div>
   </div>
 </div>
 
 <!-- AUTH MODAL -->
 <div class="modal-bg" id="authModal">
-  <div class="auth-modal">
-    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+  <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="auth-close" onclick="closeAuthModal()" aria-label="Cerrar">✕</button>
     <div class="auth-logo">Tinta <em>Sapphic</em></div>
     <div class="auth-title" id="authTitle">Bienvenida</div>
     <p class="auth-sub" id="authSub">Entra para votar y que tu valoración cuente en el ranking.</p>
@@ -8015,8 +8015,8 @@ body:not(.home-active) .hero{
 
 <!-- RESET PASSWORD MODAL -->
 <div class="modal-bg" id="resetModal">
-  <div class="reset-modal">
-    <button class="auth-close" onclick="closeResetModal()">✕</button>
+  <div class="reset-modal" role="dialog" aria-modal="true" aria-label="Recuperar cuenta">
+    <button class="auth-close" onclick="closeResetModal()" aria-label="Cerrar">✕</button>
     <div class="auth-logo">Tinta <em>Sapphic</em></div>
 
     <!-- Paso 1: pedir email -->
@@ -8196,8 +8196,8 @@ body:not(.home-active) .hero{
 
 <!-- HITO / LOGRO MODAL -->
 <div class="hito-modal-bg" id="hitoModal">
-  <div class="hito-card" id="hitoCard">
-    <button class="hito-close" onclick="closeHitoModal()">✕</button>
+  <div class="hito-card" id="hitoCard" role="dialog" aria-modal="true" aria-labelledby="hitoTitle">
+    <button class="hito-close" onclick="closeHitoModal()" aria-label="Cerrar">✕</button>
     <div class="hito-ribbon" id="hitoRibbon"></div>
     <div class="hito-halo"></div>
     <div class="hito-sweep" id="hitoSweep"></div>
@@ -8210,16 +8210,16 @@ body:not(.home-active) .hero{
 
 <!-- BINGO CELL MODAL -->
 <div class="modal-bg" id="bingoCellModal">
-  <div class="modal" style="max-width:440px">
-    <button class="modal-close" onclick="closeBingoCellModal()">✕</button>
+  <div class="modal" style="max-width:440px" role="dialog" aria-modal="true" aria-label="Casilla del bingo">
+    <button class="modal-close" onclick="closeBingoCellModal()" aria-label="Cerrar">✕</button>
     <div class="bingo-cell-modal-body" id="bingoCellModalBody"></div>
   </div>
 </div>
 
 <!-- READ DONE MODAL (valorar + spicy al marcar como leído) -->
 <div class="modal-bg" id="readDoneModal">
-  <div class="modal" style="max-width:400px">
-    <button class="modal-close" onclick="closeReadDoneModal()">✕</button>
+  <div class="modal" style="max-width:400px" role="dialog" aria-modal="true" aria-label="Lectura terminada">
+    <button class="modal-close" onclick="closeReadDoneModal()" aria-label="Cerrar">✕</button>
     <div class="rd-modal-body" id="readDoneModalBody"></div>
   </div>
 </div>
@@ -9996,7 +9996,7 @@ function bookLocCountryBounds(country){
 function bookLocationsHtml(book){
   const locs=Array.isArray(book&&book.ubicaciones)?book.ubicaciones.filter(u=>u&&['pais','ciudad','region'].some(k=>typeof u[k]==='string'&&u[k].trim())):[];
   const empty=locs.length?'':'<p class="book-locations-empty">Este libro todavía no tiene localizaciones cartografiables.</p>';
-  return `<section class="book-locations" data-book-locations="${escHtml(String(book.id))}"><h3 class="book-locations-title">Dónde transcurre la historia</h3><p class="book-locations-sub">Países, ciudades y regiones mencionados en esta ficha.</p>${empty||`<div class="book-locations-map" role="img" aria-label="Mapa de las localizaciones de ${escHtml(book.title||'este libro')}"><div class="book-locations-empty">Cargando mapa…</div></div><div class="book-locations-legend"><span><i class="book-loc-dot"></i> Ciudad</span><span><i class="book-loc-ring"></i> Región</span></div>`}</section>`;
+  return `<section class="book-locations" data-book-locations="${escHtml(String(book.id))}"><h3 class="book-locations-title">Dónde transcurre la historia</h3>${locs.length?'<p class="book-locations-sub">Países, ciudades y regiones mencionados en esta ficha.</p>':''}${empty||`<div class="book-locations-map" role="img" aria-label="Mapa de las localizaciones de ${escHtml(book.title||'este libro')}"><div class="book-locations-empty">Cargando mapa…</div></div><div class="book-locations-legend"><span><i class="book-loc-dot"></i> Ciudad</span><span><i class="book-loc-ring"></i> Región</span></div>`}</section>`;
 }
 // Precalienta los catálogos del mapa (world_map_data ≈722 KB + ciudades + regiones) en un momento ocioso tras cargar los libros,
 // para que la primera ficha abierta no tenga que descargarlos ni parsearlos. Reutiliza los cargadores existentes (promesas y caché compartidas).
@@ -10529,7 +10529,7 @@ function renderBookPage(book){
   const sagaMapBtn=sagaSiblingCount>1
     ?`<button class="saga-map-trigger" onclick="openSagaMap(decodeURIComponent('${encodeURIComponent(b.sagaName)}'))">✦ orden de lectura</button>`
     :'';
-  const sagaRow=sagaName?`<div class="bp-saga-row"><span><button type="button" class="bp-link" data-bpf="sagas" data-bpv="${escHtml(sagaName)}">${escHtml(sagaName)}</button>${sagaNumStr}</span>${sagaMapBtn}</div>`:'';
+  const sagaRow=(sagaName&&(sagaSiblingCount>1||sagaNumStr||b.formato))?`<div class="bp-saga-row"><span><button type="button" class="bp-link" data-bpf="sagas" data-bpv="${escHtml(sagaName)}">${escHtml(sagaName)}</button>${sagaNumStr?`<span class="bp-saga-num">${sagaNumStr.trim()}</span>`:''}</span>${sagaMapBtn}</div>`:'';
 
   // TU VALORACIÓN / TU SPICY — panel personal (FASE 2.6.4, refinado en
   // 2.6.4.1). Solo estructura visual: sin lógica de voto todavía (ver nota
@@ -10607,7 +10607,7 @@ function renderBookPage(book){
   // DÓNDE CONSEGUIRLO
   const buyLinks=(b.editions&&b.editions.length)?b.editions.map(e=>`
     <a class="buy-link" href="${e.url}" target="_blank" rel="noopener">
-      <span class="buy-lang">${e.lang}</span><span class="buy-store">${e.store}</span>
+      <span class="buy-lang">${e.lang}</span><span class="buy-store">${e.store}</span><span class="buy-arrow" aria-hidden="true">↗</span>
     </a>`).join(''):'';
   const wattpadLink=b.wattpad?`<a class="wattpad-link" href="${b.wattpad}" target="_blank" rel="noopener"><span class="wattpad-icon">📙</span><span>Leer gratis en Wattpad</span><span class="buy-arrow">↗</span></a>`:'';
 
@@ -10617,11 +10617,11 @@ function renderBookPage(book){
   // FASE 2.6.4.1 — "Dónde conseguirlo" + "Recomendaciones" comparten la
   // última bp-section (grupo "conseguir/recomendaciones" del brief), sin
   // divisor entre ambos bloques ya que es la sección final de la página.
-  const conseguirBlocks=[
-    (buyLinks||wattpadLink)?`<div class="bp-class-block"><div class="bp-section-title">Dónde conseguirlo</div>${buyLinks?`<div class="buy-links">${buyLinks}</div>`:''}${wattpadLink}</div>`:'',
-    similarHtml?`<div class="bp-class-block">${similarHtml}</div>`:''
-  ].filter(Boolean).join('');
-  const conseguirRecomendaciones=conseguirBlocks?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0">${conseguirBlocks}</div>`:'';
+  // F7.5.2 — «Dónde conseguirlo» pasa a sección propia, con los enlaces agrupados por función
+  // (leer gratis primero, ediciones después). Mismos enlaces, mismos destinos; las recomendaciones quedan solas al final.
+  const conseguirSec=(buyLinks||wattpadLink)?`<div class="bp-section"><div class="bp-section-title">Dónde conseguirlo</div><div class="bp-link-groups">${wattpadLink?`<div class="bp-link-group bp-link-read">${wattpadLink}</div>`:''}${buyLinks?`<div class="bp-link-group bp-link-buy"><div class="buy-links">${buyLinks}</div></div>`:''}</div></div>`:'';
+  const recomendacionesSec=similarHtml?`<div class="bp-section" style="border-bottom:none;margin-bottom:0;padding-bottom:0"><div class="bp-class-block">${similarHtml}</div></div>`:'';
+  const conseguirRecomendaciones=conseguirSec+recomendacionesSec;
 
   document.getElementById('bpWrap').innerHTML=`
     <button class="bp-back" onclick="closeBookPage()">${_bpBackLabel()}</button>
@@ -12819,8 +12819,8 @@ init();
 
 <!-- INFO MODALS -->
 <div id="infoModal" class="info-modal-bg" onclick="if(event.target.id==='infoModal')closeInfoModal()">
-  <div class="info-modal">
-    <button class="info-modal-close" onclick="closeInfoModal()">✕</button>
+  <div class="info-modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
+    <button class="info-modal-close" onclick="closeInfoModal()" aria-label="Cerrar">✕</button>
     <div class="info-modal-header">
       <div class="info-modal-title" id="infoModalTitle"></div>
       <div class="info-modal-subtitle" id="infoModalSub"></div>
@@ -18270,5 +18270,240 @@ body.theme-halloween #bookPage #bpStarInput .bp-rating-star.selected{color:#D9C5
   #bookPage .bp-rating-submit,#bookPage .bp-spicy-submit,#bookPage .bp-rating-delete,#bookPage .bp-spicy-delete{min-height:32px}
 }
 </style>
+<style id="f752-enlaces-saga-mapa">
+/* F7.5.2 · Enlaces, saga y mapa de la ficha (BookPage). Solo presentación, acotada a #bookPage.
+   Mismos enlaces, destinos y funciones del mapa; colores solo con variables de tema. */
+
+/* 1 · Saga: una línea compacta (nombre · #n · orden de lectura) con el sistema de píldoras */
+#bookPage .bp-saga-row{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem .6rem;font-size:14px;margin:0 0 .65rem}
+#bookPage .bp-saga-row > span{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.2rem .5rem;min-width:0;max-width:100%}
+#bookPage .bp-saga-row .bp-link{font-weight:600;text-align:left;overflow-wrap:anywhere}
+#bookPage .bp-saga-num{
+  display:inline-flex;align-items:center;min-height:22px;padding:0 9px;border-radius:999px;
+  border:1px solid var(--border2);background:var(--surface2);color:var(--text);
+  font-size:var(--fs-label,11px);font-weight:700;letter-spacing:.04em;white-space:nowrap;
+}
+#bookPage .bp-saga-row .saga-map-trigger{
+  min-height:var(--f732-chip-min,30px);padding:0 12px;border-radius:999px;
+  border:1px solid var(--border2);background:transparent;color:var(--accent2);
+  font:600 12px/1 var(--font-body);gap:6px;
+}
+#bookPage .bp-saga-row .saga-map-trigger:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+#bookPage .bp-saga-row .saga-map-trigger:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+/* 2 · Dónde conseguirlo: grupos por función, chips con el mismo sistema que las etiquetas */
+#bookPage .bp-link-groups{display:flex;flex-direction:column;gap:.9rem}
+#bookPage .bp-link-group{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}
+#bookPage .bp-link-group + .bp-link-group{padding-top:.9rem;border-top:1px solid var(--border)}
+#bookPage .bp-link-group .buy-links{display:flex;flex-wrap:wrap;gap:8px}
+#bookPage .buy-link,
+#bookPage .wattpad-link{
+  display:inline-flex;align-items:center;gap:.5rem;box-sizing:border-box;width:auto;max-width:100%;
+  min-height:var(--f732-chip-min,30px);padding:0 14px;border-radius:999px;
+  font-size:12px;font-weight:500;line-height:1.2;text-decoration:none;
+}
+#bookPage .buy-link{background:transparent;border:1px solid var(--border2);color:var(--text)}
+#bookPage .buy-link:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+#bookPage .buy-lang{
+  font-size:var(--fs-label,11px);font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:999px;
+  background:var(--surface2);color:var(--text);
+}
+#bookPage .buy-store{font-weight:600}
+#bookPage .buy-arrow{font-size:12px;color:var(--muted)}
+/* Wattpad: tinte de acento en lugar del naranja suelto; sin emoji en la ficha */
+#bookPage .wattpad-link{
+  background:color-mix(in srgb,var(--accent) 10%,var(--surface));
+  border:1px solid color-mix(in srgb,var(--accent) 38%,var(--surface));
+  color:var(--accent2);font-weight:600;
+}
+#bookPage .wattpad-link:hover{background:color-mix(in srgb,var(--accent) 18%,var(--surface));border-color:var(--accent);color:var(--accent2)}
+#bookPage .wattpad-icon{display:none}
+#bookPage .buy-link:focus-visible,#bookPage .wattpad-link:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+/* 3 · Mapa: una sección más (misma superficie, borde, radio y relleno), leyenda en la fila del título */
+#bookPage .book-locations{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.55rem 1rem;
+  margin:0 0 1rem;padding:1rem 1.1rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+}
+#bookPage .book-locations > *{grid-column:1/-1;min-width:0}
+#bookPage .book-locations > .book-locations-title{grid-column:1;grid-row:1;margin:0}
+#bookPage .book-locations > .book-locations-legend{grid-column:2;grid-row:1;margin:0;justify-content:flex-end;font-size:var(--fs-label,11px)}
+#bookPage .book-locations > .book-locations-sub{grid-row:2;margin:0}
+#bookPage .book-locations > .book-locations-map{grid-row:3}
+/* Mapas de un solo país: menos altura (el SVG se ajusta solo, mismo viewBox y mismas funciones) */
+#bookPage .book-locations-zone{height:clamp(200px,26vw,280px)}
+#bookPage .book-locations-map.has-multiple-zones .book-locations-zone{height:clamp(180px,20vw,240px)}
+/* Lista accesible: botón en forma de píldora */
+#bookPage .book-locations-details summary{
+  display:inline-flex;align-items:center;min-height:var(--f732-chip-min,30px);padding:0 14px;border-radius:999px;
+  border:1px solid var(--border2);font-size:12px;font-weight:600;list-style:none;
+}
+#bookPage .book-locations-details summary::-webkit-details-marker{display:none}
+#bookPage .book-locations-details summary:hover{border-color:var(--accent);background:var(--accent-soft)}
+#bookPage .book-locations-details summary:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+/* Sin localizaciones: una línea discreta en lugar de una tarjeta entera */
+#bookPage .book-locations:not(:has(.book-locations-map)){
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .9rem;padding:.7rem 1.1rem;
+}
+#bookPage .book-locations:not(:has(.book-locations-map)) .book-locations-sub{display:none}
+#bookPage .book-locations:not(:has(.book-locations-map)) .book-locations-empty{padding:0;margin:0}
+
+/* 4 · Móvil */
+@media(max-width:639px){
+  #bookPage .book-locations{grid-template-columns:minmax(0,1fr);padding:.85rem .9rem}
+  #bookPage .book-locations > .book-locations-legend{grid-column:1;grid-row:2;justify-content:flex-start}
+  #bookPage .book-locations > .book-locations-sub{grid-row:3}
+  #bookPage .book-locations > .book-locations-map{grid-row:4}
+  #bookPage .book-locations-zone{height:clamp(220px,70vw,310px)}
+  #bookPage .book-locations-map.has-multiple-zones .book-locations-zone{height:clamp(190px,55vw,250px)}
+  #bookPage .bp-link-group .buy-links{width:100%}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   F7.6.2 — Modales largos: recorrido completo, cierre siempre accesible y acciones usables
+   Solo CSS (más el bloque JS final de teclado/foco). No cambia contenido, IDs, clases ni funciones.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{--f762-safe-y:calc(env(safe-area-inset-top,0px) + env(safe-area-inset-bottom,0px))}
+
+/* 1 · El scroll de un modal no arrastra la página de detrás */
+.modal-bg,.info-modal-bg,.hito-modal-bg,.modal,.info-modal,.auth-modal,.reset-modal,
+.info-modal-body,#bookModalContent,.sagamap-body,.bingo-cell-modal-body,.rd-modal-body{overscroll-behavior:contain}
+/* Bloqueo del fondo con modal abierto (refuerza el overflow:hidden del body, que iOS Safari no siempre respeta) */
+html:has(.modal-bg.open,.info-modal-bg.open,.hito-modal-bg.open){overflow:hidden;overscroll-behavior:none}
+
+/* 2 · Modales de información y colecciones: cabecera fija, solo el cuerpo hace scroll, ✕ nunca se va */
+.info-modal-bg .info-modal{display:flex;flex-direction:column;overflow:hidden;
+  max-height:calc(100vh - 4rem);max-height:calc(100dvh - 4rem)}
+.info-modal-bg .info-modal-header{flex:none;position:static;padding-right:3.6rem}
+.info-modal-bg .info-modal-body{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* 3 · Bingo y «lectura terminada»: mismo patrón (✕ fuera del área con scroll) */
+#bingoCellModal .modal,#readDoneModal .modal{display:flex;flex-direction:column;overflow:hidden;
+  max-height:calc(100vh - 4rem);max-height:calc(100dvh - 4rem)}
+#bingoCellModal .bingo-cell-modal-body,#readDoneModal .rd-modal-body{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* 4 · Foco programático sobre el diálogo: sin anillo (los controles internos sí lo conservan) */
+.modal[tabindex="-1"],.auth-modal[tabindex="-1"],.reset-modal[tabindex="-1"],.info-modal[tabindex="-1"],.hito-card[tabindex="-1"]{outline:none}
+
+/* 5 · Móvil (≤639px) */
+@media (max-width:639px){
+  .modal-bg,.info-modal-bg{
+    padding:calc(.6rem + env(safe-area-inset-top,0px)) calc(.5rem + env(safe-area-inset-right,0px))
+            calc(.6rem + env(safe-area-inset-bottom,0px)) calc(.5rem + env(safe-area-inset-left,0px));
+  }
+  /* Un solo scroll por modal: el contenido scrollea y la ✕ / 🔗 quedan fijas dentro del modal acotado.
+     Sustituye al position:fixed anterior, que saltaba durante la animación (transform del .modal). */
+  :is(#bookModal,#sagaModal,#bingoCellModal,#readDoneModal) .modal,
+  .info-modal-bg .info-modal{
+    display:flex;flex-direction:column;overflow:hidden;
+    max-height:calc(100vh - 1.2rem - var(--f762-safe-y));
+    max-height:calc(100dvh - 1.2rem - var(--f762-safe-y));
+  }
+  #bookModal #bookModalContent{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    max-height:calc(100vh - 1.2rem - var(--f762-safe-y));max-height:calc(100dvh - 1.2rem - var(--f762-safe-y))}
+  #sagaModal .sagamap-body{flex:1 1 auto;min-height:0;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  :is(#bookModal,#sagaModal,#bingoCellModal,#readDoneModal) .modal>.modal-close,
+  #bookModal .modal>.modal-share-btn,
+  .info-modal-bg .info-modal>.info-modal-close{position:absolute}
+  /* La ficha completa deja aire sobre la barra inferior */
+  #bookPage{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+  /* Login / recuperación: siguen con ✕ fija; animación solo de opacidad para que no salte con el transform */
+  .auth-close{top:calc(.6rem + 6px + env(safe-area-inset-top,0px));right:calc(.5rem + 6px + env(safe-area-inset-right,0px))}
+  .modal-bg.open .modal,.modal-bg.open .auth-modal,.modal-bg.open .reset-modal,.info-modal-bg.open .info-modal{animation-name:f762FadeIn}
+  .modal-bg.closing .modal,.modal-bg.closing .auth-modal,.modal-bg.closing .reset-modal,.info-modal-bg.closing .info-modal{animation-name:f762FadeOut}
+}
+@keyframes f762FadeIn{from{opacity:0}to{opacity:1}}
+@keyframes f762FadeOut{from{opacity:1}to{opacity:0}}
+
+/* 6 · Áreas táctiles de 44px para ✕ y 🔗 (móvil y pantallas táctiles), con separación entre ambos */
+@media (max-width:639px),(pointer:coarse){
+  .modal-close,.info-modal-close,.modal-share-btn,.auth-close{width:44px;height:44px;font-size:17px}
+  .modal-share-btn{font-size:16px}
+  .modal-bg .modal>.modal-close,.info-modal-bg .info-modal>.info-modal-close{top:8px;right:8px}
+  .modal-bg .modal>.modal-share-btn{top:8px;right:60px}
+}
+@media (max-width:639px){
+  :is(#bookModal,#sagaModal,#bingoCellModal,#readDoneModal) .modal>.modal-close,
+  .info-modal-bg .info-modal>.info-modal-close{top:8px;right:8px}
+  #bookModal .modal>.modal-share-btn{top:8px;right:60px}
+}
+
+/* 7 · Ficha completa: los estados vacíos del mapa no conservan la altura del mapa */
+#bookPage .book-locations-zone:has(>.book-locations-empty),
+#bookPage .book-locations-map .book-locations-zone:has(>.book-locations-empty){height:auto;min-height:0}
+</style>
+<script>
+/* F7.6.2 — Teclado y foco de los modales (aditivo: no sustituye ninguna función existente).
+   · Escape cierra el modal abierto más alto con su propia función de cierre.
+   · Al abrir, el foco pasa al diálogo; al cerrar, vuelve al elemento que lo disparó.
+   · Tab se mantiene dentro del modal abierto. */
+(function(){
+  'use strict';
+  var BGS='.modal-bg,.info-modal-bg,.hito-modal-bg';
+  var DIALOG='.modal,.auth-modal,.reset-modal,.info-modal,.hito-card';
+  var FOCUSABLE='a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])';
+  var CLOSERS={hitoModal:'closeHitoModal',readDoneModal:'closeReadDoneModal',bingoCellModal:'closeBingoCellModal',
+    resetModal:'closeResetModal',authModal:'closeAuthModal',sagaModal:'closeSagaModal',bookModal:'closeBookModal'};
+  var triggers=new WeakMap();
+  function isOpen(el){return el.classList.contains('open');}
+  function topmost(){
+    var list=Array.prototype.filter.call(document.querySelectorAll(BGS),isOpen);
+    if(!list.length) return null;
+    function z(el){return parseInt(getComputedStyle(el).zIndex,10)||0;}
+    return list.reduce(function(a,b){return z(b)>=z(a)?b:a;});
+  }
+  function onClass(el){
+    var open=isOpen(el);
+    if(open===(el._f762open===true)) return;
+    el._f762open=open;
+    var dlg=el.querySelector(DIALOG);
+    if(open){
+      var ae=document.activeElement;
+      if(ae&&ae!==document.body&&!el.contains(ae)) triggers.set(el,ae);
+      if(dlg){
+        if(!dlg.hasAttribute('tabindex')) dlg.setAttribute('tabindex','-1');
+        requestAnimationFrame(function(){
+          if(isOpen(el)&&!el.contains(document.activeElement)) dlg.focus({preventScroll:true});
+        });
+      }
+    }else{
+      var t=triggers.get(el); triggers.delete(el);
+      var ae2=document.activeElement;
+      if(t&&t.isConnected&&(!ae2||ae2===document.body||el.contains(ae2))){
+        try{t.focus({preventScroll:true});}catch(_){}
+      }
+    }
+  }
+  var mo=new MutationObserver(function(recs){recs.forEach(function(r){onClass(r.target);});});
+  Array.prototype.forEach.call(document.querySelectorAll(BGS),function(el){
+    el._f762open=isOpen(el);
+    mo.observe(el,{attributes:true,attributeFilter:['class']});
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape'||e.defaultPrevented||e.isComposing) return;
+    /* #infoModal y las colecciones ya tienen su manejador (registrado antes): si ese modal está o acaba de cerrarse, no se cierra otro más */
+    if(document.querySelector('.info-modal-bg.open,.info-modal-bg.closing')) return;
+    var bg=topmost(); if(!bg) return;
+    var fn=window[CLOSERS[bg.id]];
+    if(typeof fn!=='function') return;
+    e.preventDefault(); fn();
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Tab'||e.defaultPrevented) return;
+    var bg=topmost(); if(!bg) return;
+    var dlg=bg.querySelector(DIALOG); if(!dlg) return;
+    var items=Array.prototype.filter.call(dlg.querySelectorAll(FOCUSABLE),function(n){return n.getClientRects().length>0;});
+    var active=document.activeElement;
+    if(!items.length){e.preventDefault();dlg.focus({preventScroll:true});return;}
+    var first=items[0], last=items[items.length-1];
+    if(!dlg.contains(active)){e.preventDefault();(e.shiftKey?last:first).focus();return;}
+    if(e.shiftKey&&(active===first||active===dlg)){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&active===last){e.preventDefault();first.focus();}
+  });
+})();
+</script>
 </body>
 </html>
