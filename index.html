@@ -105,7 +105,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 /* ── FILTERS – Rediseño elegante ── */
 .filter-shell{
-  background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.95) 100%);
+  background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);
   border:1px solid var(--border2);
   border-radius:var(--radius-lg);
   padding:0;
@@ -773,7 +773,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .hv-cta-sec{background:transparent;color:var(--muted);border:1px solid var(--border2)}
 
 /* Stats band con animación counter-up */
-.hv-stats-band{position:relative;background:linear-gradient(180deg,var(--surface) 0%,rgba(22,18,26,.6) 100%);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:2.4rem 2rem;display:flex;justify-content:center;gap:0;flex-wrap:wrap;overflow:hidden}
+.hv-stats-band{position:relative;background:linear-gradient(180deg,var(--surface) 0%,var(--surface2) 100%);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:2.4rem 2rem;display:flex;justify-content:center;gap:0;flex-wrap:wrap;overflow:hidden}
 .hv-stats-band::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.6}
 .hv-stats-band::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(240,234,245,0.05) 1px,transparent 1px);background-size:20px 20px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,.7) 0%,transparent 72%);mask-image:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,.7) 0%,transparent 72%);pointer-events:none}
 .hv-stat{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:.2rem 3.2rem;border-right:1px solid var(--border);transition:transform .25s ease}
@@ -1061,7 +1061,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 
 /* ── RULETA ── */
 .ruleta-wrap{max-width:700px;margin:0 auto;padding-bottom:4rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
-.ruleta-filtros-card{width:100%;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.95) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,.3);position:relative;overflow:hidden}
+.ruleta-filtros-card{width:100%;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,.3);position:relative;overflow:hidden}
 .ruleta-filtros-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.7}
 .ruleta-filtros-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
 .ruleta-filtros-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
@@ -1146,7 +1146,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .bingo-selector{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .bingo-chal-btn{padding:8px 16px;border-radius:30px;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:12.5px;font-weight:500;cursor:pointer;font-family:var(--font-body);transition:all .15s;white-space:nowrap}
 .bingo-chal-btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
-.bingo-header-card{background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.95) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.5rem 1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.bingo-header-card{background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.5rem 1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
 .bingo-header-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.7}
 .bingo-header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
 .bingo-title{font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--text)}
@@ -1220,7 +1220,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 /* ── LOGROS DEL BINGO (línea / bingo) ── */
 .hito-modal-bg{position:fixed;inset:0;background:rgba(10,8,14,.72);display:none;align-items:center;justify-content:center;z-index:401;padding:1.5rem}
 .hito-modal-bg.open,.hito-modal-bg.closing{display:flex}
-.hito-card{position:relative;width:260px;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,.95) 100%);border:1px solid var(--border2);border-radius:20px;padding:2.75rem 1.25rem 1.75rem;text-align:center;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+.hito-card{position:relative;width:260px;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:20px;padding:2.75rem 1.25rem 1.75rem;text-align:center;overflow:hidden;display:flex;flex-direction:column;align-items:center}
 .hito-card h3{font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 .4rem;font-weight:600}
 .hito-card p{color:var(--muted);font-size:12px;margin:0;line-height:1.6}
 .hito-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;z-index:6}
@@ -1308,7 +1308,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .logros-modal-sub{font-size:14.5px;color:var(--muted);margin-top:.4rem;margin-bottom:2.25rem;line-height:1.7;max-width:56ch}
 
 .logros-editions-list{display:flex;flex-direction:column;gap:.75rem}
-.logros-edition{display:flex;align-items:center;gap:1.25rem;padding:1.1rem 1.4rem;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.85) 100%);border:1px solid var(--border2);border-radius:var(--radius);transition:border-color .18s,transform .18s}
+.logros-edition{display:flex;align-items:center;gap:1.25rem;padding:1.1rem 1.4rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius);transition:border-color .18s,transform .18s}
 .logros-edition-info{flex:1;min-width:0}
 .logros-edition-name{font-size:16px;font-weight:600;color:var(--text);font-family:var(--font-display);font-style:italic}
 .logros-edition-dates{font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:.02em}
@@ -1321,7 +1321,7 @@ body.home-active .hero,body.home-active .main{display:none!important}
 /* insignias generales (bienvenida, primera valoración, spicy, comunidad…) */
 .logros-section-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 1rem}
 .logros-general-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.3rem;padding-bottom:1.75rem;margin-bottom:1.75rem;border-bottom:1px solid var(--border)}
-.logros-general-badge{display:flex;flex-direction:column;align-items:center;gap:.9rem;text-align:center;padding:2rem 1.2rem 1.6rem;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,0.85) 100%);border:1px solid var(--border2);border-radius:var(--radius);transition:transform .18s,border-color .18s}
+.logros-general-badge{display:flex;flex-direction:column;align-items:center;gap:.9rem;text-align:center;padding:2rem 1.2rem 1.6rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius);transition:transform .18s,border-color .18s}
 .logros-general-badge-imgbox{width:132px;height:132px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .logros-general-badge img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));transition:transform .15s}
 .logros-general-badge.locked{opacity:.55}
@@ -1691,7 +1691,7 @@ button.an-mopen{cursor:pointer}
 
 .stats-block{margin-bottom:2.5rem}
 .mystat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:1.75rem 0 2.5rem}
-.mystat{position:relative;text-align:center;padding:1.3rem .8rem;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,.85) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
+.mystat{position:relative;text-align:center;padding:1.3rem .8rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden}
 .mystat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.5}
 .mystat-n{font-family:var(--font-display);font-size:1.9rem;font-weight:300;color:var(--text);line-height:1.15}
 .mystat-l{font-size:10.5px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
@@ -1706,7 +1706,7 @@ button.an-mopen{cursor:pointer}
 .stats-block-note{font-size:11.5px;color:var(--muted);margin-top:.6rem}
 .curio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
 
-.curio-card{padding:1.1rem 1rem;background:linear-gradient(160deg,var(--surface) 0%,rgba(30,25,42,.85) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:.3rem}
+.curio-card{padding:1.1rem 1rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:.3rem}
 .curio-icon{font-size:1.1rem}
 .curio-label{font-size:10px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
 .curio-value{font-family:var(--font-display);font-size:1.15rem;color:var(--text);font-style:italic;line-height:1.25}
@@ -3968,7 +3968,7 @@ body:has(#shelfView.active,#logrosView.active,#statsView.active,#mundoView.activ
 
 
 /* MAPA DE LOCALIZACIONES EN FICHA DE LIBRO — geometrías originales, encuadre por bounds reales */
-.book-locations{margin:1.25rem 0 1.4rem;padding:1rem;background:linear-gradient(145deg,var(--surface2),rgba(22,18,26,.94));border:1px solid var(--border2);border-radius:var(--radius-lg)}
+.book-locations{margin:1.25rem 0 1.4rem;padding:1rem;background:linear-gradient(145deg,var(--surface),var(--surface2));border:1px solid var(--border2);border-radius:var(--radius-lg)}
 .book-locations-title{font-family:var(--font-display);font-size:1.35rem;font-weight:600;margin-bottom:.25rem;color:var(--text)}
 .book-locations-sub{font-size:12px;color:var(--muted);margin-bottom:.75rem}
 .book-locations-map{width:100%;min-height:0;overflow:visible;border-radius:14px;background:radial-gradient(ellipse at 50% 45%,rgba(35,24,39,.52),rgba(8,5,10,.82) 76%);position:relative;isolation:isolate}
@@ -4265,8 +4265,9 @@ body{font-size:var(--type-body-size);font-weight:var(--type-body-weight);line-he
 }
 .filter-shell{background:var(--surface);box-shadow:var(--component-shadow-panel);border-radius:var(--component-radius-panel)}
 #bookPage .bp-section,
-#bookPage .bp-ficha-box,
-#bookPage .bp-sobre-grid > *{background-color:var(--surface2)}
+#bookPage .bp-ficha-box{background-color:var(--surface2)}
+/* FIX — «Sobre este libro»: los bloques interiores no llevan fondo propio (evita el doble morado) */
+#bookPage .bp-sobre-grid > *{background:transparent}
 .modal,
 .info-modal,
 .auth-modal,
@@ -15255,6 +15256,7 @@ async function openLogrosModal(silent){
   if(!currentUser){ openAuthModal(); return; }
   if(_pvActiveKey()==='logros') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
   _logrosPrevState=_pvResolvePrev('logros',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  document.getElementById('bookPage')?.classList.remove('active'); document.body.classList.remove('bp-active'); // FIX — abrir una vista personal desde una ficha cierra la ficha
   _pvApplyLabel('logros');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
@@ -15286,6 +15288,7 @@ async function openStatsModal(silent){
   if(!currentUser){ openAuthModal(); return; }
   if(_pvActiveKey()==='stats') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
   _statsPrevState=_pvResolvePrev('stats',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  document.getElementById('bookPage')?.classList.remove('active'); document.body.classList.remove('bp-active'); // FIX — abrir una vista personal desde una ficha cierra la ficha
   _pvApplyLabel('stats');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
@@ -15311,6 +15314,7 @@ async function openMundoModal(silent){
   if(!currentUser){ openAuthModal(); return; }
   if(_pvActiveKey()==='mundo') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
   _mundoPrevState=_pvResolvePrev('mundo',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  document.getElementById('bookPage')?.classList.remove('active'); document.body.classList.remove('bp-active'); // FIX — abrir una vista personal desde una ficha cierra la ficha
   _pvApplyLabel('mundo');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
@@ -15619,6 +15623,7 @@ async function openRecorridoModal(silent){
   if(!currentUser){ openAuthModal(); return; }
   if(_pvActiveKey()==='recorrido') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
   _rcPrevState=_pvResolvePrev('recorrido',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  document.getElementById('bookPage')?.classList.remove('active'); document.body.classList.remove('bp-active'); // FIX — abrir una vista personal desde una ficha cierra la ficha
   _pvApplyLabel('recorrido');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
@@ -15954,6 +15959,7 @@ function openAnioModal(silent){
   if(!currentUser){ openAuthModal(); return; }
   if(_pvActiveKey()==='anio') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
   _anPrevState=_pvResolvePrev('anio',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  document.getElementById('bookPage')?.classList.remove('active'); document.body.classList.remove('bp-active'); // FIX — abrir una vista personal desde una ficha cierra la ficha
   _pvApplyLabel('anio');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
@@ -16168,6 +16174,7 @@ async function openCartasModal(silent){
   if(!currentUser){ openAuthModal(); return; }
   if(_pvActiveKey()==='cartas') return; // FASE E4.5: la vista ya está activa → ni entrada nueva, ni origen sobrescrito, ni estado de estantería tocado
   _cartasPrevState=_pvResolvePrev('cartas',silent); // FASE E4.5: origen persistente (ver _pvResolvePrev)
+  document.getElementById('bookPage')?.classList.remove('active'); document.body.classList.remove('bp-active'); // FIX — abrir una vista personal desde una ficha cierra la ficha
   _pvApplyLabel('cartas');
   document.getElementById('homeView').classList.remove('active');
   document.body.classList.remove('home-active');
