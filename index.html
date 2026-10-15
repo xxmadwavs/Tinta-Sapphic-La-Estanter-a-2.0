@@ -7361,7 +7361,8 @@ body:not(.home-active) .hero{
     <input type="text" style="display:none" name="username" autocomplete="username">
     <input type="password" style="display:none" name="password" autocomplete="current-password">
     <span class="search-icon">🔍</span>
-    <input class="search-input" id="searchInput" type="search" placeholder="Buscar por título o autora…" oninput="applyFiltersDebounced()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="q" readonly onfocus="this.removeAttribute('readonly')">
+    <input class="search-input" id="searchInput" type="search" placeholder="Buscar por título o autora…" oninput="globalSearchInput(this)" onkeydown="globalSearchKeydown(event)" onfocus="this.removeAttribute('readonly');globalSearchInput(this)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="q" readonly aria-autocomplete="list" aria-controls="globalSearchResults" aria-expanded="false">
+    <div class="global-search-results" id="globalSearchResults" role="listbox" aria-label="Resultados de búsqueda" hidden></div>
   </div>
   <div class="topbar-right">
     <div id="authArea">
@@ -7492,6 +7493,15 @@ body:not(.home-active) .hero{
       <div class="hv-stat-n" id="hvStatThais">—</div><div class="hv-stat-l">Libros Thais</div>
     </div>
   </div>
+
+  <!-- F9.5.3 — LEYENDO AHORA: libros con estado «Leyendo» (solo con sesión). Se pinta desde rnRender(). -->
+  <section class="rn-block" id="rnBlock" aria-labelledby="rnHead" hidden>
+    <div class="rn-head">
+      <h2 class="rn-h" id="rnHead">Leyendo ahora<span class="rn-n" id="rnCount"></span></h2>
+      <button type="button" class="rn-all" id="rnAll" onclick="openShelf('reading')">Mi estantería</button>
+    </div>
+    <div class="rn-list" id="rnList"></div>
+  </section>
 
   <div class="hv-features">
     <div class="hv-feat-card clickable" data-n="01" onclick="showCatalog()">
@@ -8511,6 +8521,7 @@ function diaryOnAuth(){
   diaryRefreshViews();
 }
 function diaryRefreshViews(){
+  try{ rnRender(); }catch(e){ console.warn('[leyendo ahora]',e); } // F9.5.3
   try{ diaryRenderBp(); }catch(e){ console.warn('[diario]',e); }
   try{ if(typeof shelfFilter!=='undefined'&&shelfFilter==='calendar'&&document.getElementById('shelfCalendarContainer')&&document.getElementById('shelfCalendarContainer').children.length) renderReadingCalendar(); }catch(e){ console.warn('[diario]',e); }
 }
@@ -8574,7 +8585,9 @@ function _dyNewForm(bookId){
   let tp=''; const withTotal=rows.find(r=>r.total_pages!=null);
   if(withTotal) tp=String(withTotal.total_pages);
   else { const bp=parseInt(activeBook&&activeBook.pages,10); if(bp>0&&bp<=100000) tp=String(bp); }
-  return {bookId:String(bookId),editId:null,date:_shelfTodayISO(),did:true,mode:'none',last:'',total:tp,pct:''};
+  // F9.5.4: una fecha puede editarse varias veces; la existencia se resuelve al guardar,
+  // consultando Supabase, sin convertir cada guardado en una fila nueva.
+  return {bookId:String(bookId),editId:null,date:_shelfTodayISO(),did:true,mode:'none',last:'',total:tp,pct:'',clearProgress:false};
 }
 
 // F8.6.7 — Diario compacto: en la ficha solo un resumen (porcentaje, páginas, barra fina y «+»).
@@ -8763,17 +8776,53 @@ async function diarySave(){
   const f=diaryForm, uid=currentUser.id, bookId=f.bookId;
   const v=_dyValidate(f);
   if(v.err){ diaryMsg=v.err; diaryRenderBp(); return; }
-  const row=v.row;
-  // Aviso de duplicado al crear: la fecha ya tiene registro de este libro → se pide editarlo
-  const dup=diaryRows.find(r=>r.book_id===bookId&&r.read_date===row.read_date&&r.id!==f.editId);
-  if(dup){ diaryMsg='Ya existe un registro de este libro en esa fecha. Edítalo desde «Registros anteriores».'; diaryRenderBp(); return; }
   diaryBusy=true; diaryMsg=''; diaryRenderBp();
+  const cols='id,user_id,book_id,read_date,did_read,last_page,total_pages,progress_pct';
   try{
+    // F9.5.4: comprobación en Supabase del registro exacto (usuaria + libro + fecha).
+    // La restricción UNIQUE existente es la garantía final contra duplicados; no requiere SQL nuevo.
+    const lookup=await sb.from('reading_diary').select(cols)
+      .eq('user_id',uid).eq('book_id',bookId).eq('read_date',v.row.read_date).maybeSingle();
+    if(lookup.error) throw lookup.error;
+    const existing=lookup.data||null;
+    const row={...v.row};
+
+    if(!row.did_read){
+      // Respeta reading_diary_no_progress_if_not_read_check.
+      row.last_page=null; row.total_pages=null; row.progress_pct=null;
+    } else if(existing){
+      // Los campos vacíos no borran por accidente el progreso ya guardado.
+      // Solo se reemplaza el modo de progreso cuando se introduce un valor nuevo.
+      if(f.clearProgress){
+        row.last_page=null; row.total_pages=null; row.progress_pct=null;
+      } else if(f.mode==='pages'&&String(f.last).trim()!==''){
+        row.last_page=v.row.last_page;
+        row.total_pages=v.row.total_pages!=null?v.row.total_pages:existing.total_pages;
+        row.progress_pct=null;
+      } else if(f.mode==='pct'&&String(f.pct).trim()!==''){
+        row.last_page=null;
+        row.total_pages=v.row.total_pages!=null?v.row.total_pages:existing.total_pages;
+        row.progress_pct=v.row.progress_pct;
+      } else {
+        row.last_page=existing.last_page;
+        row.total_pages=v.row.total_pages!=null?v.row.total_pages:existing.total_pages;
+        row.progress_pct=existing.progress_pct;
+      }
+      if(row.last_page!=null&&row.total_pages!=null&&row.last_page>row.total_pages){
+        diaryBusy=false; diaryMsg='La última página no puede ser mayor que el total de páginas.'; diaryRenderBp(); return;
+      }
+    }
+
     let res;
-    if(f.editId!=null){
-      res=await sb.from('reading_diary').update(row).eq('id',f.editId).eq('user_id',uid).select('id,book_id,read_date,did_read,last_page,total_pages,progress_pct');
+    if(existing){
+      // Actualiza la fila de esa fecha, aunque el formulario se haya abierto como registro nuevo.
+      res=await sb.from('reading_diary').update(row).eq('id',existing.id).eq('user_id',uid).select(cols);
+    } else if(f.editId!=null){
+      // Si se está editando una fecha sin fila previa, se conserva el ID del registro editado.
+      res=await sb.from('reading_diary').update(row).eq('id',f.editId).eq('user_id',uid).select(cols);
     } else {
-      res=await sb.from('reading_diary').upsert({user_id:uid,book_id:bookId,...row},{onConflict:'user_id,book_id,read_date'}).select('id,book_id,read_date,did_read,last_page,total_pages,progress_pct');
+      // El upsert aprovecha la UNIQUE existente si otra sesión guarda esa misma fecha a la vez.
+      res=await sb.from('reading_diary').upsert({user_id:uid,book_id:bookId,...row},{onConflict:'user_id,book_id,read_date'}).select(cols);
     }
     if(res.error) throw res.error;
     const saved=Array.isArray(res.data)?res.data[0]:res.data;
@@ -8781,13 +8830,14 @@ async function diarySave(){
     if(!currentUser||currentUser.id!==uid) return;
     const norm={...saved,book_id:String(saved.book_id),read_date:String(saved.read_date).slice(0,10)};
     diaryRows=diaryRows.filter(r=>r.id!==norm.id&&!(r.book_id===norm.book_id&&r.read_date===norm.read_date)); diaryRows.push(norm);
-    const wasEdit=f.editId!=null;
+    const wasEdit=f.editId!=null||!!existing;
     diaryForm=_dyNewForm(bookId); diaryForm.total=norm.total_pages!=null?String(norm.total_pages):diaryForm.total;
-    diaryBusy=false; diarySheetOpen=false; showToast(wasEdit?'Registro actualizado':'Registro guardado','success');
+    diaryBusy=false; diarySheetOpen=false; diaryMsg='';
+    showToast(wasEdit?'Progreso actualizado':'Registro guardado','success');
   }catch(e){
     console.warn('[diario] guardar',e);
     diaryBusy=false;
-    diaryMsg=(e&&e.code==='23505')?'Ya existe un registro de este libro en esa fecha.':'No se ha podido guardar. Inténtalo de nuevo.';
+    diaryMsg=(e&&e.code==='23505')?'Este libro ya tiene un registro para esa fecha. Vuelve a guardar para actualizarlo.':'No se ha podido guardar. Inténtalo de nuevo.';
   }
   diaryRefreshViews();
 }
@@ -8812,7 +8862,7 @@ function diaryStartEdit(id){
   const r=diaryRows.find(x=>x.id===id); if(!r) return;
   diaryForm={bookId:r.book_id,editId:r.id,date:r.read_date,did:!!r.did_read,
     mode:r.last_page!=null?'pages':(r.progress_pct!=null?'pct':(r.total_pages!=null?'pages':'none')),
-    last:r.last_page!=null?String(r.last_page):'',total:r.total_pages!=null?String(r.total_pages):'',pct:r.progress_pct!=null?String(Number(r.progress_pct)):''};
+    last:r.last_page!=null?String(r.last_page):'',total:r.total_pages!=null?String(r.total_pages):'',pct:r.progress_pct!=null?String(Number(r.progress_pct)):'',clearProgress:false};
   diaryMsg=''; diaryConfirmId=null; diarySheetOpen=true; diaryRenderBp();
   const sb0=document.getElementById('dySheetBody'); if(sb0) sb0.scrollTop=0;
   const d=document.getElementById('dyDate'); if(d) d.focus({preventScroll:true});
@@ -8832,7 +8882,7 @@ document.addEventListener('click',e=>{
   else if(a==='del-yes') diaryDelete(id);
   else if(a==='retry') diaryEnsureLoaded(true);
   else if(a==='prog-on'||a==='prog-pages'||a==='prog-pct'){
-    diaryForm.mode=(a==='prog-pct')?'pct':((a==='prog-on'&&diaryForm.last===''&&diaryForm.pct!=='')?'pct':'pages'); diaryMsg=''; diaryRenderBp();
+    diaryForm.mode=(a==='prog-pct')?'pct':((a==='prog-on'&&diaryForm.last===''&&diaryForm.pct!=='')?'pct':'pages'); diaryForm.clearProgress=false; diaryMsg=''; diaryRenderBp();
     const fld=document.getElementById(diaryForm.mode==='pct'?'dyPct':'dyLast'); if(fld) fld.focus();
   }
   else if(a==='step'){
@@ -8847,7 +8897,7 @@ document.addEventListener('click',e=>{
     _dySyncProg();
   }
   else if(a==='prog-off'){
-    diaryForm.mode='none'; diaryForm.last=''; diaryForm.pct=''; diaryMsg=''; diaryRenderBp();
+    diaryForm.mode='none'; diaryForm.last=''; diaryForm.pct=''; diaryForm.clearProgress=true; diaryMsg=''; diaryRenderBp();
     const bt=document.querySelector('#bpDiary [data-dy="prog-on"]'); if(bt) bt.focus();
   }
 });
@@ -8869,7 +8919,7 @@ document.addEventListener('input',e=>{
   const t=e.target; if(!t.closest||!t.closest('#bpDiary,#dySheet')||!diaryForm) return;
   const k=t.dataset.dyf; if(!k||k==='did'||k==='mode') return;
   diaryForm[k]=t.value; diaryMsg='';
-  if(k==='last'||k==='total'||k==='pct') _dySyncProg();
+  if(k==='last'||k==='total'||k==='pct'){ diaryForm.clearProgress=false; _dySyncProg(); }
 });
 // F8.6.3 — deslizador de progreso
 document.addEventListener('input',e=>{
@@ -8883,7 +8933,7 @@ document.addEventListener('change',e=>{
   const t=e.target; if(!t.closest||!t.closest('#bpDiary,#dySheet')||!diaryForm) return;
   const k=t.dataset.dyf; if(!k) return;
   if(k==='did'){ diaryForm.did=t.value==='1'; diaryMsg=''; diaryRenderBp(); }
-  else if(k==='mode'){ diaryForm.mode=t.value; diaryMsg=''; diaryRenderBp(); const m=document.getElementById('dyMode'); if(m) m.focus(); }
+  else if(k==='mode'){ diaryForm.mode=t.value; diaryForm.clearProgress=false; diaryMsg=''; diaryRenderBp(); const m=document.getElementById('dyMode'); if(m) m.focus(); }
   else diaryForm[k]=t.value;
 });
 
@@ -8893,6 +8943,180 @@ function diaryCalNoteHTML(){
   if(diaryState==='loading') return '<p class="cal-empty-msg">Cargando días del diario…</p>';
   return '';
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   F9.5.3 — LEYENDO AHORA (bloque en Inicio)
+   Reutiliza: myReadingStatus ('reading'), allBooks, reading_diary (diaryRows / _dyValidate), openBookPage().
+   Actualizar progreso = upsert por usuaria+libro+fecha; los guardados repetidos actualizan la fila existente. Sin tablas nuevas.
+   ══════════════════════════════════════════════════════════════ */
+let rnForm=null;         // {id, mode:'pages'|'pct', last, total, pct, msg, busy}
+let rnFocus=null;        // 'input' | 'edit:<id>' — foco a restaurar tras repintar
+let _rnQueued=false;
+const RN_MAX=6;
+function rnRender(){ if(_rnQueued) return; _rnQueued=true; requestAnimationFrame(()=>{ _rnQueued=false; try{ _rnDraw(); }catch(e){ console.warn('[leyendo ahora]',e); } }); }
+function _rnBooks(){
+  const byId=new Map(allBooks.map(b=>[String(b.id),b]));
+  const out=[];
+  Object.keys(myReadingStatus).forEach(id=>{ if(myReadingStatus[id]==='reading'){ const b=byId.get(String(id)); if(b) out.push(b); } });
+  const last=b=>{ const r=_dyBookRows(b.id)[0]; return r?r.read_date:''; };
+  return out.sort((a,b)=>{ const x=last(a), y=last(b); return x<y?1:x>y?-1:String(a.title).localeCompare(String(b.title),'es'); });
+}
+function _rnInfo(b){
+  const rows=_dyBookRows(b.id);
+  const lp=rows.find(r=>r.did_read&&(r.last_page!=null||r.progress_pct!=null));
+  let tot=null; const wt=rows.find(r=>r.total_pages!=null);
+  if(wt) tot=wt.total_pages; else { const bp=parseInt(b.pages,10); if(bp>0&&bp<=100000) tot=bp; }
+  let pct=null, pages='';
+  if(lp){ const t=lp.total_pages!=null?lp.total_pages:tot; pct=lp.progress_pct!=null?Number(lp.progress_pct):_dyPctOf(lp.last_page,t); if(lp.last_page!=null) pages=t?('p. '+lp.last_page+' / '+t):('p. '+lp.last_page); }
+  return {lp,tot,pct,pages};
+}
+function _rnCardHTML(b){
+  const id=escHtml(b.id), t=escHtml(b.title), auth=escHtml((b.authors||[]).join(', '));
+  const cov=b.cover?`<img src="${b.cover}" alt="" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=rn-cover-ph>✦</span>'">`:'<span class="rn-cover-ph">✦</span>';
+  const open=rnForm&&rnForm.id===String(b.id);
+  let prog;
+  if(diaryState==='ready'){
+    const i=_rnInfo(b), w=i.pct!=null?Math.max(0,Math.min(100,i.pct)):0;
+    const line=i.lp?`<strong>${i.pct!=null?_dyFmtPct(i.pct)+' %':'—'}</strong>${i.pages?`<span>${escHtml(i.pages)}</span>`:''}<span>${escHtml(_dyFmtDateShort(i.lp.read_date))}</span>`:'<span>Sin progreso registrado</span>';
+    prog=`<div class="rn-line">${line}</div><div class="rn-bar" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(w)}"><span style="width:${w}%"></span></div>`;
+  } else if(diaryState==='error'){
+    prog='<div class="rn-line"><span>No se ha podido cargar el progreso.</span></div>';
+  } else prog='<div class="rn-line"><span>Cargando progreso…</span></div>';
+  const upd=diaryState==='error'
+    ?'<button type="button" class="rn-btn" data-rn="retry">Reintentar</button>'
+    :`<button type="button" class="rn-btn rn-primary" data-rn="edit" data-id="${id}" aria-expanded="${open}"${diaryState==='ready'?'':' disabled'}>Actualizar progreso</button>`;
+  return `<article class="rn-card" role="listitem">
+    <button type="button" class="rn-cover" data-rn="open" data-id="${id}" aria-label="Abrir la ficha de ${t}">${cov}</button>
+    <div class="rn-body">
+      <button type="button" class="rn-t" data-rn="open" data-id="${id}">${t}</button>
+      ${auth?`<div class="rn-a">${auth}</div>`:''}
+      <div class="rn-prog">${prog}</div>
+      <div class="rn-act">${upd}<button type="button" class="rn-btn" data-rn="open" data-id="${id}">Ficha</button></div>
+    </div>
+    ${open?_rnEditorHTML(b):''}
+  </article>`;
+}
+function _rnEditorHTML(b){
+  const f=rnForm, pg=f.mode==='pages';
+  return `<div class="rn-edit" role="group" aria-label="Actualizar progreso de ${escHtml(b.title)}">
+    <div class="rn-edit-top">
+      <div class="rn-seg" role="group" aria-label="Tipo de progreso">
+        <button type="button" class="rn-segb${pg?' on':''}" data-rn="mode" data-mode="pages" aria-pressed="${pg}">Páginas</button>
+        <button type="button" class="rn-segb${pg?'':' on'}" data-rn="mode" data-mode="pct" aria-pressed="${!pg}">Porcentaje</button>
+      </div>
+      <span class="rn-live" id="rnLive" aria-live="polite">${_dyAutoHTML(f)}</span>
+    </div>
+    <div class="rn-step">
+      <button type="button" class="rn-stepb" data-rn="step" data-dir="-1" aria-label="${pg?'Una página menos':'Un uno por ciento menos'}">−</button>
+      <input type="number" id="rnInput" class="rn-in" data-rnf="${pg?'last':'pct'}" inputmode="${pg?'numeric':'decimal'}" min="${pg?1:0}" max="${pg?100000:100}" step="${pg?1:0.1}" placeholder="${pg?'Pág.':'0'}" aria-label="${pg?'Página actual':'Porcentaje leído'}" value="${escHtml(pg?f.last:f.pct)}">
+      ${pg?`<span class="rn-of" aria-hidden="true">/</span><input type="number" id="rnTotal" class="rn-in" data-rnf="total" inputmode="numeric" min="1" max="100000" step="1" placeholder="Total" aria-label="Total de páginas" value="${escHtml(f.total)}">`:'<span class="rn-of" aria-hidden="true">%</span>'}
+      <button type="button" class="rn-stepb" data-rn="step" data-dir="1" aria-label="${pg?'Una página más':'Un uno por ciento más'}">+</button>
+    </div>
+    <input type="range" id="rnSlider" class="rn-slider" data-rnf="slider" min="0" max="${pg?(_dyTotN(f)>0?_dyTotN(f):0):100}" step="1" value="${pg?(_dyTotN(f)>0?_dyLastN(f):0):_dyPctN(f)}"${pg&&!(_dyTotN(f)>0)?' disabled':''} aria-label="Deslizar para indicar ${pg?'la página actual':'el porcentaje'}">
+    <p class="rn-msg" id="rnMsg" role="alert">${escHtml(f.msg||'')}</p>
+    <div class="rn-edit-act">
+      <button type="button" class="rn-btn" data-rn="cancel"${f.busy?' disabled':''}>Cancelar</button>
+      <button type="button" class="rn-btn rn-primary" data-rn="save"${f.busy?' disabled':''}>${f.busy?'Guardando…':'Guardar'}</button>
+    </div>
+  </div>`;
+}
+function _rnDraw(){
+  const box=document.getElementById('rnBlock'); if(!box) return;
+  if(!currentUser||!readingStatusLoaded||!allBooks.length){ box.hidden=true; rnForm=null; return; }
+  if(diaryState==='idle') diaryEnsureLoaded();
+  const books=_rnBooks();
+  if(rnForm&&!books.some(b=>String(b.id)===rnForm.id)) rnForm=null; // dejó de estar «Leyendo»
+  const list=document.getElementById('rnList'), ae=document.activeElement;
+  let keep=null; if(list.contains(ae)) keep={id:ae.id,rn:ae.dataset.rn||'',bid:ae.dataset.id||'',mode:ae.dataset.mode||'',dir:ae.dataset.dir||''};
+  box.hidden=false;
+  document.getElementById('rnCount').textContent=books.length?'('+books.length+')':'';
+  const all=document.getElementById('rnAll'); all.hidden=!books.length; all.textContent=books.length>RN_MAX?'Ver todos ('+books.length+')':'Mi estantería';
+  if(!books.length){
+    list.className='rn-list is-empty'; list.removeAttribute('role');
+    list.innerHTML='<p class="rn-empty">No tienes ninguna lectura en curso. Marca un libro como «Leyendo» y aparecerá aquí.</p>';
+    return;
+  }
+  list.className='rn-list'; list.setAttribute('role','list');
+  list.innerHTML=books.slice(0,RN_MAX).map(_rnCardHTML).join('');
+  let t=null;
+  if(rnFocus==='input') t=document.getElementById('rnInput');
+  else if(rnFocus&&rnFocus.startsWith('edit:')) t=[...list.querySelectorAll('[data-rn="edit"]')].find(x=>x.dataset.id===rnFocus.slice(5));
+  else if(keep) t=keep.id?document.getElementById(keep.id):[...list.querySelectorAll('button,input')].find(x=>(x.dataset.rn||'')===keep.rn&&(x.dataset.id||'')===keep.bid&&(x.dataset.mode||'')===keep.mode&&(x.dataset.dir||'')===keep.dir);
+  rnFocus=null;
+  if(t){ try{ t.focus({preventScroll:true}); }catch(e){} }
+}
+function rnOpenEditor(id){
+  if(diaryState!=='ready') return;
+  if(rnForm&&rnForm.id===String(id)){ rnCloseEditor(); return; }
+  const b=allBooks.find(x=>String(x.id)===String(id)); if(!b) return;
+  const i=_rnInfo(b), f={id:String(id),mode:'pages',last:'',total:i.tot?String(i.tot):'',pct:'',msg:'',busy:false};
+  if(i.lp){ if(i.lp.last_page!=null) f.last=String(i.lp.last_page); else { f.mode='pct'; f.pct=String(Number(i.lp.progress_pct)); } }
+  else if(!i.tot) f.mode='pct';
+  rnForm=f; rnFocus='input'; _rnDraw();
+}
+function rnCloseEditor(){ if(!rnForm||rnForm.busy) return; const id=rnForm.id; rnForm=null; rnFocus='edit:'+id; _rnDraw(); }
+function _rnSync(from){
+  const f=rnForm, box=document.getElementById('rnBlock'); if(!f||!box) return;
+  const live=box.querySelector('#rnLive'); if(live) live.innerHTML=_dyAutoHTML(f);
+  const sl=box.querySelector('#rnSlider');
+  if(sl&&from!=='slider'){ if(f.mode==='pages'){ const t=_dyTotN(f); sl.max=String(t>0?t:0); sl.disabled=!(t>0); sl.value=String(t>0?_dyLastN(f):0); } else sl.value=String(_dyPctN(f)); }
+  if(from==='slider'){ const i=box.querySelector('#rnInput'); if(i) i.value=f.mode==='pages'?f.last:f.pct; }
+  const m=box.querySelector('#rnMsg'); if(m) m.textContent='';
+}
+async function rnSave(){
+  const f=rnForm; if(!f||f.busy||!currentUser||diaryState!=='ready') return;
+  if(String(f.mode==='pages'?f.last:f.pct).trim()===''){ f.msg=f.mode==='pages'?'Indica la página actual.':'Indica el porcentaje.'; _rnDraw(); return; }
+  const v=_dyValidate({date:_shelfTodayISO(),did:true,mode:f.mode,last:f.last,total:f.total,pct:f.pct});
+  if(v.err){ f.msg=v.err; _rnDraw(); return; }
+  const uid=currentUser.id, bookId=f.id;
+  f.busy=true; f.msg=''; _rnDraw();
+  try{
+    const current=diaryRows.find(r=>r.user_id===uid&&r.book_id===bookId&&r.read_date===v.row.read_date) || diaryRows.find(r=>r.book_id===bookId&&r.read_date===v.row.read_date);
+    const saveRow={...v.row,total_pages:v.row.total_pages!=null?v.row.total_pages:(current&&current.total_pages!=null?current.total_pages:null)};
+    const res=await sb.from('reading_diary').upsert({user_id:uid,book_id:bookId,...saveRow},{onConflict:'user_id,book_id,read_date'}).select('id,book_id,read_date,did_read,last_page,total_pages,progress_pct');
+    if(res.error) throw res.error;
+    const saved=Array.isArray(res.data)?res.data[0]:res.data;
+    if(!saved) throw new Error('Sin confirmación de Supabase');
+    if(!currentUser||currentUser.id!==uid) return;
+    const norm={...saved,book_id:String(saved.book_id),read_date:String(saved.read_date).slice(0,10)};
+    diaryRows=diaryRows.filter(r=>r.id!==norm.id&&!(r.book_id===norm.book_id&&r.read_date===norm.read_date)); diaryRows.push(norm);
+    rnForm=null; rnFocus='edit:'+bookId; showToast('Progreso actualizado','success');
+    _rnDraw(); diaryRefreshViews();
+  }catch(e){
+    console.warn('[leyendo ahora] guardar',e);
+    if(rnForm===f){ f.busy=false; f.msg='No se ha podido guardar. Inténtalo de nuevo.'; _rnDraw(); }
+  }
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#rnBlock [data-rn]'); if(!b) return;
+  const a=b.dataset.rn;
+  if(a==='open') openBookPage(b.dataset.id);
+  else if(a==='edit') rnOpenEditor(b.dataset.id);
+  else if(a==='cancel') rnCloseEditor();
+  else if(a==='save') rnSave();
+  else if(a==='retry') diaryEnsureLoaded(true);
+  else if(a==='mode'){ if(rnForm&&!rnForm.busy&&rnForm.mode!==b.dataset.mode){ rnForm.mode=b.dataset.mode; rnForm.msg=''; _rnDraw(); } }
+  else if(a==='step'&&rnForm){
+    const dir=parseInt(b.dataset.dir,10)||0, f=rnForm; f.msg='';
+    if(f.mode==='pages'){ const t=_dyTotN(f); let n=(parseInt(f.last,10)||0)+dir; if(t>0&&n>t) n=t; f.last=n>=1?String(n):''; }
+    else { let n=Math.round(((parseFloat(String(f.pct).trim().replace(',','.'))||0)+dir)*100)/100; f.pct=String(Math.min(100,Math.max(0,n))); }
+    const i=document.getElementById('rnInput'); if(i) i.value=f.mode==='pages'?f.last:f.pct;
+    _rnSync('step');
+  }
+});
+document.addEventListener('input',e=>{
+  const t=e.target; if(!rnForm||!t.closest||!t.closest('#rnBlock')) return;
+  const k=t.dataset.rnf; if(!k) return;
+  if(k==='slider'){ const v=Number(t.value); if(rnForm.mode==='pages') rnForm.last=v>0?String(v):''; else rnForm.pct=String(v); }
+  else rnForm[k]=t.value;
+  _rnSync(k);
+});
+document.addEventListener('keydown',e=>{
+  if(!rnForm||!e.target.closest||!e.target.closest('#rnBlock')) return;
+  if(e.key==='Enter'&&e.target.matches('input[type="number"]')){ e.preventDefault(); rnSave(); }
+  else if(e.key==='Escape'){ e.preventDefault(); rnCloseEditor(); }
+});
 
 const SUPABASE_URL = document.querySelector('meta[name="sb-url"]').content;
 const SUPABASE_KEY = document.querySelector('meta[name="sb-key"]').content;
@@ -12508,7 +12732,24 @@ function _applyTabState(tab){
   }
 }
 
+/* FIX menús desde Inicio — ¿hay algo «por encima» del catálogo que switchTab() deba cerrar antes de mostrar una pestaña?
+   Inicio (body.home-active oculta .hero y .main con !important), la estantería personal, las vistas personales o la ficha. */
+function _tabLeavingSpecialView(){
+  if(document.body.classList.contains('home-active') || document.body.classList.contains('bp-active')) return true;
+  return ['homeView','shelfView','logrosView','statsView','cartasView','mundoView','recorridoView','anioView','bookPage']
+    .some(id=>document.getElementById(id)?.classList.contains('active'));
+}
 function switchTab(tab, silent){
+  // FIX menús desde Inicio — punto único: una navegación real (no silenciosa) a una pestaña cierra antes Inicio y las vistas
+  // especiales. Así Comunidad, «Recomendaciones» y los botones de pestaña funcionan igual desde Inicio, la estantería, las
+  // vistas personales o una ficha, sin que cada menú tenga que acordarse de llamar a closeAllSpecialViews().
+  // Las llamadas silenciosas (restauración desde popstate/F5/cierres de vista) no se tocan: ahí el estado ya lo decide el llamante.
+  const _leaving=!silent && _tabLeavingSpecialView();
+  if(_leaving){
+    closeAllSpecialViews();
+    window.scrollTo(0,0); // la pestaña nueva se abre arriba, no en el scroll en que estuviera Inicio o la vista cerrada
+  }
+  if(!silent){ closeCommunityDropdown(); closeCategoriesDropdown(); closeMobileMoreMenu(); }
   activeTab=tab;
   if(!silent) activeMyrecCat=null;
   sessionStorage.setItem('ts_active_tab', tab);
@@ -12521,6 +12762,10 @@ function switchTab(tab, silent){
     const params=new URLSearchParams(location.search);
     if(tab==='estanteria') params.delete('tab'); else params.set('tab',tab);
     params.delete('cat');
+    // FIX menús desde Inicio — una navegación real a una pestaña ya ha cerrado cualquier vista personal o la estantería (aquí o en
+    // showCatalog()), así que sus parámetros no deben quedar en la URL: refrescar o compartir reabriría esa vista en vez de la pestaña.
+    // Atrás sigue volviendo a la entrada anterior, que conserva su propia URL.
+    ['view','myshelf','shelfView','shelfStyle','shelfYear','shelfSearch','shelfGenre','shelfSort','shelfPage'].forEach(k=>params.delete(k));
     const url=params.toString()?'?'+params.toString():location.pathname;
     history.pushState({tab},'',url);
   }catch(e){}
@@ -12668,21 +12913,30 @@ document.addEventListener('keydown',e=>{
 
 /* ── HOME VIEW ── */
 function showHome(){
-  sessionStorage.setItem('ts_active_tab', 'home');
+  // La ficha y algunas vistas personales ocultan los hijos directos de <main>
+  // mediante estilos inline. Quitar solo las clases .active no basta: el
+  // display:none inline prevalece y puede dejar Inicio invisible.
+  document.querySelectorAll('main > *').forEach(el=>el.style.display='');
+  try{ sessionStorage.setItem('ts_active_tab', 'home'); }catch(e){}
   closeAllSpecialViews();
-  document.getElementById('homeView').classList.add('active');
+  closeMobileMoreMenu();
+  closeCategoriesDropdown();
+  closeCommunityDropdown();
+  document.getElementById('homeView')?.classList.add('active');
   document.body.classList.add('home-active');
-  document.getElementById('homeNavBtn').classList.add('active');
+  document.getElementById('homeNavBtn')?.classList.add('active');
   updateHomeStats();
   // Clean URL — home has no params
   try{ history.replaceState({home:true},'',location.pathname); }catch(e){}
   syncMobileNavActive();
-  closeMobileMoreMenu();
 }
 function showCatalog(tab){
   const t = tab || 'estanteria';
-  sessionStorage.setItem('ts_active_tab', t);
+  try{ sessionStorage.setItem('ts_active_tab', t); }catch(e){}
   closeAllSpecialViews();
+  closeMobileMoreMenu();
+  closeCategoriesDropdown();
+  closeCommunityDropdown();
   switchTab(t);
 }
 
@@ -12700,6 +12954,7 @@ function animateCount(el, target){
 }
 
 function updateHomeStats(){
+  try{ rnRender(); }catch(e){} // F9.5.3
   const total=allBooks.length;
   const thais=allBooks.filter(b=>b.source==='thais').length;
   const votes=Object.values(ratingsMap).reduce((s,r)=>s+r.count,0);
@@ -14361,6 +14616,7 @@ async function loadMyReadingStatus(){
     if(completed.length) myReadingReadAt[bookId]=completed[completed.length-1].read_at;
   });
   readingStatusLoaded=true;
+  try{ rnRender(); }catch(e){} // F9.5.3
   // Refresco de seguridad: si hay una ficha (#bookPage o modal) abierta, su
   // primer render pudo haber ocurrido con myReadingStatus aún vacío
   // (allBooks llega antes que reading_status). Se reutiliza _refreshShelfUI,
@@ -14610,6 +14866,7 @@ async function deleteReadLogEntry(bookId, logId){
 }
 
 function _refreshShelfUI(bookId){
+  try{ rnRender(); }catch(e){} // F9.5.3 — «Leyendo ahora» sigue al estado de lectura
   // Botones en modal
   const modalWrap=document.getElementById('shelfBtns_'+bookId);
   if(modalWrap && activeBook && activeBook.id===bookId) modalWrap.outerHTML=buildShelfButtonsHTML(bookId);
@@ -19770,6 +20027,61 @@ html.dy-lock,html.dy-lock body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .dy-sheet-backdrop,.dy-sheet-panel,#bookPage .bp-diary .dy-bar>span,#dySheet .dy-hist-toggle svg{transition:none}
 }
+/* ── F9.5.3 — LEYENDO AHORA (Inicio). Solo variables de tema; PC: rejilla, tablet: 2 columnas, móvil: carrusel horizontal ── */
+.rn-block{max-width:1100px;margin:0 auto;padding:1.5rem clamp(.85rem,3vw,2rem) .6rem}
+.rn-block[hidden]{display:none}
+.rn-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
+.rn-h{font-family:var(--font-display);font-size:clamp(1.25rem,2.4vw,1.6rem);font-weight:600;color:var(--text);margin:0;line-height:1.2}
+.rn-n{font-family:var(--font-body);font-size:.8rem;font-weight:400;color:var(--muted);margin-left:.45rem}
+.rn-all{background:none;border:0;padding:.4rem .2rem;min-height:40px;font:inherit;font-size:.85rem;color:var(--accent2);cursor:pointer;white-space:nowrap}
+.rn-all:hover{text-decoration:underline}
+.rn-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.8rem;align-items:start}
+.rn-list.is-empty{display:block}
+.rn-empty{margin:0;padding:.85rem 1rem;border:1px dashed var(--border2);border-radius:var(--radius-lg);color:var(--muted);font-size:.9rem;line-height:1.5}
+.rn-card{display:grid;grid-template-columns:60px minmax(0,1fr);gap:.5rem .85rem;padding:.8rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);min-width:0}
+.rn-cover{display:block;width:60px;aspect-ratio:2/3;padding:0;border:0;border-radius:6px;overflow:hidden;background:var(--surface2);cursor:pointer;color:var(--muted)}
+.rn-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.rn-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.rn-body{min-width:0;display:flex;flex-direction:column;gap:.25rem}
+.rn-t{background:none;border:0;padding:0;margin:0;text-align:left;font-family:var(--font-display);font-size:1.02rem;font-weight:600;line-height:1.25;color:var(--text);cursor:pointer;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rn-t:hover{color:var(--accent2)}
+.rn-a{font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rn-prog{display:flex;flex-direction:column;gap:.3rem;margin-top:.2rem}
+.rn-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .6rem;font-size:.78rem;color:var(--muted)}
+.rn-line strong{font-size:.95rem;color:var(--text);font-variant-numeric:tabular-nums}
+.rn-bar{height:5px;border-radius:5px;background:var(--surface3);overflow:hidden}
+.rn-bar>span{display:block;height:100%;border-radius:inherit;background:var(--progress);transition:width .3s ease}
+.rn-act{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.35rem}
+.rn-btn{font:inherit;font-size:.8rem;min-height:36px;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);cursor:pointer}
+.rn-btn:hover:not(:disabled){border-color:var(--accent2);color:var(--accent2)}
+.rn-btn:disabled{opacity:.55;cursor:default}
+.rn-btn.rn-primary{background:var(--accent2);border-color:var(--accent2);color:var(--surface)}
+.rn-btn.rn-primary:hover:not(:disabled){color:var(--surface);filter:brightness(1.08)}
+.rn-edit{grid-column:1/-1;display:flex;flex-direction:column;gap:.55rem;padding-top:.65rem;border-top:1px solid var(--border)}
+.rn-edit-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.rn-seg{display:inline-flex;border:1px solid var(--border2);border-radius:999px;overflow:hidden}
+.rn-segb{font:inherit;font-size:.78rem;min-height:34px;padding:.25rem .9rem;border:0;background:var(--surface2);color:var(--muted);cursor:pointer}
+.rn-segb.on{background:var(--accent-soft,var(--surface3));color:var(--accent2);font-weight:600}
+.rn-live{font-size:.85rem;color:var(--text)}
+.rn-live .dy-dim{color:var(--muted)}.rn-live .dy-warn{color:var(--accent2)}
+.rn-step{display:flex;align-items:center;gap:.4rem}
+.rn-stepb{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:1.15rem;line-height:1;cursor:pointer}
+.rn-in{width:100%;min-width:0;max-width:110px;height:40px;padding:0 .5rem;text-align:center;font:inherit;font-size:16px;color:var(--text);background:var(--surface2);border:1px solid var(--border2);border-radius:10px}
+.rn-of{color:var(--muted)}
+.rn-slider{width:100%;accent-color:var(--progress);margin:.1rem 0}
+.rn-msg{margin:0;min-height:0;font-size:.8rem;color:var(--accent2)}
+.rn-msg:empty{display:none}
+.rn-edit-act{display:flex;justify-content:flex-end;gap:.5rem}
+.rn-block button:focus-visible,.rn-block input:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+@media (min-width:640px) and (max-width:1023px){.rn-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:639px){
+  .rn-block{padding-top:1.1rem}
+  .rn-list:not(.is-empty){grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(88%,340px);overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:.4rem;-webkit-overflow-scrolling:touch}
+  .rn-card{scroll-snap-align:start}
+  .rn-btn{min-height:44px}
+  .rn-edit-act .rn-btn{flex:1 1 auto}
+}
+@media (prefers-reduced-motion:reduce){.rn-bar>span{transition:none}}
 </style>
 <style id="f865-calendario-responsive">
 /* F8.6.5 — Calendario de lecturas: adaptación responsive. Solo presentación y gesto de navegación táctil.
@@ -20026,7 +20338,141 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
   .modal-bg.open .auth-modal,.modal-bg.open .reset-modal{animation-name:f762FadeIn}
   .modal-bg.closing .auth-modal,.modal-bg.closing .reset-modal{animation-name:f762FadeOut}
 }
+
+/* F9.5.2 · Búsqueda global: resultados anclados al buscador existente en escritorio y móvil */
+.topbar-search{position:relative;z-index:450}
+.global-search-results{
+  position:absolute;top:calc(100% + 7px);left:0;right:0;z-index:600;
+  max-height:min(62vh,440px);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--surface);color:var(--text);border:1px solid var(--border2);
+  border-radius:12px;box-shadow:0 18px 48px rgba(20,10,16,.24);padding:5px;
+}
+.global-search-results[hidden]{display:none}
+.global-search-result{
+  display:flex;align-items:center;gap:11px;width:100%;min-width:0;text-align:left;
+  padding:9px 10px;border:0;border-radius:8px;background:transparent;color:var(--text);
+  font:inherit;cursor:pointer;transition:background .12s;
+}
+.global-search-result:hover,.global-search-result:focus-visible,.global-search-result[aria-selected="true"]{background:var(--accent-soft);outline:none}
+.global-search-thumb{width:35px;height:50px;flex:0 0 35px;object-fit:cover;border-radius:4px;background:var(--surface2)}
+.global-search-thumb-ph{display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--muted)}
+.global-search-copy{display:block;min-width:0;flex:1}
+.global-search-title{display:block;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.global-search-author{display:block;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.global-search-meta{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.global-search-empty{padding:13px 12px;color:var(--muted);font-size:12.5px}
+@media(max-width:639px){
+  .global-search-results{max-height:min(55vh,380px);border-radius:10px}
+  .global-search-result{min-height:60px;padding:8px}
+}
+
 </style>
+
+<script id="f952-global-search">
+/* F9.5.2 · Autocompletado global conectado a allBooks y openBookPage existentes.
+   La consulta no modifica filtros ni cambia de sección mientras solo se muestran sugerencias. */
+(function(){
+  var inputId='searchInput', resultsId='globalSearchResults', activeIndex=-1, lastQuery='';
+  function normalize(value){
+    return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es').trim();
+  }
+  function closeResults(){
+    var box=document.getElementById(resultsId), input=document.getElementById(inputId);
+    if(box){box.hidden=true;box.innerHTML='';}
+    if(input)input.setAttribute('aria-expanded','false');
+    activeIndex=-1;
+  }
+  function createResult(book,index){
+    var button=document.createElement('button');
+    button.type='button';button.className='global-search-result';button.setAttribute('role','option');
+    button.setAttribute('aria-selected',index===activeIndex?'true':'false');
+    button.dataset.bookId=String(book.id);
+    if(book.cover){
+      var img=document.createElement('img');img.className='global-search-thumb';img.src=book.cover;
+      img.alt='';img.loading='lazy';img.onerror=function(){var ph=document.createElement('span');ph.className='global-search-thumb global-search-thumb-ph';ph.textContent='✦';this.replaceWith(ph);};
+      button.appendChild(img);
+    }else{
+      var ph=document.createElement('span');ph.className='global-search-thumb global-search-thumb-ph';ph.textContent='✦';button.appendChild(ph);
+    }
+    var copy=document.createElement('span');copy.className='global-search-copy';
+    var title=document.createElement('span');title.className='global-search-title';title.textContent=book.title||'Título no disponible';
+    var author=document.createElement('span');author.className='global-search-author';author.textContent=(book.authors||[]).join(', ')||'Autora no especificada';
+    var meta=document.createElement('span');meta.className='global-search-meta';
+    meta.textContent=(book.year?String(book.year)+' · ':'')+((typeof SECTION_META!=='undefined'&&SECTION_META[book.source])?(SECTION_META[book.source].label||SECTION_META[book.source].name||''):'');
+    copy.append(title,author);if(meta.textContent.trim())copy.appendChild(meta);
+    button.appendChild(copy);
+    button.addEventListener('click',function(){
+      closeResults();
+      var input=document.getElementById(inputId);if(input)input.blur();
+      if(typeof openBookPage==='function')openBookPage(book.id);
+    });
+    return button;
+  }
+  window.globalSearchInput=function(input){
+    if(!input)return;
+    var query=String(input.value||'').trim(), box=document.getElementById(resultsId);
+    if(!box)return;
+    if(query!==lastQuery){activeIndex=-1;lastQuery=query;}
+    if(normalize(query).length<2 || typeof allBooks==='undefined' || !Array.isArray(allBooks) || !allBooks.length){
+      closeResults();
+      // El buscador sigue filtrando el catálogo únicamente cuando esa vista está activa.
+      if(!document.body.classList.contains('home-active') && !document.body.classList.contains('bp-active') &&
+         !document.getElementById('shelfView')?.classList.contains('active') &&
+         typeof activeTab!=='undefined' && activeTab==='estanteria') {
+        if(typeof applyFiltersDebounced==='function')applyFiltersDebounced();
+      }
+      return;
+    }
+    var q=normalize(query);
+    var matches=allBooks.map(function(book){
+      var title=normalize(book.title), authors=normalize((book.authors||[]).join(' '));
+      var hay=title+' '+authors;
+      var score=title.startsWith(q)?0:(authors.split(/\s+/).some(function(a){return a.startsWith(q);})?1:(hay.includes(q)?2:9));
+      return {book:book,score:score};
+    }).filter(function(item){return item.score<9;})
+      .sort(function(a,b){return a.score-b.score || String(a.book.title||'').localeCompare(String(b.book.title||''),'es');})
+      .slice(0,8);
+    box.innerHTML='';
+    if(!matches.length){
+      var empty=document.createElement('div');empty.className='global-search-empty';empty.textContent='No hay coincidencias para «'+query+'».';
+      box.appendChild(empty);
+    }else{
+      matches.forEach(function(item,index){box.appendChild(createResult(item.book,index));});
+    }
+    box.hidden=false;input.setAttribute('aria-expanded','true');
+    // Mantener los filtros y su consulta tal como están: solo actualizar el catálogo si ya está visible.
+    if(!document.body.classList.contains('home-active') && !document.body.classList.contains('bp-active') &&
+       !document.getElementById('shelfView')?.classList.contains('active') &&
+       typeof activeTab!=='undefined' && activeTab==='estanteria' && typeof applyFiltersDebounced==='function'){
+      applyFiltersDebounced();
+    }
+  };
+  window.globalSearchKeydown=function(event){
+    var box=document.getElementById(resultsId);
+    if(!box||box.hidden)return;
+    var items=Array.from(box.querySelectorAll('.global-search-result'));
+    if(event.key==='Escape'){closeResults();return;}
+    if(!items.length)return;
+    if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+      event.preventDefault();
+      activeIndex=(activeIndex+(event.key==='ArrowDown'?1:-1)+items.length)%items.length;
+      items.forEach(function(item,index){item.setAttribute('aria-selected',index===activeIndex?'true':'false');});
+      items[activeIndex].scrollIntoView({block:'nearest'});
+    }else if(event.key==='Enter'&&activeIndex>=0){
+      event.preventDefault();items[activeIndex].click();
+    }
+  };
+  document.addEventListener('click',function(event){
+    var wrap=document.querySelector('.topbar-search');
+    if(wrap&&!wrap.contains(event.target))closeResults();
+  });
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape')closeResults();
+  });
+  window.addEventListener('resize',function(){if(window.innerWidth<640){var box=document.getElementById(resultsId);if(box&&!box.hidden)box.style.maxWidth='100%';}});
+})();
+</script>
+
 <script id="f952-a11y">
 /* F9.5.2 · «Regístrate aquí», «¿Olvidaste tu contraseña?» y «← Volver» alcanzables con teclado (Tab) y activables con Enter o Espacio.
    Solo añade tabindex/role y reenvía la pulsación al clic que ya existe; no cambia ninguna acción ni destino. */
