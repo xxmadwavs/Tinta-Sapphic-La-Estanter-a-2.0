@@ -7438,31 +7438,48 @@ body:not(.home-active) .hero{
 .home-explore-sub-links a:hover{background:var(--accent-soft);border-color:var(--border2)}
 @media(max-width:850px){.home-explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:639px){.home-explore-grid{grid-template-columns:minmax(0,1fr);gap:.55rem;padding:.7rem}.home-explore-card{min-height:80px;padding:.7rem}.home-explore-art{flex-basis:42px;width:42px;height:56px}.home-explore-copy strong{font-size:1.08rem}.home-explore-history{padding:.7rem}.home-explore-sub-links{margin-top:.55rem}}
-@media(prefers-reduced-motion:reduce){.home-explore-card{transition:none}
-/* Siguiente lectura: botón y selector (la elige la usuaria). */
+@media(prefers-reduced-motion:reduce){.home-explore-card{transition:none}.home-explore-card:hover{transform:none}}
+
+/* ── Siguiente lectura: botón en la tarjeta + selector. Solo variables del tema (normal, Halloween y Navidad). ── */
 .home-journey-pick{display:block;margin:.7rem auto 0;border:1px solid var(--border2);background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:.4rem .95rem;font:600 .76rem var(--font-body);cursor:pointer;transition:background .16s,border-color .16s}
 .home-journey-pick:hover{background:var(--surface3);border-color:var(--accent)}
 .home-journey-pick:focus-visible,.home-next-item:focus-visible,.home-next-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.home-next-dlg{width:min(520px,calc(100vw - 2rem));max-height:min(80vh,640px);padding:0;border:1px solid var(--border2);border-radius:var(--radius-lg);background:var(--surface);color:var(--text);overflow:hidden}
-.home-next-dlg[open]{display:flex;flex-direction:column}
-.home-next-dlg::backdrop{background:rgba(0,0,0,.55)}
-.home-next-head{padding:1rem 1.15rem .7rem;border-bottom:1px solid var(--border)}
-.home-next-head h2{font:600 1.5rem/1.15 var(--font-display);margin-bottom:.15rem}
-.home-next-head p{font-size:.8rem;color:var(--muted)}
-.home-next-q{width:100%;margin-top:.7rem;padding:.55rem .8rem;border:1px solid var(--border2);border-radius:10px;background:var(--surface2);color:var(--text);font:inherit;font-size:16px}
-.home-next-list{overflow-y:auto;padding:.6rem;display:grid;gap:.4rem;min-height:0}
-.home-next-item{display:flex;align-items:center;gap:.75rem;width:100%;text-align:left;padding:.5rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font:inherit;cursor:pointer}
-.home-next-item:hover,.home-next-item.on{border-color:var(--accent);background:var(--accent-soft)}
-.home-next-item img,.home-next-ph{flex:0 0 40px;width:40px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--border2);background:var(--surface3);display:flex;align-items:center;justify-content:center;color:var(--muted)}
-.home-next-txt{display:flex;flex-direction:column;min-width:0}
-.home-next-txt strong{font:600 1.02rem/1.2 var(--font-display);overflow-wrap:anywhere}
-.home-next-txt small{font-size:.74rem;color:var(--muted)}
-.home-next-empty{padding:1rem;color:var(--muted);font-size:.85rem;font-style:italic;text-align:center}
-.home-next-foot{display:flex;justify-content:space-between;gap:.5rem;padding:.7rem 1.15rem;border-top:1px solid var(--border)}
-.home-next-btn{border:1px solid var(--border2);background:transparent;color:var(--muted);border-radius:999px;padding:.4rem .9rem;font:600 .78rem var(--font-body);cursor:pointer}
+html:has(#homeNextDlg[open]){overflow:hidden}
+.home-next-dlg{position:fixed;inset:0;margin:auto;width:min(720px,calc(100vw - 1.5rem));max-height:min(88vh,780px);max-height:min(88dvh,780px);padding:0;border:1px solid var(--border2);border-radius:var(--radius-lg);background:var(--surface);color:var(--text);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.home-next-dlg[open]{display:flex;flex-direction:column;animation:modalBoxFadeIn .22s cubic-bezier(.25,.7,.3,1)}
+.home-next-dlg::backdrop{background:rgba(8,5,10,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.home-next-dlg[open]::backdrop{animation:modalBgFadeIn .2s ease}
+.home-next-head{flex:0 0 auto;padding:1.4rem 1.5rem 1.1rem;border-bottom:1px solid var(--border);background:linear-gradient(120deg,var(--surface2),var(--surface))}
+.home-next-kicker{margin:0 0 .2rem;color:var(--muted);font-size:.65rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.home-next-head h2{margin:0 2.4rem .3rem 0;font:600 clamp(1.55rem,4vw,2rem)/1.1 var(--font-display);color:var(--text)}
+.home-next-sub{margin:0;color:var(--muted);font-size:.84rem;line-height:1.5}
+.home-next-search{margin-top:.95rem;min-width:0}
+.home-next-search .search-input{font-size:16px}
+.home-next-list{flex:1 1 auto;min-height:0;overflow-y:auto;padding:1.1rem 1.5rem 1.25rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:.9rem;align-content:start;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
+.home-next-list::-webkit-scrollbar{width:6px}
+.home-next-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:6px}
+.home-next-item{display:flex;flex-direction:column;align-items:stretch;gap:.4rem;min-width:0;padding:.6rem .6rem .75rem;text-align:center;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font:inherit;cursor:pointer;transition:border-color .16s,background .16s,transform .16s}
+.home-next-item:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+.home-next-item.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 1px var(--accent) inset}
+.home-next-cover{position:relative;display:block;width:100%;aspect-ratio:2/3;overflow:hidden;border:1px solid var(--border2);border-radius:var(--radius);background:var(--surface3);box-shadow:0 5px 16px rgba(0,0,0,.18)}
+.home-next-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.home-next-ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:linear-gradient(145deg,var(--surface2),var(--rose-soft));color:var(--accent);font:600 1.8rem var(--font-display)}
+.home-next-badge{position:absolute;top:6px;right:6px;padding:.18rem .5rem;border-radius:999px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.04em;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.home-next-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:600 1.02rem/1.2 var(--font-display);overflow-wrap:anywhere}
+.home-next-author{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--muted);font-size:.74rem}
+.home-next-empty{grid-column:1/-1;padding:1.6rem 1rem;color:var(--muted);font-size:.88rem;font-style:italic;text-align:center}
+.home-next-foot{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.75rem 1.5rem;border-top:1px solid var(--border);background:var(--surface)}
+.home-next-count{color:var(--muted);font-size:.75rem}
+.home-next-btn{border:1px solid var(--border2);background:transparent;color:var(--muted);border-radius:999px;padding:.4rem .95rem;font:600 .78rem var(--font-body);cursor:pointer;transition:color .16s,border-color .16s}
 .home-next-btn:hover{color:var(--accent);border-color:var(--accent)}
 .home-next-btn[hidden]{display:none}
-.home-explore-card:hover{transform:none}}
+@media(max-width:520px){
+  .home-next-dlg{width:calc(100vw - 1rem);max-height:92vh;max-height:92dvh}
+  .home-next-head{padding:1.15rem 1.1rem .95rem}
+  .home-next-list{grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:.7rem;padding:.9rem 1.1rem 1.1rem}
+  .home-next-foot{padding:.65rem 1.1rem}
+}
+@media(prefers-reduced-motion:reduce){.home-next-dlg[open],.home-next-dlg[open]::backdrop{animation:none}.home-next-item,.home-next-item:hover{transition:none;transform:none}}
 </style>
 
 </head>
@@ -7603,15 +7620,20 @@ body:not(.home-active) .hero{
 
 <!-- HOME VIEW -->
 <dialog class="home-next-dlg" id="homeNextDlg" aria-labelledby="homeNextDlgTitle">
+  <button type="button" class="modal-close" data-home-next-close aria-label="Cerrar">✕</button>
   <div class="home-next-head">
+    <p class="home-next-kicker">Tu recorrido</p>
     <h2 id="homeNextDlgTitle">Tu siguiente lectura</h2>
-    <p>Elige entre los libros de tu «Quiero leer».</p>
-    <input type="search" class="home-next-q" id="homeNextQ" placeholder="Buscar por título o autora…" autocomplete="off" aria-label="Buscar en Quiero leer">
+    <p class="home-next-sub">Elige cuál quieres leer después. Aquí salen los libros de tu «Quiero leer».</p>
+    <div class="search-wrap home-next-search">
+      <span class="search-icon">🔍</span>
+      <input type="search" class="search-input" id="homeNextQ" placeholder="Buscar por título o autora…" autocomplete="off" aria-label="Buscar en Quiero leer">
+    </div>
   </div>
   <div class="home-next-list" id="homeNextList"></div>
   <div class="home-next-foot">
+    <span class="home-next-count" id="homeNextCount" aria-live="polite"></span>
     <button type="button" class="home-next-btn" id="homeNextClear" data-home-next-clear hidden>Quitar elección</button>
-    <button type="button" class="home-next-btn" data-home-next-close>Cerrar</button>
   </div>
 </dialog>
 
@@ -9087,21 +9109,49 @@ function _homeJourneyCardHTML(b, kind, dateLabel=''){
     : '<span class="home-journey-cover home-journey-cover-ph" aria-hidden="true">✦</span>';
   return `<button type="button" class="home-journey-book" data-home-journey-open="${id}" aria-label="Abrir la ficha de ${title}">${cover}<span class="home-journey-book-title">${title}</span>${author?`<span class="home-journey-book-author">${author}</span>`:''}${dateLabel?`<span class="home-journey-book-author">${escHtml(dateLabel)}</span>`:''}</button>`;
 }
-/* «Siguiente» (Tu recorrido): elección de la usuaria, guardada en este navegador (localStorage, por usuaria). */
+/* «Siguiente» (Tu recorrido): elección de la usuaria, sincronizada en Supabase (tabla next_read, una fila por usuaria).
+   Copia en localStorage solo como respaldo si la tabla no responde. */
+let myNextReadId='';
 function _homeNextKey(){ return currentUser?('tsNextRead_'+currentUser.id):null; }
-function _homeNextGet(){ try{ const k=_homeNextKey(); return k?(localStorage.getItem(k)||''):''; }catch(e){ return ''; } }
-function _homeNextSet(id){ try{ const k=_homeNextKey(); if(!k) return; if(id) localStorage.setItem(k,String(id)); else localStorage.removeItem(k); }catch(e){} }
+function _homeNextLocal(){ try{ const k=_homeNextKey(); return k?(localStorage.getItem(k)||''):''; }catch(e){ return ''; } }
+function _homeNextLocalSet(id){ try{ const k=_homeNextKey(); if(!k) return; if(id) localStorage.setItem(k,String(id)); else localStorage.removeItem(k); }catch(e){} }
+function _homeNextGet(){ return myNextReadId; }
+async function loadMyNextRead(){
+  if(!currentUser) return;
+  const uid=currentUser.id;
+  try{
+    const {data,error}=await sb.from('next_read').select('book_id').eq('user_id',uid).maybeSingle();
+    if(error) throw error;
+    if(!currentUser||currentUser.id!==uid) return;
+    myNextReadId=data?String(data.book_id):'';
+    _homeNextLocalSet(myNextReadId);
+  }catch(e){
+    console.warn('[siguiente lectura] no se pudo leer next_read',e);
+    if(currentUser&&currentUser.id===uid) myNextReadId=_homeNextLocal();
+  }
+}
+async function _homeNextSave(id){
+  const uid=currentUser&&currentUser.id; if(!uid) return null;
+  myNextReadId=id?String(id):'';
+  _homeNextLocalSet(myNextReadId);
+  const res=id
+    ?await sb.from('next_read').upsert({user_id:uid,book_id:String(id),updated_at:new Date().toISOString()},{onConflict:'user_id'})
+    :await sb.from('next_read').delete().eq('user_id',uid);
+  return res.error||null;
+}
 function homeNextPickList(){
-  const list=document.getElementById('homeNextList'), qEl=document.getElementById('homeNextQ');
+  const list=document.getElementById('homeNextList'), qEl=document.getElementById('homeNextQ'), cnt=document.getElementById('homeNextCount');
   if(!list) return;
   const q=((qEl&&qEl.value)||'').trim().toLowerCase(), chosen=_homeNextGet();
   const items=allBooks.filter(b=>myReadingStatus[String(b.id)]==='want')
     .filter(b=>!q||((b.title||'')+' '+(b.authors||[]).join(' ')).toLowerCase().includes(q));
   list.innerHTML=items.length?items.map(b=>{
     const id=escHtml(b.id), on=String(b.id)===chosen;
-    const cov=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async">`:'<span class="home-next-ph" aria-hidden="true">✦</span>';
-    return `<button type="button" class="home-next-item${on?' on':''}" data-home-next-id="${id}" aria-pressed="${on}">${cov}<span class="home-next-txt"><strong>${escHtml(b.title||'Sin título')}</strong><small>${escHtml((b.authors||[]).join(', '))}</small></span></button>`;
+    const cov=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=home-next-ph>✦</span>'">`:'<span class="home-next-ph" aria-hidden="true">✦</span>';
+    const author=escHtml((b.authors||[]).join(', '));
+    return `<button type="button" class="home-next-item${on?' on':''}" data-home-next-id="${id}" aria-pressed="${on}"><span class="home-next-cover">${cov}${on?'<span class="home-next-badge">✓ Elegido</span>':''}</span><span class="home-next-title">${escHtml(b.title||'Sin título')}</span>${author?`<span class="home-next-author">${author}</span>`:''}</button>`;
   }).join(''):'<p class="home-next-empty">No hay libros que coincidan en tu «Quiero leer».</p>';
+  if(cnt) cnt.textContent=items.length+(items.length===1?' libro':' libros');
 }
 function homeNextPickOpen(){
   const dlg=document.getElementById('homeNextDlg');
@@ -9110,13 +9160,15 @@ function homeNextPickOpen(){
   const clr=document.getElementById('homeNextClear'); if(clr) clr.hidden=!_homeNextGet();
   homeNextPickList();
   dlg.showModal();
-  if(qEl) qEl.focus();
+  if(qEl&&!(window.matchMedia&&matchMedia('(pointer:coarse)').matches)) qEl.focus();
 }
-function homeNextPickDone(id){
-  _homeNextSet(id);
+async function homeNextPickDone(id){
   const dlg=document.getElementById('homeNextDlg'); if(dlg&&dlg.open) dlg.close();
+  const saving=_homeNextSave(id);   // fija myNextReadId al instante; la subida a Supabase sigue en segundo plano
   homeJourneyRender();
-  showToast(id?'Siguiente lectura elegida':'Has quitado tu siguiente lectura','success');
+  const err=await saving;
+  if(err){ console.warn('[siguiente lectura] no se pudo guardar',err); showToast('No se pudo sincronizar; queda guardado solo en este dispositivo','error'); }
+  else showToast(id?'Siguiente lectura elegida':'Has quitado tu siguiente lectura','success');
 }
 document.addEventListener('click',e=>{
   if(e.target.id==='homeNextDlg'){ e.target.close(); return; }
@@ -12785,7 +12837,7 @@ function setAuthError(msg){
     const w=i.closest('.tg-input-wrap')||i;w.classList.toggle('field-invalid',bad);
   });
 }
-async function logout(){await sb.auth.signOut();diaryReset();myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};showToast('Hasta pronto 🌹','success');applyFilters();}
+async function logout(){await sb.auth.signOut();diaryReset();myRatings={};myReadingStatus={};myReadingReadAt={};myReadingLog={};myNextReadId='';showToast('Hasta pronto 🌹','success');applyFilters();}
 
 function toggleUserDropdown(){
   const wrap=document.getElementById('userChipWrap');
@@ -14905,6 +14957,8 @@ async function loadMyReadingStatus(){
     if(completed.length) myReadingReadAt[bookId]=completed[completed.length-1].read_at;
   });
   readingStatusLoaded=true;
+  await loadMyNextRead();
+  try{ homeJourneyRender(); }catch(e){}
   try{ rnRender(); }catch(e){} // F9.5.3
   // Refresco de seguridad: si hay una ficha (#bookPage o modal) abierta, su
   // primer render pudo haber ocurrido con myReadingStatus aún vacío
