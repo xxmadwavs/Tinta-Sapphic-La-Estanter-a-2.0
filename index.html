@@ -7482,6 +7482,105 @@ html:has(#homeNextDlg[open]){overflow:hidden}
 @media(prefers-reduced-motion:reduce){.home-next-dlg[open],.home-next-dlg[open]::backdrop{animation:none}.home-next-item,.home-next-item:hover{transition:none;transform:none}}
 </style>
 
+<style id="f10-3-1-movil">
+/* ══════════════════════════════════════════════════════════════════
+   F10.3.1 · MÓVIL
+   Solo CSS, al final del <head> (gana por orden de aparición).
+   No cambia HTML, JS, IDs, clases, datos ni lógica; no oculta nada.
+   - Sin desplazamiento horizontal accidental (clip, no scroll).
+   - Portadas, títulos y autoras legibles (sin cortar a 2 líneas).
+   - Insignias sobre portadas: más pequeñas y con zona táctil propia.
+   - Objetivos táctiles ≥ 40–44 px en tarjetas, ficha, paginación,
+     filtros, perfil, pie y formularios.
+   - Textos mínimos de 11 px.
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width:639px){
+  html{scroll-padding-top:120px;scroll-padding-bottom:88px}
+  html,body{max-width:100%;overflow-x:clip}
+  img,video,canvas{max-width:100%}
+  dialog,.modal,[role="dialog"]{max-width:100vw}
+  dialog,.modal,[role="dialog"],.modal-body,.bp-content,.book-card,.book-card-body,.home-clean-main{min-width:0}
+
+  /* ── Barra superior: logo, perfil y entrar ── */
+  html body .topbar .logo{min-height:44px;display:inline-flex;align-items:center}
+  html body .topbar .btn-login,
+  html body .topbar .user-chip{min-height:40px}
+  html body .topbar .btn-login{font-size:11.5px}
+
+  /* ── Tarjetas del catálogo ── */
+  html body .book-card .book-title{-webkit-line-clamp:3;line-clamp:3;overflow-wrap:anywhere;hyphens:auto;min-height:0}
+  html body .book-card .book-author{display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;white-space:normal!important;text-overflow:clip!important;overflow:hidden;overflow-wrap:anywhere;font-size:12px;line-height:1.3}
+  html body .book-card .card-saga-sub{overflow-wrap:anywhere;min-height:32px;display:flex;align-items:center}
+  html body .book-card .vote-mini-btn{min-height:40px;padding:6px 14px;font-size:12px}
+  html body .book-card .no-ratings{font-size:11px}
+  html body .card-shelf-btns{gap:.35rem;margin-top:.5rem}
+  html body .card-shelf-btn{min-height:40px;padding:6px 4px;font-size:11px}
+
+  /* ── Insignias sobre portadas (spicy arriba, valoración abajo) ── */
+  html body .book-cover-wrap .spicy-badge{top:6px!important;right:6px!important;font-size:11px!important;line-height:1.5!important;padding:3px 8px!important;max-width:calc(100% - 12px)}
+  html body .book-cover-wrap .spicy-badge::after{content:"";position:absolute;inset:-8px}
+  html body .book-cover-wrap .avg-badge{bottom:6px;right:6px;max-width:calc(100% - 12px);padding:3px 8px}
+
+  /* ── Paginación ── */
+  html body .pg-btn{min-width:44px;height:44px}
+
+  /* ── Filtros (panel largo) ── */
+  html body .fp-panel-clear{min-height:44px;display:inline-flex;align-items:center;font-size:11px}
+
+  /* ── Pie ── */
+  html body .footer-link{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+
+  /* ── Ficha del libro ── */
+  html body .bp-back{min-height:44px;font-size:13px}
+  html body #bookPage .bp-title,html body #bookPage .bp-author,html body #bookPage .bp-synopsis{overflow-wrap:anywhere}
+  html body #bpStarInput.bp-rating-stars,html body #bpSpicyInput.bp-spicy-input{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;height:auto}
+  html body #bpStarInput .bp-rating-star,html body #bpSpicyInput .bp-spicy-btn,html body .star-btn{min-width:44px;min-height:44px;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0}
+  html body .bp-tag-link{min-height:36px;display:inline-flex;align-items:center}
+  html body .tag-adder-select{min-height:40px;font-size:12px}
+  html body .saga-map-trigger,html body #bpVoteBtn,html body .bp-rating-submit,html body .bp-add-btn{min-height:44px}
+
+  /* ── Formularios / acceso ── */
+  html body .pass-toggle{min-width:44px;min-height:44px}
+
+
+  /* ── Refuerzo (reglas posteriores con #bookPage / #id) ── */
+  html body .pg-btn{min-width:44px!important;height:44px!important}
+  html body #bookPage #bpStarInput.bp-rating-stars,html body #bookPage #bpSpicyInput.bp-spicy-input,
+  html body #bookPage .bp-mine-chiles:not(.bp-spicy-input){height:auto;flex-wrap:wrap;gap:2px}
+  html body #bookPage #bpStarInput .bp-rating-star,html body #bookPage #bpSpicyInput .bp-spicy-btn{width:44px;height:44px;min-width:44px;min-height:44px}
+  html body #bookPage #bpStarInput .bp-rating-star{font-size:22px}
+  html body #bookPage #bpSpicyInput .bp-spicy-btn{font-size:20px}
+  html body #bookPage .bp-rating-submit,html body #bookPage .bp-spicy-submit,html body #bookPage .bp-rating-delete,html body #bookPage .bp-spicy-delete,
+  html body #bookPage .saga-map-trigger,html body #bookPage #bpVoteBtn{min-height:44px!important}
+  html body #bookPage .tag-adder-select,html body #bookPage .bp-tag-adder{min-height:40px!important}
+  html body #bookPage .bp-diary .dy-plus{width:44px;height:44px}
+  html body #bookPage .bp-diary .dy-mini-eyebrow,html body #shelfCalendarContainer .cal-key,
+  html body .hw-preview .hw-forbidden-book-title,html body .hw-forbidden-book-title{font-size:11px}
+
+
+  /* ── Catálogo: siempre 2 columnas en móvil (a 320 px caía a 1 con portadas gigantes) ── */
+  html body #booksContainer .books-grid,html body .books-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:.625rem;row-gap:.9rem}
+  html body .mbn-more-copy small{font-size:11px}
+
+  /* ── Textos mínimos legibles ── */
+  html body .home-clean-kicker,html body .home-journey-label,html body .dy-mini-eyebrow,html body .cal-key,
+  html body .hw-forbidden-book-title,html body .bp-group-label{font-size:11px}
+}
+/* Mismo criterio en pantallas táctiles anchas (tablet) para botones muy pequeños */
+@media (pointer:coarse){
+  html body .vote-mini-btn,html body .card-shelf-btn,html body .tag-adder-select{min-height:40px}
+}
+</style>
+<style id="f10-3-2-filtros-movil">
+/* F10.3.2 — Filtros móviles: causa real del fallo.
+   Mientras un filtro está abierto (hoja modal en ≤639px) la página de detrás seguía desplazándose: al llegar al final del panel el gesto
+   se encadenaba al documento y la posición de lectura se perdía al cerrar. Mismo patrón que los modales (F7.6.2): el documento no
+   se desplaza mientras el panel está abierto (su posición se conserva tal cual) y los paneles contienen su propio scroll. */
+@media (max-width:639px){
+  html:has(.dd-wrap.open){overflow:hidden;overscroll-behavior:none}
+  .more-filters-panel,.dd-panel,.fp-body,.dd-list{overscroll-behavior:contain}
+}
+</style>
 </head>
 <body>
 
@@ -10725,6 +10824,13 @@ function closeAllDD(){
   const bd=document.getElementById('mfBackdrop');
   if(bd) bd.classList.remove('open');
 }
+// F10.3.2 — Escape cierra el filtro abierto (antes solo cerraban el fondo, el ✕ o un toque fuera) y devuelve el foco a su botón
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape'||e.defaultPrevented||e.isComposing) return;
+  const w=document.querySelector('.dd-wrap.open'); if(!w) return;
+  closeAllDD();
+  const b=w.querySelector('.dd-btn'); if(b) b.focus({preventScroll:true});
+});
 
 function renderActivePills(){
   const af=document.getElementById('activeFilters');
