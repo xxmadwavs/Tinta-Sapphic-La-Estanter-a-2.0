@@ -7316,6 +7316,121 @@ body:not(.home-active) .hero{
   #panelEstanteria #booksContainer .pg-btn{transition:none}
 }
 </style>
+
+<style id="home-clean-redesign">
+/* Inicio limpio: hero breve y dos contenedores claros. Los temas siguen usando los tokens activos. */
+#homeView{padding-bottom:clamp(2rem,5vw,4rem)}
+.home-clean-hero{
+  position:relative;isolation:isolate;overflow:hidden;text-align:center;
+  padding:clamp(2.2rem,5vw,4rem) 1.25rem clamp(1.8rem,4vw,3rem);
+  background:radial-gradient(ellipse at 50% 0%,var(--rose-soft),transparent 70%);
+  border-bottom:1px solid var(--border);
+}
+.home-clean-hero::after{
+  content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent, color-mix(in srgb,var(--surface) 38%,transparent));
+}
+.home-clean-eyebrow,.home-clean-kicker{
+  color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+}
+.home-clean-eyebrow{margin-bottom:.65rem}
+.home-clean-title{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);font-weight:400;line-height:1.05;margin:0 auto .55rem}
+.home-clean-title em{color:var(--accent);font-weight:600}
+.home-clean-sub{max-width:560px;margin:0 auto;color:var(--muted);font-size:clamp(.9rem,1.4vw,1rem);line-height:1.65}
+.home-clean-login,.home-clean-explore-cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1.15rem;
+  border:1px solid var(--accent);border-radius:999px;padding:.65rem 1.35rem;
+  background:var(--accent);color:#fff;font:600 .9rem var(--font-body);cursor:pointer;
+  transition:background .18s,border-color .18s,transform .18s;
+}
+.home-clean-login:hover,.home-clean-explore-cta:hover{background:var(--accent2);border-color:var(--accent2)}
+.home-clean-login[hidden]{display:none!important}
+.home-clean-main{width:min(1100px,100%);margin:0 auto;padding:clamp(1.25rem,3vw,2.5rem) clamp(1rem,3vw,2rem);display:grid;gap:clamp(1rem,2vw,1.5rem)}
+.home-clean-section{min-width:0;border:1px solid var(--border2);border-radius:var(--radius-lg);background:var(--surface);overflow:hidden}
+.home-clean-section-head{padding:1.15rem 1.35rem;border-bottom:1px solid var(--border);background:linear-gradient(120deg,var(--surface2),var(--surface))}
+.home-clean-kicker{font-size:.65rem;letter-spacing:.13em;margin-bottom:.2rem}
+.home-clean-section-head h2{font:600 clamp(1.5rem,3vw,2rem)/1.15 var(--font-display);color:var(--text)}
+.home-clean-empty{min-height:1rem}
+.home-clean-explore-body{padding:1.25rem 1.35rem 1.5rem;color:var(--muted)}
+.home-clean-explore-body p{margin:0;line-height:1.6}
+.home-clean-explore-cta{margin-top:.85rem}
+#homeView .rn-block{margin:0;padding:1.1rem 1.35rem;border:0;border-radius:0;background:transparent}
+#homeView .rn-head{margin-bottom:.65rem}
+.home-clean-main{grid-template-columns:minmax(0,1fr)}
+.home-clean-section[hidden]{display:none!important}
+.home-journey-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr) minmax(0,1fr);gap:clamp(.7rem,1.5vw,1.1rem);padding:clamp(.75rem,1.7vw,1.35rem);align-items:stretch}
+.home-journey-piece{min-width:0;min-height:210px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2);overflow:hidden}
+.home-journey-label{padding:.9rem 1rem .65rem;color:var(--muted);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.home-journey-content{padding:.9rem;min-width:0}
+.home-journey-empty{margin:0;color:var(--muted);font-size:.82rem;line-height:1.55;font-style:italic;opacity:.82}
+.home-journey-book{display:flex;flex-direction:column;align-items:center;gap:.55rem;width:100%;height:100%;text-align:center;border:0;background:transparent;color:var(--text);font:inherit;cursor:pointer;padding:0}
+.home-journey-cover{display:block;width:min(100%,116px);aspect-ratio:2/3;object-fit:cover;border-radius:9px;background:var(--surface3);border:1px solid var(--border2);box-shadow:0 5px 16px rgba(0,0,0,.12)}
+.home-journey-cover-ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.8rem}
+.home-journey-book-title{font:600 1.12rem/1.2 var(--font-display);overflow-wrap:anywhere}
+.home-journey-book-author{font-size:.76rem;color:var(--muted);line-height:1.4}
+.home-journey-book:hover .home-journey-book-title{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.home-journey-current{border-color:var(--border2);background:var(--surface);box-shadow:0 7px 24px rgba(0,0,0,.06)}
+.home-journey-current #rnBlock{padding:1rem;border:0;border-radius:0;background:transparent;margin:0}
+.home-journey-current .rn-head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.7rem}
+.home-journey-current .rn-h{font-family:var(--font-display);font-size:1.45rem;line-height:1.1}
+.home-journey-current .rn-list{display:grid;gap:.7rem}
+.home-journey-current .rn-card{min-width:0}
+.home-journey-current .rn-empty{font-size:.82rem;line-height:1.55;color:var(--muted);font-style:italic;padding:.25rem 0}
+.home-journey-current .rn-card .rn-cover{width:60px;flex:0 0 60px}
+.home-journey-current .rn-card .rn-t{font-size:1.05rem}
+.home-journey-current .rn-card .rn-act{flex-wrap:wrap}
+.home-journey-current .rn-card .rn-btn{min-height:38px}
+@media(min-width:760px){.home-clean-section.home-clean-journey{min-height:0}}
+@media(max-width:759px){
+ .home-journey-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"current current" "previous next"}
+ .home-journey-previous{grid-area:previous}.home-journey-current{grid-area:current}.home-journey-next{grid-area:next}
+ .home-journey-piece{min-height:0}
+ .home-journey-content{padding:.75rem}
+ .home-journey-cover{width:min(100%,94px)}
+ .home-journey-book-title{font-size:1rem}
+ .home-journey-current #rnBlock{padding:.9rem}
+}
+@media(max-width:639px){
+ .home-clean-hero{padding:1.8rem 1rem 1.5rem}
+ .home-clean-title{font-size:2.15rem}
+ .home-clean-main{padding:1rem .8rem;gap:.85rem}
+ .home-clean-section-head{padding:1rem}
+ .home-clean-explore-body{padding:1rem}
+ .home-clean-login,.home-clean-explore-cta{min-height:44px}
+ .home-journey-grid{gap:.55rem;padding:.65rem}
+ .home-journey-label{padding:.75rem .7rem .55rem;font-size:.62rem}
+ .home-journey-content{padding:.65rem}
+ .home-journey-current #rnBlock{padding:.75rem}
+ .home-journey-current .rn-card{gap:.65rem}
+ .home-journey-current .rn-card .rn-cover{width:52px;flex-basis:52px}
+ .home-journey-current .rn-card .rn-act .rn-btn{flex:1 1 auto;padding:.45rem .55rem;font-size:.75rem}
+}
+@media(prefers-reduced-motion:reduce){.home-clean-login,.home-clean-explore-cta{transition:none}}
+
+
+/* Prompt 5 — mini secciones de Explorar; enlaces nativos para abrir en pestaña nueva. */
+.home-explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;padding:clamp(.8rem,1.7vw,1.35rem)}
+.home-explore-card{position:relative;display:flex;align-items:center;gap:.75rem;min-width:0;min-height:96px;padding:.85rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);text-decoration:none;transition:transform .16s,border-color .16s,background .16s}
+.home-explore-card:hover{border-color:var(--accent);background:var(--surface2);transform:translateY(-2px)}
+.home-explore-card:focus-visible,.home-explore-sub-links a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.home-explore-card[hidden]{display:none!important}
+.home-explore-main-link{display:flex;align-items:center;gap:.75rem;width:100%;min-width:0;color:inherit;text-decoration:none}
+.home-explore-art{display:flex;align-items:center;justify-content:center;flex:0 0 48px;width:48px;height:64px;overflow:hidden;border:1px solid var(--border2);border-radius:8px;background:linear-gradient(145deg,var(--surface2),var(--rose-soft));color:var(--accent);font:600 1.35rem var(--font-display)}
+.home-explore-art img{width:100%;height:100%;object-fit:cover;display:block}
+.home-explore-copy{display:flex;flex-direction:column;gap:.2rem;min-width:0;flex:1}
+.home-explore-copy strong{font:600 1.12rem/1.15 var(--font-display);overflow-wrap:anywhere}
+.home-explore-copy small{font-size:.72rem;line-height:1.4;color:var(--muted)}
+.home-explore-arrow{align-self:flex-start;margin-left:auto;color:var(--muted);font-size:.9rem;flex-shrink:0}
+.home-explore-history{display:block;padding:.75rem .85rem}
+.home-explore-history-head{display:flex;align-items:center;gap:.75rem;min-width:0}
+.home-explore-sub-links{display:flex;gap:.45rem;flex-wrap:wrap;margin:.7rem 0 0 0;padding-top:.65rem;border-top:1px solid var(--border)}
+.home-explore-sub-links a{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .6rem;border:1px solid var(--border);border-radius:999px;color:var(--accent2);text-decoration:none;font-size:.72rem;font-weight:600}
+.home-explore-sub-links a:hover{background:var(--accent-soft);border-color:var(--border2)}
+@media(max-width:850px){.home-explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:639px){.home-explore-grid{grid-template-columns:minmax(0,1fr);gap:.55rem;padding:.7rem}.home-explore-card{min-height:80px;padding:.7rem}.home-explore-art{flex-basis:42px;width:42px;height:56px}.home-explore-copy strong{font-size:1.08rem}.home-explore-history{padding:.7rem}.home-explore-sub-links{margin-top:.55rem}}
+@media(prefers-reduced-motion:reduce){.home-explore-card{transition:none}.home-explore-card:hover{transform:none}}
+</style>
+
 </head>
 <body>
 
@@ -7453,140 +7568,88 @@ body:not(.home-active) .hero{
 </div>
 
 <!-- HOME VIEW -->
-<div id="homeView">
-
-  <div class="hv-hero">
-    <svg class="hv-flora hv-flora-l" viewBox="0 0 120 220" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 214C34 160 44 110 70 12"/><path d="M36 172c-14-4-22-14-24-26 14 0 24 8 24 26Z"/><path d="M42 140c14-2 24-12 26-24-14-2-25 8-26 24Z"/><path d="M50 108c-14-4-20-14-22-26 13 0 22 9 22 26Z"/><path d="M58 76c13-3 21-12 22-23-13-1-22 8-22 23Z"/><circle cx="72" cy="12" r="3.2"/><circle cx="66" cy="30" r="2.4"/><circle cx="82" cy="150" r="9"/><path d="M82 141c3 3 3 15 0 18M73 150c3-3 15-3 18 0"/></svg>
-    <svg class="hv-flora hv-flora-r" viewBox="0 0 120 220" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 214C34 160 44 110 70 12"/><path d="M36 172c-14-4-22-14-24-26 14 0 24 8 24 26Z"/><path d="M42 140c14-2 24-12 26-24-14-2-25 8-26 24Z"/><path d="M50 108c-14-4-20-14-22-26 13 0 22 9 22 26Z"/><path d="M58 76c13-3 21-12 22-23-13-1-22 8-22 23Z"/><circle cx="72" cy="12" r="3.2"/><circle cx="66" cy="30" r="2.4"/><circle cx="82" cy="150" r="9"/><path d="M82 141c3 3 3 15 0 18M73 150c3-3 15-3 18 0"/></svg>
-    <div class="hv-eyebrow">Libros Sapphic · F/F · SafiClub</div>
-    <h1 class="hv-h1">La <em>estantería</em><br>sapphic</h1>
-    <p class="hv-jp">Tinta Sapphic · Curadas con amor</p>
-    <p class="hv-desc">
-      Explora libros sapphic curados por la comunidad de <strong style="color:var(--text)">Tinta Sapphic</strong>.
-      Vota tus favoritos, descubre el SafiClub y construye el ranking juntas.
-    </p>
-    <div class="hv-ctas">
-      <button class="hv-cta hv-cta-main" onclick="showCatalog()"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M12 3l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8L12 3Z"/></svg></span> Ver la estantería</button>
-      <button class="hv-cta hv-cta-reads" onclick="showCatalog('safi')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span> SafiClub</button>
-      <button class="hv-cta hv-cta-sec" onclick="showCatalog('top10')"><span class="icon cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span> Top 10</button>
-    </div>
-    <div class="hv-url-row">
-      <a class="hv-url-link" href="https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria" target="_blank">xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria</a>
-    </div>
-  </div>
-
-  <div class="hv-stats-band">
-    <div class="hv-stat">
-      <span class="icon hv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span>
-      <div class="hv-stat-n" id="hvStatTotal">—</div><div class="hv-stat-l">Libros</div>
-    </div>
-    <div class="hv-stat">
-      <span class="icon hv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><path d="M12 2.7l2.85 6.15 6.65.62-5.02 4.55 1.5 6.46L12 17.1l-5.98 2.6 1.5-6.46-5.02-4.55 6.65-.62L12 2.7Z"/></svg></span>
-      <div class="hv-stat-n" id="hvStatVotos">—</div><div class="hv-stat-l">Valoraciones</div>
-    </div>
-    <div class="hv-stat">
-      <span class="icon hv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span>
-      <div class="hv-stat-n" id="hvStatSafi">—</div><div class="hv-stat-l">SafiClub</div>
-    </div>
-    <div class="hv-stat">
-      <span class="icon hv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 3-7 6-11Z"/></svg></span>
-      <div class="hv-stat-n" id="hvStatThais">—</div><div class="hv-stat-l">Libros Thais</div>
-    </div>
-  </div>
-
-  <!-- F9.5.3 — LEYENDO AHORA: libros con estado «Leyendo» (solo con sesión). Se pinta desde rnRender(). -->
-  <section class="rn-block" id="rnBlock" aria-labelledby="rnHead" hidden>
-    <div class="rn-head">
-      <h2 class="rn-h" id="rnHead">Leyendo ahora<span class="rn-n" id="rnCount"></span></h2>
-      <button type="button" class="rn-all" id="rnAll" onclick="openShelf('reading')">Mi estantería</button>
-    </div>
-    <div class="rn-list" id="rnList"></div>
+<div id="homeView" aria-labelledby="homeHeading">
+  <section class="home-clean-hero" aria-label="Bienvenida">
+    <p class="home-clean-eyebrow">Tinta Sapphic · La estantería sapphic</p>
+    <h1 class="home-clean-title" id="homeHeading">Tu próxima historia <em>te espera.</em></h1>
+    <p class="home-clean-sub">Explora lecturas sapphic, descubre nuevas historias y encuentra tu próximo libro favorito.</p>
+    <button type="button" class="home-clean-login" id="homeLoginCta" onclick="openAuthModal()">Entrar</button>
   </section>
 
-  <div class="hv-features">
-    <div class="hv-feat-card clickable" data-n="01" onclick="showCatalog()">
-      <span class="hv-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.2c2-.9 5-.9 7 0v14c-2-.9-5-.9-7 0v-14Z"/><path d="M21 5.2c-2-.9-5-.9-7 0v14c2-.9 5-.9 7 0v-14Z"/></svg></span>
-      <h3 class="hv-feat-h3">Explora la estantería</h3>
-      <p class="hv-feat-p">Libros sapphic organizados por sección — Thais, Occidentales, En Español, Baihee y más. Filtra por género, dinámica, tropo y nivel spicy.</p>
-      <button class="hv-feat-link" onclick="showCatalog()">→ Abrir estantería</button>
-    </div>
-    <div class="hv-feat-card clickable" data-n="02" onclick="showCatalog('top10')">
-      <span class="hv-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M12 2.7l2.85 6.15 6.65.62-5.02 4.55 1.5 6.46L12 17.1l-5.98 2.6 1.5-6.46-5.02-4.55 6.65-.62L12 2.7Z"/></svg></span>
-      <h3 class="hv-feat-h3">Vota estrellas y nivel spicy</h3>
-      <p class="hv-feat-p">Inicia sesión y puntúa del 1 al 5 cualquier libro. Además, puedes votar el nivel spicy 🌶 de cada libro — cuantas más lo voten, más preciso será el dato para toda la comunidad.</p>
-      <button class="hv-feat-link" onclick="showCatalog('top10')">→ Ver el Top 10</button>
-    </div>
-    <div class="hv-feat-card clickable" data-n="03" onclick="showCatalog()">
-      <span class="hv-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.3" cy="10.3" r="6.3"/><path d="M20 20l-4.8-4.8"/></svg></span>
-      <h3 class="hv-feat-h3">Filtros avanzados</h3>
-      <p class="hv-feat-p">Busca por dinámica de pareja, tropos, nivel spicy, saga, año de publicación y más. Combina varios filtros para encontrar exactamente lo que buscas.</p>
-      <button class="hv-feat-link" onclick="showCatalog()">→ Usar filtros</button>
-    </div>
-  </div>
+  <main class="home-clean-main">
+    <section class="home-clean-section home-clean-journey" id="homeJourneySection" aria-labelledby="homeJourneyTitle" hidden>
+      <div class="home-clean-section-head">
+        <p class="home-clean-kicker">Tu espacio personal</p>
+        <h2 id="homeJourneyTitle">Tu recorrido</h2>
+      </div>
+      <div class="home-journey-grid" id="homeJourneyGrid">
+        <section class="home-journey-piece home-journey-previous" aria-labelledby="homePreviousTitle">
+          <p class="home-journey-label" id="homePreviousTitle">Anterior</p>
+          <div id="homePreviousContent" class="home-journey-content" aria-live="polite"><p class="home-journey-empty">Tu última lectura terminada aparecerá aquí.</p></div>
+        </section>
+        <!-- F9.5.3 — Se reutiliza íntegro el bloque actual, incluido progreso y «Actualizar progreso». -->
+        <section class="home-journey-piece home-journey-current" aria-label="Leyendo ahora">
+          <section class="rn-block" id="rnBlock" aria-labelledby="rnHead" hidden>
+            <div class="rn-head">
+              <h3 class="rn-h" id="rnHead">Leyendo ahora<span class="rn-n" id="rnCount"></span></h3>
+              <button type="button" class="rn-all" id="rnAll" onclick="openShelf('reading')">Mi estantería</button>
+            </div>
+            <div class="rn-list" id="rnList"></div>
+          </section>
+        </section>
+        <section class="home-journey-piece home-journey-next" aria-labelledby="homeNextTitle">
+          <p class="home-journey-label" id="homeNextTitle">Siguiente</p>
+          <div id="homeNextContent" class="home-journey-content" aria-live="polite"><p class="home-journey-empty">Tu próxima lectura aparecerá aquí.</p></div>
+        </section>
+      </div>
+    </section>
 
-  <!-- SafiClub block: texto izq + portadas reales + categorías dcha -->
-  <div class="hv-safi-block" onclick="showCatalog('safi')" style="max-width:1100px;margin:1px auto 0">
-    <div class="hv-safi-inner">
-      <div class="hv-safi-left">
-        <div class="hv-safi-eyebrow">Club de lectura <span class="hv-safi-badge">SafiClub</span></div>
-        <h2 class="hv-safi-h2">Leemos<br><em>juntas</em></h2>
-        <p class="hv-safi-p">Las lecturas del club de Tinta Sapphic, organizadas por categoría. Descubre qué hemos leído y qué viene a continuación.</p>
-        <button class="hv-feat-link rose" onclick="event.stopPropagation();showCatalog('safi')">→ Ver todo el SafiClub</button>
-        <div class="hv-safi-covers" id="hvSafiCovers" style="margin-top:1.5rem"></div>
+    <section class="home-clean-section home-clean-explore" aria-labelledby="homeExploreTitle">
+      <div class="home-clean-section-head">
+        <p class="home-clean-kicker">Tu próxima lectura, tu próximo descubrimiento</p>
+        <h2 id="homeExploreTitle">Explorar</h2>
       </div>
-      <div class="hv-safi-right">
-        <div class="hv-safi-cats" id="hvSafiCats">
-          <div class="hv-safi-cat-row"><span>🌹</span><span class="hv-safi-cat-name">Cargando…</span></div>
-        </div>
+      <div class="home-explore-grid" id="homeExploreGrid" aria-label="Secciones para explorar">
+        <section class="home-explore-card home-explore-personal" id="homeExploreLibrary" hidden>
+          <a class="home-explore-main-link" href="?myshelf=all" onclick="return homeExploreGo(event,()=>openShelf('all'))">
+            <span class="home-explore-art" id="homeExploreLibraryArt" aria-hidden="true">▤</span>
+            <span class="home-explore-copy"><strong>Mi biblioteca</strong><small id="homeExploreLibraryMeta">Tu colección personal</small></span>
+            <span class="home-explore-arrow" aria-hidden="true">↗</span>
+          </a>
+        </section>
+        <section class="home-explore-card home-explore-personal home-explore-history" id="homeExploreHistory" hidden>
+          <div class="home-explore-history-head">
+            <span class="home-explore-art" aria-hidden="true">✧</span>
+            <span class="home-explore-copy"><strong>Mi historia</strong><small>Tu recorrido lector</small></span>
+          </div>
+          <div class="home-explore-sub-links">
+            <a href="?view=recorrido" onclick="return homeExploreGo(event,()=>openRecorridoModal())">Recorrido <span aria-hidden="true">↗</span></a>
+            <a href="?view=anio" onclick="return homeExploreGo(event,()=>openAnioModal())">Año sapphic <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+        <a class="home-explore-card home-explore-public" href="?tab=top10" onclick="return homeExploreGo(event,()=>showCatalog('top10'))" id="homeExploreTop10">
+          <span class="home-explore-art" data-cover-slot="0" aria-hidden="true">✦</span>
+          <span class="home-explore-copy"><strong>Top 10</strong><small>El ranking de la comunidad</small></span><span class="home-explore-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-explore-card home-explore-public" href="?tab=ruleta" onclick="return homeExploreGo(event,()=>showCatalog('ruleta'))" id="homeExploreRoulette">
+          <span class="home-explore-art" data-cover-slot="1" aria-hidden="true">◉</span>
+          <span class="home-explore-copy"><strong>Ruleta</strong><small id="homeExploreRouletteMeta">Deja que el azar elija</small></span><span class="home-explore-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-explore-card home-explore-public" href="?tab=bingo" onclick="return homeExploreGo(event,()=>showCatalog('bingo'))" id="homeExploreBingo">
+          <span class="home-explore-art" data-cover-slot="2" aria-hidden="true">▦</span>
+          <span class="home-explore-copy"><strong>Bingo</strong><small>Retos para tu lectura</small></span><span class="home-explore-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-explore-card home-explore-public" href="?tab=solicitudes" onclick="return homeExploreGo(event,()=>showCatalog('solicitudes'))" id="homeExploreRequest">
+          <span class="home-explore-art" data-cover-slot="3" aria-hidden="true">＋</span>
+          <span class="home-explore-copy"><strong>Invoca un libro</strong><small>Propón una historia</small></span><span class="home-explore-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-explore-card home-explore-public" href="?tab=canal" onclick="return homeExploreGo(event,()=>showCatalog('canal'))" id="homeExploreRecommendations">
+          <span class="home-explore-art" data-cover-slot="4" aria-hidden="true">♡</span>
+          <span class="home-explore-copy"><strong>Recomendaciones</strong><small>Descubre historias recomendadas</small></span><span class="home-explore-arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
-    </div>
-  </div>
-
-  <!-- Thai Club block: texto izq + portadas reales + categorías dcha -->
-  <div class="hv-safi-block" onclick="showCatalog('thaiclub')" style="max-width:1100px;margin:1px auto 0">
-    <div class="hv-safi-inner">
-      <div class="hv-safi-left">
-        <div class="hv-safi-eyebrow">Club de lectura <span class="hv-safi-badge">Thai Club</span></div>
-        <h2 class="hv-safi-h2">Leemos<br><em>Tailandia</em></h2>
-        <p class="hv-safi-p">Las novelas tailandesas que leemos en el club de lectura, organizadas por categoría. Descubre qué hemos leído y qué toca a continuación.</p>
-        <button class="hv-feat-link rose" onclick="event.stopPropagation();showCatalog('thaiclub')">→ Ver todo el Thai Club</button>
-        <div class="hv-safi-covers" id="hvThaiCovers" style="margin-top:1.5rem"></div>
-      </div>
-      <div class="hv-safi-right">
-        <div class="hv-safi-cats" id="hvThaiCats">
-          <div class="hv-safi-cat-row"><span>🌺</span><span class="hv-safi-cat-name">Cargando…</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hv-how">
-    <h2 class="hv-how-title">¿Cómo funciona?</h2>
-    <p class="hv-how-sub">Todo lo que necesitas saber</p>
-    <div class="hv-how-grid">
-      <div class="hv-how-card" data-n="1">
-        <div class="hv-how-step">1</div>
-        <h3 class="hv-how-h3">Explora el catálogo</h3>
-        <p class="hv-how-p">Navega por cientos de libros sapphic organizados en secciones. Usa los filtros para encontrar exactamente lo que busca tu alma lectora.</p>
-      </div>
-      <div class="hv-how-card" data-n="2">
-        <div class="hv-how-step">2</div>
-        <h3 class="hv-how-h3">Crea tu cuenta</h3>
-        <p class="hv-how-p">Regístrate con tu usuario de Telegram y tu email. Es gratis y solo lleva un momento. Tu voto cuenta en el ranking comunitario.</p>
-      </div>
-      <div class="hv-how-card" data-n="3">
-        <div class="hv-how-step">3</div>
-        <h3 class="hv-how-h3">Vota estrellas y spicy</h3>
-        <p class="hv-how-p">Puntúa los libros del 1 al 5 ★ y vota el nivel spicy 🌶 que crees que tienen. El dato que aparece en cada libro se construye con los votos de la comunidad.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="hv-footer">
-    <div class="hv-footer-logo">Tinta <em>Sapphic</em></div>
-    <div class="hv-footer-sub">La estantería sapphic de la comunidad</div>
-  </div>
-
+    </section>
+  </main>
 </div><!-- /#homeView -->
 
 <section class="hero">
@@ -8954,6 +9017,46 @@ let rnForm=null;         // {id, mode:'pages'|'pct', last, total, pct, msg, busy
 let rnFocus=null;        // 'input' | 'edit:<id>' — foco a restaurar tras repintar
 let _rnQueued=false;
 const RN_MAX=6;
+function _homeJourneyCardHTML(b, kind, dateLabel=''){
+  if(!b) return `<p class="home-journey-empty">${kind==='previous'?'Cuando termines un libro, aparecerá aquí.':'Añade un libro a «Quiero leer» para verlo aquí.'}</p>`;
+  const id=escHtml(b.id), title=escHtml(b.title||'Sin título');
+  const author=escHtml((b.authors||[]).join(', '));
+  const cover=b.cover
+    ? `<img class="home-journey-cover" src="${escHtml(b.cover)}" alt="Portada de ${title}" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=home-journey-cover home-journey-cover-ph>✦</span>'">`
+    : '<span class="home-journey-cover home-journey-cover-ph" aria-hidden="true">✦</span>';
+  return `<button type="button" class="home-journey-book" data-home-journey-open="${id}" aria-label="Abrir la ficha de ${title}">${cover}<span class="home-journey-book-title">${title}</span>${author?`<span class="home-journey-book-author">${author}</span>`:''}${dateLabel?`<span class="home-journey-book-author">${escHtml(dateLabel)}</span>`:''}</button>`;
+}
+function homeJourneyRender(){
+  const section=document.getElementById('homeJourneySection');
+  if(!section) return;
+  const loggedIn=!!currentUser;
+  section.hidden=!loggedIn;
+  if(!loggedIn){
+    const prev=document.getElementById('homePreviousContent'), next=document.getElementById('homeNextContent');
+    if(prev) prev.innerHTML='<p class="home-journey-empty">Tu última lectura terminada aparecerá aquí.</p>';
+    if(next) next.innerHTML='<p class="home-journey-empty">Tu próxima lectura aparecerá aquí.</p>';
+    return;
+  }
+  const byId=new Map(allBooks.map(b=>[String(b.id),b]));
+  let previous=null, previousDate='';
+  Object.entries(myReadingLog||{}).forEach(([bookId, entries])=>{
+    const b=byId.get(String(bookId)); if(!b) return;
+    (entries||[]).forEach(entry=>{
+      if(!entry.read_at) return;
+      const date=String(entry.read_at).slice(0,10);
+      if(!previousDate||date>previousDate){ previous=b; previousDate=date; }
+    });
+  });
+  // Si el historial no tiene una fecha de finalización, no inventamos cuál fue el último libro.
+  const next=allBooks.find(b=>myReadingStatus[String(b.id)]==='want')||null;
+  const prevEl=document.getElementById('homePreviousContent'), nextEl=document.getElementById('homeNextContent');
+  if(prevEl) prevEl.innerHTML=_homeJourneyCardHTML(previous,'previous',previousDate&&previous?`Terminado · ${_dyFmtDateShort(previousDate)}`:'');
+  if(nextEl) nextEl.innerHTML=_homeJourneyCardHTML(next,'next');
+}
+document.addEventListener('click',e=>{
+  const trigger=e.target.closest('[data-home-journey-open]');
+  if(trigger) openBookPage(trigger.dataset.homeJourneyOpen);
+});
 function rnRender(){ if(_rnQueued) return; _rnQueued=true; requestAnimationFrame(()=>{ _rnQueued=false; try{ _rnDraw(); }catch(e){ console.warn('[leyendo ahora]',e); } }); }
 function _rnBooks(){
   const byId=new Map(allBooks.map(b=>[String(b.id),b]));
@@ -9023,6 +9126,7 @@ function _rnEditorHTML(b){
 }
 function _rnDraw(){
   const box=document.getElementById('rnBlock'); if(!box) return;
+  try{ homeJourneyRender(); }catch(e){}
   if(!currentUser||!readingStatusLoaded||!allBooks.length){ box.hidden=true; rnForm=null; return; }
   if(diaryState==='idle') diaryEnsureLoaded();
   const books=_rnBooks();
@@ -12954,7 +13058,47 @@ function animateCount(el, target){
   requestAnimationFrame(step);
 }
 
+function homeExploreGo(event, action){
+  // Los clics modificados conservan el comportamiento nativo del enlace (Ctrl/Cmd, botón central, etc.).
+  if(event && (event.defaultPrevented || event.button===1 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)) return true;
+  if(event) event.preventDefault();
+  if(typeof action==='function') action();
+  return false;
+}
+function homeExploreRender(){
+  const loggedIn=!!currentUser;
+  const library=document.getElementById('homeExploreLibrary');
+  const historyCard=document.getElementById('homeExploreHistory');
+  if(library) library.hidden=!loggedIn;
+  if(historyCard) historyCard.hidden=!loggedIn;
+  const byId=new Map((allBooks||[]).map(b=>[String(b.id),b]));
+  const libraryCount=Object.keys(myReadingStatus||{}).filter(id=>byId.has(String(id)) && ['want','reading','read','dnf'].includes(myReadingStatus[id])).length;
+  const meta=document.getElementById('homeExploreLibraryMeta');
+  if(meta) meta.textContent=libraryCount+' '+(libraryCount===1?'libro en tu biblioteca':'libros en tu biblioteca');
+  const art=document.getElementById('homeExploreLibraryArt');
+  if(art){
+    const personalBook=Object.keys(myReadingStatus||{}).map(id=>byId.get(String(id))).find(Boolean);
+    art.innerHTML=personalBook&&personalBook.cover
+      ? '<img src="'+escHtml(personalBook.cover)+'" alt="" loading="lazy" decoding="async">'
+      : '▤';
+  }
+  const rouletteMeta=document.getElementById('homeExploreRouletteMeta');
+  if(rouletteMeta) rouletteMeta.textContent=(allBooks||[]).length+' libros para descubrir al azar';
+  // Miniaturas tomadas del catálogo real; si faltan portadas se conserva el icono de la sección.
+  document.querySelectorAll('#homeExploreGrid [data-cover-slot]').forEach((el)=>{
+    const n=Number(el.dataset.coverSlot);
+    const book=(allBooks||[]).filter(b=>b&&b.cover)[n];
+    if(book && book.cover){
+      el.innerHTML='<img src="'+escHtml(book.cover)+'" alt="" loading="lazy" decoding="async">';
+      el.setAttribute('aria-label','Portada de '+escHtml(book.title||'un libro del catálogo'));
+    }
+  });
+}
+
 function updateHomeStats(){
+  const homeLoginCta=document.getElementById('homeLoginCta');
+  if(homeLoginCta) homeLoginCta.hidden=!!currentUser;
+  try{ homeJourneyRender(); }catch(e){}
   try{ rnRender(); }catch(e){} // F9.5.3
   const total=allBooks.length;
   const thais=allBooks.filter(b=>b.source==='thais').length;
@@ -14682,6 +14826,8 @@ async function setReadingStatus(bookId, newStatus){
     showToast('Eliminado de tu estantería','success');
   }
   _refreshShelfUI(bookId);
+  try{ homeJourneyRender(); }catch(e){}
+  try{ rnRender(); }catch(e){}
   } finally {
     _settingReadingStatus.delete(bookId);
   }
