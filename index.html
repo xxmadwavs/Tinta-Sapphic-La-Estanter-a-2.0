@@ -7422,13 +7422,47 @@ body:not(.home-active) .hero{
 .home-explore-copy small{font-size:.72rem;line-height:1.4;color:var(--muted)}
 .home-explore-arrow{align-self:flex-start;margin-left:auto;color:var(--muted);font-size:.9rem;flex-shrink:0}
 .home-explore-history{display:block;padding:.75rem .85rem}
+.home-explore-monthly{display:block;padding:.8rem .85rem;min-width:0}
+.home-explore-monthly h3{font:600 1.08rem/1.2 var(--font-display);margin:0 0 .65rem;overflow-wrap:anywhere}
+.home-explore-monthly-content{display:flex;gap:.7rem;align-items:center;min-width:0}
+.home-explore-monthly-cover{display:block;flex:0 0 54px;width:54px;height:81px;object-fit:cover;border-radius:7px;border:1px solid var(--border2);background:var(--surface2)}
+.home-explore-monthly-cover-ph{display:flex;align-items:center;justify-content:center;flex:0 0 54px;width:54px;height:81px;border:1px solid var(--border2);border-radius:7px;background:var(--surface2);color:var(--muted);font-size:1.5rem}
+.home-explore-monthly-book{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.home-explore-monthly-book strong{font-size:.86rem;line-height:1.35;overflow-wrap:anywhere}
+.home-explore-monthly-book small,.home-explore-monthly-empty{font-size:.72rem;line-height:1.45;color:var(--muted)}
+.home-explore-monthly-empty{margin:0;font-style:italic}
+.home-explore-monthly .home-explore-sub-links{margin-top:.65rem}
 .home-explore-history-head{display:flex;align-items:center;gap:.75rem;min-width:0}
 .home-explore-sub-links{display:flex;gap:.45rem;flex-wrap:wrap;margin:.7rem 0 0 0;padding-top:.65rem;border-top:1px solid var(--border)}
 .home-explore-sub-links a{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .6rem;border:1px solid var(--border);border-radius:999px;color:var(--accent2);text-decoration:none;font-size:.72rem;font-weight:600}
 .home-explore-sub-links a:hover{background:var(--accent-soft);border-color:var(--border2)}
 @media(max-width:850px){.home-explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:639px){.home-explore-grid{grid-template-columns:minmax(0,1fr);gap:.55rem;padding:.7rem}.home-explore-card{min-height:80px;padding:.7rem}.home-explore-art{flex-basis:42px;width:42px;height:56px}.home-explore-copy strong{font-size:1.08rem}.home-explore-history{padding:.7rem}.home-explore-sub-links{margin-top:.55rem}}
-@media(prefers-reduced-motion:reduce){.home-explore-card{transition:none}.home-explore-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.home-explore-card{transition:none}
+/* Siguiente lectura: botón y selector (la elige la usuaria). */
+.home-journey-pick{display:block;margin:.7rem auto 0;border:1px solid var(--border2);background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:.4rem .95rem;font:600 .76rem var(--font-body);cursor:pointer;transition:background .16s,border-color .16s}
+.home-journey-pick:hover{background:var(--surface3);border-color:var(--accent)}
+.home-journey-pick:focus-visible,.home-next-item:focus-visible,.home-next-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.home-next-dlg{width:min(520px,calc(100vw - 2rem));max-height:min(80vh,640px);padding:0;border:1px solid var(--border2);border-radius:var(--radius-lg);background:var(--surface);color:var(--text);overflow:hidden}
+.home-next-dlg[open]{display:flex;flex-direction:column}
+.home-next-dlg::backdrop{background:rgba(0,0,0,.55)}
+.home-next-head{padding:1rem 1.15rem .7rem;border-bottom:1px solid var(--border)}
+.home-next-head h2{font:600 1.5rem/1.15 var(--font-display);margin-bottom:.15rem}
+.home-next-head p{font-size:.8rem;color:var(--muted)}
+.home-next-q{width:100%;margin-top:.7rem;padding:.55rem .8rem;border:1px solid var(--border2);border-radius:10px;background:var(--surface2);color:var(--text);font:inherit;font-size:16px}
+.home-next-list{overflow-y:auto;padding:.6rem;display:grid;gap:.4rem;min-height:0}
+.home-next-item{display:flex;align-items:center;gap:.75rem;width:100%;text-align:left;padding:.5rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font:inherit;cursor:pointer}
+.home-next-item:hover,.home-next-item.on{border-color:var(--accent);background:var(--accent-soft)}
+.home-next-item img,.home-next-ph{flex:0 0 40px;width:40px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--border2);background:var(--surface3);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.home-next-txt{display:flex;flex-direction:column;min-width:0}
+.home-next-txt strong{font:600 1.02rem/1.2 var(--font-display);overflow-wrap:anywhere}
+.home-next-txt small{font-size:.74rem;color:var(--muted)}
+.home-next-empty{padding:1rem;color:var(--muted);font-size:.85rem;font-style:italic;text-align:center}
+.home-next-foot{display:flex;justify-content:space-between;gap:.5rem;padding:.7rem 1.15rem;border-top:1px solid var(--border)}
+.home-next-btn{border:1px solid var(--border2);background:transparent;color:var(--muted);border-radius:999px;padding:.4rem .9rem;font:600 .78rem var(--font-body);cursor:pointer}
+.home-next-btn:hover{color:var(--accent);border-color:var(--accent)}
+.home-next-btn[hidden]{display:none}
+.home-explore-card:hover{transform:none}}
 </style>
 
 </head>
@@ -7441,33 +7475,33 @@ body:not(.home-active) .hero{
     <span class="logo-sub">La Estantería</span>
   </a>
   <div class="desktop-primary-nav" aria-label="Secciones principales">
-    <a href="./" class="desktop-nav-link ts-nav-link" id="homeNavBtn" onclick="showHome();return false;" aria-current="page">Inicio</button>
+    <button class="desktop-nav-link" id="homeNavBtn" onclick="showHome()" aria-current="page">Inicio</button>
     <button class="desktop-nav-link" id="exploreNavBtn" onclick="navigateToExplore()">Explorar</button>
     <div class="categories-nav-wrap" id="categoriesNavWrap">
       <button class="desktop-nav-link categories-nav-trigger" id="categoriesNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="categoriesNavMenu" onclick="toggleCategoriesDropdown()">Categorías <span class="categories-nav-caret" aria-hidden="true">⌄</span></button>
       <div class="categories-nav-menu" id="categoriesNavMenu" role="menu" aria-label="Categorías del catálogo">
-        <a href="?tab=estanteria&section=thais" role="menuitem" class="categories-nav-item ts-nav-link" data-section="thais" onclick="selectCatalogCategory('thais');return false;">Libros Thais</a>
-        <a href="?tab=estanteria&section=other" role="menuitem" class="categories-nav-item ts-nav-link" data-section="other" onclick="selectCatalogCategory('other');return false;">Libros Occidentales</a>
-        <a href="?tab=estanteria&section=spanish" role="menuitem" class="categories-nav-item ts-nav-link" data-section="spanish" onclick="selectCatalogCategory('spanish');return false;">Libros en Español</a>
-        <a href="?tab=estanteria&section=baihee" role="menuitem" class="categories-nav-item ts-nav-link" data-section="baihee" onclick="selectCatalogCategory('baihee');return false;">Baihee</a>
-        <a href="?tab=estanteria&section=asian" role="menuitem" class="categories-nav-item ts-nav-link" data-section="asian" onclick="selectCatalogCategory('asian');return false;">Asiáticas</a>
-        <a href="?tab=estanteria&section=african" role="menuitem" class="categories-nav-item ts-nav-link" data-section="african" onclick="selectCatalogCategory('african');return false;">Africanas</a>
-        <a href="?tab=estanteria&section=wattpad" role="menuitem" class="categories-nav-item ts-nav-link" data-section="wattpad" onclick="selectCatalogCategory('wattpad');return false;">Wattpad</a>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="thais" onclick="selectCatalogCategory('thais')">Libros Thais</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="other" onclick="selectCatalogCategory('other')">Libros Occidentales</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="spanish" onclick="selectCatalogCategory('spanish')">Libros en Español</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="baihee" onclick="selectCatalogCategory('baihee')">Baihee</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="asian" onclick="selectCatalogCategory('asian')">Asiáticas</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="african" onclick="selectCatalogCategory('african')">Africanas</button>
+        <button type="button" role="menuitem" class="categories-nav-item" data-section="wattpad" onclick="selectCatalogCategory('wattpad')">Wattpad</button>
       </div>
     </div>
-    <a href="?tab=myrec" class="desktop-nav-link ts-nav-link" id="recommendationsNavBtn" onclick="switchTab('myrec');return false;">Recomendaciones</a>
+    <button class="desktop-nav-link" id="recommendationsNavBtn" onclick="switchTab('myrec')">Recomendaciones</button>
     <div class="community-nav-wrap" id="communityNavWrap">
       <button class="desktop-nav-link community-nav-trigger" id="communityNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="communityNavMenu" onclick="toggleCommunityDropdown()">Comunidad <span class="community-nav-caret" aria-hidden="true">⌄</span></button>
       <div class="community-nav-menu" id="communityNavMenu" role="menu" aria-label="Secciones de comunidad">
-        <a href="?tab=top10" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('top10');closeCommunityDropdown();return false;">Las 10 de la noche en Tailandia</a>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('top10');closeCommunityDropdown()">Las 10 de la noche en Tailandia</button>
         <div class="community-nav-group-label">Clubs</div>
-        <a href="?tab=safi" role="menuitem" class="community-nav-item community-club-item ts-nav-link" onclick="switchTab('safi');closeCommunityDropdown();return false;">El aquelarre Safi</a>
-        <a href="?tab=thaiclub" role="menuitem" class="community-nav-item community-club-item ts-nav-link" onclick="switchTab('thaiclub');closeCommunityDropdown();return false;">Thai Club</a>
-        <a href="?tab=canal" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('canal');closeCommunityDropdown();return false;">El rincón de la bruja</a>
-        <a href="?tab=myrec" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('myrec');closeCommunityDropdown();return false;">Mi grimorio</a>
-        <a href="?tab=solicitudes" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('solicitudes');closeCommunityDropdown();return false;">Invoca un libro</a>
-        <a href="?tab=ruleta" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('ruleta');closeCommunityDropdown();return false;">La ruleta maldita</a>
-        <a href="?tab=bingo" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('bingo');closeCommunityDropdown();return false;">Bingo de Halloween</a>
+        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('safi');closeCommunityDropdown()">El aquelarre Safi</button>
+        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('thaiclub');closeCommunityDropdown()">Thai Club</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('canal');closeCommunityDropdown()">El rincón de la bruja</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('myrec');closeCommunityDropdown()">Mi grimorio</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('solicitudes');closeCommunityDropdown()">Invoca un libro</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('ruleta');closeCommunityDropdown()">La ruleta maldita</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('bingo');closeCommunityDropdown()">Bingo de Halloween</button>
       </div>
     </div>
   </div>
@@ -7568,6 +7602,19 @@ body:not(.home-active) .hero{
 </div>
 
 <!-- HOME VIEW -->
+<dialog class="home-next-dlg" id="homeNextDlg" aria-labelledby="homeNextDlgTitle">
+  <div class="home-next-head">
+    <h2 id="homeNextDlgTitle">Tu siguiente lectura</h2>
+    <p>Elige entre los libros de tu «Quiero leer».</p>
+    <input type="search" class="home-next-q" id="homeNextQ" placeholder="Buscar por título o autora…" autocomplete="off" aria-label="Buscar en Quiero leer">
+  </div>
+  <div class="home-next-list" id="homeNextList"></div>
+  <div class="home-next-foot">
+    <button type="button" class="home-next-btn" id="homeNextClear" data-home-next-clear hidden>Quitar elección</button>
+    <button type="button" class="home-next-btn" data-home-next-close>Cerrar</button>
+  </div>
+</dialog>
+
 <div id="homeView" aria-labelledby="homeHeading">
   <section class="home-clean-hero" aria-label="Bienvenida">
     <p class="home-clean-eyebrow">Tinta Sapphic · La estantería sapphic</p>
@@ -7647,6 +7694,20 @@ body:not(.home-active) .hero{
           <span class="home-explore-art" data-cover-slot="4" aria-hidden="true">♡</span>
           <span class="home-explore-copy"><strong>Recomendaciones</strong><small>Descubre historias recomendadas</small></span><span class="home-explore-arrow" aria-hidden="true">↗</span>
         </a>
+        <section class="home-explore-card home-explore-monthly home-explore-personal" id="homeExploreSafiMonth" hidden aria-labelledby="homeExploreSafiMonthTitle">
+          <h3 id="homeExploreSafiMonthTitle">Lectura de este mes en SafiClub</h3>
+          <div class="home-explore-monthly-content" id="homeExploreSafiMonthContent"><p class="home-explore-monthly-empty">Todavía no hay una lectura del mes indicada.</p></div>
+          <div class="home-explore-sub-links">
+            <a href="?tab=safi" onclick="return homeExploreGo(event,()=>showCatalog('safi'))">Ir al SafiClub <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+        <section class="home-explore-card home-explore-monthly home-explore-personal" id="homeExploreThaiMonth" hidden aria-labelledby="homeExploreThaiMonthTitle">
+          <h3 id="homeExploreThaiMonthTitle">Lectura de este mes en Thai Club</h3>
+          <div class="home-explore-monthly-content" id="homeExploreThaiMonthContent"><p class="home-explore-monthly-empty">Todavía no hay una lectura del mes indicada.</p></div>
+          <div class="home-explore-sub-links">
+            <a href="?tab=thaiclub" onclick="return homeExploreGo(event,()=>showCatalog('thaiclub'))">Ir al Thai Club <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
       </div>
     </section>
   </main>
@@ -9026,6 +9087,46 @@ function _homeJourneyCardHTML(b, kind, dateLabel=''){
     : '<span class="home-journey-cover home-journey-cover-ph" aria-hidden="true">✦</span>';
   return `<button type="button" class="home-journey-book" data-home-journey-open="${id}" aria-label="Abrir la ficha de ${title}">${cover}<span class="home-journey-book-title">${title}</span>${author?`<span class="home-journey-book-author">${author}</span>`:''}${dateLabel?`<span class="home-journey-book-author">${escHtml(dateLabel)}</span>`:''}</button>`;
 }
+/* «Siguiente» (Tu recorrido): elección de la usuaria, guardada en este navegador (localStorage, por usuaria). */
+function _homeNextKey(){ return currentUser?('tsNextRead_'+currentUser.id):null; }
+function _homeNextGet(){ try{ const k=_homeNextKey(); return k?(localStorage.getItem(k)||''):''; }catch(e){ return ''; } }
+function _homeNextSet(id){ try{ const k=_homeNextKey(); if(!k) return; if(id) localStorage.setItem(k,String(id)); else localStorage.removeItem(k); }catch(e){} }
+function homeNextPickList(){
+  const list=document.getElementById('homeNextList'), qEl=document.getElementById('homeNextQ');
+  if(!list) return;
+  const q=((qEl&&qEl.value)||'').trim().toLowerCase(), chosen=_homeNextGet();
+  const items=allBooks.filter(b=>myReadingStatus[String(b.id)]==='want')
+    .filter(b=>!q||((b.title||'')+' '+(b.authors||[]).join(' ')).toLowerCase().includes(q));
+  list.innerHTML=items.length?items.map(b=>{
+    const id=escHtml(b.id), on=String(b.id)===chosen;
+    const cov=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async">`:'<span class="home-next-ph" aria-hidden="true">✦</span>';
+    return `<button type="button" class="home-next-item${on?' on':''}" data-home-next-id="${id}" aria-pressed="${on}">${cov}<span class="home-next-txt"><strong>${escHtml(b.title||'Sin título')}</strong><small>${escHtml((b.authors||[]).join(', '))}</small></span></button>`;
+  }).join(''):'<p class="home-next-empty">No hay libros que coincidan en tu «Quiero leer».</p>';
+}
+function homeNextPickOpen(){
+  const dlg=document.getElementById('homeNextDlg');
+  if(!dlg||!currentUser||typeof dlg.showModal!=='function') return;
+  const qEl=document.getElementById('homeNextQ'); if(qEl) qEl.value='';
+  const clr=document.getElementById('homeNextClear'); if(clr) clr.hidden=!_homeNextGet();
+  homeNextPickList();
+  dlg.showModal();
+  if(qEl) qEl.focus();
+}
+function homeNextPickDone(id){
+  _homeNextSet(id);
+  const dlg=document.getElementById('homeNextDlg'); if(dlg&&dlg.open) dlg.close();
+  homeJourneyRender();
+  showToast(id?'Siguiente lectura elegida':'Has quitado tu siguiente lectura','success');
+}
+document.addEventListener('click',e=>{
+  if(e.target.id==='homeNextDlg'){ e.target.close(); return; }
+  if(e.target.closest('[data-home-next-pick]')){ homeNextPickOpen(); return; }
+  const it=e.target.closest('[data-home-next-id]');
+  if(it){ homeNextPickDone(it.dataset.homeNextId); return; }
+  if(e.target.closest('[data-home-next-clear]')){ homeNextPickDone(''); return; }
+  if(e.target.closest('[data-home-next-close]')){ const d=document.getElementById('homeNextDlg'); if(d) d.close(); }
+});
+document.addEventListener('input',e=>{ if(e.target.id==='homeNextQ') homeNextPickList(); });
 function homeJourneyRender(){
   const section=document.getElementById('homeJourneySection');
   if(!section) return;
@@ -9048,10 +9149,18 @@ function homeJourneyRender(){
     });
   });
   // Si el historial no tiene una fecha de finalización, no inventamos cuál fue el último libro.
-  const next=allBooks.find(b=>myReadingStatus[String(b.id)]==='want')||null;
+  // «Siguiente» lo elige la usuaria entre sus «Quiero leer»; la web no lo impone.
+  const wants=allBooks.filter(b=>myReadingStatus[String(b.id)]==='want');
+  const chosenId=_homeNextGet();
+  const next=chosenId?(wants.find(b=>String(b.id)===chosenId)||null):null;
   const prevEl=document.getElementById('homePreviousContent'), nextEl=document.getElementById('homeNextContent');
   if(prevEl) prevEl.innerHTML=_homeJourneyCardHTML(previous,'previous',previousDate&&previous?`Terminado · ${_dyFmtDateShort(previousDate)}`:'');
-  if(nextEl) nextEl.innerHTML=_homeJourneyCardHTML(next,'next');
+  if(nextEl){
+    const pickBtn=l=>`<button type="button" class="home-journey-pick" data-home-next-pick>${l}</button>`;
+    if(next) nextEl.innerHTML=_homeJourneyCardHTML(next,'next')+pickBtn('Cambiar');
+    else if(wants.length) nextEl.innerHTML='<p class="home-journey-empty">Elige cuál será tu próxima lectura.</p>'+pickBtn('Elegir libro');
+    else nextEl.innerHTML='<p class="home-journey-empty">Añade un libro a «Quiero leer» para poder elegirlo aquí.</p>';
+  }
 }
 document.addEventListener('click',e=>{
   const trigger=e.target.closest('[data-home-journey-open]');
@@ -10148,6 +10257,7 @@ async function init(){
       return;
     }
     currentUser=session?.user||null;
+    try{homeExploreRender();}catch(e){}
     renderAuthUI();
     debouncedLoadRatings();
     diaryOnAuth(); // FASE 8
@@ -13065,12 +13175,45 @@ function homeExploreGo(event, action){
   if(typeof action==='function') action();
   return false;
 }
+function homeExploreMonthlyRender(clubKey, cardId, contentId, clubTab){
+  const card=document.getElementById(cardId);
+  const content=document.getElementById(contentId);
+  if(!card||!content) return;
+  card.hidden=!currentUser;
+  if(!currentUser) return;
+  const now=new Date();
+  const currentMonth=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  // Fuente: books_data.json. Solo se considera lectura mensual un campo explícito YYYY-MM;
+  // las categorías del club no indican por sí solas que un libro sea la lectura del mes.
+  const field=clubKey==='safi'?'safi_month':'thai_month';
+  const clubFlag=clubKey==='safi'?'saficlub':'thaiclub';
+  const matches=(allBooks||[]).filter(b=>b && b[clubFlag] && String(b[field]||'').trim()===currentMonth);
+  if(matches.length===0){
+    content.innerHTML='<p class="home-explore-monthly-empty">Todavía no hay una lectura del mes indicada.</p>';
+    return;
+  }
+  if(matches.length>1){
+    content.innerHTML='<p class="home-explore-monthly-empty">Hay más de una lectura marcada para este mes. Revisa el dato del club.</p>';
+    return;
+  }
+  const book=matches[0];
+  const title=escHtml(book.title||'Libro sin título');
+  const author=escHtml((book.authors||[]).join(', ')||book.author||'');
+  const id=String(book.id??'');
+  const fichaHref='#fichabeta/'+encodeURIComponent(id);
+  const cover=book.cover
+    ?'<img class="home-explore-monthly-cover" src="'+escHtml(book.cover)+'" alt="Portada de '+title+'" loading="lazy" decoding="async">'
+    :'<div class="home-explore-monthly-cover-ph" aria-hidden="true">📖</div>';
+  content.innerHTML=cover+'<div class="home-explore-monthly-book"><strong>'+title+'</strong>'+(author?'<small>'+author+'</small>':'')+'<div class="home-explore-sub-links"><a href="'+fichaHref+'" onclick="return homeExploreGo(event,()=>openBookPage('+JSON.stringify(id)+'))">Ver ficha <span aria-hidden="true">↗</span></a><a href="?tab='+clubTab+'" onclick="return homeExploreGo(event,()=>showCatalog('+JSON.stringify(clubTab)+'))">Ir al club <span aria-hidden="true">↗</span></a></div></div>';
+}
 function homeExploreRender(){
   const loggedIn=!!currentUser;
   const library=document.getElementById('homeExploreLibrary');
   const historyCard=document.getElementById('homeExploreHistory');
   if(library) library.hidden=!loggedIn;
   if(historyCard) historyCard.hidden=!loggedIn;
+  homeExploreMonthlyRender('safi','homeExploreSafiMonth','homeExploreSafiMonthContent','safi');
+  homeExploreMonthlyRender('thai','homeExploreThaiMonth','homeExploreThaiMonthContent','thaiclub');
   const byId=new Map((allBooks||[]).map(b=>[String(b.id),b]));
   const libraryCount=Object.keys(myReadingStatus||{}).filter(id=>byId.has(String(id)) && ['want','reading','read','dnf'].includes(myReadingStatus[id])).length;
   const meta=document.getElementById('homeExploreLibraryMeta');
@@ -13096,6 +13239,7 @@ function homeExploreRender(){
 }
 
 function updateHomeStats(){
+  try{homeExploreRender();}catch(e){console.warn('[homeExplore] no se pudieron actualizar las mini secciones',e);}
   const homeLoginCta=document.getElementById('homeLoginCta');
   if(homeLoginCta) homeLoginCta.hidden=!!currentUser;
   try{ homeJourneyRender(); }catch(e){}
