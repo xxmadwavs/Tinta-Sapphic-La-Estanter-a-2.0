@@ -1063,13 +1063,129 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .ruleta-tipo-btn{padding:5px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11.5px;font-family:var(--font-body);cursor:pointer;transition:all .18s;white-space:nowrap}
 .ruleta-tipo-btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2);font-weight:600}
 
-/* ── RULETA ── */
-.ruleta-wrap{max-width:700px;margin:0 auto;padding-bottom:4rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
-.ruleta-filtros-card{width:100%;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,.3);position:relative;overflow:hidden}
-.ruleta-filtros-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.7}
+/* ── RULETA (F9.1.1 · rediseño visual) ──
+   Paleta del canvas y del resultado en variables --rl-* (Normal por defecto;
+   Halloween y Navidad las redefinen más abajo). El canvas las lee en cada dibujo. */
+.ruleta-wrap{
+  --rl-seg1:#762B45;--rl-seg2:#F3DADD;--rl-seg3:#A83E5B;--rl-seg4:#FBF0EA;
+  --rl-line:rgba(196,164,106,.75);
+  --rl-rim1:#EBD9AB;--rl-rim2:#C4A46A;--rl-rim3:#8A6A2E;--rl-stud:#FFF7DE;
+  --rl-hub:#FFFCFA;--rl-hub-ink:#762B45;--rl-hl:#E6C26F;
+  --rl-mark-light:#F6E3B0;--rl-mark-dark:#762B45;
+  --rl-empty:#F5E7E5;--rl-empty-ink:#65505A;
+  --rl-halo:rgba(168,62,91,.14);--rl-glow:rgba(168,62,91,.20);--rl-shadow:rgba(105,47,65,.22);
+  --rl-ring:rgba(196,164,106,.65);--rl-ring-soft:rgba(196,164,106,.18);
+  --rl-btn-a:#762B45;--rl-btn-b:#A83E5B;--rl-btn-edge:rgba(196,164,106,.7);--rl-btn-glow:rgba(118,43,69,.38);
+  max-width:1080px;margin:0 auto;padding-bottom:4rem;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  grid-template-areas:"head head" "stage result" "filters filters";
+  gap:1.5rem 1.75rem;align-items:stretch
+}
+body.theme-halloween .ruleta-wrap{
+  --rl-seg1:#2B2034;--rl-seg2:#E87532;--rl-seg3:#43295A;--rl-seg4:#A8431C;
+  --rl-line:rgba(255,178,120,.55);
+  --rl-rim1:#FFB178;--rl-rim2:#E87532;--rl-rim3:#7A3510;--rl-stud:#FFE9D2;
+  --rl-hub:#17121E;--rl-hub-ink:#FF985B;--rl-hl:#FFB66E;
+  --rl-mark-light:#FFD7B3;--rl-mark-dark:#2B2034;
+  --rl-empty:#2B2034;--rl-empty-ink:#C8B9CC;
+  --rl-halo:rgba(232,117,50,.20);--rl-glow:rgba(232,117,50,.30);--rl-shadow:rgba(0,0,0,.5);
+  --rl-ring:rgba(255,152,91,.55);--rl-ring-soft:rgba(255,152,91,.14);
+  --rl-btn-a:#D2611C;--rl-btn-b:#A9381F;--rl-btn-edge:rgba(255,178,120,.6);--rl-btn-glow:rgba(232,117,50,.45)
+}
+body.theme-christmas .ruleta-wrap{
+  --rl-seg1:#28563E;--rl-seg2:#F5EEDC;--rl-seg3:#762B35;--rl-seg4:#E3D7B3;
+  --rl-line:rgba(177,138,69,.8);
+  --rl-rim1:#E8D08F;--rl-rim2:#B18A45;--rl-rim3:#6F501D;--rl-stud:#FFF6D8;
+  --rl-hub:#FFFCF5;--rl-hub-ink:#28563E;--rl-hl:#DDB95F;
+  --rl-mark-light:#F1DFA5;--rl-mark-dark:#28563E;
+  --rl-empty:#E9EEE3;--rl-empty-ink:#526357;
+  --rl-halo:rgba(40,86,62,.14);--rl-glow:rgba(177,138,69,.28);--rl-shadow:rgba(35,76,56,.24);
+  --rl-ring:rgba(177,138,69,.7);--rl-ring-soft:rgba(177,138,69,.2);
+  --rl-btn-a:#762B35;--rl-btn-b:#8F3646;--rl-btn-edge:rgba(177,138,69,.8);--rl-btn-glow:rgba(118,43,53,.4)
+}
+/* F9.1.2: con la pestaña Ruleta activa, main ocupa todo su ancho disponible. Sin esto main se ajustaba al
+   contenido (flex item con margin auto) y la ruleta cambiaba de ancho al salir un título largo. */
+.main:has(#tabRuleta.active){width:100%}
+/* Textos por tema (cabecera y estado vacío): solo se ve la variante activa */
+.rl-t-hw,.rl-t-xm{display:none}
+body.theme-halloween .rl-t-n,body.theme-christmas .rl-t-n{display:none}
+body.theme-halloween .rl-t-hw{display:inline}
+body.theme-christmas .rl-t-xm{display:inline}
+
+.ruleta-head{grid-area:head;text-align:center;padding:.25rem 1rem 0}
+.ruleta-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent2)}
+.ruleta-title{font-family:var(--font-display);font-size:clamp(1.9rem,4.6vw,3rem);font-weight:300;line-height:1.05;margin:.4rem auto .55rem;color:var(--text);max-width:720px}
+.ruleta-title em{font-style:italic;font-weight:600;color:var(--accent)}
+body.theme-halloween .ruleta-title{font-weight:400;letter-spacing:.02em}
+body.theme-halloween .ruleta-title em{font-style:normal;color:var(--accent2)}
+.ruleta-sub{color:var(--muted);font-size:14px;max-width:520px;margin:0 auto;line-height:1.65}
+.ruleta-head::after{content:'✦';display:block;margin:.8rem auto 0;color:var(--gold-decorative);font-size:12px;letter-spacing:.5em;opacity:.9}
+
+/* Escenario: la ruleta y su control principal */
+.ruleta-stage-card{grid-area:stage;position:relative;overflow:hidden;min-width:0;border:1px solid var(--border2);border-radius:var(--radius-lg);padding:2.7rem 1.25rem 1.5rem;background:radial-gradient(ellipse at 50% 36%,var(--rl-halo) 0%,transparent 64%),linear-gradient(165deg,var(--surface) 0%,var(--surface2) 100%);box-shadow:0 18px 50px var(--rl-shadow)}
+.ruleta-stage-card::before,.ruleta-result-inner::before,.ruleta-filtros-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose),var(--teal));opacity:.7}
+.ruleta-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.45rem}
+.ruleta-canvas-wrap{position:relative;width:min(460px,100%);aspect-ratio:1/1;border-radius:50%;box-shadow:0 0 0 1px var(--rl-ring),0 0 0 9px var(--rl-ring-soft),0 24px 60px var(--rl-shadow),0 0 70px var(--rl-glow);transition:box-shadow .3s}
+.ruleta-canvas-wrap canvas{width:100%!important;height:auto!important;aspect-ratio:1/1;border-radius:50%;display:block}
+.ruleta-wrap.is-spinning .ruleta-canvas-wrap{box-shadow:0 0 0 1px var(--rl-ring),0 0 0 9px var(--rl-ring-soft),0 24px 60px var(--rl-shadow),0 0 110px var(--rl-glow)}
+.ruleta-arrow-top{position:absolute;top:-24px;left:calc(50% - 21px);width:42px;height:54px;z-index:5;transform-origin:50% 16%;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));pointer-events:none}
+.ruleta-arrow-top svg{display:block;width:100%;height:100%}
+
+.ruleta-spin-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-width:min(100%,290px);min-height:58px;padding:15px 46px;border-radius:999px;border:1px solid var(--rl-btn-edge);background:linear-gradient(135deg,var(--rl-btn-a),var(--rl-btn-b));color:#fff;font-family:var(--font-display);font-size:1.55rem;font-style:italic;font-weight:600;letter-spacing:.02em;line-height:1.1;cursor:pointer;box-shadow:0 10px 30px var(--rl-btn-glow),inset 0 1px 0 rgba(255,255,255,.28);transition:transform .2s,box-shadow .2s,filter .2s}
+body.theme-halloween .ruleta-spin-btn,body.theme-christmas .ruleta-spin-btn{font-style:normal;letter-spacing:.05em;font-size:1.3rem}
+.ruleta-spin-btn::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);pointer-events:none}
+.ruleta-spin-btn:active{transform:translateY(0) scale(.98)}
+.ruleta-spin-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;filter:saturate(.7)}
+.ruleta-spin-icon{font-size:1.05rem;opacity:.9}
+.ruleta-stage-foot{display:flex;flex-wrap:wrap;gap:.45rem .9rem;align-items:center;justify-content:center;max-width:100%}
+.ruleta-status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:6px 15px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--border2)}
+.ruleta-status-chip::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.ruleta-status-chip.is-empty{background:var(--error-soft);border-color:var(--error)}
+.ruleta-status-chip.is-empty::before{background:var(--error)}
+.ruleta-status-chip.is-empty .ruleta-filtros-status{color:var(--error)}
+.ruleta-jump-btn{background:none;border:none;color:var(--muted);font-family:var(--font-body);font-size:12.5px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--border2);cursor:pointer;padding:6px 4px;border-radius:6px}
+.ruleta-jump-btn:focus-visible,.ruleta-cover-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* Columna del libro: estado vacío → resultado */
+.ruleta-result-col{grid-area:result;display:flex;flex-direction:column;min-width:0}
+.ruleta-placeholder{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1rem;padding:2rem 1.5rem;border:1.5px dashed var(--border2);border-radius:var(--radius-lg);background:linear-gradient(165deg,var(--surface),transparent);color:var(--muted)}
+.ruleta-wrap.has-result .ruleta-placeholder{display:none}
+.ruleta-ph-books{display:flex;align-items:flex-end;gap:7px;height:120px}
+.ruleta-ph-books i{display:block;width:26px;border-radius:4px 4px 2px 2px;box-shadow:inset -4px 0 0 rgba(0,0,0,.12),inset 0 3px 0 rgba(255,255,255,.18)}
+.ruleta-ph-books i:nth-child(1){height:92px;background:var(--accent)}
+.ruleta-ph-books i:nth-child(2){height:118px;width:30px;background:var(--rose)}
+.ruleta-ph-books i:nth-child(3){height:80px;background:var(--gold-decorative);transform:rotate(7deg);transform-origin:bottom left;margin-left:6px}
+.ruleta-ph-title{font-family:var(--font-display);font-size:clamp(1.4rem,2.4vw,1.8rem);font-weight:600;line-height:1.15;color:var(--text)}
+.ruleta-ph-text{font-size:13.5px;max-width:300px;line-height:1.6}
+.rl-busy{display:none}
+.ruleta-wrap.is-spinning .rl-busy{display:inline}
+.ruleta-wrap.is-spinning .rl-idle{display:none}
+
+.ruleta-result{flex:1;display:flex;width:100%;animation:ruletaResultIn .5s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes ruletaResultIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+.ruleta-result-inner{position:relative;overflow:hidden;flex:1;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1.7rem 1.5rem 1.5rem;text-align:center;border:1px solid var(--border2);border-radius:var(--radius-lg);background:radial-gradient(ellipse at 50% 24%,var(--rl-halo) 0%,transparent 62%),linear-gradient(165deg,var(--surface) 0%,var(--surface2) 100%);box-shadow:0 18px 50px var(--rl-shadow)}
+.ruleta-result-label{display:inline-flex;align-items:center;gap:.7rem;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);font-weight:700}
+.ruleta-result-label::before,.ruleta-result-label::after{content:'✦';font-size:9px;opacity:.75}
+.ruleta-result-book{display:flex;flex-direction:column;align-items:center;gap:1.1rem;width:100%;min-width:0}
+.ruleta-cover-btn{display:block;background:none;border:0;padding:0;margin:0;cursor:pointer;border-radius:12px;transition:transform .25s}
+.ruleta-cover-stage{position:relative;display:block;padding:4px}
+.ruleta-cover-stage::before{content:'';position:absolute;inset:-18%;border-radius:50%;background:radial-gradient(circle,var(--rl-glow) 0%,transparent 68%);z-index:0}
+.ruleta-result-cover,.ruleta-result-cover-ph{position:relative;z-index:1;display:flex;width:clamp(150px,44vw,190px);aspect-ratio:2/3;height:auto;border-radius:10px;border:1px solid var(--border2);box-shadow:0 18px 40px rgba(0,0,0,.32),0 0 0 4px var(--rl-ring-soft)}
+.ruleta-result-cover{object-fit:cover}
+.ruleta-result-cover-ph{background:var(--surface2);align-items:center;justify-content:center;font-size:3rem}
+.ruleta-result-info{width:100%;min-width:0}
+.ruleta-result-title{font-family:var(--font-display);font-size:clamp(1.5rem,2.8vw,2.05rem);font-weight:600;line-height:1.12;margin-bottom:.3rem;color:var(--text);overflow-wrap:anywhere}
+.ruleta-result-author{font-size:13.5px;color:var(--muted);margin-bottom:.75rem}
+.ruleta-result-tags{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center}
+.ruleta-result-actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;width:100%;margin-top:auto;padding-top:.5rem}
+.ruleta-action-btn{min-height:44px;padding:10px 24px;border-radius:999px;border:1px solid var(--border2);background:transparent;color:var(--text);font-size:13.5px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s}
+.ruleta-action-primary{background:linear-gradient(135deg,var(--rl-btn-a),var(--rl-btn-b));border-color:var(--rl-btn-edge);color:#fff;font-weight:600;box-shadow:0 6px 18px var(--rl-btn-glow)}
+
+/* Tarjeta de filtros: mismo contenido, ahora a ancho completo y secundaria */
+.ruleta-filtros-card{grid-area:filters;position:relative;overflow:hidden;width:100%;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,.18)}
 .ruleta-filtros-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
 .ruleta-filtros-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.ruleta-filtros-status{font-size:12px;color:var(--accent2);font-weight:600}
+.ruleta-filtros-status{font-size:12.5px;color:var(--accent2);font-weight:600}
 .ruleta-filtros-pills{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.9rem;min-height:24px}
 .ruleta-filtros-row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
 .ruleta-toggle-btn{display:flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-family:var(--font-body);cursor:pointer;transition:all .18s}
@@ -1077,29 +1193,35 @@ body.home-active .hero,body.home-active .main{display:none!important}
 .ruleta-toggle-btn.active-only{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
 .ruleta-toggle-icon{font-size:14px}
 .ruleta-clear-btn{padding:6px 14px;border-radius:20px;border:1px solid rgba(212,96,122,0.25);background:transparent;color:var(--rose);font-size:11.5px;font-family:var(--font-body);cursor:pointer;transition:all .15s;margin-left:auto}
-.ruleta-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
-.ruleta-arrow-top{color:var(--accent);font-size:22px;line-height:1;filter:drop-shadow(0 0 8px rgba(192,111,196,0.7));animation:ruletaArrowPulse 2s ease-in-out infinite;z-index:10;position:relative}
-@keyframes ruletaArrowPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(192,111,196,0.5));transform:translateY(0)}50%{filter:drop-shadow(0 0 14px rgba(192,111,196,0.9));transform:translateY(3px)}}
-.ruleta-canvas-wrap{position:relative;border-radius:50%;box-shadow:0 0 0 4px rgba(192,111,196,0.2),0 0 40px rgba(192,111,196,0.15),0 20px 60px rgba(0,0,0,0.5);transition:box-shadow .3s;cursor:pointer}
-.ruleta-canvas-wrap canvas{border-radius:50%;display:block}
-.ruleta-spin-btn{display:flex;align-items:center;gap:.5rem;padding:13px 40px;border-radius:40px;background:linear-gradient(135deg,var(--accent),var(--rose));border:none;color:#fff;font-family:var(--font-display);font-size:1.2rem;font-style:italic;font-weight:600;cursor:pointer;letter-spacing:.02em;box-shadow:0 8px 30px rgba(192,111,196,0.4);transition:all .22s}
-.ruleta-spin-btn:active{transform:translateY(0)}
-.ruleta-spin-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.ruleta-spin-icon{font-size:1rem}
-.ruleta-result{width:100%;animation:ruletaResultIn .5s cubic-bezier(0.34,1.56,0.64,1) both}
-@keyframes ruletaResultIn{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:none}}
-.ruleta-result-inner{background:linear-gradient(135deg,rgba(192,111,196,0.1) 0%,rgba(212,96,122,0.06) 100%);border:1px solid rgba(192,111,196,0.3);border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:center;box-shadow:0 8px 40px rgba(192,111,196,0.15)}
-.ruleta-result-label{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:1rem}
-.ruleta-result-book{display:flex;gap:1.25rem;align-items:flex-start;text-align:left;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.1rem}
-.ruleta-result-cover{width:64px;height:96px;border-radius:8px;object-fit:cover;border:1px solid var(--border2);flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.4)}
-.ruleta-result-cover-ph{width:64px;height:96px;border-radius:8px;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
-.ruleta-result-info{flex:1;min-width:0}
-.ruleta-result-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;line-height:1.2;margin-bottom:.25rem;color:var(--text)}
-.ruleta-result-author{font-size:12.5px;color:var(--muted);margin-bottom:.5rem}
-.ruleta-result-tags{display:flex;flex-wrap:wrap;gap:.3rem}
-.ruleta-result-actions{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
-.ruleta-action-btn{padding:9px 22px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:13px;font-family:var(--font-body);font-weight:500;cursor:pointer;transition:all .18s}
-.ruleta-action-primary{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+
+/* Movimiento (solo si el usuario no pide reducirlo) */
+@media (prefers-reduced-motion:no-preference){
+  .ruleta-wrap.is-spinning .ruleta-arrow-top{animation:rlTick .2s ease-in-out infinite}
+  @keyframes rlTick{0%,100%{transform:rotate(0)}50%{transform:rotate(-10deg)}}
+  .ruleta-spin-btn:not(:disabled){animation:rlBtnGlow 3s ease-in-out infinite}
+  @keyframes rlBtnGlow{0%,100%{box-shadow:0 10px 30px var(--rl-btn-glow),inset 0 1px 0 rgba(255,255,255,.28)}50%{box-shadow:0 14px 44px var(--rl-btn-glow),0 0 0 6px var(--rl-ring-soft),inset 0 1px 0 rgba(255,255,255,.28)}}
+  .ruleta-spin-btn:not(:disabled):hover::after{animation:rlShine .9s ease}
+  @keyframes rlShine{from{left:-60%}to{left:130%}}
+  .ruleta-wrap.is-spinning .ruleta-ph-books i{animation:rlSway .5s ease-in-out infinite alternate}
+  .ruleta-wrap.is-spinning .ruleta-ph-books i:nth-child(2){animation-delay:-.2s}
+  @keyframes rlSway{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+  .ruleta-result-cover,.ruleta-result-cover-ph{animation:rlCoverIn .7s .12s cubic-bezier(.34,1.4,.64,1) both}
+  @keyframes rlCoverIn{from{opacity:0;transform:translateY(14px) rotate(-4deg) scale(.9)}to{opacity:1;transform:none}}
+}
+
+/* Tablet y móvil: una sola columna (rueda → libro → filtros) */
+@media (max-width:899px){
+  .ruleta-wrap{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "stage" "result" "filters"}
+  .ruleta-stage-card,.ruleta-result-col{width:100%;max-width:600px;margin-inline:auto}
+}
+@media (max-width:639px){
+  .ruleta-wrap{gap:1.15rem}
+  .ruleta-stage-card{padding:2.3rem .85rem 1.25rem}
+  .ruleta-spin-btn{width:100%;max-width:340px;font-size:1.4rem;padding:14px 28px}
+  .ruleta-filtros-card{padding:1rem}
+  .ruleta-result-inner{padding:1.25rem 1rem}
+  .ruleta-result-actions .ruleta-action-btn{flex:1 1 100%}
+}
 
 /* FOOTER */
 .site-footer{position:relative;z-index:1;border-top:1px solid var(--border2);background:var(--surface);padding:2.5rem 2rem 1.8rem;margin-top:3rem}
@@ -2508,7 +2630,7 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 .ruleta-tipo-row{gap:.25rem}.ruleta-tipo-btn{padding:4px 9px;font-size:11px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}.ruleta-dd-btn{min-height:40px}
 
-.ruleta-canvas-wrap canvas{width:300px!important;height:300px!important}.ruleta-filtros-card{padding:1rem}.ruleta-result-inner{padding:1rem}
+
 
 .info-modal-header{padding:1.4rem 1.2rem .9rem}.info-modal-body{padding:1.2rem 1.2rem 1.6rem}.info-modal-title{font-size:1.6rem}
 
@@ -3263,16 +3385,18 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .ruleta-clear-btn:hover{background:var(--rose-soft);border-color:rgba(212,96,122,0.5)}
 
 
-.ruleta-canvas-wrap:hover{box-shadow:0 0 0 4px rgba(192,111,196,0.35),0 0 60px rgba(192,111,196,0.25),0 20px 60px rgba(0,0,0,0.5)}
+.ruleta-canvas-wrap:hover{box-shadow:0 0 0 1px var(--rl-ring),0 0 0 11px var(--rl-ring-soft),0 24px 60px var(--rl-shadow),0 0 90px var(--rl-glow)}
+.ruleta-cover-btn:hover{transform:translateY(-3px) rotate(-1deg)}
 
 
-.ruleta-spin-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(192,111,196,0.55)}
+.ruleta-spin-btn:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 14px 40px var(--rl-btn-glow),inset 0 1px 0 rgba(255,255,255,.3)}
+.ruleta-jump-btn:hover{color:var(--accent2);text-decoration-color:var(--accent2)}
 
 
-.ruleta-action-btn:hover{border-color:var(--border2);background:var(--surface2);color:var(--text)}
+.ruleta-action-btn:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--text)}
 
 
-.ruleta-action-primary:hover{background:rgba(192,111,196,0.22);border-color:var(--accent);color:var(--text)}
+.ruleta-action-primary:hover{filter:brightness(1.08);background:linear-gradient(135deg,var(--rl-btn-a),var(--rl-btn-b));border-color:var(--rl-btn-edge);color:#fff}
 
 
 .footer-link:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-soft)}
@@ -7816,11 +7940,64 @@ body:not(.home-active) .hero{
   <!-- PANEL RULETA -->
   <div id="panelRuleta" style="display:none">
     <div class="ruleta-wrap">
+      <!-- Cabecera -->
+      <header class="ruleta-head">
+        <div class="ruleta-eyebrow"><span class="rl-t-n">Ruleta lectora</span><span class="rl-t-hw">La ruleta maldita</span><span class="rl-t-xm">La ruleta de los regalos</span></div>
+        <div class="ruleta-title" role="heading" aria-level="2">
+          <span class="rl-t-n">Deja que <em>el azar</em> elija tu próxima historia</span>
+          <span class="rl-t-hw">Que el <em>destino</em> elija tu lectura</span>
+          <span class="rl-t-xm">Desenvuelve tu <em>próxima lectura</em></span>
+        </div>
+        <p class="ruleta-sub">
+          <span class="rl-t-n">Gira la ruleta y descubre un libro de la estantería. Afina la suerte con los filtros de abajo.</span>
+          <span class="rl-t-hw">Gira la rueda de la noche y deja que el hechizo escoja. Afina el conjuro con los filtros.</span>
+          <span class="rl-t-xm">Gira y descubre qué libro te espera bajo el árbol. Afina la sorpresa con los filtros.</span>
+        </p>
+      </header>
+
+      <!-- Escenario: ruleta + control principal -->
+      <section class="ruleta-stage-card" aria-label="Ruleta de libros">
+        <div class="ruleta-stage">
+          <div class="ruleta-canvas-wrap" id="ruletaCanvasWrap">
+            <span class="ruleta-arrow-top" aria-hidden="true">
+              <svg viewBox="0 0 42 54" focusable="false"><defs><linearGradient id="rlPtrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--rl-rim1)"/><stop offset=".55" style="stop-color:var(--rl-rim2)"/><stop offset="1" style="stop-color:var(--rl-rim3)"/></linearGradient></defs><path d="M21 52C21 52 3 31 3 19a18 18 0 0 1 36 0c0 12-18 33-18 33z" fill="url(#rlPtrG)" style="stroke:var(--rl-rim3)" stroke-width="1.5"/><circle cx="21" cy="19" r="7" style="fill:var(--rl-hub);stroke:var(--rl-rim3)" stroke-width="1.2"/><circle cx="21" cy="19" r="2.6" style="fill:var(--rl-hub-ink)"/></svg>
+            </span>
+            <canvas id="ruletaCanvas" width="420" height="420" role="img" aria-label="Ruleta con los libros disponibles"></canvas>
+          </div>
+          <button class="ruleta-spin-btn" id="ruletaSpinBtn" onclick="ruletaSpin()">
+            <span class="ruleta-spin-icon" aria-hidden="true">✦</span>
+            <span id="ruletaSpinLabel">Girar</span>
+          </button>
+          <div class="ruleta-stage-foot">
+            <div class="ruleta-status-chip"><div class="ruleta-filtros-status" id="ruletaStatus">Cargando…</div></div>
+            <button type="button" class="ruleta-jump-btn" onclick="document.querySelector('.ruleta-filtros-card').scrollIntoView({behavior:'smooth',block:'start'})">Ajustar filtros ↓</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Libro seleccionado -->
+      <div class="ruleta-result-col" aria-live="polite">
+        <div class="ruleta-placeholder">
+          <div class="ruleta-ph-books" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="ruleta-ph-title"><span class="rl-t-n">Tu próxima lectura te espera</span><span class="rl-t-hw">Tu lectura maldita aguarda</span><span class="rl-t-xm">Tu regalo espera ser desenvuelto</span></div>
+          <p class="ruleta-ph-text"><span class="rl-idle">Gira la ruleta y el libro elegido aparecerá aquí.</span><span class="rl-busy">Girando… el azar está decidiendo.</span></p>
+        </div>
+        <div class="ruleta-result" id="ruletaResult" style="display:none">
+          <div class="ruleta-result-inner">
+            <div class="ruleta-result-label">Tu próxima lectura ✨</div>
+            <div class="ruleta-result-book" id="ruletaResultBook"></div>
+            <div class="ruleta-result-actions">
+              <button class="ruleta-action-btn ruleta-action-primary" id="ruletaOpenBtn" onclick="ruletaOpenBook()">Ver ficha del libro</button>
+              <button class="ruleta-action-btn" onclick="ruletaSpin()">Volver a girar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Filtros de la ruleta -->
       <div class="ruleta-filtros-card">
         <div class="ruleta-filtros-header">
           <span class="ruleta-filtros-label">🎯 Filtros activos</span>
-          <div class="ruleta-filtros-status" id="ruletaStatus">Cargando…</div>
         </div>
         <!-- Selector de tipo de libros (independiente de la estantería) -->
         <div class="ruleta-tipo-row" id="ruletaTipoRow">
@@ -7905,30 +8082,6 @@ body:not(.home-active) .hero{
             <span>Solo sin valorar</span>
           </button>
           <button class="ruleta-clear-btn" onclick="ruletaClearFilters()">✕ Usar todos los libros</button>
-        </div>
-      </div>
-
-      <!-- Canvas de la ruleta -->
-      <div class="ruleta-stage">
-        <div class="ruleta-arrow-top">▼</div>
-        <div class="ruleta-canvas-wrap" id="ruletaCanvasWrap">
-          <canvas id="ruletaCanvas" width="420" height="420"></canvas>
-        </div>
-        <button class="ruleta-spin-btn" id="ruletaSpinBtn" onclick="ruletaSpin()">
-          <span class="ruleta-spin-icon">✦</span>
-          <span id="ruletaSpinLabel">Girar</span>
-        </button>
-      </div>
-
-      <!-- Resultado -->
-      <div class="ruleta-result" id="ruletaResult" style="display:none">
-        <div class="ruleta-result-inner">
-          <div class="ruleta-result-label">Tu próxima lectura ✨</div>
-          <div class="ruleta-result-book" id="ruletaResultBook"></div>
-          <div class="ruleta-result-actions">
-            <button class="ruleta-action-btn ruleta-action-primary" id="ruletaOpenBtn" onclick="ruletaOpenBook()">Ver ficha del libro</button>
-            <button class="ruleta-action-btn" onclick="ruletaSpin()">Volver a girar</button>
-          </div>
         </div>
       </div>
     </div>
@@ -13717,19 +13870,6 @@ function buildRDDDropdowns() {
 
 /* ── fin RULETA DD HELPERS ── */
 
-// Colores de los segmentos (paleta oscura con acentos del tema)
-const RULETA_COLORS = [
-  '#2a1f36','#221930','#1e1428','#261d33',
-  '#2c1e38','#1f1630','#251c30','#2e2040',
-  '#201530','#281e35','#1d142a','#2a1d38'
-];
-const RULETA_ACCENT_COLORS = [
-  'rgba(192,111,196,0.45)','rgba(212,96,122,0.4)','rgba(91,188,176,0.4)',
-  'rgba(192,111,196,0.3)','rgba(212,96,122,0.3)','rgba(201,151,90,0.35)',
-  'rgba(192,111,196,0.4)','rgba(91,188,176,0.35)','rgba(212,96,122,0.45)',
-  'rgba(201,151,90,0.3)','rgba(192,111,196,0.35)','rgba(212,96,122,0.35)'
-];
-
 function getFilteredBooksForRuleta() {
   let books = [...allBooks];
   // Apply all current filters exactly as applyFilters does
@@ -13780,6 +13920,7 @@ function getFilteredBooksForRuleta() {
 function ruletaInit() {
   ruletaSelectedBook = null;
   document.getElementById('ruletaResult').style.display = 'none';
+  ruletaSetState('idle');
   // Sincronizar botones de tipo con el estado actual
   document.querySelectorAll('.ruleta-tipo-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.src === ruletaSection);
@@ -13799,7 +13940,7 @@ function ruletaInit() {
       loginNotice.id = 'ruletaLoginNotice';
       loginNotice.style.cssText = 'width:100%;text-align:center;padding:1rem 1.5rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);font-size:13.5px;color:var(--muted);';
       loginNotice.innerHTML = '🔒 <strong style="color:var(--text)">Inicia sesión para usar la ruleta.</strong><br><br><button onclick="openAuthModal()" style="padding:9px 24px;border-radius:20px;background:var(--accent);border:none;color:#fff;font-size:13px;font-weight:600;font-family:var(--font-body);cursor:pointer;margin-top:.5rem">Entrar / Registrarse 🌹</button>';
-      const wrap = document.querySelector('.ruleta-wrap');
+      const wrap = document.querySelector('.ruleta-stage') || document.querySelector('.ruleta-wrap');
       if (wrap) wrap.appendChild(loginNotice);
     }
     loginNotice.style.display = '';
@@ -13815,6 +13956,8 @@ function ruletaUpdateUI() {
   const spinBtn = document.getElementById('ruletaSpinBtn');
   status.textContent = ruletaPool.length === 0 ? 'Sin libros con estos filtros' : `${ruletaPool.length} libro${ruletaPool.length !== 1 ? 's' : ''} en la ruleta`;
   if (spinBtn) spinBtn.disabled = ruletaPool.length === 0 || ruletaSpinning;
+  const statusChip = status.closest('.ruleta-status-chip');
+  if (statusChip) statusChip.classList.toggle('is-empty', ruletaPool.length === 0);
   renderRuletaOwnPills();
   // Render active filter pills (from estantería)
   const pillsEl = document.getElementById('ruletaFiltrosPills');
@@ -13913,126 +14056,211 @@ function ruletaSyncCanvasSize(canvas) {
   return cssSize;
 }
 
+// Paleta del canvas: se lee de las variables CSS --rl-* (definidas por tema en .ruleta-wrap).
+// Se cachea por clase de <body> para no recalcular estilos en cada fotograma.
+let ruletaPaletteKey = null, ruletaPaletteCache = null;
+let ruletaHighlightIdx = -1;
+
+function ruletaReadPalette(el) {
+  const key = document.body.className;
+  if (ruletaPaletteCache && ruletaPaletteKey === key) return ruletaPaletteCache;
+  const cs = getComputedStyle(el);
+  const v = (n, d) => (cs.getPropertyValue(n) || '').trim() || d;
+  ruletaPaletteCache = {
+    segs: [v('--rl-seg1', '#762B45'), v('--rl-seg2', '#F3DADD'), v('--rl-seg3', '#A83E5B'), v('--rl-seg4', '#FBF0EA')],
+    line: v('--rl-line', 'rgba(196,164,106,.75)'),
+    rim1: v('--rl-rim1', '#EBD9AB'), rim2: v('--rl-rim2', '#C4A46A'), rim3: v('--rl-rim3', '#8A6A2E'),
+    stud: v('--rl-stud', '#FFF7DE'),
+    hub: v('--rl-hub', '#FFFCFA'), hubInk: v('--rl-hub-ink', '#762B45'),
+    hl: v('--rl-hl', '#E6C26F'),
+    markLight: v('--rl-mark-light', '#F6E3B0'), markDark: v('--rl-mark-dark', '#762B45'),
+    empty: v('--rl-empty', '#F5E7E5'), emptyInk: v('--rl-empty-ink', '#65505A'),
+    font: v('--font-display', "Georgia, serif"),
+    body: v('--font-body', "system-ui, sans-serif")
+  };
+  ruletaPaletteKey = key;
+  return ruletaPaletteCache;
+}
+
+function ruletaIsDark(hex) {
+  const m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex || '');
+  if (!m) return true;
+  let h = m[1];
+  if (h.length === 3) h = h.split('').map(c => c + c).join('');
+  const lin = c => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  const L = 0.2126 * lin(parseInt(h.slice(0, 2), 16)) + 0.7152 * lin(parseInt(h.slice(2, 4), 16)) + 0.0722 * lin(parseInt(h.slice(4, 6), 16));
+  return L < 0.5;
+}
+
+function ruletaStar(ctx, x, y, r, rot) {
+  ctx.beginPath();
+  for (let k = 0; k < 8; k++) {
+    const a = rot + k * Math.PI / 4, rr = k % 2 === 0 ? r : r * 0.36;
+    ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr);
+  }
+  ctx.closePath();
+}
+
 function ruletaDraw(highlightIdx = -1) {
   const canvas = document.getElementById('ruletaCanvas');
   if (!canvas) return;
+  ruletaHighlightIdx = highlightIdx;
   const ctx = canvas.getContext('2d');
   const W = ruletaSyncCanvasSize(canvas), H = W;
+  const TAU = Math.PI * 2;
   const cx = W / 2, cy = H / 2;
-  const R = W / 2 - 4;
+  const P = ruletaReadPalette(canvas);
+  const outerR = W / 2 - 2;
+  const rimW = Math.max(12, W * 0.045);
+  const R = outerR - rimW;                 // radio útil de la rueda
   ctx.clearRect(0, 0, W, H);
+
+  // ── Aro dorado exterior (fijo) con tachuelas ──
+  const rimG = ctx.createLinearGradient(cx - outerR, cy - outerR, cx + outerR, cy + outerR);
+  rimG.addColorStop(0, P.rim1); rimG.addColorStop(0.5, P.rim2); rimG.addColorStop(1, P.rim3);
+  ctx.beginPath();
+  ctx.arc(cx, cy, outerR, 0, TAU);
+  ctx.moveTo(cx + R, cy);
+  ctx.arc(cx, cy, R, 0, TAU, true);
+  ctx.fillStyle = rimG;
+  ctx.fill('evenodd');
+  ctx.strokeStyle = P.rim3; ctx.globalAlpha = 0.55; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cx, cy, outerR - 0.5, 0, TAU); ctx.stroke();
+  ctx.globalAlpha = 1;
+  const studs = 28, studR = Math.max(1.8, rimW * 0.17), studOrbit = R + rimW / 2;
+  for (let k = 0; k < studs; k++) {
+    const a = k * TAU / studs;
+    ctx.beginPath();
+    ctx.arc(cx + Math.cos(a) * studOrbit, cy + Math.sin(a) * studOrbit, studR, 0, TAU);
+    ctx.fillStyle = P.stud;
+    ctx.shadowColor = 'rgba(0,0,0,0.35)'; ctx.shadowBlur = 2; ctx.shadowOffsetY = 0.5;
+    ctx.fill();
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+  }
 
   const pool = ruletaPool;
   const n = pool.length;
 
   if (n === 0) {
-    // Empty state
-    ctx.fillStyle = '#1e1924';
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = 'rgba(192,111,196,0.3)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(138,120,152,0.5)';
-    ctx.font = `bold 14px 'Instrument Sans', sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.fillText('Sin libros', cx, cy - 8);
-    ctx.font = `12px 'Instrument Sans', sans-serif`;
-    ctx.fillText('Ajusta los filtros', cx, cy + 12);
+    // Estado vacío
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU);
+    ctx.fillStyle = P.empty; ctx.fill();
+    ctx.setLineDash([6, 6]);
+    ctx.strokeStyle = P.emptyInk; ctx.globalAlpha = 0.35; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(cx, cy, R * 0.82, 0, TAU); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha = 1;
+    ctx.fillStyle = P.emptyInk;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = `600 ${Math.round(W * 0.06)}px ${P.font}`;
+    ctx.fillText('Sin libros', cx, cy - W * 0.025);
+    ctx.font = `${Math.round(W * 0.032)}px ${P.body}`;
+    ctx.globalAlpha = 0.8;
+    ctx.fillText('Ajusta los filtros', cx, cy + W * 0.04);
+    ctx.globalAlpha = 1;
     return;
   }
 
-  // Draw segments
-  const segCount = Math.min(n, 24); // max 24 visual segments
-  const anglePerSeg = (Math.PI * 2) / segCount;
+  // ── Segmentos (misma geometría que antes: segmento i empieza en ruletaAngle + i·ángulo − π/2) ──
+  const segCount = Math.min(n, 24); // máx. 24 segmentos visuales
+  const anglePerSeg = TAU / segCount;
+  const pal = P.segs;
+  const fills = [];
+  for (let i = 0; i < segCount; i++) fills.push(pal[i % pal.length]);
+  if (segCount > 1 && fills[segCount - 1] === fills[0]) fills[segCount - 1] = pal[((segCount - 1) % pal.length + 1) % pal.length];
+  const spot = highlightIdx >= 0;
 
   for (let i = 0; i < segCount; i++) {
-    const startAngle = ruletaAngle + i * anglePerSeg - Math.PI / 2;
-    const endAngle = startAngle + anglePerSeg;
-    const isHighlight = i === highlightIdx;
-
-    // Fill
+    const a0 = ruletaAngle + i * anglePerSeg - Math.PI / 2;
+    const a1 = a0 + anglePerSeg;
+    const isHL = i === highlightIdx;
+    ctx.globalAlpha = spot && !isHL ? 0.5 : 1;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, R, startAngle, endAngle);
+    ctx.arc(cx, cy, R, a0, a1);
     ctx.closePath();
-    ctx.fillStyle = isHighlight ? RULETA_ACCENT_COLORS[i % RULETA_ACCENT_COLORS.length].replace(/0\.\d+\)/, '0.8)') : RULETA_COLORS[i % RULETA_COLORS.length];
+    ctx.fillStyle = isHL ? P.hl : fills[i];
     ctx.fill();
+  }
+  ctx.globalAlpha = 1;
 
-    // Accent border inner glow
+  // Relieve: luz suave al centro y sombra hacia el borde
+  const shade = ctx.createRadialGradient(cx, cy, R * 0.1, cx, cy, R);
+  shade.addColorStop(0, 'rgba(255,255,255,0.12)');
+  shade.addColorStop(0.55, 'rgba(255,255,255,0)');
+  shade.addColorStop(1, 'rgba(0,0,0,0.16)');
+  ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU);
+  ctx.fillStyle = shade; ctx.fill();
+
+  // Divisiones
+  ctx.strokeStyle = P.line; ctx.lineWidth = 1.25;
+  for (let i = 0; i < segCount; i++) {
+    const a = ruletaAngle + i * anglePerSeg - Math.PI / 2;
     ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, R, startAngle, endAngle);
-    ctx.closePath();
-    ctx.strokeStyle = RULETA_ACCENT_COLORS[i % RULETA_ACCENT_COLORS.length];
-    ctx.lineWidth = isHighlight ? 2 : 1;
+    ctx.moveTo(cx + Math.cos(a) * R * 0.2, cy + Math.sin(a) * R * 0.2);
+    ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R);
     ctx.stroke();
+  }
 
-    // Decorative dot
-    const midAngle = startAngle + anglePerSeg / 2;
-    const dotR = R * 0.72;
-    const dotX = cx + Math.cos(midAngle) * dotR;
-    const dotY = cy + Math.sin(midAngle) * dotR;
-    ctx.beginPath();
-    ctx.arc(dotX, dotY, isHighlight ? 5 : 3, 0, Math.PI * 2);
-    ctx.fillStyle = isHighlight ? 'rgba(255,255,255,0.9)' : RULETA_ACCENT_COLORS[i % RULETA_ACCENT_COLORS.length].replace(/,\s*[\d.]+\)/, ', 0.7)');
+  // Estrellas decorativas (y punto interior si hay pocos segmentos)
+  const markOrbit = R * 0.8;
+  const starR = Math.min(R * 0.075, markOrbit * anglePerSeg * 0.2);
+  for (let i = 0; i < segCount; i++) {
+    const mid = ruletaAngle + (i + 0.5) * anglePerSeg - Math.PI / 2;
+    const isHL = i === highlightIdx;
+    const base = isHL ? P.hl : fills[i];
+    const ink = ruletaIsDark(base) ? P.markLight : P.markDark;
+    ctx.globalAlpha = spot && !isHL ? 0.5 : 1;
+    ctx.fillStyle = ink;
+    const sr = isHL ? starR * 1.35 : starR;
+    ruletaStar(ctx, cx + Math.cos(mid) * markOrbit, cy + Math.sin(mid) * markOrbit, sr, mid + Math.PI / 2);
     ctx.fill();
-
-    // Small decorative marks at R * 0.88
-    if (n <= 12) {
-      const markR = R * 0.87;
-      const markX = cx + Math.cos(midAngle) * markR;
-      const markY = cy + Math.sin(midAngle) * markR;
-      ctx.save();
-      ctx.translate(markX, markY);
-      ctx.rotate(midAngle + Math.PI / 2);
-      ctx.font = `bold ${isHighlight ? 12 : 10}px serif`;
-      ctx.fillStyle = isHighlight ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('✦', 0, 0);
-      ctx.restore();
+    if (segCount <= 16) {
+      ctx.beginPath();
+      ctx.arc(cx + Math.cos(mid) * R * 0.6, cy + Math.sin(mid) * R * 0.6, Math.max(1.5, R * 0.011), 0, TAU);
+      ctx.fill();
     }
   }
+  ctx.globalAlpha = 1;
 
-  // Divider lines
-  for (let i = 0; i < segCount; i++) {
-    const angle = ruletaAngle + i * anglePerSeg - Math.PI / 2;
+  // Segmento ganador: contorno luminoso
+  if (spot && highlightIdx < segCount) {
+    const a0 = ruletaAngle + highlightIdx * anglePerSeg - Math.PI / 2;
+    ctx.save();
     ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + Math.cos(angle) * R, cy + Math.sin(angle) * R);
-    ctx.strokeStyle = 'rgba(14,11,16,0.6)';
-    ctx.lineWidth = 1.5;
+    ctx.moveTo(cx + Math.cos(a0) * R * 0.2, cy + Math.sin(a0) * R * 0.2);
+    ctx.arc(cx, cy, R * 0.2, a0, a0 + anglePerSeg);
+    ctx.arc(cx, cy, R, a0 + anglePerSeg, a0, true);
+    ctx.closePath();
+    ctx.shadowColor = P.hl; ctx.shadowBlur = 16;
+    ctx.strokeStyle = P.stud; ctx.lineWidth = 2.5;
     ctx.stroke();
+    ctx.restore();
   }
 
-  // Outer ring
-  ctx.beginPath();
-  ctx.arc(cx, cy, R, 0, Math.PI * 2);
-  ctx.strokeStyle = 'rgba(192,111,196,0.4)';
-  ctx.lineWidth = 3;
-  ctx.stroke();
+  // Filo interior del aro
+  ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU);
+  ctx.strokeStyle = P.rim3; ctx.lineWidth = 2; ctx.stroke();
 
-  // Inner decorative ring
-  ctx.beginPath();
-  ctx.arc(cx, cy, R * 0.18, 0, Math.PI * 2);
-  ctx.fillStyle = '#0e0b10';
+  // ── Centro (fijo): medallón con el número de libros ──
+  const hubR = R * 0.2;
+  ctx.beginPath(); ctx.arc(cx, cy, hubR + 5, 0, TAU);
+  ctx.fillStyle = rimG;
+  ctx.shadowColor = 'rgba(0,0,0,0.35)'; ctx.shadowBlur = 8; ctx.shadowOffsetY = 2;
   ctx.fill();
-  ctx.strokeStyle = 'rgba(192,111,196,0.5)';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // Center gem
-  ctx.beginPath();
-  ctx.arc(cx, cy, R * 0.08, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(192,111,196,0.8)';
-  ctx.fill();
-
-  // Count text in center
-  ctx.font = `bold 11px 'Instrument Sans', sans-serif`;
-  ctx.fillStyle = 'rgba(240,234,245,0.8)';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  if (n <= 99) ctx.fillText(n, cx, cy);
+  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+  ctx.beginPath(); ctx.arc(cx, cy, hubR, 0, TAU);
+  ctx.fillStyle = P.hub; ctx.fill();
+  ctx.strokeStyle = P.rim3; ctx.globalAlpha = 0.5; ctx.lineWidth = 1; ctx.stroke();
+  ctx.globalAlpha = 1;
+  const label = n > 999 ? '999+' : String(n);
+  ctx.fillStyle = P.hubInk;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.font = `700 ${Math.round(hubR * (label.length > 3 ? 0.62 : label.length > 2 ? 0.78 : 0.95))}px ${P.font}`;
+  ctx.fillText(label, cx, cy - hubR * 0.12);
+  ctx.globalAlpha = 0.75;
+  ctx.font = `600 ${Math.max(7, Math.round(hubR * 0.26))}px ${P.body}`;
+  ctx.fillText(n === 1 ? 'LIBRO' : 'LIBROS', cx, cy + hubR * 0.52);
+  ctx.globalAlpha = 1;
 }
 
 function ruletaSpin() {
@@ -14045,6 +14273,7 @@ function ruletaSpin() {
   if (pool.length === 0 || ruletaSpinning) return;
   ruletaPool = pool;
   ruletaSpinning = true;
+  ruletaSetState('spinning');
   document.getElementById('ruletaResult').style.display = 'none';
   document.getElementById('ruletaSpinBtn').disabled = true;
 
@@ -14101,21 +14330,47 @@ function ruletaShowResult(book) {
   const spicyEff = effectiveSpicy(book);
   const spicyTag = currentUser && spicyEff != null && spicyEff > 0
     ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.25);font-size:11px">${SPICY_ICONS[spicyEff]}</span>` : '';
-  const genreTags = (book.genres || []).slice(0, 2).map(g => `<span class="tag tag-genre" style="font-size:11px">${g}</span>`).join('');
+  const genreTags = (book.genres || []).slice(0, 3).map(g => `<span class="tag tag-genre" style="font-size:11px">${g}</span>`).join('');
   const ratingTag = r.count > 0 ? `<span class="tag" style="background:rgba(201,151,90,0.12);color:var(--gold);border:1px solid rgba(201,151,90,0.2);font-size:11px">★ ${r.avg.toFixed(1)} (${r.count})</span>` : '';
   const myTag = myScore > 0 ? `<span class="tag" style="background:var(--accent-soft);color:var(--accent2);border:1px solid rgba(192,111,196,0.2);font-size:11px">${'★'.repeat(myScore)} Mi voto</span>` : '';
-  bookEl.innerHTML = `${coverEl}<div class="ruleta-result-info">
+  bookEl.innerHTML = `<button type="button" class="ruleta-cover-btn" onclick="ruletaOpenBook()" aria-label="Ver ficha de ${escHtml(book.title)}"><span class="ruleta-cover-stage">${coverEl}</span></button>
+  <div class="ruleta-result-info">
     <div class="ruleta-result-title">${escHtml(book.title)}</div>
     <div class="ruleta-result-author">por ${escHtml(authorStr)}</div>
     <div class="ruleta-result-tags">${genreTags}${spicyTag}${ratingTag}${myTag}</div>
   </div>`;
   el.style.display = '';
+  ruletaSetState('done');
   // re-trigger animation
   el.classList.remove('ruleta-result');
   void el.offsetWidth;
   el.classList.add('ruleta-result');
   el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+
+
+// Estado visual de la ruleta (solo presentación): 'idle' | 'spinning' | 'done'
+function ruletaSetState(state) {
+  const w = document.querySelector('.ruleta-wrap');
+  if (!w) return;
+  w.classList.toggle('is-spinning', state === 'spinning');
+  w.classList.toggle('has-result', state === 'done');
+}
+
+// Redibuja la rueda si cambia el tema o el tamaño de pantalla (el canvas es fluido).
+(function ruletaWatchLayout() {
+  const redraw = () => {
+    const c = document.getElementById('ruletaCanvas');
+    if (!c || !c.offsetParent || ruletaSpinning) return;
+    ruletaDraw(ruletaHighlightIdx);
+  };
+  const setup = () => {
+    let t = null;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(redraw, 120); });
+    new MutationObserver(redraw).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+})();
 
 function ruletaOpenBook() {
   if (!ruletaSelectedBook) return;
