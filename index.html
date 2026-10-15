@@ -1357,34 +1357,102 @@ body.theme-halloween .ruleta-spin-btn,body.theme-christmas .ruleta-spin-btn{font
 .shelf-badge.locked{opacity:.25;filter:grayscale(1)}
 .shelf-badges-more{background:none;border:none;color:var(--accent2);font-size:11.5px;font-family:var(--font-body);cursor:pointer;padding:.3rem 0;text-align:left;width:100%}
 
-/* modal "Mis logros" — historial por edición/temporada */
-.logros-modal-header{margin-bottom:1.1rem}
-.logros-modal-title{font-family:var(--font-display);font-size:1.35rem;font-weight:600;color:var(--text)}
-.logros-modal-sub{font-size:14.5px;color:var(--muted);margin-top:.4rem;margin-bottom:2.25rem;line-height:1.7;max-width:56ch}
+/* ── LOGROS · F9.3.1 — nombre / descripción / progreso / estado ── */
+.logros-modal-sub{font-size:14.5px;color:var(--muted);margin-top:.4rem;margin-bottom:1.5rem;line-height:1.7;max-width:56ch}
+.logros-empty{padding:2rem 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;grid-column:1/-1}
+.logros-section-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
 
-.logros-editions-list{display:flex;flex-direction:column;gap:.75rem}
-.logros-edition{display:flex;align-items:center;gap:1.25rem;padding:1.1rem 1.4rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius);transition:border-color .18s,transform .18s}
-.logros-edition-info{flex:1;min-width:0}
-.logros-edition-name{font-size:16px;font-weight:600;color:var(--text);font-family:var(--font-display);font-style:italic}
-.logros-edition-dates{font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:.02em}
-.logros-edition-badges{display:flex;gap:.75rem;flex-shrink:0}
-.logros-badge-mini-imgbox{width:56px;height:56px;display:flex;align-items:center;justify-content:center}
-.logros-badge-mini{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.4));transition:transform .15s}
-.logros-badge-mini.locked{opacity:.22;filter:grayscale(1)}
-.logros-empty{padding:2.5rem 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}
+/* resumen global + filtro de estado */
+.lg-summary{display:flex;align-items:center;gap:1.25rem;padding:1.15rem 1.4rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius);margin-bottom:1rem}
+.lg-summary[hidden],.lg-filters[hidden]{display:none}
+.lg-summary-num{font-family:var(--font-display);font-size:2.6rem;font-weight:600;line-height:1;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums}
+.lg-summary-num small{font-size:1.1rem;font-weight:500;color:var(--muted)}
+.lg-summary-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:.45rem}
+.lg-summary-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lg-summary-note{font-size:12.5px;color:var(--muted)}
+.lg-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.lg-chip{display:inline-flex;align-items:center;gap:.45rem;min-height:36px;padding:6px 14px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-family:var(--font-body);font-size:12.5px;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.lg-chip span{font-variant-numeric:tabular-nums;font-weight:500;opacity:.85}
+.lg-chip[aria-pressed="true"]{background:var(--accent-soft);color:var(--text);border-color:var(--accent)}
+.lg-chip:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 
-/* insignias generales (bienvenida, primera valoración, spicy, comunidad…) */
-.logros-section-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 1rem}
-.logros-general-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.3rem;padding-bottom:1.75rem;margin-bottom:1.75rem;border-bottom:1px solid var(--border)}
-.logros-general-badge{display:flex;flex-direction:column;align-items:center;gap:.9rem;text-align:center;padding:2rem 1.2rem 1.6rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius);transition:transform .18s,border-color .18s}
-.logros-general-badge-imgbox{width:132px;height:132px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logros-general-badge img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));transition:transform .15s}
-.logros-general-badge.locked{opacity:.55}
-.logros-general-badge.locked img{opacity:.3;filter:grayscale(1)}
-.logros-general-badge-name{font-size:14px;font-weight:500;color:var(--text);line-height:1.35}
-.logros-general-badge.locked .logros-general-badge-name{color:var(--muted);opacity:.7}
-.logros-badge-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:3.4rem;opacity:.55}
-.logros-general-badge.locked .logros-badge-fallback{opacity:.22;filter:grayscale(1)}
+/* barra de progreso (siempre acompañada de texto "X de Y") */
+.lg-bar{height:6px;border-radius:99px;background:var(--surface3);box-shadow:inset 0 0 0 1px var(--border);overflow:hidden}
+.lg-bar.sm{height:4px}
+.lg-bar>i{display:block;height:100%;border-radius:inherit;background:var(--progress)}
+.lg-bar.full>i{background:var(--success)}
+
+/* secciones */
+.lg-section{margin-bottom:2.25rem}
+.lg-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.55rem}
+.lg-section-count{font-size:12.5px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lg-section>.lg-bar{margin-bottom:1rem}
+.lg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem}
+
+/* tarjeta de logro: icono · [nombre / descripción / estado] */
+.lg-card{position:relative;display:flex;gap:.95rem;align-items:flex-start;min-width:0;padding:1rem 1.05rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius)}
+.lg-card.is-pending{background:transparent;border-style:dashed}
+.lg-icon{position:relative;width:64px;height:64px;flex:none;display:flex;align-items:center;justify-content:center}
+.lg-icon img{position:relative;z-index:1;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.28))}
+.lg-card.is-pending .lg-icon img{filter:grayscale(1);opacity:.35}
+.lg-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:2.4rem}
+.lg-card.is-pending .lg-fallback{filter:grayscale(1);opacity:.35}
+.lg-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:.3rem}
+.lg-name{font-family:var(--font-display);font-size:1.12rem;font-weight:700;line-height:1.2;color:var(--text);margin:0}
+.lg-desc{font-size:12.5px;line-height:1.55;color:var(--muted);margin:0}
+.lg-foot{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem .6rem;margin-top:.35rem}
+.lg-status{display:inline-flex;align-items:center;gap:5px;padding:3px 10px 3px 8px;border-radius:99px;font-size:11.5px;font-weight:600;line-height:1.4}
+.lg-status.got{background:var(--success-soft);color:var(--success)}
+.lg-status.pending{color:var(--muted);border:1px solid var(--border2)}
+.lg-date{font-size:11.5px;color:var(--muted)}
+
+/* logro destacado: único con adornos (dorado, halo y marca ✦ solo si está conseguido) */
+.lg-card.is-star{grid-column:1/-1;align-items:center;gap:1.25rem;padding:1.3rem 1.5rem;overflow:hidden;border:1px solid var(--gold-decorative);background:linear-gradient(135deg,var(--gold-soft) 0%,var(--surface) 62%)}
+.lg-card.is-star .lg-icon{width:96px;height:96px}
+.lg-card.is-star .lg-name{font-size:1.45rem}
+.lg-card.is-star .lg-desc{font-size:13.5px}
+.lg-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.lg-card.is-star.is-got{box-shadow:0 8px 24px -14px var(--gold-decorative)}
+.lg-card.is-star.is-got .lg-icon::before{content:'';position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,var(--gold-soft) 0%,transparent 70%)}
+.lg-card.is-star.is-got::after{content:'✦';position:absolute;top:10px;right:14px;font-size:14px;line-height:1;color:var(--gold-decorative)}
+.lg-card.is-star.is-pending{background:transparent;border-style:dashed}
+.lg-card.is-missed{background:transparent}
+.lg-card.is-missed .lg-icon img{filter:grayscale(1);opacity:.5}
+.lg-card.is-missed .lg-fallback{filter:grayscale(1);opacity:.5}
+.lg-card.is-star.is-missed{background:transparent;border-color:var(--border2)}
+.lg-status.missed{background:var(--surface3);color:var(--text)}
+
+/* ediciones de bingo */
+.lg-editions{display:flex;flex-direction:column;gap:1rem}
+.lg-edition{padding:1.15rem 1.25rem 1.25rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius)}
+.lg-ed-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.9rem}
+.lg-ed-name{font-family:var(--font-display);font-style:italic;font-size:1.25rem;font-weight:600;line-height:1.2;color:var(--text);margin:0}
+.lg-ed-dates{font-size:12px;color:var(--muted);margin-top:3px}
+.lg-ed-count{flex:none;padding:3px 10px;border-radius:99px;background:var(--surface3);color:var(--text);font-size:11.5px;font-weight:600;white-space:nowrap}
+.lg-ed-progress{margin-bottom:1rem}
+.lg-ed-progress-row{display:flex;justify-content:space-between;gap:1rem;margin-bottom:.4rem;font-size:12px;color:var(--muted)}
+.lg-ed-progress-row strong{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.lg-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.lg-steps .lg-card.is-star{grid-column:auto;align-items:flex-start;padding:1.1rem 1.2rem;gap:1rem}
+.lg-steps .lg-card.is-star .lg-icon{width:72px;height:72px}
+.lg-steps .lg-card.is-star .lg-name{font-size:1.2rem}
+.lg-steps .lg-card.is-star .lg-desc{font-size:12.5px}
+
+/* aviso de desbloqueo: logro corriente sin halo ni destello (solo el destacado los conserva) */
+.hito-card.logro.sobrio .hito-halo,.hito-card.logro.sobrio .hito-sweep{display:none}
+
+@media (max-width:600px){
+  .lg-grid,.lg-steps{grid-template-columns:1fr}
+  .lg-filters{gap:.4rem}
+  .lg-chip{padding:6px 11px;font-size:12px}
+  .lg-summary{padding:1rem;gap:.9rem}
+  .lg-summary-num{font-size:2.1rem}
+  .lg-card.is-star{padding:1.1rem 1rem;gap:.9rem}
+  .lg-card.is-star .lg-icon{width:76px;height:76px}
+  .lg-card.is-star .lg-name{font-size:1.25rem}
+  .lg-edition{padding:1rem}
+  .lg-ed-head{flex-wrap:wrap}
+}
 .hito-pin-fallback{display:none;font-size:3.4rem;text-align:center;line-height:1;filter:drop-shadow(0 10px 24px rgba(0,0,0,.55))}
 
 /* ── SHELF BUTTONS (modal) ── */
@@ -2598,12 +2666,6 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 
 .info-modal-header{padding:1.4rem 1.2rem .9rem}.info-modal-body{padding:1.2rem 1.2rem 1.6rem}.info-modal-title{font-size:1.6rem}
 
-  .logros-general-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem}
-  .logros-general-badge{padding:1.5rem .8rem 1.2rem}
-  .logros-general-badge-imgbox{width:100px;height:100px}
-  .logros-general-badge-name{font-size:12.5px}
-  .logros-edition{padding:.9rem 1rem;gap:.75rem}
-  .logros-badge-mini-imgbox{width:46px;height:46px}
 
 .cc-scene{width:172px;height:280px}.cartas-grid{gap:1.3rem}
 
@@ -3394,16 +3456,12 @@ body.theme-christmas .hero-sub{color:var(--muted);font-style:italic;font-family:
 .shelf-badges-more:hover{text-decoration:underline}
 
 
-.logros-edition:hover{border-color:rgba(192,111,196,0.4);transform:translateY(-1px)}
 
 
-.logros-edition:hover .logros-badge-mini:not(.locked){transform:translateY(-2px)}
 
 
-.logros-general-badge:hover{transform:translateY(-3px);border-color:rgba(192,111,196,0.4)}
 
 
-.logros-general-badge:hover img{transform:scale(1.06)}
 
 
 .shelf-btn:hover{border-color:color-mix(in srgb,var(--accent) 40%,transparent);color:var(--text);background:var(--surface3)}
@@ -3571,9 +3629,7 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
 .bingo-cell:active,
 .bingo-book-result:active,
 .cal-day.has-books:active,
-.cal-panel-book:active,
-.logros-edition:active,
-.logros-general-badge:active{
+.cal-panel-book:active{
   transform:scale(.985);
 }
 @media (prefers-reduced-motion: reduce){
@@ -3598,8 +3654,7 @@ body.theme-christmas .dd-btn:hover{border-color:var(--border2)}
   .similar-item:active,.shelf-book:active,.xm-collection-card:active,
   .hw-forbidden-card:active,.top10-row:active,.top10-silver:active,
   .hv-feat-card.clickable:active,.hv-safi-block:active,.bingo-cell:active,
-  .bingo-book-result:active,.cal-day.has-books:active,.cal-panel-book:active,
-  .logros-edition:active,.logros-general-badge:active{
+  .bingo-book-result:active,.cal-day.has-books:active,.cal-panel-book:active{
     transform:none;
   }
 }
@@ -8242,12 +8297,23 @@ body:not(.home-active) .hero{
       <div class="shelf-main-title">Mis logros</div>
     </div>
     <p class="logros-modal-sub">Cada insignia marca un paso en tu camino como lectora: tus valoraciones, tus casillas de bingo, tu paso por la comunidad. Línea y bingo quedan guardados por edición para siempre — si los consigues en una temporada pasada, ahí se quedan, aunque llegue una nueva.</p>
-    <div class="logros-section-label">Logros de lectura</div>
-    <div class="logros-general-grid" id="logrosLecturaGrid"><div class="logros-empty">Cargando…</div></div>
-    <div class="logros-section-label">Insignias</div>
-    <div class="logros-general-grid" id="logrosGeneralGrid"><div class="logros-empty">Cargando…</div></div>
-    <div class="logros-section-label">Bingo por edición</div>
-    <div class="logros-editions-list" id="logrosModalBody"><div class="logros-empty">Cargando…</div></div>
+    <div class="lg-summary" id="logrosSummary" hidden></div>
+    <div class="lg-filters" id="logrosFilters" role="group" aria-label="Filtrar logros por estado" hidden></div>
+    <section class="lg-section">
+      <div class="lg-section-head"><h2 class="logros-section-label">Logros de lectura</h2><span class="lg-section-count" id="lgCountLectura"></span></div>
+      <div id="lgBarLectura"></div>
+      <div class="lg-grid" id="logrosLecturaGrid"><div class="logros-empty">Cargando…</div></div>
+    </section>
+    <section class="lg-section">
+      <div class="lg-section-head"><h2 class="logros-section-label">Insignias</h2><span class="lg-section-count" id="lgCountGeneral"></span></div>
+      <div id="lgBarGeneral"></div>
+      <div class="lg-grid" id="logrosGeneralGrid"><div class="logros-empty">Cargando…</div></div>
+    </section>
+    <section class="lg-section">
+      <div class="lg-section-head"><h2 class="logros-section-label">Bingo por edición</h2><span class="lg-section-count" id="lgCountBingo"></span></div>
+      <div id="lgBarBingo"></div>
+      <div class="lg-editions" id="logrosModalBody"><div class="logros-empty">Cargando…</div></div>
+    </section>
   </div>
 </div>
 
@@ -8260,28 +8326,31 @@ body:not(.home-active) .hero{
     </div>
     <p class="logros-modal-sub">Un resumen de tu recorrido lector, construido a partir de tu historial de lecturas, valoraciones y votos de spicy.</p>
 
-    <div class="mystat-row" id="statsSummary"></div>
+    <section class="stats-block" aria-labelledby="stHeadResumen">
+      <div class="stats-head"><h2 class="stats-title" id="stHeadResumen">Tu resumen</h2><p class="stats-sub">Sobre los libros que tienes marcados como leídos.</p></div>
+      <div class="mystat-row" id="statsSummary"></div>
+    </section>
 
-    <div class="stats-block">
-      <div class="logros-section-label">Libros leídos por año</div>
+    <section class="stats-block" aria-labelledby="stHeadAnio">
+      <div class="stats-head"><h2 class="stats-title" id="stHeadAnio">Libros leídos por año</h2><p class="stats-sub">Cada lectura con fecha suma al año en que la terminaste; una relectura cuenta otra vez.</p></div>
       <div id="statsYearChart"></div>
       <div class="stats-block-note" id="statsYearNote"></div>
-    </div>
+    </section>
 
-    <div class="stats-block">
-      <div class="logros-section-label">Tu racha de lectura</div>
-      <div class="mystat-row" id="statsStreakRow"></div>
-    </div>
+    <section class="stats-block" aria-labelledby="stHeadRacha">
+      <div class="stats-head"><h2 class="stats-title" id="stHeadRacha">Tu racha de lectura</h2><p class="stats-sub">Se calcula por meses: cuenta los meses en los que terminaste al menos una lectura.</p></div>
+      <div class="mystat-row is-2" id="statsStreakRow"></div>
+    </section>
 
-    <div class="stats-block">
-      <div class="logros-section-label">Curiosidades de tu estantería</div>
+    <section class="stats-block" aria-labelledby="stHeadCurio">
+      <div class="stats-head"><h2 class="stats-title" id="stHeadCurio">Curiosidades de tu estantería</h2><p class="stats-sub">Autora y libros extremos entre los que tienes marcados como leídos.</p></div>
       <div class="curio-grid" id="statsCurioGrid"></div>
-    </div>
+    </section>
 
-    <div class="stats-block">
-      <div class="logros-section-label">Tus tropos y dinámicas favoritas</div>
+    <section class="stats-block" aria-labelledby="stHeadTags">
+      <div class="stats-head"><h2 class="stats-title" id="stHeadTags">Tus tropos y dinámicas favoritas</h2><p class="stats-sub">Los 6 más frecuentes en tus libros leídos. El número indica en cuántos de esos libros aparece.</p></div>
       <div class="rtag-grid" id="statsTagsGrid"></div>
-    </div>
+    </section>
   </div>
 </div>
 
@@ -8317,6 +8386,7 @@ body:not(.home-active) .hero{
     </div>
     <div class="ws-empty" id="rcEmpty" hidden></div>
     <div class="rc-summary" id="rcSummary" hidden></div>
+    <ul class="rc-legend" id="rcLegend" aria-label="Leyenda del camino" hidden></ul>
     <div class="rc-path" id="rcPath" hidden></div>
   </div>
 </div>
@@ -8364,7 +8434,8 @@ body:not(.home-active) .hero{
       <button class="cartas-filter-btn" data-cf="locked" onclick="setCartasFilter('locked')">Por desbloquear</button>
     </div>
 
-    <div class="cartas-legend">
+    <div class="cartas-legend" role="group" aria-label="Rango de la carta según los libros de la autora en el catálogo">
+      <div class="cartas-legend-title">Rango de la carta, según los libros de la autora en el catálogo</div>
       <div class="cartas-legend-item"><span class="cartas-legend-dot" style="background:#c9895a"></span>Iniciada · 4–6 libros</div>
       <div class="cartas-legend-item"><span class="cartas-legend-dot" style="background:#b9bfc9"></span>Devota · 7–11 libros</div>
       <div class="cartas-legend-item"><span class="cartas-legend-dot" style="background:#e0b45a"></span>Consagrada · 12–19 libros</div>
@@ -16072,7 +16143,7 @@ let logroQueue=[];
 
 function showLogroHitoModal(logro){
   const card=document.getElementById('hitoCard');
-  card.className='hito-card logro';
+  card.className='hito-card logro'+(logroEsDestacado(logro)?'':' sobrio'); // F9.3.1: halo y destello solo para destacados
   document.getElementById('hitoRibbon').textContent='🏅 ¡Nuevo logro!';
   resetHitoPinImg('assets/logros/'+logro.icono);
   document.getElementById('hitoTitle').textContent=logro.nombre;
@@ -16117,22 +16188,121 @@ async function checkNewLogros(){
   if(!document.getElementById('hitoModal').classList.contains('open')) playNextLogroHito();
 }
 
+/* ── F9.3.1 · Presentación de logros: nombre / descripción / progreso / estado ── */
+// Un logro es "destacado" si la fila del catálogo trae destacado/destacada = true;
+// si la columna no existe, se usa esta lista de nombres raros como respaldo.
+const LOGROS_DESTACADOS_RE=/bingo|l[ií]nea|leyenda|maestr|fundador|pionera|cart[oó]n/i;
+function logroEsDestacado(l){
+  if(!l) return false;
+  const f=(l.destacado!==undefined)?l.destacado:l.destacada;
+  if(f!==undefined && f!==null) return f===true||f===1||f==='true'||f==='t';
+  return LOGROS_DESTACADOS_RE.test((l.nombre||'')+' '+(l.icono||''));
+}
+let lgFilter='all'; // all | got | pending
+const LG_ICO_CHECK='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+const LG_ICO_LOCK='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+function lgFmtDate(d){
+  if(!d) return '';
+  // FIX F9.3.2: una fecha sin hora ("2026-09-18") se interpreta en hora local (no UTC) para que no cambie de día
+  const dt=new Date(/^\d{4}-\d{2}-\d{2}$/.test(String(d))?d+'T00:00:00':d);
+  if(isNaN(dt.getTime())) return '';
+  return dt.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'});
+}
+// estados: got (conseguido) · pending (pendiente) · missed (completado en el cartón pero sin insignia)
+function lgMatchFilter(state){ return lgFilter==='all' || lgFilter===state; }
+function lgStatusHtml(state,date){
+  if(state==='got') return `<span class="lg-status got">${LG_ICO_CHECK}Conseguido</span>${date?`<span class="lg-date">${escHtml(date)}</span>`:''}`;
+  // FIX F9.3.2: el hito de bingo es solo para la primera lectora de la edición; si el cartón ya está completo
+  // pero la insignia no se registró, no se muestra "Pendiente" (contradecía el progreso).
+  if(state==='missed') return `<span class="lg-status missed">${LG_ICO_CHECK}Completado</span><span class="lg-date">Sin insignia: es para la primera lectora</span>`;
+  return `<span class="lg-status pending">${LG_ICO_LOCK}Pendiente</span>`;
+}
+function lgBarHtml(v,max,cls,label){
+  const pct=max?Math.min(100,Math.round(v/max*100)):0;
+  // FIX F9.3.2: cada barra lleva nombre y texto accesibles
+  return `<div class="lg-bar ${cls||''}${max&&v>=max?' full':''}" role="progressbar" aria-label="${escHtml(label||'Progreso')}" aria-valuemin="0" aria-valuemax="${max}" aria-valuenow="${v}" aria-valuetext="${v} de ${max}"><i style="width:${pct}%"></i></div>`;
+}
+function lgEmptyMsg(){
+  return lgFilter==='got'?'Todavía no has conseguido ninguno de este apartado.':'¡No te queda ninguno pendiente en este apartado!';
+}
+// Estado de un hito de bingo en una edición. "missed" = cartón/línea completados pero sin hito registrado.
+function lgEditionState(ch,tipo){
+  if(bingoHitos.some(h=>h.challenge_id===ch.id&&h.tipo===tipo)) return 'got';
+  const cas=Array.isArray(ch.casillas)?ch.casillas:[];
+  if(!cas.length) return 'pending';
+  const marked=new Set(bingoProgress.filter(p=>p.challenge_id===ch.id).map(p=>p.casilla_index));
+  const done=(tipo==='linea')?(typeof bingoCheckLine==='function'&&bingoCheckLine(cas,marked)):(marked.size===cas.length);
+  return done?'missed':'pending';
+}
+function lgCardHtml(l){
+  const ul=userLogros.find(u=>u.logro_id===l.id);
+  const got=!!ul, star=logroEsDestacado(l);
+  return `<article class="lg-card ${got?'is-got':'is-pending'}${star?' is-star':''}">
+    <div class="lg-icon"><img src="assets/logros/${l.icono}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="lg-fallback" aria-hidden="true">🏅</span></div>
+    <div class="lg-body">
+      ${star?'<div class="lg-kicker"><span aria-hidden="true">✦</span> Destacado</div>':''}
+      <h3 class="lg-name">${escHtml(l.nombre)}</h3>
+      ${l.descripcion?`<p class="lg-desc">${escHtml(l.descripcion)}</p>`:''}
+      <div class="lg-foot">${lgStatusHtml(got?'got':'pending',lgFmtDate(ul&&ul.awarded_at))}</div>
+    </div>
+  </article>`;
+}
+function renderLogrosSummary(){
+  const host=document.getElementById('logrosSummary');
+  const fhost=document.getElementById('logrosFilters');
+  if(!host||!fhost) return;
+  const gotCat=logrosCatalog.filter(l=>userLogros.some(u=>u.logro_id===l.id)).length;
+  let totBingo=0, gotBingo=0, missed=0;
+  bingoAllChallenges.forEach(ch=>{
+    ['linea','bingo'].forEach(t=>{
+      totBingo++;
+      const st=lgEditionState(ch,t);
+      if(st==='got') gotBingo++; else if(st==='missed') missed++;
+    });
+  });
+  const total=logrosCatalog.length+totBingo, got=gotCat+gotBingo, left=total-got-missed;
+  if(!total){ host.hidden=true; fhost.hidden=true; return; }
+  host.hidden=false; fhost.hidden=false;
+  const parts=[];
+  if(left>0) parts.push(left===1?'Te queda 1 por conseguir':`Te quedan ${left} por conseguir`);
+  else parts.push(missed>0?'No te queda nada por conseguir':'¡Lo has conseguido todo!');
+  if(missed>0) parts.push(missed===1?'1 completado sin insignia':`${missed} completados sin insignia`);
+  host.innerHTML=`<div class="lg-summary-num">${got}<small> / ${total}</small></div>
+    <div class="lg-summary-body">
+      <div class="lg-summary-label">Logros conseguidos</div>
+      ${lgBarHtml(got,total,'','Logros conseguidos')}
+      <div class="lg-summary-note">${parts.join(' · ')}</div>
+    </div>`;
+  const chip=(f,label,n)=>`<button type="button" class="lg-chip" aria-pressed="${lgFilter===f}" onclick="lgSetFilter('${f}')">${label} <span>${n}</span></button>`;
+  fhost.innerHTML=chip('all','Todos',total)+chip('got','Conseguidos',got)+chip('pending','Pendientes',left);
+}
+function lgSetFilter(f){
+  lgFilter=f;
+  renderLogrosSummary();
+  renderLogrosGeneralGrid();
+  renderLogrosModal();
+  // FIX F9.3.2: los botones se repintan; se devuelve el foco al filtro activo (si no, el teclado se pierde en <body>)
+  const act=document.querySelector('#logrosFilters .lg-chip[aria-pressed="true"]');
+  if(act) act.focus({preventScroll:true});
+}
 function renderLogrosGeneralGrid(){
   const grid=document.getElementById('logrosGeneralGrid');
   const gridLectura=document.getElementById('logrosLecturaGrid');
   if(!grid||!gridLectura) return;
-  const badgeHtml=l=>{
-    const got=userLogros.some(ul=>ul.logro_id===l.id);
-    const tip=got?(l.descripcion||l.nombre):'Aún no conseguido';
-    return `<div class="logros-general-badge ${got?'':'locked'}" title="${escHtml(tip)}">
-      <div class="logros-general-badge-imgbox"><img src="assets/logros/${l.icono}" alt="${escHtml(l.nombre)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logros-badge-fallback">🏅</span></div>
-      <div class="logros-general-badge-name">${escHtml(l.nombre)}</div>
-    </div>`;
+  const fill=(list,el,countId,barId,emptyAll,label)=>{
+    const total=list.length;
+    const done=list.filter(l=>userLogros.some(u=>u.logro_id===l.id)).length;
+    document.getElementById(countId).textContent=total?`${done} de ${total}`:'';
+    document.getElementById(barId).innerHTML=total?lgBarHtml(done,total,'sm',label):'';
+    // destacados primero (ocupan fila completa); el resto conserva el orden del catálogo
+    const shown=[...list]
+      .sort((a,b)=>(logroEsDestacado(b)?1:0)-(logroEsDestacado(a)?1:0))
+      .filter(l=>lgMatchFilter(userLogros.some(u=>u.logro_id===l.id)?'got':'pending'));
+    el.innerHTML=!total?`<div class="logros-empty">${emptyAll}</div>`
+      :shown.length?shown.map(lgCardHtml).join(''):`<div class="logros-empty">${lgEmptyMsg()}</div>`;
   };
-  const lectura=logrosCatalog.filter(l=>l.categoria==='lectura');
-  const resto=logrosCatalog.filter(l=>l.categoria!=='lectura');
-  gridLectura.innerHTML=lectura.length?lectura.map(badgeHtml).join(''):'<div class="logros-empty">Todavía no hay insignias de lectura disponibles.</div>';
-  grid.innerHTML=resto.length?resto.map(badgeHtml).join(''):'<div class="logros-empty">Todavía no hay insignias disponibles.</div>';
+  fill(logrosCatalog.filter(l=>l.categoria==='lectura'),gridLectura,'lgCountLectura','lgBarLectura','Todavía no hay insignias de lectura disponibles.','Logros de lectura conseguidos');
+  fill(logrosCatalog.filter(l=>l.categoria!=='lectura'),grid,'lgCountGeneral','lgBarGeneral','Todavía no hay insignias disponibles.','Insignias conseguidas');
 }
 
 let _logrosPrevState=null;
@@ -16157,8 +16327,14 @@ async function openLogrosModal(silent){
   document.getElementById('logrosLecturaGrid').innerHTML='<div class="logros-empty">Cargando…</div>';
   document.getElementById('logrosGeneralGrid').innerHTML='<div class="logros-empty">Cargando…</div>';
   document.getElementById('logrosModalBody').innerHTML='<div class="logros-empty">Cargando…</div>';
+  // FIX F9.3.2: se vacían resumen, filtros, contadores y barras de la apertura anterior hasta que lleguen los datos
+  ['logrosSummary','logrosFilters'].forEach(id=>{const e=document.getElementById(id); if(e){e.hidden=true;e.innerHTML='';}});
+  ['lgCountLectura','lgCountGeneral','lgCountBingo'].forEach(id=>{const e=document.getElementById(id); if(e) e.textContent='';});
+  ['lgBarLectura','lgBarGeneral','lgBarBingo'].forEach(id=>{const e=document.getElementById(id); if(e) e.innerHTML='';});
   if(!silent) viewUrlSync('logros',true,_logrosPrevState);
-  await Promise.all([bingoLoadHitos(), bingoLoadAllChallenges(), loadLogrosCatalog(), loadUserLogros()]);
+  lgFilter='all';
+  await Promise.all([bingoLoadHitos(), bingoLoadAllChallenges(), bingoLoadProgress(), loadLogrosCatalog(), loadUserLogros()]);
+  renderLogrosSummary();
   renderLogrosGeneralGrid();
   renderLogrosModal();
   bingoUpdateNotifDot();
@@ -16406,12 +16582,21 @@ function rcRender(){
       ?'Todavía no has terminado ninguna lectura. Cuando termines una, tu camino empezará aquí.'
       :`No hay lecturas terminadas en ${rcYear}. Elige otro año para seguir tu camino.`;
     empty.hidden=false; sum.hidden=true; path.hidden=true;
+    const lg0=document.getElementById('rcLegend'); if(lg0) lg0.hidden=true;
     return;
   }
   const r=rcSummarize(_rcEntries);
   empty.hidden=true; delete empty.dataset.state;
-  sum.innerHTML=`<span><b>${r.books}</b>${r.books===1?'libro leído':'libros leídos'}</span><span><b>${r.authors}</b>${r.authors===1?'autora descubierta':'autoras descubiertas'}</span>`;
+  sum.innerHTML=`<h2 class="rc-sum-h">Resumen de ${rcYear}</h2><div class="rc-stat"><b>${r.books}</b>${r.books===1?'libro leído':'libros leídos'}</div><div class="rc-stat"><b>${r.authors}</b>${r.authors===1?'autora descubierta':'autoras descubiertas'}</div>`;
   sum.hidden=false;
+  const lg=document.getElementById('rcLegend');
+  if(lg){
+    const L=['<li><span class="rc-lg-sw rc-lg-book" aria-hidden="true"></span>Lectura terminada · toca para abrir su ficha</li>'];
+    if(_rcEntries.some(x=>x.isReread===true)) L.push('<li><span class="rc-lg-sw rc-lg-re" aria-hidden="true"></span>Relectura</li>');
+    if(_rcEntries.some(x=>!x.inCatalog)) L.push('<li><span class="rc-lg-sw rc-lg-miss" aria-hidden="true"></span>Libro no disponible en el catálogo</li>');
+    if(_rcEntries.some(x=>!x.hasMonth)) L.push('<li><span class="rc-lg-sw rc-lg-dash" aria-hidden="true"></span>Tramo punteado: lecturas sin mes indicado</li>');
+    lg.innerHTML=L.join(''); lg.hidden=false;
+  }
   path.hidden=false;
   rcDrawJourney(path);
 }
@@ -16428,7 +16613,7 @@ function rcStopHTML(x){
   const b=x.book,ini=rcInitial(b.title);
   const img=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async" onload="this.parentNode.classList.add('is-loaded')" onerror="this.remove()">`:'';
   const authors=b.authors.length?`<span class="rc-meta">${escHtml(b.authors.join(', '))}</span>`:'';
-  const country=b.pais_origen.length?`<span class="rc-meta">${escHtml(b.pais_origen.join(' · '))}</span>`:'';
+  const country=b.pais_origen.length?`<span class="rc-meta rc-origin">Origen: ${escHtml(b.pais_origen.join(' · '))}</span>`:'';
   return `<li class="rc-item" data-reading="${escHtml(x.readingId)}"><button type="button" class="rc-stop" data-book="${escHtml(x.bookId)}"><span class="rc-nodebox"><span class="rc-n rc-n-book${x.isReread===true?' rc-n-re':''}" aria-hidden="true"><span class="rc-cover"><span class="rc-initial">${escHtml(ini)}</span>${img}</span></span></span><span class="rc-text">${date}<span class="rc-title">${escHtml(b.title||'')}</span>${authors}${country}${tag}</span></button></li>`;
 }
 function rcDrawJourney(host){
@@ -17150,10 +17335,10 @@ function renderStatsView(){
   const s=computeReadingStats();
 
   document.getElementById('statsSummary').innerHTML=`
-    <div class="mystat"><div class="mystat-n">${s.readBooks.length}</div><div class="mystat-l">Libros leídos</div></div>
-    <div class="mystat"><div class="mystat-n">${s.totalPages?s.totalPages.toLocaleString('es-ES'):'—'}</div><div class="mystat-l">Páginas leídas</div></div>
-    <div class="mystat"><div class="mystat-n">${s.avgRating?s.avgRating.toFixed(1)+' ★':'—'}</div><div class="mystat-l">Valoración media</div></div>
-    <div class="mystat"><div class="mystat-n">${s.avgSpicy!=null?s.avgSpicy.toFixed(1):'—'}</div><div class="mystat-l">Spicy medio ${s.avgSpicy!=null?SPICY_ICONS[Math.min(5,Math.round(s.avgSpicy))]:''}</div></div>
+    <div class="mystat"><div class="mystat-n">${s.readBooks.length}</div><div class="mystat-l">Libros leídos</div><div class="mystat-h">Libros distintos</div></div>
+    <div class="mystat"><div class="mystat-n">${s.totalPages?s.totalPages.toLocaleString('es-ES'):'—'}</div><div class="mystat-l">Páginas leídas</div><div class="mystat-h">Suma de las páginas de esos libros</div></div>
+    <div class="mystat"><div class="mystat-n">${s.avgRating?s.avgRating.toFixed(1)+' ★':'—'}</div><div class="mystat-l">Valoración media</div><div class="mystat-h">De tus puntuaciones, sobre 5</div></div>
+    <div class="mystat"><div class="mystat-n">${s.avgSpicy!=null?s.avgSpicy.toFixed(1):'—'}</div><div class="mystat-l">Spicy medio <span class="mystat-ico">${s.avgSpicy!=null?SPICY_ICONS[Math.min(5,Math.round(s.avgSpicy))]:''}</span></div><div class="mystat-h">Tu voto o, si no votaste, el del catálogo</div></div>
   `;
 
   const yearsEl=document.getElementById('statsYearChart');
@@ -17165,14 +17350,15 @@ function renderStatsView(){
   }else{
     const max=Math.max(...years.map(y=>s.perYear[y]));
     const bestYear=years.reduce((a,b)=>s.perYear[b]>s.perYear[a]?b:a);
-    yearsEl.innerHTML=`<div class="ryear-chart">${years.map(y=>`
-      <div class="ryear-col">
+    yearsEl.innerHTML=`<div class="ryear-chart" role="list" aria-label="Lecturas terminadas por año">${years.map(y=>`
+      <div class="ryear-col" role="listitem" aria-label="${y}: ${s.perYear[y]} lectura${s.perYear[y]===1?'':'s'}">
         <span class="ryear-bar-n">${s.perYear[y]}</span>
-        <div class="ryear-bar-track"><div class="ryear-bar-fill" style="height:${Math.max(8,(s.perYear[y]/max)*100)}%"></div></div>
+        <div class="ryear-bar-track"><div class="ryear-bar-fill${y===bestYear?' is-best':''}" style="height:${Math.max(8,(s.perYear[y]/max)*100)}%"></div></div>
         <div class="ryear-year ${y===bestYear?'is-best':''}">${y}</div>
       </div>`).join('')}</div>`;
+    const _yc=yearsEl.querySelector('.ryear-chart'); if(_yc) _yc.scrollLeft=_yc.scrollWidth; // F9.4.2: con muchos años, el gráfico abre mostrando los más recientes
     const totalLogged=years.reduce((a,y)=>a+s.perYear[y],0);
-    yearNoteEl.innerHTML=`Tu año más lector fue <strong style="color:var(--accent2)">${bestYear}</strong>, con ${s.perYear[bestYear]} libro${s.perYear[bestYear]===1?'':'s'}. Total registrado: ${totalLogged} lectura${totalLogged===1?'':'s'} desde ${years[0]}.`;
+    yearNoteEl.innerHTML=`Tu año más lector fue <strong style="color:var(--gold)">${bestYear}</strong> (barra dorada), con ${s.perYear[bestYear]} lectura${s.perYear[bestYear]===1?'':'s'}. Total registrado: ${totalLogged} lectura${totalLogged===1?'':'s'} desde ${years[0]}.`;
   }
 
   const streakEl=document.getElementById('statsStreakRow');
@@ -17180,8 +17366,8 @@ function renderStatsView(){
     streakEl.innerHTML='<div class="logros-empty">Aún no hay suficientes fechas de lectura para calcular tu ritmo.</div>';
   }else{
     streakEl.innerHTML=`
-      <div class="mystat"><div class="mystat-n">${fmtMonthIdx(s.bestMonth)}</div><div class="mystat-l">Tu mes récord (${s.bestMonthCount} libro${s.bestMonthCount===1?'':'s'})</div></div>
-      <div class="mystat"><div class="mystat-n">${s.longestStreak} mes${s.longestStreak===1?'':'es'}</div><div class="mystat-l">Racha más larga leyendo sin parar</div></div>
+      <div class="mystat"><div class="mystat-n is-text">${fmtMonthIdx(s.bestMonth)}</div><div class="mystat-l">Tu mes récord</div><div class="mystat-h">${s.bestMonthCount} lectura${s.bestMonthCount===1?'':'s'} terminada${s.bestMonthCount===1?'':'s'} ese mes</div></div>
+      <div class="mystat"><div class="mystat-n">${s.longestStreak} mes${s.longestStreak===1?'':'es'}</div><div class="mystat-l">Racha más larga</div><div class="mystat-h">Meses seguidos con al menos una lectura</div></div>
     `;
   }
 
@@ -17211,11 +17397,11 @@ function renderStatsView(){
   };
   tagsEl.innerHTML=`
     <div class="rtag-col">
-      <div class="rtag-col-title">Tus tropos favoritos</div>
+      <h3 class="rtag-col-title">Tus tropos favoritos</h3>
       ${buildBars(s.topTropes,'var(--accent)')}
     </div>
     <div class="rtag-col">
-      <div class="rtag-col-title">Tus dinámicas favoritas</div>
+      <h3 class="rtag-col-title">Tus dinámicas favoritas</h3>
       ${buildBars(s.topDin,'var(--rose)')}
     </div>`;
 }
@@ -17227,8 +17413,8 @@ function renderStatsView(){
    solo se usa en el tooltip y en los contadores, nunca en el color. */
 const WS_MAP_URL='world_map_data.json';
 const WS_MAPS=[
-  {key:'origen', field:'pais_origen', title:'De dónde vienen mis autoras', aria:'Mapa mundial de los países de origen de las autoras que has leído'},
-  {key:'cultura',field:'pais_cultura',title:'Dónde me han llevado mis historias', aria:'Mapa mundial de los países donde se ambientan las historias que has leído'}
+  {key:'origen', field:'pais_origen', title:'De dónde vienen mis autoras', sub:'País de origen de las autoras de tus lecturas terminadas.', aria:'Mapa mundial de los países de origen de las autoras que has leído'},
+  {key:'cultura',field:'pais_cultura',title:'Dónde me han llevado mis historias', sub:'País donde se ambientan las historias que has terminado.', aria:'Mapa mundial de los países donde se ambientan las historias que has leído'}
 ];
 // Solo variantes ortográficas del MISMO país (no se inventan equivalencias: Escocia, Ítaca, etc. no se mapean)
 const WS_ALIASES={'eeuu':'US','usa':'US','estados unidos de america':'US','republica checa':'CZ','holanda':'NL','birmania':'MM','suazilandia':'SZ','macedonia':'MK','timor oriental':'TL'};
@@ -17316,6 +17502,8 @@ function wsBuild(){
   host.innerHTML=WS_MAPS.map(m=>`
     <section class="ws-card" data-map="${m.key}">
       <h3 class="ws-card-title">${m.title}</h3>
+      <p class="ws-card-sub">${m.sub}</p>
+      <ul class="ws-legend" aria-hidden="true"><li><i class="ws-sw is-found"></i>País descubierto</li><li><i class="ws-sw"></i>Aún sin descubrir</li></ul>
       <div class="ws-mapwrap" id="wsWrap_${m.key}" style="aspect-ratio:${W}/${H}"></div>
       <div class="ws-info" id="wsInfo_${m.key}" aria-live="polite"></div>
       <div class="ws-counters" id="wsCnt_${m.key}"></div>
@@ -17414,7 +17602,7 @@ function wsPaint(){
     document.getElementById('wsInfo_'+m.key).textContent='Pasa el ratón o toca un país para ver su información.';
     document.getElementById('wsCnt_'+m.key).innerHTML=
       `<span><b>${nC}</b>${nC===1?'país descubierto':'países descubiertos'}</span>`+
-      `<span><b>${res.located}</b>${res.located===1?'lectura':'lecturas'}</span>`+
+      `<span><b>${res.located}</b>${res.located===1?'lectura ubicada':'lecturas ubicadas'}</span>`+
       (res.unlocated?`<span class="ws-extra">${res.unlocated} lectura${res.unlocated===1?'':'s'} sin ubicación cartografiable</span>`:'');
     document.getElementById('wsAltSum_'+m.key).textContent=`Ver lista de países descubiertos (${nC})`;
     const rows=[...res.countries.entries()].map(([iso,n])=>[_wsIsoToName.get(iso)||iso,n]).sort((a,b)=>a[0].localeCompare(b[0],'es'));
@@ -18097,25 +18285,60 @@ function wsRegFromList(id){
 // aunque llegue una edición nueva.
 function renderLogrosModal(){
   const body=document.getElementById('logrosModalBody');
+  const countEl=document.getElementById('lgCountBingo');
   if(!bingoAllChallenges.length){
     body.innerHTML='<div class="logros-empty">Todavía no hay ninguna edición de bingo publicada.</div>';
+    if(countEl) countEl.textContent='';
+    const b0=document.getElementById('lgBarBingo'); if(b0) b0.innerHTML='';
     return;
   }
-  body.innerHTML=bingoAllChallenges.map(ch=>{
+  const STEP_DESC={
+    linea:'Primera lectora en completar una fila, columna o diagonal del cartón.',
+    bingo:'Primera lectora en marcar todas las casillas del cartón.'
+  };
+  let totHitos=0, gotHitos=0;
+  const html=bingoAllChallenges.map(ch=>{
     const datesStr=(ch.fecha_inicio||ch.fecha_fin)?`${bingoFmtDate(ch.fecha_inicio)} — ${bingoFmtDate(ch.fecha_fin)}`:'';
-    const badgesHtml=['linea','bingo'].map(tipo=>{
-      const got=bingoHitos.some(h=>h.challenge_id===ch.id && h.tipo===tipo);
-      const cfg=HITO_CONFIG[tipo];
-      return `<div class="logros-badge-mini-imgbox"><img class="logros-badge-mini ${got?'':'locked'}" src="${cfg.img}" title="${got?cfg.title:'Aún no conseguido en esta edición'}"></div>`;
+    const totalCells=Array.isArray(ch.casillas)?ch.casillas.length:0;
+    const marked=new Set(bingoProgress.filter(p=>p.challenge_id===ch.id).map(p=>p.casilla_index)).size;
+    let gotHere=0;
+    const steps=['linea','bingo'].map(tipo=>{
+      const state=lgEditionState(ch,tipo);
+      const h=bingoHitos.find(x=>x.challenge_id===ch.id && x.tipo===tipo);
+      const star=(tipo==='bingo'), cfg=HITO_CONFIG[tipo];
+      totHitos++; if(state==='got'){ gotHitos++; gotHere++; }
+      if(!lgMatchFilter(state)) return '';
+      return `<div class="lg-card is-${state}${star?' is-star':''}">
+        <div class="lg-icon"><img src="${cfg.img}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="lg-fallback" aria-hidden="true">🏅</span></div>
+        <div class="lg-body">
+          ${star?'<div class="lg-kicker"><span aria-hidden="true">✦</span> Destacado</div>':''}
+          <h4 class="lg-name">${escHtml(cfg.title)}</h4>
+          <p class="lg-desc">${STEP_DESC[tipo]}</p>
+          <div class="lg-foot">${lgStatusHtml(state,lgFmtDate(h&&h.achieved_at))}</div>
+        </div>
+      </div>`;
     }).join('');
-    return `<div class="logros-edition">
-      <div class="logros-edition-info">
-        <div class="logros-edition-name">${escHtml(ch.nombre)}</div>
-        ${datesStr?`<div class="logros-edition-dates">${datesStr}</div>`:''}
-      </div>
-      <div class="logros-edition-badges">${badgesHtml}</div>
-    </div>`;
+    if(!steps) return '';
+    const progressHtml=totalCells?`<div class="lg-ed-progress">
+        <div class="lg-ed-progress-row"><span>Casillas marcadas</span><strong>${Math.min(marked,totalCells)} de ${totalCells}</strong></div>
+        ${lgBarHtml(Math.min(marked,totalCells),totalCells,'sm','Casillas marcadas en '+(ch.nombre||'la edición'))}
+      </div>`:'';
+    return `<article class="lg-edition">
+      <header class="lg-ed-head">
+        <div>
+          <h3 class="lg-ed-name">${escHtml(ch.nombre)}</h3>
+          ${datesStr?`<div class="lg-ed-dates">${datesStr}</div>`:''}
+        </div>
+        <span class="lg-ed-count">${gotHere} de 2 hitos</span>
+      </header>
+      ${progressHtml}
+      <div class="lg-steps">${steps}</div>
+    </article>`;
   }).join('');
+  body.innerHTML=html||`<div class="logros-empty">${lgEmptyMsg()}</div>`;
+  if(countEl) countEl.textContent=totHitos?`${gotHitos} de ${totHitos}`:'';
+  const barEl=document.getElementById('lgBarBingo');
+  if(barEl) barEl.innerHTML=totHitos?lgBarHtml(gotHitos,totHitos,'sm','Hitos de bingo conseguidos'):'';
 }
 
 async function bingoLoadProgress(){
@@ -19587,6 +19810,187 @@ html.dy-lock,html.dy-lock body{overflow:hidden}
   #shelfCalendarContainer .cal-day{min-height:78px;padding:3px 1px 5px}
   #shelfCalendarContainer .cal-weekday{font-size:10px;letter-spacing:0}
   #shelfCalendarContainer .cal-day-num{min-width:20px;height:20px;font-size:11px}
+}
+
+/* ── F9.4.1 · Estadísticas, recorrido y vistas temáticas: legibilidad (títulos, métricas, etiquetas y leyendas) ── */
+.stats-head{margin:0 0 1rem}
+.stats-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;line-height:1.2;color:var(--text);margin:0}
+.stats-sub{font-size:13px;line-height:1.5;color:var(--muted);margin:.3rem 0 0;max-width:64ch}
+.stats-block{margin-bottom:2.4rem;padding-bottom:0}
+.stats-block .mystat-row{margin:0}
+.mystat-row.is-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mystat{min-width:0;padding:1.15rem .9rem}
+.mystat-l{font-size:11.5px}
+.mystat-h{margin-top:.4rem;font-size:12px;line-height:1.4;color:var(--muted);text-transform:none;letter-spacing:0}
+.mystat-n{overflow-wrap:anywhere}
+.mystat-n.is-text{font-size:1.5rem;line-height:1.25}
+.ryear-chart{gap:.9rem;padding:1.5rem 1rem .9rem}
+.ryear-col{flex:1 0 44px;min-width:44px}
+.ryear-bar-track{width:min(34px,100%)}
+.ryear-bar-n{font-size:13px}
+.ryear-bar-fill.is-best{background:linear-gradient(180deg,var(--gold),var(--accent))}
+.ryear-year{font-size:12px}
+.ryear-year.is-best{color:var(--gold)}
+.stats-block-note{font-size:12.5px;line-height:1.5}
+.curio-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.curio-label{font-size:11px}
+.curio-value{overflow-wrap:anywhere}
+.curio-sub{font-size:12.5px}
+.rtag-col{min-width:0}
+.rtag-col-title{font-size:14px;margin:0 0 .9rem}
+.rtag-row{grid-template-columns:minmax(0,38%) minmax(0,1fr) 1.6rem;margin-bottom:.65rem}
+.rtag-label{white-space:normal;overflow:visible;text-overflow:clip;font-size:12.5px;line-height:1.3;color:var(--text);overflow-wrap:anywhere}
+.rtag-count{font-size:13px;color:var(--text);min-width:1.6rem}
+@media (max-width:860px){.mystat-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){
+  .stats-title{font-size:1.3rem}
+  .rtag-row{grid-template-columns:minmax(0,1fr) 1.6rem;row-gap:.25rem}
+  .rtag-label{grid-column:1/-1}
+  .rtag-track{grid-column:1}
+  .rtag-count{grid-column:2}
+  .mystat-n{font-size:1.65rem}
+}
+/* Mi mundo */
+.ws-lead{font-size:13.5px}
+.ws-card-title{font-size:1.35rem;margin-bottom:.25rem}
+.ws-card-sub{margin:0 0 .7rem;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.ws-legend{list-style:none;display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;margin:0 0 .7rem;padding:0;font-size:12px;color:var(--muted)}
+.ws-legend li{display:inline-flex;align-items:center;gap:6px}
+.ws-sw{display:inline-block;width:12px;height:12px;border-radius:3px;background:rgba(180,120,200,.09);border:1px solid rgba(180,120,200,.5)}
+.ws-card[data-map="origen"] .ws-sw.is-found{background:var(--accent);border-color:rgba(255,255,255,.5)}
+.ws-card[data-map="cultura"] .ws-sw.is-found{background:var(--teal);border-color:rgba(255,255,255,.5)}
+.ws-info{font-size:12.5px}
+.ws-counters{font-size:13.5px}
+.ws-counters .ws-extra{font-size:12px}
+/* Mi recorrido */
+.rc-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:0 0 1rem}
+.rc-sum-h{grid-column:1/-1;margin:0;font-family:var(--font-display);font-size:1.3rem;font-weight:600;line-height:1.2;color:var(--text)}
+.rc-stat{min-width:0;padding:.9rem 1rem;background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.rc-stat b{display:block;margin:0 0 .25rem;font-family:var(--font-display);font-size:2rem;font-weight:500;line-height:1.1;letter-spacing:0;color:var(--text)}
+.rc-legend{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin:0 0 1.8rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:12px;font-size:12px;line-height:1.4;color:var(--muted)}
+.rc-legend[hidden]{display:none}
+.rc-legend li{display:inline-flex;align-items:center;gap:8px}
+.rc-lg-sw{display:inline-block;flex:none;box-sizing:border-box;width:16px;height:16px;border-radius:50%}
+.rc-lg-book{background:conic-gradient(from 180deg,var(--accent),var(--rose),var(--teal),var(--accent))}
+.rc-lg-re{background:conic-gradient(from 180deg,var(--rose),rgba(212,96,122,.35),var(--rose))}
+.rc-lg-miss{border:2px dashed var(--border2);background:var(--surface2)}
+.rc-lg-dash{width:24px;height:0;border-radius:0;border-top:2px dotted var(--accent2)}
+.rc-date{font-size:12px;font-weight:600}
+.rc-meta{font-size:12px}
+.rc-origin{color:var(--muted)}
+.rc-tag{font-size:11px}
+/* Cartas de autora */
+.cartas-legend{align-items:center;gap:.4rem 1.2rem}
+.cartas-legend-title{flex:1 0 100%;font-size:12px;font-weight:600;color:var(--text)}
+.cartas-legend-item{font-size:12px}
+/* ── F9.4.2 · Revisión visual de estadísticas y recorrido (solo presentación; cálculos y datos intactos) ── */
+.mystat-ico{white-space:nowrap}
+@media (max-width:480px){
+  .ryear-chart{gap:.5rem;padding:1.4rem .75rem .9rem;scrollbar-width:thin}
+  .ryear-col{flex:1 0 36px;min-width:36px}
+  .ryear-bar-track{width:min(28px,100%)}
+}
+</style>
+<style id="f951-modales">
+/* ===== F9.5.1 · Modales auxiliares unificados (usa variables de tema) ===== */
+.modal-bg,.info-modal-bg,.hito-modal-bg{background:color-mix(in srgb,var(--text) 55%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+body.theme-halloween .modal-bg,body.theme-halloween .info-modal-bg,body.theme-halloween .hito-modal-bg,
+body.theme-christmas .modal-bg,body.theme-christmas .info-modal-bg,body.theme-christmas .hito-modal-bg{background:rgba(8,5,10,.78)}
+
+.modal,.auth-modal,.reset-modal,.info-modal,.hito-card{
+  background:var(--surface);color:var(--text);
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  box-shadow:var(--component-shadow-float);
+  font-family:var(--font-body);
+}
+.modal-title,.auth-title,.info-modal-title{font-family:var(--font-display);color:var(--text);letter-spacing:.005em;line-height:1.2;text-wrap:balance}
+.auth-title,.info-modal-title{font-size:clamp(1.35rem,1.1rem + 1vw,1.75rem)}
+
+/* Controles de cierre / compartir unificados */
+.modal-close,.auth-close,.hito-close,.info-modal-close,.modal-share-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:40px;min-height:40px;border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  color:var(--text);border:1px solid var(--border);
+  box-shadow:0 2px 8px color-mix(in srgb,var(--text) 18%,transparent);
+  cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .18s;
+}
+.modal-close:hover,.auth-close:hover,.hito-close:hover,.info-modal-close:hover,.modal-share-btn:hover{
+  background:var(--accent-soft);border-color:var(--accent);color:var(--accent);
+}
+.modal-close:active,.auth-close:active,.hito-close:active,.info-modal-close:active,.modal-share-btn:active{transform:scale(.94)}
+.modal-close:focus-visible,.auth-close:focus-visible,.hito-close:focus-visible,.info-modal-close:focus-visible,.modal-share-btn:focus-visible,
+.modal :focus-visible,.auth-modal :focus-visible,.reset-modal :focus-visible,.info-modal :focus-visible,.hito-card :focus-visible{
+  outline:none;box-shadow:var(--component-focus-ring)}
+
+/* Formularios */
+.auth-form input,.auth-modal input,.reset-modal input,.tg-input-wrap input,.bingo-manual-input,.bingo-book-search input,
+.modal textarea,.modal select,.info-modal input,.info-modal textarea{
+  width:100%;min-height:44px;padding:.6rem .85rem;box-sizing:border-box;
+  background:var(--surface-2);color:var(--text);
+  border:1px solid var(--border);border-radius:var(--radius);
+  font-family:var(--font-body);font-size:max(16px,var(--fs-ui));
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+.auth-form input::placeholder,.tg-input-wrap input::placeholder,.bingo-manual-input::placeholder{color:var(--muted)}
+.auth-form input:hover,.tg-input-wrap input:hover,.bingo-manual-input:hover{border-color:var(--border-2,var(--border))}
+.auth-form input:focus,.tg-input-wrap input:focus,.bingo-manual-input:focus,.bingo-book-search input:focus,.modal textarea:focus{
+  outline:none;border-color:var(--accent);background:var(--surface);box-shadow:var(--component-focus-ring)}
+.auth-form label,.modal label{font-size:var(--fs-label);color:var(--muted);font-weight:600;letter-spacing:.02em}
+.auth-form{display:flex;flex-direction:column;gap:.85rem}
+
+/* Botones */
+.btn-primary,.bingo-btn-primary,.vote-submit{
+  min-height:44px;padding:.6rem 1.25rem;border-radius:var(--radius);
+  background:var(--accent);color:#fff;border:1px solid transparent;
+  font-family:var(--font-body);font-size:var(--fs-ui);font-weight:600;
+  box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 30%,transparent);
+  cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s,opacity .18s;
+}
+.btn-primary:hover,.bingo-btn-primary:hover,.vote-submit:hover{background:var(--accent-2,var(--accent));transform:translateY(-1px)}
+.btn-primary:active,.bingo-btn-primary:active,.vote-submit:active{transform:translateY(0)}
+.btn-primary[disabled],.bingo-btn-primary[disabled],.vote-submit[disabled]{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.bingo-btn-danger,.vote-delete{
+  min-height:44px;padding:.6rem 1.1rem;border-radius:var(--radius);
+  background:var(--error-soft);color:var(--error);border:1px solid color-mix(in srgb,var(--error) 40%,transparent);
+  font-family:var(--font-body);font-size:var(--fs-ui);font-weight:600;cursor:pointer;transition:background .18s,border-color .18s}
+.bingo-btn-danger:hover,.vote-delete:hover{border-color:var(--error);background:color-mix(in srgb,var(--error) 18%,var(--surface))}
+
+/* Mensajes */
+.auth-error,.sol-msg{border-radius:var(--radius);font-size:var(--fs-meta);line-height:1.45}
+.auth-error{background:var(--error-soft);color:var(--error);border:1px solid color-mix(in srgb,var(--error) 35%,transparent);padding:.6rem .8rem}
+.toast{border-radius:var(--radius);background:var(--surface-2);color:var(--text);border:1px solid var(--border);box-shadow:var(--component-shadow-float);font-size:var(--fs-ui)}
+
+/* Contenido de info-modal */
+.info-modal-body,.info-modal-content{font-size:var(--fs-body);line-height:1.65;color:var(--text)}
+.info-modal p{color:var(--text)}
+.info-highlight{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-left:3px solid var(--accent);border-radius:var(--radius);padding:.8rem 1rem}
+.info-section{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.info-section h3,.info-section h4{font-family:var(--font-display);color:var(--text)}
+
+/* Bingo y leído */
+.bingo-cell-modal-body,.rd-modal-body{padding:1.25rem 1.4rem;display:flex;flex-direction:column;gap:.9rem;color:var(--text)}
+
+/* Scroll interno: ✕ siempre visible, nada oculto */
+.modal,.auth-modal,.reset-modal,.info-modal,.hito-card{max-height:calc(100dvh - 2rem - var(--f762-safe-y,0px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border-2,var(--border)) transparent}
+.modal-close,.auth-close,.hito-close,.info-modal-close{z-index:3}
+
+/* Tablet */
+@media (min-width:601px) and (max-width:1024px){
+  .modal,.info-modal{width:min(92vw,680px)}
+  .auth-modal,.reset-modal{width:min(92vw,440px)}
+  .bingo-cell-modal-body,.rd-modal-body{padding:1.15rem 1.25rem}
+}
+/* Móvil */
+@media (max-width:600px){
+  .modal,.auth-modal,.reset-modal,.info-modal,.hito-card{border-radius:var(--radius);max-height:calc(100dvh - 1rem - var(--f762-safe-y,0px))}
+  .bingo-cell-modal-body,.rd-modal-body{padding:1rem}
+  .btn-primary,.bingo-btn-primary,.bingo-btn-danger,.vote-submit,.vote-delete{width:100%}
+  .modal-close,.auth-close,.hito-close,.info-modal-close,.modal-share-btn{min-width:44px;min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  .modal-close,.auth-close,.hito-close,.info-modal-close,.modal-share-btn,.btn-primary,.bingo-btn-primary,.vote-submit,.auth-form input{transition:none}
+  .btn-primary:hover,.bingo-btn-primary:hover,.vote-submit:hover{transform:none}
 }
 </style>
 </body>
