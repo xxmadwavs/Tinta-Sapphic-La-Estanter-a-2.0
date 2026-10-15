@@ -20712,6 +20712,129 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
 }
 
 </style>
+<style id="f1011-escritorio">
+/* F10.1.1 — Distribución de escritorio. Solo presentación (CSS), solo ≥1024px.
+   Usa únicamente variables de tema: vale para Normal, Halloween y Navidad.
+   No cambia datos, eventos ni funciones; el catálogo conserva 5 columnas y 50 libros por página. */
+@media (min-width:1024px){
+  /* Contenedor general: menos relleno inferior */
+  .main{padding-bottom:3rem}
+
+  /* Catálogo: siempre 5 columnas */
+  #booksContainer .books-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+
+  /* Barra de filtros: filtros a la izquierda, ordenar a la derecha, recuento debajo */
+  #panelEstanteria .filter-shell{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"filters sort" "bottom bottom";
+    align-items:center;
+  }
+  #panelEstanteria .filter-shell>.filter-dropdowns{grid-area:filters;min-width:0;border-bottom:0}
+  #panelEstanteria .filter-shell>.filter-top{
+    grid-area:sort;border-bottom:0;min-height:0;
+    padding:.85rem 1rem .85rem .5rem;border-radius:0 16px 0 0;
+  }
+  #panelEstanteria .filter-shell>.filter-bottom{grid-area:bottom}
+  #panelEstanteria #sortSel{flex:0 0 auto;min-width:200px}
+
+  /* Inicio: panel más ancho, tarjetas que reparten el espacio sin huecos */
+  #homeView{padding-bottom:1rem}
+  .home-clean-main{width:min(1240px,100%);padding-bottom:1.25rem}
+  .home-explore-grid{display:flex;flex-wrap:wrap;gap:.75rem}
+  .home-explore-grid>.home-explore-card{flex:1 1 calc((100% - 1.5rem) / 3 - 1px);min-width:0}
+
+  /* Top 10: más ancho y puestos 4–10 en dos columnas */
+  .top10-wrap{max-width:1040px}
+  .top10-rest{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem .75rem}
+  .top10-rest>.top10-row:last-child:nth-child(odd){grid-column:1/-1}
+
+  /* Ficha del libro: Géneros y Ficha técnica en dos columnas; el resto a ancho completo */
+  #bookPage .bp-wrap{
+    max-width:1120px;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.25rem;align-items:stretch;
+  }
+  #bookPage .bp-wrap>*{grid-column:1/-1}
+  #bookPage .bp-wrap>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section){grid-column:1}
+  #bookPage .bp-wrap>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section)+.bp-ficha-section{grid-column:2}
+}
+@media (min-width:1280px){
+  .ruleta-wrap{max-width:1180px}
+}
+@media (min-width:1600px){
+  .main{max-width:1480px}
+}
+</style>
+<style id="f1021-tablet">
+/* F10.2.1 — Tablet y anchos intermedios (641–1099px). Solo presentación (CSS):
+   no cambia datos, eventos, orden de lectura ni funciones. Usa solo variables de tema (Normal, Halloween, Navidad). */
+
+/* Cabecera: en 900–1099px la barra de una sola fila se comprimía y los enlaces se pisaban.
+   Se usa la misma disposición en dos filas que ya existe por debajo de 900px. */
+@media (min-width:900px) and (max-width:1099px){
+  .topbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:9px 16px;height:auto;min-height:62px}
+  .topbar .logo{flex:0 0 auto;font-size:20px;max-width:none}
+  .topbar .logo-sep,.topbar .logo-sub{display:none}
+  .topbar .desktop-primary-nav{order:3;flex:1 1 100%;justify-content:flex-start;align-items:center;gap:6px}
+  .topbar .desktop-nav-link{font-size:13px;padding:7px 12px}
+  .topbar .topbar-search{flex:1 1 220px;max-width:none;min-width:170px}
+  .topbar .topbar-right{margin-left:auto}
+  .topbar .user-name{max-width:110px}
+}
+@media (min-width:641px) and (max-width:899px){
+  .topbar .desktop-primary-nav{align-items:center}
+}
+
+/* Catálogo: 3 columnas en tablet vertical, 4 en tablet ancha, 5 desde 1024px (sin saltos bruscos) */
+@media (min-width:641px) and (max-width:899px){
+  #booksContainer .books-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem}
+}
+@media (min-width:900px) and (max-width:1023px){
+  #booksContainer .books-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+
+  /* Filtros: ordenar a la derecha de los filtros, como en escritorio */
+  #panelEstanteria .filter-shell{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"filters sort" "bottom bottom";align-items:center;
+  }
+  #panelEstanteria .filter-shell>.filter-dropdowns{grid-area:filters;min-width:0;border-bottom:0}
+  #panelEstanteria .filter-shell>.filter-top{
+    grid-area:sort;border-bottom:0;min-height:0;padding:.85rem 1rem .85rem .5rem;border-radius:0 16px 0 0;
+  }
+  #panelEstanteria .filter-shell>.filter-bottom{grid-area:bottom}
+  #panelEstanteria #sortSel{flex:0 0 auto;min-width:190px}
+}
+
+/* Inicio: tarjetas de Explorar repartiendo el ancho (2 por fila, 3 desde 851px) sin huecos */
+@media (min-width:641px) and (max-width:1023px){
+  .home-explore-grid{display:flex;flex-wrap:wrap;gap:.75rem}
+  .home-explore-grid>.home-explore-card{flex:1 1 calc(50% - .4rem);min-width:0}
+}
+@media (min-width:851px) and (max-width:1023px){
+  .home-explore-grid>.home-explore-card{flex:1 1 calc((100% - 1.5rem) / 3 - 1px)}
+}
+/* Tu recorrido: la lectura actual arriba a ancho completo; anterior y siguiente debajo (antes quedaban estrechas) */
+@media (min-width:760px) and (max-width:1023px){
+  .home-journey-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"current current" "previous next"}
+  .home-journey-previous{grid-area:previous}
+  .home-journey-current{grid-area:current}
+  .home-journey-next{grid-area:next}
+  .home-journey-piece{min-height:0}
+}
+
+/* Top 10 y ficha del libro: mismas rejillas de dos columnas que en escritorio, desde 900px */
+@media (min-width:900px) and (max-width:1023px){
+  .top10-rest{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem .75rem}
+  .top10-rest>.top10-row:last-child:nth-child(odd){grid-column:1/-1}
+
+  #bookPage .bp-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.25rem;align-items:stretch}
+  #bookPage .bp-wrap>*{grid-column:1/-1}
+  #bookPage .bp-wrap>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section){grid-column:1}
+  #bookPage .bp-wrap>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section)+.bp-ficha-section{grid-column:2}
+}
+</style>
+
+
 
 <script id="f952-global-search">
 /* F9.5.2 · Autocompletado global conectado a allBooks y openBookPage existentes.
