@@ -432,7 +432,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .avg-badge{position:absolute;bottom:10px;right:10px;background:rgba(14,11,16,0.85);backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:20px;padding:3px 9px;display:flex;align-items:center;gap:4px;z-index:2}
 .spicy-badge{position:absolute;top:10px;right:10px;background:rgba(14,11,16,0.82);border-radius:20px;padding:2px 7px;font-size:10px;z-index:2;border:1px solid rgba(201,151,90,0.2);line-height:1.6}
 .book-card-body{padding:.9rem 1rem}
-.book-title{font-family:var(--font-display);font-size:1rem;font-weight:600;line-height:1.25;margin-bottom:.2rem;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.book-title{ text-decoration:none; cursor:pointer; font-family:var(--font-display);font-size:1rem;font-weight:600;line-height:1.25;margin-bottom:.2rem;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .book-author{font-size:12px;color:var(--muted);margin-bottom:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card-saga-sub{font-size:11px;color:var(--teal);margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;font-style:italic;transition:opacity .15s}
 .book-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
@@ -7320,39 +7320,39 @@ body:not(.home-active) .hero{
 <body>
 
 <nav class="topbar" aria-label="Navegación principal">
-  <a class="logo" href="#" onclick="showHome();return false;" style="text-decoration:none" aria-label="Tinta Sapphic — La Estantería">
+  <a class="logo" href="./" onclick="showHome();return false;" style="text-decoration:none" aria-label="Tinta Sapphic — La Estantería">
     <span class="logo-tinta">Tinta</span><em>Sapphic</em>
     <span class="logo-sep">~</span>
     <span class="logo-sub">La Estantería</span>
   </a>
   <div class="desktop-primary-nav" aria-label="Secciones principales">
-    <button class="desktop-nav-link" id="homeNavBtn" onclick="showHome()" aria-current="page">Inicio</button>
+    <a href="./" class="desktop-nav-link ts-nav-link" id="homeNavBtn" onclick="showHome();return false;" aria-current="page">Inicio</button>
     <button class="desktop-nav-link" id="exploreNavBtn" onclick="navigateToExplore()">Explorar</button>
     <div class="categories-nav-wrap" id="categoriesNavWrap">
       <button class="desktop-nav-link categories-nav-trigger" id="categoriesNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="categoriesNavMenu" onclick="toggleCategoriesDropdown()">Categorías <span class="categories-nav-caret" aria-hidden="true">⌄</span></button>
       <div class="categories-nav-menu" id="categoriesNavMenu" role="menu" aria-label="Categorías del catálogo">
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="thais" onclick="selectCatalogCategory('thais')">Libros Thais</button>
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="other" onclick="selectCatalogCategory('other')">Libros Occidentales</button>
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="spanish" onclick="selectCatalogCategory('spanish')">Libros en Español</button>
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="baihee" onclick="selectCatalogCategory('baihee')">Baihee</button>
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="asian" onclick="selectCatalogCategory('asian')">Asiáticas</button>
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="african" onclick="selectCatalogCategory('african')">Africanas</button>
-        <button type="button" role="menuitem" class="categories-nav-item" data-section="wattpad" onclick="selectCatalogCategory('wattpad')">Wattpad</button>
+        <a href="?tab=estanteria&section=thais" role="menuitem" class="categories-nav-item ts-nav-link" data-section="thais" onclick="selectCatalogCategory('thais');return false;">Libros Thais</a>
+        <a href="?tab=estanteria&section=other" role="menuitem" class="categories-nav-item ts-nav-link" data-section="other" onclick="selectCatalogCategory('other');return false;">Libros Occidentales</a>
+        <a href="?tab=estanteria&section=spanish" role="menuitem" class="categories-nav-item ts-nav-link" data-section="spanish" onclick="selectCatalogCategory('spanish');return false;">Libros en Español</a>
+        <a href="?tab=estanteria&section=baihee" role="menuitem" class="categories-nav-item ts-nav-link" data-section="baihee" onclick="selectCatalogCategory('baihee');return false;">Baihee</a>
+        <a href="?tab=estanteria&section=asian" role="menuitem" class="categories-nav-item ts-nav-link" data-section="asian" onclick="selectCatalogCategory('asian');return false;">Asiáticas</a>
+        <a href="?tab=estanteria&section=african" role="menuitem" class="categories-nav-item ts-nav-link" data-section="african" onclick="selectCatalogCategory('african');return false;">Africanas</a>
+        <a href="?tab=estanteria&section=wattpad" role="menuitem" class="categories-nav-item ts-nav-link" data-section="wattpad" onclick="selectCatalogCategory('wattpad');return false;">Wattpad</a>
       </div>
     </div>
-    <button class="desktop-nav-link" id="recommendationsNavBtn" onclick="switchTab('myrec')">Recomendaciones</button>
+    <a href="?tab=myrec" class="desktop-nav-link ts-nav-link" id="recommendationsNavBtn" onclick="switchTab('myrec');return false;">Recomendaciones</a>
     <div class="community-nav-wrap" id="communityNavWrap">
       <button class="desktop-nav-link community-nav-trigger" id="communityNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="communityNavMenu" onclick="toggleCommunityDropdown()">Comunidad <span class="community-nav-caret" aria-hidden="true">⌄</span></button>
       <div class="community-nav-menu" id="communityNavMenu" role="menu" aria-label="Secciones de comunidad">
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('top10');closeCommunityDropdown()">Las 10 de la noche en Tailandia</button>
+        <a href="?tab=top10" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('top10');closeCommunityDropdown();return false;">Las 10 de la noche en Tailandia</a>
         <div class="community-nav-group-label">Clubs</div>
-        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('safi');closeCommunityDropdown()">El aquelarre Safi</button>
-        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('thaiclub');closeCommunityDropdown()">Thai Club</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('canal');closeCommunityDropdown()">El rincón de la bruja</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('myrec');closeCommunityDropdown()">Mi grimorio</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('solicitudes');closeCommunityDropdown()">Invoca un libro</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('ruleta');closeCommunityDropdown()">La ruleta maldita</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('bingo');closeCommunityDropdown()">Bingo de Halloween</button>
+        <a href="?tab=safi" role="menuitem" class="community-nav-item community-club-item ts-nav-link" onclick="switchTab('safi');closeCommunityDropdown();return false;">El aquelarre Safi</a>
+        <a href="?tab=thaiclub" role="menuitem" class="community-nav-item community-club-item ts-nav-link" onclick="switchTab('thaiclub');closeCommunityDropdown();return false;">Thai Club</a>
+        <a href="?tab=canal" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('canal');closeCommunityDropdown();return false;">El rincón de la bruja</a>
+        <a href="?tab=myrec" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('myrec');closeCommunityDropdown();return false;">Mi grimorio</a>
+        <a href="?tab=solicitudes" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('solicitudes');closeCommunityDropdown();return false;">Invoca un libro</a>
+        <a href="?tab=ruleta" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('ruleta');closeCommunityDropdown();return false;">La ruleta maldita</a>
+        <a href="?tab=bingo" role="menuitem" class="community-nav-item ts-nav-link" onclick="switchTab('bingo');closeCommunityDropdown();return false;">Bingo de Halloween</a>
       </div>
     </div>
   </div>
@@ -7632,15 +7632,15 @@ body:not(.home-active) .hero{
 
   <!-- TABS -->
   <div class="tab-bar">
-    <button class="tab-btn active" id="tabEstanteria" onclick="switchTab('estanteria')">Estantería</button>
-    <button class="tab-btn" id="tabTop10" onclick="switchTab('top10')">Top 10 Thais</button>
-    <button class="tab-btn" id="tabSafi" onclick="switchTab('safi')">SafiClub</button>
-    <button class="tab-btn" id="tabThaiClub" onclick="switchTab('thaiclub')">Thai Club</button>
-    <button class="tab-btn" id="tabCanal" onclick="switchTab('canal')">Recomendaciones del Canal</button>
-    <button class="tab-btn" id="tabMyrec" onclick="switchTab('myrec')">Mis Recomendaciones</button>
-    <button class="tab-btn" id="tabSolicitudes" onclick="switchTab('solicitudes')">Solicitudes</button>
-    <button class="tab-btn" id="tabRuleta" onclick="switchTab('ruleta')">Ruleta</button>
-    <button class="tab-btn" id="tabBingo" onclick="switchTab('bingo')">Bingo</button>
+    <a href="?tab=estanteria" class="tab-btn ts-nav-link active" id="tabEstanteria" data-ts-tab="estanteria" onclick="switchTab('estanteria');return false;">Estantería</a>
+    <a href="?tab=top10" class="tab-btn ts-nav-link" id="tabTop10" data-ts-tab="top10" onclick="switchTab('top10');return false;">Top 10 Thais</a>
+    <a href="?tab=safi" class="tab-btn ts-nav-link" id="tabSafi" data-ts-tab="safi" onclick="switchTab('safi');return false;">SafiClub</a>
+    <a href="?tab=thaiclub" class="tab-btn ts-nav-link" id="tabThaiClub" data-ts-tab="thaiclub" onclick="switchTab('thaiclub');return false;">Thai Club</a>
+    <a href="?tab=canal" class="tab-btn ts-nav-link" id="tabCanal" data-ts-tab="canal" onclick="switchTab('canal');return false;">Recomendaciones del Canal</a>
+    <a href="?tab=myrec" class="tab-btn ts-nav-link" id="tabMyrec" data-ts-tab="myrec" onclick="switchTab('myrec');return false;">Mis Recomendaciones</a>
+    <a href="?tab=solicitudes" class="tab-btn ts-nav-link" id="tabSolicitudes" data-ts-tab="solicitudes" onclick="switchTab('solicitudes');return false;">Solicitudes</a>
+    <a href="?tab=ruleta" class="tab-btn ts-nav-link" id="tabRuleta" data-ts-tab="ruleta" onclick="switchTab('ruleta');return false;">Ruleta</a>
+    <a href="?tab=bingo" class="tab-btn ts-nav-link" id="tabBingo" data-ts-tab="bingo" onclick="switchTab('bingo');return false;">Bingo</a>
     <button class="tab-share-btn" id="tabShareBtn" onclick="copyTabLink()" title="Copiar enlace a esta sección">🔗 Copiar enlace</button>
   </div>
 
@@ -9971,7 +9971,8 @@ async function init(){
   const urlParams=new URLSearchParams(location.search);
   const urlTab=urlParams.get('tab');
   const hasCatalogParams=['section','q','genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen','identidades','warnings','ship','spicy','spicyUnknown','adaptacion','valoracion','pages','leido'].some(k=>urlParams.has(k)) || location.hash.startsWith('#libro/') || location.hash.startsWith('#fichabeta/');
-  const savedTab = urlTab || sessionStorage.getItem('ts_active_tab');
+  const urlHasExplicitDestination = urlParams.has('view') || urlParams.has('myshelf') || urlParams.has('shelfView') || urlParams.has('tab') || hasCatalogParams || location.hash.startsWith('#libro/');
+  const savedTab = urlTab || (urlHasExplicitDestination ? 'estanteria' : (sessionStorage.getItem('ts_active_tab') || 'home'));
   if(location.hash.startsWith('#libro/')) {
     // FIX móvil — URL de una ficha (#libro/ID): jamás pasar por showHome() (cierra la ficha y su replaceState borra el hash,
     // por eso al refrescar caía en la estantería/home). Se prepara el catálogo detrás para el «Volver».
@@ -10634,9 +10635,9 @@ function renderGrid(books, total, totalPages){
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${escHtml(cardSagaName)}${cardSagaNum}</div>`:'';
     const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
     return `<div class="book-card" onclick="openBookPage('${b.id}')">
-      <div class="book-cover-wrap${b.cover?' cover-pending':' cover-missing'}">${spicyBadge}${coverEl}${avgBadge}</div>
+      <a class="book-cover-link ts-book-link" href="#libro/${encodeURIComponent(b.id)}" onclick="openBookPage('${b.id}');return false;" aria-label="Abrir ficha de ${escHtml(b.title)}"><div class="book-cover-wrap${b.cover?' cover-pending':' cover-missing'}">${spicyBadge}${coverEl}${avgBadge}</div></a>
       <div class="book-card-body">
-        <div class="book-title">${escHtml(b.title)}</div>
+        <a class="book-title ts-book-link" href="#libro/${encodeURIComponent(b.id)}" onclick="openBookPage('${b.id}');return false;">${escHtml(b.title)}</a>
         ${cardSagaSub}
         <div class="book-author">${escHtml(authorStr)}</div>
         <div class="book-tags">${genreTags}${yearTag}</div>
@@ -20501,5 +20502,51 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
   }
 })();
 </script>
+
+<script>
+/* Enlaces de navegación reales: el clic simple conserva la SPA; los modificadores quedan al navegador. */
+(function(){
+  const validTabs=new Set(['estanteria','top10','safi','thaiclub','canal','myrec','solicitudes','ruleta','bingo']);
+  function navHref(el){
+    if(el.matches('#homeNavBtn,.logo,#mbnHome')) return './';
+    if(el.matches('#exploreNavBtn')) return '?tab=estanteria&section=all';
+    if(el.matches('#recommendationsNavBtn')) return '?tab=myrec';
+    if(el.matches('#categoriesNavBtn')) return '?tab=estanteria&section=all';
+    if(el.matches('.categories-nav-item[data-section]')) return '?tab=estanteria&section='+encodeURIComponent(el.dataset.section);
+    const tab=el.dataset.tsTab || (el.id||'').replace(/^tab/,'').toLowerCase();
+    if(validTabs.has(tab)) return '?tab='+tab;
+    const onclick=el.getAttribute('onclick')||'';
+    const match=onclick.match(/switchTab\(['"]([^'"]+)['"]/);
+    if(match && validTabs.has(match[1])) return '?tab='+match[1];
+    return null;
+  }
+  function enhance(root=document){
+    root.querySelectorAll('button.desktop-nav-link,button.categories-nav-item,button.community-nav-item,button.tab-btn,button.user-dd-item,button[id^="mbn"],button.home-card,button[data-home-view]').forEach(el=>{
+      const href=navHref(el);
+      if(!href) return;
+      const a=document.createElement('a');
+      a.href=href; a.className=el.className+' ts-real-link'; a.id=el.id; a.innerHTML=el.innerHTML;
+      for(const attr of ['role','aria-label','aria-current','aria-haspopup','aria-expanded','aria-controls','data-section','data-ts-tab']) if(el.hasAttribute(attr)) a.setAttribute(attr,el.getAttribute(attr));
+      const handler=el.getAttribute('onclick');
+      if(handler) a.setAttribute('onclick',handler+';return false;');
+      el.replaceWith(a);
+    });
+  }
+  const style=document.createElement('style'); style.textContent='.ts-real-link{text-decoration:none}.ts-book-link{display:block;text-decoration:none;color:inherit}.ts-book-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}'; document.head.appendChild(style);
+  document.addEventListener('click',function(e){
+    const a=e.target.closest('a.ts-real-link,a.ts-nav-link,a.ts-book-link');
+    if(!a) return;
+    const modified=e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button===1;
+    if(modified){ e.stopImmediatePropagation(); return; }
+    if(e.button!==0) return;
+    e.preventDefault();
+  },true);
+  // Clic normal: handlers inline ejecutan navegación interna. Enlaces añadidos dinámicamente mantienen href real.
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>enhance(),{once:true}); else enhance();
+  const observer=new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(n=>{if(n.nodeType===1) enhance(n);})));
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
 </body>
 </html>
