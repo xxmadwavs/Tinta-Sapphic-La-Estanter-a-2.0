@@ -19927,13 +19927,13 @@ body.theme-christmas .modal-bg,body.theme-christmas .info-modal-bg,body.theme-ch
 .auth-form input,.auth-modal input,.reset-modal input,.tg-input-wrap input,.bingo-manual-input,.bingo-book-search input,
 .modal textarea,.modal select,.info-modal input,.info-modal textarea{
   width:100%;min-height:44px;padding:.6rem .85rem;box-sizing:border-box;
-  background:var(--surface-2);color:var(--text);
+  background:var(--surface2);color:var(--text);
   border:1px solid var(--border);border-radius:var(--radius);
   font-family:var(--font-body);font-size:max(16px,var(--fs-ui));
   transition:border-color .18s,box-shadow .18s,background .18s;
 }
 .auth-form input::placeholder,.tg-input-wrap input::placeholder,.bingo-manual-input::placeholder{color:var(--muted)}
-.auth-form input:hover,.tg-input-wrap input:hover,.bingo-manual-input:hover{border-color:var(--border-2,var(--border))}
+.auth-form input:hover,.tg-input-wrap input:hover,.bingo-manual-input:hover{border-color:var(--border2,var(--border))}
 .auth-form input:focus,.tg-input-wrap input:focus,.bingo-manual-input:focus,.bingo-book-search input:focus,.modal textarea:focus{
   outline:none;border-color:var(--accent);background:var(--surface);box-shadow:var(--component-focus-ring)}
 .auth-form label,.modal label{font-size:var(--fs-label);color:var(--muted);font-weight:600;letter-spacing:.02em}
@@ -19947,7 +19947,7 @@ body.theme-christmas .modal-bg,body.theme-christmas .info-modal-bg,body.theme-ch
   box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 30%,transparent);
   cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s,opacity .18s;
 }
-.btn-primary:hover,.bingo-btn-primary:hover,.vote-submit:hover{background:var(--accent-2,var(--accent));transform:translateY(-1px)}
+.btn-primary:hover,.bingo-btn-primary:hover,.vote-submit:hover{background:var(--accent2,var(--accent));transform:translateY(-1px)}
 .btn-primary:active,.bingo-btn-primary:active,.vote-submit:active{transform:translateY(0)}
 .btn-primary[disabled],.bingo-btn-primary[disabled],.vote-submit[disabled]{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
 .bingo-btn-danger,.vote-delete{
@@ -19959,7 +19959,7 @@ body.theme-christmas .modal-bg,body.theme-christmas .info-modal-bg,body.theme-ch
 /* Mensajes */
 .auth-error,.sol-msg{border-radius:var(--radius);font-size:var(--fs-meta);line-height:1.45}
 .auth-error{background:var(--error-soft);color:var(--error);border:1px solid color-mix(in srgb,var(--error) 35%,transparent);padding:.6rem .8rem}
-.toast{border-radius:var(--radius);background:var(--surface-2);color:var(--text);border:1px solid var(--border);box-shadow:var(--component-shadow-float);font-size:var(--fs-ui)}
+.toast{border-radius:var(--radius);background:var(--surface2);color:var(--text);border:1px solid var(--border);box-shadow:var(--component-shadow-float);font-size:var(--fs-ui)}
 
 /* Contenido de info-modal */
 .info-modal-body,.info-modal-content{font-size:var(--fs-body);line-height:1.65;color:var(--text)}
@@ -19972,7 +19972,7 @@ body.theme-christmas .modal-bg,body.theme-christmas .info-modal-bg,body.theme-ch
 .bingo-cell-modal-body,.rd-modal-body{padding:1.25rem 1.4rem;display:flex;flex-direction:column;gap:.9rem;color:var(--text)}
 
 /* Scroll interno: ✕ siempre visible, nada oculto */
-.modal,.auth-modal,.reset-modal,.info-modal,.hito-card{max-height:calc(100dvh - 2rem - var(--f762-safe-y,0px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border-2,var(--border)) transparent}
+.modal,.auth-modal,.reset-modal,.info-modal,.hito-card{max-height:calc(100dvh - 2rem - var(--f762-safe-y,0px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border2,var(--border)) transparent}
 .modal-close,.auth-close,.hito-close,.info-modal-close{z-index:3}
 
 /* Tablet */
@@ -19992,6 +19992,68 @@ body.theme-christmas .modal-bg,body.theme-christmas .info-modal-bg,body.theme-ch
   .modal-close,.auth-close,.hito-close,.info-modal-close,.modal-share-btn,.btn-primary,.bingo-btn-primary,.vote-submit,.auth-form input{transition:none}
   .btn-primary:hover,.bingo-btn-primary:hover,.vote-submit:hover{transform:none}
 }
+
+/* ===== F9.5.2 · Correcciones de la revisión de modales (solo presentación y accesibilidad; no cambia acciones ni destinos) ===== */
+/* 1 · ✕ legible en todos los temas: una regla antigua lo dejaba en blanco sobre círculo claro */
+html body:not(.f952) .modal-close:not(:hover),html body:not(.f952) .info-modal-close:not(:hover),html body:not(.f952) .modal-share-btn:not(:hover),
+html body:not(.f952) .auth-close:not(:hover),html body:not(.f952) .hito-close:not(:hover){color:var(--text);background:var(--surface)}
+/* 1b · Halloween: ✕ en hover con texto más claro (naranja sobre fondo tintado quedaba en 4,09:1) */
+body.theme-halloween .info-modal-close:hover,body.theme-halloween .auth-close:hover,body.theme-halloween .hito-close:hover{color:var(--accent2)}
+/* 2 · ✕ por encima de la cabecera (z-index original) */
+.modal-close,.auth-close,.hito-close,.info-modal-close,.modal-share-btn{z-index:10}
+/* 2b/3 · Estructura original: el modal no hace scroll, lo hace su cuerpo interno (así el ✕ no se desplaza) */
+.info-modal-bg .info-modal,#bingoCellModal .modal,#readDoneModal .modal,#bookModal .modal{overflow:hidden}
+.hito-card{overflow:hidden;max-height:none}
+.hito-modal-bg{overflow-y:auto}
+/* 4 · Contraseña: reservar sitio para «Mostrar» */
+.auth-form .pass-wrap input{padding-right:84px}
+/* 6 · Foco visible (contorno + halo) en todos los temas */
+.auth-form input:focus-visible,.auth-modal input:focus-visible,.reset-modal input:focus-visible,.tg-input-wrap input:focus-visible,
+.bingo-manual-input:focus-visible,.bingo-book-search input:focus-visible,.modal textarea:focus-visible,.modal select:focus-visible,
+.info-modal input:focus-visible,.info-modal textarea:focus-visible,
+.modal :focus-visible,.auth-modal :focus-visible,.reset-modal :focus-visible,.info-modal :focus-visible,.hito-card :focus-visible,
+.modal-close:focus-visible,.auth-close:focus-visible,.hito-close:focus-visible,.info-modal-close:focus-visible,.modal-share-btn:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px;box-shadow:var(--component-focus-ring)}
+.auth-toggle a{border-radius:4px}
+/* 9 · Halloween: texto oscuro sobre naranja y etiqueta con más contraste */
+body.theme-halloween .btn-primary,body.theme-halloween .bingo-btn-primary,body.theme-halloween .vote-submit{color:#21131B}
+body.theme-halloween .reset-step-tag{color:var(--accent2)}
+/* 7 · Pantallas bajas (p. ej. móvil apaisado): mismo patrón que en móvil (un solo scroll dentro del modal y ✕ fija); el fondo no hace scroll */
+@media (max-height:640px){
+  #authModal,#resetModal{padding:calc(.6rem + env(safe-area-inset-top,0px)) calc(.5rem + env(safe-area-inset-right,0px)) calc(.6rem + env(safe-area-inset-bottom,0px)) calc(.5rem + env(safe-area-inset-left,0px));overflow:hidden}
+  .auth-modal,.reset-modal{max-height:calc(100vh - 1.2rem - var(--f762-safe-y,0px));max-height:calc(100dvh - 1.2rem - var(--f762-safe-y,0px));overflow-y:auto}
+  .auth-close{position:fixed;top:calc(.6rem + 6px + env(safe-area-inset-top,0px));right:calc(.5rem + 6px + env(safe-area-inset-right,0px))}
+  .modal-bg.open .auth-modal,.modal-bg.open .reset-modal{animation-name:f762FadeIn}
+  .modal-bg.closing .auth-modal,.modal-bg.closing .reset-modal{animation-name:f762FadeOut}
+}
 </style>
+<script id="f952-a11y">
+/* F9.5.2 · «Regístrate aquí», «¿Olvidaste tu contraseña?» y «← Volver» alcanzables con teclado (Tab) y activables con Enter o Espacio.
+   Solo añade tabindex/role y reenvía la pulsación al clic que ya existe; no cambia ninguna acción ni destino. */
+(function(){
+  var SEL='#authModal .auth-toggle a[onclick],#resetModal .auth-toggle a[onclick]';
+  function enhance(){
+    document.querySelectorAll(SEL).forEach(function(a){
+      if(!a.hasAttribute('tabindex'))a.setAttribute('tabindex','0');
+      if(!a.hasAttribute('role'))a.setAttribute('role','button');
+    });
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' '&&e.key!=='Spacebar')return;
+    var a=e.target&&e.target.closest?e.target.closest(SEL):null;
+    if(!a)return;
+    e.preventDefault();
+    a.click();
+  });
+  enhance();
+  if(window.MutationObserver){
+    var obs=new MutationObserver(enhance);
+    ['authModal','resetModal'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)obs.observe(el,{childList:true,subtree:true});
+    });
+  }
+})();
+</script>
 </body>
 </html>
