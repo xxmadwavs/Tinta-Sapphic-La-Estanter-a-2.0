@@ -20938,6 +20938,17 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
   #bookPage .bp-wrap>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section){grid-column:1}
   #bookPage .bp-wrap>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section)+.bp-ficha-section{grid-column:2}
 }
+
+/* F10.4 · correcciones responsive (solo CSS)
+   P1: a 900–913 px la fila de filtros se parte y «+ Filtros» queda a la izquierda; con el panel anclado a la derecha
+       (right:0) se salía 188 px de la pantalla. En ese tramo se ancla por la izquierda del botón.
+   P2: a ≤359 px la cabecera del calendario (título + Hoy/flechas) no cabía en una línea; se permite que baje la navegación. */
+@media (min-width:900px) and (max-width:939px){
+  .more-filters-panel{left:0;right:auto}
+}
+@media (max-width:359px){
+  #shelfCalendarContainer .cal-header{flex-wrap:wrap}
+}
 </style>
 
 
