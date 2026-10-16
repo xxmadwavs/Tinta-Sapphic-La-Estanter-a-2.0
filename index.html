@@ -5699,6 +5699,19 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 .bp-diary .dy-no .dy-state{color:var(--muted);font-weight:500}
 .bp-diary .dy-item-act{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
 @media (max-width:420px){.bp-diary .dy-pair{flex-direction:column}}
+/* ── A2 · Acceso «Instalar app» (PWA) ── */
+.pwa-install[hidden]{display:none!important}
+.pwa-install-bg{z-index:410}
+.pwa-install-modal{max-width:460px}
+.pwa-install-modal .info-modal-body{padding:1.3rem 1.6rem 1.6rem}
+.pwa-lead{font-size:13.5px;color:var(--text);margin:0 0 .9rem}
+.pwa-steps{margin:0 0 .9rem 1.2rem;padding:0;font-size:13.5px;line-height:1.55}
+.pwa-steps li{margin-bottom:.45rem;padding-left:.15rem}
+.pwa-steps li::marker{color:var(--accent2);font-weight:600}
+.pwa-note{font-size:12px;color:var(--muted);margin:0 0 1.1rem}
+.pwa-ok{display:inline-flex;align-items:center;justify-content:center;padding:9px 22px;border-radius:30px;border:1px solid var(--accent);background:var(--accent);color:var(--surface);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer}
+.pwa-ok:hover{background:var(--accent2)}
+.pwa-ok:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 </style>
 <style id="f36-seasonal-editorial">
 
@@ -7722,6 +7735,10 @@ html:has(#homeNextDlg[open]){overflow:hidden}
   <button class="mbn-more-item" id="mbnMoreBingo" type="button" onclick="showCatalog('bingo');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span>
     <span class="mbn-more-copy"><span>Bingo</span><small>Bingo de Halloween</small></span>
+  </button>
+  <button class="mbn-more-item pwa-install" id="pwaInstallMore" type="button" hidden onclick="closeMobileMoreMenu();pwaInstallClick()">
+    <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10"/><path d="M8 10.5l4 4 4-4"/><path d="M5 19.5h14"/></svg></span>
+    <span class="mbn-more-copy"><span>Instalar app</span><small>Ábrela como una app</small></span>
   </button>
 </div>
 
@@ -14220,10 +14237,23 @@ init();
       <a class="footer-link" href="#" onclick="openInfoModal('sobre');return false;">Sobre nosotras</a>
       <a class="footer-link" href="#" onclick="openInfoModal('privacidad');return false;">Política de privacidad</a>
       <a class="footer-link" href="#" onclick="openInfoModal('terminos');return false;">Términos de uso</a>
+      <a class="footer-link pwa-install" id="pwaInstallFooter" href="#" hidden onclick="pwaInstallClick();return false;">Instalar app</a>
     </nav>
     <div class="footer-copy">© 2026 Tinta Sapphic</div>
   </div>
 </footer>
+
+<!-- A2 · INSTALAR APP -->
+<div id="pwaInstallModal" class="info-modal-bg pwa-install-bg" onclick="if(event.target.id==='pwaInstallModal')pwaCloseModal()">
+  <div class="info-modal pwa-install-modal" role="dialog" aria-modal="true" aria-labelledby="pwaModalTitle">
+    <button class="info-modal-close" type="button" onclick="pwaCloseModal()" aria-label="Cerrar">✕</button>
+    <div class="info-modal-header">
+      <div class="info-modal-title" id="pwaModalTitle">Instalar app</div>
+      <div class="info-modal-subtitle" id="pwaModalSub"></div>
+    </div>
+    <div class="info-modal-body" id="pwaModalBody"></div>
+  </div>
+</div>
 
 <!-- INFO MODALS -->
 <div id="infoModal" class="info-modal-bg" onclick="if(event.target.id==='infoModal')closeInfoModal()">
@@ -21137,6 +21167,125 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>enhance(),{once:true}); else enhance();
   const observer=new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(n=>{if(n.nodeType===1) enhance(n);})));
   observer.observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+<script>
+/* A2 · Botón «Instalar app». Solo se muestra si hay una vía real de instalación
+   (diálogo nativo o instrucciones válidas para el navegador). No afirma que la app
+   está instalada hasta que el navegador lo confirma con el evento appinstalled. */
+(function(){
+  'use strict';
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/i.test(ua);
+  var isHuaweiBrowser = /HuaweiBrowser/i.test(ua);
+  var isSafariDesktop = !isIOS && !isAndroid && /Macintosh/.test(ua) && /Safari\//.test(ua) && !/Chrome|Chromium|Edg|OPR|Firefox/.test(ua);
+
+  function mm(q){ try { return window.matchMedia(q).matches; } catch (e) { return false; } }
+  var standalone = mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)') || mm('(display-mode: minimal-ui)') ||
+                   navigator.standalone === true || /^android-app:\/\//.test(document.referrer || '');
+
+  var deferred = null, accepted = false, lastFocus = null;
+
+  var CONTENT = {
+    ios: {
+      sub: 'iPhone · iPad',
+      lead: 'En iOS se instala desde el menú Compartir del navegador:',
+      steps: ['Pulsa el botón <strong>Compartir</strong> (el cuadrado con una flecha hacia arriba).',
+              'Desliza y elige <strong>«Añadir a pantalla de inicio»</strong>.',
+              'Confirma con <strong>«Añadir»</strong>.'],
+      note: 'Si no ves esa opción, abre esta web en Safari y repite los pasos.'
+    },
+    huawei: {
+      sub: 'Huawei Browser',
+      lead: 'Desde el menú de Huawei Browser:',
+      steps: ['Abre el <strong>menú</strong> del navegador (botón de tres líneas o puntos).',
+              'Busca <strong>«Añadir a pantalla de inicio»</strong> (en algunas versiones está dentro de «Añadir a» o «Herramientas»).',
+              'Confirma el nombre y pulsa <strong>«Añadir»</strong>.'],
+      note: 'Si tienes Chrome en el móvil, también puedes abrir la web allí y usar ⋮ → «Instalar aplicación».'
+    },
+    android: {
+      sub: 'Android',
+      lead: 'Desde el menú de tu navegador:',
+      steps: ['Abre el <strong>menú</strong> (⋮ en Chrome, ☰ en Samsung Internet).',
+              'Elige <strong>«Instalar aplicación»</strong>. Si solo aparece <strong>«Añadir a pantalla de inicio»</strong> (o «Añadir página a»), usa esa: crea un acceso directo a la web.',
+              'Confirma con <strong>«Instalar»</strong> o <strong>«Añadir»</strong>.'],
+      note: 'Si tu navegador no ofrece ninguna de las dos, prueba a abrir la web en Chrome.'
+    },
+    safari: {
+      sub: 'Safari · Mac',
+      lead: 'En Safari 17 o posterior:',
+      steps: ['En la barra de menús, abre <strong>Archivo</strong>.',
+              'Elige <strong>«Añadir al Dock…»</strong>.',
+              'Confirma con <strong>«Añadir»</strong>.'],
+      note: ''
+    }
+  };
+
+  function currentMode(){
+    if (standalone || accepted) return null;
+    if (deferred) return 'prompt';
+    if (isIOS) return 'ios';
+    if (isHuaweiBrowser) return 'huawei';
+    if (isAndroid) return 'android';
+    if (isSafariDesktop) return 'safari';
+    return null;                       // sin vía de instalación conocida: no se muestra nada
+  }
+
+  function refresh(){
+    var show = currentMode() !== null;
+    ['pwaInstallFooter', 'pwaInstallMore'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.hidden = !show;
+    });
+  }
+
+  function openModal(mode){
+    var c = CONTENT[mode]; if (!c) return;
+    var body = '<p class="pwa-lead">' + c.lead + '</p><ol class="pwa-steps">' +
+      c.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') + '</ol>' +
+      (c.note ? '<p class="pwa-note">' + c.note + '</p>' : '') +
+      '<button type="button" class="pwa-ok" onclick="pwaCloseModal()">Entendido</button>';
+    document.getElementById('pwaModalSub').textContent = c.sub;
+    document.getElementById('pwaModalBody').innerHTML = body;
+    lastFocus = document.activeElement;
+    openAnimatedModalBg(document.getElementById('pwaInstallModal'));
+    document.body.style.overflow = 'hidden';
+    var ok = document.querySelector('#pwaModalBody .pwa-ok'); if (ok) ok.focus();
+  }
+
+  window.pwaCloseModal = function(){
+    var m = document.getElementById('pwaInstallModal');
+    if (!m || !m.classList.contains('open')) return;
+    closeAnimatedModalBg(m);
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus && !lastFocus.hidden) { try { lastFocus.focus(); } catch (e) {} }
+  };
+
+  window.pwaInstallClick = function(){
+    if (deferred) {                                  // instalación directa
+      var d = deferred; deferred = null;
+      d.prompt();
+      d.userChoice.then(function(choice){
+        if (choice && choice.outcome === 'accepted') accepted = true;   // se oculta; "instalada" solo al recibir appinstalled
+        refresh();
+      }).catch(function(){ refresh(); });
+      return;
+    }
+    var mode = currentMode();
+    if (mode) openModal(mode);
+  };
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); deferred = e; refresh();
+  });
+  window.addEventListener('appinstalled', function(){
+    deferred = null; accepted = true; refresh(); window.pwaCloseModal();
+    if (typeof showToast === 'function') showToast('App instalada', 'success');
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') window.pwaCloseModal(); });
+
+  refresh();
 })();
 </script>
 <script>
