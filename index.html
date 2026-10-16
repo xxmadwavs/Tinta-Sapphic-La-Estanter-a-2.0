@@ -18,6 +18,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=Cinzel:wght@400;500;600;700&family=Pirata+One&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* A3 · Sin conexión: si supabase-js no se pudo cargar (CDN no disponible), se define un cliente
+   vacío para que la interfaz arranque. Devuelve el mismo formato de error que supabase-js ante un
+   fallo de red ({data:null, error}) y NO toca el almacenamiento local: la sesión guardada sigue
+   intacta para cuando vuelva la conexión. Si supabase-js sí cargó, este bloque no hace nada. */
+(function(){
+  if (window.supabase && typeof window.supabase.createClient === 'function') return;
+  window.__tsNoSupabase = true;
+  var ERR = { name: 'OfflineError', status: 0, message: 'Sin conexión: esta función necesita Internet.' };
+  function result(extra){ return Promise.resolve(Object.assign({ data: null, error: ERR }, extra || {})); }
+  function chain(){
+    return new Proxy(function(){}, {
+      get: function(_, k){
+        if (typeof k === 'symbol') return undefined;
+        if (k === 'then' || k === 'catch' || k === 'finally'){ var p = result(); return p[k].bind(p); }
+        return chain();
+      },
+      apply: function(){ return chain(); }
+    });
+  }
+  var sub = { unsubscribe: function(){} };
+  var auth = new Proxy({}, { get: function(_, k){
+    if (typeof k === 'symbol' || k === 'then') return undefined;
+    if (k === 'getSession')        return function(){ return Promise.resolve({ data: { session: null }, error: null }); };
+    if (k === 'getUser')           return function(){ return Promise.resolve({ data: { user: null }, error: null }); };
+    if (k === 'onAuthStateChange') return function(){ return { data: { subscription: sub } }; };
+    if (k === 'signOut')           return function(){ return Promise.resolve({ error: null }); };
+    return function(){ return result({ data: { user: null, session: null } }); };
+  }});
+  var client = new Proxy({}, { get: function(_, k){
+    if (typeof k === 'symbol' || k === 'then') return undefined;
+    if (k === 'auth') return auth;
+    if (k === 'removeChannel' || k === 'removeAllChannels') return function(){ return Promise.resolve('ok'); };
+    return chain();
+  }});
+  window.supabase = { createClient: function(){ return client; } };
+})();
+</script>
 <style>
 :root{
   /* Sistema cromático base: marfil rosado, blush y borgoña editorial (valores finales consolidados). */
@@ -21288,12 +21326,77 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
   refresh();
 })();
 </script>
+<!-- A3 · Aviso de conexión / actualización -->
+<style>
+.ts-netbar{position:fixed;left:1rem;bottom:1rem;z-index:145;max-width:min(460px,calc(100vw - 2rem));display:flex;align-items:center;gap:.6rem;padding:10px 12px 10px 14px;background:var(--surface);color:var(--text);border:1px solid var(--border2);border-left:3px solid var(--gold-decorative);border-radius:var(--radius);box-shadow:0 10px 30px rgba(51,35,43,.18);font:500 12.5px/1.45 var(--font-body)}
+.ts-netbar[hidden],.ts-netbar-act[hidden]{display:none}
+.ts-netbar-act{flex:none;padding:6px 12px;border-radius:30px;border:1px solid var(--accent);background:var(--accent);color:var(--surface);font:600 12px var(--font-body);cursor:pointer}
+.ts-netbar-act:hover{background:var(--accent2)}
+.ts-netbar-x{flex:none;border:none;background:transparent;color:var(--muted);font-size:14px;line-height:1;padding:4px 6px;cursor:pointer}
+.ts-netbar button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+@media (max-width:639px){.ts-netbar{left:.6rem;right:.6rem;max-width:none;bottom:calc(70px + env(safe-area-inset-bottom,0px))}}
+</style>
+<div id="tsNetBar" class="ts-netbar" role="status" aria-live="polite" hidden>
+  <span id="tsNetTx"></span>
+  <button type="button" class="ts-netbar-act" id="tsNetAct" hidden></button>
+  <button type="button" class="ts-netbar-x" id="tsNetX" aria-label="Cerrar aviso">✕</button>
+</div>
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function (e) { console.warn('SW no registrado:', e); });
+/* A3 · Registro del service worker + avisos. Nunca recarga la página por su cuenta (no se pierde lo que
+   la usuaria esté escribiendo): solo avisa y ofrece un botón. */
+(function(){
+  var bar = document.getElementById('tsNetBar'), tx = document.getElementById('tsNetTx'),
+      act = document.getElementById('tsNetAct'), x = document.getElementById('tsNetX');
+  var state = { update: false, stale: null, wasOffline: navigator.onLine === false, dismissed: {} };
+
+  function fmt(d){
+    try { var t = new Date(d); if (isNaN(t)) return ''; return ' del ' + t.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }); }
+    catch (e) { return ''; }
+  }
+  function compute(){
+    if (state.update)
+      return { k: 'update', t: 'Hay una versión nueva de la app. Recarga cuando termines lo que estás haciendo.', a: 'Actualizar' };
+    if (navigator.onLine === false)
+      return { k: 'offline', t: 'Sin conexión. Estás viendo contenido guardado en este dispositivo, que puede no estar actualizado. Iniciar sesión, las valoraciones y tu estantería personal necesitan Internet.' };
+    if (window.__tsNoSupabase)
+      return { k: 'nosb', a: 'Recargar', t: state.wasOffline
+        ? 'Ya hay conexión, pero esta carga empezó sin ella: recarga para activar la sesión, las valoraciones y tu estantería.'
+        : 'Esta carga no pudo activar las cuentas: sesión, valoraciones y estantería personal no están disponibles.' };
+    if (state.stale)
+      return { k: 'stale', a: 'Reintentar', t: 'No se pudo actualizar el catálogo; estás viendo la última copia guardada' + fmt(state.stale.date) + '.' };
+    return null;
+  }
+  var current = null;
+  function render(){
+    current = compute();
+    if (!current || state.dismissed[current.k]) { bar.hidden = true; return; }
+    tx.textContent = current.t;
+    act.hidden = !current.a; act.textContent = current.a || '';
+    bar.hidden = false;
+  }
+  act.addEventListener('click', function(){ location.reload(); });
+  x.addEventListener('click', function(){ if (current) state.dismissed[current.k] = true; render(); });
+  window.addEventListener('offline', function(){ state.wasOffline = true; state.dismissed.offline = false; render(); });
+  window.addEventListener('online',  function(){ render(); });
+  render();
+
+  if (!('serviceWorker' in navigator) || !navigator.serviceWorker) return;
+  var hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (hadController) { state.update = true; state.dismissed.update = false; render(); }   // una versión nueva tomó el control
+    hadController = true;
   });
-}
+  navigator.serviceWorker.addEventListener('message', function(e){
+    if (e.data && e.data.type === 'ts-stale') { state.stale = { date: e.data.date, path: e.data.path }; render(); }
+  });
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' }).then(function(reg){
+      function check(){ reg.update().catch(function(){}); }
+      document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') check(); });
+      setInterval(check, 60 * 60 * 1000);                  // apps instaladas que quedan abiertas horas o días
+    }).catch(function(e){ console.warn('SW no registrado:', e); });
+  });
+})();
 </script>
 </body>
 </html>
