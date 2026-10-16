@@ -7801,8 +7801,8 @@ html:has(#homeNextDlg[open]){overflow:hidden}
 
 <div id="homeView" aria-labelledby="homeHeading">
   <section class="home-clean-hero" aria-label="Bienvenida">
-    <p class="home-clean-eyebrow">Tinta Sapphic · La estantería sapphic</p>
-    <h1 class="home-clean-title" id="homeHeading">Tu próxima historia <em>te espera.</em></h1>
+    <p class="home-clean-eyebrow">Tinta Sapphic · La estantería</p>
+    <h1 class="home-clean-title" id="homeHeading">Tu próxima historia <em>te&nbsp;espera.</em></h1>
     <p class="home-clean-sub">Explora lecturas sapphic, descubre nuevas historias y encuentra tu próximo libro favorito.</p>
     <button type="button" class="home-clean-login" id="homeLoginCta" onclick="openAuthModal()">Entrar</button>
   </section>
@@ -21335,6 +21335,15 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
 .ts-netbar-x{flex:none;border:none;background:transparent;color:var(--muted);font-size:14px;line-height:1;padding:4px 6px;cursor:pointer}
 .ts-netbar button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 @media (max-width:639px){.ts-netbar{left:.6rem;right:.6rem;max-width:none;bottom:calc(70px + env(safe-area-inset-bottom,0px))}}
+
+/* F11.1 · Revisión visual
+   1) La franja del hero en el catálogo es de 14-42 px: la decoración (carta, vela, ramas, telarañas)
+      es absolute/inset:0 con overflow:hidden y salía cortada. Se oculta en esa franja; el aviso
+      «Faltan pocas noches…» y los textos temáticos del catálogo siguen visibles.
+   3) Título del hero de Inicio: reparte las líneas y mantiene «te espera.» junto. */
+.hero .xm-hero-deco,.hero .hw-hero-deco{display:none!important}
+.home-clean-title{text-wrap:balance}
+.home-clean-title em{white-space:nowrap}
 </style>
 <div id="tsNetBar" class="ts-netbar" role="status" aria-live="polite" hidden>
   <span id="tsNetTx"></span>
