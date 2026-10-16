@@ -8107,12 +8107,12 @@ html:has(#homeNextDlg[open]){overflow:hidden}
             </div>
             <!-- País (solo registradas) -->
             <div class="fp-section collapsed auth-only" data-field="pais_cultura">
-              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País <span class="dd-count" id="cntPais" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País de la historia <span class="dd-count" id="cntPais" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
               <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_cultura','listPais',this.value)"></div><div class="dd-list" id="listPais"></div></div>
             </div>
             <!-- País de origen (solo registradas) -->
             <div class="fp-section collapsed auth-only" data-field="pais_origen">
-              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País de origen <span class="dd-count" id="cntPaisOrigen" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
+              <div class="fp-sec-label" onclick="toggleFpSection(this)"><span class="fp-sec-left"><span class="fp-sec-dot"></span>País de la autora <span class="dd-count" id="cntPaisOrigen" style="display:none">0</span></span><span class="fp-sec-chevron">▼</span></div>
               <div class="fp-sec-body"><div class="dd-search"><input type="text" placeholder="Buscar…" oninput="filterDD('pais_origen','listPaisOrigen',this.value)"></div><div class="dd-list" id="listPaisOrigen"></div></div>
             </div>
             <!-- Valoración (solo registradas) -->
@@ -10900,7 +10900,7 @@ function renderActivePills(){
   const labelMap={
     genres:'Género', subgenres:'Temática', dinamicas:'Dinámica',
     tropes:'Tropo', characters:'Personaje', authors:'Autora',
-    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País', pais_origen:'País de origen',
+    years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País de la historia', pais_origen:'País de la autora',
     identidades:'Identidad', warnings:'Advertencia', ship:'Ship'
   };
   const pills=[];
@@ -11213,7 +11213,7 @@ function renderBookModal(){
         ${b.year?`<div class="meta-item"><span class="meta-key">Año</span><span class="meta-val">${b.year}</span></div>`:''}
         ${b.pages?`<div class="meta-item"><span class="meta-key">Páginas</span><span class="meta-val">${b.pages}</span></div>`:''}
         ${b.isbn?`<div class="meta-item"><span class="meta-key">ISBN</span><span class="meta-val">${b.isbn}</span></div>`:''}
-        ${b.pais_origen?`<div class="meta-item"><span class="meta-key">País de origen</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:''}
+        ${b.pais_origen?`<div class="meta-item"><span class="meta-key">País de la autora</span><span class="meta-val">${escHtml(b.pais_origen)}</span></div>`:''}
         ${(b.ship&&b.ship.length)?`<div class="meta-item"><span class="meta-key">Ship</span><span class="meta-val">${b.ship.join(' · ')}</span></div>`:''}
       </div>
       ${(b.content_warnings&&b.content_warnings.length)?`
@@ -11881,6 +11881,8 @@ function renderBookPage(book){
   // F7.2.2 — la ficha técnica se agrupa (Edición · Origen · Historia). Mismos datos, mismo criterio de campos vacíos
   // (si falta el dato no se pinta ni etiqueta ni hueco). Solo se muestran valores que existen en books_data.json.
   const _fArr=v=>Array.isArray(v)?v.filter(Boolean):(v?[v]:[]);
+  // Lista de países: cada uno es un bloque indivisible y el separador va pegado al anterior (evita "·" huérfano al inicio de línea)
+  const _fPaises=a=>a.map((x,i)=>`<span style="white-space:nowrap">${escHtml(x)}${i<a.length-1?' ·':''}</span>`).join(' ');
   const _fItem=(key,val,wide)=>`<div class="meta-item${wide?' meta-item-wide':''}"><span class="meta-key">${key}</span><span class="meta-val">${val}</span></div>`;
   const _paisOri=_fArr(b.pais_origen), _paisCul=_fArr(b.pais_cultura);
   const _paisIgual=_paisOri.length===_paisCul.length&&_paisOri.every(x=>_paisCul.includes(x));
@@ -11894,8 +11896,8 @@ function renderBookPage(book){
       _isbnOk?_fItem('ISBN',escHtml(String(b.isbn))):''
     ]],
     ['Origen',[
-      b.pais_origen?_fItem('País de origen',escHtml(_paisOri.join(' · '))):'',
-      (_paisCul.length&&!_paisIgual)?_fItem('País de la cultura',escHtml(_paisCul.join(' · '))):'',
+      _paisOri.length?_fItem('País de la autora',_fPaises(_paisOri)):'',
+      (_paisCul.length&&!_paisIgual)?_fItem('País de la historia',_fPaises(_paisCul),_paisCul.length>2):'',
       b.idioma_original?_fItem('Idioma original',escHtml(b.idioma_original)):''
     ]],
     ['Historia',[
@@ -13836,14 +13838,14 @@ function renderTop10(){
     html+=`</div>`;
   }
 
-  // ── PUESTOS 4-5, 6-7, 8-9-10 ──
-  const groups=[[3,4],[5,6],[7,8,9]];
-  groups.forEach(idxs=>{
-    const slice=idxs.map(i=>ranked[i]).filter(Boolean);
-    if(!slice.length) return;
+  // ── PUESTOS 4-10 (una sola lista; en escritorio la rejilla los reparte en 2 columnas) ──
+  const restIdxs=[3,4,5,6,7,8,9];
+  {
+    const slice=restIdxs.map(i=>ranked[i]).filter(Boolean);
+    if(slice.length){
     html+=`<div class="top10-rest">`;
     slice.forEach((b,gi)=>{
-      const pos=idxs[gi]+1,r=ratingsMap[b.id];
+      const pos=restIdxs[gi]+1,r=ratingsMap[b.id];
       html+=`<div class="top10-row" onclick="openBookPage('${b.id}')">
         <div class="t10-num">${pos}</div>
         ${coverEl(b,'t10-cover')}
@@ -13856,11 +13858,10 @@ function renderTop10(){
           <div class="t10-votes">${r.count} voto${r.count!==1?'s':''}</div>
         </div>
       </div>`;
-      // separador entre filas del mismo grupo (no tras la última)
-      if(gi<slice.length-1) html+=`<div class="top10-divider"></div>`;
     });
     html+=`</div>`;
-  });
+    }
+  }
 
   html+=`</div>`;
   c.innerHTML=html;
@@ -14772,7 +14773,7 @@ function ruletaUpdateUI() {
   // Render active filter pills (from estantería)
   const pillsEl = document.getElementById('ruletaFiltrosPills');
   if (!pillsEl) return;
-  const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País', pais_origen:'País de origen' };
+  const labelMap = { genres:'Género', subgenres:'Temática', dinamicas:'Dinámica', tropes:'Tropo', characters:'Personaje', authors:'Autora', years:'Año', spicy:'Spicy', sagas:'Saga', edad:'Edad', pais_cultura:'País de la historia', pais_origen:'País de la autora' };
   const pills = [];
   Object.entries(filters).forEach(([key, arr]) => {
     if (key === 'q' || key === 'valoracion' || key === 'adaptacion' || key === 'pages' || key === 'leido') return;
