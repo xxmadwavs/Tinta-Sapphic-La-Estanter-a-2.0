@@ -1,0 +1,18 @@
+{
+  "id": "/Tinta-Sapphic-La-Estanter-a-2.0/",
+  "name": "Tinta Sapphic (prueba)",
+  "short_name": "TS prueba",
+  "description": "La estantería de Tinta Sapphic: literatura sáfica para descubrir, valorar y guardar.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF3F0",
+  "theme_color": "#FBF3F0",
+  "categories": ["books", "entertainment"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
