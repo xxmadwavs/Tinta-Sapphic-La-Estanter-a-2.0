@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#FBF3F0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tinta Sapphic">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
 <title>TINTA SAPPHIC ~ La Estantería</title>
 <meta name="sb-url" content="https://fteitflirsmabcasmwij.supabase.co">
 <meta name="sb-key" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0ZWl0ZmxpcnNtYWJjYXNtd2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMjM3MzIsImV4cCI6MjA5MjY5OTczMn0.n46OnfB74J8DN_dcDgTc-UmhZYO5SnKUQ69Gz90ybbA">
@@ -21131,6 +21139,12 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
   observer.observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
-
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function (e) { console.warn('SW no registrado:', e); });
+  });
+}
+</script>
 </body>
 </html>
