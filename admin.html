@@ -1063,7 +1063,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div id="canalRecField" style="display:none">
   <div class="canal-club-form">
     <label class="form-label" style="color:var(--teal)">Mes / Período (ej: Enero 2025, Verano 2024)</label>
-    <input type="text" class="canal-club-inp" id="fCanalMonth" placeholder="Ej: Enero 2025">
+    <input type="text" class="canal-club-inp" id="fCanalMonth" placeholder="Ej: Enero 2025" oninput="renderRecChips()">
+    <div class="chip-group" id="canalMonthChips"></div>
   </div>
 </div>
   </div>
@@ -1078,7 +1079,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div id="myRecField" style="display:none">
   <div class="myrec-club-form">
     <label class="form-label" style="color:#e0909e">Categorías (separadas por coma)</label>
-    <input type="text" class="myrec-club-inp" id="fMyRecCats" placeholder="Ej: Romántica Intensa, Para llorar, Enemigos a amantes">
+    <input type="text" class="myrec-club-inp" id="fMyRecCats" placeholder="Ej: Romántica Intensa, Para llorar, Enemigos a amantes" oninput="renderRecChips()">
+    <div class="chip-group" id="myRecCatChips"></div>
   </div>
 </div>
   </div>
@@ -1852,6 +1854,7 @@ function openEditModal(id) {
   document.getElementById('fMyRec').checked=!!b.my_rec;
   document.getElementById('myRecField').style.display=b.my_rec?'block':'none';
   document.getElementById('fMyRecCats').value=(b.my_rec_categories||[]).join(', ');
+  renderRecChips();
   renderAuthorPills();
   renderAllChips();
   renderUbicaciones();
@@ -1860,6 +1863,40 @@ function openEditModal(id) {
   document.body.style.overflow='hidden';
   applyDefaultFolds(false);
   updateFoldSummaries();
+}
+
+/* ── Chips con los valores ya usados en otros libros (Canal / Mis Recomendaciones) ──
+   Pulsar un chip lo añade al campo; volver a pulsarlo lo quita. El campo sigue siendo texto libre. */
+function renderRecChips(){
+  const used=(getter)=>{
+    const n=new Map();
+    books.forEach(b=>getter(b).forEach(v=>{ if(v&&v!=='Sin categoría'&&v!=='Sin fecha') n.set(v,(n.get(v)||0)+1); }));
+    return [...n.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(e=>e[0]);
+  };
+  const draw=(boxId,values,current,color,onPick)=>{
+    const box=document.getElementById(boxId); if(!box) return;
+    box.innerHTML='';
+    values.forEach(v=>{
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='chip-opt '+color+(current.includes(v)?' active':'');
+      btn.textContent=v;
+      btn.onclick=()=>onPick(v);
+      box.appendChild(btn);
+    });
+  };
+  const monthInp=document.getElementById('fCanalMonth');
+  draw('canalMonthChips',used(b=>b.canal_rec?[b.canal_month]:[]),[monthInp.value.trim()],'teal',v=>{
+    monthInp.value=(monthInp.value.trim()===v)?'':v;
+    renderRecChips();
+  });
+  const catsInp=document.getElementById('fMyRecCats');
+  const cur=catsInp.value.split(',').map(x=>x.trim()).filter(Boolean);
+  draw('myRecCatChips',used(b=>b.my_rec?(b.my_rec_categories||[]):[]),cur,'rose',v=>{
+    const list=catsInp.value.split(',').map(x=>x.trim()).filter(Boolean);
+    catsInp.value=(list.includes(v)?list.filter(x=>x!==v):[...list,v]).join(', ');
+    renderRecChips();
+  });
 }
 
 function clearForm() {
@@ -1886,6 +1923,7 @@ function clearForm() {
   document.getElementById('fMyRec').checked=false;
   document.getElementById('myRecField').style.display='none';
   document.getElementById('fMyRecCats').value='';
+  renderRecChips();
   document.getElementById('fPeriodo').value='';
   ubicDraft=[];
   renderAuthorPills();
