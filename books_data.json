@@ -24864,8 +24864,10 @@
     "sagaNum": null,
     "source": "spanish",
     "editions": [],
-    "saficlub": false,
-    "safi_categories": [],
+    "saficlub": true,
+    "safi_categories": [
+      "2026"
+    ],
     "thaiclub": false,
     "thai_categories": [],
     "canal_rec": false,
@@ -33475,7 +33477,11 @@
     "canal_month": null,
     "my_rec": true,
     "my_rec_categories": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Destined Lovers",
+      "Forced Proximity",
+      "Brujas",
+      "Erótica (+5 escenas)"
     ]
   },
   {
@@ -47171,8 +47177,13 @@
     "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": []
+    "my_rec": true,
+    "my_rec_categories": [
+      "Vampiras",
+      "Brujas",
+      "Fantasía",
+      "Erótica (+5 escenas)"
+    ]
   },
   {
     "id": "b_1780387147638_c9xde",
@@ -63304,7 +63315,8 @@
     "my_rec": true,
     "my_rec_categories": [
       "Friends to Lovers",
-      "Vampiras"
+      "Vampiras",
+      "Erótica (+5 escenas)"
     ]
   },
   {
@@ -72791,8 +72803,10 @@
     "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": []
+    "my_rec": true,
+    "my_rec_categories": [
+      "Paranormal"
+    ]
   },
   {
     "id": "b_1784369204713_fnpzz",
@@ -73968,8 +73982,13 @@
     "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": []
+    "my_rec": true,
+    "my_rec_categories": [
+      "Destined Lovers",
+      "Forced Proximity",
+      "Brujas",
+      "Erótica (+5 escenas)"
+    ]
   },
   {
     "id": "b_1785593657712_i75l3",
@@ -79606,8 +79625,11 @@
     "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": []
+    "my_rec": true,
+    "my_rec_categories": [
+      "Thais",
+      "Forbidden Love"
+    ]
   },
   {
     "id": "b_1789313586433_sne58",
@@ -81909,8 +81931,12 @@
     "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": []
+    "my_rec": true,
+    "my_rec_categories": [
+      "Deporte",
+      "Rivals to Lovers",
+      "Forbidden Love"
+    ]
   },
   {
     "id": "b_1791200909501_wd5wf",
@@ -82012,8 +82038,12 @@
     "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": []
+    "my_rec": true,
+    "my_rec_categories": [
+      "Erótica (+5 escenas)",
+      "Workplace Romance",
+      "Age Gap"
+    ]
   },
   {
     "id": "b_1791201574745_lj2bm",
@@ -82867,6 +82897,369 @@
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792066621339_0fccs",
+    "title": "Hers to break",
+    "authors": [
+      "Lily X"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/81ZtsNeGZ4L._SL1500_.jpg",
+    "synopsis": "Cruza la línea.\nLleva la marca.\nNo te metas con las hermanas Silvestri.\nHace seis meses, la sargento Mira Menon traicionó a una de las hermanas Silvestri y se salió con la suya…\n\n…o eso creía ella.\n\nAhora, con un agujero de bala en el hombro y la espalda acuchillada, no está muy segura de si sobrevivirá a la noche.\n\nAhora la tienen en su poder. Si quiere escapar, tendrá que ser… creativa.\n\n«Hers to Break» es una novela romántica oscura y obscena con lesbianas que se desprecian mutuamente, pero que no pueden resistirse a follar por odio.",
+    "pages": 286,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Thriller"
+    ],
+    "subgenres": [
+      "Dark Romance",
+      "Crimen"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Policía",
+      "Criminal"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Jealousy Trope",
+      "Hurt/Comfort",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Mundo fantástico"
+    ],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792067039319_3geu6",
+    "title": "Eternally Ruined",
+    "authors": [
+      "Luna Lawson"
+    ],
+    "year": 2023,
+    "cover": "https://m.media-amazon.com/images/I/81GATj4gzpL._SL1500_.jpg",
+    "synopsis": "No confío en mi padre. Ha cambiado desde la muerte de mi madre, y su obsesión por las rutas comerciales controladas por la poderosa familia Galata lo está consumiendo... Ya casi ni lo reconozco.\n\nEstá tramando algo, y estoy decidida a descubrir de qué se trata. La verdad está enterrada en algún lugar de nuestro pasado: la razón por la que él cree que nuestra familia debería controlar esos beneficios comerciales. La única forma de descubrir la verdad está escondida en un libro, en un rincón secreto de los Archivos Reales de Evermore.\n\nAutumn es lo único que se interpone entre mí y la información que busco... Si no consigo convencerla de que me ayude, quién sabe lo que podrá pasar.",
+    "pages": 144,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Paranormal",
+      "Romance",
+      "Histórica",
+      "Fantasía"
+    ],
+    "subgenres": [
+      "Sobrenatural"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Vampira"
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Secret Relationship"
+    ],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792332824537_4ck7l",
+    "title": "Everything She Does Is Magic",
+    "authors": [
+      "Bridget Morrissey"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/I/91GzjePrDzL._SL1500_.jpg",
+    "synopsis": "En la encantadora localidad de Fableview, todos los días es Halloween.\n\nA Darcy Keller, el rayo de sol del pueblo y la princesa del espíritu local, le encantan cada uno de los momentos de las fiestas de otoño de Fableview. Pero también está más que preparada para irse a la universidad el año que viene, aunque sus padres esperan que se quede y se haga cargo de su imperio de Halloween.\n\nEntra en escena la nueva y taciturna Anya Doyle, una bruja de verdad y casi miembro de pleno derecho de su aquelarre. Para ser iniciada, tiene que elegir a una aliada mortal que actúe como su «protectora». Pero, como se ha mudado tantas veces, Anya no tiene ni un solo amigo. Así que hace lo que haría cualquier adolescente casi bruja que se precie: miente y le dice a su aquelarre que su amor secreto, Darcy, está dispuesta a asumir el papel.\n\n¿La solución? Trabajar juntas, por supuesto. Las chicas acuerdan ayudarse mutuamente y asisten juntas a todo tipo de eventos, desde un desfile de disfraces hasta una fiesta en un huerto de calabazas o un concurso de pescar manzanas con la boca. Pero con los poderes mágicos de Anya y la futura independencia de Darcy en juego, lo último que necesitan es la complicación añadida de unos sentimientos molestos…",
+    "pages": 288,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Fantasía"
+    ],
+    "subgenres": [
+      "Magia",
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Bruja",
+      "Estudiante",
+      "Artista"
+    ],
+    "dinamicas": [
+      "Grumpy × Sunshine",
+      "Bruja × Mortal"
+    ],
+    "tropes": [
+      "Slow Burn",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Ciudad ficticia",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 1,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792333078722_u4s54",
+    "title": "The Isle in the Silver Sea",
+    "authors": [
+      "Tasha Suri"
+    ],
+    "year": 2025,
+    "cover": "https://m.media-amazon.com/images/I/91CVt99I0hL._SL1500_.jpg",
+    "synopsis": "En una Gran Bretaña impulsada por las historias, la caballera y la bruja están destinadas a enamorarse y a condenarse mutuamente una y otra vez, en el mismo relato que se repite a lo largo de cientos de vidas.\n\nSimran es una bruja del bosque. Vina es una caballera de la corte de la reina. Cuando las dos mujeres comienzan a enamorarse, ¿cómo pueden rendirse a sus deseos, si ceder significa destruirse la una a la otra?\n\nMientras buscan una forma de romper el ciclo, un misterioso asesino empieza a atacar historias como la suya. Para sobrevivir, ambas tendrán que escribir una historia más fuerte que la que el destino les ha deparado.\n\nPero, ¿qué historia es más fuerte que «El caballero y la bruja»?",
+    "pages": 484,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Fantasía",
+      "Romance"
+    ],
+    "subgenres": [],
+    "identidades": [
+      "Femme",
+      "Andrógina"
+    ],
+    "characters": [
+      "Bruja",
+      "Caballera"
+    ],
+    "dinamicas": [
+      "Bruja × Mortal",
+      "Andrógina × Femme"
+    ],
+    "tropes": [
+      "Destined Lovers",
+      "Reencarnación",
+      "Soulmates",
+      "Slow Burn",
+      "Forbidden Love",
+      "Opposites Attract"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792333873771_jxs4w",
+    "title": "Accidentally Falling",
+    "authors": [
+      "Shannon O'Connor"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/81wN6LozDvL._SL1500_.jpg",
+    "synopsis": "Una madre soltera, su nueva niñera y un intento por ocultar sus sentimientos.\n\nHATTIE:\nLo mejor que me ha pasado nunca, aparte de tener a mi hijo Ollie, fue mudarme a Sapphire Falls Orchard. Ahora, casi ocho años después, el hombre que me dejó embarazada y sola llama a mi puerta con ganas de conocer a su hijo. Es lo último que quiero, pero ¿quién soy yo para negarle a mi hijo su familia? Por supuesto, esto llega en el momento más ajetreado de mi carrera, así que lo más lógico sería contratar a la niñera más cualificada… hasta que ella cruza el umbral de mi casa…\n\nEMMY:\nSolo me falta un año para graduarme y tendré mi máster en educación infantil. Pero tras la muerte inesperada de mi padre y al tener que destinar el dinero de la matrícula a pagar su funeral, estoy buscando a toda costa una forma de pagar la universidad. Cuando se abre una vacante de niñera muy bien remunerada, soy la primera en presentar mi solicitud. Pero cuando llego a la casa, me resulta sorprendentemente familiar, ya que resulta ser la casa de la mujer con la que pasé el fin de semana anterior.",
+    "pages": 260,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Contemporánea",
+      "Romance"
+    ],
+    "subgenres": [
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante",
+      "Madre Soltera"
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Boss × Employee",
+      "Jefa × Subordinada"
+    ],
+    "tropes": [
+      "Age Gap",
+      "One Night Stand → More",
+      "Forced Proximity",
+      "Slow Burn",
+      "Sex Toys / Juguetes Sexuales",
+      "Hurt/Comfort"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Sapphire Falls Orchard",
+    "sagaNum": 2,
     "source": "other",
     "editions": [],
     "saficlub": false,
