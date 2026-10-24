@@ -668,6 +668,8 @@ body:not(.theme-halloween) .modal-share-btn:not(:hover){color:#fff}
 .avg-big{font-family:var(--font-display);font-size:2.8rem;font-weight:300;line-height:1;color:var(--text)}
 .avg-stars-row{display:flex;gap:2px;margin-bottom:2px}
 .star{font-size:16px}.star.on{color:var(--gold)}.star.off{color:var(--surface3)}
+/* F3.2 — estrella con relleno fraccionario (cuarto más próximo): --f = % relleno. Mismas variables que .on/.off. */
+.star-part{background:linear-gradient(90deg,var(--gold) var(--f,50%),var(--surface3) var(--f,50%));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .avg-votes{font-size:12px;color:var(--muted)}
 .vote-prompt{font-size:12.5px;color:var(--muted);margin-bottom:.5rem}
 .stars-input{display:flex;gap:.2rem;margin-bottom:.6rem}
@@ -10525,6 +10527,21 @@ function ratingOf(row){ // fila de ratings → valor efectivo, o null si no es v
   if(sc!==null && Number.isInteger(sc) && sc>=1 && sc<=5) return sc;
   return null;
 }
+function meanOf(r){ return r?((typeof r.mean==='number')?r.mean:(Number(r.avg)||0)):0; } // media exacta (o avg si es una entrada antigua)
+function _fillQ(v){ return Math.max(0,Math.min(1,Math.round(v*4)/4)); } // relleno al cuarto más próximo
+function starFracHTML(fill){ // una estrella <span class="star"> con relleno 0–1
+  const f=_fillQ(fill);
+  if(f>=1) return '<span class="star on">★</span>';
+  if(f<=0) return '<span class="star off">★</span>';
+  return '<span class="star star-part" style="--f:'+(f*100)+'%">★</span>';
+}
+function starsFracHTML(value){ const v=Number(value)||0; return [0,1,2,3,4].map(i=>starFracHTML(v-i)).join(''); } // 5 estrellas, valor 0–5
+function starsTextHTML(value){ // texto ★/☆ para contextos de línea (estantería, Top 10, analíticas) + una ★ parcial
+  const v=Math.max(0,Math.min(5,Number(value)||0)); let out='';
+  for(let i=0;i<5;i++){ const f=_fillQ(v-i);
+    out+= f>=1?'★':(f<=0?'☆':'<span class="star-part" style="--f:'+(f*100)+'%">★</span>'); }
+  return out;
+}
 function fmtRating(v){ return String(Math.round(v*100)/100).replace('.',','); } // 4 → «4» · 4,25 → «4,25» · 2,5 → «2,5»
 function _rmEntry(sum,count){ return {sum:sum,count:count,avg:Math.round(sum/count*10)/10,mean:sum/count}; } // avg = 1 decimal, idéntico al cálculo histórico (lo que se muestra); mean = media exacta (relleno fraccionario y ranking)
 // Actualiza ratingsMap de un libro: oldVal = voto previo de esta usuaria (null si no había), newVal = voto nuevo (null si se quita)
@@ -11040,7 +11057,7 @@ function applyFilters(resetPage=true){
   else if(sort==='top'){
     books.sort((a,b)=>{
       const ra=ratingsMap[a.id], rb=ratingsMap[b.id];
-      const avgA=ra?.avg||0, avgB=rb?.avg||0;
+      const avgA=meanOf(ra), avgB=meanOf(rb);
       if(avgB!==avgA) return avgB-avgA;
       return (rb?.count||0)-(ra?.count||0);
     });
@@ -11101,7 +11118,7 @@ function renderGrid(books, total, totalPages){
     const cardSagaName=getSaga(b);
     const cardSagaNum=b.sagaNum!=null?' #'+b.sagaNum:'';
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${escHtml(cardSagaName)}${cardSagaNum}</div>`:'';
-    const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
+    const voteLabel=myScore>0?`★ ${fmtRating(myScore)} Mi voto`:'Valorar';
     return `<div class="book-card" onclick="openBookPage('${b.id}')">
       <a class="book-cover-link ts-book-link" href="#libro/${encodeURIComponent(b.id)}" onclick="openBookPage('${b.id}');return false;" aria-label="Abrir ficha de ${escHtml(b.title)}"><div class="book-cover-wrap${b.cover?' cover-pending':' cover-missing'}">${spicyBadge}${coverEl}${avgBadge}</div></a>
       <div class="book-card-body">
@@ -12164,7 +12181,7 @@ function buildBpMiniRatingHTML(){
     const off=[1,2,3,4,5].map(()=>`<span class="star off">★</span>`).join('');
     return `<span class="bp-rate-detail"><span class="avg-stars-row" aria-hidden="true">${off}</span><span class="bp-rate-count">Sin valoraciones todavía</span></span>`;
   }
-  const stars=[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(r.avg)?'on':'off'}">★</span>`).join('');
+  const stars=starsFracHTML(meanOf(r));
   return `<span class="bp-rate-avg">${r.avg.toFixed(1)}</span><span class="bp-rate-detail"><span class="avg-stars-row" role="img" aria-label="Valoración media ${r.avg.toFixed(1)} de 5">${stars}</span><span class="bp-rate-count">${r.count} ${r.count!==1?'valoraciones':'valoración'}</span></span>`;
 }
 function _refreshBpGeneralRating(){
@@ -12180,15 +12197,16 @@ function buildBpRatingHTML(){
   const myScore=(b&&myRatings[b.id])||0;
   const label=`<span class="bp-mine-label">Tu valoración</span>`;
   if(!currentUser){
-    const readOnlyStars=[1,2,3,4,5].map(i=>`<span class="star ${i<=myScore?'on':'off'}">★</span>`).join('');
+    const readOnlyStars=starsFracHTML(myScore);
     return `${label}<div class="avg-stars-row">${readOnlyStars}</div>`;
   }
-  const shown=bpPendingStar||myScore;
+  const shownRaw=bpPendingStar||myScore;
+  const shown=shownRaw>0?Math.max(1,Math.round(shownRaw)):0; // los botones son enteros hasta F4; el valor exacto se escribe en el texto
   const starBtns=[1,2,3,4,5].map(i=>
     `<button type="button" class="star-btn bp-rating-star${i<=shown?' selected':''}" data-n="${i}" aria-label="Valorar con ${i} estrella${i!==1?'s':''}" title="${i} estrella${i!==1?'s':''}" aria-pressed="${i<=shown?'true':'false'}">★</button>`
   ).join('');
-  const prompt=myScore>0?'Puedes cambiarla':'¿Qué te pareció?';
-  const submitLabel=bpPendingStar>0?`Guardar ${bpPendingStar} ★`:(myScore>0?'Actualizar':'Valorar');
+  const prompt=myScore>0?(Number.isInteger(myScore)?'Puedes cambiarla':`Tu voto: ★ ${fmtRating(myScore)} · puedes cambiarlo`):'¿Qué te pareció?';
+  const submitLabel=bpPendingStar>0?`Guardar ${fmtRating(bpPendingStar)} ★`:(myScore>0?'Actualizar':'Valorar');
   const deleteBtn=myScore>0?`<button type="button" class="vote-delete bp-rating-delete" id="bpDeleteBtn" onclick="deleteVoteBP()">✕ Eliminar valoración</button>`:'';
   return `${label}<div class="bp-rating-interactive">
     <p class="vote-prompt">${prompt}</p>
@@ -12408,16 +12426,15 @@ function buildRatingHTML(){
   const b=activeBook;
   const r=ratingsMap[b.id]||{avg:0,count:0};
   const myScore=myRatings[b.id]||0;
-  const stars=avg=>[1,2,3,4,5].map(i=>
-    `<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
+  const stars=avg=>starsFracHTML(avg);
   const communityRating=r.count>0
-    ?`<div class="community-rating"><div class="avg-big">${r.avg.toFixed(1)}</div><div><div class="avg-stars-row">${stars(r.avg)}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
+    ?`<div class="community-rating"><div class="avg-big">${r.avg.toFixed(1)}</div><div><div class="avg-stars-row">${stars(meanOf(r))}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
     :`<p style="font-size:13px;color:var(--muted);font-style:italic;margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)">Aún sin valoraciones. ¡Sé la primera!</p>`;
   const starInput=[1,2,3,4,5].map(i=>
-    `<button class="star-btn${i<=(pendingStar||myScore)?' selected':''}" data-n="${i}">★</button>`).join('');
+    `<button class="star-btn${i<=Math.round(pendingStar||myScore)?' selected':''}" data-n="${i}">★</button>`).join('');
   let voteArea='';
   if(!currentUser) voteArea=`<p class="login-to-vote"><a onclick="closeBookModal();openAuthModal()">Inicia sesión</a> para valorar este libro.</p>`;
-  else voteArea=`<div><p class="vote-prompt">${myScore>0?`Tu valoración: ${'★'.repeat(myScore)} — puedes cambiarla`:'¿Qué te pareció?'}</p><div class="stars-input" id="starInput">${starInput}</div><div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="vote-submit" id="voteBtn" onclick="submitVote()" ${!pendingStar?'disabled':''}>${pendingStar>0?`Guardar ${pendingStar} ★`:myScore>0?'Actualizar':'Guardar'}</button>${myScore>0?`<button class="vote-delete" id="deleteBtn" onclick="deleteVote()">✕ Eliminar mi voto</button>`:''}</div></div>`;
+  else voteArea=`<div><p class="vote-prompt">${myScore>0?`Tu valoración: ★ ${fmtRating(myScore)} — puedes cambiarla`:'¿Qué te pareció?'}</p><div class="stars-input" id="starInput">${starInput}</div><div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="vote-submit" id="voteBtn" onclick="submitVote()" ${!pendingStar?'disabled':''}>${pendingStar>0?`Guardar ${pendingStar} ★`:myScore>0?'Actualizar':'Guardar'}</button>${myScore>0?`<button class="vote-delete" id="deleteBtn" onclick="deleteVote()">✕ Eliminar mi voto</button>`:''}</div></div>`;
   return `<div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}`;
 }
 function renderVoteSection(){
@@ -13795,10 +13812,10 @@ function renderTop10(){
   }
   // Calcular C (media global) y m (mínimo de votos)
   const allCounts=thaisRated.map(b=>ratingsMap[b.id].count).sort((a,b)=>a-b);
-  const C=thaisRated.reduce((s,b)=>s+ratingsMap[b.id].avg,0)/thaisRated.length;
+  const C=thaisRated.reduce((s,b)=>s+meanOf(ratingsMap[b.id]),0)/thaisRated.length;
   const m=Math.max(3, allCounts[Math.floor(allCounts.length*0.25)]||3);
   function weightedScore(b){
-    const {avg:R,count:v}=ratingsMap[b.id];
+    const R=meanOf(ratingsMap[b.id]), v=ratingsMap[b.id].count;
     return (v/(v+m))*R + (m/(v+m))*C;
   }
   const ranked=thaisRated
@@ -13811,7 +13828,7 @@ function renderTop10(){
       :`<div class="${cls}-ph">📖</div>`;
   }
   function starsHtml(avg){
-    return [1,2,3,4,5].map(i=>i<=Math.round(avg)?'★':'☆').join('');
+    return starsTextHTML(avg);
   }
   function tags(b){
     return (b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('')
@@ -13831,7 +13848,7 @@ function renderTop10(){
         <div class="t10-author">${escHtml((b.authors||[]).join(', ')||'—')}</div>
         <div class="t10-score">
           <span class="t10-avg">${r.avg.toFixed(1)}</span>
-          <span class="t10-stars">${starsHtml(r.avg)}</span>
+          <span class="t10-stars">${starsHtml(meanOf(r))}</span>
           <span class="t10-votes">${r.count} voto${r.count!==1?'s':''}</span>
         </div>
         <div class="t10-tags">${tags(b)}</div>
@@ -13856,7 +13873,7 @@ function renderTop10(){
           <div class="t10-author">${escHtml((b.authors||[]).join(', ')||'—')}</div>
           <div class="t10-score">
             <span class="t10-avg">${r.avg.toFixed(1)}</span>
-            <span class="t10-stars">${starsHtml(r.avg)}</span>
+            <span class="t10-stars">${starsHtml(meanOf(r))}</span>
           </div>
           <div class="t10-votes">${r.count} voto${r.count!==1?'s':''}</div>
         </div>
@@ -15089,7 +15106,7 @@ function ruletaShowResult(book) {
     ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);font-size:11px">${SPICY_ICONS[spicyEff]}</span>` : '';
   const genreTags = (book.genres || []).slice(0, 3).map(g => `<span class="tag tag-genre" style="font-size:11px">${g}</span>`).join('');
   const ratingTag = r.count > 0 ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);font-size:11px">★ ${r.avg.toFixed(1)} (${r.count})</span>` : '';
-  const myTag = myScore > 0 ? `<span class="tag" style="background:var(--accent-soft);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);font-size:11px">${'★'.repeat(myScore)} Mi voto</span>` : '';
+  const myTag = myScore > 0 ? `<span class="tag" style="background:var(--accent-soft);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);font-size:11px">★ ${fmtRating(myScore)} Mi voto</span>` : '';
   bookEl.innerHTML = `<button type="button" class="ruleta-cover-btn" onclick="ruletaOpenBook()" aria-label="Ver ficha de ${escHtml(book.title)}"><span class="ruleta-cover-stage">${coverEl}</span></button>
   <div class="ruleta-result-info">
     <div class="ruleta-result-title">${escHtml(book.title)}</div>
@@ -16113,9 +16130,9 @@ function _shelfRenderGrid(pageBooks){
           // Lógica de E6 intacta.
           // FASE E6.2 — línea meta: SOLO mi valoración y mi spicy (datos ya cargados, sin consultas). Spicy 0 se omite en v1; se comprueba != null, nunca truthiness.
           const rv=myRatings[b.id], sv=mySpicy[b.id];
-          const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+          const rN=isValidRating(Number(rv))?Number(rv):0; // F3.2: 0,25–5 sin redondear
           const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
-          meta=(rN||sN)?`<div class="shelf-book-meta"><span class="shelf-book-sr">${[rN?`Mi valoración ${rN} de 5`:'',sN?`${rN?'spicy':'Mi spicy'} ${sN} de 5`:''].filter(Boolean).join(', ')}</span>${rN?`<span class="shelf-book-stars" aria-hidden="true">${'★'.repeat(rN)+'☆'.repeat(5-rN)}</span>`:''}${sN?`<span class="shelf-book-spicy" aria-hidden="true">🌶 ${sN}</span>`:''}</div>`:'';
+          meta=(rN||sN)?`<div class="shelf-book-meta"><span class="shelf-book-sr">${[rN?`Mi valoración ${fmtRating(rN)} de 5`:'',sN?`${rN?'spicy':'Mi spicy'} ${sN} de 5`:''].filter(Boolean).join(', ')}</span>${rN?`<span class="shelf-book-stars" aria-hidden="true">${starsTextHTML(rN)}</span>`:''}${sN?`<span class="shelf-book-spicy" aria-hidden="true">🌶 ${sN}</span>`:''}</div>`:'';
           // FASE E6.3/E6.3.1 — fecha corta de la ÚLTIMA lectura completada, tomada de bookReadingTime (modelo E2/E3; sin lógica de fechas propia). Respeta la precisión (día / mes / año); sin fecha → sin línea.
           const rt=bookReadingTime(b.id);
           const _rx=_shelfReadExtras(b.id); // F8.4.2: «en N días» y «N lecturas» en tooltip y texto accesible; sin fecha → «Leído · sin fecha»
@@ -16175,9 +16192,9 @@ function _shelfRenderList(pageBooks){
         case 'read': {
           // Mismas reglas que la Galería (E6.2/E6.3): valoración y spicy solo 1–5, Math.round, spicy 0 se omite; fecha de la última lectura vía bookReadingTime.
           const rv=myRatings[b.id], sv=mySpicy[b.id];
-          const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+          const rN=isValidRating(Number(rv))?Number(rv):0; // F3.2: 0,25–5 sin redondear
           const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
-          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`${_shelfIco('spicy')} ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
+          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?starsTextHTML(rN):'',sN?`${_shelfIco('spicy')} ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
           const rt=bookReadingTime(b.id);
           const _rx=_shelfReadExtras(b.id); // F8.4.2
           if(rt.hasDate){ stCls='is-read'; stTip=_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision)+(_rx.all?' · '+_rx.all:''); stTxt=_shelfIco('read')+stTip; }
@@ -16419,7 +16436,7 @@ let _shelfInfoId=null;
 function _shelfInfoParts(b){
   const id=b.id, o={title:String(b.title||''),author:(b.authors||[]).join(', '),rating:'',spicy:'',state:''};
   const rv=Number(myRatings[id]);
-  if(rv>=1&&rv<=5) o.rating=`Mi valoración ${Math.round(rv)}/5`;
+  if(isValidRating(rv)) o.rating=`Mi valoración ${fmtRating(rv)}/5`;
   else { const cr=ratingsMap[id]; if(cr&&cr.count>0) o.rating=`Comunidad ${cr.avg.toFixed(1).replace('.',',')}/5 (${cr.count})`; }
   const sv=Number(mySpicy[id]);
   if(sv>=1&&sv<=5) o.spicy=`Mi spicy ${Math.round(sv)}/5`;
@@ -17596,8 +17613,7 @@ function anChips(list,limit){
   return `<ul class="an-chips">${li.slice(0,limit).join('')}</ul><details class="an-more"><summary>Ver ${li.length-limit} más</summary><ul class="an-chips">${li.slice(limit).join('')}</ul></details>`;
 }
 function anStarsHTML(score){
-  const r=Math.max(0,Math.min(5,Math.round(score)));
-  return `<span class="an-stars" role="img" aria-label="${anNum(score)} de 5">${'★'.repeat(r)}${'☆'.repeat(5-r)}</span>`;
+  return `<span class="an-stars" role="img" aria-label="${anNum(score)} de 5">${starsTextHTML(score)}</span>`;
 }
 function anSpicyHTML(id){
   const v=mySpicy[id]; if(v==null||isNaN(Number(v))) return '';
