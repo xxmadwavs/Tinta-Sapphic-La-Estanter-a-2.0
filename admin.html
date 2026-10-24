@@ -163,6 +163,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .spicy-row input[type=radio]{accent-color:var(--gold);width:14px;height:14px;flex-shrink:0}
 .spicy-label{font-size:12.5px;color:var(--text);flex:1}
 .spicy-desc{font-size:11px;color:var(--muted)}
+/* F3 · rapidez del romance (reutiliza .spicy-grid/.spicy-row; solo añade rayos y línea de estado) */
+.rapidez-bolts{display:inline-flex;gap:1px;font-size:12px;line-height:1;min-width:66px}
+.rapidez-bolts .on{opacity:1}
+.rapidez-bolts .off{opacity:.22;filter:grayscale(1)}
+.rapidez-current{font-size:11.5px;color:var(--muted);margin-top:.35rem}
+#rapidezGrid .spicy-row:focus-within{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-soft)}
 
 /* EDITIONS */
 .edition-row{display:grid;grid-template-columns:100px 120px 1fr 30px;gap:.4rem;align-items:center}
@@ -1201,6 +1207,11 @@ Filadelfia"></textarea></div>
   <div class="sub-lbl" style="margin-top:0">Nivel Spicy 🌶</div>
   <div class="spicy-grid" id="spicyGrid"></div>
 </div>
+<div id="sec-rapidez" role="group" aria-labelledby="rapidezLbl">
+  <div class="sub-lbl" id="rapidezLbl">Rapidez del romance ⚡ <span class="sub-hint">(0–5 · cómo de rápido avanza la relación; no es el spicy)</span></div>
+  <div class="spicy-grid" id="rapidezGrid" role="radiogroup" aria-labelledby="rapidezLbl"></div>
+  <div class="rapidez-current" id="rapidezCurrent" aria-live="polite"></div>
+</div>
 <div class="sub-lbl">Advertencias de contenido <span class="sub-hint">(ayudan a las lectoras a decidir)</span></div>
 <div class="chip-group" id="warningChips" style="margin-top:0"></div>
 <div class="chip-custom-add"><input type="text" id="customWarnings" placeholder="Añadir otro…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomChip('content_warnings','customWarnings',false);}"><button type="button" class="chip-custom-btn" onclick="addCustomChip('content_warnings','customWarnings',false)">+ Añadir</button></div>
@@ -1318,6 +1329,24 @@ const SPICY_LEVELS = [
   {v:4,label:'4/5 · Spicy',desc:'3–4 escenas explícitas',icon:'🌶🌶🌶🌶'},
   {v:5,label:'5/5 · Infernal 🔥',desc:'5+ escenas, nonstop',icon:'🌶🌶🌶🌶🌶'},
 ];
+// F3 · Rapidez del romance (campo editorial `rapidez_romance`): null = sin definir; 0–5 = enteros válidos (0 NO es vacío)
+const RAPIDEZ_LEVELS = [
+  {v:null,label:'Sin definir',desc:'Aún sin valorar (no es lo mismo que 0)'},
+  {v:0,label:'0/5 · Sin romance',desc:'El romance no llega a desarrollarse'},
+  {v:1,label:'1/5 · Slow burn extremo',desc:'Muy lento; la tensión tarda en resolverse'},
+  {v:2,label:'2/5 · Lento',desc:'Se construye con calma a lo largo del libro'},
+  {v:3,label:'3/5 · Progresivo',desc:'Ritmo medio, equilibrado'},
+  {v:4,label:'4/5 · Rápido',desc:'Se enamoran pronto'},
+  {v:5,label:'5/5 · Instalove',desc:'Inmediato; la relación arranca desde el principio'},
+];
+// Devuelve un entero 0–5 o null. Acepta number entero o string de dígitos ("3"); todo lo demás (vacío, NaN, 2.5, 6, -1, "abc", true) → null.
+function normalizeRapidez(v){
+  if(v===null||v===undefined||typeof v==='boolean') return null;
+  if(typeof v==='string'){ v=v.trim(); if(!/^\d+$/.test(v)) return null; v=Number(v); }
+  if(typeof v!=='number'||!Number.isInteger(v)||v<0||v>5) return null;
+  return v;
+}
+function rapidezBolts(n){ let h=''; for(let i=1;i<=5;i++) h+='<span class="'+(n!==null&&i<=n?'on':'off')+'">⚡</span>'; return h; }
 
 // ── 7. EDAD PROTAGONISTAS ────────────────────────────────────────────────
 const EDAD_PROTAGONISTA = [
@@ -1455,7 +1484,7 @@ const CONTENT_WARNINGS = [
 // Books stored in memory (from JSON), votes in Supabase
 let books = [], editingId = null;
 let adminFilterSection = 'all'; // 'all' | 'thais' | 'other' | 'spanish' | 'baihee' | 'asian'
-let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[],ambientacion:[],epoca:null,tipo_mundo:null,entornos:[],idioma_original:null};
+let sel = {genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,rapidez_romance:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[],ambientacion:[],epoca:null,tipo_mundo:null,entornos:[],idioma_original:null};
 let ubicDraft = []; // borrador de ubicaciones en el formulario: [{pais,region,ciudad,localidad,lugares[]}] (strings vacíos = sin dato)
 let authors = []; // array of strings
 let editions = []; // array of {lang, store, url}
@@ -1837,6 +1866,7 @@ function openEditModal(id) {
   document.getElementById('fSagaNum').value=sel.sagaNum!==''?sel.sagaNum:'';
   updateSagaSection();
   sel.spicy=b.spicy===undefined?null:b.spicy;
+  sel.rapidez_romance=normalizeRapidez(b.rapidez_romance); // libros antiguos sin el campo → null (sin definir)
   setSource(b.source||'thais');
   // SafiClub
   document.getElementById('fSafiClub').checked=!!b.saficlub;
@@ -1904,7 +1934,8 @@ function clearForm() {
   document.getElementById('dupWarning').classList.remove('show');
   document.getElementById('dupOk').classList.remove('show');
   authors=[];editions=[];
-  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[],ambientacion:[],epoca:null,tipo_mundo:null,entornos:[],idioma_original:null};
+  hideAuthorSuggestions(true);
+  sel={genres:[],subgenres:[],identidades:[],characters:[],dinamicas:[],tropes:[],spicy:null,rapidez_romance:null,formato:null,adaptacion:null,sagaName:'',sagaNum:'',source:'thais',edad:[],pais_cultura:[],pais_origen:[],content_warnings:[],ambientacion:[],epoca:null,tipo_mundo:null,entornos:[],idioma_original:null};
   setSource('thais');
   const p=document.getElementById('coverPreview');p.style.display='none';p.src='';
   document.getElementById('fCoverFile').value='';
@@ -1975,7 +2006,7 @@ function levenshtein(a,b){
   return dp[a.length][b.length];
 }
 
-function closeModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';hideAuthorSuggestions();}
+function closeModal(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';hideAuthorSuggestions(true);}
 
 /* ── JUMP NAV ── */
 function openFold(id){
@@ -2033,7 +2064,8 @@ function updateFoldSummaries(){
   // Contenido (spicy + advertencias)
   const sp=(sel.spicy!==null&&sel.spicy!==undefined)?SPICY_LEVELS.find(s=>s.v===sel.spicy):null;
   const nw=(sel.content_warnings||[]).length;
-  put('sum-warnings',[sp?((sp.icon?sp.icon+' ':'')+sp.label.split(' ·')[0]):'',nw?nw+(nw===1?' advertencia':' advertencias'):''].filter(Boolean).join(' · '));
+  const rp=normalizeRapidez(sel.rapidez_romance);
+  put('sum-warnings',[sp?((sp.icon?sp.icon+' ':'')+sp.label.split(' ·')[0]):'',rp!==null?('⚡ '+rp+'/5'):'',nw?nw+(nw===1?' advertencia':' advertencias'):''].filter(Boolean).join(' · '));
   // General / formato / ediciones
   put('sum-media',[val('fCover')?'Portada':'',val('fSynopsis')?'Sinopsis':''].filter(Boolean).join(' · '));
   const saga=val('fSagaName'),sn=val('fSagaNum');
@@ -2080,12 +2112,13 @@ function autoFillPaisOrigen(name){
 function handleAuthorInput(e) {
   if(e.key==='Enter'||e.key===','){
     e.preventDefault();
-    const focused=document.querySelector('.author-sug-item.focused');
+    const sugBox=document.getElementById('authorSuggestions');
+    const focused=(sugBox&&sugBox.classList.contains('show'))?sugBox.querySelector('.author-sug-item.focused'):null;
     if(focused){pickAuthorSug(focused.textContent.trim());return;}
     const val=e.target.value.trim().replace(/,$/,'').trim();
     e.target.value='';
     if(val&&!authors.includes(val)){authors.push(val);renderAuthorPills();autoFillPaisOrigen(val);}
-    hideAuthorSuggestions();
+    hideAuthorSuggestions(true);
   } else if(e.key==='Backspace'&&!e.target.value&&authors.length){
     authors.pop();renderAuthorPills();
   } else if(e.key==='ArrowDown'){e.preventDefault();moveSugFocus(1);}
@@ -2097,10 +2130,10 @@ function showAuthorSuggestions(val){
   const box=document.getElementById('authorSuggestions');
   if(!box) return;
   const q=val.trim().toLowerCase();
-  if(!q||q.length<2){box.classList.remove('show');return;}
+  if(!q||q.length<2){box.classList.remove('show');box.innerHTML='';return;}
   const allAuthors=[...new Set(books.flatMap(b=>b.authors||[]))].sort();
   const matches=allAuthors.filter(a=>a.toLowerCase().includes(q)&&!authors.includes(a)).slice(0,8);
-  if(!matches.length){box.classList.remove('show');return;}
+  if(!matches.length){box.classList.remove('show');box.innerHTML='';return;}
   const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
   box.innerHTML=matches.map(a=>`<div class="author-sug-item" onmousedown="pickAuthorSug('${a.replace(/'/g,"\\'")}')">`+a.replace(re,'<mark>$1</mark>')+`</div>`).join('');
   box.classList.add('show');
@@ -2110,11 +2143,12 @@ function pickAuthorSug(name){
   if(name&&!authors.includes(name)){authors.push(name);renderAuthorPills();autoFillPaisOrigen(name);}
   const inp=document.getElementById('authorInput');
   if(inp) inp.value='';
-  hideAuthorSuggestions();
+  hideAuthorSuggestions(true);
 }
 
-function hideAuthorSuggestions(){
-  setTimeout(()=>{const b=document.getElementById('authorSuggestions');if(b)b.classList.remove('show');},160);
+function hideAuthorSuggestions(immediate){
+  const clear=()=>{const b=document.getElementById('authorSuggestions');if(b){b.classList.remove('show');b.innerHTML='';}};
+  if(immediate===true) clear(); else setTimeout(clear,160);
 }
 
 function moveSugFocus(dir){
@@ -2174,6 +2208,7 @@ function renderAllChips() {
   renderChipGroup('entornoChips',           ENTORNOS,         'entornos',         false);
   renderSingleChips('idiomaOriginalChips',  IDIOMAS_ORIGINAL, 'idioma_original', 'gold');
   renderSpicy();
+  renderRapidez();
   updateFoldSummaries();
 }
 
@@ -2259,6 +2294,33 @@ function renderSpicy(){
 }
 
 function setSp(v){sel.spicy=(v==='null'||v===null)?null:parseInt(v);renderSpicy();}
+/* F3 · Rapidez del romance */
+function renderRapidez(){
+  const grid=document.getElementById('rapidezGrid'); if(!grid) return;
+  const cur=normalizeRapidez(sel.rapidez_romance);
+  grid.innerHTML=RAPIDEZ_LEVELS.map(r=>`
+    <label class="spicy-row${cur===r.v?' active':''}">
+      <input type="radio" name="rapidez_romance" value="${r.v===null?'':r.v}" ${cur===r.v?'checked':''} onchange="setRapidez(this.value)">
+      <span class="rapidez-bolts" aria-hidden="true">${r.v===null?'—':rapidezBolts(r.v)}</span>
+      <span class="spicy-label"><strong>${r.label}</strong></span>
+      <span class="spicy-desc">${r.desc}</span>
+    </label>`).join('');
+  updateRapidezCurrent();
+}
+function updateRapidezCurrent(){
+  const el=document.getElementById('rapidezCurrent'); if(!el) return;
+  const cur=normalizeRapidez(sel.rapidez_romance);
+  if(cur===null){ el.textContent='Rapidez del romance: sin definir (no se guardará ningún valor).'; return; }
+  const lv=RAPIDEZ_LEVELS.find(r=>r.v===cur);
+  el.textContent='Rapidez del romance: '+cur+' de 5 — '+lv.label.replace(/^\d\/5 · /,'')+(cur===0?' (el 0 es un valor válido, distinto de vacío).':'.');
+}
+function setRapidez(v){
+  sel.rapidez_romance=normalizeRapidez(v);
+  // sin re-render completo para no perder el foco del teclado
+  document.querySelectorAll('#rapidezGrid .spicy-row').forEach(l=>{const i=l.querySelector('input');l.classList.toggle('active',!!(i&&i.checked));});
+  updateRapidezCurrent();
+  updateFoldSummaries();
+}
 function setSource(v){
   sel.source=v;
   const map={thais:'active-thais', other:'active-other', spanish:'active-spanish', baihee:'active-baihee', asian:'active-asian', african:'active-african', wattpad:'active-wattpad'};
@@ -2472,6 +2534,7 @@ function saveBook() {
     ambientacion:[...(sel.ambientacion||[])],
     content_warnings:[...(sel.content_warnings||[])],
     spicy:     sel.spicy===null?null:sel.spicy,
+    rapidez_romance: normalizeRapidez(sel.rapidez_romance), // null = sin definir; 0 se conserva como 0
     formato:   sel.formato,
     adaptacion:sel.adaptacion,
     sagaName:  document.getElementById('fSagaName').value.trim()||null,
@@ -2547,6 +2610,7 @@ async function importJSON(input){
     if(!Array.isArray(data)) throw new Error('Debe ser un array de libros.');
   }catch(e){showToast('JSON inválido: '+e.message,'error');input.value='';return;}
 
+  let rapidezInvalid=0;
   // Migrate old format: author (string) → authors (array)
   data=data.map(b=>{
     if(!b.authors){
@@ -2554,6 +2618,12 @@ async function importJSON(input){
       delete b.author;
     }
     if(!b.editions) b.editions=[];
+    // F3: rapidez_romance solo se toca si el libro ya la trae; los libros antiguos quedan tal cual (sin campo)
+    if(Object.prototype.hasOwnProperty.call(b,'rapidez_romance')){
+      const raw=b.rapidez_romance, n=normalizeRapidez(raw);
+      if(n===null && raw!==null && raw!==undefined && raw!==''){ rapidezInvalid++; console.warn('rapidez_romance inválida en',b.id,raw); }
+      b.rapidez_romance=n;
+    }
     return b;
   });
 
@@ -2561,7 +2631,7 @@ async function importJSON(input){
   renderBookList();
   updateStats();
   input.value='';
-  showToast(`${data.length} libros importados ✓`);
+  showToast(`${data.length} libros importados ✓`+(rapidezInvalid?` — ${rapidezInvalid} con rapidez_romance inválida (puesta a vacío)`:''));
 }
 
 function onCoverUrlInput(url){
@@ -3009,6 +3079,329 @@ async function applyBookResult(i){
   status.textContent='Rellenados '+filled+' campo(s) desde '+it.source+'. Revisa y completa lo que falte (categorías y sinopsis pueden venir en inglés).';
 }
 
+/* ── PEGAR TABLAS RESUMEN ──
+   Formatos reconocidos:
+   A) "N. Bloque ⇥ Campo ⇥ Resultado"      (3 columnas, valores en listas)
+   B) "N. Bloque ⇥ Información verificada"  (2 columnas, texto en prosa)
+   C) "Campo ⇥ Resultado final"             (clave → valor, sin numerar)
+   Se ignora lo marcado "(opcional)"; "(parcial)" y "posible" se conservan.
+   Spicy: solo según el nº de escenas explícitas. */
+var TP_PAISES_EXTRA=['Perú','Rusia','Irlanda','Portugal','Grecia','Turquía','Egipto','Marruecos','Cuba','Venezuela','Uruguay','Ecuador','Bolivia','Paraguay','Camboya','Laos','Myanmar','Indonesia','Malasia','Singapur','Hong Kong','Suecia','Noruega','Dinamarca','Finlandia','Islandia','Suiza','Austria','Bélgica','Polonia','Ucrania','Nueva Zelanda','Países Bajos','Nepal','Pakistán','Israel','Irán','Arabia Saudita','Kenia','Nigeria','Sudáfrica'];
+var TP_ALIAS_PAIS={'inglaterra':['Reino Unido','Inglaterra'],'escocia':['Reino Unido','Escocia'],'gales':['Reino Unido','Gales'],'irlandadelnorte':['Reino Unido','Irlanda del Norte'],'granbretana':['Reino Unido',''],'uk':['Reino Unido',''],'eeuu':['Estados Unidos',''],'usa':['Estados Unidos',''],'corea':['Corea del Sur',''],'holanda':['Países Bajos','']};
+var TP_PROF={actriz:'Actriz',famosa:'Famosa',abogada:'Abogada',arqueologa:'Arqueóloga',artista:'Artista',azafata:'Azafata',bailarina:'Bailarina',bombera:'Bombera',bruja:'Bruja',camarera:'Camarera',cantante:'Cantante',ceo:'CEO',chef:'Chef',cientifica:'Científica',deportista:'Deportista',detective:'Detective',diosa:'Diosa',doctora:'Doctora / Médica',medica:'Doctora / Médica',editora:'Editora',empresaria:'Empresaria',enfermera:'Enfermera',escritora:'Escritora',estudiante:'Estudiante',farmaceutica:'Farmacéutica',florista:'Florista',fotografa:'Fotógrafa',futbolista:'Futbolista',granjera:'Granjera',guardaespaldas:'Guardaespaldas',hacker:'Hacker',inspectora:'Inspectora',investigadora:'Investigadora',jardinera:'Jardinera',millonaria:'Millonaria / Billonaria',billonaria:'Millonaria / Billonaria',piloto:'Piloto',pirata:'Pirata',policia:'Policía',politica:'Política',profesora:'Profesora',psicologa:'Psicóloga',reportera:'Reportera / Periodista',periodista:'Reportera / Periodista',tatuadora:'Tatuadora',veterinaria:'Veterinaria'};
+var TP_ENTORNO={hospital:'Hospital',oficina:'Oficina',universidad:'Universidad',instituto:'Instituto',cafeteria:'Cafetería',restaurante:'Restaurante',libreria:'Librería',palacio:'Palacio',isla:'Isla',empresa:'Empresa',plantacion:'Campo',finca:'Campo',granja:'Campo',hacienda:'Campo',pueblo:'Pueblo pequeño'};
+var TP_NUM={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10};
+
+function tpNorm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
+function tpCap(s){s=String(s||'').trim();return s.charAt(0).toUpperCase()+s.slice(1);}
+function tpUnspec(v){return !v||/^\s*(no\s+(est[aá]\s+)?(especificad|confirmad|identificad|defin|indicad|consta|aplica)|desconocid|indeterminad|n\/?a\b|sin\s+(dato|especificar)|[-—–?]+\s*$)/i.test(String(v).trim());}
+function tpSplitList(s){
+  var sep=/[;；]/.test(s)?/[;；]/:/,/;
+  return String(s||'').split(sep).map(function(x){return x.trim();}).filter(Boolean)
+    .filter(function(x){return !/opcional/i.test(x);})
+    .map(function(x){return x.replace(/\s*\([^)]*\)\s*/g,' ').replace(/\s+/g,' ').trim();})
+    .filter(Boolean);
+}
+function tpExact(item,list){
+  var c=cleanStr(item);if(!c) return null;
+  for(var i=0;i<list.length;i++){if(cleanStr(list[i])===c) return list[i];}
+  return null;
+}
+function tpMatch(item,list){
+  item=item.replace(/\s[x×✕]\s/gi,' × ');
+  var ex=tpExact(item,list);if(ex) return ex;
+  var c=cleanStr(item);
+  if(c.length>=6){for(var j=0;j<list.length;j++){var l=cleanStr(list[j]);if(l.length>=6&&(l.indexOf(c)>=0||c.indexOf(l)>=0)) return list[j];}}
+  return null;
+}
+function tpAddAll(items,list,target,unknown){
+  var n=0;
+  items.forEach(function(it){
+    var v=tpMatch(it,list);
+    if(!v){unknown.push(it);return;}
+    if(target.indexOf(v)<0){target.push(v);n++;}
+  });
+  return n;
+}
+/* Texto libre → trozos; descarta "(opcional)" y frases negadas ("no se confirma…") */
+function tpTokens(text){
+  return String(text||'').split(/\n|[.;,]|\s+y\s+/).map(function(t){return t.trim();}).filter(Boolean)
+    .filter(function(t){return !/opcional/i.test(t);})
+    .filter(function(t){return !/\bno\s+(se\s+)?(confirma|considera|identifica|puede|aplica|corresponde)|\bno\s+(est[aá]\s+confirmad|es\s|hay\s)|descart|sin\s+confirmar/i.test(t);});
+}
+/* Busca elementos de una lista dentro de texto libre */
+function tpScan(text,list,target){
+  var n=0;
+  tpTokens(text).forEach(function(tok){
+    var nt=' '+tpNorm(tok)+' ',hits=[];
+    list.forEach(function(item){
+      var ni=tpNorm(item);if(!ni) return;
+      var hit=ni.length<=3
+        ?new RegExp('(^|[^A-Za-z0-9])'+item.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'($|[^A-Za-z0-9])').test(tok)
+        :nt.indexOf(' '+ni+' ')>=0;
+      if(hit) hits.push({item:item,ni:ni});
+    });
+    hits.forEach(function(h){
+      var inside=hits.some(function(o){return o!==h&&o.ni.length>h.ni.length&&(' '+o.ni+' ').indexOf(' '+h.ni+' ')>=0;});
+      if(!inside&&target.indexOf(h.item)<0){target.push(h.item);n++;}
+    });
+  });
+  return n;
+}
+function tpAgeBin(age){return age<=18?EDAD_PROTAGONISTA[0]:age<=24?EDAD_PROTAGONISTA[1]:age<=39?EDAD_PROTAGONISTA[2]:EDAD_PROTAGONISTA[3];}
+function tpAges(text){
+  var n=0,re=/(\d{2})\s*a[nñ]os/gi,m;
+  while((m=re.exec(text))){var b=tpAgeBin(parseInt(m[1],10));if(sel.edad.indexOf(b)<0){sel.edad.push(b);n++;}}
+  return n;
+}
+function tpProf(text){
+  var n=0,nt=' '+tpNorm(text)+' ';
+  Object.keys(TP_PROF).forEach(function(k){
+    var v=TP_PROF[k];
+    if(nt.indexOf(' '+k+' ')>=0&&CHARACTERS.indexOf(v)>=0&&sel.characters.indexOf(v)<0){sel.characters.push(v);n++;}
+  });
+  return n;
+}
+function tpEntornos(text){
+  var n=0,nt=' '+tpNorm(text)+' ';
+  Object.keys(TP_ENTORNO).forEach(function(k){
+    var v=TP_ENTORNO[k];
+    if(nt.indexOf(' '+k+' ')>=0&&ENTORNOS.indexOf(v)>=0&&sel.entornos.indexOf(v)<0){sel.entornos.push(v);n++;}
+  });
+  return n;
+}
+/* nº de escenas explícitas en un texto (null si no se puede saber) */
+function tpExplicitCount(text){
+  var clauses=String(text||'').split(/[.;\n]/),re=/(\d+|un|una|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\s+(?:escenas?|episodios?|encuentros?)/i;
+  for(var i=0;i<clauses.length;i++){
+    var c=clauses[i];
+    if(/sugier|impl[ií]cit|\bno\s+(muestr|se\s+confirm|hay)/i.test(c)) continue;
+    var m=c.match(re);
+    if(m){var w=m[1].toLowerCase();return /^\d+$/.test(w)?parseInt(w,10):TP_NUM[w];}
+  }
+  if(/ninguna\s+escena|cero\s+escenas|no\s+hay\s+(?:ninguna\s+)?escenas?/i.test(text)) return 0;
+  return null;
+}
+function tpSpicy(n){return n===0?0:n<=2?3:n<=4?4:5;}
+/* identidades: solo valores afirmados ("Kirana: femme"), nunca negados */
+function tpIdentParts(value,unknown){
+  var n=0;
+  String(value||'').split(/\s\/\s|\/|,|;|\sy\s/).forEach(function(p){
+    p=p.replace(/\([^)]*\)/g,'').trim();
+    if(!p||/^no\b|\bsin\s|sufic|defin|confirm|opcional/i.test(p)) return;
+    var v=tpExact(p,IDENTIDADES);
+    if(v){if(sel.identidades.indexOf(v)<0){sel.identidades.push(v);n++;}}
+    else unknown.push(p);
+  });
+  return n;
+}
+function tpIdentProse(text,unknown){
+  var n=0;
+  String(text||'').split(/\.\s+|\n/).forEach(function(s){
+    var m=s.match(/^\s*([^:]{1,40}):\s*(.+)$/);
+    if(m) n+=tpIdentParts(m[2].replace(/\.$/,''),[]);
+  });
+  return n;
+}
+function tpCountry(name){
+  var k=cleanStr(name);
+  if(TP_ALIAS_PAIS[k]) return {pais:TP_ALIAS_PAIS[k][0],region:TP_ALIAS_PAIS[k][1]};
+  var pool=PAIS_CULTURA.concat(PAIS_ORIGEN).concat(TP_PAISES_EXTRA);
+  for(var i=0;i<pool.length;i++){
+    if(/^Ambientaci|^Cultura|^Mundo|^Otro$/.test(pool[i])) continue;
+    if(cleanStr(pool[i])===k) return {pais:pool[i],region:''};
+  }
+  return null;
+}
+function tpListItems(s){
+  return String(s||'').split(/,|;|\sy\s/).map(function(x){return x.trim().replace(/\.$/,'');}).filter(Boolean);
+}
+function tpParseRows(text){
+  var rows=[],kv=[];
+  text.split(/\r?\n/).forEach(function(line){
+    if(!line.trim()||/^[\s|:\-]+$/.test(line)) return;
+    var cells,sep;
+    if(line.indexOf('\t')>=0){cells=line.split('\t');sep='tab';}
+    else if(line.indexOf('|')>=0){cells=line.split('|');sep='pipe';}
+    else{cells=line.split(/\s{2,}/);sep='space';}
+    cells=cells.map(function(c){return c.replace(/[*#]/g,'').trim();});
+    while(cells.length&&!cells[0]) cells.shift();
+    while(cells.length&&!cells[cells.length-1]) cells.pop();
+    if(cells.length<2) return;
+    if(/^\d+\s*[.)]/.test(cells[0])){
+      var bl=cleanStr(cells[0].replace(/^\d+\s*[.)]\s*/,''));
+      if(cells.length>=3) rows.push({kind:'3col',bloque:bl,campo:cells[1],resultado:cells.slice(2).join(' ')});
+      else rows.push({kind:'prose',bloque:bl,text:cells[1]});
+    }else if(sep!=='space'){
+      var k=cleanStr(cells[0]);
+      if(k==='bloque'||k==='campo') return;
+      kv.push({kind:'kv',key:k,value:cells.slice(1).join(' ').trim()});
+    }
+  });
+  if(!rows.length&&kv.length<2) return [];
+  return rows.concat(kv);
+}
+
+function runTablePaste(text){
+  var rows=tpParseRows(text);
+  var res={filled:0,unknown:[],notes:[],detected:rows.length>0};
+  if(!res.detected) return res;
+  var unknown=res.unknown;
+  var city='',region='',country='',others=[],lugaresGen=[],epocaRow=null,explicitN=null;
+
+  function loc(t){ /* texto libre de "País y localización" */
+    var m;
+    m=t.match(/Pa[ií]s(?:\s+principal)?\s*:\s*([^.;\n]+)/i);if(m&&!country&&!tpUnspec(m[1])) country=m[1].trim();
+    m=t.match(/Regi[oó]n(?:\s+principal)?\s*:\s*([^.;\n]+)/i);if(m&&!region&&!tpUnspec(m[1])) region=m[1].trim();
+    m=t.match(/Ciudad(?:\s+principal)?\s*:\s*([^.;\n]+)/i);
+    if(m&&!city&&!tpUnspec(m[1])) city=m[1].trim();
+    else if(!city){
+      m=t.match(/([A-ZÁÉÍÓÚÑ][\wáéíóúñü]+(?:\s+[A-ZÁÉÍÓÚÑ][\wáéíóúñü]+)*)\s+es\s+(?:la|el)\s+(?:referencia|ciudad|escenario|centro)[^.]*?(?:principal|importante)/);
+      if(m) city=m[1].trim();
+    }
+    m=t.match(/Lugares\s+(?:identificados|nombrados|mencionados|concretos)\s*:\s*([^.\n]+)/i);
+    if(m) tpListItems(m[1]).forEach(function(x){if(x) others.push(x);});
+    m=t.match(/aparecen\s+([^.\n]+)/i);
+    if(m) tpListItems(m[1]).forEach(function(x){
+      x=x.replace(/^(?:el|la|los|las|un|una|unos|unas)\s+/i,'').trim();
+      if(x&&!/sin\s+nombre/i.test(x)) lugaresGen.push(tpCap(x));
+    });
+  }
+
+  function prose(b,t){
+    if(b.indexOf('edad')>=0||b.indexOf('profesion')>=0){res.filled+=tpAges(t)+tpProf(t);}
+    else if(b.indexOf('escena')>=0||b.indexOf('sexo')>=0){var n=tpExplicitCount(t);if(n!==null) explicitN=n;}
+    else if(b.indexOf('expresion')>=0){res.filled+=tpIdentProse(t,unknown);}
+    else if(b.indexOf('pais')>=0||b.indexOf('localiz')>=0||b.indexOf('ubicacion')>=0){loc(t);}
+    else if(b.indexOf('dinamica')>=0){res.filled+=tpScan(t,DINAMICAS,sel.dinamicas);}
+    else if(b.indexOf('tropo')>=0||b.indexOf('trope')>=0){res.filled+=tpScan(t,TROPES,sel.tropes);}
+    else if(b.indexOf('subgenero')>=0){res.filled+=tpScan(t,SUBGENRES,sel.subgenres);}
+    else if(b.indexOf('genero')>=0){res.filled+=tpScan(t,GENRES,sel.genres);}
+  }
+
+  function kvRow(k,v){
+    if(!v) return;
+    if(k==='titulo'){var ti=document.getElementById('fTitle');if(ti){ti.value=v;res.filled++;if(typeof checkDuplicate==='function') checkDuplicate(v);}}
+    else if(k.indexOf('autor')===0){
+      var a=v.split(/\s*[\/;]\s*|\s+y\s+/)[0].trim();
+      if(a&&!tpUnspec(a)&&!authors.some(function(x){return x.toLowerCase()===a.toLowerCase();})){authors.push(a);renderAuthorPills();res.filled++;}
+    }
+    else if(k.indexOf('edadde')===0){res.filled+=tpAges(v);}
+    else if(k.indexOf('profesionde')===0){res.filled+=tpProf(v);}
+    else if(k.indexOf('escenassexuales')===0||k.indexOf('escenasexplicitas')===0||k==='escenasdesexo'){var n=tpExplicitCount(v);if(n!==null) explicitN=n;}
+    else if(k.indexOf('expresionde')===0){res.filled+=tpIdentParts(v,unknown);}
+    else if(k.indexOf('dinamica')===0){res.filled+=tpScan(v,DINAMICAS,sel.dinamicas);}
+    else if(k==='ciudadprincipal'){if(!tpUnspec(v)) city=v;}
+    else if(k==='regionprincipal'){if(!tpUnspec(v)) region=v;}
+    else if(k==='paisprincipal'){if(!tpUnspec(v)) country=v;}
+    else if(k==='localizacioncentral'){if(!tpUnspec(v)) lugaresGen.push(tpCap(v));}
+    else if(k==='localizacionesrelevantes'){
+      tpListItems(v).forEach(function(x){if(x&&!/sin\s+nombre/i.test(x)) lugaresGen.push(tpCap(x));});
+    }
+    else if(k==='epoca'){if(!tpUnspec(v)) epocaRow={valor:v,nota:''};}
+    else if(k==='mundoficticio'){
+      if(/^\s*no\b/i.test(v)){sel.tipo_mundo='Realista';res.filled++;}
+      else if(/^\s*s[ií]\b/i.test(v)){sel.tipo_mundo='Mundo ficticio';res.filled++;}
+    }
+    else if(k.indexOf('tropo')===0||k.indexOf('trope')===0){res.filled+=tpScan(v,TROPES,sel.tropes);}
+    else if(k.indexOf('subgenero')===0){res.filled+=tpScan(v,SUBGENRES,sel.subgenres);}
+    else if(k.indexOf('genero')===0){res.filled+=tpScan(v,GENRES,sel.genres);}
+  }
+
+  rows.forEach(function(r){
+    if(r.kind==='prose') return prose(r.bloque,r.text);
+    if(r.kind==='kv') return kvRow(r.key,r.value);
+    var b=r.bloque,campo=r.campo,val=r.resultado;
+    if(b.indexOf('protagonista')===0){res.filled+=tpAges(campo+' '+val);
+    }else if(b.indexOf('profesion')===0){
+      res.filled+=tpAddAll(tpSplitList(val),CHARACTERS,sel.characters,unknown);
+    }else if(b.indexOf('sexo')===0){
+      var key=cleanStr(campo);
+      if(key.indexOf('explicit')>=0&&key.indexOf('escena')>=0){var nm=(val+' '+campo).match(/\d+/);if(nm) explicitN=parseInt(nm[0],10);}
+    }else if(b.indexOf('expresion')===0){
+      res.filled+=tpAddAll(tpSplitList(val||campo),IDENTIDADES,sel.identidades,unknown);
+    }else if(b.indexOf('ciudadprincipal')===0){city=campo;
+    }else if(b.indexOf('regionprincipal')===0){region=campo;
+    }else if(b.indexOf('paisprincipal')===0){country=campo;
+    }else if(b.indexOf('otraslocalizacion')===0||b.indexOf('otralocalizacion')===0){others.push(campo);
+    }else if(b.indexOf('epoca')===0){epocaRow={valor:campo,nota:val};
+    }else if(b.indexOf('dinamica')===0){
+      res.filled+=tpAddAll(tpSplitList(val),DINAMICAS,sel.dinamicas,unknown);
+    }else if(b.indexOf('tropo')===0||b.indexOf('trope')===0){
+      res.filled+=tpAddAll(tpSplitList(val),TROPES,sel.tropes,unknown);
+    }else if(b.indexOf('subgenero')===0){
+      res.filled+=tpAddAll(tpSplitList(val),SUBGENRES,sel.subgenres,unknown);
+    }else if(b.indexOf('genero')===0){
+      res.filled+=tpAddAll(tpSplitList(val),GENRES,sel.genres,unknown);
+    }
+  });
+
+  /* Spicy: SOLO según el nº de escenas explícitas  (0→0 · 1–2→3 · 3–4→4 · 5+→5) */
+  if(explicitN!==null){sel.spicy=tpSpicy(explicitN);res.filled++;}
+
+  /* País (cultura) */
+  var mainC=country?tpCountry(country):null;
+  var mainPais=mainC?mainC.pais:(country||'');
+  if(mainPais&&PAIS_CULTURA.indexOf(mainPais)>=0&&sel.pais_cultura.indexOf(mainPais)<0){sel.pais_cultura.push(mainPais);res.filled++;}
+
+  /* Ubicaciones (una ubicación sin país bloquea el guardado → solo se crean con país) */
+  function addUb(pais,reg,ciu){
+    pais=pais||'';reg=reg||'';ciu=ciu||'';
+    if(!pais) return null;
+    var found=null;
+    ubicDraft.forEach(function(u){
+      if(!found&&u.pais.trim().toLowerCase()===pais.toLowerCase()&&u.ciudad.trim().toLowerCase()===ciu.toLowerCase()&&(ciu||u.region.trim().toLowerCase()===reg.toLowerCase())) found=u;
+    });
+    if(found) return found;
+    var e={pais:pais,region:reg,ciudad:ciu,localidad:'',lugares:[],pend:'',open:false,extra:{}};
+    ubicDraft.push(e);res.filled++;
+    return e;
+  }
+  var mainEntry=null;
+  if(city||region||mainPais){
+    if(mainPais) mainEntry=addUb(mainPais,region,city);
+    else res.notes.push('Sin país, no se creó la ubicación: '+[city,region].filter(Boolean).join(', '));
+  }
+  others.forEach(function(o){
+    var c=tpCountry(o);
+    if(c) addUb(c.pais,c.region,'');
+    else if(mainPais) addUb(mainPais,'',o);
+    else res.notes.push('Sin país, no se añadió: '+o);
+  });
+  if(lugaresGen.length){
+    if(mainEntry){
+      lugaresGen.forEach(function(l){if(mainEntry.lugares.indexOf(l)<0){mainEntry.lugares.push(l);res.filled++;}});
+    }else res.notes.push('Lugares sin país (añade un país a la ubicación para guardarlos): '+lugaresGen.join(', '));
+    res.filled+=tpEntornos(lugaresGen.join(' '));
+  }
+  if(city&&sel.entornos.indexOf('Ciudad')<0){sel.entornos.push('Ciudad');res.filled++;}
+
+  /* Época + periodo específico */
+  if(epocaRow){
+    var raw=(epocaRow.valor+' '+epocaRow.nota),low=raw.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),ep=null;
+    ep=tpMatch(epocaRow.valor,EPOCAS);
+    if(!ep){
+      if(/victorian/.test(low)) ep='Victoriana';
+      else if(/medieval/.test(low)) ep='Medieval';
+      else if(/antigu/.test(low)) ep='Antigua';
+      else if(/anos? 80|ochenta/.test(low)) ep='Años 80';
+      else if(/anos? 90|noventa/.test(low)) ep='Años 90';
+      else if(/contempor|actual/.test(low)) ep='Contemporánea';
+      else if(/futur/.test(low)) ep='Futurista';
+      else if(/distop/.test(low)) ep='Distópica';
+      else if(/era budista|siglo|historic|\b\d{3,4}\b/.test(low)) ep='Histórica';
+    }
+    if(ep){sel.epoca=ep;res.filled++;}
+    var per=document.getElementById('fPeriodo');
+    if(per&&!per.value.trim()&&epocaRow.valor&&!tpMatch(epocaRow.valor,EPOCAS)){per.value=epocaRow.valor;res.filled++;}
+  }
+
+  renderAllChips();
+  renderUbicaciones();
+  if(typeof updateFoldSummaries==='function') updateFoldSummaries();
+  return res;
+}
+
 function runBookPaste(){
   var ta=document.getElementById('pasteInput');
   var status=document.getElementById('pasteStatus');
@@ -3016,6 +3409,10 @@ function runBookPaste(){
   if(!raw){status.className='paste-bar-status err';status.textContent='Pega primero el texto.';return;}
   var text=normalizeBold(raw);
   var filled=0,m;
+
+  /* Tabla resumen (Bloque | Campo | Resultado) */
+  var tbl=runTablePaste(text);
+  filled+=tbl.filled;
 
   /* Campos de texto simples */
   m=text.match(/Titulo\s*:\s*([^\n]+)/i);
@@ -3056,7 +3453,7 @@ function runBookPaste(){
 
   if(filled>0){
     status.className='paste-bar-status ok';
-    status.textContent='Rellenados '+filled+' campo(s). Revisa y completa lo que falte.';
+    status.textContent='Rellenados '+filled+' campo(s). Revisa y completa lo que falte.'+(tbl.unknown.length?' No reconocidos: '+tbl.unknown.join(', ')+'.':'')+(tbl.notes&&tbl.notes.length?' '+tbl.notes.join(' · ')+'.':'');
     ta.value='';
   }else{
     status.className='paste-bar-status err';
