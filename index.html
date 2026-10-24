@@ -10509,10 +10509,39 @@ async function sbFetchAll(table, columns, applyFilters){
   return all;
 }
 
+/* ===== F3 · Valoraciones con cuartos de estrella (0,25–5) =====
+   Valor efectivo de un voto = score_exact si existe; si no, score (votos históricos enteros).
+   myRatings[id] guarda SIEMPRE el valor efectivo. ratingsMap[id] = {sum,count,avg,mean}: sum exacto
+   (los cuartos son exactos en coma flotante), avg a 1 decimal con la MISMA fórmula de siempre (los consumidores
+   actuales siguen leyendo .avg y .count sin cambio visible) y mean = sum/count sin redondear. */
+const RATING_MIN=0.25, RATING_MAX=5, RATING_STEP=0.25;
+function isValidRating(v){ return typeof v==='number' && isFinite(v) && v>=RATING_MIN && v<=RATING_MAX && Number.isInteger(v*4); }
+function legacyScore(v){ return Math.max(1,Math.min(5,Math.round(v))); } // espejo entero 1–5 (mismo criterio que el CHECK de Supabase)
+function ratingOf(row){ // fila de ratings → valor efectivo, o null si no es válida (nunca 0)
+  if(!row) return null;
+  const ex=(row.score_exact==null)?null:Number(row.score_exact);
+  if(ex!==null && isValidRating(ex)) return ex;
+  const sc=(row.score==null)?null:Number(row.score);
+  if(sc!==null && Number.isInteger(sc) && sc>=1 && sc<=5) return sc;
+  return null;
+}
+function fmtRating(v){ return String(Math.round(v*100)/100).replace('.',','); } // 4 → «4» · 4,25 → «4,25» · 2,5 → «2,5»
+function _rmEntry(sum,count){ return {sum:sum,count:count,avg:Math.round(sum/count*10)/10,mean:sum/count}; } // avg = 1 decimal, idéntico al cálculo histórico (lo que se muestra); mean = media exacta (relleno fraccionario y ranking)
+// Actualiza ratingsMap de un libro: oldVal = voto previo de esta usuaria (null si no había), newVal = voto nuevo (null si se quita)
+function _rmUpdate(bookId,oldVal,newVal){
+  const r=ratingsMap[bookId];
+  let sum=r?(typeof r.sum==='number'?r.sum:r.avg*r.count):0, count=r?r.count:0;
+  if(oldVal!=null && r){ sum-=oldVal; count-=1; }
+  if(newVal!=null){ sum+=newVal; count+=1; }
+  if(count<=0){ delete ratingsMap[bookId]; return null; }
+  ratingsMap[bookId]=_rmEntry(sum,count);
+  return ratingsMap[bookId];
+}
+
 async function loadBooks(){
   // FIX móvil — las 3 consultas de comunidad no dependen del JSON: se lanzan YA, en paralelo con su descarga
   const _communityP=Promise.all([
-    sbFetchAll('ratings','book_id,score'),
+    sbFetchAll('ratings','book_id,score,score_exact'),
     sbFetchAll('spicy_votes','book_id,level'),
     sbFetchAll('community_tags','book_id,tag_type,tag_value')
   ]);
@@ -10543,11 +10572,15 @@ async function loadBooks(){
 function _applyCommunityData(rData,svData,ctData){
   ratingsMap={};
   if(rData){
-    const grouped={};
-    rData.forEach(r=>{if(!grouped[r.book_id])grouped[r.book_id]=[];grouped[r.book_id].push(r.score);});
-    Object.entries(grouped).forEach(([id,scores])=>{
-      ratingsMap[id]={avg:Math.round(scores.reduce((a,b)=>a+b,0)/scores.length*10)/10,count:scores.length};
+    const acc={}; let skipped=0;
+    rData.forEach(r=>{
+      const v=ratingOf(r);
+      if(v===null){ skipped++; return; } // fila no válida: se ignora, nunca cuenta como 0
+      const a=acc[r.book_id]||(acc[r.book_id]={sum:0,count:0});
+      a.sum+=v; a.count++;
     });
+    Object.entries(acc).forEach(([id,a])=>{ ratingsMap[id]=_rmEntry(a.sum,a.count); });
+    if(skipped) console.warn('[valoraciones] filas ignoradas por valor no válido:',skipped);
   }
   spicyMap={};
   if(svData){
@@ -10586,12 +10619,12 @@ async function loadMyRatings(){
   // tablas distintas), así que se lanzan en paralelo con Promise.all en vez
   // de esperarlas una detrás de otra (Fase 10.5B).
   const [data,sv,myCtData]=await Promise.all([
-    sbFetchAll('ratings','book_id,score',q=>q.eq('user_id',currentUser.id)),
+    sbFetchAll('ratings','book_id,score,score_exact',q=>q.eq('user_id',currentUser.id)),
     sbFetchAll('spicy_votes','book_id,level',q=>q.eq('user_id',currentUser.id)),
     sbFetchAll('community_tags','book_id,tag_type,tag_value',q=>q.eq('user_id',currentUser.id))
   ]);
   myRatings={};
-  if(data) data.forEach(r=>myRatings[r.book_id]=r.score);
+  if(data) data.forEach(r=>{ const v=ratingOf(r); if(v!==null) myRatings[r.book_id]=v; });
   mySpicy={};
   if(sv) sv.forEach(r=>mySpicy[r.book_id]=r.level);
   myTags={};
@@ -12570,15 +12603,16 @@ function selectStar(n){
    activeBook/currentUser/pendingStar: recibe bookId/userId/score explícitos.
    Reutilizable después por BookPage sin duplicar esta lógica. */
 async function _submitRatingCore(bookId, userId, score){
-  const existing=myRatings[bookId];
-  const {error}=existing
-    ?await sb.from('ratings').update({score}).eq('user_id',userId).eq('book_id',bookId)
-    :await sb.from('ratings').insert({user_id:userId,book_id:bookId,score});
+  // F3: acepta 0,25–5 en pasos de 0,25. Escribe SIEMPRE score_exact + espejo entero score
+  // (así un voto que pasa de 4,25 a 4 no deja un score_exact obsoleto).
+  if(!isValidRating(score)) throw new Error('Valoración no válida: de 0,25 a 5 en pasos de 0,25');
+  const existing=myRatings[bookId]; // valor efectivo previo (undefined si no había voto)
+  const payload={score:legacyScore(score),score_exact:score};
+  const {error}=(existing!=null)
+    ?await sb.from('ratings').update(payload).eq('user_id',userId).eq('book_id',bookId)
+    :await sb.from('ratings').insert({user_id:userId,book_id:bookId,...payload});
   if(error) throw new Error(error.message||'Error al guardar la valoración');
-  const r=ratingsMap[bookId]||{avg:0,count:0};
-  const oldScore=existing||0,newCount=existing?r.count:r.count+1;
-  const newAvg=existing?(r.avg*r.count-oldScore+score)/r.count:(r.avg*r.count+score)/newCount;
-  ratingsMap[bookId]={avg:Math.round(newAvg*10)/10,count:newCount};
+  _rmUpdate(bookId,(existing!=null)?existing:null,score);
   myRatings[bookId]=score;
   return ratingsMap[bookId];
 }
@@ -12601,16 +12635,9 @@ async function submitVote(){
 async function _deleteRatingCore(bookId, userId){
   const {error}=await sb.from('ratings').delete().eq('user_id',userId).eq('book_id',bookId);
   if(error) throw new Error(error.message||'Error al eliminar la valoración');
-  // Actualizar localmente igual que antes (sin recargar todo de Supabase)
+  // Actualizar localmente (sin recargar todo de Supabase)
   const oldScore=myRatings[bookId];
-  const r=ratingsMap[bookId]||{avg:0,count:0};
-  if(r.count<=1){
-    delete ratingsMap[bookId];
-  } else {
-    const newCount=r.count-1;
-    const newAvg=(r.avg*r.count-oldScore)/newCount;
-    ratingsMap[bookId]={avg:Math.round(newAvg*10)/10,count:newCount};
-  }
+  _rmUpdate(bookId,(oldScore!=null)?oldScore:null,null);
   delete myRatings[bookId];
   return ratingsMap[bookId]||null;
 }
@@ -15717,18 +15744,8 @@ async function saveReadDoneModal(){
   const bookId=rdBookId;
   // Valoración por estrellas (solo si se ha elegido alguna)
   if(rdStar>0){
-    const existing=myRatings[bookId];
-    const {error}=existing
-      ?await sb.from('ratings').update({score:rdStar}).eq('user_id',currentUser.id).eq('book_id',bookId)
-      :await sb.from('ratings').insert({user_id:currentUser.id,book_id:bookId,score:rdStar});
-    if(!error){
-      const r=ratingsMap[bookId]||{avg:0,count:0};
-      const oldScore=existing||null;
-      const newCount=oldScore!=null?r.count:r.count+1;
-      const newAvg=oldScore!=null?(r.avg*r.count-oldScore+rdStar)/r.count:(r.avg*r.count+rdStar)/newCount;
-      ratingsMap[bookId]={avg:Math.round(newAvg*10)/10,count:newCount};
-      myRatings[bookId]=rdStar;
-    }
+    try{ await _submitRatingCore(bookId,currentUser.id,rdStar); }
+    catch(e){ console.warn('[valoración] no se pudo guardar desde el modal rápido',e); }
   }
   // Nivel spicy (solo si se ha elegido alguno, incluido 🚫 = 0)
   if(rdSpicy>=0){
