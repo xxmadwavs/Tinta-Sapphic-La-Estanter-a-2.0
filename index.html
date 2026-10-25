@@ -11885,6 +11885,158 @@ function _rapidezFichaHTML(b){
   const val=`<span class="bp-rp${n===0?' is-zero':''}" role="img" aria-label="${escHtml(aria)}" data-rapidez="${n}"><span class="bp-rp-bolts" aria-hidden="true">${bolts}</span><span class="bp-rp-text" aria-hidden="true">${n}/5 · ${RAPIDEZ_LABELS[n]}</span><span class="bp-rp-desc" aria-hidden="true">${RAPIDEZ_DESCS[n]}</span></span>`;
   return `<div class="meta-item meta-item-wide bp-rp-item"><span class="meta-key">Rapidez del romance</span><span class="meta-val">${val}</span></div>`;
 }
+/* ══════════════════════════════════════════════════════════════
+   F5 — VALORACIÓN COMUNITARIA DE LA RAPIDEZ DEL ROMANCE (ficha del libro)
+   Tabla F2_02: public.rapidez_romance_votes (id, user_id, book_id, rapidez smallint 0–5, created_at; UNIQUE(user_id,book_id)).
+   RLS: SELECT anon+authenticated; INSERT/UPDATE/DELETE solo authenticated con auth.uid()=user_id.
+   · Independiente de ratings, spicy_votes, de las estrellas y de la puntuación editorial (rapidez_romance de books_data.json).
+   · Carga bajo demanda SOLO del libro abierto (no toca la carga del catálogo ni otros mapas).
+   · Guardado con UPSERT sobre (user_id,book_id): idempotente; un reintento o doble envío no puede crear un 2.º voto.
+   · El 0 es un voto válido; «sin votos» (count=0) se muestra distinto de una media real de 0.
+   ── */
+const RAPIDEZ_VOTE_LABELS=['Sin romance relevante','Ultra slow burn','Lento','Ritmo equilibrado','Rápido','Instalove / romance exprés'];
+const RV_TABLE='rapidez_romance_votes';
+let rv={bookId:null,userId:null,status:'idle',avg:null,count:0,mine:null,pending:-1,saving:false,msg:'',msgType:'',seq:0};
+function _rvValid(n){ return Number.isInteger(n)&&n>=0&&n<=5; }
+function _rvErrText(err){
+  const m=String((err&&err.message)||err||''), c=String((err&&err.code)||'');
+  if(/failed to fetch|networkerror|network request failed|load failed|timeout|abort|sin conexi[oó]n|offline/i.test(m)||(err&&err.status===0)||(typeof navigator!=='undefined'&&navigator.onLine===false))
+    return 'Sin conexión con el servidor. Tu voto no se ha guardado; puedes reintentarlo.';
+  if(c==='PGRST301'||/jwt|not authenticated/i.test(m)) return 'Tu sesión ha caducado. Inicia sesión de nuevo para votar.';
+  if(c==='42501'||/row-level security|permission denied/i.test(m)) return 'No tienes permiso para guardar este voto.';
+  if(c==='23514') return 'Valor no válido: la rapidez debe ser un número de 0 a 5.';
+  return 'No se pudo guardar el voto. Inténtalo de nuevo.';
+}
+// Todas las votaciones del libro (paginado; lanza error si falla: aquí NO se usa sbFetchAll porque oculta los errores).
+async function _rvFetchStats(bookId){
+  let all=[], from=0;
+  for(;;){
+    const {data,error}=await sb.from(RV_TABLE).select('rapidez').eq('book_id',bookId).order('id').range(from,from+999);
+    if(error) throw error;
+    if(!data||!data.length) break;
+    all=all.concat(data);
+    if(data.length<1000) break;
+    from+=1000;
+  }
+  const vals=all.map(r=>r.rapidez).filter(_rvValid);
+  return {count:vals.length, avg:vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null};
+}
+async function _rvFetchMine(bookId,userId){
+  const {data,error}=await sb.from(RV_TABLE).select('rapidez').eq('book_id',bookId).eq('user_id',userId).maybeSingle();
+  if(error) throw error;
+  return (data&&_rvValid(data.rapidez))?data.rapidez:null;
+}
+function _rvSame(bookId,userId){ return rv.bookId===bookId&&rv.userId===userId&&activeBook&&activeBook.id===bookId; }
+async function rvLoad(quiet){
+  const bookId=rv.bookId, userId=rv.userId, seq=++rv.seq;
+  if(!quiet){ rv.status='loading'; rvRender(); }
+  try{
+    const [st,mine]=await Promise.all([_rvFetchStats(bookId), userId?_rvFetchMine(bookId,userId):Promise.resolve(null)]);
+    if(seq!==rv.seq||!_rvSame(bookId,userId)) return;          // respuesta obsoleta (otro libro / otra sesión / otra carga)
+    const changed=rv.status!=='ready'||rv.avg!==st.avg||rv.count!==st.count||(!rv.saving&&rv.mine!==mine);
+    rv.avg=st.avg; rv.count=st.count; if(!rv.saving) rv.mine=mine; rv.status='ready';
+    if(changed) rvRender();
+  }catch(err){
+    if(seq!==rv.seq||!_rvSame(bookId,userId)) return;
+    if(quiet) return;                                           // refresco silencioso: se conserva lo ya mostrado
+    console.warn('[rapidez] carga',err); rv.status='error'; rvRender();
+  }
+}
+function rvReload(){ if(rv.bookId) rvLoad(false); }
+// Se llama al pintar la ficha (también cuando _bpRefreshIfOpen la repinta): el estado vive fuera del DOM.
+function rvInit(book){
+  const uid=currentUser?currentUser.id:null;
+  if(rv.bookId===book.id&&rv.userId===uid&&(rv.status==='ready'||rv.status==='loading'||rv.saving)){
+    if(rv.status==='ready'&&!rv.saving) rvLoad(true);            // muestra lo que hay y refresca en silencio
+    return;
+  }
+  rv={bookId:book.id,userId:uid,status:'loading',avg:null,count:0,mine:null,pending:-1,saving:false,msg:'',msgType:'',seq:rv.seq};
+  rvLoad(false);
+}
+function rvSelect(n){
+  if(rv.saving||!_rvValid(n)) return;
+  rv.pending=n; rv.msg=''; rv.msgType='';
+  _rvSyncControls();
+}
+function _rvSyncControls(){
+  const body=document.getElementById('bpRapidezBody'); if(!body) return;
+  const checkedVal=rv.pending>=0?rv.pending:rv.mine;
+  body.querySelectorAll('.bp-rv-opt').forEach(l=>{
+    const i=l.querySelector('input'); const v=Number(i.value);
+    i.checked=(v===checkedVal); i.disabled=rv.saving; l.classList.toggle('selected',v===checkedVal);
+  });
+  const btn=document.getElementById('bpRvSubmit');
+  if(btn){
+    btn.disabled=rv.saving||!_rvValid(rv.pending)||rv.pending===rv.mine;
+    btn.textContent=rv.saving?'Guardando…':(rv.mine!=null?'Actualizar voto':'Guardar voto');
+    btn.setAttribute('aria-busy',rv.saving?'true':'false');
+  }
+  const st=document.getElementById('bpRvStatus');
+  if(st){ st.textContent=rv.msg; st.className='bp-rv-status'+(rv.msgType?' is-'+rv.msgType:''); st.setAttribute('role',rv.msgType==='error'?'alert':'status'); }
+}
+async function rvSubmit(){
+  if(rv.saving) return;                                          // doble clic / reenvío mientras hay uno en curso
+  if(!currentUser||!activeBook||activeBook.id!==rv.bookId||rv.userId!==currentUser.id) return;
+  const val=rv.pending; if(!_rvValid(val)) return;
+  const bookId=rv.bookId, userId=rv.userId;
+  rv.saving=true; rv.msg='Guardando tu voto…'; rv.msgType='info'; _rvSyncControls();
+  try{
+    const {data,error}=await sb.from(RV_TABLE).upsert({user_id:userId,book_id:bookId,rapidez:val},{onConflict:'user_id,book_id'}).select('rapidez');
+    if(error) throw error;
+    if(!data||data.length!==1||data[0].rapidez!==val) throw new Error('El servidor no confirmó el voto');
+  }catch(err){
+    if(!_rvSame(bookId,userId)) return;
+    console.warn('[rapidez] guardar',err);
+    rv.saving=false; rv.msg=_rvErrText(err); rv.msgType='error'; _rvSyncControls();   // pending se conserva: reintento con un clic
+    return;
+  }
+  if(!_rvSame(bookId,userId)) return;                             // el voto ya está guardado aunque se haya cambiado de ficha
+  rv.saving=false; rv.mine=val; rv.pending=-1; rv.msg='✓ Voto guardado'; rv.msgType='ok';
+  try{                                                            // solo se relee ESTE libro (no el catálogo)
+    const st=await _rvFetchStats(bookId);
+    if(_rvSame(bookId,userId)){ rv.avg=st.avg; rv.count=st.count; }
+  }catch(err){
+    console.warn('[rapidez] medias',err);
+    if(_rvSame(bookId,userId)) rv.msg='✓ Voto guardado, pero no se pudo actualizar la media. Recarga la ficha para verla.';
+  }
+  if(_rvSame(bookId,userId)) rvRender();
+}
+function rvRender(){
+  const el=document.getElementById('bpRapidezBody');
+  if(!el||!activeBook||activeBook.id!==rv.bookId) return;
+  el.innerHTML=buildBpRapidezBodyHTML();
+  el.setAttribute('aria-busy',rv.status==='loading'?'true':'false');
+}
+function _rvBolts(n){ return [1,2,3,4,5].map(i=>`<span class="bp-rp-bolt ${n!==null&&i<=n?'on':'off'}">⚡</span>`).join(''); }
+function buildBpRapidezBodyHTML(){
+  let sum;
+  if(rv.status==='loading'||rv.status==='idle'){
+    sum=`<p class="bp-rv-summary" role="status">Cargando votos…</p>`;
+  } else if(rv.status==='error'){
+    sum=`<p class="bp-rv-summary bp-rv-err" role="alert">No se pudieron cargar los votos. <button type="button" class="bp-rv-link" onclick="rvReload()">Reintentar</button></p>`;
+  } else if(!(rv.count>0)){
+    sum=`<div class="bp-rv-summary bp-rv-empty"><span class="bp-rp-bolts" aria-hidden="true">${_rvBolts(null)}</span><span class="bp-rv-count">Sin votos todavía</span></div>`;
+  } else {
+    const r=Math.round(rv.avg), aria=`Media comunitaria de rapidez del romance: ${rv.avg.toFixed(1)} de 5, con ${rv.count} ${rv.count===1?'voto':'votos'}. Nivel más cercano: ${RAPIDEZ_VOTE_LABELS[r]}.`;
+    sum=`<div class="bp-rv-summary" role="img" aria-label="${aria}"><span class="bp-rp-bolts" aria-hidden="true">${_rvBolts(r)}</span><span class="bp-rv-avg" aria-hidden="true">${rv.avg.toFixed(1)}<small>/5</small></span><span class="bp-rv-count" aria-hidden="true">${rv.count} ${rv.count===1?'voto':'votos'} · ${RAPIDEZ_VOTE_LABELS[r]}</span></div>`;
+  }
+  let vote='';
+  if(!currentUser){
+    vote=`<p class="bp-rv-login"><button type="button" class="bp-rv-link" onclick="openAuthModal()">Inicia sesión</button> para votar la rapidez del romance.</p>`;
+  } else if(rv.status==='ready'){
+    const cur=rv.pending>=0?rv.pending:rv.mine;
+    const opts=RAPIDEZ_VOTE_LABELS.map((lb,i)=>`<label class="bp-rv-opt${cur===i?' selected':''}"><input type="radio" name="bpRvOpt" value="${i}" ${cur===i?'checked':''} ${rv.saving?'disabled':''} onchange="rvSelect(${i})"><span class="bp-rv-n" aria-hidden="true">${i}</span><span class="bp-rv-lb">${lb}</span></label>`).join('');
+    const prompt=rv.mine!=null?`Tu voto: ${rv.mine} · ${RAPIDEZ_VOTE_LABELS[rv.mine]}. Puedes cambiarlo.`:'¿Qué tan rápido avanza el romance?';
+    const dis=rv.saving||!_rvValid(rv.pending)||rv.pending===rv.mine;
+    vote=`<fieldset class="bp-rv-vote"><legend class="vote-prompt">${prompt}</legend><div class="bp-rv-opts">${opts}</div>
+      <div class="bp-rv-actions"><button type="button" class="vote-submit bp-rv-submit" id="bpRvSubmit" onclick="rvSubmit()" ${dis?'disabled':''} aria-busy="${rv.saving?'true':'false'}">${rv.saving?'Guardando…':(rv.mine!=null?'Actualizar voto':'Guardar voto')}</button>
+      <span class="bp-rv-status${rv.msgType?' is-'+rv.msgType:''}" id="bpRvStatus" role="${rv.msgType==='error'?'alert':'status'}">${rv.msg}</span></div></fieldset>`;
+  }
+  return sum+vote;
+}
+function buildBpRapidezSectionHTML(){
+  return `<div class="bp-section bp-rv-section" id="bpRapidezSection"><div class="bp-section-title">Rapidez del romance · comunidad</div><div id="bpRapidezBody" aria-live="off">${buildBpRapidezBodyHTML()}</div><p class="bp-rv-note">Esta media sale de los votos de las lectoras y es independiente de la puntuación editorial de la ficha técnica, que fija la administración.</p></div>`;
+}
 function renderBookPage(book){
   const b=book;
   const authorStr=(b.authors||[]).map(a=>`<button type="button" class="bp-link" data-bpf="authors" data-bpv="${escHtml(a)}">${escHtml(a)}</button>`).join(', ')||'—';
@@ -12025,13 +12177,14 @@ function renderBookPage(book){
       </div>
     </div>
     ${currentUser?diarySectionHTML():''}
-    ${clasificacionFicha}
+    ${clasificacionFicha}${buildBpRapidezSectionHTML()}
     ${sinopsis}
     ${bookLocationsHtml(b)}
     ${sobreEsteLibro}
     ${conseguirRecomendaciones}
   `;
   renderBookLocations(b);
+  rvInit(b); // F5 — votos comunitarios de rapidez (solo este libro)
   attachBpStarTouch();
   attachBpSpicyTouch();
   if(currentUser){ diaryRenderBp(); diaryEnsureLoaded(); } // FASE 8 — diario
@@ -21395,6 +21548,35 @@ body.theme-halloween .reset-step-tag{color:var(--accent2)}
 #bookPage .bp-rp-desc{font-size:12px;color:var(--muted);line-height:1.4}
 #bookPage .bp-rp.is-zero .bp-rp-text{font-style:italic}
 @media(forced-colors:active){#bookPage .bp-rp-bolt.off{filter:none;opacity:.45}}
+</style><style id="f5-rapidez-comunidad">
+/* F5 · Rapidez del romance (comunidad) — solo en #bookPage; variables y tipografías existentes, sin colores fijos */
+#bookPage .bp-rv-summary{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem .8rem;margin:0 0 .9rem;font-size:var(--fs-body,14px);color:var(--text)}
+#bookPage .bp-rv-avg{font-size:1.45rem;font-weight:700;line-height:1;color:var(--text)}
+#bookPage .bp-rv-avg small{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:2px}
+#bookPage .bp-rv-count{color:var(--muted);font-size:13px}
+#bookPage .bp-rv-empty .bp-rv-count{font-style:italic}
+#bookPage .bp-rv-err{color:var(--text)}
+#bookPage .bp-rv-vote{border:0;margin:0;padding:0;min-width:0}
+#bookPage .bp-rv-vote legend{padding:0;margin-bottom:.5rem}
+#bookPage .bp-rv-opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem}
+#bookPage .bp-rv-opt{display:flex;align-items:center;gap:.5rem;min-height:40px;padding:.45rem .65rem;border:1px solid var(--border2,var(--border));border-radius:var(--radius,10px);background:var(--surface2);color:var(--text);font-size:13px;line-height:1.3;cursor:pointer}
+#bookPage .bp-rv-opt input{accent-color:var(--accent);width:16px;height:16px;flex:none;margin:0}
+#bookPage .bp-rv-opt .bp-rv-n{font-weight:700;color:var(--muted)}
+#bookPage .bp-rv-opt.selected{border-color:var(--accent2);background:var(--accent-soft,var(--surface2))}
+#bookPage .bp-rv-opt:has(input:focus-visible){outline:2px solid var(--accent2);outline-offset:2px}
+#bookPage .bp-rv-opt:has(input:disabled){opacity:.7;cursor:default}
+#bookPage .bp-rv-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem .9rem;margin-top:.8rem}
+#bookPage .bp-rv-submit:disabled{opacity:.55;cursor:not-allowed}
+#bookPage .bp-rv-status{font-size:12.5px;color:var(--muted)}
+#bookPage .bp-rv-status.is-ok{color:var(--text);font-weight:600}
+#bookPage .bp-rv-status.is-error{color:var(--text);font-weight:600;border-left:3px solid var(--accent2);padding-left:.5rem}
+#bookPage .bp-rv-link{background:none;border:0;padding:0;font:inherit;color:var(--accent2);font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#bookPage .bp-rv-link:focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:4px}
+#bookPage .bp-rv-login{margin:0;font-size:13px;color:var(--muted)}
+#bookPage .bp-rv-note{margin:.9rem 0 0;font-size:12px;line-height:1.45;color:var(--muted)}
+@media(max-width:639px){#bookPage .bp-rv-opts{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){#bookPage .bp-rv-opts{grid-template-columns:1fr}}
+@media(pointer:coarse){#bookPage .bp-rv-opt{min-height:44px}#bookPage .bp-rv-submit{min-height:44px}}
 </style>
 <div id="tsNetBar" class="ts-netbar" role="status" aria-live="polite" hidden>
   <span id="tsNetTx"></span>
