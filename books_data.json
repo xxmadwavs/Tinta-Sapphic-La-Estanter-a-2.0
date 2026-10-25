@@ -14452,27 +14452,71 @@
     "synopsis": "Oculto sendero, novela inédita de Elena Fortún, psedónimo de María de la Encarnación Gertrudis Jacoba Aragoneses y de Urquijo (1886-1952), se publica en 2016. Fortún escribe esta autobiografía novelada durante su exilio en Argentina y la firma con un nuevo pseudónimo, el de Rosa María Castaños. La protagonista es María Luisa Arroyo, pintora y antes niña que quería vestirse de marinero, alter-ego de la autora. Tras una infancia narrada al más puro estilo Fortún, María Luisa Arroyo irá dejando atrás los dictados de la feminidad convencional para adentrarse en una modernidad inevitable y también desgarradora. Ambientada en la España anterior a 1936, Oculto sendero ofrece un retrato de la intimidad y la lucha de Elena Fortún.",
     "pages": 504,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Histórica"
+      "Histórica",
+      "Drama",
+      "Psicológico",
+      "Romance"
     ],
     "subgenres": [
-      "Feminismo"
+      "Feminismo",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Crimen"
     ],
-    "identidades": [],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Unrequited Love",
+      "Forbidden Love"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 0,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
     "editions": [],
-    "pais_origen": [
-      "España"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778008886746_6hk49",
@@ -14490,20 +14534,27 @@
     "genres": [
       "Drama",
       "Histórica",
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Psicológico"
     ],
     "subgenres": [
       "Autodescubrimiento",
       "Bisexual",
       "Celebridad",
-      "Coming Out"
+      "Coming Out",
+      "Queer",
+      "Familia",
+      "Erótica"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Actriz",
-      "Famosa"
+      "Famosa",
+      "Escritora",
+      "Reportera / Periodista"
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -14519,7 +14570,8 @@
       "Opposites Attract",
       "Secret Relationship",
       "Slow Burn",
-      "Strangers to Lovers"
+      "Strangers to Lovers",
+      "Second Chance Romance"
     ],
     "edad": [],
     "pais_cultura": [
@@ -14541,17 +14593,20 @@
         "lugares": []
       }
     ],
-    "epoca": "Siglo XX",
-    "periodo": null,
+    "epoca": "Años 90",
+    "periodo": "Desde la década de 1950 hasta 2017, con la mayor parte de la historia retrospectiva situada entre los años cincuenta y noventa.",
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -14839,37 +14894,65 @@
     "id": "b_1778010103953_df109",
     "title": "Insólitas",
     "authors": [
-      "Fani Álvarez"
+      "Fani Álvarez",
+      "Antología de varias autoras"
     ],
     "year": 2018,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1551176772i/42944645.jpg",
     "synopsis": "Nueve relatos, infinitas posibilidades. ¿Cuál leerás primero?\n\n▎Vexel: ¿Qué precio tiene habitar un cuerpo sintético para recuperar tu vida anterior?\n▎Anomalía: En la Era de la Perfección, amar es el error más peligroso de todos.\n▎99,9%: Una app dice que eres feliz, pero la verdad sobre una desaparición lo cambiará todo.\n\n▎Kalasona: Una ladrona y un golpe que se tuerce al conocer a la mujer que no debía.\n▎La reliquia del Titán: Un rebelde frente a un destino que podría salvar al mundo.\n▎Amor de espinas: Un mago aparece para desenterrar un pasado que Nat creía muerto.\n\n▎Huesos de manzana: Un grito en el bosque rompe la paz de un pueblo lleno de secretos.\n▎El precio de la inspiración: Cuidado con lo que pides a una cibermusa para crear.\n▎Lux Tenebrae: Cartas grotescas que dejan de ser una broma cuando el peligro es real.",
     "pages": 244,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
-      "Fantasía Urbana"
+      "Fantasía Urbana",
+      "Ciencia Ficción",
+      "Drama",
+      "Romance"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": null,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
     "editions": [],
-    "pais_origen": [
-      "España"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778010130978_kwk7k",
-    "title": "Un te quiero de repuesto",
+    "title": "Un te quiero de repuesto (Spanish Edition)",
     "authors": [
       "Marta Garzás"
     ],
@@ -14878,18 +14961,33 @@
     "synopsis": "Sara siempre creyó que la vida era un juego de azar donde ella llevaba las de ganar. Para ella, el destino y el karma eran cuentos chinos, y su burbuja de felicidad parecía blindada contra cualquier desastre. Pero la realidad acaba de darle una bofetada que lo ha cambiado todo.\n\nSu mundo se ha hecho añicos y ahora debe abrir los ojos para recordar quién es de verdad: esa mujer que encerró a las princesas de los cuentos en una caja en el desván. Sin suerte ni monedas al aire que la salven, tendrá que enfrentarse a los pedazos de su propia existencia.\n\n¿Podrá Sara aceptar su verdadera naturaleza ahora que los finales felices han dejado de existir?",
     "pages": 331,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
     "subgenres": [],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Actriz"
+    ],
     "dinamicas": [],
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Mis besos no son de cualquiera",
@@ -14898,13 +14996,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778010170316_3ntrr",
@@ -14984,22 +15081,66 @@
     "synopsis": "Cristina Coll nunca imaginó que ignorar una advertencia en las duchas del gimnasio le costaría tan caro. En 2018, lo que parecía un simple ataque de celos de una amiga terminó convirtiéndose en el inicio de su época más inestable. A través de sus recuerdos, Cristina nos sumerge en un misterio emocional sobre las decisiones que tomamos cuando somos jóvenes y estamos equivocados.\n\nEntre sombras de arrepentimiento y grises morales, descubre que no puede salvar a todo el mundo y, lo más difícil, que ella es quien necesita ser rescatada. Una historia de crecimiento personal y segundas oportunidades donde el pasado dicta el presente. ¿Servirías tu vida en bandeja de plata sabiendo el precio a pagar?",
     "pages": 347,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Hurt/Comfort",
+      "Second Chance Romance",
+      "Opposites Attract",
+      "Workplace Romance"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
-    "editions": []
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778010290586_n2h14",
@@ -15012,26 +15153,71 @@
     "synopsis": "Tras perder su empleo, Andrea decide emprender un viaje por carretera para reencontrarse consigo misma. Sin embargo, el azar la empuja a mirar atrás, hacia sus años de instituto y aquellas amistades que el tiempo oxidó. Con una idea repentina, decide reunir a dos figuras opuestas de su pasado: Paula, la chica perfecta de humor mordaz, y Victoria, su antigua archienemiga y eterna rebelde.\n\nLo que comienza como una huida sin destino se transforma en una travesía vital donde las tres enfrentan sus miedos, la soledad y la asfixia de las expectativas sociales. A través de conversaciones íntimas y confesiones cotidianas, los vínculos se estrechan hasta revelar que la verdadera libertad nace de la amistad y de la valentía de ser una misma. Una historia sobre transiciones, segundas oportunidades y el poder de los afectos.",
     "pages": 160,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Enemies to Lovers",
+      "Road Trip",
+      "Bi Awakening"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
     "editions": [],
-    "pais_origen": [
-      "España"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778010327361_yarvg",
@@ -15044,26 +15230,72 @@
     "synopsis": "El permafrost es la tierra siempre congelada y la membrana con la que la protagonista de esta novela se protege del mundo. A través de una voz mordaz e inteligente, conocemos a una mujer que huye de la superficialidad de su entorno: una madre controladora y una hermana de un optimismo irritante. Frente a sus pulsiones suicidas, ella elige el hedonismo, entregándose con intensidad al sexo con otras mujeres, la literatura y el arte.\n\nEsta obra es un pulso constante entre el placer carnal y la muerte, narrado con un humor negrísimo e imágenes poéticas contundentes. Permafrost es una novela aguda y directa que reivindica la libertad femenina, el deseo y el derecho a la soledad. Un estreno literario sáfico que explora con crudeza el cuerpo, el yo y la búsqueda de un lugar propio.",
     "pages": 144,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Baihee 🐉"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Unrequited Love",
+      "Friends to Lovers",
+      "Slow Burn",
+      "WhyChoose"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Tríptic",
     "sagaNum": 1,
     "source": "spanish",
     "editions": [],
-    "pais_origen": [
-      "España"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778010356787_akdje",
@@ -15076,26 +15308,64 @@
     "synopsis": "Boulder es la segunda entrega del tríptico de Eva Baltasar sobre el cuerpo y la identidad femenina. La protagonista vive como cocinera en un barco mercante, abrazando la soledad del océano y encuentros fugaces en puertos remotos. Sin embargo, su mundo de libertad provisional se fractura cuando una mujer la convence de abandonar el mar por una casa en Reikiavik, la gestación asistida y la crianza de una hija.\n\nAtrapada como un animal enjaulado en la rutina doméstica, ella lucha por reconocerse en la maternidad. Su apodo, Boulder, define su esencia: esas rocas aisladas que resisten a la intemperie sin pertenecer a ningún lugar. Una novela directa y punzante sobre el deseo sáfico, el choque entre el amor y la libertad, y la resistencia de un yo que se niega a ser domesticado.",
     "pages": 128,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Feminismo"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Strangers to Lovers"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Islandia",
+        "region": null,
+        "ciudad": "Reikiavik",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Tríptic",
     "sagaNum": 2,
     "source": "spanish",
     "editions": [],
-    "pais_origen": [
-      "España"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778011022222_xrtzq",
@@ -19171,9 +19441,20 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Acción",
+      "Contemporánea",
+      "Juvenil",
+      "New Adult"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Deporte",
+      "Universidad"
+    ],
     "identidades": [
       "Femme"
     ],
@@ -19191,7 +19472,8 @@
       "Forbidden Love",
       "Forced Proximity",
       "Hurt/Comfort",
-      "Slow Burn"
+      "Slow Burn",
+      "Opposites Attract"
     ],
     "edad": [
       "New Adult (18–24)"
@@ -19199,16 +19481,27 @@
     "pais_cultura": [
       "País Ficticio"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Vanderland",
+        "region": null,
+        "ciudad": "Rochester",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -19668,16 +19961,61 @@
     "synopsis": "Una ex Navy Seal con estrés postraumático.\nUna policía novata.\nUn secuestro en un pequeño pueblo de Montana.\nEn el corazón del Parque Nacional Glacier, Sierra Lancer busca olvidar su pasado. Tan solo quiere mantener un perfil bajo, vivir en soledad dejando atrás la muerte de sus compañeros en una misión que salió mal.\nSin embargo, su mundo se tambalea cuando la hija de su mejor amiga desaparece sin dejar rastro. Junto a la agente Rivera, Sierra se verá envuelta en una investigación en la que cada pista que descubren se vuelve más peligrosa.\nCon varias vidas en juego, Sierra deberá confiar en la agente Rivera y en sus propios instintos antes de que sea demasiado tarde.",
     "pages": 184,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Thriller"
+      "Thriller",
+      "Acción",
+      "Aventura",
+      "Drama",
+      "Romance",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Crimen",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "One Night Stand → More",
+      "Hurt/Comfort",
+      "Forced Proximity",
+      "Opposites Attract"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Columbia Falls",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Teniente Sierra Lancer",
@@ -19686,9 +20024,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778315762777_y5zi1",
@@ -19761,20 +20102,61 @@
     "synopsis": "Dakota Martínez, exmilitar y guardaespaldas de élite, vive siguiendo reglas claras. Pero todo cambia cuando debe proteger a Anna Sinclair, una inventora brillante cuyo proyecto de energía limpia podría salvar el mundo… o matarla.\nPara despistar a sus enemigos, deben fingir ser pareja.\nEl problema es que la mentira empieza a sentirse demasiado real.\nMientras se enfrentan a conspiraciones, amenazas y persecuciones, ambas descubren que la mayor protección... puede venir del corazón.",
     "pages": 211,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Thriller",
+      "Acción",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Guardaespaldas"
     ],
-    "dinamicas": [],
+    "dinamicas": [
+      "Bodyguard × VIP",
+      "Protectora × Delicada"
+    ],
     "tropes": [
-      "Fake Relationship"
+      "Fake Relationship",
+      "Forced Proximity",
+      "Workplace Romance",
+      "Forbidden Love"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
     ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -19783,9 +20165,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778315827695_i1r7t",
@@ -19798,16 +20183,58 @@
     "synopsis": "Carol siempre ha creído que está bien. O al menos, eso es lo que se ha repetido durante años. Ha aprendido a ignorar sus heridas, a callar lo que duele, a fingir que nada le importa. Hasta que su prima, preocupada, la arrastra a terapia y lo que comienza como una charla sencilla, termina siendo el inicio de un viaje que nunca pensó emprender: el de enfrentarse y conocerse a sí misma.\n\nA partir de ese momento, los dragones que siempre la han acompañado empiezan a tomar forma. Porque, aunque trate de negarlo, en su cabeza hay demasiados. Pero Carol descubre que, para vencerlos, solo necesita formar su propio bando. Con Silvia, un amor que la empuja al límite y le reta a enfrentar sus temores, y con el apoyo inquebrantable de su prima Andrea, aprende, entre caídas y victorias, el secreto para vencer sus batallas.",
     "pages": 519,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Coming of Age",
+      "Erótica"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Seria × Divertida",
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Opposites Attract",
+      "Enemies to Lovers",
+      "Fake Relationship"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Sevilla",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -19815,7 +20242,13 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778315860629_cqoyh",
@@ -19828,16 +20261,42 @@
     "synopsis": "Emily ha seguido siempre sus propias normas. Las 7 reglas que la han acompañado desde la adolescencia han sido su refugio, su manera de mantener el control. Pero cuando Noah, la misteriosa chica de la escalera, entra en su vida, todo empieza a tambalearse. De repente, las reglas parecen más difíciles de seguir… y más fáciles de romper.\n\nEntre pasillos de hospital, noches cargadas de deseo y sentimientos que se vuelven incontrolables, Emily tendrá que decidir si seguir aferrándose a su lista o arriesgarse a escribir nuevas reglas. Porque en La chica de la Las 7 reglas, hay normas que nunca deberían existir… y otras que están destinadas a romperse.",
     "pages": 177,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Jealousy Trope",
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Second Chance Romance"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -19845,7 +20304,13 @@
     "source": "spanish",
     "editions": [],
     "saficlub": false,
-    "safi_categories": []
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778315896226_lumw7",
@@ -19859,16 +20324,56 @@
     "synopsis": "Marina Ballard, una ejecutiva acostumbrada a mantener el control en todos los aspectos de su vida, nunca ha necesitado el amor... hasta que conoce a Nuria Brau. Recién divorciada y con ganas de experimentar, Nuria no busca enamorarse, pero el magnetismo de Marina es irresistible.\nCuando sus caminos se cruzan, surge una química innegable que las arrastra a una serie de intensos y fogosos encuentros. Pero mientras Nuria sueña con un amor verdadero, Marina se resiste a abandonar su independencia y un estilo de vida sin ataduras.\nEl destino las une en un momento crucial para ambas, pero sus distintas expectativas amenazan con separarlas. Marina deberá decidir si está dispuesta a arriesgarlo todo por Nuria, mientras esta última tendrá que armarse de paciencia para conquistar a una mujer que nunca ha creído en el amor.",
     "pages": 232,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Workplace Romance"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España",
+      "Sudamérica"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -19877,10 +20382,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España",
-      "Sudamérica"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778315939686_06wwy",
@@ -19967,16 +20474,59 @@
     "synopsis": "Para su siguiente novela, la escritora Henar Leiva ha creado una trama cuya protagonista es una doctora y, para definir al personaje, ha decidido que necesita pasar tiempo junto a de verdad.\nPero a Henar no le sirve cualquier doctora, ella quiere que sea la misma que la atendió el otro día cuando se presentó en urgencias fingiendo una dolencia para ver cuál era el procedimiento habitual.\nÍngrid Ribas no recibe nada bien la noticia de que servirá de musa para la escritora durante algunas semanas. Sus nervios crecen y con ellos su mal humor, por lo que la tensión entre ambas será constante, sobre todo, por parte de la doctora.\nSin embargo, conforme pasen las semanas, ambas mujeres se darán cuenta de que, a pesar de todas las discusiones que protagonizan a diario; les gusta pasar tiempo juntas.",
     "pages": 150,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Grumpy × Sunshine"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Opposites Attract",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Palamós",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -19985,9 +20535,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778316046135_yhwlf",
@@ -20000,20 +20553,64 @@
     "synopsis": "PASO 1: DATE CUENTA DE QUE TIENES UNA HABILIDAD ÚNICA PARA DETECTAR MALDICIONES.\nPASO 2: LLEVA LOS OBJETOS MALDITOS A TU BRUJA LOCAL (IRRESISTIBLEMENTE HERMOSA).\nPASO 3: LLAMAS ACCIDENTALMENTE LA ATENCIÓN DE UNA FAMILIA ASESINA DISPUESTA A TODO POR CONSEGUIR OBJETOS MÁGICOS.\n\nLa vida universitaria de Katie da un giro inesperado cuando adopta un gatito maldito. Así conoce a Natalie, una atractiva veterinaria que en realidad es una bruja encargada de controlar la magia oscura. Katie descubre que puede detectar maldiciones, y termina involucrada en un aquelarre secreto.\n\nMientras enfrentan a la peligrosa familia Madsen, que busca poder a toda costa, Katie y Natalie luchan para protegerse… y resistir una atracción que crece con cada hechizo.",
     "pages": 2024,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Misterio",
       "Paranormal",
-      "Romance"
+      "Romance",
+      "Aventura",
+      "Acción"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Sobrenatural",
+      "Autodescubrimiento",
+      "Universidad"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Protectora × Delicada"
+    ],
+    "tropes": [
+      "Forbidden Love",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Found Family"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Vancouver",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Canadá"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Cómo conquistar a una bruja",
@@ -20022,9 +20619,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Canadá"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778316078766_fkybc",
@@ -21034,6 +21634,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Written in the Stars",
@@ -21220,6 +21821,7 @@
       "Conflictos Familiares"
     ],
     "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -24865,7 +25467,8 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 1,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -25019,6 +25622,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50661,7 +51265,7 @@
   },
   {
     "id": "b_1780602064194_5lkst",
-    "title": "365 DÍAS CONTIGO",
+    "title": "365 DÍAS CONTIGO.",
     "authors": [
       "Victoria Lacaci"
     ],
@@ -50670,6 +51274,8 @@
     "synopsis": "Julia Rocafort es éxito y poder. Destinada a gobernar un imperio naviero, su vida se rige por una regla: el poder no se comparte. Sin embargo, el testamento de su padre le impone un reto humillante: debe casarse para heredar. Julia elige a Sofía Serra, una economista brillante que oculta un profundo desprecio hacia su jefa.\n\nLo que empieza como una alianza estratégica y fría se transforma en un pulso de voluntades. Entre despachos y apariencias, la desconfianza muta en una atracción perturbadora y peligrosamente real. Julia y Sofía descubrirán que, en este juego de ambición, algunas derrotas son la única forma de victoria.",
     "pages": 287,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -50677,11 +51283,26 @@
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Marriage of Convenience",
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50690,13 +51311,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": true,
     "canal_month": "2026",
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780602575739_etmok",
@@ -50803,27 +51423,45 @@
     "synopsis": "En este infierno dorado adorado negro despídete m/i muy hermosa m/i muy fuerte m/i muy indomable m/i muy sabia m/i muy feroz m/i muy dulce m/i muy amada, de lo que ellas llaman sucedido, ninguna lo ignora, no tiene hasta ahora nombre; que ellas lo busquen si tienen absoluta necesidad, que se lancen a un asalto de hermosas rivalidades, del cual y/o m/e desintereso casi completamente mientras que tú puedes con voz de sirena suplicarle a alguna de brillantes rodillas que acuda en tu ayuda.\n\nPero, lo sabes, ninguna podrá soportar verte con los ojos revulsionados los párpados recortados tus intestinos amarillos humeantes extendidos en las palmas de tus manos tu lengua escupida fuera de tu boca los largos hilillos verdes de tu bilis deslizándose sobre tus senos, ni una podrá soportar el oír tu risa baja frenética insistente. El estallido de tus dientes tu alegría tu dolor la vida secreta de tus vísceras tu sangre tus arterias tus venas tus huesos habitáculos tus órganos tus nervios su estallido su brote la muerte la lenta descomposición la peste la devoración por los gusanos tu cráneo abierto, todo le será de igual modo insoportable.",
     "pages": 156,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Filosofía",
-      "No Ficción"
+      "No Ficción",
+      "Psicológico",
+      "Drama",
+      "Romance"
     ],
     "subgenres": [
       "Feminismo",
-      "Poesía"
+      "Poesía",
+      "Queer",
+      "Autodescubrimiento",
+      "Erótica"
     ],
-    "identidades": [],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Unrequited Love"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Francia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 5,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50832,6 +51470,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -50848,12 +51488,20 @@
     "synopsis": "Darcy es especialista en relaciones...\n... a excepción de las propias.\n\nCuando Brougham la atrapa recolectando las cartas del mítico casillero 89, en el que Darcy opera su negocio secreto de consejos románticos, surge el chantaje: o ella lo ayuda a recuperar a su exnovia o la delatará. Y Darcy no puede permitir que su identidad se haga pública, porque muchas cosas saldrían a la luz y habría muchas chances de que Brooke, su mejor amiga y crush-secreto-que-ama-a-alguien-más, ya no vuelva a hablarle. Así que... si todo lo que tiene que hacer es ayudar a un chico grosero y engreído (e irritantemente atractivo) a conquistar a una chica que ya se enamoró de él alguna vez...\n\n¿Qué podría salir mal?",
     "pages": 350,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "YA"
+      "YA",
+      "Contemporánea",
+      "Juvenil",
+      "Drama"
     ],
     "subgenres": [
-      "Bisexual"
+      "Bisexual",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
     ],
     "identidades": [
       "Bisexual"
@@ -50861,14 +51509,37 @@
     "characters": [],
     "dinamicas": [],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Slow Burn"
     ],
     "edad": [
       "Young Adult (15–18)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Australia"
+    ],
     "ambientacion": [],
-    "spicy": 2,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50877,13 +51548,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Australia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780602831301_l7ow6",
@@ -50897,11 +51567,15 @@
     "synopsis": "En el libro “Borrador para un diccionario de las amantes”, Monique Wittig crea todo un mundo mitológico poblado sólo por mujeres: madres, hijas, amantes, amazonas... Todas lesbianas. Las definiciones siempre de gran lirismo y belleza alternan entre una aguda ironía, una voluptuosa sensualidad y un descarado erotismo.\n\nLumen, Barcelona, 1981. Col. Palabra Menor, nº 58. Rústica. Primera edición. 18,5x12 cm.\n\nBajo la forma de breves textos dispuestos por orden alfábetico, la novelista Monique Wittig, junto con Sande Zeig, trazan un bosquejo imaginario del mundo de las lesbianas y de su fantástica historia a través de los tiempos. Insólita mezcla de erudición, de lirismo y de malicia, se trata de un diccionario muy particular, en que las alusiones mitológicas a las amazonas se hermanan con la gozosa celebraación de las partes del cuerpo femenino.",
     "pages": 216,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "No Ficción"
+      "No Ficción",
+      "Ensayo"
     ],
     "subgenres": [
-      "Feminismo"
+      "Feminismo",
+      "Queer"
     ],
     "identidades": [],
     "characters": [],
@@ -50909,8 +51583,20 @@
     "tropes": [],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": "Obra publicada originalmente en 1976; las entradas evocan distintas épocas y sociedades míticas",
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Francia",
+      "Estados Unidos"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50919,14 +51605,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Francia",
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780602982664_fir3x",
@@ -50939,20 +51623,57 @@
     "synopsis": "En Asteria Heights, el vóleibol es un estilo de vida. Amelia Thomson, capitana de un equipo en crisis, lucha por liderar mientras el pueblo culpa a su padre, el entrenador, de los fracasos. Para Amelia, ese balón es la única llave para escapar de un lugar que la asfixia.\n\nPero todo cambia con la llegada de Ivy Scott, una joven con un talento prodigioso destinada a los Juegos Olímpicos hasta que una fatídica noche destrozó sus sueños. Obligada a empezar de nuevo, Ivy solo desea pasar desapercibida, pero la atracción por Amelia amenaza con derribar sus muros. ¿Podrán salvar al equipo mientras descubren que el amor es el desafío más difícil de su último año?",
     "pages": 215,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Juvenil",
+      "Drama"
     ],
     "subgenres": [
-      "Deporte"
+      "Deporte",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming Out"
     ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Introvertida × Extrovertida"
+    ],
+    "tropes": [
+      "Friends to Lovers",
+      "Opposites Attract"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Asteria Heights",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50961,13 +51682,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780603035129_5tvyo",
@@ -50980,18 +51700,59 @@
     "synopsis": "Los tres libros de la trilogía en un solo volumen.\nEn las oscuras calles de una gran ciudad, donde la esperanza ha desaparecido, Cassie descubre un poder ancestral que yace dormido en su interior: la habilidad de transformarse en lobo. Esto no solo le otorga libertad, también un peligroso escape de su dolorosa realidad viviendo en la calle sin una familia.\nPero cuando el simple robo de una hamburguesa acaba desencadenando su transformación, Cassie se encuentra cara a cara con una fuerza misteriosa, más hermosa y poderosa que cualquier cosa que haya conocido antes.\nArrastrada a un mundo secreto, oculto a plena vista, Cassie se topa con una enigmática vampira que parece empeñada en hacerle la vida imposible.\nSin embargo, en las sombras de este nuevo mundo, se enfrentará a una verdad inquietante: los sueños pueden ser encantadores, pero también se transforman en pesadillas.\nCassie aprenderá que la verdadera familia va más allá de la sangre, y que el poder reside en atreverse a aceptar su verdadera naturaleza.",
     "pages": 373,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Fantasía",
+      "Fantasía Urbana",
+      "Paranormal",
+      "Acción",
+      "Aventura"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Sobrenatural",
+      "Magia",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "tropes": [
+      "Forbidden Love",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Enemies to Lovers"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51000,13 +51761,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780603084514_t98we",
@@ -51019,18 +51779,42 @@
     "synopsis": "Iris Richardson lo tiene todo bajo control. Como directora de la prestigiosa Academia de Póquer Richardson, ha convertido su vida en un ejemplo de disciplina y precisión. Hasta que Kate Malone irrumpe en su vida.\nIrreverente, brillante y con un talento natural que desafía todas las reglas, Kate representa todo lo que Iris ha estado evitando durante años. Con un estilo de juego forjado en las partidas clandestinas, amenaza con desestabilizar no solo la metodología probada de la academia, sino también las barreras que Iris ha construido cuidadosamente a su alrededor.\nEn un mundo donde cada movimiento puede ser un farol y cada gesto puede revelar una debilidad, Iris debe decidir si está dispuesta a arriesgarlo todo de nuevo. ¿Podrá mantener su fachada cuando Kate comience a ver a través de sus cartas?",
     "pages": 163,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Workplace Romance",
+      "Secret Relationship",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51039,13 +51823,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780603125278_qzykq",
@@ -51058,20 +51841,55 @@
     "synopsis": "Aspen tiene una vida perfecta. Capitana del equipo de animadoras de su instituto, un cuerpo perfecto, un pelo perfecto, un novio perfecto.\n¿O no?\nJenna es todo lo contrario. No le importa lo que los demás piensen de ella.\nY se odian a muerte.\nCuando ambas deben asistir a una competición académica en Houston para estudiantes que formen parte de equipos deportivos, saltarán chispas en todas las direcciones.\nY Aspen quizá descubra un par de cosas que no sabía.",
     "pages": 96,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Juvenil",
+      "Drama"
     ],
     "subgenres": [
-      "Deporte"
+      "Deporte",
+      "Queer",
+      "Autodescubrimiento",
+      "Coming Out",
+      "Familia",
+      "Small Town"
     ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Enemies to Lovers",
+      "Hurt/Comfort",
+      "Coming Out tardío"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51080,13 +51898,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780603189914_2fwn9",
@@ -51312,22 +52129,43 @@
     "synopsis": "Chloe Reed es la estrella del equipo de fútbol americano: una gigante musculosa, protectora y absurdamente dulce. Samira Navarro, capitana del club de ciencias, es todo lo contrario: seria, directa y orgullosamente autista. Samira tiene una regla de oro: odia a los deportistas. Para ella, son puro músculo y nada de cerebro.\n\nSin embargo, las leyes de la física no pueden explicar por qué su corazón se acelera cuando la \"torpe\" lineman rubia la observa desde la distancia. Mientras Chloe intenta derribar los muros de la científica con su ternura, Samira deberá decidir si sigue sus prejuicios o sus sentimientos. ¿Podrán una jugadora de fútbol y una mente brillante encontrar un lenguaje común o están destinadas a un choque frontal?",
     "pages": 226,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Juvenil",
+      "Drama"
     ],
     "subgenres": [
-      "Deporte"
+      "Deporte",
+      "Queer",
+      "Autodescubrimiento"
     ],
-    "identidades": [],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
     "tropes": [
-      "Opposites Attract"
+      "Opposites Attract",
+      "Strangers to Lovers"
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51336,13 +52174,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780642577181_9g9x4",
@@ -51355,18 +52192,45 @@
     "synopsis": "El mundo se ha inundado. Lo que queda de la humanidad lucha por sobrevivir entre torres de hormigón y plataformas flotantes. Pero hay algo que ni el agua ni la crueldad pueden ahogar: el instinto de proteger a quien amas.\n\nCarrie y Alexis están atrapadas en Torre Babel, un rascacielos donde la vida se mide en kilos y los muertos alimentan a los vivos.\n\nIsabella y Jade luchan contra un sistema que les ordena matar a los más débiles en una plataforma flotante.\n\nDos parejas, dos infiernos y una misma certeza: salir de ahí o morir intentándolo. Porque en un mundo que se empeña en arrebatártelo todo, lo último que estás dispuesta a perder es a la persona a la que quieres.",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Ciencia Ficción",
+      "Distopía",
+      "Aventura",
+      "Thriller",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Crimen"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Hurt/Comfort",
+      "Forced Proximity"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Futurista",
+    "periodo": "Futuro distópico y postapocalíptico.",
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Ciudad sumergida",
@@ -51375,13 +52239,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780642612437_rmfap",
@@ -51394,18 +52257,55 @@
     "synopsis": "La Palma (1850-1946) es el escenario por el que camina Petra, la prestamista de Villa de Mazo, y los personajes que la acompañan. Las hambrunas que fuerzan la emigración a Cuba, el esplendor del siglo de oro palmero y sus miserias, la irrupción de la ideología de izquierdas en una sociedad cansada y desabastecida, la esperanza republicana, la crudeza de la guerra civil, los alzados y su lucha por la supervivencia son algunos de los hechos históricos que rodean el antes, el ahora y el después de la historia de Petra mientras en su corazón se desata un amor rotundo, pero invisible durante todo el tiempo que fue posible.",
     "pages": 366,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Histórica"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Feminismo"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "dinamicas": [
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love"
+    ],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Canarias",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": 1,
+    "content_warnings": [],
+    "spicy": 2,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51414,13 +52314,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780642648089_ab0wo",
@@ -51568,46 +52467,6 @@
     "my_rec_categories": []
   },
   {
-    "id": "b_1780642707952_1qe7n",
-    "title": "Insólitas",
-    "authors": [
-      "Fani Álvarez"
-    ],
-    "year": 2018,
-    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1551176772i/42944645.jpg",
-    "synopsis": "Vexel (Fani Álvarez): Mara y Gwen han contratado un Vexel, un cuerpo sintético que funciona de soporte físico para un sistema de transferencia de consciencia en tiempo real con el que quieren darle a Gwen una oportunidad para recuperar su vida anterior.\n\nAmor de espinas (Celia Añó): Nat ha tenido un encuentro que parece de cuento. Y, sin embargo, a ella no le ha hecho ni pizca de gracia. Ahora tiene un mago en su casa que insiste en recordarle una parte de su adolescencia que ella ha enterrado para siempre.\n\nAnomalía (Isabel Collazo): Las anomalías deben ser erradicadas. En la Era de la Perfección no tienen cabida; los sentimientos se han eliminado y el ser humano por fin ha sido mejorado. Leira no ha dejado de huir desde hace demasiado tiempo. Ahora regresa a casa. Por Naren. Todo ha sido siempre por ella.\n\nLa reliquia del Titán (Mar Hernández): Kaeldris ha nacido con la bendición de los Guardianes y por tradición debe formarse en la Escuela de los Elegidos. Detesta esta norma, así que no es un buen estudiante. Su actitud lo enfrentará a su verdadero destino. ¿Estará preparado para aceptarlo o abandonará al mundo?\n\nKalasona (Patricia Macías): Kala se considera la mejor ladrona de todo Péndulo desde el legendario Chor Izo, pero, para que el resto del mundo lo vea tan claro como ella, tiene que dar un gran golpe. Con esa intención se cuela en palacio. Su plan se tuerce, sin embargo, al conocer a Sona.\n\nEl precio de la inspiración (Ana Morán Infiesta): Cuando se ofrece voluntaria para probar una cibermusa, Teresa confía en romper con el bloqueo creativo y emocional en el que está sumida desde la muerte de su mujer en un atentado. El proceso tal vez no sea tan inocuo como ella espera.\n\n99,9 % (Andrea Prieto Pérez): Octavia Rey es feliz. Al menos, eso dice la aplicación y no tiene motivos para dudar. Aunque sabe que hay algo que la haría más feliz todavía: ser la primera en escribir un buen artículo sobre la desaparición de Belle Sanz. ¿Qué le ocurrió a la celebridad del momento?\n\nLux tenebrae (Leticia S. Murga): Cuando Belén comenzó a recibir aquellas misteriosas cartas de contenido grotesco, que le advertían de un peligro inminente, pensó que se trataba de una broma pesada. Era imposible que tuvieran ni una pizca de verdad… ¿o no?\n\nHuesos de manzana (Marina Tena Tena): Carmen se ha prometido volver a estar bien: retomar el control de su vida. Por eso va a pasar unos días al pueblo de su padre, para desconectar y quizá encontrarse a sí misma.\nEra la idea, hasta que escucha el grito en el monte.\n(Y es que bajo el bosque duermen muchos secretos).",
-    "pages": 244,
-    "isbn": null,
-    "genres": [
-      "Fantasía",
-      "Fantasía Urbana"
-    ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
-    "ambientacion": [],
-    "spicy": null,
-    "formato": null,
-    "adaptacion": null,
-    "sagaName": null,
-    "sagaNum": null,
-    "source": "spanish",
-    "editions": [],
-    "saficlub": false,
-    "safi_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
-  },
-  {
     "id": "b_1780643603708_kujmp",
     "title": "Corrupta",
     "authors": [
@@ -51619,18 +52478,57 @@
     "synopsis": "Ariadna Ferrer nunca planeó enamorarse de su abogada, pero el destino tiene sus propias leyes. Cuando Claudia Ibáñez aparece para defender a su marido, su presencia profesional y su mirada magnética desatan un deseo incontrolable. Entre reuniones legales y secretos compartidos, las manos de Claudia borran años de dolor en la piel de Ariadna, prometiéndole un futuro que parece imposible.\n\nSin embargo, el romance es solo la superficie de un juego peligroso. Mientras se entrega a la pasión en la habitación de invitados, Ariadna teje una red de mentiras perfecta para proteger lo único que le importa: su hijo. Claudia no sabe de lo que su clienta es capaz, ni que está siendo parte de un plan donde el amor es el obstáculo más imprevisto.\n\n¿Podrá la verdad salir a la luz antes de que la mentira de Ariadna las destruya a ambas?",
     "pages": 235,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Thriller",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Crimen",
+      "Mafia",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Secret Relationship"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Comunidad Valenciana",
+        "ciudad": "Valencia",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España",
+      "Sudamérica"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51639,14 +52537,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España",
-      "Sudamérica"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780643635693_6713x",
@@ -51659,20 +52555,58 @@
     "synopsis": "Leslie Valera ha regresado al pueblo de Los Limos después de diez años, decidida a aprovechar las vacaciones de verano y divertirse en compañía de su primo. Sin embargo, sus días de ocio son frustrados por la extraña presencia que la acecha desde los árboles.",
     "pages": 327,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Fantasía",
+      "Paranormal",
+      "Drama",
+      "Misterio"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Familia",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [
       "Bruja"
     ],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Bruja × Mortal"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Lesbian Awakening"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Perú",
+        "region": null,
+        "ciudad": "Los Limos",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -51681,6 +52615,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -54289,20 +55225,46 @@
     "synopsis": "La embajadora Mahit Dzmare llega a la capital del imperio Teixcalaanlí para descubrir que su predecesor ha muerto en extrañas circunstancias. Nadie en la corte admite lo innegable: no fue un accidente, y ella podría ser la siguiente víctima. En un entorno de intriga política y expansión implacable, Mahit debe desentrañar el misterio antes de que el imperio devore su hogar.\n\nEntre engranajes diplomáticos, lucha por preservar un secreto tecnológico letal. Esta herramienta es la única esperanza para rescatar a su gente de la aniquilación, pero si cae en las manos equivocadas, podría sepultarlos para siempre.\n\n¿Logrará Mahit navegar las sombras del imperio antes de convertirse en el próximo cadáver de la embajada?",
     "pages": 480,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Ciencia Ficción",
-      "Romance"
+      "Romance",
+      "Misterio",
+      "Thriller",
+      "Drama",
+      "Acción",
+      "Aventura"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Crimen"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Slow Burn"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Futurista",
+    "periodo": "Futuro lejano.",
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 1,
+    "rapidez_romance": 1,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Teixcalaán",
@@ -54311,25 +55273,27 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780860927654_ta2hj",
-    "title": "¿Puedo Llamarte Ama?",
+    "title": "Portadilla y metadatos identifican ¿Puedo Llamarte Ama?",
     "authors": [
-      "Ruby Scott"
+      "Ruby Scott",
+      "Ruby Scott aparece en los metadatos"
     ],
     "year": 2022,
     "cover": "https://m.media-amazon.com/images/I/71cVZOJiNWL._SL1500_.jpg",
     "synopsis": "Cuando Victoria deja claro que el título de “Ama” debe ganarse, Abby se ve cada vez más atraída hacia un viaje de descubrimiento sensual. Sus encuentros se vuelven más intensos mientras Abby explora su naturaleza sumisa bajo la guía experimentada de Victoria. Pero en este romance lésbico contemporáneo, nada es sencillo: Victoria tiene estándares exigentes, y Abby tendrá que demostrar que es digna de rendirse.\n\nLleno de pasión, tensión emocional y el delicado equilibrio del intercambio de poder, ¿Puedo Llamarte Ama? es una inolvidable novela erótica lésbica sobre deseo, confianza y entrega. Perfecto para lectoras que aman el romance lésbico, el romance sáfico, las historias de amor entre mujeres y las relaciones intensas donde el poder, la vulnerabilidad y el corazón van de la mano.",
     "pages": 90,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance"
     ],
@@ -54338,16 +55302,35 @@
       "Poliamor"
     ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [
-      "Age Gap"
+    "characters": [
+      "Fotógrafa"
     ],
-    "edad": [],
+    "dinamicas": [
+      "Dominante × Sumisa"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Second Chance Romance",
+      "Slow Burn"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 3,
+    "rapidez_romance": 5,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "An Awakening of Desire",
@@ -54356,13 +55339,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780860995545_n7t8x",
@@ -54375,24 +55357,63 @@
     "synopsis": "Hasta que su pasado regresa para destruirlo todo.\n\nCuando Victoria envió a Mhairi, la ex-ama abusiva de Alison, lejos a Tailandia, creyó estar protegiendo a las mujeres que ama. Se equivocó completamente. Ahora la obsesión enfermiza de Mhairi por dominar a Alison se ha transformado en algo mucho más oscuro, y ha regresado con aliados peligrosos que comparten su sed de control y dolor.\n\nMientras la amenaza se intensifica, Victoria debe decidir hasta dónde está dispuesta a llegar para proteger a su nueva familia. Porque la obsesión de Mhairi no tiene límites, y no descansará hasta destruir todo lo que Victoria ha construido.\n\nEsta novela erótica lésbica explora el intercambio de poder, las relaciones con diferencia de edad, el poliamor, y el poder transformador de la familia elegida. Con escenas apasionadas, tensión constante y emociones intensas, este romance sáfico se adentra en las sombras de la obsesión mientras celebra la luz del amor verdadero.\n\nIdeal para lectoras que disfrutan del romance lésbico erótico, historias de amor entre mujeres, y relaciones complejas donde el deseo, el poder y la lealtad chocan.",
     "pages": 128,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Thriller"
     ],
     "subgenres": [
       "BDSM",
-      "Poliamor"
+      "Poliamor",
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Crimen"
     ],
-    "identidades": [],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Dominante × Sumisa"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Found Family",
+      "Hurt/Comfort",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Escocia",
+        "ciudad": "Edimburgo",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "An Awakening of Desire",
@@ -54401,13 +55422,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861052779_sqdxd",
@@ -54420,24 +55440,59 @@
     "synopsis": "Sumérgete en el cautivador mundo de Ama del Deseo, un romance lésbico erótico y romance sáfico que explora sin miedo las complejidades del amor poliamoroso, el deseo intenso y las electrizantes dinámicas de poder del BDSM consensuado.\n\nAcompaña el viaje emocional de Alison mientras se libera de las cadenas de un pasado abusivo y comienza a descubrir su verdadera fuerza y sus deseos más profundos. Con la ayuda de su sabia y seductora terapeuta Olivia, Alison navega los conflictos de su corazón y la intensa conexión que comparte con su pareja de toda la vida, Victoria, y su joven amante Abby.\n\nMientras Alison sana y evoluciona, anhela un amor tan profundo como el vínculo inquebrantable entre Victoria y Abby. Pero cuando su corazón comienza a inclinarse hacia un deseo prohibido por Olivia, Alison deberá enfrentarse a sus propios límites y tomar una decisión que podría cambiar sus vidas para siempre.\n\nEn esta novela romántica lésbica llena de pasión, experimentarás el calor de los romances con diferencia de edad, la vulnerabilidad del intercambio de poder BDSM, y la intensidad emocional de una familia elegida que lucha por mantenerse unida. Desde castigos sensuales hasta momentos tiernos de cuidado y aftercare, Ama del Deseo lleva el romance erótico entre mujeres a nuevas profundidades.\n\nSecretos saldrán a la luz, viejas heridas volverán a abrirse y una ex-domme abusiva regresará para amenazar la paz que tanto les ha costado construir. Pero incluso cuando el pasado intenta destruirlo todo, el poder del amor, la confianza y la autoaceptación podría ser más fuerte.",
     "pages": 208,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Thriller"
     ],
     "subgenres": [
       "BDSM",
-      "Poliamor"
+      "Poliamor",
+      "Erótica",
+      "Queer",
+      "Crimen",
+      "Familia"
     ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Dominante × Sumisa"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Slow Burn",
+      "Forbidden Love"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Edimburgo",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 1,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "An Awakening of Desire",
@@ -54446,13 +55501,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861088250_c68xu",
@@ -54465,24 +55519,60 @@
     "synopsis": "Olivia siempre ha mantenido un control férreo en su carrera como terapeuta. Sin embargo, su mundo se tambalea cuando Alison entra en su consulta. Lo que comienza como una relación profesional se transforma en una atracción prohibida que Olivia, por primera vez, es incapaz de frenar.\n\nAl cruzar la línea, ambas se sumergen en una relación intensa donde exploran el deseo, el BDSM consensuado y las dinámicas de poder. Ambientada en Navidad, esta historia sáfica obliga a sus protagonistas a decidir si están dispuestas a arriesgarlo todo por la valentía de rendirse al amor.\n\n¿Podrá Olivia mantener su mundo en orden mientras se entrega a la pasión más salvaje y peligrosa de su vida?",
     "pages": 128,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "BDSM",
-      "Poliamor"
+      "Poliamor",
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Navidad"
     ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Dominante × Sumisa",
+      "Top × Bottom"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Found Family",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Escocia",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 4,
+    "rapidez_romance": 4,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "An Awakening of Desire",
@@ -54491,13 +55581,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861143956_ses6k",
@@ -54510,24 +55599,61 @@
     "synopsis": "Cuando la boda de Victoria y Abby se queda sin sede, la famosa rompecorazones Bo McKinnon ofrece el castillo escocés de su familia como salvación. Lo que no esperaba era que su encuentro con la joven y talentosa chef, Destinee, pusiera en jaque su reputación de soltera empedernida.\n\nA pesar de la diferencia de edad y de pertenecer a mundos opuestos, la química entre ambas es electrizante. Mientras preparan el banquete en la soledad de las Tierras Altas, la pasión se desata y los secretos mejor guardados salen a la luz. Bo y Destinee deberán decidir si su conexión es solo un romance de verano o el ingrediente que les faltaba para arriesgarlo todo por amor.\n\n¿Podrá el encanto de Escocia derretir las defensas de dos corazones que juraron nunca enamorarse?",
     "pages": 288,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "BDSM",
-      "Poliamor"
+      "Poliamor",
+      "Erótica",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
     ],
-    "identidades": [],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Dominante × Sumisa"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Found Family"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Edimburgo",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 2,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "An Awakening of Desire",
@@ -54536,17 +55662,16 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861224357_yfhh3",
-    "title": "La Verdad del Deseo (An Awakening of Desire 6)",
+    "title": "La Verdad del Deseo",
     "authors": [
       "Ruby Scott"
     ],
@@ -54555,24 +55680,61 @@
     "synopsis": "La Verdad del Deseo es una intensa novela lésbica erótica y romance lésbico erótico sobre poder, consentimiento y el precio de soltar el control. Victoria Fraser ha construido un imperio con precisión y dominio, triunfando tanto en la sala de juntas como en el dormitorio. Entonces aparece Suzette Conner-Wakeman, una multimillonaria de filo implacable y gusto por el riesgo, con una oferta imposible de ignorar: setenta y cinco millones por sus compañías, con una condición no negociable. Por una única noche, Victoria debe someterse por completo.\n\nCon el sorprendente apoyo de su esposa Abby, Victoria acepta, y lo que comienza como un encuentro cuidadosamente negociado dentro del mundo BDSM consensuado se convierte en algo mucho más revelador. Se establecen límites claros, se respetan las safewords, y el aftercare es real. Aun así, la experiencia desentierra verdades que Victoria había mantenido bajo llave. El deseo choca con la confianza, los celos rozan la devoción y el matrimonio en el centro de todo demuestra ser más fuerte de lo que ambas imaginaban.\n\nMientras las verdaderas motivaciones de Suzette salen a la luz y las tres mujeres navegan las consecuencias de esa noche, Victoria y Abby deben decidir qué significa realmente su amor cuando las reglas antiguas dejan de funcionar. Este romance sáfico combina romance entre mujeres, deseo intenso y emociones de alto voltaje en una historia donde la comunicación, el consentimiento y la intimidad importan tanto como la pasión.",
     "pages": 376,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "BDSM",
-      "Poliamor"
+      "Poliamor",
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
     ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Dominante × Sumisa"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Hurt/Comfort",
+      "Found Family",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Escocia",
+        "ciudad": "Edimburgo",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "An Awakening of Desire",
@@ -54581,38 +55743,69 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861270086_mx8gk",
     "title": "¿Rosas sin espinas?",
     "authors": [
-      "Betty Carrillo Z"
+      "Betty Carrillo Z",
+      "Betty Carrillo Z."
     ],
     "year": 2026,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1772582699i/249255192.jpg",
     "synopsis": "Natalia y Lorena lo tenían todo: un hogar construido con amor, promesas que parecían eternas y una conexión que creían inquebrantable.\n\nPero el amor no siempre es solo belleza. A veces, como las rosas, también tiene espinas.\n\nUn error esporádico, una mentira, una desconexión, palabras dichas desde el dolor y silencios que pesan comienzan a lacerar lo que parecía perfecto.\n\nCuando el amor lastima, ¿se lucha hasta el final o se aprende a soltar?\n\nRosas, ¿sin espinas? es una historia intensa y profundamente humana sobre el amor real: ese que no es perfecto, que duele, que enseña… y que a veces exige valentía para sanar.\n\n¿Podrá Lorena protegerse sin dejar de amar?\n¿Y Natalia podrá superar sus errores y ganar una segunda oportunidad?",
     "pages": 338,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Familia",
+      "Queer",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Hurt/Comfort",
+      "Second Chance Romance"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Puerto Rico",
+        "region": null,
+        "ciudad": "San Juan",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54621,6 +55814,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -54637,19 +55832,58 @@
     "synopsis": "Helena por fin ha encontrado la paz que llevaba años buscando: una tetería acogedora, dos hermanas que son su ancla y una relación con Isla que empieza a sentirse como hogar. Pero cuando una joven forastera llega al pueblo con una sensibilidad imposible hacia las plantas —y hacia algo mucho más antiguo—, el equilibrio de Willowlake empieza a resquebrajarse.\n\nDesde el primer día, el bosque reacciona.\nLas hojas se mueven sin viento. Las raíces se inclinan. Y un latido profundo e invisible comienza a recorrer la tierra como una advertencia.\n\nMientras su relación con Isla avanza, los susurros crecen entre los árboles y Helena deberá usar su don para sentir emociones y descubrir qué ha despertado en lo más profundo del bosque antes de que ese pulso reclame algo —o a alguien— para siempre.",
     "pages": 192,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Misterio",
+      "Fantasía",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Sobrenatural",
+      "Familia",
+      "Autodescubrimiento",
+      "Crimen"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "tropes": [
+      "Hurt/Comfort",
+      "Found Family"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Willowlake",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": 4,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Hermanas Rowan",
@@ -54658,6 +55892,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -54674,19 +55910,61 @@
     "synopsis": "Alejandra dirige su departamento con precisión quirúrgica a sus cuarenta y cinco años, sin margen para el error ni las emociones. En la oficina todos la respetan, pero nadie la conoce. Su mundo es perfecto porque cada pieza está en su sitio, hasta que una noche rompe sus propias reglas con la persona menos indicada.\n\nNoa, una empleada de veintiocho años con talento para los números, posee la incómoda costumbre de ver a las personas tal como son. Tras un encuentro inesperado, lo que parecía una simple atracción se convierte en un secreto peligroso. Alejandra es su jefa directa y sentencia que aquello fue un error que no puede repetirse.\n\nEn la oficina, el deseo oculto transforma cada reunión y cada silencio en una tortura. ¿Podrán mantener la máscara profesional cuando la atracción es lo único que no pueden controlar?",
     "pages": 207,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Forbidden Love",
+      "Opposites Attract",
+      "Age Gap"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54695,13 +55973,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861399100_5nqqa",
@@ -54714,19 +55991,60 @@
     "synopsis": "Olga Aranda tiene cuarenta y cinco años y una vida impecable como socia de un bufete en Madrid. Pero, tras un ataque de ansiedad en plena negociación, su fachada se quiebra. Impulsivamente, decide escapar a Luna Llena, un exclusivo resort solo para mujeres en la isla de Cozumel.\n\nAllí conoce a Frida, la enigmática dueña del lugar y ex cirujana que también huyó de una vida que la destruía. Entre el mar Caribe y las noches estrelladas, Olga comienza a desmoronar las capas de control que la han aprisionado durante décadas. Pero cuando el deseo se convierte en un amor profundo, se enfrenta a una encrucijada vital.\n\n¿Volverá a la seguridad de su éxito en Madrid o se atreverá a saltar al vacío por la mujer que le ha devuelto las ganas de vivir?",
     "pages": 248,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "dinamicas": [
+      "Femme × Femme",
+      "Protectora × Delicada"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Vacation Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "México"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "México",
+        "region": null,
+        "ciudad": "Cozumel",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54735,13 +56053,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861635058_rfg51",
@@ -54797,13 +56114,25 @@
     "synopsis": "Cuando Jessamyn Teoh comienza a oír una voz en su cabeza, lo achaca al estrés. Armarizada, arruinada y sin trabajo, vuelve a Malasia con sus padres, un país que no veía desde que era una niña. Pronto, descubre que la voz no es ni siquiera suya, sino del fantasma de su distante abuela. En vida, la Ah Ma era una médium espiritual, el avatar de una misteriosa deidad conocida como la Hermana de las Aguas Negras. Ahora, está decidida a ajustar cuentas con un magnate empresarial que ha ofendido a la deidad, y ha resuelto que Jess la ayude, independientemente de los deseos de su nieta.\n\nArrastrada a un mundo de deidades, fantasmas y secretos familiares, Jess descubre que cerrar tratos con espíritus caprichosos es peligroso, y que tratar con su abuela es igual de complicado. Sobre todo cuando la Ah Ma intenta meter las narices en su vida personal, amenaza con compartir sus secretos con su familia y utiliza su cuerpo para cometer delitos.\n\nMientras Jess lucha por vengarse en nombre de su Ah Ma, también necesitará recuperar el control sobre su propio cuerpo y destino, o de lo contrario la Hermana de las Aguas Negras acabará con ella para siempre.",
     "pages": 371,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Paranormal",
+      "Drama",
+      "Misterio"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Sobrenatural",
+      "Magia",
+      "Mitología",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
@@ -54812,12 +56141,29 @@
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Malasia",
+        "region": null,
+        "ciudad": "George Town",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
     "pais_origen": [
       "Malasia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 0,
+    "spicy": 1,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54826,6 +56172,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -54833,7 +56181,7 @@
   },
   {
     "id": "b_1780861851294_0qqip",
-    "title": "Ella que llegó a ser el sol",
+    "title": "Ella que llegó a ser el sol.",
     "authors": [
       "Shelley Parker-Chan"
     ],
@@ -54842,23 +56190,49 @@
     "synopsis": "En 1345, bajo el dominio mongol en China, dos hermanos reciben destinos opuestos: el niño, grandeza; la niña, la nada. Pero tras un ataque que los deja huérfanos, es el hermano quien sucumbe a la desesperación. Decidida a sobrevivir y escapar de su propia muerte predestinada, la joven asume la identidad de Zhu Chongba para entrar en un monasterio.\n\nAllí descubre que es capaz de cualquier crueldad para mantenerse oculta. Cuando su santuario es destruido por la rebelión, Zhu ve la oportunidad definitiva: reclamar para sí la grandeza abandonada de su hermano y el Mandato del Cielo. Una épica reimaginación del ascenso de la dinastía Ming donde la ambición desafía al destino. \"Me niego a ser nada\".",
     "pages": 416,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Histórica",
-      "Romance"
+      "Romance",
+      "Aventura",
+      "Acción",
+      "Drama"
     ],
     "subgenres": [],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
     "tropes": [
-      "Forbidden Love"
+      "Forbidden Love",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Unrequited Love",
+      "Arranged Marriage"
     ],
     "edad": [],
     "pais_cultura": [
       "China",
       "Ambientación asiática"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": "Siglo XIV, durante la dinastía Yuan y las rebeliones contra el dominio mongol.",
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Australia"
     ],
     "ambientacion": [],
     "content_warnings": [
@@ -54866,7 +56240,8 @@
       "Queerofobia / LGTBfobia",
       "Muerte"
     ],
-    "spicy": 3,
+    "spicy": 2,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "The Radiant Emperor",
@@ -54875,13 +56250,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Australia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780861946027_olr0d",
@@ -54894,24 +56268,61 @@
     "synopsis": "Morgan Reid tiene cuarenta y un años, una carrera brillante como arquitecta y una vida bajo control absoluto. Nada la prepara para la noche en que una desconocida de ojos azules la empuja contra la pared de un baño y le hace sentir, por primera vez, peligrosamente viva. Blair Templeton, de veinticuatro años, es intensa e indomable, con un talento extraordinario y un pasado que aún sangra bajo su piel.\n\nSemanas después, el destino las reúne en la Universidad de Welmond. El mundo de Morgan se tambalea: Blair no es solo la mujer que le hizo perder el juicio, es también la alumna a la que tendrá que ver cada día en su aula. Entre el deber profesional y un deseo que quema, ambas descubrirán que algunas historias no están destinadas a ser correctas, sino inevitables. Un romance prohibido donde la edad es solo el principio del caos.",
     "pages": 328,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Mentora × Aprendiz",
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Student × Teacher",
+      "Workplace Romance"
     ],
     "edad": [
       "+40",
       "New Adult (18–24)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Richmond",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54920,6 +56331,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -54936,19 +56349,61 @@
     "synopsis": "En el vertiginoso mundo de la televisión, Evelyn Hart es una presentadora implacable acostumbrada al control absoluto. Su vida profesional es impecable hasta que llega Rachel Maynard, la nueva becaria. Rachel no es solo una novata brillante; es la hija del dueño de la cadena, joven y con una seguridad irresistible que la vuelve peligrosa.\n\nLo que comienza como una relación estrictamente profesional se transforma en un juego de miradas y roces que desafían todos los límites. La atracción es tan intensa como prohibida, poniendo en juego la carrera de Evelyn y la reputación de la cadena. Entre celos, secretos y decisiones difíciles, ambas descubrirán que amar en las circunstancias equivocadas puede ser tan excitante como devastador. Algunas historias no siguen el guion previsto, y precisamente por eso valen la pena.",
     "pages": 270,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Feminismo"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forbidden Love",
+      "Secret Relationship",
+      "Workplace Romance",
+      "Jealousy Trope"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Vancouver",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54957,13 +56412,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780862201947_qm14m",
@@ -54976,19 +56430,62 @@
     "synopsis": "Cárpatos rumanos, 1856. Ilona Văcărescu llega al Velo de las Condenadas convencida de que está enferma. Su padre, un boyardo de Bucarest, la ha enviado a esta comunidad religiosa perdida en la montaña para curarla de lo que la sociedad no puede nombrar: su deseo por las mujeres y los episodios que la asaltan cuando toca a alguien, visiones que no debería tener, certezas que no debería poseer.\n\nLo que encuentra no es un convento. Es una prisión disfrazada de santuario, administrada por Maica Serafina, una mujer cuya dulzura oculta cuarenta años de secretos. Veintitrés mujeres viven encerradas tras los muros de piedra, sometidas a rituales de purificación que prometen alivio y entregan vaciamiento. Debajo del edificio, debajo de la roca, algo antiguo y hambriento se alimenta de lo que les arrebatan.\n\nSorina, la Stareță Secundă, lleva dieciséis años conspirando en silencio para destruir el Velo desde dentro. Necesita a Ilona —su don, su poder, sus manos que leen el destino al tacto— para ejecutar un ritual que puede sellar lo que hay debajo de la montaña. La identifica como instrumento antes de conocerla. La entrena como herramienta antes de verla como persona. Y en algún momento entre la primera sesión y la primera noche, lo que empezó como cálculo se convierte en algo que Sorina no sabe administrar y que Ilona no sabe si puede perdonar.\n\nPorque Sorina no le cuenta todo. No le dice que el ritual puede matarlas. No le dice que la necesita tanto como la usa. Y cuando la verdad llega —a través de la boca equivocada, en el momento más vulnerable—, lo que han construido juntas se fractura con la precisión de las cosas que se rompen por donde ya estaban dañadas.\n\nEl velo de las condenadas es una novela de amor gótico y folklore daciano sobre dos mujeres que eligen arder en lugar de apagarse. Sobre lo que ocurre cuando la cura es peor que la enfermedad y cuando la única salida es hacia abajo, hacia la cueva, hacia lo que la montaña guarda, hacia la verdad que nadie quiere oír.",
     "pages": 397,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Fantasía",
+      "Histórica",
+      "Drama",
+      "Gótico",
+      "Paranormal"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Feminismo",
+      "Magia",
+      "Mitología",
+      "Sobrenatural"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Mentora × Aprendiz",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Conexión Mental / Bond",
+      "Forbidden Love",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Found Family"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Principado de Valaquia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -54997,6 +56494,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -55013,19 +56512,56 @@
     "synopsis": "Hace tiempo que Tania Sanders desea encontrar al amor de su vida. Harta de decepciones y con mucho escepticismo, decide confiar en una agencia de coaching sentimental que le promete un método exclusivo para retomar el control de su vida afectiva. Así conoce a Álex, una love coach con mucho encanto, quien la instruirá en todos los aspectos del cortejo y le enseñará todos los trucos para lograr que la mujer de sus sueños se quede para siempre. Tania descubre que, tras los consejos y la metodología especializada de Corazones, se esconde una aventura de conocimiento personal durante la que se irá desprendiendo de prejuicios sobre el amor. En este camino tendrá que responder a numerosas preguntas. ¿Se puede a aprender a querer? ¿Se elige a la persona que se ama? ¿Qué precio debemos pagar para encontrar el amor?\n\nCaleidoscopio es la primera novela de Elena Solera. Desde un punto de vista optimista y despreocupado, explora cómo el consumismo de nuestra sociedad contamina también las relaciones afectivas.",
     "pages": 172,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Second Chance Romance"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 1,
+    "spicy": 2,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -55034,13 +56570,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780862269383_colm4",
@@ -55383,19 +56918,50 @@
     "synopsis": "Mientras su madre muere de cáncer en una ciudad del norte, la narradora hace el amor con una mujer en un hotel de Barcelona. Tiene un vuelo para visitar a su madre la mañana siguiente, pero ya llegará tarde. Poco después, su amante desaparece de forma brusca y definitiva. Cuando su pareja vuelve de Londres para instalarse con ella en un pequeño apartamento junto al mar, esta intenta ser la calma que sostenga la angustia de un cuerpo que llora a una madre y anhela a una amante.\n\n«Amar es amar siempre después de mi madre. No puedo hablar con mamá, tampoco con Ella. Mi vida se ha suspendido con la interrupción de esas dos conversaciones». La autora retoma ese diálogo en este libro para indagar en las aristas del abandono y el anhelo y tratar de entender a una madre que marcó la vida y las maneras de su hija con su arrolladora forma de amar.",
     "pages": 224,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
     "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39",
+      "+40",
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -55404,13 +56970,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780863256145_vawyd",
@@ -56301,19 +57866,45 @@
     "synopsis": "June es una tormenta a punto de estallar y arrasar con todo a su paso.\nNo quiere que eso ocurra, pero no sabe cómo detenerlo.\n\nSiempre rota, siempre al borde del colapso, siempre temiendo que sus ataques de pánico le roben todo.\n\nPero había conocido a Leigh, una chica amante de la música que era un arcoíris deslumbrante, y se enamoró.\n\nLeigh estuvo a su lado cada vez que lo necesitó, le dio un poco de color a sus días grises, la cuidó y la protegió de su propia mente engañosa e inestable.\n\nHasta que un accidente del que se considera la culpable se la arrebató.\n\nLeigh podría morir.\n\nY June solo tiene a sus recuerdos mientras trata de lidiar con todo lo que está pasando en su presente, pero algunos de ellos podrían destruirla.\n\nO salvarla.\n\nQuizás, con un poco de suerte, encuentre su propio arcoíris cuando la tormenta acabe.\n\nSi es que acaba algún día.",
     "pages": 338,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "YA",
+      "Contemporánea",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Música",
+      "Bullying",
+      "Coming Out"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Hurt/Comfort",
+      "Unrequited Love"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 0,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -56322,6 +57913,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -56338,19 +57931,54 @@
     "synopsis": "Ophelia nunca se consideró el tipo de mujer que escaparía de su propia boda. Sin embargo, al descubrir que no le atraen los hombres, sino las mujeres, comprende que no puede casarse. Cuando Jo, la florista, aparece con el ramo, Ophelia ve en sus manos la única salida. En un acto desesperado, huye con una desconocida.\n\nPero su familia no se quedará de brazos cruzados, y el drama que intenta dejar atrás tarde o temprano la alcanzará.",
     "pages": 368,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Autodescubrimiento",
+      "Familia",
+      "Queer",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Fake Relationship",
+      "Forced Proximity",
+      "Hurt/Comfort"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Mystic",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 1,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -56359,6 +57987,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -56375,19 +58005,60 @@
     "synopsis": "Bruna Durán dirige un club de intercambio junto a sus socios en Ibiza.\nFátima es doctora en un hospital de la misma isla.\nSus vidas no pueden ser más distintas, pero se cruzan cuando el padre de Fátima muere y ella hereda sus acciones en el Club Suspiro.\n\nEn un primer momento, Fátima no quiere saber nada y considera que lo mejor es vender y seguir con su vida. Sin embargo, tras una reunión con Bruna, esta la convence para que se lo piense, ofreciéndose a mostrarle el negocio del que ahora es dueña.\n\nLa atracción entre las dos mujeres es casi inmediata y, cuando un empresario ambicioso comienza a amenazarlas para que le vendan el negocio, Fátima une fuerzas con Bruna, lo que termina estrechando más la relación entre ambas.",
     "pages": 222,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Crimen"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Dominante × Sumisa",
+      "Top × Bottom"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Forced Proximity",
+      "Jealousy Trope",
+      "Love Triangle"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Ibiza",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -56396,13 +58067,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165101648_8k1zy",
@@ -56638,26 +58308,60 @@
     "id": "b_1781165248764_7atud",
     "title": "Belana. ¡Corten!",
     "authors": [
-      "Antonia R. Alemán Hernández"
+      "Antonia R. Alemán Hernández",
+      "Antonia R. Alemán Hernández, también acreditada como Antonia Rosa Alemán Hernández"
     ],
     "year": 2024,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1708694117i/209069757.jpg",
     "synopsis": "Anghara Medina y Ainhoa Rueda siguen dando vida a Belana, la pareja más viral de la serie Nouvelle cuisine, y, al mismo tiempo, continúan compartiendo momentos de su vida real. Sin embargo, tanto a nivel personal como en el ámbito profesional, la situación empieza a ponerse difícil.",
     "pages": 184,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Celebridad"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Workplace Romance",
+      "Forced Proximity"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 4,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -56666,13 +58370,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165273855_vmai4",
@@ -56685,60 +58388,56 @@
     "synopsis": "En el Londres del siglo XIX, Frannie Langton, una sirvienta mulata de origen jamaicano, es acusada de un crimen atroz: el asesinato del científico y su esposa para quienes trabajaba. Mientras la prensa la retrata como un monstruo, Frannie no recuerda nada de esa noche.\n\nDesde su celda, su abogado le exige que narre su vida para salvarla de la horca. Así nace un misterio gótico donde la supervivencia depende de encontrar la propia voz en un mundo que intenta silenciarla. Entre secretos de alcoba y experimentos científicos oscuros, ¿es Frannie una víctima del sistema o una asesina despiadada? Solo su relato revelará la verdad antes de que caiga la soga.",
     "pages": 448,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Misterio",
-      "Romance"
+      "Romance",
+      "Histórica",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Crimen",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Unrequited Love"
+    ],
     "edad": [],
-    "pais_cultura": [],
-    "ambientacion": [],
-    "content_warnings": [],
-    "spicy": 2,
-    "formato": null,
-    "adaptacion": null,
-    "sagaName": null,
-    "sagaNum": null,
-    "source": "spanish",
-    "editions": [],
-    "saficlub": false,
-    "safi_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
     "pais_origen": [
       "Reino Unido"
-    ]
-  },
-  {
-    "id": "b_1781165306481_te8dk",
-    "title": "Cicatrices",
-    "authors": [
-      "Andrea M.G."
     ],
-    "year": 2024,
-    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1709140006i/209268048.jpg",
-    "synopsis": "Cristina Coll nunca imaginó que ignorar una advertencia en las duchas del gimnasio le costaría tan caro. En 2018, lo que parecía un simple ataque de celos de una amiga terminó convirtiéndose en el inicio de su época más inestable. A través de sus recuerdos, Cristina nos sumerge en un misterio emocional sobre las decisiones que tomamos cuando somos jóvenes y estamos equivocados.\n\nEntre sombras de arrepentimiento y grises morales, descubre que no puede salvar a todo el mundo y, lo más difícil, que ella es quien necesita ser rescatada. Una historia de crecimiento personal y segundas oportunidades donde el pasado dicta el presente. ¿Servirías tu vida en bandeja de plata sabiendo el precio a pagar?",
-    "pages": 347,
-    "isbn": null,
-    "genres": [
-      "Romance"
-    ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -56747,6 +58446,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -56763,19 +58464,54 @@
     "synopsis": "Laura Molina se traslada a Bilbao para reinventarse en la agencia Astra, pero el destino le tiene preparada una emboscada: su gran amor y expareja, Vega Jiménez, es ahora la gerente del cáterin con el que debe colaborar. Tras años de distancia, Vega carga con un divorcio, un hijo de seis años y el peso de haber vivido siempre para complacer a los demás.\n\nLo que empieza como una obligada colaboración profesional para un gran evento se transforma en una confrontación emocional inevitable. Entre menús sofisticados y heridas abiertas, ambas deberán decidir si el pasado es un muro o el puente hacia una segunda oportunidad sin miedos. ¿Podrá el amor de juventud sobrevivir a las cicatrices de la madurez?",
     "pages": 336,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Second Chance Romance",
+      "Forbidden Love",
+      "Hurt/Comfort"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Bilbao",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -56784,13 +58520,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165481858_geuam",
@@ -57276,17 +59011,55 @@
     "synopsis": "Una mujer con pulsiones suicidas se protege del mundo exterior. No permite que nadie se le acerque demasiado, y sin embargo se entrega con intensidad al sexo con otras mujeres, a la literatura y al arte. La cocinera de un viejo barco mercante acostumbrada a la soledad, la provisionalidad y las relaciones fugaces se enamora de una mujer, abandona el mar, accede a vivir entre cuatro paredes y se implica en la gestación asistida y en la educación de un hijo. Una chica arcaica atrapada en la vida moderna huye al campo y se instala en una casa completamente aislada. Allí, rodeada de la nada, el instinto se agudiza, la conciencia se altera y se gesta una transformación «Exquisita, oscura y poco convencional, Eva Baltasar convierte la intimidad en una aventura salvaje». Fernanda Melchor «Baltasar convoca el erotismo gozoso de las palabras y de la lectura».",
     "pages": 320,
     "isbn": null,
-    "genres": [],
-    "subgenres": [],
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Drama",
+      "Contemporánea",
+      "Psicológico"
+    ],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
+    "tropes": [
+      "Lesbian Awakening",
+      "Friends to Lovers",
+      "Enemies to Lovers",
+      "WhyChoose"
+    ],
+    "edad": [
+      "+40",
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Islandia",
+        "region": "Cataluña",
+        "ciudad": "Reikiavik",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57295,13 +59068,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165700401_3haqp",
@@ -57416,20 +59188,54 @@
     "synopsis": "La doctora Maribel Heredia sigue manteniendo una relación de amor-odio con la doctora Márquez. Llevan semanas sin verse y las dos se niegan a dar un solo paso hacia la otra.\n\nEso cambia tras un encuentro casual en el supermercado. Por mucho que lo niegan, la conexión es inevitable y acaban en el hotel de Estel.\n\nAmbas están seguras de que solo se trata de eso, hasta que la gitana se ve envuelta en medio de un conflicto familiar que la pondrá en el punto de mira de la implacable inspectora Blanco.\n\nEse giro inesperado estrechará lazos entre las dos doctoras de un modo que ninguna había previsto, por lo que ahora también se enfrentarán a los sentimientos que se han estado negando mientras resuelven el problema de Maribel.",
     "pages": 165,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Crimen"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Caos × Control"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Workplace Romance"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Girona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Doctora Teloy",
@@ -57438,13 +59244,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165854908_3n387",
@@ -57579,20 +59384,59 @@
     "synopsis": "Paula tiene un trabajo estable, goza de buena salud y se da besos con gente cuando sale. A veces hasta folla. Es una adulta funcional y envidiable, de las que van al mercado a hacer la compra y se saben el nombre del frutero. Que paga su IRPF, aunque no sepa muy bien qué es porque usa siempre una plantilla que le hace los cálculos automáticamente. Que lleva quince años yendo a terapia porque no sabe gestionar el rechazo y la ausencia de responsabilidad afectiva y que cuando se encuentra en situaciones de este tipo se pone a llorar desconsolada. Igual no es una adulta tan envidiable, pero sí funcional.\n\nHasta que, sentada justo en frente de ella en el tren, se reencuentra con Claudia, su amor platónico de la adolescencia. Lo que siempre quiso, al alcance de la mano.",
     "pages": 219,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Bisexual",
+      "Autodescubrimiento",
+      "Coming Out",
+      "Familia",
+      "Bullying"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Introvertida × Extrovertida"
+    ],
+    "tropes": [
+      "Bi Awakening",
+      "Love Triangle",
+      "Unrequited Love",
+      "Workplace Romance"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Comunidad de Madrid y Cantabria",
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57601,13 +59445,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781165940970_8m9yg",
@@ -57620,61 +59463,50 @@
     "synopsis": "Provincia holandesa de Overijssel, 1961. Isabel vive en un refugio de rutinas estrictas, la casa de campo donde su familia sobrevivió a la guerra. Su soledad se quiebra cuando su hermano Louis aparece con Eva, una mujer de espíritu libre y modales opuestos a los suyos. Tras la partida de Louis, la convivencia forzada desata en Isabel una obsesión furiosa que, bajo el calor asfixiante del verano, evoluciona hacia una tensión eléctrica y peligrosa.\n\nLa guardiana es una exploración audaz sobre el deseo, la identidad y las secuelas emocionales de un pasado bélico que se niega a desaparecer. Entre silencios y una sensualidad latente, ambas mujeres descubrirán que la pasión puede ser tan perturbadora como liberadora. Un romance sáfico de ficción histórica aclamado por la crítica que indaga en el doloroso legado de la memoria.",
     "pages": 288,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Histórica",
-      "Romance"
+      "Romance",
+      "Drama",
+      "Psicológico"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Feminismo"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forbidden Love"
+    ],
     "edad": [],
     "pais_cultura": [],
-    "ambientacion": [],
-    "content_warnings": [],
-    "spicy": null,
-    "formato": null,
-    "adaptacion": null,
-    "sagaName": null,
-    "sagaNum": null,
-    "source": "spanish",
-    "editions": [],
-    "saficlub": false,
-    "safi_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
-    "my_rec": false,
-    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Países Bajos",
+        "region": "Overijssel",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
     "pais_origen": [
       "Países Bajos"
-    ]
-  },
-  {
-    "id": "b_1781165963476_uzilp",
-    "title": "Una de esas chicas",
-    "authors": [
-      "Inma Miralles"
     ],
-    "year": 2018,
-    "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1544066687i/43157896.jpg",
-    "synopsis": "Tras perder su empleo, Andrea decide emprender un viaje por carretera para reencontrarse consigo misma. Sin embargo, el azar la empuja a mirar atrás, hacia sus años de instituto y aquellas amistades que el tiempo oxidó. Con una idea repentina, decide reunir a dos figuras opuestas de su pasado: Paula, la chica perfecta de humor mordaz, y Victoria, su antigua archienemiga y eterna rebelde.\n\nLo que comienza como una huida sin destino se transforma en una travesía vital donde las tres enfrentan sus miedos, la soledad y la asfixia de las expectativas sociales. A través de conversaciones íntimas y confesiones cotidianas, los vínculos se estrechan hasta revelar que la verdadera libertad nace de la amistad y de la valentía de ser una misma. Una historia sobre transiciones, segundas oportunidades y el poder de los afectos.",
-    "pages": 160,
-    "isbn": null,
-    "genres": [
-      "Contemporánea",
-      "Romance"
-    ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57683,13 +59515,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781166032803_06wfo",
@@ -57702,20 +59533,56 @@
     "synopsis": "Tras cuarenta y ocho horas de llanto, Zoa comprende que debe escapar de su pareja. Sin un plan fijo, regresa a su ciudad natal buscando el refugio de su amiga Olivia. Sin embargo, lo que comenzó como una huida temporal se transforma en un verano de cambios drásticos cuando una serie de obstáculos le impiden retomar su antigua vida.\n\nLas circunstancias la arrastran a una casa rural donde, entre alcohol y planes fallidos, se ve obligada a confrontar sus miedos ante un grupo de personas que desafían su realidad. Un juego inesperado desestabiliza su mundo, llevándola a cuestionar su relación y su capacidad de sanar. Un romance sáfico sobre el autodescubrimiento y la lucha por romper los ciclos de dependencia.",
     "pages": 252,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Butch"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Jealousy Trope",
+      "Love Triangle"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Málaga",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 1,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57724,6 +59591,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -57740,20 +59609,54 @@
     "synopsis": "Cuando Lorena reaparece para recuperarla, Zoa se enfrenta a una encrucijada letal: perdonar la traición y volver a la seguridad de lo conocido, o arriesgarse con Jana, una ilusión inesperada. Su decisión la arrastra a una relación marcada por la desilusión y el dolor, sumergiéndola en una tormenta emocional que parece no tener fin.\n\nAl tocar fondo, Zoa busca el apoyo de sus amigas, pero la llegada de una nueva persona añade otra capa de caos a su vida, intensificando sus dudas. En medio de este torbellino, inicia un valiente viaje para reconstruir su vida desde las cenizas de su pasado. Un romance sáfico sobre la superación, las relaciones tóxicas y la búsqueda incansable de la verdadera felicidad.",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Autodescubrimiento",
+      "Familia"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Second Chance Romance",
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Jealousy Trope",
+      "Enemies to Lovers"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Málaga",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57762,6 +59665,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -57778,20 +59683,53 @@
     "synopsis": "Tras la muerte de su madre, Lía regresa a su pueblo natal, un lugar atrapado entre el tiempo y los recuerdos. Allí, donde las tardes de verano parecían eternas, reaparecen las promesas olvidadas y las cicatrices que nunca llegaron a cerrar.\n\nObligada a enfrentarse al dolor de la pérdida, se reencuentra con Sara, quien trae de vuelta viejos sentimientos que Lía pensó haber dejado atrás. Pero mientras el presente y el pasado se entrelazan, descubre que para reconstruir su vida deberá enfrentarse a las verdades que tanto tiempo evitó: las que duelen, las que sanan y las que, quizás, aún pueden salvarle.",
     "pages": 333,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Friends to Lovers",
+      "Slow Burn",
+      "Unrequited Love",
+      "Second Chance Romance"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Moguer",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57800,6 +59738,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -58190,29 +60130,72 @@
     "title": "Anne sin filtros",
     "authors": [
       "Iria G. Parente",
-      "Selene M. Pascual"
+      "Selene M. Pascual",
+      "Iria Gil Parente"
     ],
     "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1623935190i/58360575.jpg",
     "synopsis": "Anne Shirley sueña con ser escritora, pero guarda un secreto: bajo el seudónimo de Lady Cordelia, escribe los fanfics más leídos de la red sobre la serie El caballero del espejo. Solo su amiga Diana conoce la verdad. Sin embargo, su reinado digital se ve amenazado por Blythe, un autor que supera su récord de lecturas y muestra su identidad sin complejos.\n\nGilbert, el chico tras el nick de Blythe, es tan encantador como irritante. La rivalidad estalla cuando él lanza un reto: si logra alcanzar las 500.000 lecturas antes que ella, Anne deberá revelar quién es al mundo entero. Ahora, ella debe luchar por su puesto en una batalla de ingenio y letras. Un romance juvenil sobre la identidad, la ambición y los secretos compartidos en la red. Una historia fresca sobre el éxito y el amor.",
     "pages": 384,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Juvenil",
+      "YA",
+      "Drama",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Coming Out",
+      "Familia",
+      "Coming of Age",
+      "Música",
+      "Poliamor"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Love Triangle",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Coming Out tardío",
+      "Opposites Attract"
     ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 2,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58221,39 +60204,60 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168183693_axyec",
     "title": "Incomprendidas",
     "authors": [
-      "Barbara Matta"
+      "Bárbara Matta"
     ],
     "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1625141731i/58466329.jpg",
     "synopsis": "¿Cuántas historias arden, sin saberlo, en medio de las llamas?\n\nLas vidas de Amber, Olive y sus amigos toman rumbos inesperados en un mundo en el que se mezclan arte, besos robados, amores de adolescencia y un incendiario enmascarado. Entre triángulos amorosos, unos luchan por descubrir la verdad del incendio que cambió la vida de todos en su escuela; otros tratan de ocultar el secreto detrás del fuego que, de descubrirse, podría volver a quemar a más de uno.\n\n¿Podrán las amigas, entre el caos de hormonas adolescentes, rechazos y secretos, luchar contra sus propios demonios, encontrarse a sí mismas y mantener su amistad, antes de que se revele quien está detrás de la máscara",
     "pages": 385,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama",
+      "Misterio",
+      "Juvenil",
+      "Thriller"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Familia",
+      "Crimen",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Hurt/Comfort"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 1,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58262,6 +60266,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -58504,20 +60510,63 @@
     "synopsis": "A veces aparece una Rebeca en lugar de un Romeo. Una historia de amor entre dos chicas que se conocen en el trabajo.\n\nEsta es una historia de amor realista y autobiográfica entre dos chicas que nunca pensaron que en el interior de una afinidad femenina pudiera haber algo más. Juntas, y a veces por separado, tendrán que enfrentarse a las expectativas de la sociedad, desafiar a seres queridos y aprender a quererse tal y como son.",
     "pages": 288,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Coming Out",
+      "Familia"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Friends to Lovers",
+      "Secret Relationship",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Second Chance Romance",
+      "Coming Out tardío",
+      "Unrequited Love"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58526,17 +60575,16 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168399235_r1zsa",
-    "title": "The Prom",
+    "title": "The Prom.",
     "authors": [
       "Saundra Mitchell",
       "Bob Martin",
@@ -58548,6 +60596,8 @@
     "synopsis": "Emma Nolan solo sueña con bailar con su novia en la graduación, pero en su conservador pueblo, eso es un desafío imposible. Alyssa Greene, la chica más popular y su amor secreto, vive bajo la sombra de una madre estricta que lidera la oposición contra este deseo.\nCuando dos estrellas de Broadway, Barry Glickman y Dee Dee Allen, llegan para defender la causa —y ganar publicidad—, la tormenta mediática estalla. Entre prejuicios y dudas sobre salir del armario, el grupo deberá aprender que, a pesar del caos, el amor es la única causa por la que vale la pena luchar unidos.\n¿Lograrán que el baile de sus sueños se convierta en una realidad para todos?",
     "pages": 288,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
       "Romance",
@@ -58555,16 +60605,45 @@
     ],
     "subgenres": [],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Estudiante"
+    ],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Forbidden Love",
+      "Secret Relationship",
+      "Second Chance Romance",
+      "Hurt/Comfort",
+      "Found Family",
+      "Coming Out tardío"
+    ],
     "edad": [
       "Young Adult (15–18)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58573,13 +60652,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168432917_i8tth",
@@ -58592,20 +60670,52 @@
     "synopsis": "Un verano de muerte, de Xuri Fenton, es una novela rompedora y pasional sobre el poder de la amistad, el despertar sexual y cómo encontrar tu familia.\n\n¿Mi padre? Supuestamente muerto.\n\n¿Mi mejor amiga? Intentando salvarme el culo.\n\n¿Yo? Colocada hasta las cejas.\n\n¿Qué puede salir mal?\n\nMi mejor amiga y yo hemos viajado al otro lado del mundo para entrar a una secta elitista en busca de mi padre. Tengo arena en las orejas, el cabello empapado y voy hasta arriba de alucinógenos.\n\nAlgo raro ocurre en este sitio. Quizá habría sido mejor dejar enterrado el recuerdo de papá.",
     "pages": 320,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Aventura",
+      "Thriller",
+      "Misterio",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Autodescubrimiento",
+      "Familia",
+      "Queer",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Friends to Lovers",
+      "Slow Burn",
+      "Unrequited Love",
+      "Hurt/Comfort"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": 1,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58614,13 +60724,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168461762_lu0ky",
@@ -58633,21 +60742,47 @@
     "synopsis": "Una historia sobre la corrupción, el primer amor y la inteligencia artificial en el más allá chino\n\nEn la décima corte del infierno, los espíritus que son lo bastante ricos pueden sobornar a los funcionarios del inframundo y así librarse de terribles tormentos y de la temida reencarnación. ¿Quién quiere reencarnarse pudiendo disfrutar eternamente de comodidad y riquezas?\n\nEs una no-muerte cómoda incluso para Siew Tsin, casada a su pesar con el hombre más rico del infierno y sin ninguna expectativa ni intereses futuros. Hasta que su marido trae a casa a una nueva esposa… Yonghua es una mujer artificial hecha de terracota, y su mera existencia pondrá el inframundo patas arriba. Tras conocerla, tampoco Siew Tsin volverá a ser la misma.\n\nLa mujer de terracota es un relato de Zen Cho que aúna la sátira y la esperanza, nuestra edición está ilustrada por la artista QU Lan, y cuenta con una introducción realizada por la autora en exclusiva para esta edición y un posfacio sobre las tradiciones funerarias chinas que apareccen en la historia por Wang Xing.",
     "pages": 100,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Magia",
+      "Mitología",
+      "Sobrenatural",
+      "Queer",
+      "Feminismo"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Reencarnación",
+      "Forbidden Love"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Malasia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 1,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58656,13 +60791,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Malasia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168494694_lbir0",
@@ -58675,20 +60809,59 @@
     "synopsis": "Sara Foster huyó de casa a los dieciséis años, convirtiéndose en una barman enigmática que evita cualquier vínculo real. En la misma ciudad, Emilie Dubois vive estancada hasta que acepta un trabajo como florista en el glamuroso restaurante Yerba Buena. Cuando ambas se conocen, la conexión es inmediata, pero las sombras de sus pasados y el dolor que albergan las separan una y otra vez.\nMientras Emilie comienza a encontrar su propósito, la antigua vida de Sara regresa para cuestionar todo su mundo. Ambas deberán enfrentar sus traumas y decidir si son capaces de soltar lo que fueron para construir un futuro compartido.\n¿Podrá su amor florecer entre las grietas de sus heridas o el pasado terminará por marchitarlo todo?",
     "pages": 304,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Feminismo"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Second Chance Romance"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Ángeles, California.",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -58697,13 +60870,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168513623_hc4k7",
