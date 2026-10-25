@@ -673,6 +673,25 @@ body:not(.theme-halloween) .modal-share-btn:not(:hover){color:#fff}
 .stars-input{display:flex;gap:.2rem;margin-bottom:.6rem}
 .star-btn{background:transparent;border:none;cursor:pointer;font-size:1.9rem;color:var(--surface3);transition:color .1s;padding:6px;min-width:44px;min-height:44px;line-height:1}
 .star-btn.lit,.star-btn.selected{color:var(--gold)}
+/* F6 · Estrellas parciales (cuartos) — SVG sin ids: la capa dorada es un <svg> anidado recortado al ancho exacto del relleno */
+.qstars{display:inline-flex;align-items:center;gap:2px;vertical-align:-.14em;line-height:1}
+.qstar{display:block;width:1em;height:1em;flex:none;overflow:hidden}
+.qstar .qb{fill:var(--surface3)}.qstar .qf{fill:var(--gold)}
+.avg-stars-row .qstars{font-size:16px}
+.top10-gold .t10-stars .qstars{font-size:16px}.top10-silver .t10-stars .qstars{font-size:11px}
+/* F6 · Control de selección por cuartos */
+.qs{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;margin-bottom:.6rem}
+.qs-stars{display:inline-flex;gap:6px;padding:4px 2px;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;border-radius:8px;font-size:34px}
+.qs-stars:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.qs-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.qs-step{width:32px;height:32px;border-radius:50%;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:16px;line-height:1;cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.qs-step:disabled{opacity:.35;cursor:default}
+.qs-out{min-width:6.2em;text-align:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.qs-out.has-val{color:var(--text);font-weight:600}
+.qs-clear{background:none;border:none;color:var(--muted);font-size:11.5px;text-decoration:underline;cursor:pointer;padding:6px 4px}
+.qs-hint{font-size:10.5px;color:var(--muted)}
+@media (min-width:900px){.bp-qs-wrap .qs-stars{font-size:26px;gap:4px}.bp-qs-wrap .qs{margin-bottom:0}}
+body.theme-halloween .qstar .qf{fill:#D9C58D}
 .vote-submit{padding:8px 22px;border-radius:20px;background:var(--accent);border:none;color:#fff;font-size:12.5px;font-weight:600;font-family:var(--font-body);cursor:pointer;transition:all .18s}
 .vote-submit:hover{background:var(--accent2)}
 .vote-submit:disabled{opacity:.45;cursor:not-allowed}
@@ -10536,8 +10555,82 @@ function ratingOf(row){ // fila de ratings → valor efectivo, o null si no es v
   if(sc!==null && Number.isInteger(sc) && sc>=1 && sc<=5) return sc;
   return null;
 }
-function fmtRating(v){ return String(Math.round(v*100)/100).replace('.',','); } // 4 → «4» · 4,25 → «4,25» · 2,5 → «2,5»
-function _rmEntry(sum,count){ return {sum:sum,count:count,avg:Math.round(sum/count*10)/10,mean:sum/count}; } // avg = 1 decimal, idéntico al cálculo histórico (lo que se muestra); mean = media exacta (relleno fraccionario y ranking)
+/* F6 · Formato ÚNICO de puntuaciones: siempre 2 decimales con coma (4 → «4,00» · 4,25 → «4,25»), tanto votos propios como medias. */
+function fmtRating(v){ return (Math.round(Number(v)*100)/100).toFixed(2).replace('.',','); }
+function fmtAvg(v){ return fmtRating(v); }
+/* F6 · Media sin errores de redondeo: la suma de cuartos es un entero (sum*4), así que los céntimos se calculan con aritmética entera (mitad hacia arriba). */
+function _rmEntry(sum,count){
+  const q=Math.round(sum*4);                                   // suma en cuartos: entero exacto
+  const cents=Math.floor((50*q+count)/(2*count));              // round-half-up de q*25/count, sin coma flotante
+  return {sum:sum,count:count,avg:cents/100,mean:sum/count};   // avg = 2 decimales (mostrar/ordenar) · mean = media exacta (relleno de estrellas y ranking)
+}
+/* F6 · Estrellas parciales. fill de cada estrella = clamp(valor-(i-1),0,1), cuantizado a cuartos (misma regla en todos los sitios). */
+const STAR_PATH='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+function quantizeQ(v){ v=Number(v); if(!isFinite(v)||v<=0) return 0; return Math.min(5,Math.round(v*4)/4); }
+function starSVG(fill){ // fill 0..1; el cuerpo útil de la estrella ocupa x∈[2,22] → viewBox recortado a 20 de ancho para que el relleno sea proporcional
+  const bg=`<path class="qb" d="${STAR_PATH}"/>`;
+  const fg=fill>=1?`<path class="qf" d="${STAR_PATH}"/>`
+    :fill>0?`<svg x="2" y="0" width="${(20*fill).toFixed(2)}" height="24" viewBox="2 0 ${(20*fill).toFixed(2)} 24" overflow="hidden"><path class="qf" d="${STAR_PATH}"/></svg>`:'';
+  return `<svg class="qstar" viewBox="2 0 20 24" preserveAspectRatio="xMidYMid meet" focusable="false" aria-hidden="true">${bg}${fg}</svg>`;
+}
+function ratingStarSVGs(v){ const q=quantizeQ(v); return [1,2,3,4,5].map(i=>starSVG(Math.max(0,Math.min(1,q-(i-1))))).join(''); }
+function ratingStarsHTML(v){ return `<span class="qstars" aria-hidden="true">${ratingStarSVGs(v)}</span>`; }
+
+/* F6 · Control de entrada por cuartos (compartido por ficha, modal y «he terminado de leer»).
+   Puntero: el cuarto se calcula sobre la propia estrella pulsada (ratón: vista previa al pasar; táctil: arrastrar y soltar).
+   Teclado: ←/→ ±0,25 · PgUp/PgDn ±1 · Inicio 0,25 · Fin 5. Botones −/+ para ajuste exacto. Nunca produce 0. */
+function ratingInputHTML(sliderId,value,opts){
+  opts=opts||{}; const v=quantizeQ(value);
+  return `<div class="qs"><div class="qs-stars" id="${sliderId}" role="slider" tabindex="0" aria-label="Tu valoración de 0,25 a 5 estrellas, en pasos de 0,25" aria-valuemin="0.25" aria-valuemax="5" aria-valuenow="${v||''}" aria-valuetext="${v?fmtRating(v)+' de 5':'Sin valorar'}">${ratingStarSVGs(v)}</div>
+    <div class="qs-row"><button type="button" class="qs-step" data-qs-d="-1" aria-label="Bajar un cuarto de estrella" ${v<=0.25?'disabled':''}>−</button><output class="qs-out${v?' has-val':''}" aria-live="polite">${v?fmtRating(v)+' / 5':'Sin elegir'}</output><button type="button" class="qs-step" data-qs-d="1" aria-label="Subir un cuarto de estrella" ${v>=5?'disabled':''}>+</button>${opts.clearable?`<button type="button" class="qs-clear" data-qs-clear="1">Quitar</button>`:''}</div></div>`;
+}
+function qsPaint(sliderEl,v){
+  if(!sliderEl) return; v=quantizeQ(v);
+  sliderEl.innerHTML=ratingStarSVGs(v);
+  sliderEl.setAttribute('aria-valuenow',v||'');
+  sliderEl.setAttribute('aria-valuetext',v?fmtRating(v)+' de 5':'Sin valorar');
+  const wrap=sliderEl.closest('.qs'); if(!wrap) return;
+  const out=wrap.querySelector('.qs-out'); if(out){ out.textContent=v?fmtRating(v)+' / 5':'Sin elegir'; out.classList.toggle('has-val',!!v); }
+  const dn=wrap.querySelector('[data-qs-d="-1"]'), up=wrap.querySelector('[data-qs-d="1"]');
+  if(dn) dn.disabled=v<=0.25; if(up) up.disabled=v>=5;
+}
+function qsValueFromX(sliderEl,clientX){ // 0,25…5 según la posición sobre la estrella; en los huecos, la estrella más cercana
+  const svgs=[...sliderEl.querySelectorAll('svg.qstar')]; if(!svgs.length) return 0.25;
+  let best=0,bd=Infinity;
+  svgs.forEach((el,i)=>{ const r=el.getBoundingClientRect(); const d=(clientX>=r.left&&clientX<=r.right)?0:Math.min(Math.abs(clientX-r.left),Math.abs(clientX-r.right)); if(d<bd){bd=d;best=i;} });
+  const r=svgs[best].getBoundingClientRect();
+  const ratio=r.width>0?Math.max(0,Math.min(1,(clientX-r.left)/r.width)):1;
+  const q=Math.max(1,Math.ceil(ratio*4-1e-9));
+  return best+q/4;
+}
+/* ctx: {get:()=>valor confirmado (0 si ninguno), set:(v)=>void, clear?:()=>void} */
+function bindRatingInput(sliderEl,ctx){
+  if(!sliderEl) return;
+  const wrap=sliderEl.closest('.qs'); let down=false;
+  const commit=v=>{ v=quantizeQ(v); if(!isValidRating(v)) return; ctx.set(v); qsPaint(sliderEl,v); };
+  const restore=()=>qsPaint(sliderEl,ctx.get());
+  sliderEl.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse'&&e.button!==0) return; down=true; try{sliderEl.setPointerCapture(e.pointerId);}catch(_){} qsPaint(sliderEl,qsValueFromX(sliderEl,e.clientX)); e.preventDefault(); });
+  sliderEl.addEventListener('pointermove',e=>{ if(down||e.pointerType==='mouse') qsPaint(sliderEl,qsValueFromX(sliderEl,e.clientX)); });
+  sliderEl.addEventListener('pointerup',e=>{ if(!down) return; down=false; commit(qsValueFromX(sliderEl,e.clientX)); });
+  sliderEl.addEventListener('pointercancel',()=>{ down=false; restore(); });
+  sliderEl.addEventListener('pointerleave',e=>{ if(!down&&e.pointerType==='mouse') restore(); });
+  sliderEl.addEventListener('keydown',e=>{
+    const cur=quantizeQ(ctx.get()); let v=null;
+    if(e.key==='ArrowRight'||e.key==='ArrowUp') v=cur?cur+0.25:0.25;
+    else if(e.key==='ArrowLeft'||e.key==='ArrowDown') v=cur?cur-0.25:0.25;
+    else if(e.key==='PageUp') v=(cur||0)+1; else if(e.key==='PageDown') v=(cur||1)-1;
+    else if(e.key==='Home') v=0.25; else if(e.key==='End') v=5;
+    if(v===null) return; e.preventDefault(); commit(Math.max(0.25,Math.min(5,v)));
+  });
+  if(wrap){
+    wrap.querySelectorAll('[data-qs-d]').forEach(btn=>btn.addEventListener('click',()=>{
+      const cur=quantizeQ(ctx.get()); const d=parseInt(btn.dataset.qsD,10);
+      commit(Math.max(0.25,Math.min(5,(cur||(d>0?0:0.5))+d*0.25)));
+    }));
+    const clr=wrap.querySelector('[data-qs-clear]');
+    if(clr) clr.addEventListener('click',()=>{ if(ctx.clear) ctx.clear(); qsPaint(sliderEl,ctx.get()); });
+  }
+}
 // Actualiza ratingsMap de un libro: oldVal = voto previo de esta usuaria (null si no había), newVal = voto nuevo (null si se quita)
 function _rmUpdate(bookId,oldVal,newVal){
   const r=ratingsMap[bookId];
@@ -11051,7 +11144,7 @@ function applyFilters(resetPage=true){
   else if(sort==='top'){
     books.sort((a,b)=>{
       const ra=ratingsMap[a.id], rb=ratingsMap[b.id];
-      const avgA=ra?.avg||0, avgB=rb?.avg||0;
+      const avgA=ra?.mean||0, avgB=rb?.mean||0; // F6: media exacta (sin redondeo previo)
       if(avgB!==avgA) return avgB-avgA;
       return (rb?.count||0)-(ra?.count||0);
     });
@@ -11100,7 +11193,7 @@ function renderGrid(books, total, totalPages){
     const myScore=myRatings[b.id]||0;
     const authorStr=(b.authors||[]).join(', ')||'—';
     const coverEl=b.cover?`<img class="book-cover" src="${b.cover}" alt="${escHtml(b.title)}" data-cover-state="loading" loading="lazy" decoding="async" onload="this.dataset.coverState='loaded';this.parentElement.classList.remove('cover-pending')" onerror="this.parentElement.classList.remove('cover-pending');this.parentElement.classList.add('cover-error');this.outerHTML='<div class=book-cover-ph>✦</div>'">`:`<div class="book-cover-ph book-cover-ph--missing" role="img" aria-label="Portada no disponible"><span aria-hidden="true">✦</span><small>Portada no disponible</small></div>`;
-    const avgBadge=currentUser&&r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${r.avg.toFixed(1)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
+    const avgBadge=currentUser&&r.count>0?`<div class="avg-badge"><span style="color:var(--gold);font-size:11px">★</span><span style="font-size:11.5px;font-weight:600;color:var(--text)">${fmtAvg(r.avg)}</span><span style="font-size:10px;color:var(--muted)">(${r.count})</span></div>`:'';
     const spicyEff=effectiveSpicy(b);
     const spicyBadge=currentUser?((spicyEff!=null&&spicyEff>0)?`<div class="spicy-badge">${SPICY_ICONS[spicyEff]}</div>`:(spicyEff==null)?`<div class="spicy-badge" title="Nivel spicy desconocido" style="opacity:.65">${SPICY_UNKNOWN_ICON}</div>`:''):`<div class="spicy-badge" title="Regístrate para ver el nivel spicy" style="opacity:.5;cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒</div>`;
     const genreTags=(b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('');
@@ -11112,7 +11205,7 @@ function renderGrid(books, total, totalPages){
     const cardSagaName=getSaga(b);
     const cardSagaNum=b.sagaNum!=null?' #'+b.sagaNum:'';
     const cardSagaSub=cardSagaName?`<div class="card-saga-sub" onclick="event.stopPropagation();event.preventDefault();filterBySagaFromModal(decodeURIComponent('${encodeURIComponent(cardSagaName)}'))">${escHtml(cardSagaName)}${cardSagaNum}</div>`:'';
-    const voteLabel=myScore>0?`${'★'.repeat(myScore)} Mi voto`:'Valorar';
+    const voteLabel=myScore>0?`${fmtRating(myScore)} ★ Mi voto`:'Valorar';
     return `<div class="book-card" onclick="openBookPage('${b.id}')">
       <a class="book-cover-link ts-book-link" href="#libro/${encodeURIComponent(b.id)}" onclick="openBookPage('${b.id}');return false;" aria-label="Abrir ficha de ${escHtml(b.title)}"><div class="book-cover-wrap${b.cover?' cover-pending':' cover-missing'}">${spicyBadge}${coverEl}${avgBadge}</div></a>
       <div class="book-card-body">
@@ -11122,7 +11215,7 @@ function renderGrid(books, total, totalPages){
         <div class="book-tags">${genreTags}${yearTag}</div>
         <div class="book-footer">
           ${currentUser
-            ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${r.avg.toFixed(1)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
+            ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${fmtAvg(r.avg)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
             : `<span class="no-ratings" style="cursor:pointer" onclick="event.stopPropagation();openAuthModal()">🔒 Regístrate</span>`}
           <button class="vote-mini-btn${myScore>0?' voted':''}" onclick="event.stopPropagation();openBookPage('${b.id}')">${voteLabel}</button>
         </div>
@@ -11710,7 +11803,7 @@ function buildSimilarBooksHTML(book){
   if(!similar.length) return '';
   const cards=similar.map(function(sb){
     const r=ratingsMap[sb.id];
-    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
+    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
     const cov=sb.cover?'<img src="'+sb.cover+'" alt="'+sb.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=similar-item-ph>📖</div>\'">':'<div class="similar-item-ph">📖</div>';
     const auth=(sb.authors||[]).join(', ')||'—';
     return '<div class="similar-item" onclick="openBookPage(\''+sb.id+'\')"><div class="similar-item-cover">'+cov+ab+'</div><div class="similar-item-body"><div class="similar-item-title">'+sb.title+'</div><div class="similar-item-author">'+auth+'</div></div></div>';
@@ -12443,8 +12536,8 @@ function buildBpMiniRatingHTML(){
     const off=[1,2,3,4,5].map(()=>`<span class="star off">★</span>`).join('');
     return `<span class="bp-rate-detail"><span class="avg-stars-row" aria-hidden="true">${off}</span><span class="bp-rate-count">Sin valoraciones todavía</span></span>`;
   }
-  const stars=[1,2,3,4,5].map(i=>`<span class="star ${i<=Math.round(r.avg)?'on':'off'}">★</span>`).join('');
-  return `<span class="bp-rate-avg">${r.avg.toFixed(1)}</span><span class="bp-rate-detail"><span class="avg-stars-row" role="img" aria-label="Valoración media ${r.avg.toFixed(1)} de 5">${stars}</span><span class="bp-rate-count">${r.count} ${r.count!==1?'valoraciones':'valoración'}</span></span>`;
+  const stars=ratingStarsHTML(r.mean);
+  return `<span class="bp-rate-avg">${fmtAvg(r.avg)}</span><span class="bp-rate-detail"><span class="avg-stars-row" role="img" aria-label="Valoración media ${fmtAvg(r.avg)} de 5">${stars}</span><span class="bp-rate-count">${r.count} ${r.count!==1?'valoraciones':'valoración'}</span></span>`;
 }
 function _refreshBpGeneralRating(){
   const el=document.getElementById('bpMiniRating');
@@ -12459,27 +12552,23 @@ function buildBpRatingHTML(){
   const myScore=(b&&myRatings[b.id])||0;
   const label=`<span class="bp-mine-label">Tu valoración</span>`;
   if(!currentUser){
-    const readOnlyStars=[1,2,3,4,5].map(i=>`<span class="star ${i<=myScore?'on':'off'}">★</span>`).join('');
+      const readOnlyStars=ratingStarsHTML(myScore);
     return `${label}<div class="avg-stars-row">${readOnlyStars}</div>`;
   }
   const shown=bpPendingStar||myScore;
-  const starBtns=[1,2,3,4,5].map(i=>
-    `<button type="button" class="star-btn bp-rating-star${i<=shown?' selected':''}" data-n="${i}" aria-label="Valorar con ${i} estrella${i!==1?'s':''}" title="${i} estrella${i!==1?'s':''}" aria-pressed="${i<=shown?'true':'false'}">★</button>`
-  ).join('');
-  const prompt=myScore>0?'Puedes cambiarla':'¿Qué te pareció?';
-  const submitLabel=bpPendingStar>0?`Guardar ${bpPendingStar} ★`:(myScore>0?'Actualizar':'Valorar');
+  const prompt=myScore>0?`Tu voto: ${fmtRating(myScore)} / 5 · puedes cambiarlo`:'¿Qué te pareció?';
+  const submitLabel=bpPendingStar>0?`Guardar ${fmtRating(bpPendingStar)} ★`:(myScore>0?'Actualizar':'Valorar');
   const deleteBtn=myScore>0?`<button type="button" class="vote-delete bp-rating-delete" id="bpDeleteBtn" onclick="deleteVoteBP()">✕ Eliminar valoración</button>`:'';
-  return `${label}<div class="bp-rating-interactive">
+  return `${label}<div class="bp-rating-interactive bp-qs-wrap">
     <p class="vote-prompt">${prompt}</p>
-    <div class="stars-input bp-rating-stars" id="bpStarInput">${starBtns}</div>
+    ${ratingInputHTML('bpStarInput',shown)}
     <div class="bp-mine-btns">
       <button type="button" class="vote-submit bp-rating-submit" id="bpVoteBtn" onclick="submitVoteBP()" ${bpPendingStar?'':'disabled'}>${submitLabel}</button>
       ${deleteBtn}
     </div>
   </div>`;
 }
-/* Re-renderiza SOLO #bpRatingBlock (no toda la ficha) y reengancha los
-   eventos táctiles de las estrellas. */
+/* Re-renderiza SOLO #bpRatingBlock (no toda la ficha) y reengancha el control. */
 function renderBpRatingBlock(){
   const el=document.getElementById('bpRatingBlock');
   if(!el) return;
@@ -12490,32 +12579,23 @@ function renderBpRatingBlock(){
 /* Estrellas con soporte táctil real, acotadas a #bpStarInput (nunca a
    #starInput, que es del modal) — mismo patrón que attachStarTouch(). */
 function attachBpStarTouch(){
-  const btns=document.querySelectorAll('#bpStarInput .star-btn');
-  btns.forEach(btn=>{
-    const n=parseInt(btn.dataset.n);
-    btn.addEventListener('mouseover',()=>hoverStarBP(n));
-    btn.addEventListener('mouseout',()=>unhoverStarBP());
-    btn.addEventListener('click',()=>selectStarBP(n));
-    btn.addEventListener('touchend',e=>{e.preventDefault();selectStarBP(n);},{passive:false});
+  bindRatingInput(document.getElementById('bpStarInput'),{
+    get:()=>bpPendingStar||(activeBook&&myRatings[activeBook.id])||0,
+    set:v=>selectStarBP(v)
   });
 }
-function hoverStarBP(n){document.querySelectorAll('#bpStarInput .star-btn').forEach((b,i)=>b.style.color=i<n?'var(--gold)':'');}
-function unhoverStarBP(){document.querySelectorAll('#bpStarInput .star-btn').forEach(b=>b.style.color='');}
-function selectStarBP(n){
+function selectStarBP(v){
   if(bpRatingBusy) return;
-  bpPendingStar=n;
-  document.querySelectorAll('#bpStarInput .star-btn').forEach((b,i)=>{
-    b.classList.toggle('selected',i<n);
-    b.setAttribute('aria-pressed',i<n?'true':'false');
-  });
+  bpPendingStar=quantizeQ(v);
+  qsPaint(document.getElementById('bpStarInput'),bpPendingStar);
   const btn=document.getElementById('bpVoteBtn');
-  if(btn){btn.disabled=false;btn.textContent=`Guardar ${n} ★`;}
+  if(btn){btn.disabled=false;btn.textContent=`Guardar ${fmtRating(bpPendingStar)} ★`;}
 }
 
 async function submitVoteBP(){
   if(!currentUser||!activeBook||bpRatingBusy) return;
   const score=bpPendingStar;
-  if(!Number.isInteger(score)||score<1||score>5) return;
+  if(!isValidRating(score)) return; // F6: 0,25–5 en cuartos exactos; nunca 0
   bpRatingBusy=true;
   const btn=document.getElementById('bpVoteBtn');
   if(btn) btn.disabled=true;
@@ -12687,16 +12767,14 @@ function buildRatingHTML(){
   const b=activeBook;
   const r=ratingsMap[b.id]||{avg:0,count:0};
   const myScore=myRatings[b.id]||0;
-  const stars=avg=>[1,2,3,4,5].map(i=>
-    `<span class="star ${i<=Math.round(avg)?'on':'off'}">★</span>`).join('');
+  const stars=avg=>ratingStarsHTML(avg);
   const communityRating=r.count>0
-    ?`<div class="community-rating"><div class="avg-big">${r.avg.toFixed(1)}</div><div><div class="avg-stars-row">${stars(r.avg)}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
+    ?`<div class="community-rating"><div class="avg-big">${fmtAvg(r.avg)}</div><div><div class="avg-stars-row">${stars(r.mean)}</div><div class="avg-votes">${r.count} valoración${r.count!==1?'es':''}</div></div></div>`
     :`<p style="font-size:13px;color:var(--muted);font-style:italic;margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)">Aún sin valoraciones. ¡Sé la primera!</p>`;
-  const starInput=[1,2,3,4,5].map(i=>
-    `<button class="star-btn${i<=(pendingStar||myScore)?' selected':''}" data-n="${i}">★</button>`).join('');
+  const starInput=ratingInputHTML('starInput',pendingStar||myScore);
   let voteArea='';
   if(!currentUser) voteArea=`<p class="login-to-vote"><a onclick="closeBookModal();openAuthModal()">Inicia sesión</a> para valorar este libro.</p>`;
-  else voteArea=`<div><p class="vote-prompt">${myScore>0?`Tu valoración: ${'★'.repeat(myScore)} — puedes cambiarla`:'¿Qué te pareció?'}</p><div class="stars-input" id="starInput">${starInput}</div><div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="vote-submit" id="voteBtn" onclick="submitVote()" ${!pendingStar?'disabled':''}>${pendingStar>0?`Guardar ${pendingStar} ★`:myScore>0?'Actualizar':'Guardar'}</button>${myScore>0?`<button class="vote-delete" id="deleteBtn" onclick="deleteVote()">✕ Eliminar mi voto</button>`:''}</div></div>`;
+  else voteArea=`<div><p class="vote-prompt">${myScore>0?`Tu valoración: ${fmtRating(myScore)} / 5 — puedes cambiarla`:'¿Qué te pareció?'}</p>${starInput}<div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="vote-submit" id="voteBtn" onclick="submitVote()" ${!pendingStar?'disabled':''}>${pendingStar>0?`Guardar ${fmtRating(pendingStar)} ★`:myScore>0?'Actualizar':'Guardar'}</button>${myScore>0?`<button class="vote-delete" id="deleteBtn" onclick="deleteVote()">✕ Eliminar mi voto</button>`:''}</div></div>`;
   return `<div class="rating-title">Valoración de la comunidad</div>${communityRating}${voteArea}`;
 }
 function renderVoteSection(){
@@ -12707,13 +12785,9 @@ function renderVoteSection(){
 }
 /* Estrellas con soporte táctil real para móvil */
 function attachStarTouch(){
-  const btns=document.querySelectorAll('#starInput .star-btn');
-  btns.forEach(btn=>{
-    const n=parseInt(btn.dataset.n);
-    btn.addEventListener('mouseover',()=>hoverStar(n));
-    btn.addEventListener('mouseout',()=>unhoverStar());
-    btn.addEventListener('click',()=>selectStar(n));
-    btn.addEventListener('touchend',e=>{e.preventDefault();selectStar(n);},{passive:false});
+  bindRatingInput(document.getElementById('starInput'),{
+    get:()=>pendingStar||(activeBook&&myRatings[activeBook.id])||0,
+    set:v=>selectStar(v)
   });
 }
 
@@ -12869,13 +12943,11 @@ function filterByTagFromModal(filterKey, value){
   updateDDCounts();renderActivePills();applyFilters(false);
   window.scrollTo({top:0,behavior:'smooth'});
 }
-function hoverStar(n){document.querySelectorAll('#starInput .star-btn').forEach((b,i)=>b.style.color=i<n?'var(--gold)':'');}
-function unhoverStar(){document.querySelectorAll('#starInput .star-btn').forEach(b=>b.style.color='');}
-function selectStar(n){
-  pendingStar=n;
-  document.querySelectorAll('#starInput .star-btn').forEach((b,i)=>b.classList.toggle('selected',i<n));
+function selectStar(v){
+  pendingStar=quantizeQ(v);
+  qsPaint(document.getElementById('starInput'),pendingStar);
   const btn=document.getElementById('voteBtn');
-  if(btn){btn.disabled=false;btn.textContent=`Guardar ${n} ★`;}
+  if(btn){btn.disabled=false;btn.textContent=`Guardar ${fmtRating(pendingStar)} ★`;}
 }
 
 /* 7.2B — núcleo agnóstico de UI, extraído de submitVote(). Sin DOM, sin
@@ -12897,7 +12969,7 @@ async function _submitRatingCore(bookId, userId, score){
 }
 
 async function submitVote(){
-  if(!currentUser||!activeBook||!pendingStar) return;
+  if(!currentUser||!activeBook||!isValidRating(pendingStar)) return; // F6: nunca 0
   const btn=document.getElementById('voteBtn');
   if(btn) btn.disabled=true;
   try{
@@ -13853,7 +13925,7 @@ function updateHomeThaiClub(){
 function _safiItemsHTML(items){
   return items.map(b=>{
           const r=ratingsMap[b.id];
-          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${r.avg.toFixed(1)}</span></div>`:'';
+          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${fmtAvg(r.avg)}</span></div>`:'';
           const authorStr=(b.authors||[]).join(', ')||'—';
           return `<div class="safi-item" onclick="openBookPage('${b.id}')">
             <div class="safi-item-cover">
@@ -13937,7 +14009,7 @@ function renderCanal(){
     let itemsHtml='';
     items.forEach(function(b,i){
       const r=ratingsMap[b.id];
-      const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
+      const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
       const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=canal-item-ph>📖</div>\'">'+'':'<div class="canal-item-ph">📖</div>';
       const auth=(b.authors||[]).join(', ')||'—';
       const hideCls=i>=CANAL_LIMIT?' rec-item-hidden':'';
@@ -13996,7 +14068,7 @@ function renderMyrecCatDetail(c,hero,catMap,cat){
   let itemsHtml='';
   items.forEach(function(b){
     const r=ratingsMap[b.id];
-    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+r.avg.toFixed(1)+'</span></div>':'';
+    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
     const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=myrec-item-ph>📖</div>\'">'+'':'<div class="myrec-item-ph">📖</div>';
     const auth=(b.authors||[]).join(', ')||'—';
     itemsHtml+='<div class="myrec-item" onclick="openBookPage(\''+b.id+'\')"><div class="myrec-item-cover">'+cov+ab+'</div><div class="myrec-item-body"><div class="myrec-item-title">'+b.title+'</div><div class="myrec-item-author">'+auth+'</div></div></div>';
@@ -14074,10 +14146,10 @@ function renderTop10(){
   }
   // Calcular C (media global) y m (mínimo de votos)
   const allCounts=thaisRated.map(b=>ratingsMap[b.id].count).sort((a,b)=>a-b);
-  const C=thaisRated.reduce((s,b)=>s+ratingsMap[b.id].avg,0)/thaisRated.length;
+  const C=thaisRated.reduce((s,b)=>s+ratingsMap[b.id].mean,0)/thaisRated.length; // F6: media exacta
   const m=Math.max(3, allCounts[Math.floor(allCounts.length*0.25)]||3);
   function weightedScore(b){
-    const {avg:R,count:v}=ratingsMap[b.id];
+    const {mean:R,count:v}=ratingsMap[b.id];
     return (v/(v+m))*R + (m/(v+m))*C;
   }
   const ranked=thaisRated
@@ -14090,7 +14162,7 @@ function renderTop10(){
       :`<div class="${cls}-ph">📖</div>`;
   }
   function starsHtml(avg){
-    return [1,2,3,4,5].map(i=>i<=Math.round(avg)?'★':'☆').join('');
+    return ratingStarsHTML(avg); // F6: estrellas parciales
   }
   function tags(b){
     return (b.genres||[]).slice(0,2).map(g=>`<span class="tag tag-genre">${g}</span>`).join('')
@@ -14109,8 +14181,8 @@ function renderTop10(){
         <div class="t10-title" onclick="openBookPage('${b.id}')">${escHtml(b.title)}</div>
         <div class="t10-author">${escHtml((b.authors||[]).join(', ')||'—')}</div>
         <div class="t10-score">
-          <span class="t10-avg">${r.avg.toFixed(1)}</span>
-          <span class="t10-stars">${starsHtml(r.avg)}</span>
+          <span class="t10-avg">${fmtAvg(r.avg)}</span>
+          <span class="t10-stars">${starsHtml(r.mean)}</span>
           <span class="t10-votes">${r.count} voto${r.count!==1?'s':''}</span>
         </div>
         <div class="t10-tags">${tags(b)}</div>
@@ -14134,8 +14206,8 @@ function renderTop10(){
           <div class="t10-title">${escHtml(b.title)}</div>
           <div class="t10-author">${escHtml((b.authors||[]).join(', ')||'—')}</div>
           <div class="t10-score">
-            <span class="t10-avg">${r.avg.toFixed(1)}</span>
-            <span class="t10-stars">${starsHtml(r.avg)}</span>
+            <span class="t10-avg">${fmtAvg(r.avg)}</span>
+            <span class="t10-stars">${starsHtml(r.mean)}</span>
           </div>
           <div class="t10-votes">${r.count} voto${r.count!==1?'s':''}</div>
         </div>
@@ -14160,7 +14232,7 @@ function renderTop10(){
           <div class="t10-author">${escHtml((b.authors||[]).join(', ')||'—')}</div>
         </div>
         <div class="t10-right">
-          <div class="t10-avg">${r.avg.toFixed(1)} <span style="color:var(--gold);font-size:13px">★</span></div>
+          <div class="t10-avg">${fmtAvg(r.avg)} <span style="color:var(--gold);font-size:13px">★</span></div>
           <div class="t10-votes">${r.count} voto${r.count!==1?'s':''}</div>
         </div>
       </div>`;
@@ -15367,8 +15439,8 @@ function ruletaShowResult(book) {
   const spicyTag = currentUser && spicyEff != null && spicyEff > 0
     ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);font-size:11px">${SPICY_ICONS[spicyEff]}</span>` : '';
   const genreTags = (book.genres || []).slice(0, 3).map(g => `<span class="tag tag-genre" style="font-size:11px">${g}</span>`).join('');
-  const ratingTag = r.count > 0 ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);font-size:11px">★ ${r.avg.toFixed(1)} (${r.count})</span>` : '';
-  const myTag = myScore > 0 ? `<span class="tag" style="background:var(--accent-soft);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);font-size:11px">${'★'.repeat(myScore)} Mi voto</span>` : '';
+  const ratingTag = r.count > 0 ? `<span class="tag" style="background:var(--gold-soft);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);font-size:11px">★ ${fmtAvg(r.avg)} (${r.count})</span>` : '';
+  const myTag = myScore > 0 ? `<span class="tag" style="background:var(--accent-soft);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);font-size:11px">${fmtRating(myScore)} ★ Mi voto</span>` : '';
   bookEl.innerHTML = `<button type="button" class="ruleta-cover-btn" onclick="ruletaOpenBook()" aria-label="Ver ficha de ${escHtml(book.title)}"><span class="ruleta-cover-stage">${coverEl}</span></button>
   <div class="ruleta-result-info">
     <div class="ruleta-result-title">${escHtml(book.title)}</div>
@@ -15977,7 +16049,7 @@ function renderReadDoneModal(){
   if(!book||!body) return;
   const authorStr=(book.authors||[]).join(', ');
   const coverHtml=book.cover?`<img src="${book.cover}" alt="">`:'<div style="width:56px;height:82px;border-radius:6px;background:var(--surface3)"></div>';
-  const starBtns=[1,2,3,4,5].map(i=>`<button class="star-btn rd-star-btn${i<=rdStar?' selected':''}" data-n="${i}" onclick="rdSelectStar(${i})" style="font-size:1.6rem">★</button>`).join('');
+  const starBtns=ratingInputHTML('rdStarInput',rdStar,{clearable:true});
   const chileBtns=
     `<button class="rd-chile-btn" data-s="0" title="${SPICY_LABELS[0]}" onclick="rdSelectSpicy(0)" style="background:transparent;border:none;cursor:pointer;font-size:1.15rem;padding:6px 7px;min-width:40px;min-height:40px;opacity:${rdSpicy===0?'1':'.3'};transition:opacity .12s">🚫</button>`+
     [1,2,3,4,5].map(i=>`<button class="rd-chile-btn" data-s="${i}" title="${SPICY_LABELS[i]}" onclick="rdSelectSpicy(${i})" style="background:transparent;border:none;cursor:pointer;font-size:1.4rem;padding:6px 5px;min-width:40px;min-height:40px;opacity:${i<=rdSpicy?'1':'.3'};transition:opacity .1s;line-height:1">🌶</button>`).join('');
@@ -16002,12 +16074,10 @@ function renderReadDoneModal(){
       <button class="bingo-btn-danger" onclick="closeReadDoneModal()">Ahora no</button>
       <button class="bingo-btn-primary" onclick="saveReadDoneModal()">Guardar</button>
     </div>`;
+  bindRatingInput(document.getElementById('rdStarInput'),{get:()=>rdStar,set:v=>{rdStar=quantizeQ(v);},clear:()=>{rdStar=0;}});
 }
 
-function rdSelectStar(n){
-  rdStar=(rdStar===n)?0:n; // clic en la misma estrella la desmarca
-  document.querySelectorAll('#rdStarsWrap .rd-star-btn').forEach((b,i)=>b.classList.toggle('selected',i<rdStar));
-}
+function rdSelectStar(v){ rdStar=quantizeQ(v); qsPaint(document.getElementById('rdStarInput'),rdStar); }
 
 function rdSelectSpicy(n){
   rdSpicy=(rdSpicy===n)?-1:n; // clic en el mismo nivel lo desmarca
@@ -16022,7 +16092,7 @@ async function saveReadDoneModal(){
   if(!currentUser||!rdBookId) return;
   const bookId=rdBookId;
   // Valoración por estrellas (solo si se ha elegido alguna)
-  if(rdStar>0){
+  if(isValidRating(rdStar)){
     try{ await _submitRatingCore(bookId,currentUser.id,rdStar); }
     catch(e){ console.warn('[valoración] no se pudo guardar desde el modal rápido',e); }
   }
@@ -16376,8 +16446,8 @@ function _shelfRenderGrid(pageBooks){
           // Solo valoración de la comunidad; sin votos → sin línea.
           const cr=ratingsMap[b.id];
           if(cr&&cr.count>0){
-            const sr=`Valoración de la comunidad ${cr.avg.toFixed(1).replace('.',',')} de 5, ${cr.count} ${cr.count===1?'voto':'votos'}`;
-            meta=`<div class="shelf-book-meta"><span class="shelf-book-sr">${sr}</span><span class="shelf-book-stars" aria-hidden="true">★ ${cr.avg.toFixed(1)} (${cr.count})</span></div>`;
+            const sr=`Valoración de la comunidad ${fmtAvg(cr.avg)} de 5, ${cr.count} ${cr.count===1?'voto':'votos'}`;
+            meta=`<div class="shelf-book-meta"><span class="shelf-book-sr">${sr}</span><span class="shelf-book-stars" aria-hidden="true">★ ${fmtAvg(cr.avg)} (${cr.count})</span></div>`;
           }
           break;
         }
@@ -16392,9 +16462,9 @@ function _shelfRenderGrid(pageBooks){
           // Lógica de E6 intacta.
           // FASE E6.2 — línea meta: SOLO mi valoración y mi spicy (datos ya cargados, sin consultas). Spicy 0 se omite en v1; se comprueba != null, nunca truthiness.
           const rv=myRatings[b.id], sv=mySpicy[b.id];
-          const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+          const rN=(rv>=0.25&&rv<=5)?rv:0; // F6: incluye 0,25–0,75 y conserva el cuarto exacto
           const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
-          meta=(rN||sN)?`<div class="shelf-book-meta"><span class="shelf-book-sr">${[rN?`Mi valoración ${rN} de 5`:'',sN?`${rN?'spicy':'Mi spicy'} ${sN} de 5`:''].filter(Boolean).join(', ')}</span>${rN?`<span class="shelf-book-stars" aria-hidden="true">${'★'.repeat(rN)+'☆'.repeat(5-rN)}</span>`:''}${sN?`<span class="shelf-book-spicy" aria-hidden="true">🌶 ${sN}</span>`:''}</div>`:'';
+          meta=(rN||sN)?`<div class="shelf-book-meta"><span class="shelf-book-sr">${[rN?`Mi valoración ${fmtRating(rN)} de 5`:'',sN?`${rN?'spicy':'Mi spicy'} ${sN} de 5`:''].filter(Boolean).join(', ')}</span>${rN?`<span class="shelf-book-stars" aria-hidden="true">${ratingStarsHTML(rN)}</span>`:''}${sN?`<span class="shelf-book-spicy" aria-hidden="true">🌶 ${sN}</span>`:''}</div>`:'';
           // FASE E6.3/E6.3.1 — fecha corta de la ÚLTIMA lectura completada, tomada de bookReadingTime (modelo E2/E3; sin lógica de fechas propia). Respeta la precisión (día / mes / año); sin fecha → sin línea.
           const rt=bookReadingTime(b.id);
           const _rx=_shelfReadExtras(b.id); // F8.4.2: «en N días» y «N lecturas» en tooltip y texto accesible; sin fecha → «Leído · sin fecha»
@@ -16441,7 +16511,7 @@ function _shelfRenderList(pageBooks){
       // FASE E10.2 — información contextual de la Lista según el filtro activo (solo datos ya cargados, sin consultas).
       const st=myReadingStatus[b.id];
       let rate='', stCls='', stTxt='', stTip='';
-      const _comm=()=>{ const r=ratingsMap[b.id]; return (r&&r.count>0)?`<span class="shelf-list-rate">★ ${r.avg.toFixed(1)} <small>(${r.count})</small></span>`:''; };
+      const _comm=()=>{ const r=ratingsMap[b.id]; return (r&&r.count>0)?`<span class="shelf-list-rate">★ ${fmtAvg(r.avg)} <small>(${r.count})</small></span>`:''; };
       switch(shelfFilter){
         case 'want':
           rate=_comm(); stCls='is-want'; stTxt=_shelfIco('want')+'Quiero leer';
@@ -16454,9 +16524,9 @@ function _shelfRenderList(pageBooks){
         case 'read': {
           // Mismas reglas que la Galería (E6.2/E6.3): valoración y spicy solo 1–5, Math.round, spicy 0 se omite; fecha de la última lectura vía bookReadingTime.
           const rv=myRatings[b.id], sv=mySpicy[b.id];
-          const rN=(rv>=1&&rv<=5)?Math.round(rv):0;
+          const rN=(rv>=0.25&&rv<=5)?rv:0; // F6: incluye 0,25–0,75 y conserva el cuarto exacto
           const sN=(sv!=null&&sv>=1&&sv<=5)?Math.round(sv):0;
-          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?'★'.repeat(rN)+'☆'.repeat(5-rN):'',sN?`${_shelfIco('spicy')} ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
+          if(rN||sN) rate=`<span class="shelf-list-rate">${[rN?ratingStarsHTML(rN):'',sN?`${_shelfIco('spicy')} ${sN}`:''].filter(Boolean).join(' · ')}</span>`;
           const rt=bookReadingTime(b.id);
           const _rx=_shelfReadExtras(b.id); // F8.4.2
           if(rt.hasDate){ stCls='is-read'; stTip=_shelfShortDateTxt(rt.year,rt.month,rt.day,rt.precision)+(_rx.all?' · '+_rx.all:''); stTxt=_shelfIco('read')+stTip; }
@@ -16698,8 +16768,8 @@ let _shelfInfoId=null;
 function _shelfInfoParts(b){
   const id=b.id, o={title:String(b.title||''),author:(b.authors||[]).join(', '),rating:'',spicy:'',state:''};
   const rv=Number(myRatings[id]);
-  if(rv>=1&&rv<=5) o.rating=`Mi valoración ${Math.round(rv)}/5`;
-  else { const cr=ratingsMap[id]; if(cr&&cr.count>0) o.rating=`Comunidad ${cr.avg.toFixed(1).replace('.',',')}/5 (${cr.count})`; }
+  if(rv>=0.25&&rv<=5) o.rating=`Mi valoración ${fmtRating(rv)}/5`;
+  else { const cr=ratingsMap[id]; if(cr&&cr.count>0) o.rating=`Comunidad ${fmtAvg(cr.avg)}/5 (${cr.count})`; }
   const sv=Number(mySpicy[id]);
   if(sv>=1&&sv<=5) o.spicy=`Mi spicy ${Math.round(sv)}/5`;
   else if(typeof b.spicy==='number'&&b.spicy>=1&&b.spicy<=5) o.spicy=`Spicy ${Math.round(b.spicy)}/5`; // catálogo directo (no la media de comunidad)
@@ -17875,8 +17945,7 @@ function anChips(list,limit){
   return `<ul class="an-chips">${li.slice(0,limit).join('')}</ul><details class="an-more"><summary>Ver ${li.length-limit} más</summary><ul class="an-chips">${li.slice(limit).join('')}</ul></details>`;
 }
 function anStarsHTML(score){
-  const r=Math.max(0,Math.min(5,Math.round(score)));
-  return `<span class="an-stars" role="img" aria-label="${anNum(score)} de 5">${'★'.repeat(r)}${'☆'.repeat(5-r)}</span>`;
+  return `<span class="an-stars" role="img" aria-label="${fmtRating(score)} de 5">${ratingStarsHTML(score)}</span>`;
 }
 function anSpicyHTML(id){
   const v=mySpicy[id]; if(v==null||isNaN(Number(v))) return '';
@@ -18418,7 +18487,7 @@ function renderStatsView(){
   document.getElementById('statsSummary').innerHTML=`
     <div class="mystat"><div class="mystat-n">${s.readBooks.length}</div><div class="mystat-l">Libros leídos</div><div class="mystat-h">Libros distintos</div></div>
     <div class="mystat"><div class="mystat-n">${s.totalPages?s.totalPages.toLocaleString('es-ES'):'—'}</div><div class="mystat-l">Páginas leídas</div><div class="mystat-h">Suma de las páginas de esos libros</div></div>
-    <div class="mystat"><div class="mystat-n">${s.avgRating?s.avgRating.toFixed(1)+' ★':'—'}</div><div class="mystat-l">Valoración media</div><div class="mystat-h">De tus puntuaciones, sobre 5</div></div>
+    <div class="mystat"><div class="mystat-n">${s.avgRating?fmtAvg(s.avgRating)+' ★':'—'}</div><div class="mystat-l">Valoración media</div><div class="mystat-h">De tus puntuaciones, sobre 5</div></div>
     <div class="mystat"><div class="mystat-n">${s.avgSpicy!=null?s.avgSpicy.toFixed(1):'—'}</div><div class="mystat-l">Spicy medio <span class="mystat-ico">${s.avgSpicy!=null?SPICY_ICONS[Math.min(5,Math.round(s.avgSpicy))]:''}</span></div><div class="mystat-h">Tu voto o, si no votaste, el del catálogo</div></div>
   `;
 
