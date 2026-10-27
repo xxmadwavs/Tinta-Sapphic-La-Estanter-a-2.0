@@ -48,7 +48,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -677,7 +685,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -7427,7 +7443,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -7489,7 +7513,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -7730,7 +7762,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Principios de los 2000",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
@@ -7805,7 +7845,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -8333,7 +8381,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": "Fantasía",
@@ -9393,7 +9449,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
@@ -9902,7 +9966,15 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
@@ -11261,6 +11333,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -11605,25 +11686,41 @@
     "authors": [
       "Lee Winter"
     ],
-    "year": 2015,
+    "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1633493999i/59225570.jpg",
     "synopsis": "Lauren King, ambiciosa periodista de Iowa, se asfixia en el glamour superficial de Los Ángeles mientras lidia con su archienemiga, la implacable Catherine Ayers. Ayers, ex corresponsal política caída en desgracia, mantiene a todos a raya con su lengua afilada. A todos, excepto a la desenfadada King, que no se deja intimidar.\n\nUna noche, un extraño caso con un palé de champán rosado desaparecido las une. Obligadas a colaborar para desentrañar un misterio con giros increíbles, ¿podrá la tensión profesional convertirse en una pasión incontrolable? Una novela lésbica donde la verdad puede ser más dulce que el champán.",
     "pages": 386,
-    "isbn": null,
+    "isbn": "9783955333324",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "Misterio"
+      "Misterio",
+      "Thriller",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Autodescubrimiento",
+      "Crimen"
+    ],
     "identidades": [
       "Ice Queen",
       "Femme",
       "Lesbiana"
     ],
-    "characters": [],
+    "characters": [
+      "Reportera / Periodista",
+      "Política"
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
-      "Rich × Poor"
+      "Rich × Poor",
+      "Ice Queen × Sunshine",
+      "Fría × Cálida",
+      "Caos × Control"
     ],
     "tropes": [
       "Enemies to Lovers",
@@ -11631,14 +11728,41 @@
       "Forced Proximity",
       "Opposites Attract",
       "Rich / Poor Romance",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Rivals to Lovers",
+      "Road Trip",
+      "Ice Queen × Toaster Oven"
     ],
     "edad": [
-      "+40"
+      "+40",
+      "25–39"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
+    ],
     "ambientacion": [],
-    "spicy": 4,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "On The Record",
@@ -11647,13 +11771,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777797661137_d6m2x",
@@ -11665,36 +11788,73 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627269520i/58629428.jpg",
     "synopsis": "Catherine Ayers, la \"Reina Cáustica\" de Washington, está a punto de enfrentarse a su misión más difícil: sobrevivir a los preparativos de su boda en Iowa. Su prometida, la reportera Lauren King, la lleva de vuelta a su ciudad natal, donde la esperan fornidos hermanos mecánicos, un gato altivo y una abuela de lengua afilada.\n\nAcostumbrada a lidiar con intrigas políticas, Catherine cree que puede con todo. Pero cuando un robot repartidor robado y un plan descabellado para implantar microchips a veteranos se cruzan en su camino, la comedia y el misterio se disparan. Una secuela romántica llena de giros inesperados sobre la familia que elegimos y la que nos toca.",
     "pages": 340,
-    "isbn": null,
+    "isbn": "9783963240270",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Thriller"
     ],
     "subgenres": [
-      "Small Town"
+      "Small Town",
+      "Queer",
+      "Familia"
     ],
     "identidades": [
       "Femme",
       "Lesbiana",
       "Ice Queen"
     ],
-    "characters": [],
+    "characters": [
+      "Reportera / Periodista",
+      "Política"
+    ],
     "dinamicas": [
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Ice Queen × Sunshine",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Age Gap",
       "Opposites Attract",
-      "Vacation Romance"
+      "Vacation Romance",
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Secret Relationship"
     ],
     "edad": [
-      "+40"
+      "+40",
+      "25–39"
     ],
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington D.C",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
+    ],
     "ambientacion": [],
-    "spicy": 4,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 0,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "On The Record",
@@ -11703,13 +11863,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1777797748887_tjh5q",
@@ -13112,6 +13271,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -13202,6 +13370,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -15378,21 +15555,30 @@
     "synopsis": "La violonchelista profesional Natalya Tsvetnenko se mueve con soltura entre la élite, donde llena de belleza las almas de los clientes de las sinfónicas, incluso cuando acaba con la vida de los corruptos del despiadado hampa australiano. La fría y exigente asesina es contratada para matar a una mujer que parece tan inocente que Natalya no entiende por qué alguien querría matarla. A medida que va conociendo a su objetivo, se da cuenta de que ni siquiera le importa.",
     "pages": 384,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Thriller",
+      "Misterio"
     ],
     "subgenres": [
       "Música",
       "Mafia",
       "Dark Romance",
-      "BDSM"
+      "BDSM",
+      "Crimen",
+      "Queer"
     ],
     "identidades": [
       "Grumpy",
       "Ice Queen",
-      "Sunshine"
+      "Sunshine",
+      "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Detective"
+    ],
     "dinamicas": [
       "Grumpy × Sunshine"
     ],
@@ -15404,13 +15590,42 @@
       "Slow Burn"
     ],
     "edad": [
-      "+40"
+      "+40",
+      "25–39"
     ],
     "pais_cultura": [
       "Australia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Melbourne",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Frankston",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "Nueva Zelanda"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Requiem",
@@ -15419,13 +15634,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778011060595_f39xc",
@@ -15437,25 +15651,41 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1503263937i/36081810.jpg",
     "synopsis": "Réquiem nunca quiso enamorarse ni preocuparse por nadie. Pero la vida sin Alison resultó demasiado vacía, así que regresó por ella.\n\nHan pasado dos años desde que Natalya “Réquiem” Tsvetnenko, brillante violonchelista y asesina del submundo, le pidió a Alison Ryan que se mudara a Europa. Ahora, en un solo e intenso día en Viena, Réquiem deberá enfrentarse a sus dudas: si el amor la ha cambiado, si su naturaleza sigue intacta y si dos personas tan distintas pueden realmente sobrevivir juntas.\n\nLa verdad, por fin, saldrá a la luz.",
     "pages": 41,
-    "isbn": null,
+    "isbn": "9783955338725",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Acción",
+      "Thriller"
     ],
     "subgenres": [
       "Crimen",
-      "Mafia"
+      "Mafia",
+      "Queer",
+      "Erótica",
+      "Autodescubrimiento",
+      "Familia"
     ],
     "identidades": [
       "Ice Queen",
       "Sunshine",
       "Lesbiana"
     ],
-    "characters": [],
+    "characters": [
+      "Música",
+      "Profesora"
+    ],
     "dinamicas": [
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Fría × Cálida",
+      "Feroz × Tierna"
     ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Opposites Attract",
+      "Slow Burn"
     ],
     "edad": [
       "+40"
@@ -15463,8 +15693,36 @@
     "pais_cultura": [
       "Australia"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Austria",
+        "region": null,
+        "ciudad": "Viena",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Austria",
+        "region": null,
+        "ciudad": "Musikverein",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Requiem",
@@ -15473,13 +15731,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778011138674_kekjb",
@@ -15534,6 +15791,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -15780,29 +16046,82 @@
     "authors": [
       "Lee Winter"
     ],
-    "year": 2018,
+    "year": 2025,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1603658096i/52928905.jpg",
     "synopsis": "Una historia corta ambientada en el universo de The Red Files.",
     "pages": 15,
-    "isbn": null,
+    "isbn": "9783690060103",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [
       "Femme",
-      "Ice Queen"
+      "Ice Queen",
+      "Butch"
     ],
-    "characters": [],
+    "characters": [
+      "Reportera / Periodista"
+    ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Butch × Femme",
+      "Caos × Control"
     ],
     "tropes": [
       "Age Gap",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Friends with Benefits",
+      "One Night Stand → More",
+      "Strangers to Lovers",
+      "Coming Out tardío"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington DC",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Vegas",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
     ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -15811,13 +16130,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778011513185_1mqds",
@@ -15998,6 +16316,15 @@
     "pais_origen": [
       "Corea del Sur",
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -16573,12 +16900,21 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1498482233i/35335134.jpg",
     "synopsis": "Maddie Grey, una reportera australiana especializada en sucesos criminales, se siente desamparada en Nueva York, miserable y secretamente atraída por su poderosa jefa, Elena Bartell, magnate de los medios de comunicación, casada dos veces y que desayuna periódicos fracasados. Cuando el trabajo las lleva a Australia, Maddie se ve tentada a hacer una breve apuesta, aparentemente inofensiva, con su enigmática jefa, en la que tienen que decirse toda la verdad la una a la otra. El tiro sale por la culata.\nUn romance lésbico sobre las mentiras que nos contamos a nosotras mismas.",
     "pages": 339,
-    "isbn": null,
+    "isbn": "9783955338992",
+    "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Autodescubrimiento",
+      "Familia"
+    ],
     "identidades": [
       "Lesbiana",
       "Ice Queen",
@@ -16587,24 +16923,71 @@
     ],
     "characters": [
       "CEO",
-      "Reportera / Periodista"
+      "Reportera / Periodista",
+      "Editora",
+      "Empresaria"
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
-      "Femme × Femme"
+      "Femme × Femme",
+      "Ice Queen × Sunshine",
+      "Fría × Cálida",
+      "Jefa × Subordinada",
+      "Boss × Employee",
+      "Caos × Control"
     ],
     "tropes": [
       "Age Gap",
       "Workplace Romance",
       "Friends to Lovers",
       "Slow Burn",
-      "Toaster Oven"
+      "Toaster Oven",
+      "Forbidden Love",
+      "Ice Queen × Toaster Oven",
+      "Opposites Attract"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Australia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Sídney",
+        "localidad": null,
+        "lugares": [
+          "Oficinas de Bartell Corp",
+          "Redacción de Hudson Metro News",
+          "Entorno editorial y de moda",
+          "Playas de Sídney y eventos de la industria"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
+    ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Truth",
@@ -16613,13 +16996,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778225306383_yentj",
@@ -17945,27 +18327,81 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1604749450i/55855113.jpg",
     "synopsis": "El hielo se encuentra con el fuego en este romance entre dos ejecutivas enfrentadas. En una noche en Las Vegas, Amelia Duxton y Kai Fisher coquetean sin saber que compiten por el mismo contrato: la compra del codiciado Mayfair Palace.\n\nAmelia, una reina de hielo obsesionada con el control, busca cerrar el acuerdo que la llevaría a la dirección ejecutiva del imperio familiar. Kai, carismática y caótica, quiere arrebatarles el hotel a los Duxton.\n\nPero cuando salen a la luz secretos y todo empieza a tambalearse, ambas deberán decidir cómo ganar… cuando quizá ya han encontrado a su rival perfecta.",
     "pages": 319,
-    "isbn": null,
+    "isbn": "9783963244599",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Crimen",
+      "Autodescubrimiento",
+      "Familia",
+      "Feminismo"
+    ],
     "identidades": [
       "Femme",
       "Ice Queen",
       "Masc"
     ],
-    "characters": [],
+    "characters": [
+      "Empresaria",
+      "Abogada",
+      "CEO"
+    ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Fría × Cálida",
+      "Caos × Control"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Opposites Attract",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Rivals to Lovers",
+      "Slow Burn"
+    ],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "Estados Unidos",
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Las Vegas",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
     ],
     "ambientacion": [],
-    "spicy": 4,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -17974,13 +18410,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778226860643_ez8is",
@@ -18905,7 +19340,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1778239912236_3xh37",
@@ -19129,6 +19573,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -19398,6 +19851,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -19451,6 +19913,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -22509,7 +22980,15 @@
     "pais_cultura": [
       "Reino Unido"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -22603,7 +23082,15 @@
     "pais_cultura": [
       "Reino Unido"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -29424,16 +29911,74 @@
     "synopsis": "Bethany Loundes tiene una regla nadie, absolutamente nadie, toca sus diseños. Dueña de una boutique de alta costura en la Quinta Avenida, su vida gira en torno a la perfección, el detalle y el control. Pero cuando el vestido más importante de su carrera sufre un accidente tan inoportuno como desastroso, Bethany se enfrenta a mucho más que la pérdida de su trabajo de meses, la pérdida de su equilibrio emocional.\n\nLoren March no es precisamente la periodista más organizada del mundo. Es brillante, sí. Torpe, también. Enviada por su revista a cubrir uno de los eventos del año, su misión es conseguir una entrevista. Lo que no espera es arruinar el trabajo de una diseñadora de élite en cuestión de segundos… y ganarse a la enemiga más sexy, elegante y peligrosa de todo Nueva York.",
     "pages": 426,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
+    ],
     "identidades": [],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "dinamicas": [
+      "Caos × Control"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Opposites Attract",
+      "Enemies to Lovers"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": [
+          "Quinta Avenida",
+          "Carroll Gardens",
+          "SoHo",
+          "Times Square",
+          "Tribeca",
+          "St. Regis Hotel",
+          "Warren Street Hotel",
+          "MoMA",
+          "Rockefeller Center"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Filadelfia",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -29442,13 +29987,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778573188007_5d22d",
@@ -31177,7 +31721,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1778922477892_p691y",
@@ -34497,16 +35050,77 @@
     "synopsis": "Cuando todos tus planes de vida se desmoronan, no queda más remedio que improvisar. Marta busca refugio en el pequeño pueblo donde creció convencida de que 'calma' es lo único que necesita para volver a ser feliz. Alba, en cambio, encuentra en Altea la excusa perfecta para escribir un nuevo capítulo de su vida. Ninguna espera encontrarse con la otra. Pero el verano, con su luz y sus noches de ensueño, trastoca sus planes.\n\nEntre atardeceres de postal, miradas que lo dicen todo y silencios que te encogen el corazón, ambas intentarán recomponerse sin romperse más de lo que ya lo están. Pero claro, esa es la teoría, porque la práctica deja mucho que desear. Y mucho menos, cuando el destino está detrás.",
     "pages": 337,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Small Town"
+    ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "characters": [
+      "Fotógrafa",
+      "Jardinera"
+    ],
+    "dinamicas": [
+      "Fría × Cálida",
+      "Feroz × Tierna"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Strangers to Lovers",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Altea",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Valencia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Guadalest",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -34515,13 +35129,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779387338095_jo9co",
@@ -34644,16 +35257,73 @@
     "synopsis": "Hay encuentros escritos antes de suceder y miradas imposibles de olvidar.\n\nInés, meticulosa y serena, encuentra la calma en el orden. Eva, marcada por cicatrices que convirtió en palabras, habita entre metáforas y personajes que laten. Ninguna esperaba cruzarse, pero entre firmas, trenes y hoteles descubren que algunas historias no comienzan con una declaración de amor, sino con un roce que lo cambia todo.\n\nCon la intensidad de la esperanza y la fragilidad tras el desengaño, esta novela es un viaje de emociones, confesiones al oído y verdades escondidas en cada caricia.\n\nPorque el amor no siempre se anuncia: a veces llega como ese libro que nunca buscaste y que, sin saberlo, esperabas toda la vida.",
     "pages": 294,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Navidad"
+    ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "characters": [
+      "Escritora",
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Fría × Cálida"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": [
+          "Oficinas de la editorial Rubor",
+          "Cafeterías y restaurantes de Madrid",
+          "Apartamentos de Eva e Inés",
+          "Parque de El Retiro y una librería en Valencia"
+        ]
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Valencia",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Librería",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -34662,13 +35332,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779389027869_1e0am",
@@ -34681,18 +35350,65 @@
     "synopsis": "Clara Echevarría lo tiene todo: elegancia, éxito y un emporio vinícola en expansión. Todo, excepto el olvido de Lucía Salgado, la mujer que años atrás le rompió el corazón.\n\nLucía dirige un pequeño bar de tapas en Gràcia y carga con la culpa de aquella traición… y con el deseo intacto de volver a verla.\n\nEl destino —y un negocio imposible de rechazar— las obliga a reencontrarse en la ciudad que vio nacer su amor y su ruina. Entre silencios, reproches y miradas encendidas, descubren que la chispa nunca se apagó.\n\n¿Podrán dejar atrás el pasado y arriesgarlo todo por una segunda oportunidad?",
     "pages": 177,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Fría × Cálida"
+    ],
     "tropes": [
       "Second Chance Romance"
     ],
+    "edad": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Sant Cugat del Vallès",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -34701,13 +35417,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779389054519_wci59",
@@ -36388,20 +37103,68 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1672452085i/75434345.jpg",
     "synopsis": "Hace nueve años, la fría y distante Michelle Hastings prefirió su carrera al amor. Ahora vive con esa elección mientras dirige una empresa secreta que atiende a ricos y poderosos.\n\nLlega Eden Lawless. A la cándida activista le resulta un poco extraño que una misteriosa organización la contrate para derrocar a un alcalde corrupto. Pero le gustan los retos. Mucho más difícil es sacarse de la cabeza a su bella nueva jefa. La atracción entre ellos es eléctrica.",
     "pages": 284,
-    "isbn": null,
+    "isbn": "9783963247477",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Thriller",
+      "Drama",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Crimen",
+      "Queer",
+      "Familia",
+      "Feminismo",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Jefa × Subordinada",
+      "Fría × Cálida"
+    ],
     "tropes": [
       "Enemies to Lovers",
-      "Age Gap"
+      "Age Gap",
+      "Slow Burn",
+      "Ice Queen × Toaster Oven",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Villains",
@@ -36410,13 +37173,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779392579251_znu0e",
@@ -36428,20 +37190,89 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1672452024i/75434380.jpg",
     "synopsis": "¿Qué ocurre cuando la empleada más dulce descubre los malvados secretos de su jefe? Este romance de opuestos atrae a la reina del hielo: ¿Se puede redimir a un villano?\n\nLa directora ejecutiva Michelle Hastings ha ascendido tontamente a una amable y despistada activista a su plantilla a tiempo completo. Ahora, además de luchar contra sus inconvenientes sentimientos, Michelle debe ocultar el mal que hacen.\n\nEden Lawless está encantada con su nuevo trabajo, con su atractivo jefe, que le pone los pelos de punta, y con sus excéntricos compañeros de trabajo, que cuentan chistes raros sobre su día. ¿Chantaje? ¿Hackeo? ¿Doxing? ¡Divertidísimo! Pero, ¿y si no es una broma? ¿Significaría eso que Eden tiene que luchar contra el jefe del que se está enamorando?",
     "pages": 352,
-    "isbn": null,
+    "isbn": "9783963247507",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Thriller"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Queer",
+      "Crimen",
+      "Autodescubrimiento",
+      "Familia",
+      "Feminismo",
+      "Erótica",
+      "Segunda Oportunidad"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Fría × Cálida",
+      "Caos × Control",
+      "Jefa × Subordinada",
+      "Ice Queen × Softie"
+    ],
     "tropes": [
       "Enemies to Lovers",
-      "Age Gap"
+      "Age Gap",
+      "Slow Burn",
+      "Workplace Romance",
+      "Opposites Attract",
+      "Ice Queen × Toaster Oven",
+      "Hurt/Comfort"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Wingapo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Maryland",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
     ],
     "ambientacion": [],
-    "spicy": 4,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 2,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Villains",
@@ -36450,13 +37281,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779392967540_llbbd",
@@ -42346,7 +43176,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779783679553_aznvj",
@@ -42393,7 +43232,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779783743098_x4cbb",
@@ -42439,6 +43287,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -42499,6 +43356,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -42548,6 +43414,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -42727,7 +43602,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779824982035_5g9hb",
@@ -43022,6 +43906,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -43107,7 +44000,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779825987721_s3f41",
@@ -43157,7 +44059,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779826038529_qz2x8",
@@ -43197,7 +44108,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779826189892_v5qbo",
@@ -43737,6 +44657,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -43830,20 +44759,61 @@
     "synopsis": "En el competitivo mundo inmobiliario de Nueva York, Elizabeth “Liz” Parker ha construido una vida perfecta: una carrera brillante, una reputación intachable y un control absoluto sobre todo. Hasta que aparece Chloe Mitchell, una joven llena de vida cuya energía y espontaneidad chocan con su mundo meticuloso.\n\nLo que empieza como una relación profesional pronto se convierte en una danza de miradas, tensión y deseo. A medida que los límites se difuminan, Liz y Chloe descubren que lo que parecía una chispa momentánea podría incendiarlo todo.\n\nAhora, deberán decidir si seguir las reglas que siempre las protegieron… o arriesgarlo todo por un amor que podría cambiarlo todo.",
     "pages": 202,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
-    "dinamicas": [],
+    "dinamicas": [
+      "Fría × Cálida",
+      "Ice Queen × Sunshine",
+      "Jefa × Subordinada"
+    ],
     "tropes": [
-      "Workplace Romance"
+      "Workplace Romance",
+      "Forbidden Love",
+      "Opposites Attract",
+      "Enemies to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -43852,13 +44822,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779826922838_924h0",
@@ -45358,18 +46327,67 @@
     "synopsis": "Vittoria Bianchi, heredera de un imperio gastronómico italiano, dirige El Murano en Florencia, un restaurante prestigioso pero carente de autenticidad. En busca de la receta que le dé su tercera estrella, viaja a San Gimignano para supervisar Il Ricordo, un pequeño restaurante en crisis.\n\nAllí conoce a Arianna, chef apasionada que lucha por mantener vivas las recetas de su abuela y devolverle el alma al restaurante. Lo que comienza como una mentira se convierte en un viaje de autodescubrimiento: Vittoria aprende a ser ella misma lejos de su apellido, y Arianna a perseguir sus sueños y honrar a su abuela.",
     "pages": 299,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Música"
+    ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Fría × Cálida",
+      "Ice Queen × Softie"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Italia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Italia",
+        "region": "Toscana",
+        "ciudad": "San Gimignano",
+        "localidad": null,
+        "lugares": [
+          "Il Ricordo",
+          "Murano",
+          "Huerto del restaurante",
+          "Mercado de San Gimignano",
+          "Locanda di Pietro",
+          "Palazzo Vecchio y espacios familiares y empresariales de Florencia"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Restaurante",
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -45378,13 +46396,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779883428058_fzo1h",
@@ -45397,18 +46414,59 @@
     "synopsis": "Tras perder a una integrante de su equipo en un incendio, la teniente Cassandra Sullivan se promete no volver a desestabilizarse. Sin embargo, su control se tambalea al conocer a Lara Kinsley, una doctora de trauma recién llegada a Chicago.\n\nLara ve lo que Cassandra intenta ocultar: culpa, cansancio y la necesidad de mantenerse fuerte. Entre la intensidad de su trabajo y la fragilidad de sus emociones, lo que empieza como un encuentro profesional se convierte en un deseo imposible de ignorar, obligándolas a enfrentarse a lo que sienten mientras la muerte acecha.",
     "pages": 252,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Doctora / Médica",
+      "Bombera"
+    ],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Opposites Attract"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -45417,13 +46475,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779883448743_vq4pk",
@@ -45955,6 +47012,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -45968,20 +47034,82 @@
     "synopsis": "En una ciudad donde el invierno es capaz de detener el tiempo, Amanda y Nuria se reencuentran después de años de silencio, promesas rotas y emociones que nunca se extinguieron del todo.\n\nLo que empieza como una casualidad se convierte en un viaje hacia el pasado, hacia aquello que fueron y lo que aún podrían ser.\n\nBañadas por la magia de Segovia en Navidad, tendrán que enfrentarse no solo a las heridas que llevan dentro, sino a sus propios el peso de lo que nunca se dijeron, las causas que las separaron y la posibilidad —tan temida como anhelada— de volver a empezar. De conocer el amor de verdad.",
     "pages": 233,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
-      "Navidad"
+      "Navidad",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Segunda Oportunidad",
+      "Música",
+      "Coming Out"
     ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "characters": [
+      "Profesora",
+      "Música"
+    ],
+    "dinamicas": [
+      "Fría × Cálida",
+      "Ice Queen × Softie"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Hurt/Comfort"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Segovia",
+        "localidad": null,
+        "lugares": [
+          "Catedral de Segovia y sus escalinatas",
+          "Plaza Mayor",
+          "Casco antiguo",
+          "Valle del Eresma",
+          "Puente de San Marcos",
+          "Alameda",
+          "Iglesia de San Miguel",
+          "Cafeterías",
+          "Casas familiares y el instituto en los recuerdos"
+        ]
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Zaragoza",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -45990,13 +47118,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779994572648_cs08r",
@@ -46242,18 +47369,66 @@
     "synopsis": "Cuando la poderosa heredera Mackenzie Sutton se convierte en el blanco de un escándalo mediático, su padre la envía lejos de la gran ciudad bajo la estricta vigilancia de Cadence Serra, una exmilitar implacable que nunca da su brazo a torcer. Lo que comienza como una convivencia forzada entre el hielo del invierno y la arrogancia de una jefa insoportable, acaba en un juego donde las provocaciones, la tensión y el magnetismo que hay entre ellas empieza a rozar lo peligroso. Pero cuando el pasado amenaza con destruirlas, ambas deberán decidir si lo que sienten es debilidad… o su única forma de sobrevivir. ¿Cuánto tiempo podrán mantener la línea entre lo profesional y un nuevo escándalo?",
     "pages": 259,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Thriller",
+      "Acción"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "BDSM",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Bodyguard × VIP",
+      "Dominante × Sumisa"
+    ],
+    "tropes": [
+      "Bodyguard / VIP",
+      "Forced Proximity",
+      "Workplace Romance",
+      "Enemies to Lovers"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -46262,13 +47437,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779996612382_4s9b6",
@@ -46469,6 +47643,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -46828,7 +48011,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779997656223_m8j65",
@@ -47219,7 +48411,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779998809787_7u2n9",
@@ -47261,7 +48462,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1779998852433_vsrmh",
@@ -47478,6 +48688,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -47536,6 +48755,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -47620,7 +48848,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780041832000_mk5z4",
@@ -47739,7 +48976,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780042529150_9mn3n",
@@ -47791,6 +49037,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -48142,6 +49397,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -48198,6 +49462,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -48246,7 +49519,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780085494479_o513b",
@@ -48428,7 +49710,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780088070503_dwowa",
@@ -48578,6 +49869,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -48873,6 +50173,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -49159,7 +50468,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780137623116_bjihv",
@@ -49255,7 +50573,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780137923038_qjgv6",
@@ -50145,6 +51472,22 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -50202,6 +51545,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -50721,6 +52073,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -50833,6 +52194,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -50918,6 +52288,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -51002,7 +52381,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780388914419_ts7bl",
@@ -51784,6 +53172,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -52095,6 +53492,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -52693,7 +54099,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780565874497_0ivj0",
@@ -52934,18 +54349,58 @@
     "synopsis": "En el invierno de Vancouver, dos firmas de arquitectura sostenible compiten por transformar un distrito industrial en un ambicioso barrio ecológico. Para Hilary Sinclair, directora creativa de Sinclair&Co, el proyecto es clave para consolidar su nombre lejos del legado familiar y mantener su vida personal cerrada al pasado.\n\nMaren Voss, directora de operaciones de Arcadia Skyrise, es carismática e impulsiva. Años atrás mantuvo una relación con el hermano de Hilary, lo que la convirtió en una figura conflictiva para los Sinclair.\n\nCuando ambas compañías llegan a la fase final del concurso, Hilary y Maren deben trabajar juntas. La rivalidad profesional pronto deriva en una tensión imposible de ignorar, obligándolas a decidir si su atracción es solo un error bajo presión… o algo capaz de sobrevivir al pasado.",
     "pages": 238,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Enemies to Lovers",
+      "Rivals to Lovers",
+      "Workplace Romance",
+      "Opposites Attract",
+      "Forced Proximity"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Vancouver",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -52954,13 +54409,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780566111247_0e2u1",
@@ -53094,18 +54548,89 @@
     "synopsis": "Beatriz regresa a Valdrebruma en pleno invierno para despedirse de su abuela, la única familia que tuvo. Volver al pueblo que dejó atrás también la obliga a enfrentarse a la culpa, a las decisiones que la alejaron… y a un amor que nunca terminó de desaparecer.\n\nSara se quedó. Construyó una vida tranquila entre montañas y recuerdos que creía enterrados, hasta que el regreso de Beatriz hace tambalear todo lo que daba por cerrado.\n\nEntre nieve, silencios y lo que quedó sin decir, ambas deberán decidir si el pasado pertenece al ayer… o si aún merece una segunda oportunidad. Porque hay amores que no se enfrían, incluso después de muchos inviernos.",
     "pages": 238,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Segunda Oportunidad",
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Profesora"
+    ],
+    "dinamicas": [
+      "Ice Queen × Softie"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Vall de Bruma",
+        "localidad": null,
+        "lugares": [
+          "Casa de la abuela Alberta",
+          "Panadería de la madre de Sara",
+          "Colegio",
+          "Bar de Pau",
+          "Mercado",
+          "Cementerio",
+          "Ayuntamiento",
+          "Montaña",
+          "Finca familiar"
+        ]
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Barcelona",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "ciudad donde Beatriz estudió y desarrolló su vida profesional",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Campo",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -53114,13 +54639,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780600971986_fw0sg",
@@ -53498,18 +55022,51 @@
     "synopsis": "Tania Reiter vive para el caos y el instinto del teatro. Pero cuando la metódica Eva Sommer llega como nueva directora artística, el equilibrio se rompe. Eva impone orden y reglas estrictas; Tania, indomable y visceral, choca contra su rigidez desde el primer ensayo.\n\nLo que empieza como una rivalidad profesional —dos formas opuestas de entender el arte— pronto se transforma en una corriente eléctrica imposible de ignorar. Bajo los focos y entre rumores de camerino, cada roce y cada mirada minan la distancia que intentan mantener.\n\nCuando las luces se apagan y el teatro queda en penumbra, la verdad sale a escena. ¿Cuánto tiempo podrán fingir que su atracción es imposible? Una historia de pasión, control y el arte de dejarse llevar.",
     "pages": 239,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
+    ],
     "identidades": [],
     "characters": [],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Workplace Romance",
+      "Enemies to Lovers",
+      "Opposites Attract"
+    ],
     "edad": [],
     "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Austria",
+        "region": null,
+        "ciudad": "Viena",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -53518,13 +55075,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780602016364_he7ls",
@@ -53538,18 +55094,69 @@
     "synopsis": "Marta Valera ha entregado su vida a la empresa familiar, luchando contra números rojos para salvar su legado. Pero la crisis la obliga a lo impensable: abrir las puertas a Cécile Moreu, la fría enviada de una corporación francesa que busca el control total de Tejidos Valera.\n\nPara Cécile, Madrid es solo un movimiento estratégico; para Marta, ella es la mayor amenaza a la que se ha enfrentado. Sin embargo, entre despachos y estrategias, el odio profesional muta en una atracción que ninguna de las dos puede permitirse.\n\nLo que comenzó como una guerra de poder se convierte en un juego de sentimientos que desafía sus principios. ¿Podrán salvar la empresa sin perderse a sí mismas en el proceso? Un romance enemies to lovers donde el éxito tiene un precio inesperado.",
     "pages": 287,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria"
+    ],
+    "dinamicas": [
+      "Ice Queen × Softie",
+      "Caos × Control"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Workplace Romance",
+      "Opposites Attract",
+      "Slow Burn"
+    ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "España",
+      "Francia"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -53558,13 +55165,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "España"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780602064194_5lkst",
@@ -55063,6 +56669,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -55114,7 +56729,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1780644159864_ynxux",
@@ -56730,6 +58354,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Países Bajos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -56782,6 +58415,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -57056,6 +58698,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -59690,7 +61341,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781038786380_n7yye",
@@ -59742,6 +61402,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -59790,7 +61459,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Brasil",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781039022814_zs2co",
@@ -59944,6 +61622,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -65237,6 +66924,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -66169,7 +67865,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781511594364_pay1j",
@@ -66389,7 +68094,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781512345850_at6lj",
@@ -66657,7 +68371,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781512716941_1yiun",
@@ -67178,6 +68901,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -67228,6 +68960,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -67279,6 +69020,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -67344,6 +69094,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -67556,6 +69315,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -67796,7 +69564,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781552641854_r0f7c",
@@ -67846,7 +69623,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781552689917_x08rh",
@@ -68348,39 +70134,80 @@
     "cover": "https://s3.amazonaws.com/romance.io/books/large/697dcb4d908005e544984574.jpg",
     "synopsis": "Cuando la artista Sienna Fisher es confundida con una becaria en un imperio de lujo neoyorquino, jamás imagina reencontrarse con Jasmine Gemayel, la fría directora ejecutiva que años atrás, en Londres, destrozó su arte y cambió su vida para siempre.\n\nConvertirse en becaria a los treinta y cuatro años no estaba en sus planes, pero Sienna ve una oportunidad única para demostrar su talento y ganar un concurso interno que podría ponerla, por fin, frente a Jasmine como igual. Aunque ella ni siquiera la recuerde.\n\nEntre debates sobre arte y miradas cargadas de tensión, las chispas son imposibles de ignorar. El único problema es que Jasmine es inglesa, poderosa… y supuestamente heterosexual y casada. ¿O eso cree Sienna?",
     "pages": 433,
-    "isbn": null,
+    "isbn": "9783690061094",
+    "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Autodescubrimiento",
+      "Familia"
+    ],
     "identidades": [
       "Femme",
       "Sunshine"
     ],
     "characters": [
-      "CEO"
+      "CEO",
+      "Artista",
+      "Camarera",
+      "Empresaria"
     ],
     "dinamicas": [
       "Boss × Employee",
-      "Jefa × Subordinada"
+      "Jefa × Subordinada",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Workplace Romance",
       "Age Gap",
       "Opposites Attract",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Ice Queen × Toaster Oven"
     ],
     "edad": [
       "25–39",
       "+40"
     ],
     "pais_cultura": [
-      "Reino Unido"
+      "Reino Unido",
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Nueva Zelanda"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -68389,13 +70216,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781553896510_dvw6h",
@@ -68859,6 +70685,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -68957,6 +70792,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -69130,7 +70974,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781607626600_3t794",
@@ -69258,7 +71111,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781608030993_tr8e9",
@@ -69620,7 +71482,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Italia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781687574086_2vi98",
@@ -69913,6 +71784,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -70155,7 +72035,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -70931,6 +72819,15 @@
     "pais_origen": [
       "Corea del Sur",
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -71814,7 +73711,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781854774414_poce3",
@@ -72358,7 +74264,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1781855373666_ka2og",
@@ -72423,6 +74338,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -75439,7 +77363,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": null,
@@ -78104,6 +80036,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -78243,6 +80184,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -78803,7 +80753,15 @@
     "pais_cultura": [
       "España"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -78872,7 +80830,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -79363,6 +81329,15 @@
     "my_rec_categories": [],
     "pais_origen": [
       "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
     ]
   },
   {
@@ -79648,7 +81623,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -81034,7 +83017,15 @@
     "pais_cultura": [
       "Escocia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Escocia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": null,
@@ -83611,7 +85602,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": null,
@@ -83692,7 +85691,15 @@
     "pais_cultura": [
       "Reino Unido"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -83794,7 +85801,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788172386007_wxx3r",
@@ -84292,7 +86308,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788599642734_q0ham",
@@ -84355,7 +86380,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788599952914_bib0g",
@@ -84412,7 +86446,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788600401601_c8xfk",
@@ -84476,7 +86519,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Argentina",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788600818038_99dtx",
@@ -84543,7 +86595,37 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Suiza",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "México",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Cuba",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788601003698_6muy9",
@@ -84607,7 +86689,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788601232587_34kdq",
@@ -84911,7 +87002,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -84992,7 +87091,15 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -85081,7 +87188,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788616217572_gad4d",
@@ -85143,7 +87259,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788616326550_wd97y",
@@ -85208,7 +87333,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1788618050028_wridg",
@@ -87009,7 +89143,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1789556730915_lcgpd",
@@ -87656,7 +89799,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1790428210285_kunnt",
@@ -87726,7 +89878,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1790428793256_0i663",
@@ -87786,7 +89947,16 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": []
+    "my_rec_categories": [],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ]
   },
   {
     "id": "b_1790924202349_v7kjj",

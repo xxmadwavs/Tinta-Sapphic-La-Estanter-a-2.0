@@ -410,7 +410,9 @@
       "y": 143.7,
       "aliases": [
         "Los Angeles",
-        "LA"
+        "LA",
+        "Ángeles",
+        "Los Ángeles, California."
       ]
     },
     {
@@ -1843,7 +1845,9 @@
       "lon": -115.14,
       "x": 196.6,
       "y": 136.7,
-      "aliases": []
+      "aliases": [
+        "Vegas"
+      ]
     },
     {
       "id": "us-lumina-valley",
@@ -3167,6 +3171,680 @@
       "x": 485.8,
       "y": 136.8,
       "aliases": []
+    },
+    {
+      "id": "us-hialeah",
+      "ciudad": "Hialeah",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 25.858,
+      "lon": -80.278,
+      "x": 281.4,
+      "y": 170.6,
+      "aliases": []
+    },
+    {
+      "id": "us-miami-beach",
+      "ciudad": "Miami Beach",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 25.79,
+      "lon": -80.13,
+      "x": 281.7,
+      "y": 170.8,
+      "aliases": []
+    },
+    {
+      "id": "us-coral-gables",
+      "ciudad": "Coral Gables",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 25.721,
+      "lon": -80.268,
+      "x": 281.3,
+      "y": 171.0,
+      "aliases": []
+    },
+    {
+      "id": "us-key-biscayne",
+      "ciudad": "Key Biscayne",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 25.693,
+      "lon": -80.162,
+      "x": 281.6,
+      "y": 171.1,
+      "aliases": []
+    },
+    {
+      "id": "us-tampa",
+      "ciudad": "Tampa",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Florida",
+      "lat": 27.951,
+      "lon": -82.458,
+      "x": 276.7,
+      "y": 163.7,
+      "aliases": []
+    },
+    {
+      "id": "us-pasadena",
+      "ciudad": "Pasadena",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.148,
+      "lon": -118.145,
+      "x": 186.3,
+      "y": 143.4,
+      "aliases": [],
+      "nota": "Homónimo elegido: Pasadena (California), por el contexto de Los Ángeles en el libro"
+    },
+    {
+      "id": "us-burbank",
+      "ciudad": "Burbank",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.181,
+      "lon": -118.309,
+      "x": 185.9,
+      "y": 143.3,
+      "aliases": []
+    },
+    {
+      "id": "us-simi-valley",
+      "ciudad": "Simi Valley",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.269,
+      "lon": -118.781,
+      "x": 184.8,
+      "y": 143.0,
+      "aliases": []
+    },
+    {
+      "id": "us-altadena",
+      "ciudad": "Altadena",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 34.19,
+      "lon": -118.131,
+      "x": 186.4,
+      "y": 143.2,
+      "aliases": []
+    },
+    {
+      "id": "us-daly-city",
+      "ciudad": "Daly City",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 37.688,
+      "lon": -122.47,
+      "x": 179.2,
+      "y": 131.8,
+      "aliases": []
+    },
+    {
+      "id": "us-berkeley",
+      "ciudad": "Berkeley",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "California",
+      "lat": 37.872,
+      "lon": -122.273,
+      "x": 180.0,
+      "y": 131.2,
+      "aliases": []
+    },
+    {
+      "id": "us-baltimore",
+      "ciudad": "Baltimore",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Maryland",
+      "lat": 39.29,
+      "lon": -76.612,
+      "x": 300.6,
+      "y": 126.6,
+      "aliases": []
+    },
+    {
+      "id": "us-saranac-lake",
+      "ciudad": "Saranac Lake",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Nueva York",
+      "lat": 44.329,
+      "lon": -74.131,
+      "x": 311.6,
+      "y": 110.2,
+      "aliases": []
+    },
+    {
+      "id": "us-tacoma",
+      "ciudad": "Tacoma",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 47.253,
+      "lon": -122.444,
+      "x": 193.5,
+      "y": 100.9,
+      "aliases": []
+    },
+    {
+      "id": "us-olympia",
+      "ciudad": "Olympia",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 47.038,
+      "lon": -122.9,
+      "x": 192.0,
+      "y": 101.6,
+      "aliases": []
+    },
+    {
+      "id": "us-lynden",
+      "ciudad": "Lynden",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Washington",
+      "lat": 48.947,
+      "lon": -122.452,
+      "x": 196.4,
+      "y": 95.5,
+      "aliases": []
+    },
+    {
+      "id": "us-eugene",
+      "ciudad": "Eugene",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oregón",
+      "lat": 44.052,
+      "lon": -123.087,
+      "x": 186.7,
+      "y": 111.1,
+      "aliases": []
+    },
+    {
+      "id": "us-ashland",
+      "ciudad": "Ashland",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oregón",
+      "lat": 42.195,
+      "lon": -122.709,
+      "x": 184.9,
+      "y": 117.1,
+      "aliases": [],
+      "nota": "Homónimo elegido: Ashland (Oregón), por el contexto de Seattle/Eugene en el libro"
+    },
+    {
+      "id": "us-hood-river",
+      "ciudad": "Hood River",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oregón",
+      "lat": 45.708,
+      "lon": -121.521,
+      "x": 193.3,
+      "y": 105.8,
+      "aliases": []
+    },
+    {
+      "id": "us-pendleton",
+      "ciudad": "Pendleton",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Oregón",
+      "lat": 45.672,
+      "lon": -118.789,
+      "x": 200.1,
+      "y": 105.9,
+      "aliases": [],
+      "nota": "Homónimo elegido: Pendleton (Oregón), por Portland (Oregón) en el libro"
+    },
+    {
+      "id": "us-vail",
+      "ciudad": "Vail",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Colorado",
+      "lat": 39.64,
+      "lon": -106.374,
+      "x": 223.6,
+      "y": 125.4,
+      "aliases": []
+    },
+    {
+      "id": "us-phoenix",
+      "ciudad": "Phoenix",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Arizona",
+      "lat": 33.448,
+      "lon": -112.074,
+      "x": 201.7,
+      "y": 145.7,
+      "aliases": []
+    },
+    {
+      "id": "us-cheyenne",
+      "ciudad": "Cheyenne",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Wyoming",
+      "lat": 41.14,
+      "lon": -104.82,
+      "x": 229.5,
+      "y": 120.6,
+      "aliases": []
+    },
+    {
+      "id": "us-green-bay",
+      "ciudad": "Green Bay",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Wisconsin",
+      "lat": 44.519,
+      "lon": -88.02,
+      "x": 276.5,
+      "y": 109.6,
+      "aliases": []
+    },
+    {
+      "id": "us-asbury-park",
+      "ciudad": "Asbury Park",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Nueva Jersey",
+      "lat": 40.22,
+      "lon": -74.012,
+      "x": 308.2,
+      "y": 123.5,
+      "aliases": []
+    },
+    {
+      "id": "us-shelton",
+      "ciudad": "Shelton",
+      "pais": "Estados Unidos",
+      "pais_iso": "US",
+      "region": "Connecticut",
+      "lat": 41.316,
+      "lon": -73.093,
+      "x": 311.5,
+      "y": 120.0,
+      "aliases": []
+    },
+    {
+      "id": "gb-cambridge",
+      "ciudad": "Cambridge",
+      "pais": "Reino Unido",
+      "pais_iso": "GB",
+      "region": "Cambridgeshire",
+      "lat": 52.205,
+      "lon": 0.119,
+      "x": 500.2,
+      "y": 85.2,
+      "aliases": [],
+      "nota": "Homónimo elegido: Cambridge (Inglaterra), por el contexto de Suffolk/Londres en el libro"
+    },
+    {
+      "id": "ie-cork",
+      "ciudad": "Cork",
+      "pais": "Irlanda",
+      "pais_iso": "IE",
+      "region": "Munster",
+      "lat": 51.898,
+      "lon": -8.475,
+      "x": 479.3,
+      "y": 86.2,
+      "aliases": []
+    },
+    {
+      "id": "fr-cannes",
+      "ciudad": "Cannes",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Provenza-Alpes-Costa Azul",
+      "lat": 43.553,
+      "lon": 7.017,
+      "x": 517.8,
+      "y": 112.7,
+      "aliases": []
+    },
+    {
+      "id": "fr-argeles-sur-mer",
+      "ciudad": "Argelès-sur-Mer",
+      "pais": "Francia",
+      "pais_iso": "FR",
+      "region": "Occitania",
+      "lat": 42.546,
+      "lon": 3.024,
+      "x": 507.7,
+      "y": 116.0,
+      "aliases": [
+        "Argeles-sur-Mer"
+      ]
+    },
+    {
+      "id": "es-palamos",
+      "ciudad": "Palamós",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Cataluña",
+      "lat": 41.848,
+      "lon": 3.129,
+      "x": 508.0,
+      "y": 118.3,
+      "aliases": []
+    },
+    {
+      "id": "es-sant-cugat-del-valles",
+      "ciudad": "Sant Cugat del Vallès",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Cataluña",
+      "lat": 41.472,
+      "lon": 2.086,
+      "x": 505.3,
+      "y": 119.5,
+      "aliases": [
+        "Sant Cugat"
+      ]
+    },
+    {
+      "id": "es-salamanca",
+      "ciudad": "Salamanca",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Castilla y León",
+      "lat": 40.97,
+      "lon": -5.664,
+      "x": 485.3,
+      "y": 121.1,
+      "aliases": []
+    },
+    {
+      "id": "es-segovia",
+      "ciudad": "Segovia",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Castilla y León",
+      "lat": 40.943,
+      "lon": -4.109,
+      "x": 489.3,
+      "y": 121.2,
+      "aliases": []
+    },
+    {
+      "id": "es-zaragoza",
+      "ciudad": "Zaragoza",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Aragón",
+      "lat": 41.649,
+      "lon": -0.887,
+      "x": 497.6,
+      "y": 118.9,
+      "aliases": []
+    },
+    {
+      "id": "es-antequera",
+      "ciudad": "Antequera",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 37.019,
+      "lon": -4.561,
+      "x": 487.9,
+      "y": 134.0,
+      "aliases": []
+    },
+    {
+      "id": "es-moguer",
+      "ciudad": "Moguer",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Andalucía",
+      "lat": 37.275,
+      "lon": -6.838,
+      "x": 482.0,
+      "y": 133.1,
+      "aliases": []
+    },
+    {
+      "id": "es-altea",
+      "ciudad": "Altea",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Alicante",
+      "lat": 38.598,
+      "lon": -0.051,
+      "x": 499.8,
+      "y": 128.8,
+      "aliases": []
+    },
+    {
+      "id": "es-guadalest",
+      "ciudad": "Guadalest",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Alicante",
+      "lat": 38.678,
+      "lon": -0.199,
+      "x": 499.4,
+      "y": 128.6,
+      "aliases": []
+    },
+    {
+      "id": "es-tuejar",
+      "ciudad": "Tuéjar",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad Valenciana",
+      "lat": 39.79,
+      "lon": -1.0,
+      "x": 497.3,
+      "y": 124.9,
+      "aliases": []
+    },
+    {
+      "id": "es-titaguas",
+      "ciudad": "Titaguas",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Comunidad Valenciana",
+      "lat": 39.877,
+      "lon": -1.017,
+      "x": 497.3,
+      "y": 124.7,
+      "aliases": []
+    },
+    {
+      "id": "es-potes",
+      "ciudad": "Potes",
+      "pais": "España",
+      "pais_iso": "ES",
+      "region": "Cantabria",
+      "lat": 43.153,
+      "lon": -4.623,
+      "x": 488.1,
+      "y": 114.0,
+      "aliases": []
+    },
+    {
+      "id": "it-pisa",
+      "ciudad": "Pisa",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Toscana",
+      "lat": 43.716,
+      "lon": 10.401,
+      "x": 526.4,
+      "y": 112.2,
+      "aliases": []
+    },
+    {
+      "id": "it-siena",
+      "ciudad": "Siena",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Toscana",
+      "lat": 43.318,
+      "lon": 11.331,
+      "x": 528.9,
+      "y": 113.5,
+      "aliases": []
+    },
+    {
+      "id": "it-san-gimignano",
+      "ciudad": "San Gimignano",
+      "pais": "Italia",
+      "pais_iso": "IT",
+      "region": "Toscana",
+      "lat": 43.468,
+      "lon": 11.043,
+      "x": 528.1,
+      "y": 113.0,
+      "aliases": []
+    },
+    {
+      "id": "mx-merida",
+      "ciudad": "Mérida",
+      "pais": "México",
+      "pais_iso": "MX",
+      "region": "Yucatán",
+      "lat": 20.967,
+      "lon": -89.592,
+      "x": 253.2,
+      "y": 186.6,
+      "aliases": [],
+      "nota": "Homónimo: Mérida (Yucatán) por el país indicado en el libro; existe otra en Venezuela (ve-merida)"
+    },
+    {
+      "id": "mx-oaxaca",
+      "ciudad": "Oaxaca",
+      "pais": "México",
+      "pais_iso": "MX",
+      "region": "Oaxaca",
+      "lat": 17.073,
+      "lon": -96.727,
+      "x": 231.7,
+      "y": 199.3,
+      "aliases": []
+    },
+    {
+      "id": "mx-cozumel",
+      "ciudad": "Cozumel",
+      "pais": "México",
+      "pais_iso": "MX",
+      "region": "Quintana Roo",
+      "lat": 20.423,
+      "lon": -86.922,
+      "x": 260.3,
+      "y": 188.4,
+      "aliases": []
+    },
+    {
+      "id": "ve-merida",
+      "ciudad": "Mérida",
+      "pais": "Venezuela",
+      "pais_iso": "VE",
+      "region": "Mérida",
+      "lat": 8.589,
+      "lon": -71.145,
+      "x": 300.6,
+      "y": 227.0,
+      "aliases": [],
+      "nota": "Homónimo: Mérida (Venezuela) por el país indicado en el libro; existe otra en México (mx-merida)"
+    },
+    {
+      "id": "ve-valencia",
+      "ciudad": "Valencia",
+      "pais": "Venezuela",
+      "pais_iso": "VE",
+      "region": "Carabobo",
+      "lat": 10.162,
+      "lon": -68.007,
+      "x": 309.6,
+      "y": 221.9,
+      "aliases": [],
+      "nota": "Homónimo: Valencia (Venezuela) por el país indicado en el libro; no confundir con la de España"
+    },
+    {
+      "id": "pr-san-juan",
+      "ciudad": "San Juan",
+      "pais": "Puerto Rico",
+      "pais_iso": "PR",
+      "region": null,
+      "lat": 18.466,
+      "lon": -66.106,
+      "x": 317.0,
+      "y": 194.8,
+      "aliases": []
+    },
+    {
+      "id": "ae-dubai",
+      "ciudad": "Dubái",
+      "pais": "Emiratos Árabes Unidos",
+      "pais_iso": "AE",
+      "region": "Dubái",
+      "lat": 25.205,
+      "lon": 55.271,
+      "x": 650.7,
+      "y": 172.7,
+      "aliases": [
+        "Dubai"
+      ]
+    },
+    {
+      "id": "my-george-town",
+      "ciudad": "George Town",
+      "pais": "Malasia",
+      "pais_iso": "MY",
+      "region": "Penang",
+      "lat": 5.414,
+      "lon": 100.329,
+      "x": 781.6,
+      "y": 237.4,
+      "aliases": []
+    },
+    {
+      "id": "au-frankston",
+      "ciudad": "Frankston",
+      "pais": "Australia",
+      "pais_iso": "AU",
+      "region": "Victoria",
+      "lat": -38.144,
+      "lon": 145.125,
+      "x": 879.3,
+      "y": 379.7,
+      "aliases": []
+    },
+    {
+      "id": "fi-helsinki",
+      "ciudad": "Helsinki",
+      "pais": "Finlandia",
+      "pais_iso": "FI",
+      "region": "Uusimaa",
+      "lat": 60.17,
+      "lon": 24.938,
+      "x": 557.3,
+      "y": 61.0,
+      "aliases": [],
+      "nota": "El libro escribe el país como «Filandia»; se resuelve a Finlandia"
     }
   ],
   "regiones_nota": "Provincias, estados y regiones mencionados en los libros. lat/lon son el centro aproximado del territorio (no de su capital); x,y con la misma proyección que las ciudades.",
@@ -3384,6 +4062,226 @@
       "ciudad": "Akatoria",
       "pais": "México",
       "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Bajo las sombras»"
+    },
+    {
+      "ciudad": "Brooklyn",
+      "pais": "Estados Unidos",
+      "motivo": "Distrito de Nueva York, no ciudad"
+    },
+    {
+      "ciudad": "East River",
+      "pais": "Estados Unidos",
+      "motivo": "Río/estrecho de Nueva York, no ciudad"
+    },
+    {
+      "ciudad": "Hollywood",
+      "pais": "Estados Unidos",
+      "motivo": "Barrio de Los Ángeles (también existe Hollywood, Florida); confirmar"
+    },
+    {
+      "ciudad": "Springfield",
+      "pais": "Estados Unidos",
+      "motivo": "Sin estado en books_data.json; hay muchas. En «Heart's Surrender» aparece Boston, pero no está confirmado"
+    },
+    {
+      "ciudad": "Mystic",
+      "pais": "Estados Unidos",
+      "motivo": "Sin estado en books_data.json; la más conocida está en Connecticut. Confirmar"
+    },
+    {
+      "ciudad": "Columbia Falls",
+      "pais": "Estados Unidos",
+      "motivo": "Sin estado en books_data.json; hay en Montana y Maine. Confirmar"
+    },
+    {
+      "ciudad": "Lago Tahoe",
+      "pais": "Estados Unidos",
+      "motivo": "Lago, no ciudad"
+    },
+    {
+      "ciudad": "Richvein Ridge",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?)"
+    },
+    {
+      "ciudad": "Bright Falls",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Iris Kelly Doesn´t Date»"
+    },
+    {
+      "ciudad": "Rosemont Ridge",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «The Cupid Chronicles»"
+    },
+    {
+      "ciudad": "Mesa Verde",
+      "pais": "Estados Unidos",
+      "motivo": "Parque nacional en Colorado; no se localiza como ciudad (¿ficticia?); libro «Here We Go Again»"
+    },
+    {
+      "ciudad": "Wingapo",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Chaos Agent»"
+    },
+    {
+      "ciudad": "Asteria Heights",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Bajo la misma red»"
+    },
+    {
+      "ciudad": "Willowlake",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Latidos en el bosque»"
+    },
+    {
+      "ciudad": "Homer's Bluff",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Marigold»"
+    },
+    {
+      "ciudad": "Glen River",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «The Lost Girls» (Míchigan)"
+    },
+    {
+      "ciudad": "New Hope",
+      "pais": "Estados Unidos",
+      "motivo": "Hay un New Hope diminuto en Virginia, pero «The Girls Are Never Gone» parece ficticia. Confirmar"
+    },
+    {
+      "ciudad": "Deerbrook",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «The Spare Room»"
+    },
+    {
+      "ciudad": "Thunder Peak",
+      "pais": "Estados Unidos",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Losing Control»"
+    },
+    {
+      "ciudad": "St. Louis y Chicago",
+      "pais": "Estados Unidos",
+      "motivo": "Dos ciudades en un solo valor; separar en books_data.json"
+    },
+    {
+      "ciudad": "Boston aparece",
+      "pais": "Estados Unidos",
+      "motivo": "Texto descriptivo en el campo ciudad de «Heart's Surrender»; corregir en books_data.json"
+    },
+    {
+      "ciudad": "No se confirma una segunda ciudad visitada",
+      "pais": "Estados Unidos",
+      "motivo": "Texto descriptivo en el campo ciudad; corregir en books_data.json"
+    },
+    {
+      "ciudad": "no es una localización principal de la acción presente",
+      "pais": "Estados Unidos",
+      "motivo": "Texto descriptivo en el campo ciudad; corregir en books_data.json"
+    },
+    {
+      "ciudad": "La Cloche",
+      "pais": "Canadá",
+      "motivo": "Cordillera/zona de Ontario, no ciudad"
+    },
+    {
+      "ciudad": "Heeley",
+      "pais": "Reino Unido",
+      "motivo": "Barrio de Sheffield, no ciudad"
+    },
+    {
+      "ciudad": "Ludbury",
+      "pais": "Reino Unido",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «The Goodmans»"
+    },
+    {
+      "ciudad": "Musikverein",
+      "pais": "Austria",
+      "motivo": "Sala de conciertos de Viena, no ciudad"
+    },
+    {
+      "ciudad": "Reynisfjara",
+      "pais": "Islandia",
+      "motivo": "Playa cerca de Vík í Mýrdal, no ciudad"
+    },
+    {
+      "ciudad": "Rio Paraná",
+      "pais": "Brasil",
+      "motivo": "Río, no ciudad"
+    },
+    {
+      "ciudad": "Los Limos",
+      "pais": "Perú",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «El bosque de las brujas»"
+    },
+    {
+      "ciudad": "Vall de Bruma",
+      "pais": "España",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «El invierno que nos volvimos a encontrar»"
+    },
+    {
+      "ciudad": "San Amaro das Follas",
+      "pais": "España",
+      "motivo": "No se localiza como ciudad real (¿ficticia?); libro «Un octubre para encontrarte» (Galicia)"
+    },
+    {
+      "ciudad": "ciudad donde Beatriz estudió y desarrolló su vida profesional",
+      "pais": "España",
+      "motivo": "Texto descriptivo en el campo ciudad; corregir en books_data.json"
+    },
+    {
+      "ciudad": "Khao Yai",
+      "pais": "Tailandia",
+      "motivo": "Parque nacional, no ciudad"
+    },
+    {
+      "ciudad": "Ekkamai",
+      "pais": "Tailandia",
+      "motivo": "Barrio de Bangkok, no ciudad"
+    },
+    {
+      "ciudad": "Sukhumvit",
+      "pais": "Tailandia",
+      "motivo": "Calle/barrio de Bangkok, no ciudad"
+    },
+    {
+      "ciudad": "Sathorn",
+      "pais": "Tailandia",
+      "motivo": "Distrito de Bangkok, no ciudad"
+    },
+    {
+      "ciudad": "Thonglor",
+      "pais": "Tailandia",
+      "motivo": "Barrio de Bangkok, no ciudad"
+    },
+    {
+      "ciudad": "Samyan",
+      "pais": "Tailandia",
+      "motivo": "Barrio de Bangkok, no ciudad"
+    },
+    {
+      "ciudad": "Lat Phrao",
+      "pais": "Tailandia",
+      "motivo": "Distrito de Bangkok, no ciudad"
+    },
+    {
+      "ciudad": "Vanderland / Rochester",
+      "pais": "—",
+      "motivo": "País y ciudad ficticios; libro «Lo que quiero es no quererte»"
+    },
+    {
+      "ciudad": "Chalonne / Loreux",
+      "pais": "—",
+      "motivo": "País y ciudad ficticios; libro «Never Ever Getting Back Together»"
+    },
+    {
+      "ciudad": "Italia",
+      "pais": "Italia",
+      "motivo": "El campo ciudad contiene el nombre del país (libro «Loving You»); probablemente un error en books_data.json"
+    },
+    {
+      "ciudad": "Puerto Rico",
+      "pais": "Estados Unidos",
+      "motivo": "Es un territorio con su propio país en el mapa, no una ciudad; revisar el país en books_data.json"
     }
   ],
   "aliases_pais": {
@@ -3392,7 +4290,10 @@
     "Unión Soviética": "RU",
     "República Checa": "CZ",
     "Vaticano": "VA",
-    "Fiyi": "FJ"
+    "Fiyi": "FJ",
+    "Filandia": "FI",
+    "Antigua Grecia": "GR",
+    "Principado de Valaquia": "RO"
   },
   "aliases_pais_nota": "Nombres de país que aparecen en books_data.json pero no existen como polígono en world_map_data.json (nación constituyente o estado histórico). Se resuelven al ISO-2 indicado para colocar ciudades y regiones; no se pintan como país."
 }
