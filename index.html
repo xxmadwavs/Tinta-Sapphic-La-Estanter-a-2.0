@@ -7726,8 +7726,13 @@ html:has(#homeNextDlg[open]){overflow:hidden}
 </style>
 
 <style id="bp-prot-separada">
-/* Protagonistas en su propia sección a todo el ancho, debajo de Géneros + Ficha técnica; dos tarjetas por fila si caben */
+/* Protagonistas: tarjeta propia. En escritorio va en la columna izquierda, justo debajo de Géneros, y la Ficha técnica ocupa la derecha a toda la altura. */
 #bookPage .bp-prot-section .bp-prot-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:.7rem}
+@media (min-width:900px){
+  #bookPage .bp-wrap:has(>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section))>.bp-ficha-section{grid-row:span 2}
+  #bookPage .bp-wrap:has(>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section))>.bp-prot-section{grid-column:1}
+  #bookPage .bp-wrap:has(>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section))>.bp-prot-section .bp-prot-list{grid-template-columns:minmax(0,1fr)}
+}
 </style>
 </head>
 <body>
