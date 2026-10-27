@@ -7669,6 +7669,61 @@ html:has(#homeNextDlg[open]){overflow:hidden}
 #bookPage .bp-prot-lbl{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #bookPage .bp-prot-chips{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem}
 </style>
+
+<style id="rdp-design">
+/* Fechas de lectura y relectura — panel, grupo de fecha único y botones con jerarquía */
+.shelf-btns .rdp{flex:1 1 100%;width:100%;box-sizing:border-box;margin:.5rem 0 .2rem;padding:.85rem .9rem;display:flex;flex-direction:column;gap:.8rem;
+  background:color-mix(in srgb,var(--surface2) 60%,transparent);border:1px solid var(--border);border-radius:14px;text-align:left}
+.rdp-head{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.4em}
+.rdp-field{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.rdp-label{font-size:12px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:.4em;flex-wrap:wrap}
+.rdp-opt{font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.03em;padding:1px 7px;border-radius:99px;border:1px solid var(--border)}
+.rdp-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;min-width:0}
+/* grupo año | mes | día | Hoy como una sola pieza */
+.rdp-group{display:flex;align-items:stretch;flex:1 1 250px;min-width:0;max-width:100%;border:1px solid var(--border2);border-radius:10px;background:var(--surface);overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.rdp-group:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px color-mix(in srgb,var(--teal) 20%,transparent)}
+.rdp-ctl{border:0;border-right:1px solid var(--border);background:transparent;color:var(--text);font:500 12.5px var(--font-body);padding:8px 8px;min-width:0;outline:none;cursor:pointer;border-radius:0;-moz-appearance:textfield}
+.rdp-ctl::-webkit-outer-spin-button,.rdp-ctl::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.rdp-year{width:62px;flex:0 0 62px;cursor:text}
+.rdp-month{flex:1 1 90px}
+.rdp-day{flex:0 0 66px}
+.rdp-ctl::placeholder{color:var(--muted);opacity:.85}
+.rdp-today{border:0;background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold);font:600 11.5px var(--font-body);padding:0 12px;cursor:pointer;transition:background .15s}
+.rdp-today:hover{background:color-mix(in srgb,var(--gold) 26%,transparent)}
+/* botones */
+.rdp-btn{font:600 12px var(--font-body);padding:8px 14px;min-height:36px;border-radius:10px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:filter .15s,transform .1s,background .15s}
+.rdp-btn:active{transform:translateY(1px)}
+.rdp-btn-teal{background:var(--teal);color:#fff}
+.rdp-btn-gold{background:var(--gold);color:#fff}
+.rdp-btn-teal:hover,.rdp-btn-gold:hover{filter:brightness(1.1)}
+.rdp-btn-ghost{background:transparent;color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 55%,transparent)}
+.rdp-btn-ghost:hover{background:var(--accent-soft,color-mix(in srgb,var(--accent2) 14%,transparent))}
+/* historial: una fila por lectura */
+.rdp-history{display:flex;flex-direction:column;gap:.45rem}
+.rdp-entry{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;padding:.45rem .6rem;border-radius:10px;background:var(--surface);border:1px solid var(--border)}
+.rdp-entry-ico{font-size:13px}
+.rdp-chip{display:inline-flex;align-items:center;gap:.4em;font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--border);color:var(--text)}
+.rdp-chip-k{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rdp-chip-start{border-color:color-mix(in srgb,var(--gold) 45%,transparent);cursor:pointer}
+.rdp-chip-end{background:color-mix(in srgb,var(--teal) 12%,transparent);border-color:color-mix(in srgb,var(--teal) 45%,transparent);color:var(--teal-text)}
+.rdp-chip-end .rdp-chip-k{color:inherit;opacity:.8}
+.rdp-date{border:0;background:transparent;color:var(--text);font:500 12px var(--font-body);padding:0;outline:none;cursor:pointer;color-scheme:light dark}
+.rdp-arrow{color:var(--muted);font-size:12px}
+.rdp-partial-note{font-size:11px;color:var(--muted)}
+.rdp-del{margin-left:auto;width:24px;height:24px;border-radius:50%;border:0;background:transparent;color:var(--muted);font-size:11px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+.rdp-del:hover{background:color-mix(in srgb,var(--rose,#d4607a) 18%,transparent);color:var(--rose,#d4607a)}
+/* formulario de nueva lectura / relectura */
+.rdp-new{display:flex;flex-direction:column;gap:.7rem}
+.rdp-new-reread{padding-top:.8rem;border-top:1px dashed var(--border2)}
+.rdp-new-title{font-size:12px;font-weight:600;color:var(--accent2);display:flex;align-items:center;gap:.4em}
+@media (max-width:480px){
+  .shelf-btns .rdp{padding:.75rem .7rem}
+  .rdp-row>.rdp-btn{flex:1 1 100%}
+  .rdp-group{flex:1 1 100%}
+  .rdp-ctl{font-size:16px}  /* evita el zoom automático de iOS al enfocar */
+  .rdp-btn{min-height:42px}
+}
+</style>
 </head>
 <body>
 
@@ -15906,21 +15961,19 @@ function buildPartialDateInputHTML(idPrefix, bookId, prefill){
   const yearId=`${idPrefix}Year_${bookId}`;
   const monthId=`${idPrefix}Month_${bookId}`;
   const dayId=`${idPrefix}Day_${bookId}`;
-  const inputStyle='padding:4px 6px;border-radius:8px;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);outline:none';
   const monthOptions=_MESES_ES.map((m,i)=>`<option value="${i+1}"${pf.month===i+1?' selected':''}>${m.charAt(0).toUpperCase()+m.slice(1)}</option>`).join('');
   const dayOptions=Array.from({length:31},(_,i)=>`<option value="${i+1}"${pf.day===i+1?' selected':''}>${i+1}</option>`).join('');
-  return `<div class="partial-date-picker" style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center">
-    <input type="number" id="${yearId}" placeholder="Año" min="1900" max="2100" inputmode="numeric"${pf.year?` value="${pf.year}"`:''}
-      style="${inputStyle};width:64px" onclick="event.stopPropagation()">
-    <select id="${monthId}" style="${inputStyle};cursor:pointer" onclick="event.stopPropagation()">
+  return `<div class="partial-date-picker rdp-group" role="group" aria-label="Fecha: año, mes y día">
+    <input type="number" id="${yearId}" class="rdp-ctl rdp-year" placeholder="Año" aria-label="Año" min="1900" max="2100" inputmode="numeric"${pf.year?` value="${pf.year}"`:''}
+      onclick="event.stopPropagation()">
+    <select id="${monthId}" class="rdp-ctl rdp-month" aria-label="Mes" onclick="event.stopPropagation()">
       <option value="">Mes</option>${monthOptions}
     </select>
-    <select id="${dayId}" style="${inputStyle};cursor:pointer" onclick="event.stopPropagation()">
+    <select id="${dayId}" class="rdp-ctl rdp-day" aria-label="Día" onclick="event.stopPropagation()">
       <option value="">Día</option>${dayOptions}
     </select>
-    <button type="button" title="Rellenar con la fecha de hoy"
-      onclick="event.stopPropagation();_setPartialDateToday(this,'${idPrefix}','${bookId}')"
-      style="background:none;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:8px;color:var(--gold);cursor:pointer;font-size:11px;padding:3px 8px">Hoy</button>
+    <button type="button" class="rdp-today" title="Rellenar con la fecha de hoy"
+      onclick="event.stopPropagation();_setPartialDateToday(this,'${idPrefix}','${bookId}')">Hoy</button>
   </div>`;
 }
 
@@ -16031,18 +16084,19 @@ function buildShelfButtonsHTML(bookId){
     // el input queda vacío y el texto parcial real se muestra al lado.
     const startPartial=(entry.started_at&&(entry.started_precision==='month'||entry.started_precision==='year'));
     const startVal=(entry.started_at&&!startPartial)?new Date(entry.started_at).toISOString().slice(0,10):'';
-    const startPartialTxt=startPartial?`<span class="e24-start-partial" style="color:var(--muted)">empezado ${formatPartialDate(entry.started_at, entry.started_precision)}</span>`:'';
-    return `<div style="display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--teal-text);flex-wrap:wrap">
-      <span style="display:flex;align-items:center;gap:.3em">📖
-        <input type="date" max="${todayISO}" value="${startVal}"
-          title="Fecha en que empezaste esta lectura"
-          style="padding:2px 6px;border-radius:8px;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);background:var(--surface2);color:var(--text);font-size:11px;font-family:var(--font-body);cursor:pointer;outline:none"
+    const startPartialTxt=startPartial?`<span class="e24-start-partial rdp-partial-note">empezado ${formatPartialDate(entry.started_at, entry.started_precision)}</span>`:'';
+    return `<div class="rdp-entry">
+      <span class="rdp-entry-ico" aria-hidden="true">📖</span>
+      <label class="rdp-chip rdp-chip-start" title="Fecha en que empezaste esta lectura">
+        <span class="rdp-chip-k">Inicio</span>
+        <input type="date" class="rdp-date" max="${todayISO}" value="${startVal}"
           onclick="event.stopPropagation()"
           onchange="event.stopPropagation();setLogStartDate('${bookId}','${entry.id}',this.value)">
-        ${startPartialTxt}
-      </span>
-      <span>→ 📅 ${dStr}</span>
-      <button title="Eliminar esta fecha" onclick="event.stopPropagation();deleteReadLogEntry('${bookId}','${entry.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0;line-height:1">✕</button>
+      </label>
+      ${startPartialTxt}
+      <span class="rdp-arrow" aria-hidden="true">→</span>
+      <span class="rdp-chip rdp-chip-end"><span class="rdp-chip-k">Fin</span><span class="rdp-chip-v">${dStr}</span></span>
+      <button type="button" class="rdp-del" title="Eliminar esta fecha" aria-label="Eliminar esta fecha" onclick="event.stopPropagation();deleteReadLogEntry('${bookId}','${entry.id}')">✕</button>
     </div>`;
   }).join('');
   const addLabel=completedLog.length?'+ Añadir relectura':'Guardar fecha';
@@ -16068,39 +16122,43 @@ function buildShelfButtonsHTML(bookId){
     }
   }
   const startDateBlock=needsStartDate?`
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado el</span>
-      ${buildPartialDateInputHTML('startDateOpen',bookId,startPrefill)}
-      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry?openEntry.id:''}','startDateOpen')">Guardar inicio</button>
+    <div class="rdp-field">
+      <div class="rdp-label"><span aria-hidden="true">📖</span> Empezado el</div>
+      <div class="rdp-row">
+        ${buildPartialDateInputHTML('startDateOpen',bookId,startPrefill)}
+        <button type="button" class="rdp-btn rdp-btn-gold"
+          onclick="event.stopPropagation();_submitSetLogStartDatePartial(this,'${bookId}','${openEntry?openEntry.id:''}','startDateOpen')">Guardar inicio</button>
+      </div>
     </div>`:'';
-  // Sin lectura abierta: al guardar la fecha de fin, permitimos indicar también la
-  // de inicio (ambas opcionales salvo la de fin). STEP 6.2: interfaz de fecha
-  // parcial (año/mes/día) tanto para la primera lectura como para
-  // "+ Añadir relectura" — mismos prefijos (readDateOpen / startDateNewP,
-  // readDateNew) y mismas funciones (_submitAddReadLogEntryPartial,
-  // addReadLogEntry) ya usadas en STEP 5, sin duplicarlas.
   const finishRow=(openEntry||(s==='reading'))?`
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste? (opcional)</span>
-      ${buildPartialDateInputHTML('readDateOpen',bookId)}
-      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateOpen',null)">✓ Marcar como terminado</button>
+    <div class="rdp-field">
+      <div class="rdp-label"><span aria-hidden="true">📅</span> ¿Cuándo lo terminaste? <span class="rdp-opt">opcional</span></div>
+      <div class="rdp-row">
+        ${buildPartialDateInputHTML('readDateOpen',bookId)}
+        <button type="button" class="rdp-btn rdp-btn-teal"
+          onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateOpen',null)">✓ Marcar como terminado</button>
+      </div>
     </div>`:`
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📖 Empezado</span>
-      ${buildPartialDateInputHTML('startDateNewP',bookId)}
-    </div>
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-      <span style="font-size:11px;color:var(--gold);display:flex;align-items:center;gap:.3em">📅 ¿Cuándo lo terminaste?</span>
-      ${buildPartialDateInputHTML('readDateNew',bookId)}
-      <button class="shelf-btn" style="padding:4px 10px;font-size:11px"
-        onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateNew','startDateNewP')">${addLabel}</button>
+    <div class="rdp-new${completedLog.length?' rdp-new-reread':''}">
+      ${completedLog.length?'<div class="rdp-new-title"><span aria-hidden="true">🔁</span> Nueva relectura</div>':''}
+      <div class="rdp-field">
+        <div class="rdp-label"><span aria-hidden="true">📖</span> Empezado <span class="rdp-opt">opcional</span></div>
+        <div class="rdp-row">${buildPartialDateInputHTML('startDateNewP',bookId)}</div>
+      </div>
+      <div class="rdp-field">
+        <div class="rdp-label"><span aria-hidden="true">📅</span> ¿Cuándo lo terminaste?</div>
+        <div class="rdp-row">
+          ${buildPartialDateInputHTML('readDateNew',bookId)}
+          <button type="button" class="rdp-btn ${completedLog.length?'rdp-btn-ghost':'rdp-btn-teal'}"
+            onclick="event.stopPropagation();_submitAddReadLogEntryPartial(this,'${bookId}','readDateNew','startDateNewP')">${addLabel}</button>
+        </div>
+      </div>
     </div>`;
   const readDatePicker=(s==='read'||s==='reading')?`
-    <div class="shelf-read-date" style="margin:.4rem 0 .2rem;display:flex;flex-direction:column;gap:.35rem">
+    <div class="shelf-read-date rdp">
+      <div class="rdp-head"><span aria-hidden="true">🗓️</span> Fechas de lectura</div>
       ${startDateBlock}
-      ${historyHtml}
+      ${historyHtml?`<div class="rdp-history">${historyHtml}</div>`:''}
       ${finishRow}
     </div>`:'';
   return `<div class="shelf-btns" id="shelfBtns_${bookId}" role="group" aria-label="Estado de lectura">
