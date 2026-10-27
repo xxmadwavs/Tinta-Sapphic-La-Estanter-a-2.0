@@ -12490,7 +12490,7 @@ function _protPull(map,bookId,pid,type,val){
   if(a) map[bookId][pid][type]=a.filter(x=>x!==val);
 }
 function _protList(b){
-  return (Array.isArray(b.protagonistas)?b.protagonistas:[]).filter(p=>p&&(p.nombre||(p.profesiones||[]).length||(p.identidades||[]).length||p.edad));
+  return (Array.isArray(b.protagonistas)?b.protagonistas:[]).filter(p=>p&&(p.nombre||(p.profesiones||[]).length||(p.identidades||[]).length||/^\d{1,2}$/.test(String(p.edad||''))));
 }
 function hasProtagonistas(b){ return _protList(b).length>0; }
 function buildBpProtagonistasInner(b){
@@ -12515,7 +12515,9 @@ function buildBpProtagonistasInner(b){
       }
       return `<div class="bp-prot-row"><span class="bp-prot-lbl">${label}</span><div class="bp-prot-chips">${chips}${add}</div></div>`;
     };
-    const edadRow=p.edad?`<div class="bp-prot-row"><span class="bp-prot-lbl">Edad</span><div class="bp-prot-chips"><span class="tag tag-edad bp-tag-link" role="button" tabindex="0" data-bpf="edad" data-bpv="${escHtml(p.edad)}">🎂 ${escHtml(p.edad)}</span></div></div>`:'';
+    const _eNum=parseInt(p.edad,10), _eOk=Number.isFinite(_eNum)&&/^\d{1,2}$/.test(String(p.edad).trim());
+    const _eBin=_eNum<=18?'Young Adult (15–18)':_eNum<=24?'New Adult (18–24)':_eNum<=39?'25–39':'+40'; // categoría para filtrar al pulsar
+    const edadRow=_eOk?`<div class="bp-prot-row"><span class="bp-prot-lbl">Edad</span><div class="bp-prot-chips"><span class="tag tag-edad bp-tag-link" role="button" tabindex="0" title="Ver libros de ${escHtml(_eBin)}" data-bpf="edad" data-bpv="${escHtml(_eBin)}">🎂 ${_eNum} años</span></div></div>`:'';
     return `<div class="bp-prot-card"><span class="bp-prot-av" aria-hidden="true">${escHtml(name.charAt(0).toUpperCase())}</span><div class="bp-prot-body"><div class="bp-prot-name">${escHtml(name)}</div>${row('Profesión','character','characters','tag-character',p.profesiones,'profesión')}${row('Identidad','identidad','identidades','tag-identidad',p.identidades,'identidad')}${edadRow}</div></div>`;
   }).join('');
 }
