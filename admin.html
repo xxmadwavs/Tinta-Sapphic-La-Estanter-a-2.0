@@ -2439,11 +2439,11 @@ function normalizeProtagonistas(arr){
     nombre: String(x.nombre||'').trim(),
     profesiones: Array.isArray(x.profesiones)?[...x.profesiones]:[],
     identidades: Array.isArray(x.identidades)?[...x.identidades]:[],
-    edad: x.edad||null,
+    edad: (Number.isFinite(parseInt(x.edad,10))&&/^\d{1,2}$/.test(String(x.edad).trim()))?parseInt(x.edad,10):null,
     open: false
   }));
 }
-function protMeta(p){ return [sumList(p.profesiones),sumList(p.identidades),p.edad||''].filter(Boolean).join(' · '); }
+function protMeta(p){ return [p.edad?p.edad+' años':'',sumList(p.profesiones),sumList(p.identidades)].filter(Boolean).join(' · '); }
 function renderProtagonistas(){
   const box=document.getElementById('protagonistasList');
   if(!box) return;
@@ -2464,8 +2464,7 @@ function renderProtagonistas(){
       </div>
       <div class="ub-body">
         <div class="ub-f" style="margin-top:.5rem"><label class="form-label">Nombre</label><input type="text" value="${ubEsc(p.nombre)}" placeholder="Ej: Din Kasama" oninput="setProtNombre(${i},this.value)"></div>
-        <div class="sub-lbl">Edad</div>
-        <div class="chip-group">${EDAD_PROTAGONISTA.map(v=>`<button type="button" class="chip-opt${p.edad===v?' active gold':''}" data-i="${i}" data-v="${ubEsc(v)}" onclick="setProtEdad(this)">${ubEsc(v)}</button>`).join('')}</div>
+        <div class="ub-f" style="margin-top:8px;max-width:160px"><label class="form-label">Edad exacta</label><input type="number" min="10" max="99" step="1" inputmode="numeric" value="${p.edad||''}" placeholder="Ej: 25" oninput="setProtEdadNum(${i},this.value)"></div>
         <div class="sub-lbl">Profesión</div>
         <div class="chip-group">${chips(i,'profesiones',CHARACTERS,p.profesiones,'rose')}</div>
         <div class="chip-custom-add"><input type="text" id="protCus_${i}_profesiones" placeholder="Añadir otra profesión…" onkeydown="if(event.key==='Enter'){event.preventDefault();addProtCustom(${i},'profesiones');}"><button type="button" class="chip-custom-btn" onclick="addProtCustom(${i},'profesiones')">+ Añadir</button></div>
@@ -2504,10 +2503,13 @@ function toggleProtChip(el){
   ix>=0?a.splice(ix,1):a.push(v);
   renderProtagonistas();
 }
-function setProtEdad(el){
-  const p=protDraft[+el.dataset.i]; if(!p) return;
-  p.edad=(p.edad===el.dataset.v)?null:el.dataset.v;
-  renderProtagonistas();
+function setProtEdadNum(i,v){
+  const p=protDraft[i]; if(!p) return;
+  const n=parseInt(v,10);
+  p.edad=(Number.isFinite(n)&&n>=10&&n<=99)?n:null;
+  const el=document.getElementById('protMeta_'+i);
+  if(el) el.textContent=protMeta(p);
+  updateFoldSummaries();
 }
 function addProtCustom(i,k){
   const p=protDraft[i], inp=document.getElementById('protCus_'+i+'_'+k);
@@ -2525,12 +2527,12 @@ function collectProtagonistas(){
     nombre:(p.nombre||'').trim(),
     profesiones:[...p.profesiones],
     identidades:[...p.identidades],
-    edad:p.edad||null
+    edad:(Number.isFinite(p.edad)&&p.edad>0)?p.edad:null
   })).filter(p=>p.nombre||p.profesiones.length||p.identidades.length||p.edad);
   out.forEach(p=>{
     p.profesiones.forEach(v=>{ if(!sel.characters.includes(v)) sel.characters.push(v); });
     p.identidades.forEach(v=>{ if(!sel.identidades.includes(v)) sel.identidades.push(v); });
-    if(p.edad){ if(!sel.edad) sel.edad=[]; if(!sel.edad.includes(p.edad)) sel.edad.push(p.edad); }
+    if(p.edad){ const bin=tpAgeBin(p.edad); if(!sel.edad) sel.edad=[]; if(!sel.edad.includes(bin)) sel.edad.push(bin); }
   });
   return out;
 }
@@ -3215,7 +3217,7 @@ async function applyBookResult(i){
 var TP_PAISES_EXTRA=['Perú','Rusia','Irlanda','Portugal','Grecia','Turquía','Egipto','Marruecos','Cuba','Venezuela','Uruguay','Ecuador','Bolivia','Paraguay','Camboya','Laos','Myanmar','Indonesia','Malasia','Singapur','Hong Kong','Suecia','Noruega','Dinamarca','Finlandia','Islandia','Suiza','Austria','Bélgica','Polonia','Ucrania','Nueva Zelanda','Países Bajos','Nepal','Pakistán','Israel','Irán','Arabia Saudita','Kenia','Nigeria','Sudáfrica'];
 var TP_ALIAS_PAIS={'inglaterra':['Reino Unido','Inglaterra'],'escocia':['Reino Unido','Escocia'],'gales':['Reino Unido','Gales'],'irlandadelnorte':['Reino Unido','Irlanda del Norte'],'granbretana':['Reino Unido',''],'uk':['Reino Unido',''],'eeuu':['Estados Unidos',''],'usa':['Estados Unidos',''],'corea':['Corea del Sur',''],'holanda':['Países Bajos','']};
 var TP_PROF={actriz:'Actriz',famosa:'Famosa',abogada:'Abogada',arqueologa:'Arqueóloga',artista:'Artista',azafata:'Azafata',bailarina:'Bailarina',bombera:'Bombera',bruja:'Bruja',camarera:'Camarera',cantante:'Cantante',ceo:'CEO',chef:'Chef',cientifica:'Científica',deportista:'Deportista',tenista:'Deportista',detective:'Detective',diosa:'Diosa',doctora:'Doctora / Médica',medica:'Doctora / Médica',editora:'Editora',empresaria:'Empresaria',enfermera:'Enfermera',escritora:'Escritora',estudiante:'Estudiante',farmaceutica:'Farmacéutica',florista:'Florista',fotografa:'Fotógrafa',futbolista:'Futbolista',granjera:'Granjera',guardaespaldas:'Guardaespaldas',hacker:'Hacker',inspectora:'Inspectora',investigadora:'Investigadora',jardinera:'Jardinera',millonaria:'Millonaria / Billonaria',billonaria:'Millonaria / Billonaria',piloto:'Piloto',pirata:'Pirata',policia:'Policía',politica:'Política',profesora:'Profesora',psicologa:'Psicóloga',reportera:'Reportera / Periodista',periodista:'Reportera / Periodista',tatuadora:'Tatuadora',veterinaria:'Veterinaria'};
-var TP_ENTORNO={hospital:'Hospital',oficina:'Oficina',universidad:'Universidad',instituto:'Instituto',cafeteria:'Cafetería',restaurante:'Restaurante',libreria:'Librería',palacio:'Palacio',isla:'Isla',empresa:'Empresa',plantacion:'Campo',finca:'Campo',granja:'Campo',hacienda:'Campo',pueblo:'Pueblo pequeño'};
+var TP_ENTORNO={hospital:'Hospital',oficina:'Oficina',universidad:'Universidad',instituto:'Instituto',cafeteria:'Cafetería',restaurante:'Restaurante',libreria:'Librería',palacio:'Palacio',isla:'Isla',empresa:'Empresa',plantacion:'Campo',finca:'Campo',granja:'Campo',hacienda:'Campo',pueblo:'Pueblo pequeño',universitario:'Universidad',universitaria:'Universidad',universitarios:'Universidad',universitarias:'Universidad'};
 var TP_NUM={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10};
 
 function tpNorm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
@@ -3514,6 +3516,7 @@ function tpHead(v){
 function tpListItems(s){
   return String(s||'').split(/,|;|\sy\s/).map(function(x){return x.trim().replace(/\.$/,'');}).filter(Boolean);
 }
+var TP_EV_RE=/^(expl[ií]cit|inferid|inferenc|pendiente|recuento|no\s+(determinable|especificad|confirmad|identificad)|clasificaci[oó]n|no\s+aplica)/i;
 function tpParseRows(text){
   var rows=[],kv=[];
   text.split(/\r?\n/).forEach(function(line){
@@ -3536,10 +3539,10 @@ function tpParseRows(text){
       var kvVal=cells.slice(1).join(' ').trim();
       /* Tabla con columna «Tipo de evidencia» (Explícita / Inferida / No determinable…): el valor es solo la 2.ª columna;
          la 3.ª (tipo de evidencia) y la 4.ª (capítulo) no son datos. Si la evidencia es «no determinable/especificado/confirmado», no hay dato. */
-      if(cells.length>=3&&/^(expl[ií]cit|inferid|no\s+(determinable|especificad|confirmad|identificad)|clasificaci[oó]n|no\s+aplica)/i.test(cells[2])){
+      if(cells.length>=3&&TP_EV_RE.test(cells[2])){
         kvVal=/^no\s+(determinable|especificad|confirmad|identificad|aplica)/i.test(cells[2])?'':cells[1];
       }
-      kv.push({kind:'kv',key:k,value:kvVal,ev:cells.length>=3&&/^(expl[ií]cit|inferid|no\s+(determinable|especificad|confirmad|identificad)|clasificaci[oó]n|no\s+aplica)/i.test(cells[2])});
+      kv.push({kind:'kv',key:k,raw:cells[0],value:kvVal,ev:cells.length>=3&&TP_EV_RE.test(cells[2])});
     }
   });
   if(!rows.length&&kv.length<2) return [];
@@ -3586,74 +3589,120 @@ function runTablePaste(text){
   }
 
 
-  /* ── Protagonistas numeradas («Protagonista 1», «Edad … de la protagonista 2», «Profesión … de la protagonista 1»…) ──
-     Se guardan por número y al final se vuelcan a protDraft (y, de paso, a las secciones clásicas Personajes/Identidades/Edad). */
-  var pd={};
-  function pdGet(n){return pd[n]||(pd[n]={nombre:'',catBin:null,ageBin:null,prof:[],ident:[]});}
-  /* «corresponde a New Adult (18–24)» manda sobre «25–39 no sería correcto» */
+  /* ── Protagonistas ──
+     Se reconocen por número («… de la protagonista 2») o por nombre («Edad de Jeans», «Profesión principal actual de Luk Nai»;
+     el nombre sale de las filas «Protagonista N» o, si no las hay, de la propia fila). Edad = número exacto; profesión e identidad
+     se escriben tal cual si no están en las listas (quedan como chips personalizados ✎). Al final se vuelcan a protDraft
+     y, de paso, a las secciones clásicas Personajes / Identidades / Edad. */
+  var pd={},pdOrder=[];
+  function pdGet(id){if(!pd[id]){pd[id]={nombre:'',catBin:null,age:null,prof:[],ident:[]};pdOrder.push(id);}return pd[id];}
+  function protCleanName(v){return String(v||'').replace(/\([^)]*\)/g,' ').replace(/[\s.,;:]+$/,'').replace(/\s+/g,' ').trim();}
+  function protResolve(k,raw){
+    var m=k.match(/protagonista(\d+)$/);
+    if(m) return {id:m[1],stem:k.slice(0,m.index)};
+    var i,cn;
+    for(i=0;i<pdOrder.length;i++){
+      var P0=pd[pdOrder[i]];if(!P0.nombre) continue;
+      cn=cleanStr(P0.nombre);
+      if(cn.length>=2&&k.length>cn.length&&k.slice(-cn.length)===cn) return {id:pdOrder[i],stem:k.slice(0,k.length-cn.length)};
+    }
+    /* «Edad de Jeans», «Profesión de Luk Nai», «Categoría de edad de Jeans»…: el prefijo no distingue mayúsculas; el nombre sí empieza en mayúscula */
+    var rawS=String(raw||'').trim();
+    if(/^(?:edad|categor[ií]a de edad|profesi[oó]n|ocupaci[oó]n|expresi[oó]n de g[eé]nero|identidad)\b/i.test(rawS)){
+      var dre=/\sdel?\s+/gi,dm,NAME=/^((?:[A-ZÁÉÍÓÚÑ][\wÁ-ÿ’'.-]*)(?:\s+[A-ZÁÉÍÓÚÑ][\wÁ-ÿ’'.-]*){0,2})\s*$/;
+      while((dm=dre.exec(rawS))){
+        var cand=rawS.slice(dm.index+dm[0].length),nmM=cand.match(NAME);
+        if(nmM){
+          var nm=protCleanName(nmM[1]),cn2=cleanStr(nm);
+          if(cn2.length>=2){var P2=pdGet('n'+cn2);if(!P2.nombre) P2.nombre=nm;return {id:'n'+cn2,stem:k.slice(0,Math.max(0,k.length-cn2.length))};}
+        }
+      }
+    }
+    return null;
+  }
+  /* categoría escrita: «18–24: New Adult», «New Adult (18–24)», «25–39», «+40»; «corresponde a X» manda sobre «Y no sería correcto» */
   function protEdadCat(text){
     var t=String(text||''),m=t.match(/corresponde\s+a\s+(.+)$/i);
-    if(m) t=m[1];
-    else t=t.split(/[;]/)[0].replace(/\s+no\s+ser[ií]a\s+correct[oa].*$/i,'');
-    var f=tpFindWord(t,EDAD_PROTAGONISTA)||tpMatch(t.split(/[;,.(]/)[0].trim(),EDAD_PROTAGONISTA);
-    if(f) return f;
+    if(m) t=m[1];else t=t.split(';')[0].replace(/\s+no\s+ser[ií]a\s+correct[oa].*$/i,'');
+    if(/new\s*adult/i.test(t)) return EDAD_PROTAGONISTA[1];
+    if(/young\s*adult/i.test(t)) return EDAD_PROTAGONISTA[0];
+    if(/\+\s*40|40\s*\+/.test(t)) return EDAD_PROTAGONISTA[3];
+    var r=t.match(/(\d{2})\s*[–-]\s*(\d{2})/);
+    if(r) return tpAgeBin(parseInt(r[2],10));
     var d=t.match(/\d{2}/);
     return d?tpAgeBin(parseInt(d[0],10)):null;
   }
-  function protKV(k,v){
-    var pm=k.match(/protagonista(\d+)$/);
-    if(!pm) return false;
-    var P=pdGet(pm[1]);
-    if(/^protagonista\d+$/.test(k)){
-      if(!tpUnspec(v)) P.nombre=String(v).replace(/\([^)]*\)/g,'').trim();
-      return false;                       /* el tratamiento genérico (ship) sigue haciéndose */
-    }
-    if(tpUnspec(v)) return true;
+  var PROT_DUDA=/recuerdo|retrospectiv|flashback|pasado|secundaria|no\s+se\s+establece|no\s+(?:est[aá]|queda|consta)|no\s+debe\s+asignarse|provisional|pendiente|sin\s+confirmar/i;
+  var PROT_NEG=/^(ninguna?|no\b|sin\b|pendiente|provisional)|no\s+se\s+confirma|no\s+determinad|participa|se\s+presenta|aparece|sufic|confirm|opcional|inferid/i;
+  function protKV(k,v,raw){
     var m;
-    if(k.indexOf('categoria')===0&&k.indexOf('edad')>0){var c=protEdadCat(v);if(c) P.catBin=c;return true;}
-    if(k.indexOf('edad')===0){
-      m=String(v).match(/\d{2}/);
-      if(m) P.ageBin=tpAgeBin(parseInt(m[0],10));
-      else{var low=tpNorm(v);if(/\b(veinte|veintitantos)\b/.test(low)) P.ageBin=EDAD_PROTAGONISTA[2];else if(/\bcuarenta\b/.test(low)) P.ageBin=EDAD_PROTAGONISTA[3];}
+    if(/^protagonista\d+$/.test(k)){
+      if(!tpUnspec(v)) pdGet(k.match(/\d+$/)[0]).nombre=protCleanName(v);
+      return false;                                   /* el tratamiento genérico (ship) sigue haciéndose */
+    }
+    var ref=protResolve(k,raw);
+    if(!ref) return false;
+    var stem=ref.stem.replace(/(dela|del|de)$/,''),P=pdGet(ref.id);
+    var isAge=/^edad(exacta)?(orangoestimado)?$/.test(stem),
+        isCat=/^categoria(de)?edad$/.test(stem),
+        isProf=/^(profesion|ocupacion|oficio)(uocupacion|uoficio)?(principal)?(actual)?$/.test(stem),
+        isId=/^(expresiondegenero|expresion|identidad|identidaddegenero|orientacion)$/.test(stem);
+    if(!(isAge||isCat||isProf||isId)) return false;
+    if(tpUnspec(v)) return true;
+    if(isAge){
+      if(PROT_DUDA.test(v)) return true;              /* «aparece con 14 años en un recuerdo…» no es su edad */
+      m=String(v).match(/(\d{1,2})\s*a[nñ]os/i)||String(v).match(/\b(\d{2})\b/);
+      if(m){var a=parseInt(m[1],10);if(a>=10&&a<=99) P.age=a;}
       return true;
     }
-    if(/^(profesion|ocupacion|oficio)/.test(k)){
-      var keep=sel.characters,got=[];sel.characters=got;
-      try{tpProfItems(v,[],true);}finally{sel.characters=keep;}
-      got.forEach(function(x){if(P.prof.indexOf(x)<0) P.prof.push(x);});
+    if(isCat){
+      if(PROT_DUDA.test(v)) return true;
+      var c=protEdadCat(v);if(c) P.catBin=c;
       return true;
     }
-    if(k.indexOf('expresion')===0||k.indexOf('orientacion')===0||k.indexOf('identidad')===0){
-      if(/^\s*otr[oa]\b|no\s+defin|sin\s+defin|no\s+determin|no\s+se\s+(deduce|define)/i.test(v)) return true;
-      var first=String(v).split(/[;(]|,\s*(?:como|seg[uú]n|basad|por|ya\s+que)\b/i)[0];
-      var keepI=sel.identidades,gotI=[];sel.identidades=gotI;
-      try{tpIdentParts(first,[]);}finally{sel.identidades=keepI;}
-      gotI.forEach(function(x){if(P.ident.indexOf(x)<0) P.ident.push(x);});
+    if(isProf){
+      var items=tpSplitList(v);
+      items.forEach(function(it,ix){
+        it=it.replace(/[.\s]+$/,'').trim();
+        if(!it||tpUnspec(it)||/^(ninguna?|no\b|sin\b|pendiente|provisional)|no\s+se\s+(confirma|identifica)|no\s+determinad/i.test(it)||(PROT_NEG.test(it)&&!(curEv&&ix===0))) return;
+        var val=tpMatch(it,CHARACTERS);
+        if(!val&&ix===0&&it.split(/\s+/).length<=4) val=tpCap(it.replace(/\s+profesional$/i,'').trim());
+        if(!val&&curEv&&ix===0) val=tpFindWord(it,CHARACTERS);   /* frase de la tabla de evidencias: «Se presenta como estudiante universitaria…» */
+        if(val&&P.prof.indexOf(val)<0) P.prof.push(val);
+      });
       return true;
     }
-    return false;
+    /* identidad / expresión de género: lo que va antes de «, como…», «; …» o «(…)» */
+    var first=String(v).split(/[;(]|,\s*(?:como|seg[uú]n|basad|por|ya\s+que|aunque)\b|\.\s/i)[0].replace(/[.\s]+$/,'');
+    first.split(/\s\/\s|\/|,|\sy\s/).forEach(function(part){
+      part=part.replace(/\([^)]*\)/g,'').replace(/[.\s]+$/,'').trim();
+      if(!part||tpUnspec(part)||PROT_NEG.test(part)||/\d/.test(part)||part.split(/\s+/).length>3) return;
+      var val=tpExact(part,IDENTIDADES)||tpCap(part);
+      if(P.ident.indexOf(val)<0) P.ident.push(val);
+    });
+    return true;
   }
   function protApply(){
     var names=[],any=false;
-    Object.keys(pd).sort(function(a,b){return a-b;}).forEach(function(n){
-      var P=pd[n],edad=P.catBin||P.ageBin||null;
-      if(!P.nombre&&!P.prof.length&&!P.ident.length&&!edad) return;
+    pdOrder.slice().sort(function(a,b){var na=/^\d+$/.test(a),nb=/^\d+$/.test(b);return (na&&nb)?(a-b):(na?-1:nb?1:0);}).forEach(function(id){
+      var P=pd[id],bin=P.age?tpAgeBin(P.age):(P.catBin||null);
+      if(!P.nombre&&!P.prof.length&&!P.ident.length&&!P.age&&!bin) return;
       var ex=null;
       protDraft.forEach(function(x){if(!ex&&P.nombre&&(x.nombre||'').trim().toLowerCase()===P.nombre.toLowerCase()) ex=x;});
       if(!ex){ex={id:newProtId(),nombre:P.nombre,profesiones:[],identidades:[],edad:null,open:false};protDraft.push(ex);res.filled++;}
       P.prof.forEach(function(x){if(ex.profesiones.indexOf(x)<0){ex.profesiones.push(x);res.filled++;}if(sel.characters.indexOf(x)<0) sel.characters.push(x);});
       P.ident.forEach(function(x){if(ex.identidades.indexOf(x)<0){ex.identidades.push(x);res.filled++;}if(sel.identidades.indexOf(x)<0) sel.identidades.push(x);});
-      if(edad){if(ex.edad!==edad){ex.edad=edad;res.filled++;}if(sel.edad.indexOf(edad)<0) sel.edad.push(edad);}
+      if(P.age&&ex.edad!==P.age){ex.edad=P.age;res.filled++;}
+      if(bin&&sel.edad.indexOf(bin)<0) sel.edad.push(bin);
       names.push(ex.nombre||'sin nombre');any=true;
     });
     if(any) res.notes.push('Protagonistas: '+names.join(', '));
   }
 
-
   /* Filas «Campo | Valor final» (y variantes): título, serie, año, ISBN, edades numeradas, profesiones, ubicación… → true si la fila se ha tratado */
   function kvExtra(k,v){
     var m;
-    if(protKV(k,v)) return true;
+    if(protKV(k,v,curRaw)) return true;
     if(k==='titulo'||k==='titulooriginal'||k==='titulodellibro'||k==='titulocompleto'){
       if(titleDone) return true;
       var t=tpTitleFrom(v),sm=t.match(/^(.*?)\s*\(([^()]*[A-Za-zÁ-ú][^()]*?)\s+#?(\d{1,2}(?:[.,]\d)?)\)\s*$/);
@@ -3691,7 +3740,7 @@ function runTablePaste(text){
       if(im&&(!isbn||k==='isbn')) isbn=im[1];return true;
     }
     if(/^ships?$/.test(k)){if(!tpUnspec(v)) shipKV=v;return true;}
-    if(/^protagonista\d*$/.test(k)){if(!tpUnspec(v)) prot.push(String(v).replace(/\([^)]*\)/g,'').trim());return true;}
+    if(/^protagonista\d*$/.test(k)){if(!tpUnspec(v)) prot.push(String(v).replace(/\([^)]*\)/g,'').replace(/[\s.,;:]+$/,'').trim());return true;}
     if(/^(seccion|section|seccionweb)$/.test(k)){seccion=v;return true;}
     if(k.indexOf('spicy')>=0&&k.indexOf('escena')<0||k==='nivelsteam'){
       m=String(v).match(/(?:^|[^\d.,])([0-5])\s*(?:\/|de)\s*5\b/);
@@ -3708,7 +3757,7 @@ function runTablePaste(text){
     if(/^(profesion|ocupacion|oficio)/.test(k)){res.filled+=tpProfItems(v,unknown,curEv||/anterior|otras|otro/.test(k));return true;}
     if(k.indexOf('expresion')===0){
       if(tpUnspec(v)||/^\s*otr[oa]\b|no\s+defin|sin\s+defin|no\s+determin|no\s+se\s+(deduce|define)/i.test(v)) return true;
-      res.filled+=tpIdentParts(v,unknown);return true;
+      res.filled+=tpIdentParts(v,curEv?[]:unknown);return true;
     }
     if(k.indexOf('orientacion')===0){res.filled+=tpScan(v,IDENTIDADES,sel.identidades);return true;}
     if(/^(pais|paisprincipal|paisdelahistoria|paisdeambientacion|paisdelaambientacion)$/.test(k)){if(!tpUnspec(v)) country=tpHead(v);return true;}
@@ -3730,6 +3779,7 @@ function runTablePaste(text){
       if(mu){sel.tipo_mundo=mu;res.filled++;}return true;
     }
     if(k.indexOf('tematica')===0){res.filled+=tpScan(v,SUBGENRES,sel.subgenres);return true;}
+    if(k==='entornonarrativo'||k==='entorno'){res.filled+=tpEntornos(v);return true;}
     return false;
   }
   /* Filas cuyo nombre de campo ES la etiqueta («Queer | …», «Dinámica Cazadora × Monstruo | …»). Si el texto está negado/opcional no se añade. */
@@ -3748,8 +3798,9 @@ function runTablePaste(text){
   }
 
   var curEv=false;
-  function kvRow(k,v,ev){
-    curEv=!!ev;
+  var curRaw='';
+  function kvRow(k,v,ev,raw){
+    curEv=!!ev;curRaw=raw||'';
     if(!v) return;
     if(/opcional/.test(k)){res.notes.push('Omitido (opcional): '+String(v).slice(0,40));return;}
     if(kvExtra(k,v)||kvByLabel(k,v)) return;
@@ -3793,7 +3844,7 @@ function runTablePaste(text){
 
   rows.forEach(function(r){
     if(r.kind==='prose') return prose(r.bloque,r.text);
-    if(r.kind==='kv') return kvRow(r.key,r.value,r.ev);
+    if(r.kind==='kv') return kvRow(r.key,r.value,r.ev,r.raw);
     var b=r.bloque,campo=r.campo,val=r.resultado;
     if(tpIsRapidezKey(b)||tpIsRapidezKey(cleanStr(campo))){
       var rv=tpIsRapidezKey(cleanStr(campo))?val:(val||campo);
