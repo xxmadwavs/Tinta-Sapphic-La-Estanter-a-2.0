@@ -7724,6 +7724,11 @@ html:has(#homeNextDlg[open]){overflow:hidden}
   .rdp-btn{min-height:42px}
 }
 </style>
+
+<style id="bp-prot-separada">
+/* Protagonistas en su propia sección a todo el ancho, debajo de Géneros + Ficha técnica; dos tarjetas por fila si caben */
+#bookPage .bp-prot-section .bp-prot-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:.7rem}
+</style>
 </head>
 <body>
 
@@ -12389,11 +12394,11 @@ function renderBookPage(book){
     :'';
   const clasBlocks=[
     genreTags?`<div class="bp-class-block"><div class="bp-section-title">Géneros</div><div class="modal-tags">${genreTags}</div></div>`:'',
-    subgenreTags?`<div class="bp-class-block"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:'',
-    protagonistasBlock
+    subgenreTags?`<div class="bp-class-block"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:''
   ].filter(Boolean).join('');
+  const protagonistasSec=protagonistasBlock?`<div class="bp-section bp-prot-section">${protagonistasBlock}</div>`:'';
   const fichaTecnicaSec=metaItems?`<div class="bp-section bp-ficha-section"><div class="bp-section-title">Ficha técnica</div><div class="bp-ficha-groups">${metaItems}</div></div>`:'';
-  const clasificacionFicha=(clasBlocks?`<div class="bp-section">${clasBlocks}</div>`:'')+fichaTecnicaSec;
+  const clasificacionFicha=(clasBlocks?`<div class="bp-section">${clasBlocks}</div>`:'')+fichaTecnicaSec+protagonistasSec;
 
   // SINOPSIS
   const sinopsis=b.synopsis?(()=>{
