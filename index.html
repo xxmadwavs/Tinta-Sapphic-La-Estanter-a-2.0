@@ -7657,6 +7657,18 @@ html:has(#homeNextDlg[open]){overflow:hidden}
   .more-filters-panel,.dd-panel,.fp-body,.dd-list{overscroll-behavior:contain}
 }
 </style>
+<style id="bp-protagonistas">
+/* Protagonistas en la ficha (diseño del mockup «Ficha completa»): tarjeta con inicial, nombre y filas Profesión / Identidad / Edad. Solo variables de tema. */
+#bookPage .bp-class-block + .bp-class-block{margin-top:1rem}
+#bookPage .bp-prot-list{display:flex;flex-direction:column;gap:.6rem}
+#bookPage .bp-prot-card{display:flex;align-items:flex-start;gap:.85rem;padding:.75rem .9rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px}
+#bookPage .bp-prot-av{flex:0 0 38px;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent2);font-family:var(--font-display);font-size:19px;font-weight:600}
+#bookPage .bp-prot-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:.45rem}
+#bookPage .bp-prot-name{font-weight:600;color:var(--text);line-height:1.3;overflow-wrap:anywhere;padding-top:.15rem}
+#bookPage .bp-prot-row{display:flex;flex-direction:column;gap:.25rem}
+#bookPage .bp-prot-lbl{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#bookPage .bp-prot-chips{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem}
+</style>
 </head>
 <body>
 
@@ -10693,9 +10705,10 @@ function _applyCommunityData(rData,svData,ctData){
       spicyMap[id]={avg:Math.round(levels.reduce((a,b)=>a+b,0)/levels.length*10)/10,count:levels.length};
     });
   }
-  communityTagsMap={};
+  communityTagsMap={}; protTagsMap={};
   if(ctData){
     ctData.forEach(r=>{
+      const _pp=_protParse(r); if(_pp){ _protPush(protTagsMap,r.book_id,_pp.pid,r.tag_type,_pp.val); return; }
       if(!communityTagsMap[r.book_id]) communityTagsMap[r.book_id]={};
       if(!communityTagsMap[r.book_id][r.tag_type]) communityTagsMap[r.book_id][r.tag_type]=[];
       if(!communityTagsMap[r.book_id][r.tag_type].includes(r.tag_value))
@@ -10730,9 +10743,10 @@ async function loadMyRatings(){
   if(data) data.forEach(r=>{ const v=ratingOf(r); if(v!==null) myRatings[r.book_id]=v; });
   mySpicy={};
   if(sv) sv.forEach(r=>mySpicy[r.book_id]=r.level);
-  myTags={};
+  myTags={}; myProtTags={};
   if(myCtData){
     myCtData.forEach(r=>{
+      const _pp=_protParse(r); if(_pp){ _protPush(myProtTags,r.book_id,_pp.pid,r.tag_type,_pp.val); return; }
       if(!myTags[r.book_id]) myTags[r.book_id]={};
       if(!myTags[r.book_id][r.tag_type]) myTags[r.book_id][r.tag_type]=[];
       myTags[r.book_id][r.tag_type].push(r.tag_value);
@@ -12313,10 +12327,15 @@ function renderBookPage(book){
   // sola bp-section ("clasificación/ficha" del brief) en vez de tres
   // secciones con divisor propio cada una; internamente son bp-class-block
   // con un gap moderado, sin línea entre ellos.
+  // PROTAGONISTAS — tarjetas del mockup «Ficha completa». Solo si el libro ya trae b.protagonistas (se rellenan en Admin);
+  // mientras no las tenga, «Sobre este libro» sigue mostrando Personajes e Identidades como siempre.
+  const protagonistasBlock=hasProtagonistas(b)
+    ?`<div class="bp-class-block"><div class="bp-section-title">Protagonistas</div><div class="bp-prot-list" data-bp-prot>${buildBpProtagonistasInner(b)}</div></div>`
+    :'';
   const clasBlocks=[
     genreTags?`<div class="bp-class-block"><div class="bp-section-title">Géneros</div><div class="modal-tags">${genreTags}</div></div>`:'',
     subgenreTags?`<div class="bp-class-block"><div class="bp-section-title">Subgéneros</div><div class="modal-tags">${subgenreTags}</div></div>`:'',
-    ''
+    protagonistasBlock
   ].filter(Boolean).join('');
   const fichaTecnicaSec=metaItems?`<div class="bp-section bp-ficha-section"><div class="bp-section-title">Ficha técnica</div><div class="bp-ficha-groups">${metaItems}</div></div>`:'';
   const clasificacionFicha=(clasBlocks?`<div class="bp-section">${clasBlocks}</div>`:'')+fichaTecnicaSec;
@@ -12452,9 +12471,91 @@ const BP_TAG_FILTER_KEY={trope:'tropes',dinamica:'dinamicas',character:'characte
    (Advertencias: 6). Nada se elimina; los chips plegados siguen en el DOM con [hidden]. */
 const BP_TAG_FOLD=8, BP_TAG_FOLD_WARN=6;
 let _bpTagsOpen={id:null,types:new Set()};
+/* ── PROTAGONISTAS (ficha) ──
+   Datos oficiales: b.protagonistas=[{id,nombre,profesiones[],identidades[],edad}] (se editan en Admin).
+   Etiquetas de comunidad por protagonista: se guardan en la tabla community_tags existente, con tag_type 'character'/'identidad'
+   y tag_value «<idProtagonista>§<valor>». Al cargar se separan en protTagsMap/myProtTags para que NO se mezclen con las
+   etiquetas de libro (communityTagsMap/myTags) ni con los filtros. */
+let protTagsMap={}, myProtTags={};
+const PROT_SEP='§';
+function _protParse(r){ const v=String(r.tag_value||''), i=v.indexOf(PROT_SEP); return i>0?{pid:v.slice(0,i),val:v.slice(i+1)}:null; }
+function _protPush(map,bookId,pid,type,val){
+  if(!map[bookId]) map[bookId]={};
+  if(!map[bookId][pid]) map[bookId][pid]={};
+  if(!map[bookId][pid][type]) map[bookId][pid][type]=[];
+  if(!map[bookId][pid][type].includes(val)) map[bookId][pid][type].push(val);
+}
+function _protPull(map,bookId,pid,type,val){
+  const a=(((map[bookId]||{})[pid]||{})[type]);
+  if(a) map[bookId][pid][type]=a.filter(x=>x!==val);
+}
+function _protList(b){
+  return (Array.isArray(b.protagonistas)?b.protagonistas:[]).filter(p=>p&&(p.nombre||(p.profesiones||[]).length||(p.identidades||[]).length||p.edad));
+}
+function hasProtagonistas(b){ return _protList(b).length>0; }
+function buildBpProtagonistasInner(b){
+  return _protList(b).map((p,idx)=>{
+    const name=(p.nombre||'').trim()||('Protagonista '+(idx+1));
+    const row=(label,type,filterKey,cls,official,noun)=>{
+      const comm=(((protTagsMap[b.id]||{})[p.id]||{})[type])||[];
+      const mine=(((myProtTags[b.id]||{})[p.id]||{})[type])||[];
+      const merged=[...new Set([...(official||[]),...comm])];
+      if(!currentUser&&!merged.length) return '';
+      const chips=merged.map(v=>{
+        const isOff=(official||[]).includes(v), isMine=!isOff&&mine.includes(v), ev=escHtml(v);
+        const rm=isMine?`<button type="button" class="bp-tag-rm" data-pid="${escHtml(p.id)}" data-type="${type}" data-value="${ev}" aria-label="Quitar mi tag de ${noun}: ${ev}" title="Quitar mi tag" onclick="removeMyProtTag(this.dataset.pid,this.dataset.type,this.dataset.value,event)">×</button>`:'';
+        return `<span class="tag ${cls}${isOff?'':' tag-comm-added'} bp-tag-link" role="button" tabindex="0" data-bpf="${filterKey}" data-bpv="${ev}">${ev}${isOff?'':'<span class="tag-comm-dot"> ·com</span>'}${rm}</span>`;
+      }).join('');
+      let add='';
+      if(currentUser){
+        const avail=(VALID_TAGS[type]||[]).filter(t=>!merged.includes(t));
+        if(avail.length) add=`<select class="tag-adder-select bp-tag-adder" data-pid="${escHtml(p.id)}" data-type="${type}" aria-label="Añadir ${noun} a ${escHtml(name)}" onchange="handleProtTagAdd(this.dataset.pid,this.dataset.type,this)"><option value="">+ Añadir</option>${avail.map(t=>`<option value="${escHtml(t)}">${escHtml(t)}</option>`).join('')}</select>`;
+      } else {
+        add=`<button type="button" class="bp-add-btn" onclick="openAuthModal()" aria-label="Iniciar sesión para añadir ${noun}" title="Inicia sesión para añadir">+ Añadir</button>`;
+      }
+      return `<div class="bp-prot-row"><span class="bp-prot-lbl">${label}</span><div class="bp-prot-chips">${chips}${add}</div></div>`;
+    };
+    const edadRow=p.edad?`<div class="bp-prot-row"><span class="bp-prot-lbl">Edad</span><div class="bp-prot-chips"><span class="tag tag-edad bp-tag-link" role="button" tabindex="0" data-bpf="edad" data-bpv="${escHtml(p.edad)}">🎂 ${escHtml(p.edad)}</span></div></div>`:'';
+    return `<div class="bp-prot-card"><span class="bp-prot-av" aria-hidden="true">${escHtml(name.charAt(0).toUpperCase())}</span><div class="bp-prot-body"><div class="bp-prot-name">${escHtml(name)}</div>${row('Profesión','character','characters','tag-character',p.profesiones,'profesión')}${row('Identidad','identidad','identidades','tag-identidad',p.identidades,'identidad')}${edadRow}</div></div>`;
+  }).join('');
+}
+function renderBpProtagonistas(pid,type){
+  const el=document.querySelector('#bpWrap [data-bp-prot]');
+  if(!el||!activeBook) return;
+  el.innerHTML=buildBpProtagonistasInner(activeBook);
+  if(pid&&type) el.querySelector('.bp-tag-adder[data-pid="'+pid+'"][data-type="'+type+'"]')?.focus({preventScroll:true});
+}
+async function handleProtTagAdd(pid,type,selectEl){
+  const value=selectEl.value;
+  if(!value||!currentUser||!activeBook) return;
+  selectEl.value='';
+  const bookId=activeBook.id;
+  if(((((myProtTags[bookId]||{})[pid]||{})[type])||[]).includes(value)) return;
+  const {error}=await sb.from('community_tags').insert({user_id:currentUser.id,book_id:bookId,tag_type:type,tag_value:pid+PROT_SEP+value});
+  if(error){showToast('Error al añadir tag','error');return;}
+  _protPush(myProtTags,bookId,pid,type,value);
+  _protPush(protTagsMap,bookId,pid,type,value);
+  renderBpProtagonistas(pid,type);
+  showToast('Tag añadido ✓','success');
+}
+async function removeMyProtTag(pid,type,value,event){
+  if(event) event.stopPropagation();
+  if(!currentUser||!activeBook) return;
+  const bookId=activeBook.id;
+  const {error}=await sb.from('community_tags').delete()
+    .eq('user_id',currentUser.id).eq('book_id',bookId).eq('tag_type',type).eq('tag_value',pid+PROT_SEP+value);
+  if(error){showToast('Error al eliminar tag','error');return;}
+  _protPull(myProtTags,bookId,pid,type,value);
+  _protPull(protTagsMap,bookId,pid,type,value);
+  renderBpProtagonistas(pid,type);
+  showToast('Tag eliminado','success');
+}
+
 function buildBpTagsGridHTML(b){
   if(_bpTagsOpen.id!==b.id) _bpTagsOpen={id:b.id,types:new Set()};
+  const _hasProt=hasProtagonistas(b);
   return BP_TAG_TYPES.map(({type,label,cls,emoji,noun})=>{
+    if(_hasProt&&(type==='character'||type==='identidad')) return ''; // ya van en la tarjeta de cada protagonista
     const {official,merged}=getEffectiveTags(b,type);
     // Igual que el modal: sin sesión, las categorías vacías no se muestran.
     if(!currentUser&&!merged.length) return '';

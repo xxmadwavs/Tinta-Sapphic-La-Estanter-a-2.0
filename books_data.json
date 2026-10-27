@@ -48,15 +48,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -685,15 +677,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -7443,15 +7427,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -7513,15 +7489,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -7616,10 +7584,11 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
-    "formato": "Único",
+    "rapidez_romance": null,
+    "formato": "Saga",
     "adaptacion": "Sin adaptación",
-    "sagaName": null,
-    "sagaNum": null,
+    "sagaName": "Perfume",
+    "sagaNum": 1,
     "source": "thais",
     "editions": [
       {
@@ -7762,15 +7731,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Principios de los 2000",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
@@ -7845,15 +7806,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -8381,15 +8334,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": "Fantasía",
@@ -9449,15 +9394,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
@@ -9966,15 +9903,7 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
@@ -11333,15 +11262,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Canadá",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -13271,15 +13191,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -13370,15 +13281,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -15791,15 +15693,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -16316,15 +16209,6 @@
     "pais_origen": [
       "Corea del Sur",
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -19340,16 +19224,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778239912236_3xh37",
@@ -19573,15 +19448,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -19851,15 +19717,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -19913,15 +19770,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -22980,15 +22828,7 @@
     "pais_cultura": [
       "Reino Unido"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -23082,15 +22922,7 @@
     "pais_cultura": [
       "Reino Unido"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -31721,16 +31553,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778922477892_p691y",
@@ -43176,16 +42999,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779783679553_aznvj",
@@ -43232,16 +43046,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779783743098_x4cbb",
@@ -43287,15 +43092,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -43356,15 +43152,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -43414,15 +43201,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -43602,16 +43380,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779824982035_5g9hb",
@@ -43906,15 +43675,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -44000,16 +43760,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779825987721_s3f41",
@@ -44059,16 +43810,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Australia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779826038529_qz2x8",
@@ -44108,16 +43850,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Australia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779826189892_v5qbo",
@@ -44657,15 +44390,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -47012,15 +46736,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -47643,15 +47358,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -48011,16 +47717,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779997656223_m8j65",
@@ -48411,16 +48108,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779998809787_7u2n9",
@@ -48462,16 +48150,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779998852433_vsrmh",
@@ -48688,15 +48367,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -48755,15 +48425,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -48848,16 +48509,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780041832000_mk5z4",
@@ -48976,16 +48628,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780042529150_9mn3n",
@@ -49037,15 +48680,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -49397,15 +49031,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -49462,15 +49087,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -49519,16 +49135,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780085494479_o513b",
@@ -49710,16 +49317,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780088070503_dwowa",
@@ -49869,15 +49467,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -50173,15 +49762,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -50468,16 +50048,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780137623116_bjihv",
@@ -50573,16 +50144,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780137923038_qjgv6",
@@ -51472,22 +51034,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      },
-      {
-        "pais": "Francia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -51545,15 +51091,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -52073,15 +51610,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -52194,15 +51722,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -52288,15 +51807,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -52381,16 +51891,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780388914419_ts7bl",
@@ -53172,15 +52673,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -53492,15 +52984,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -54099,16 +53582,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780565874497_0ivj0",
@@ -56669,15 +56143,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -56729,16 +56194,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780644159864_ynxux",
@@ -58354,15 +57810,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Países Bajos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -58415,15 +57862,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -58698,15 +58136,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -61341,16 +60770,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781038786380_n7yye",
@@ -61402,15 +60822,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -61459,16 +60870,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Brasil",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781039022814_zs2co",
@@ -61622,15 +61024,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -66924,15 +66317,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -67865,16 +67249,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781511594364_pay1j",
@@ -68094,16 +67469,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781512345850_at6lj",
@@ -68371,16 +67737,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781512716941_1yiun",
@@ -68901,15 +68258,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Reino Unido"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -68960,15 +68308,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -69020,15 +68359,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -69094,15 +68424,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -69315,15 +68636,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -69564,16 +68876,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781552641854_r0f7c",
@@ -69623,16 +68926,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781552689917_x08rh",
@@ -70685,15 +69979,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -70792,15 +70077,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -70974,16 +70250,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781607626600_3t794",
@@ -71111,16 +70378,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781608030993_tr8e9",
@@ -71482,16 +70740,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Italia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781687574086_2vi98",
@@ -71784,15 +71033,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -72035,15 +71275,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -72819,15 +72051,6 @@
     "pais_origen": [
       "Corea del Sur",
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -73711,16 +72934,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781854774414_poce3",
@@ -74264,16 +73478,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781855373666_ka2og",
@@ -74338,15 +73543,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Canadá"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -77363,15 +76559,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": null,
@@ -80036,15 +79224,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -80184,15 +79363,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "Estados Unidos"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -80753,15 +79923,7 @@
     "pais_cultura": [
       "España"
     ],
-    "ubicaciones": [
-      {
-        "pais": "España",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -80830,15 +79992,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Mundo ficticio",
@@ -81329,15 +80483,6 @@
     "my_rec_categories": [],
     "pais_origen": [
       "España"
-    ],
-    "ubicaciones": [
-      {
-        "pais": "España",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
     ]
   },
   {
@@ -81623,15 +80768,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -83017,15 +82154,7 @@
     "pais_cultura": [
       "Escocia"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Escocia",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": null,
@@ -85602,15 +84731,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": null,
@@ -85691,15 +84812,7 @@
     "pais_cultura": [
       "Reino Unido"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": null,
     "periodo": null,
     "tipo_mundo": null,
@@ -85801,16 +84914,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788172386007_wxx3r",
@@ -86308,16 +85412,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788599642734_q0ham",
@@ -86380,16 +85475,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788599952914_bib0g",
@@ -86446,16 +85532,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788600401601_c8xfk",
@@ -86519,16 +85596,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Argentina",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788600818038_99dtx",
@@ -86595,37 +85663,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      },
-      {
-        "pais": "Suiza",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      },
-      {
-        "pais": "México",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      },
-      {
-        "pais": "Cuba",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788601003698_6muy9",
@@ -86689,16 +85727,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788601232587_34kdq",
@@ -87002,15 +86031,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -87091,15 +86112,7 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ],
+    "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
@@ -87188,16 +86201,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788616217572_gad4d",
@@ -87259,16 +86263,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788616326550_wd97y",
@@ -87333,16 +86328,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1788618050028_wridg",
@@ -89143,16 +88129,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1789556730915_lcgpd",
@@ -89799,16 +88776,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1790428210285_kunnt",
@@ -89878,16 +88846,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1790428793256_0i663",
@@ -89947,16 +88906,7 @@
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "ubicaciones": [
-      {
-        "pais": "Reino Unido",
-        "region": null,
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      }
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1790924202349_v7kjj",
