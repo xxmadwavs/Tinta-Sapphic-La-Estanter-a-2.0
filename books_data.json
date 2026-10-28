@@ -17,12 +17,16 @@
     "genres": [
       "Romance",
       "Contemporánea",
-      "Misterio"
+      "Misterio",
+      "Thriller",
+      "Drama"
     ],
     "subgenres": [
       "GL Thai 🇹🇭",
       "Queer",
-      "Crimen"
+      "Crimen",
+      "Autodescubrimiento",
+      "Familia"
     ],
     "identidades": [
       "Femme"
@@ -30,17 +34,45 @@
     "characters": [
       "Jefa de Laboratorio",
       "Antropóloga",
-      "Subdirectora del Instituto de Investigación Bioantropológico"
+      "Subdirectora del Instituto de Investigación Bioantropológico",
+      "Científica",
+      "Antropóloga física"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwo4llcz8",
+        "nombre": "Phinya",
+        "profesiones": [
+          "Subdirectora del Instituto de Investigación Bioantropológico"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      },
+      {
+        "id": "pmvrwo4llxoy",
+        "nombre": "Busaya (Bua)",
+        "profesiones": [
+          "Antropóloga física"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Caos × Control"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Rivals to Lovers",
       "Workplace Romance",
       "Forced Proximity",
-      "Jealousy Trope"
+      "Jealousy Trope",
+      "Friends to Lovers"
     ],
     "edad": [
       "25–39"
@@ -48,18 +80,46 @@
     "pais_cultura": [
       "Tailandia"
     ],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": [
+          "Lugar del accidente aéreo",
+          "Laboratorio de antropología física",
+          "Instituto de Investigación Bioantropológico",
+          "Oficinas institucionales",
+          "Universidad",
+          "Domicilios y condominios de las protagonistas",
+          "Almacén"
+        ]
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Universidad",
+      "Instituto",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -447,9 +507,15 @@
     ],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
     "identidades": [
       "Lesbiana",
       "Sunshine",
@@ -458,7 +524,39 @@
     ],
     "characters": [
       "Estudiante",
-      "Artista"
+      "Artista",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvruhpkv2x5",
+        "nombre": "M. L. Sippakorn, Khun Nueng o Nueng",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      },
+      {
+        "id": "pmvruhpkvnxi",
+        "nombre": "A-Nueng",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmvruhpkvf65",
+        "nombre": "Khun Nueng",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -470,11 +568,15 @@
       "Age Gap",
       "Strangers to Lovers",
       "Slow Burn",
-      "Unrequited Love"
+      "Unrequited Love",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Student × Teacher"
     ],
     "edad": [
       "25–39",
-      "New Adult (18–24)"
+      "New Adult (18–24)",
+      "Young Adult (15–18)"
     ],
     "pais_cultura": [
       "Tailandia"
@@ -486,12 +588,22 @@
         "ciudad": "Bangkok",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Phuket",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Hospital"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -502,6 +614,7 @@
       "Abuso de Poder"
     ],
     "spicy": 4,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -799,16 +912,94 @@
       "ViewMim"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Celebridad",
+      "Erótica",
+      "Autodescubrimiento",
+      "Universidad"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Modelo",
       "Empresaria",
-      "Fotógrafa"
+      "Fotógrafa",
+      "Famosa",
+      "Estilista profesional de moda"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwzq41ndl",
+        "nombre": "Prim",
+        "profesiones": [
+          "Fotógrafa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwzq412kx",
+        "nombre": "Bambi",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwzq41sk2",
+        "nombre": "Shasha",
+        "profesiones": [
+          "Famosa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwzq411zx",
+        "nombre": "Gorya",
+        "profesiones": [
+          "Estilista profesional de moda"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwzq41swf",
+        "nombre": "Min",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwzq41oqa",
+        "nombre": "Praew",
+        "profesiones": [
+          "Fotógrafa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
@@ -820,9 +1011,13 @@
       "Workplace Romance",
       "Love Triangle",
       "Enemies to Lovers",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Jealousy Trope",
+      "Unrequited Love"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Tailandia"
     ],
@@ -832,20 +1027,35 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Estudios fotográficos",
+          "Oficinas de la empresa",
+          "Bares",
+          "Restaurantes",
+          "Apartamentos",
+          "Una casa familiar",
+          "Universidad",
+          "Hospital y localizaciones de campañas en exteriores"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Hospital",
+      "Universidad",
+      "Empresa",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -1484,9 +1694,14 @@
     "genres": [
       "Comedia",
       "Romance",
-      "Comedia Romántica"
+      "Comedia Romántica",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Erótica",
+      "Queer"
+    ],
     "identidades": [
       "Sunshine",
       "Grumpy",
@@ -1494,11 +1709,38 @@
     ],
     "characters": [
       "Supervisora de Ventas",
-      "Gerente de Contabilidad"
+      "Gerente de Contabilidad",
+      "Supervisora de ventas",
+      "Gerente de Ventas"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrw6g5w8qc",
+        "nombre": "Lallalin (Lal o P'Lal)",
+        "profesiones": [
+          "Supervisora de Ventas"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmvrw6g5w5ou",
+        "nombre": "Vetaka (Khun Wine o P'Wine)",
+        "profesiones": [
+          "Gerente de Contabilidad"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
-      "Femme × Femme"
+      "Femme × Femme",
+      "Caos × Control"
     ],
     "tropes": [
       "Enemies to Lovers",
@@ -1518,20 +1760,30 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Oficinas de la empresa",
+          "Salas de reuniones",
+          "Espacios de los departamentos de Ventas y Contabilidad",
+          "Cafeterías",
+          "Centros comerciales y lugares de actividades corporativas"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Oficina",
+      "Empresa",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
     "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": "Tiene serie",
@@ -1566,7 +1818,7 @@
   },
   {
     "id": "b_1777151505771_h6z1c",
-    "title": "Enemies with Benefits Special !",
+    "title": "Enemies With Benefits [Special]",
     "authors": [
       "Snow Leopard"
     ],
@@ -1582,21 +1834,51 @@
     "genres": [
       "Comedia",
       "Romance",
-      "Comedia Romántica"
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Gerente de Contabilidad",
-      "Supervisora de Ventas"
+      "Supervisora de Ventas",
+      "Gerente de Ventas"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrw9u7j204",
+        "nombre": "Lallalin (Lal)",
+        "profesiones": [
+          "Supervisora de Ventas"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmvrw9u7j12k",
+        "nombre": "Vetaka (Wine)",
+        "profesiones": [
+          "Gerente de Contabilidad"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
       "Grumpy × Sunshine",
       "Fría × Cálida",
-      "Feroz × Tierna"
+      "Feroz × Tierna",
+      "Caos × Control"
     ],
     "tropes": [
       "Workplace Romance",
@@ -1614,20 +1896,31 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Hogar compartido",
+          "Oficina",
+          "Gimnasio",
+          "Espacios de ocio y restauración",
+          "Aeropuerto",
+          "Lugares de viaje"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Oficina",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 5,
+    "rapidez_romance": null,
     "formato": "Trilogía",
     "adaptacion": "Sin adaptación",
     "sagaName": "WHALE",
@@ -1672,9 +1965,15 @@
     "genres": [
       "Comedia",
       "Drama",
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Erótica",
+      "Universidad"
+    ],
     "identidades": [
       "Femme"
     ],
@@ -1682,14 +1981,42 @@
       "Empresaria",
       "Abogada"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrv6y0eg29",
+        "nombre": "Pheeracha",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvrv6y0eghi",
+        "nombre": "Ranchanlapas (Neen)",
+        "profesiones": [
+          "Abogada"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Rich × Poor",
+      "Fría × Cálida",
+      "Feroz × Tierna"
     ],
     "tropes": [
       "Second Chance Romance",
       "Opposites Attract",
       "Jealousy Trope",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Rich / Poor Romance"
     ],
     "edad": [
       "25–39"
@@ -1703,20 +2030,41 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Bufete internacional",
+          "Oficinas del Grupo Iperis",
+          "Viviendas familiares",
+          "Casa de los abuelos en una zona ajardinada",
+          "Universidad",
+          "Hospital",
+          "Restaurantes y domicilio de las protagonistas"
+        ]
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "Toulouse",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Universidad",
+      "Empresa",
+      "Hospital",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -1956,18 +2304,45 @@
     ],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "GL Thai 🇹🇭",
       "Autodescubrimiento",
-      "Queer"
+      "Queer",
+      "Familia"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Arquitecta"
+      "Arquitecta",
+      "Maestra de Feng Shui"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvruks2lpoj",
+        "nombre": "Tantiya (P'Soul)",
+        "profesiones": [
+          "Arquitecta"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvruks2l7pm",
+        "nombre": "Renita (Xinxin)",
+        "profesiones": [
+          "Maestra de Feng Shui"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 24
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -1980,10 +2355,13 @@
       "Rivals to Lovers",
       "Workplace Romance",
       "Forced Proximity",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Age Gap",
+      "Strangers to Lovers"
     ],
     "edad": [
-      "25–39"
+      "25–39",
+      "New Adult (18–24)"
     ],
     "pais_cultura": [
       "Tailandia"
@@ -1994,13 +2372,39 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Empresa de arquitectura",
+          "Viviendas de clientes",
+          "Casas familiares",
+          "Locales comerciales",
+          "Restaurantes",
+          "Cafeterías",
+          "Aeropuerto",
+          "Residencia junto al mar"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Prachuap Khiri Khan",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Samut Prakan y Phuket",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Empresa",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -2012,6 +2416,7 @@
       "Alcohol"
     ],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -2070,9 +2475,16 @@
     ],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Autodescubrimiento",
+      "Wattpad"
+    ],
     "identidades": [
       "Femme",
       "Sunshine",
@@ -2080,14 +2492,44 @@
     ],
     "characters": [
       "Empresaria",
-      "Investigadora"
+      "Investigadora",
+      "Científica"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrup8c6bx4",
+        "nombre": "Sadanun (Song)",
+        "profesiones": [
+          "Investigadora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 28
+      },
+      {
+        "id": "pmvrup8c6okw",
+        "nombre": "Piangrawin",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 24
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Feroz × Tierna"
     ],
     "tropes": [
-      "Forbidden Love"
+      "Forbidden Love",
+      "One Night Stand → More",
+      "Friends with Benefits",
+      "Opposites Attract",
+      "Jealousy Trope",
+      "Hurt/Comfort",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [
       "25–39",
@@ -2102,20 +2544,31 @@
         "region": null,
         "ciudad": null,
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Hotel Saint Che",
+          "Sede de 126 Food",
+          "Zenzu Garden",
+          "Residencia de la familia Wang Worakit Charuwong",
+          "Casa de la familia Chatpimuk",
+          "Planta de producción",
+          "Hospital McKell y residencia de la pareja"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Hospital"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -2243,7 +2696,7 @@
   },
   {
     "id": "b_1777215180922_rhoy0",
-    "title": "Buy My Boss",
+    "title": "Buy my Boss",
     "authors": [
       "FoxyFox"
     ],
@@ -2257,23 +2710,55 @@
       "YingAom"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Wattpad"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Empresaria"
+      "Empresaria",
+      "Diseñadora de moda"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrunk2dhhs",
+        "nombre": "Manfun (Fan)",
+        "profesiones": [
+          "Diseñadora de moda"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 23
+      },
+      {
+        "id": "pmvrunk2dnki",
+        "nombre": "Isara (Araya)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
       "Dominante × Sumisa",
       "Top × Bottom",
       "Ice Queen × Sunshine",
-      "Boss × Employee"
+      "Boss × Employee",
+      "Jefa × Subordinada"
     ],
     "tropes": [
       "Workplace Romance",
@@ -2283,7 +2768,8 @@
       "Forbidden Love",
       "Forced Proximity",
       "Opposites Attract",
-      "One Night Stand → More"
+      "One Night Stand → More",
+      "Jealousy Trope"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -2298,20 +2784,38 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Hotel",
+          "Fábrica textil familiar",
+          "Oficinas empresariales",
+          "Salas de reuniones",
+          "Tiendas",
+          "Spa",
+          "Viviendas familiares"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "No se puede establecer una lista fiable de ciudades visitadas físicamente",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -2354,9 +2858,16 @@
       "MilkLove"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Segunda Oportunidad"
+    ],
     "identidades": [
       "Femme",
       "Grumpy"
@@ -2366,11 +2877,41 @@
       "Bailarina",
       "Estudiante"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrvg19bgqk",
+        "nombre": "Fah (Rafah Nilmaneewisut)",
+        "profesiones": [
+          "Bailarina"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 23
+      },
+      {
+        "id": "pmvrvg19brbx",
+        "nombre": "Dear (Rafah Pinseekaeaw)",
+        "profesiones": [
+          "Azafata"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Fría × Cálida",
+      "Grumpy × Sunshine",
+      "Ice Queen × Sunshine"
     ],
     "tropes": [
-      "Opposites Attract"
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Unrequited Love"
     ],
     "edad": [
       "25–39",
@@ -2393,7 +2934,16 @@
         "region": null,
         "ciudad": "Hua Hin",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Hotel familiar de Hua Hin",
+          "Apartamento de Fah en Bangkok",
+          "Aeropuerto y avión",
+          "Fundación y orfanato vinculados a Mae Si",
+          "Hospital",
+          "Teatro",
+          "Residencia familiar",
+          "Hotel de Bangkok y un yate donde se celebra un evento empresarial"
+        ]
       },
       {
         "pais": "Tailandia",
@@ -2420,7 +2970,11 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Empresa",
+      "Hospital",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -2428,6 +2982,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": "Tiene serie",
     "sagaName": "Smitten, Ditto & Visual",
@@ -2609,7 +3164,7 @@
   },
   {
     "id": "b_1777216114475_m587p",
-    "title": "Formidable eyes (Khom Klang)",
+    "title": "Formidable Eyes",
     "authors": [
       "Luxurious.W"
     ],
@@ -2624,25 +3179,70 @@
     ],
     "genres": [
       "Romance",
-      "Horror"
+      "Horror",
+      "Fantasía Urbana",
+      "Fantasía",
+      "Paranormal",
+      "Misterio",
+      "Thriller",
+      "Acción",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Sobrenatural",
+      "Crimen",
+      "Mitología",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [
       "Femme",
       "Masc"
     ],
     "characters": [
       "Policía",
-      "Chamana"
+      "Chamana",
+      "Tatuadora",
+      "Profesora",
+      "Investigadora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwuuxljon",
+        "nombre": "Peem",
+        "profesiones": [
+          "Investigadora"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvrwuuxl5ny",
+        "nombre": "Mae Kru Bulan",
+        "profesiones": [
+          "Chamana"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 30
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
-      "Masc × Femme"
+      "Masc × Femme",
+      "Femme × Femme"
     ],
     "tropes": [
       "Forbidden Love",
       "Opposites Attract",
-      "Slow Burn"
+      "Slow Burn",
+      "Destined Lovers",
+      "Forced Proximity"
     ],
     "edad": [
       "25–39"
@@ -2657,13 +3257,22 @@
         "ciudad": "Phop Phra",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Mae Sot",
+        "localidad": null,
+        "lugares": []
       }
     ],
-    "epoca": null,
+    "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
-    "entornos": [],
-    "idioma_original": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Hospital"
+    ],
+    "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
@@ -2671,7 +3280,8 @@
     "content_warnings": [
       "Violencia Gráfica"
     ],
-    "spicy": 2,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Dúo",
     "adaptacion": "Tiene serie",
     "sagaName": "Formidable Eyes",
@@ -2801,7 +3411,7 @@
   },
   {
     "id": "b_1777217871579_2zsqo",
-    "title": "Love on Hire",
+    "title": "Love On Hire",
     "authors": [
       "Yuufuku"
     ],
@@ -2812,21 +3422,57 @@
     "isbn": null,
     "wattpad": null,
     "ship": [
-      "EnjoyJune"
+      "GinJay"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Universidad",
+      "Segunda Oportunidad"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Estilo"
     ],
     "characters": [
       "CEO",
       "Estudiante",
-      "Millonaria / Billonaria"
+      "Millonaria / Billonaria",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrxlgqm3pu",
+        "nombre": "Theerachat (Chat)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme",
+          "Estilo"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrxlgqmhpe",
+        "nombre": "Thitinan (Nan)",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme",
+          "Estilo"
+        ],
+        "edad": 22
+      }
     ],
     "dinamicas": [
       "Rich × Poor",
@@ -2839,7 +3485,9 @@
       "Rich / Poor Romance",
       "Workplace Romance",
       "Age Gap",
-      "Revenge Romance"
+      "Revenge Romance",
+      "Jealousy Trope",
+      "Forbidden Love"
     ],
     "edad": [
       "25–39",
@@ -2854,14 +3502,25 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Empresa y oficinas de Theerachat",
+          "Hoteles",
+          "Apartamentos",
+          "Viñedo",
+          "Pueblo natal de Thitinan y casa de sus abuelos"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Empresa",
+      "Universidad",
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -2881,6 +3540,7 @@
       "Prostitución / Trabajo Sexual"
     ],
     "spicy": 5,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -3787,7 +4447,7 @@
   },
   {
     "id": "b_1777224833419_k96vi",
-    "title": "Kassatithan",
+    "title": "I'M YOUR MOON (Kassatithan)",
     "authors": [
       "Ace"
     ],
@@ -3800,15 +4460,47 @@
     "ship": [],
     "genres": [
       "Histórica",
-      "Romance"
+      "Romance",
+      "Drama",
+      "Paranormal",
+      "Fantasía"
     ],
     "subgenres": [
-      "Reencarnación"
+      "Reencarnación",
+      "Queer",
+      "Sobrenatural",
+      "Familia",
+      "Erótica"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Empresaria",
+      "Directiva y gestora de negocios hoteleros"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrxcu59x16",
+        "nombre": "Atithan (Tien/Prey)",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 20
+      },
+      {
+        "id": "pmvrxcu59xkv",
+        "nombre": "Kassakorn (P' Earl o señorita Earl)",
+        "profesiones": [
+          "Directiva y gestora de negocios hoteleros"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -3820,7 +4512,9 @@
       "Jealousy Trope",
       "Love Triangle",
       "Opposites Attract",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Reencarnación",
+      "Arranged Marriage"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -3836,7 +4530,13 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Distrito de Silom",
+          "Callejón Sukhumvit 26",
+          "Khao Yai/Pak Chong",
+          "Hoteles y palacios de Bangkok",
+          "Costa mediterránea de Niza y una isla privada no identificada en el especial II"
+        ]
       },
       {
         "pais": "Tailandia",
@@ -3877,14 +4577,18 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista con elementos sobrenaturales",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Isla",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -4938,7 +5642,7 @@
   },
   {
     "id": "b_1777277464434_11fjo",
-    "title": "ClaireBell",
+    "title": "Clairebell",
     "authors": [
       "KA9ESAMA"
     ],
@@ -4953,10 +5657,14 @@
     ],
     "genres": [
       "Drama",
-      "Romance"
+      "Romance",
+      "Misterio"
     ],
     "subgenres": [
-      "Crimen"
+      "Crimen",
+      "Queer",
+      "Familia",
+      "Segunda Oportunidad"
     ],
     "identidades": [
       "Sunshine",
@@ -4966,15 +5674,44 @@
     ],
     "characters": [
       "Estudiante",
-      "Prisionera"
+      "Prisionera",
+      "Reclusa"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvruw511jko",
+        "nombre": "Bell",
+        "profesiones": [
+          "Reclusa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvruw511hd1",
+        "nombre": "Claire",
+        "profesiones": [
+          "Reclusa"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Masc × Femme",
       "Grumpy × Sunshine",
-      "Ice Queen × Sunshine"
+      "Ice Queen × Sunshine",
+      "Feroz × Tierna"
     ],
     "tropes": [
-      "Slow Burn"
+      "Slow Burn",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Opposites Attract"
     ],
     "edad": [
       "New Adult (18–24)"
@@ -4988,22 +5725,31 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Prisión de mujeres",
+          "Celdas",
+          "Patio y jardín penitenciario",
+          "Biblioteca",
+          "Enfermería",
+          "Comisaría y escuela vinculada al caso de Claire"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Cárcel"
+      "Cárcel",
+      "Ciudad"
     ],
-    "idioma_original": "Tailandés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -5284,27 +6030,65 @@
       "EnjoyJune"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Universidad"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "CEO",
-      "Estudiante"
+      "Estudiante",
+      "Artista",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrv9wgkfzs",
+        "nombre": "Phraenarin (Rin)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 35
+      },
+      {
+        "id": "pmvrv9wgkwhm",
+        "nombre": "Khemjira (Khem)",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 23
+      }
     ],
     "dinamicas": [
       "Boss × Employee",
       "Femme × Femme",
-      "Ice Queen × Sunshine"
+      "Ice Queen × Sunshine",
+      "Fría × Cálida",
+      "Feroz × Tierna",
+      "Rich × Poor",
+      "Jefa × Subordinada"
     ],
     "tropes": [
       "Fake Relationship",
       "Age Gap",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Arranged Marriage",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Opposites Attract"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -5325,14 +6109,20 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Universidad",
+      "Empresa",
+      "Hospital",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": "Tiene serie",
     "sagaName": "Denied Love",
@@ -5361,7 +6151,7 @@
   },
   {
     "id": "b_1777277854695_4ac71",
-    "title": "Denied Love: Endless (Denied Love 1.5)",
+    "title": "Denied Love Endless",
     "authors": [
       "Peony"
     ],
@@ -5375,10 +6165,14 @@
       "EnjoyJune"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Familia",
+      "Queer"
     ],
     "identidades": [
       "Femme",
@@ -5387,17 +6181,47 @@
     ],
     "characters": [
       "CEO",
-      "Estudiante"
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrvc1ltlyg",
+        "nombre": "Praenarin (Rin)",
+        "profesiones": [
+          "Empresaria",
+          "CEO"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 35
+      },
+      {
+        "id": "pmvrvc1ltkvp",
+        "nombre": "Khemjira (Khem)",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Boss × Employee",
       "Femme × Femme",
-      "Ice Queen × Sunshine"
+      "Ice Queen × Sunshine",
+      "Fría × Cálida",
+      "Feroz × Tierna",
+      "Rich × Poor",
+      "Jefa × Subordinada"
     ],
     "tropes": [
       "Fake Relationship",
       "Age Gap",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Arranged Marriage"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -5412,20 +6236,44 @@
         "region": null,
         "ciudad": null,
         "localidad": null,
+        "lugares": [
+          "Oficina y empresa familiar",
+          "Vivienda de la pareja",
+          "Mercado junto al río o canal",
+          "Lugar de la segunda ceremonia de boda",
+          "Casa de playa en Hua Hin y escuela infantil"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "mencionada",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Empresa",
+      "Oficina"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": "Tiene serie",
     "sagaName": "Denied Love",
@@ -5561,10 +6409,18 @@
       "LMSY"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica",
+      "Celebridad"
     ],
     "identidades": [
       "Femme"
@@ -5572,13 +6428,40 @@
     "characters": [
       "Empresaria"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrx3nk3hgs",
+        "nombre": "Aiwarin",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvrx3nk3a21",
+        "nombre": "Mevika",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Forbidden Love",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Rivals to Lovers",
+      "Secret Relationship",
+      "Jealousy Trope"
     ],
     "edad": [
       "25–39"
@@ -5592,20 +6475,38 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Anthea Bar",
+          "Orianna Grand",
+          "Sede de Superior Holding Group",
+          "Oficinas corporativas",
+          "Restaurantes",
+          "Suites privadas",
+          "Centro comercial Greater Duty-Free y el resort de Orianna"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Koh Samui",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": "Tiene serie",
     "sagaName": "Harmony Secret",
@@ -5653,14 +6554,45 @@
       "LMSY"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Familia",
+      "Queer",
+      "Erótica"
+    ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Estilo"
     ],
     "characters": [
       "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrx4kekvr1",
+        "nombre": "Aiwarin",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvrx4kekts7",
+        "nombre": "Mevika",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      }
     ],
     "dinamicas": [
       "Femme × Femme"
@@ -5668,7 +6600,8 @@
     "tropes": [
       "Enemies to Lovers",
       "Forbidden Love",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Opposites Attract"
     ],
     "edad": [
       "25–39"
@@ -5682,20 +6615,33 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Aeropuerto",
+          "Restaurante",
+          "Hotel y resort de Orianna en Phuket",
+          "Habitaciones",
+          "Piscina privada",
+          "Piscina junto a la playa",
+          "Oficinas de Orianna y Superior",
+          "Y futura vivienda proyectada"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Restaurante",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": "Sin adaptación",
     "sagaName": "Harmony Secret",
@@ -7112,15 +8058,49 @@
       "TKNur"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Crimen",
+      "Erótica",
+      "BDSM"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "CEO",
-      "Estudiante"
+      "Estudiante",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrv5amxp1k",
+        "nombre": "Kiraphat (Queen o P’Queen)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrv5amx3pf",
+        "nombre": "Bonita (Babe)",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 20
+      }
     ],
     "dinamicas": [
       "Fría × Cálida",
@@ -7129,7 +8109,8 @@
       "Ice Queen × Sunshine",
       "Grumpy × Sunshine",
       "Femme × Femme",
-      "Rich × Poor"
+      "Rich × Poor",
+      "Feroz × Tierna"
     ],
     "tropes": [
       "Rich / Poor Romance",
@@ -7139,7 +8120,8 @@
       "Jealousy Trope",
       "Opposites Attract",
       "Sex Toys / Juguetes Sexuales",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Hurt/Comfort"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -7154,14 +8136,25 @@
         "region": null,
         "ciudad": null,
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Universidad",
+          "Casa de Bonita",
+          "Establecimiento nocturno",
+          "Vehículos",
+          "Residencia o condominio de Kiraphat",
+          "Empresa familiar",
+          "Viviendas familiares"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Universidad",
+      "Empresa"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -7173,7 +8166,8 @@
       "Abuso de Poder",
       "Clasismo"
     ],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": "Tiene serie",
     "sagaName": "Dangerous Queen",
@@ -7211,17 +8205,49 @@
       "TKNur"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Erótica",
+      "Crimen"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "CEO",
-      "Estudiante"
+      "Empresaria",
+      "Marketing"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrv345dx89",
+        "nombre": "Kiraphat (Queen o P’Queen)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrv345dwau",
+        "nombre": "Bonita",
+        "profesiones": [
+          "Marketing"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 20
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -7230,15 +8256,20 @@
       "Dominante × Sumisa",
       "Top × Bottom",
       "Fría × Cálida",
-      "Rich × Poor"
+      "Rich × Poor",
+      "Feroz × Tierna"
     ],
     "tropes": [
       "Rich / Poor Romance",
       "Age Gap",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Jealousy Trope",
+      "Hurt/Comfort",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [
-      "25–39"
+      "25–39",
+      "New Adult (18–24)"
     ],
     "pais_cultura": [
       "Tailandia"
@@ -7249,13 +8280,25 @@
         "region": null,
         "ciudad": null,
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Oficinas",
+          "Salas de reuniones empresariales",
+          "Domicilio o penthouse de Kiraphat",
+          "Dormitorio de la pareja",
+          "Bar",
+          "Hospital",
+          "Espacios de reunión familiar",
+          "Aeropuerto",
+          "Localizaciones relacionadas con la investigación del antagonista"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Hospital"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -7265,7 +8308,8 @@
       "Clasismo",
       "Abuso de Poder"
     ],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": "Tiene serie",
     "sagaName": "Dangerous Queen",
@@ -8896,7 +9940,7 @@
   },
   {
     "id": "b_1777361384644_m7v2n",
-    "title": "I See you",
+    "title": "I See You",
     "authors": [
       "Salmon"
     ],
@@ -8908,24 +9952,63 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Fantasía",
+      "Paranormal",
+      "Drama",
+      "Misterio"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Sobrenatural",
+      "Familia",
+      "Crimen"
     ],
     "identidades": [
       "Femme",
       "Masc"
     ],
     "characters": [
-      "Policía"
+      "Policía",
+      "Vicepresidenta de Patcharasethakul",
+      "Investigadora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrxambfwyx",
+        "nombre": "Kao",
+        "profesiones": [
+          "Vicepresidenta de Patcharasethakul"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 25
+      },
+      {
+        "id": "pmvrxambfl5e",
+        "nombre": "Raphassa",
+        "profesiones": [
+          "Investigadora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Femme × Femme",
+      "Protectora × Delicada"
     ],
     "tropes": [
       "Forced Proximity",
-      "Rich / Poor Romance"
+      "Rich / Poor Romance",
+      "Forbidden Love",
+      "Jealousy Trope",
+      "Hurt/Comfort"
     ],
     "edad": [
       "25–39"
@@ -8939,7 +10022,15 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Hospitales",
+          "Comisaría",
+          "Residencia de la familia Patcharasethakul",
+          "Sede de la empresa familiar",
+          "Templo",
+          "Playa",
+          "Anchana Homestay y el lugar del ataque que origina la investigación"
+        ]
       },
       {
         "pais": "Tailandia",
@@ -8951,15 +10042,19 @@
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Realista",
-    "entornos": [],
+    "tipo_mundo": "Realista con elementos sobrenaturales",
+    "entornos": [
+      "Empresa",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 0,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -8983,7 +10078,7 @@
   },
   {
     "id": "b_1777361559253_ud4hj",
-    "title": "Farensia",
+    "title": "Farensia.",
     "authors": [
       "KhunClaire"
     ],
@@ -8995,42 +10090,84 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Fantasía",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Mitología",
+      "Sobrenatural"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Doctora / Médica",
       "Emperatriz",
-      "Realeza"
+      "Realeza",
+      "Médica real"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwilwyn9t",
+        "nombre": "Farensia",
+        "profesiones": [
+          "Médica real"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwilwyir0",
+        "nombre": "Silvia",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 18
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Realeza × Plebeya",
+      "Protectora × Delicada"
     ],
     "tropes": [
       "Friends to Lovers",
       "Forbidden Love",
       "Forced Proximity",
-      "Love Triangle"
+      "Love Triangle",
+      "Jealousy Trope",
+      "Workplace Romance",
+      "Hurt/Comfort"
     ],
-    "edad": [],
+    "edad": [
+      "+40",
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [
       "Tailandia"
     ],
     "ubicaciones": [],
-    "epoca": null,
+    "epoca": "Histórica",
     "periodo": null,
-    "tipo_mundo": "Fantasía",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [
+      "Palacio",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
@@ -9892,15 +11029,49 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
-      "Navidad"
+      "Navidad",
+      "Queer",
+      "Viaje en el Tiempo",
+      "Familia",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [],
+    "protagonistas": [
+      {
+        "id": "pmvrxj6umead",
+        "nombre": "Pran Nirun",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvrxj6umyxm",
+        "nombre": "Rose",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrxj6ummkx",
+        "nombre": "Pran",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -9909,7 +11080,8 @@
       "Forced Proximity",
       "Hurt/Comfort",
       "Jealousy Trope",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Second Chance Romance"
     ],
     "edad": [
       "25–39"
@@ -9923,20 +11095,34 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Mansión Clemence",
+          "Cafetería",
+          "Condominio de Pran",
+          "Distrito comercial navideño",
+          "Nagoya",
+          "Sapporo",
+          "Hokkaido",
+          "París",
+          "Roma"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Realista con elementos sobrenaturales",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Cafetería",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 1,
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": "Sin adaptación",
     "sagaName": "Trilogía Christmas",
@@ -10205,17 +11391,53 @@
       "NattyYeepun"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Celebridad",
+      "Autodescubrimiento",
+      "Universidad"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Actriz",
-      "Estudiante"
+      "Estudiante",
+      "Modelo",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwxtg3c6p",
+        "nombre": "Charm",
+        "profesiones": [
+          "Actriz"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwxtg333o",
+        "nombre": "Pingrak",
+        "profesiones": [
+          "Actriz",
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -10226,9 +11448,16 @@
       "Enemies to Lovers",
       "Forced Proximity",
       "Slow Burn",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Second Chance Romance",
+      "Age Gap",
+      "Jealousy Trope",
+      "Workplace Romance"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
     "pais_cultura": [
       "Tailandia"
     ],
@@ -10238,20 +11467,51 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Escuela",
+          "Universidad",
+          "Estudios fotográficos",
+          "Platós de rodaje",
+          "Apartamentos",
+          "Restaurantes",
+          "Hoteles",
+          "Sede empresarial",
+          "Centro comercial Emperor Mall",
+          "Tienda Charm",
+          "Hospital"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Hua Hin",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Hospital",
+      "Universidad",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -10564,9 +11824,9 @@
   },
   {
     "id": "b_1777384060823_gmo0x",
-    "title": "Chloe",
+    "title": "Chloe: Our Love Project",
     "authors": [
-      "ChaoPlanoy"
+      "Ya saben quién»"
     ],
     "year": 2025,
     "cover": "https://cdn-local.mebmarket.com/meb/server1/170541/Thumbnail/book_detail_large.gif?3",
@@ -10576,27 +11836,69 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Drama",
+      "Fantasía Urbana"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Wattpad",
+      "Magia"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Empresaria",
-      "Escritora"
+      "Escritora",
+      "Propetaria de cafetería"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvruuu0oqmx",
+        "nombre": "Kee",
+        "profesiones": [
+          "Propetaria de cafetería"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 30
+      },
+      {
+        "id": "pmvruuu0oqh8",
+        "nombre": "Ja",
+        "profesiones": [
+          "Escritora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
-      "Famosa × Anónima"
+      "Famosa × Anónima",
+      "Feroz × Tierna",
+      "Grumpy × Sunshine"
     ],
     "tropes": [
       "Coming Out tardío",
       "Forced Proximity",
       "Love Triangle",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Friends to Lovers",
+      "Jealousy Trope",
+      "Hurt/Comfort",
+      "Secret Relationship"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Tailandia"
     ],
@@ -10606,20 +11908,32 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Cafetería de Kee",
+          "Vivienda de Ja",
+          "Casa de la madre de Ja",
+          "Templo",
+          "Hospital",
+          "Calles de Bangkok"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Realista con elementos sobrenaturales",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Hospital",
+      "Cafetería",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
@@ -10771,7 +12085,7 @@
   },
   {
     "id": "b_1777384223709_vmtpz",
-    "title": "Yours Ever",
+    "title": "Yours Ever.",
     "authors": [
       "JinJin"
     ],
@@ -10783,23 +12097,61 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Erótica"
     ],
     "identidades": [
       "Femme",
-      "Masc"
+      "Masc",
+      "Otro"
     ],
     "characters": [
-      "Piloto"
+      "Piloto",
+      "Estudiante",
+      "Doctora / Médica",
+      "Médica especialista en oftalmología"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwjn60u6j",
+        "nombre": "Mintra",
+        "profesiones": [
+          "Piloto"
+        ],
+        "identidades": [
+          "Otro"
+        ],
+        "edad": 29
+      },
+      {
+        "id": "pmvrwjn60nna",
+        "nombre": "Pimlapas",
+        "profesiones": [
+          "Médica especialista en oftalmología"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 29
+      }
     ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Femme × Femme"
     ],
     "tropes": [
-      "Childhood Friends"
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Second Chance Romance",
+      "Jealousy Trope",
+      "Workplace Romance"
     ],
     "edad": [
       "25–39"
@@ -10815,7 +12167,16 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Aeropuerto de Suvarnabhumi",
+          "Cabina de avión",
+          "Hospital Vitchawech",
+          "Departamento de oftalmología",
+          "Quirófanos",
+          "Residencia de la familia",
+          "Tienda de comestibles de la abuela de Mintra",
+          "Lugares de trabajo y espacios"
+        ]
       },
       {
         "pais": "Noruega",
@@ -10842,14 +12203,19 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Hospital",
+      "Empresa",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -10893,22 +12259,65 @@
     "pages": 1036,
     "isbn": null,
     "wattpad": null,
-    "ship": [],
-    "genres": [
-      "Romance"
+    "ship": [
+      "Intuorn",
+      "Arun"
     ],
-    "subgenres": [],
+    "genres": [
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea",
+      "Drama",
+      "Paranormal"
+    ],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Sobrenatural",
+      "Erótica",
+      "Wattpad"
+    ],
     "identidades": [
       "Femme",
       "Masc"
     ],
     "characters": [
       "Empresaria",
-      "Deportista"
+      "Deportista",
+      "Camarera",
+      "Secretaria",
+      "Asistente"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrxfglz0kg",
+        "nombre": "Intuorn (In)",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvrxfglzeu7",
+        "nombre": "Arun BekFah (Fah)",
+        "profesiones": [
+          "Secretaria",
+          "Asistente"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 28
+      }
     ],
     "dinamicas": [
       "Masc × Femme",
-      "Rich × Poor"
+      "Rich × Poor",
+      "Boss × Employee",
+      "Jefa × Subordinada",
+      "Femme × Femme"
     ],
     "tropes": [
       "Forbidden Love",
@@ -10916,7 +12325,9 @@
       "Hurt/Comfort",
       "Jealousy Trope",
       "Opposites Attract",
-      "Rich / Poor Romance"
+      "Rich / Poor Romance",
+      "Workplace Romance",
+      "Arranged Marriage"
     ],
     "edad": [
       "25–39"
@@ -10930,7 +12341,14 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Hoteles",
+          "Restaurantes",
+          "Hotel familiar",
+          "Un edificio que Intuorn transforma en hotel",
+          "Un mercado donde toca el violín para ganar dinero",
+          "Otros establecimientos de Bangkok"
+        ]
       },
       {
         "pais": "Tailandia",
@@ -10950,8 +12368,10 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -10970,7 +12390,8 @@
       "Distanciamiento Familiar / Rechazo",
       "Acoso Sexual"
     ],
-    "spicy": 5,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
@@ -10999,7 +12420,7 @@
   },
   {
     "id": "b_1777384338988_zxlvj",
-    "title": "Blossom lady",
+    "title": "Blossom Lady",
     "authors": [
       "3dokjix"
     ],
@@ -11011,16 +12432,51 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica",
+      "Universidad",
+      "Wattpad"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Madre Soltera"
+      "Madre Soltera",
+      "Empresaria",
+      "Secretaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvruj2kavp5",
+        "nombre": "Viranya Phichantaweewech (Gren)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 29
+      },
+      {
+        "id": "pmvruj2kan32",
+        "nombre": "Patcharin Boonpasuk",
+        "profesiones": [
+          "Madre Soltera",
+          "Secretaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      }
     ],
     "dinamicas": [
       "Rich × Poor",
@@ -11029,9 +12485,9 @@
       "Jefa × Subordinada"
     ],
     "tropes": [
-      "Age Gap",
       "Workplace Romance",
-      "Rich / Poor Romance"
+      "Rich / Poor Romance",
+      "Secret Relationship"
     ],
     "edad": [
       "25–39"
@@ -11046,19 +12502,29 @@
         "ciudad": "Bangkok",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Hong Kong y Alemania"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [],
-    "idioma_original": "Tailandés",
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -11104,9 +12570,17 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming Out"
+    ],
     "identidades": [
       "Femme",
       "Masc"
@@ -11114,16 +12588,48 @@
     "characters": [
       "Estudiante"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrv0tquk1u",
+        "nombre": "Thanwa",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 22
+      },
+      {
+        "id": "pmvrv0tqumx5",
+        "nombre": "Duean Nao",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": 22
+      }
+    ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Introvertida × Extrovertida",
+      "Grumpy × Sunshine",
+      "Fría × Cálida",
+      "Femme × Femme"
     ],
     "tropes": [
       "Friends to Lovers",
-      "Slow Burn"
+      "Slow Burn",
+      "Unrequited Love",
+      "Jealousy Trope",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Forbidden Love"
     ],
     "edad": [
-      "New Adult (18–24)",
-      "25–39"
+      "New Adult (18–24)"
     ],
     "pais_cultura": [
       "Tailandia"
@@ -11134,13 +12640,33 @@
         "region": null,
         "ciudad": null,
         "localidad": null,
+        "lugares": [
+          "Universidad",
+          "Dormitorios o habitaciones de las protagonistas",
+          "Condominio de Thanwa",
+          "Empresa The Grands",
+          "Sede del grupo empresarial familiar",
+          "Casa de la familia de Duean Nao",
+          "Restaurante",
+          "Espacios de prácticas"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "No se puede confirmar una lista fiable de otras ciudades visitadas físicamente",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Restaurante",
+      "Empresa"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -11152,7 +12678,8 @@
       "Conflictos Familiares",
       "Manipulación Psicológica"
     ],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Único",
     "adaptacion": "Sin adaptación",
     "sagaName": null,
@@ -11180,7 +12707,7 @@
     "authors": [
       "ChaoPlanoy"
     ],
-    "year": 2020,
+    "year": 2024,
     "cover": "https://cdn-local.mebmarket.com/meb/server1/116797/Thumbnail/book_detail_large.gif?2",
     "synopsis": "Todos lo llaman \"God\", no por divinidad, sino por su nombre. Posee un don cruel: dar felicidad o infligir sufrimiento, pero cada palabra tiene consecuencias físicas para ella. Tras una maldición, una enfermedad consume su cuerpo y la esperanza de su madre.\n\nEn este declive aparece Miriam, su amor secreto de la secundaria y bálsamo para su espíritu. Su presencia despierta en él un deseo prohibido: vivir. Pero sobrevivir es un riesgo bajo su condición. Ahora guarda su último deseo y, si debe entregarlo, será para ella. Una historia de sacrificios y un amor que desafía al destino.\nGracias a Capricornia por la traducción",
     "pages": 341,
@@ -11188,9 +12715,19 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Fantasía"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Sobrenatural",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
     "identidades": [
       "Femme"
     ],
@@ -11199,6 +12736,28 @@
       "Artista",
       "Productora de televisión"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrx16do88j",
+        "nombre": "God",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrx16dony0",
+        "nombre": "Miriam",
+        "profesiones": [
+          "Productora de televisión"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -11206,7 +12765,11 @@
       "Forbidden Love",
       "Slow Burn",
       "Opposites Attract",
-      "Age Gap"
+      "Age Gap",
+      "Friends to Lovers",
+      "Workplace Romance",
+      "Jealousy Trope",
+      "Hurt/Comfort"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -11221,14 +12784,41 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Hospital",
+          "Vivienda familiar de God",
+          "Apartamento y hogar compartido de la pareja",
+          "Lugar de trabajo de Miriam",
+          "Localizaciones de rodaje",
+          "Galería de arte",
+          "Universidad",
+          "Zonas comerciales"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Ayutthaya",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "texto no permite afirmar que todas las menciones geográficas correspondan a visitas completas de ambas protagonistas",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Realista con elementos sobrenaturales",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "tipo_mundo": "Paranormal",
+    "entornos": [
+      "Hospital",
+      "Universidad",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -11239,6 +12829,7 @@
       "Manipulación Psicológica"
     ],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": "Sin adaptación",
     "sagaName": "Sobrenatural",
@@ -11266,7 +12857,7 @@
     "authors": [
       "ChaoPlanoy"
     ],
-    "year": 2020,
+    "year": 2024,
     "cover": "https://cdn-local.mebmarket.com/meb/server1/116798/Thumbnail/book_detail_large.gif?2",
     "synopsis": "Todos lo llaman \"God\", no por divinidad, sino por su nombre. Posee un don cruel: dar felicidad o infligir sufrimiento, pero cada palabra tiene consecuencias físicas para ella. Tras una maldición, una enfermedad consume su cuerpo y la esperanza de su madre.\n\nEn este declive aparece Miriam, su amor secreto de la secundaria y bálsamo para su espíritu. Su presencia despierta en él un deseo prohibido: vivir. Pero sobrevivir es un riesgo bajo su condición. Ahora guarda su último deseo y, si debe entregarlo, será para ella. Una historia de sacrificios y un amor que desafía al destino.\nGracias a Capricornia por la traducción",
     "pages": 341,
@@ -11274,9 +12865,19 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Fantasía"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Sobrenatural",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica"
+    ],
     "identidades": [
       "Femme"
     ],
@@ -11285,6 +12886,26 @@
       "Estudiante",
       "Productora de televisión"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrx2ivf6w0",
+        "nombre": "God",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrx2ivftq3",
+        "nombre": "Miriam",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -11292,7 +12913,10 @@
       "Forbidden Love",
       "Slow Burn",
       "Opposites Attract",
-      "Age Gap"
+      "Age Gap",
+      "Friends to Lovers",
+      "Hurt/Comfort",
+      "Jealousy Trope"
     ],
     "edad": [
       "25–39"
@@ -11306,14 +12930,25 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Apartamentos",
+          "Mansión familiar",
+          "Hospital",
+          "Localizaciones de rodaje",
+          "Restaurantes",
+          "Calles y mercados de Bangkok",
+          "Vivienda de Miriam y lugares vinculados a la búsqueda de personajes desaparecidos"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Realista con elementos sobrenaturales",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "tipo_mundo": "Paranormal",
+    "entornos": [
+      "Hospital",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -11324,6 +12959,7 @@
       "Manipulación Psicológica"
     ],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": "Sin adaptación",
     "sagaName": "Sobrenatural",
@@ -11347,7 +12983,7 @@
   },
   {
     "id": "b_1777384699316_b1wlb",
-    "title": "Crush",
+    "title": "CRUSH",
     "authors": [
       "ChaoPlanoy"
     ],
@@ -11363,28 +12999,67 @@
     "genres": [
       "Comedia Romántica",
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
     "subgenres": [
       "Erótica",
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming Out"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Su estilo"
     ],
     "characters": [
       "Empresaria",
-      "Camarera",
-      "Empleada doméstica"
+      "Empleada doméstica",
+      "Artista",
+      "CEO"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvruz672nsj",
+        "nombre": "Frung",
+        "profesiones": [
+          "CEO"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      },
+      {
+        "id": "pmvruz672qx2",
+        "nombre": "Yu",
+        "profesiones": [
+          "Empleada doméstica"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 28
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Boss × Employee",
+      "Jefa × Subordinada",
+      "Grumpy × Sunshine",
+      "Feroz × Tierna"
     ],
     "tropes": [
       "Slow Burn",
       "Opposites Attract",
       "Forced Proximity",
-      "Rich / Poor Romance"
+      "Rich / Poor Romance",
+      "Age Gap",
+      "Secret Relationship",
+      "Workplace Romance",
+      "Lesbian Awakening"
     ],
     "edad": [
       "25–39"
@@ -11396,15 +13071,28 @@
       {
         "pais": "Tailandia",
         "region": null,
-        "ciudad": null,
+        "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Condominio de Frung",
+          "Mansión familiar",
+          "Oficina de la empresa tecnológica",
+          "Casas familiares",
+          "Escuela de clases extraescolares",
+          "Restaurante junto a la playa",
+          "Centro comercial y espacio de trabajo del negocio de joyería"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Oficina",
+      "Restaurante",
+      "Empresa",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -11414,7 +13102,8 @@
       "Consentimiento Dudoso (Dub-Con)",
       "Manipulación Psicológica"
     ],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": "Único",
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -14680,16 +16369,46 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Erótica"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Empresaria"
+      "Empresaria",
+      "Directiva empresarial"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrvyt6soab",
+        "nombre": "Nam-Ing (P'Ing o Ing)",
+        "profesiones": [
+          "Directiva empresarial"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrvyt6s62t",
+        "nombre": "Wayuphak (Lom)",
+        "profesiones": [
+          "Directiva empresarial"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 25
+      }
     ],
     "dinamicas": [
       "Femme × Femme"
@@ -14697,7 +16416,10 @@
     "tropes": [
       "Forced Proximity",
       "Forbidden Love",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Secret Relationship",
+      "Jealousy Trope",
+      "Workplace Romance"
     ],
     "edad": [
       "25–39"
@@ -14718,7 +16440,7 @@
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [],
-    "idioma_original": "Tailandés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -14727,7 +16449,8 @@
       "Incesto",
       "Abuso Sexual"
     ],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -27206,25 +28929,66 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Celebridad",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica",
+      "Crimen",
+      "Segunda Oportunidad"
     ],
     "identidades": [
       "Grumpy",
-      "Sunshine"
+      "Sunshine",
+      "Femme"
     ],
     "characters": [
       "Actriz"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrvj4dvz5f",
+        "nombre": "Iris",
+        "profesiones": [
+          "Actriz"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 22
+      },
+      {
+        "id": "pmvrvj4dvyvq",
+        "nombre": "Karen (Ren)",
+        "profesiones": [
+          "Actriz"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 26
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Rich × Poor",
+      "Famosa × Anónima",
+      "Jefa × Subordinada"
     ],
     "tropes": [
       "Unrequited Love",
       "Secret Relationship",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Second Chance Romance",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Rich / Poor Romance"
     ],
     "edad": [
       "25–39",
@@ -27240,12 +29004,44 @@
         "ciudad": "Bangkok",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "No",
+        "localidad": null,
+        "lugares": [
+          "Estudios y sets de rodaje",
+          "Agencias de entretenimiento",
+          "Condominios de lujo",
+          "Una comisaría",
+          "Un tribunal",
+          "Un hospital privado",
+          "Un hotel en el campo estadounidense y un evento de moda en París"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "localizaciones de Estados Unidos durante el rodaje de los capítulos 27–28",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Hospital",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -27258,6 +29054,7 @@
       "Drogas / Consumo de Sustancias"
     ],
     "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -34390,7 +36187,10 @@
       "Romance"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Femme"
@@ -34399,14 +36199,38 @@
       "Artista",
       "Empresaria"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrugnr54by",
+        "nombre": "Pure",
+        "profesiones": [
+          "Artista"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrugnr5kgd",
+        "nombre": "Air",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Second Chance Romance",
       "Forbidden Love",
       "Slow Burn",
-      "Unrequited Love"
+      "Unrequited Love",
+      "Strangers to Lovers"
     ],
     "edad": [
       "25–39"
@@ -34443,7 +36267,8 @@
       "Ansiedad / Ataques de Pánico",
       "Distanciamiento Familiar / Rechazo"
     ],
-    "spicy": 2,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Theme Park universe",
@@ -44447,10 +46272,13 @@
     ],
     "genres": [
       "Comedia Romántica",
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Erótica"
     ],
     "identidades": [
       "Femme"
@@ -44459,6 +46287,30 @@
       "Supervisora de Ventas",
       "Gerente de Contabilidad"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrwbqro9us",
+        "nombre": "Lallalin, Lal o P'Lal",
+        "profesiones": [
+          "Supervisora de Ventas"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwbqrobfp",
+        "nombre": "Vetaka, Wine o P'Wine",
+        "profesiones": [
+          "Gerente de Contabilidad"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Femme × Femme",
@@ -44466,7 +46318,9 @@
       "Feroz × Tierna"
     ],
     "tropes": [
-      "Workplace Romance"
+      "Workplace Romance",
+      "Friends with Benefits",
+      "Enemies to Lovers"
     ],
     "edad": [
       "25–39"
@@ -44481,7 +46335,15 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Oficinas de Ventas y Contabilidad",
+          "Sala multiusos",
+          "Apartamento",
+          "Gimnasio",
+          "Campo de golf",
+          "Restaurantes",
+          "Hotel y oficina de un cliente extranjero"
+        ]
       },
       {
         "pais": "Japón",
@@ -44494,14 +46356,18 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Oficina",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 0,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "WHALE",
@@ -44534,10 +46400,13 @@
     ],
     "genres": [
       "Comedia Romántica",
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Erótica"
     ],
     "identidades": [
       "Femme"
@@ -44546,6 +46415,30 @@
       "Gerente de Contabilidad",
       "Supervisora de Ventas"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrwe3w16z9",
+        "nombre": "Lallalin (Lal)",
+        "profesiones": [
+          "Supervisora de Ventas"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrwe3w18ah",
+        "nombre": "Vetaka (Wine)",
+        "profesiones": [
+          "Gerente de Contabilidad"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme",
       "Grumpy × Sunshine",
@@ -44553,7 +46446,8 @@
       "Feroz × Tierna"
     ],
     "tropes": [
-      "Workplace Romance"
+      "Workplace Romance",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [
       "25–39"
@@ -44568,7 +46462,16 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Oficinas",
+          "Apartamentos",
+          "Nueva casa",
+          "Restaurantes",
+          "Casas familiares",
+          "Tienda de mascotas",
+          "Clínica veterinaria",
+          "Boutique nupcial y recinto de boda con jardín"
+        ]
       },
       {
         "pais": "Japón",
@@ -44588,8 +46491,10 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -44598,6 +46503,7 @@
       "Conflictos Familiares"
     ],
     "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "WHALE",
@@ -66672,16 +68578,78 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea",
+      "Psicológico",
+      "Misterio"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Queer",
+      "Amnesia",
+      "Autodescubrimiento",
+      "Familia",
+      "Crimen",
+      "Erótica",
+      "Segunda Oportunidad"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Empresaria",
+      "Estudiante",
+      "Doctora / Médica"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrvlh1yeag",
+        "nombre": "Sun",
+        "profesiones": [
+          "Doctora / Médica"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrvlh1ykd4",
+        "nombre": "Nadia",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvrvlh1ypor",
+        "nombre": "Kris",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Rich × Poor",
+      "Boss × Employee"
     ],
     "tropes": [
-      "Love Triangle"
+      "Love Triangle",
+      "Secret Relationship",
+      "Friends to Lovers",
+      "Second Chance Romance",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Unrequited Love",
+      "Forbidden Love"
     ],
     "edad": [
       "25–39"
@@ -66696,12 +68664,34 @@
         "ciudad": "Bangkok",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Rayong",
+        "localidad": null,
+        "lugares": [
+          "Colegio e instituto",
+          "Universidad",
+          "Restaurante",
+          "Cafetería",
+          "Clínica",
+          "Hospital",
+          "Residencias privadas y lugares"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Hospital",
+      "Instituto",
+      "Cafetería",
+      "Restaurante",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -66719,7 +68709,8 @@
       "Ansiedad / Ataques de Pánico",
       "Conflictos Familiares"
     ],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -80043,14 +82034,41 @@
     "subgenres": [
       "Autodescubrimiento",
       "Magia",
-      "Mitología"
+      "Mitología",
+      "Queer",
+      "Sobrenatural"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Diosa",
-      "Empresaria"
+      "Empresaria",
+      "Empleada de oficina"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwhbwjsef",
+        "nombre": "Cherlin ( Cher)",
+        "profesiones": [
+          "Empleada de oficina"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 29
+      },
+      {
+        "id": "pmvrwhbwj0q8",
+        "nombre": "Chao Kha",
+        "profesiones": [
+          "Diosa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Diosa × Devota",
@@ -80059,9 +82077,14 @@
     "tropes": [
       "Fake Relationship",
       "Forced Proximity",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Jealousy Trope",
+      "Workplace Romance",
+      "Lesbian Awakening"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Tailandia"
     ],
@@ -80071,20 +82094,33 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Complejo de apartamentos",
+          "Santuario de la Diosa de la Tierra",
+          "Oficinas",
+          "Restaurante",
+          "Apartamento de Cherlin",
+          "Azotea sobrenatural de mármol y hotel de la reunión universitaria"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Fantasía",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Oficina",
+      "Universidad",
+      "Restaurante",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 1,
+    "spicy": 0,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -82618,16 +84654,54 @@
     "pages": 709,
     "isbn": null,
     "wattpad": null,
-    "ship": [],
-    "genres": [
-      "Romance"
+    "ship": [
+      "Chama",
+      "Ninmookda"
     ],
-    "subgenres": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
+    ],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "CEO"
+      "CEO",
+      "Empresaria",
+      "Secretaria de Chama",
+      "Secretaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrx6rlcyta",
+        "nombre": "Chama (Baicha)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 26
+      },
+      {
+        "id": "pmvrx6rlckqv",
+        "nombre": "Ninmookda (Mook)",
+        "profesiones": [
+          "Secretaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Boss × Employee",
@@ -82641,7 +84715,8 @@
       "Slow Burn",
       "Love Triangle",
       "Jealousy Trope",
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Forced Proximity"
     ],
     "edad": [
       "25–39",
@@ -82656,13 +84731,38 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
+        "lugares": [
+          "Oficina y",
+          "Viviendas de ambas",
+          "Hotel durante la excursión",
+          "Montaña y zonas de ocio de Bangkok",
+          "Aeropuerto",
+          "Hospital"
+        ]
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Ubon Ratchathani",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Pak Chong",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Oficina",
+      "Hospital",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -82673,7 +84773,8 @@
       "Matrimonio Forzado",
       "Homofobia"
     ],
-    "spicy": 4,
+    "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -83649,23 +85750,61 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Universidad"
+    ],
     "identidades": [
       "Lesbiana",
       "Femme",
-      "Ice Queen"
+      "Ice Queen",
+      "Masc"
     ],
     "characters": [
       "CEO",
-      "Doctora / Médica"
+      "Doctora / Médica",
+      "Empresaria",
+      "Profesora",
+      "Investigadora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrvdjf8oia",
+        "nombre": "Praewa (Prae)",
+        "profesiones": [
+          "Doctora / Médica"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": 34
+      },
+      {
+        "id": "pmvrvdjf8wfh",
+        "nombre": "Keen (Keeta)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 36
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
       "Ice Queen × Softie",
       "Fría × Cálida",
-      "Seria × Divertida"
+      "Seria × Divertida",
+      "Caos × Control",
+      "Grumpy × Sunshine",
+      "Ice Queen × Sunshine"
     ],
     "tropes": [
       "Friends to Lovers",
@@ -83673,7 +85812,11 @@
       "Slow Burn",
       "Second Chance Romance",
       "Hurt/Comfort",
-      "Found Family"
+      "Found Family",
+      "Unrequited Love",
+      "One Night Stand → More",
+      "Jealousy Trope",
+      "Childhood Friends"
     ],
     "edad": [
       "25–39"
@@ -83689,12 +85832,51 @@
         "ciudad": "Bangkok",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Ayutthaya",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Rangsit",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Koh Lom",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Khao Yai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Empresa",
+      "Universidad",
+      "Ciudad"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
@@ -83705,7 +85887,7 @@
       "Conflictos Familiares",
       "Muerte de un Ser Querido"
     ],
-    "spicy": 5,
+    "spicy": 3,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
@@ -86436,7 +88618,7 @@
   },
   {
     "id": "b_1788173127864_oruzr",
-    "title": "By Your Side",
+    "title": "By Your Side Vol.1+2 (Spanish Edition)",
     "authors": [
       "Ma-Bung"
     ],
@@ -86450,11 +88632,16 @@
       "ShellyPudao"
     ],
     "genres": [
-      "Romance"
+      "Romance",
+      "Drama",
+      "Contemporánea"
     ],
     "subgenres": [
       "GL Thai 🇹🇭",
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
     ],
     "identidades": [
       "Femme"
@@ -86464,12 +88651,38 @@
       "Profesora",
       "Escort"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvrwmk4zoot",
+        "nombre": "Namnueng",
+        "profesiones": [
+          "Profesora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 31
+      },
+      {
+        "id": "pmvrwmk4zmjw",
+        "nombre": "Zhaojun (Rose)",
+        "profesiones": [
+          "Estudiante",
+          "Escort"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme",
       "Mentora × Aprendiz",
       "Top × Bottom",
       "Feroz × Tierna",
-      "Estudiante × Profesora"
+      "Estudiante × Profesora",
+      "Jefa × Subordinada"
     ],
     "tropes": [
       "Age Gap",
@@ -86496,7 +88709,15 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Universidad y facultad",
+          "Residencia estudiantil",
+          "Apartamentos particulares",
+          "Bares",
+          "Discotecas",
+          "Hoteles",
+          "Establecimientos donde se celebran encuentros remunerados y espacios de ocio"
+        ]
       },
       {
         "pais": "Tailandia",
@@ -86521,12 +88742,13 @@
       }
     ],
     "epoca": "Contemporánea",
-    "periodo": null,
+    "periodo": "2025",
     "tipo_mundo": "Realista",
     "entornos": [
-      "Universidad"
+      "Universidad",
+      "Ciudad"
     ],
-    "idioma_original": "Tailandés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -86540,6 +88762,7 @@
       "Adulto con Menor (relación)"
     ],
     "spicy": 5,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": "Tiene serie",
     "sagaName": null,
@@ -88603,7 +90826,7 @@
   },
   {
     "id": "b_1789112496113_ham5x",
-    "title": "Juliet and Juliet",
+    "title": "Juliet & Juliet",
     "authors": [
       "Freaky"
     ],
@@ -88620,7 +90843,10 @@
       "Romance",
       "Contemporánea",
       "Juvenil",
-      "Drama"
+      "Drama",
+      "YA",
+      "Thriller",
+      "Misterio"
     ],
     "subgenres": [
       "Secundaria",
@@ -88628,13 +90854,41 @@
       "Mafia",
       "Small Town",
       "Queer",
-      "Crimen"
+      "Crimen",
+      "Familia",
+      "Bullying"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Estudiante"
+      "Estudiante",
+      "Artista",
+      "Escritora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrxhtc3xj9",
+        "nombre": "Phatchira Monchaitrakul (Blue)",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmvrxhtc3ed8",
+        "nombre": "Sinitta Kongpurim (Tokyo)",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 18
+      }
     ],
     "dinamicas": [
       "Femme × Femme"
@@ -88644,7 +90898,10 @@
       "Opposites Attract",
       "Secret Relationship",
       "Jealousy Trope",
-      "Rivals to Lovers"
+      "Rivals to Lovers",
+      "Hurt/Comfort",
+      "Roommates",
+      "Enemies to Lovers"
     ],
     "edad": [
       "Young Adult (15–18)"
@@ -88659,15 +90916,30 @@
         "ciudad": "Chanthaburi",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Phetchaburi",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Instituto"
+      "Instituto",
+      "Ciudad"
     ],
-    "idioma_original": "Tailandés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
@@ -88680,7 +90952,7 @@
       "Bullying"
     ],
     "spicy": 2,
-    "rapidez_romance": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -89557,7 +91829,7 @@
   },
   {
     "id": "b_1789557392653_154v6",
-    "title": "Formidable Eyes: Dominion of the Arcane (Khom Klang)",
+    "title": "Formidable Eyes: Dominion of the Arcane",
     "authors": [
       "Luxurious.W"
     ],
@@ -89573,10 +91845,23 @@
     "genres": [
       "Horror",
       "Romance",
-      "Fantasía"
+      "Fantasía",
+      "Fantasía Urbana",
+      "Misterio",
+      "Paranormal",
+      "Thriller",
+      "Acción",
+      "Drama"
     ],
     "subgenres": [
-      "GL Thai 🇹🇭"
+      "GL Thai 🇹🇭",
+      "Queer",
+      "Magia",
+      "Mitología",
+      "Sobrenatural",
+      "Crimen",
+      "Familia",
+      "Erótica"
     ],
     "identidades": [
       "Femme",
@@ -89584,19 +91869,48 @@
     ],
     "characters": [
       "Chamana",
-      "Policía"
+      "Policía",
+      "Investigadora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwpyo2cn7",
+        "nombre": "Peem",
+        "profesiones": [
+          "Policía",
+          "Investigadora"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvrwpyo2uv7",
+        "nombre": "Mae Kru Bulan",
+        "profesiones": [
+          "Chamana"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 30
+      }
     ],
     "dinamicas": [
       "Masc × Femme",
       "Fría × Cálida",
-      "Feroz × Tierna"
+      "Feroz × Tierna",
+      "Femme × Femme",
+      "Protectora × Delicada"
     ],
     "tropes": [
       "Conexión Mental / Bond",
       "Destined Lovers",
       "Jealousy Trope",
       "Soulmates",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Forbidden Love"
     ],
     "edad": [
       "25–39"
@@ -89605,13 +91919,6 @@
       "Tailandia"
     ],
     "ubicaciones": [
-      {
-        "pais": "Tailandia",
-        "region": "Tak",
-        "ciudad": null,
-        "localidad": null,
-        "lugares": []
-      },
       {
         "pais": "Tailandia",
         "region": "Suphan Buri",
@@ -89650,15 +91957,18 @@
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Realista",
-    "entornos": [],
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Hospital"
+    ],
     "idioma_original": "Tailandés",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Formidable Eyes",
@@ -92403,7 +94713,7 @@
   },
   {
     "id": "b_1792052652031_xzbxx",
-    "title": "Ferry Wheel",
+    "title": "Ferris Wheel.",
     "authors": [
       "reallyb"
     ],
@@ -92415,23 +94725,58 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "GL Thai 🇹🇭",
-      "Queer"
+      "Queer",
+      "Familia",
+      "Erótica",
+      "Navidad",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "CEO",
+      "Trabajadora de oficina"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvrwlqz0ap0",
+        "nombre": "Air",
+        "profesiones": [
+          "Trabajadora de oficina"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 33
+      },
+      {
+        "id": "pmvrwlqz0e8d",
+        "nombre": "Vivian",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 40
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Fría × Cálida",
+      "Ice Queen × Softie"
     ],
     "tropes": [
       "Age Gap",
       "Hurt/Comfort",
-      "Found Family"
+      "Found Family",
+      "Strangers to Lovers",
+      "Jealousy Trope"
     ],
     "edad": [
       "+40",
@@ -92446,20 +94791,38 @@
         "region": null,
         "ciudad": "Bangkok",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Centro comercial",
+          "Calles de Bangkok",
+          "Domicilio de Vivian",
+          "Apartamento de Air",
+          "Oficina de Vivian",
+          "Oficina de Air",
+          "Escuela de Eva",
+          "Cafeterías",
+          "Restaurantes",
+          "Librería",
+          "Tienda de discos",
+          "P. Art Studio"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Tailandés",
+    "entornos": [
+      "Oficina",
+      "Librería",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Tailandia"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Theme Park universe",
