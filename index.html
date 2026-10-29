@@ -7726,13 +7726,8 @@ html:has(#homeNextDlg[open]){overflow:hidden}
 </style>
 
 <style id="bp-prot-separada">
-/* Protagonistas: tarjeta propia. En escritorio va en la columna izquierda, justo debajo de Géneros, y la Ficha técnica ocupa la derecha a toda la altura. */
+/* Protagonistas en su propia sección a todo el ancho, debajo de Géneros + Ficha técnica; dos tarjetas por fila si caben */
 #bookPage .bp-prot-section .bp-prot-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:.7rem}
-@media (min-width:900px){
-  #bookPage .bp-wrap:has(>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section))>.bp-ficha-section{grid-row:span 2}
-  #bookPage .bp-wrap:has(>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section))>.bp-prot-section{grid-column:1}
-  #bookPage .bp-wrap:has(>.bp-section:not(.bp-ficha-section):has(>.bp-class-block):not(:has(.similar-section)):has(+.bp-ficha-section))>.bp-prot-section .bp-prot-list{grid-template-columns:minmax(0,1fr)}
-}
 </style>
 </head>
 <body>
@@ -9000,9 +8995,8 @@ function _dyTotalHint(rows){
   const bp=parseInt(activeBook&&activeBook.pages,10); return (bp>0&&bp<=100000)?bp:null;
 }
 function _dyMiniHTML(bookId){
-  const eyebrow='<div class="dy-mini-eyebrow">Diario de lectura</div>';
-  if(diaryState==='loading'||diaryState==='idle') return '<div class="dy-mini"><div class="dy-mini-main">'+eyebrow+'<p class="dy-note">Cargando…</p></div></div>';
-  if(diaryState==='error') return '<div class="dy-mini"><div class="dy-mini-main">'+eyebrow+'<p class="dy-note dy-err" role="alert">No se ha podido cargar el diario.</p></div><button type="button" class="dy-btn" data-dy="retry">Reintentar</button></div>';
+  if(diaryState==='loading'||diaryState==='idle') return '<div class="bpm-row"><span class="bpm-ic" aria-hidden="true">📖</span><span class="bpm-nm">Diario</span><span class="bpm-vl"><span class="bpm-empty">Cargando…</span></span></div>';
+  if(diaryState==='error') return '<div class="bpm-row"><span class="bpm-ic" aria-hidden="true">📖</span><span class="bpm-nm">Diario</span><span class="bpm-vl"><span class="dy-err" role="alert">No se ha podido cargar.</span></span><button type="button" class="dy-btn" data-dy="retry">Reintentar</button></div>';
   const rows=_dyBookRows(bookId);
   const lp=rows.find(r=>r.did_read&&(r.last_page!=null||r.progress_pct!=null));
   const tot=lp?(lp.total_pages!=null?lp.total_pages:_dyTotalHint(rows)):null;
@@ -9016,7 +9010,11 @@ function _dyMiniHTML(bookId){
   const line=lp
     ?`<strong class="dy-mini-pct">${pct!=null?_dyFmtPct(pct)+' %':'—'}</strong>${pages?`<span class="dy-mini-pages">${escHtml(pages)}</span>`:''}<span class="dy-mini-when">${escHtml(_dyFmtDateShort(lp.read_date))}</span>`
     :'<span class="dy-mini-empty">Sin progreso registrado</span>';
-  return `<div class="dy-mini"><div class="dy-mini-main">${eyebrow}<div class="dy-mini-line">${line}</div><div class="dy-bar" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(w)}"><span style="width:${w}%"></span></div></div><button type="button" class="dy-plus" data-dy="open" aria-haspopup="dialog" aria-label="Actualizar progreso y diario de lectura">+</button></div>`;
+  const ico='<span class="bpm-ic" aria-hidden="true">📖</span><span class="bpm-nm">Diario</span>';
+  const val=lp
+    ?`<strong>${pct!=null?_dyFmtPct(pct)+' %':'—'}</strong><small>${escHtml(pages)}${pages?' · ':''}${escHtml(_dyFmtDateShort(lp.read_date))}</small><span class="dy-bar" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(w)}"><span style="width:${w}%"></span></span>`
+    :'<span class="bpm-empty">Sin progreso registrado</span>';
+  return `<button type="button" class="bpm-row" data-dy="open" aria-haspopup="dialog" aria-label="Actualizar progreso y diario de lectura">${ico}<span class="bpm-vl">${val}</span><svg class="bpm-go" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>`;
 }
 function _dySheetInner(bookId){
   const f=diaryForm, rows=_dyBookRows(bookId), editing=f.editId!=null;
@@ -9143,7 +9141,7 @@ function diaryCloseSheet(){
   diaryRenderBp();
 }
 
-function diarySectionHTML(){ return '<div class="bp-section bp-diary" id="bpDiary" aria-live="polite"></div>'; }
+function diarySectionHTML(){ return '<div class="bpm-diary bp-diary" id="bpDiary" aria-live="polite"></div>'; }
 function diaryRenderBp(){
   const el=document.getElementById('bpDiary');
   if(!el||!activeBook||!currentUser){ diarySheetOpen=false; _dyHideSheet(); return; }
@@ -12179,7 +12177,7 @@ async function rvSubmit(){
     console.warn('[rapidez] medias',err);
     if(_rvSame(bookId,userId)) rv.msg='✓ Voto guardado, pero no se pudo actualizar la media. Recarga la ficha para verla.';
   }
-  if(_rvSame(bookId,userId)) rvRender();
+  if(_rvSame(bookId,userId)){ rvRender(); bpmDone('ra'); }
 }
 /* Eliminar el voto propio (mismo patrón que «Eliminar spicy»). Solo toca la fila (user_id, book_id) de la propia usuaria. */
 async function rvDelete(){
@@ -12207,13 +12205,14 @@ async function rvDelete(){
     console.warn('[rapidez] medias',err);
     if(_rvSame(bookId,userId)) rv.msg='Voto eliminado, pero no se pudo actualizar la media. Recarga la ficha para verla.';
   }
-  if(_rvSame(bookId,userId)) rvRender();
+  if(_rvSame(bookId,userId)){ rvRender(); bpmDone('ra'); }
 }
 function rvRender(){
   if(!activeBook||activeBook.id!==rv.bookId) return;
   const g=document.getElementById('bpRapidezGeneral'), m=document.getElementById('bpRapidezBlock');
   if(g) g.innerHTML=buildBpRapidezGeneralHTML();
   if(m){ m.innerHTML=buildBpRapidezMineHTML(); attachBpRapidezEvents(); m.setAttribute('aria-busy',rv.status==='loading'?'true':'false'); }
+  bpmRefresh();
 }
 function _rvBolts(n){ return [1,2,3,4,5].map(i=>`<span class="bp-rp-bolt ${n!==null&&i<=n?'on':'off'}">⚡</span>`).join(''); }
 // El estado rv puede pertenecer aún al libro anterior cuando se pinta la ficha (rvInit lo reinicia justo después): en ese caso, «cargando».
@@ -12309,6 +12308,7 @@ function attachBpRapidezEvents(){
 
 function renderBookPage(book){
   const b=book;
+  bpmOpenKey=null; // la hoja de «Mis valoraciones» vive dentro de #bpWrap: se recrea cerrada
   const authorStr=(b.authors||[]).map(a=>`<button type="button" class="bp-link" data-bpf="authors" data-bpv="${escHtml(a)}">${escHtml(a)}</button>`).join(', ')||'—';
   const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
   // FASE 7.3 — id estable para poder refrescar solo la media/nº de votos
@@ -12342,11 +12342,23 @@ function renderBookPage(book){
   // 2.6.4.1). Solo estructura visual: sin lógica de voto todavía (ver nota
   // al inicio del bloque sobre por qué los controles interactivos siguen
   // acoplados al modal). Ahora es una fila compacta, no una columna aparte.
-  const miPanel=`<div class="bp-mine-row">
-    <div class="bp-mine-block" id="bpRatingBlock">${buildBpRatingHTML()}</div>
-    <div class="bp-mine-block" id="bpSpicyBlock">${buildBpSpicyHTML()}</div>
-    <div class="bp-mine-block" id="bpRapidezBlock">${buildBpRapidezMineHTML()}</div>
+  const miPanel=`<div class="bpm" id="bpMine">
+    ${currentUser?`<div class="bpm-lbl">Mi lectura</div>
+    <div class="bpm-grp"><div id="bpmDatesRow">${bpmDatesRowHTML()}</div>${diarySectionHTML()}</div>`:''}
+    <div class="bpm-lbl">Mis valoraciones</div>
+    <div class="bpm-grp">${bpmRowsHTML()}</div>
     ${!currentUser?`<p class="bp-readonly-note"><a style="cursor:pointer" onclick="openAuthModal()">Inicia sesión</a> para valorar.</p>`:''}
+    <div id="bpmHold" hidden>
+      <div class="bp-mine-block" id="bpRatingBlock">${buildBpRatingHTML()}</div>
+      <div class="bp-mine-block" id="bpSpicyBlock">${buildBpSpicyHTML()}</div>
+      <div class="bp-mine-block" id="bpRapidezBlock">${buildBpRapidezMineHTML()}</div>
+    </div>
+    <div class="bpm-ov" id="bpmOv" hidden></div>
+    <div class="bpm-sh" id="bpmSh" role="dialog" aria-modal="true" aria-labelledby="bpmTitle" hidden>
+      <div class="bpm-grab" aria-hidden="true"></div>
+      <div class="bpm-head"><span class="bpm-title" id="bpmTitle"></span><button type="button" class="bpm-x" id="bpmX" aria-label="Cerrar">×</button></div>
+      <div class="bpm-body" id="bpmBody"></div>
+    </div>
   </div>`;
 
   // GÉNEROS / SUBGÉNEROS
@@ -12448,10 +12460,9 @@ function renderBookPage(book){
         ${sagaRow}
         ${generalRow}
         ${miPanel}
-        <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id):''}</div>
+        <div class="bp-actions">${currentUser?buildShelfButtonsHTML(b.id,{noDates:true}):''}</div>
       </div>
     </div>
-    ${currentUser?diarySectionHTML():''}
     ${clasificacionFicha}
     ${sinopsis}
     ${bookLocationsHtml(b)}
@@ -12465,6 +12476,133 @@ function renderBookPage(book){
   attachBpSpicyTouch();
   if(currentUser){ diaryRenderBp(); diaryEnsureLoaded(); } // FASE 8 — diario
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   FICHA COMPACTA — «Mis valoraciones» (PC y móvil)
+   Tres filas (Valoración · Spicy · Rapidez) con el valor actual. Al pulsar una se abre una hoja
+   (inferior en móvil, centrada en PC) que ALOJA el bloque de siempre (#bpRatingBlock, #bpSpicyBlock,
+   #bpRapidezBlock): se mueve el nodo, así que ids, eventos y lógica de guardado no cambian.
+   La valoración sigue siendo en cuartos de estrella, de 0,25 a 5 (ratingInputHTML / bindRatingInput).
+   ── */
+const BPM_CFG={
+  val:{title:'Tu valoración',block:'bpRatingBlock'},
+  sp:{title:'Tu spicy',block:'bpSpicyBlock'},
+  ra:{title:'Tu rapidez',block:'bpRapidezBlock'},
+  fe:{title:'Fechas de lectura',block:null}
+};
+let bpmOpenKey=null;
+function bpmSummaryHTML(k){
+  const b=activeBook; if(!b) return '';
+  const empty=t=>`<span class="bpm-empty">${t}</span>`;
+  if(!currentUser) return empty('Inicia sesión');
+  if(k==='val'){
+    const v=myRatings[b.id]||0;
+    return v?`${ratingStarsHTML(v)}<small>${fmtRating(v)} / 5</small>`:empty('Sin valorar');
+  }
+  if(k==='sp'){
+    const n=mySpicy[b.id];
+    if(n==null) return empty('Sin votar');
+    const ch=n===0?'<span class="bp-mine-chile on">🚫</span>':[1,2,3,4,5].map(i=>`<span class="bp-mine-chile ${i<=n?'on':'off'}">🌶</span>`).join('');
+    return `<span class="bpm-ico">${ch}</span><small>${SPICY_LABELS[n]}</small>`;
+  }
+  if(!_rvFresh()||rv.status==='loading'||rv.status==='idle') return empty('Cargando…');
+  if(rv.status==='error') return empty('No disponible');
+  const n=rv.mine;
+  return n==null?empty('Sin votar'):`<span class="bp-rp-bolts">${_rvBolts(n)}</span><small>${n}/5 · ${RAPIDEZ_LABELS[n]}</small>`;
+}
+function bpmRowsHTML(){
+  const go='<svg class="bpm-go" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const row=(k,ico,name)=>`<button type="button" class="bpm-row" data-k="${k}" aria-haspopup="dialog"><span class="bpm-ic bpm-ic-${k}" aria-hidden="true">${ico}</span><span class="bpm-nm">${name}</span><span class="bpm-vl" id="bpmV_${k}">${bpmSummaryHTML(k)}</span>${go}</button>`;
+  return row('val','★','Valoración')+row('sp','🌶','Spicy')+row('ra','⚡','Rapidez');
+}
+
+/* Fila «Leído / Leyendo»: resumen de fechas y ventana con el panel de fechas de siempre (inicio, fin, relecturas). */
+const _BPM_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function _bpmD(iso,prec){
+  const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso||'')); if(!m) return null;
+  const y=m[1], mo=_BPM_MES[parseInt(m[2],10)-1], d=parseInt(m[3],10);
+  if(prec==='year') return {y,t:y,full:y};
+  if(prec==='month') return {y,t:mo,full:mo+' '+y};
+  return {y,t:d+' '+mo,full:d+' '+mo+' '+y};
+}
+function bpmDatesSummaryHTML(bookId){
+  const log=myReadingLog[bookId]||[], done=log.filter(e=>e.read_at), open=getOpenLogEntry(bookId), s=myReadingStatus[bookId];
+  const empty=t=>`<span class="bpm-empty">${t}</span>`;
+  if(done.length){
+    const e=done[done.length-1], en=_bpmD(e.read_at,e.read_precision), st=e.started_at?_bpmD(e.started_at,e.started_precision):null;
+    let t=en?en.full:'—';
+    if(st&&en) t=(st.y===en.y&&st.t!==st.y&&en.t!==en.y?st.t:st.full)+' → '+en.full;
+    const more=done.length>1?`<small>+${done.length-1} ${done.length-1===1?'relectura':'relecturas'}</small>`:'';
+    return `<span>${t}</span>${more}`;
+  }
+  if(s==='reading'){
+    const st=open&&open.started_at?_bpmD(open.started_at,open.started_precision):null;
+    return st?`<span>Empezado ${st.full}</span>`:empty('Añadir fecha de inicio');
+  }
+  return empty('Añadir fechas');
+}
+function bpmDatesRowHTML(){
+  const b=activeBook; if(!b||!currentUser) return '';
+  const s=myReadingStatus[b.id]; if(s!=='read'&&s!=='reading') return '';
+  const go='<svg class="bpm-go" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  return `<button type="button" class="bpm-row" data-k="fe" aria-haspopup="dialog"><span class="bpm-ic bpm-ic-fe" aria-hidden="true">📅</span><span class="bpm-nm">${s==='read'?'Leído':'Leyendo'}</span><span class="bpm-vl">${bpmDatesSummaryHTML(b.id)}</span>${go}</button>`;
+}
+function bpmFillDates(){
+  const body=document.getElementById('bpmBody'); if(!body||!activeBook) return;
+  body.innerHTML=`<div class="bpm-dates">${buildShelfButtonsHTML(activeBook.id,{datesOnly:true})}</div>`;
+}
+function bpmRefreshDates(bookId){
+  if(!activeBook||String(activeBook.id)!==String(bookId)) return;
+  const row=document.getElementById('bpmDatesRow'); if(row) row.innerHTML=bpmDatesRowHTML();
+  if(bpmOpenKey==='fe'){
+    const s=myReadingStatus[bookId];
+    if(s!=='read'&&s!=='reading') bpmClose(true); else bpmFillDates();
+  }
+}
+function bpmRefresh(){
+  ['val','sp','ra'].forEach(k=>{ const el=document.getElementById('bpmV_'+k); if(el) el.innerHTML=bpmSummaryHTML(k); });
+  const dr=document.getElementById('bpmDatesRow'); if(dr&&bpmOpenKey!=='fe') dr.innerHTML=bpmDatesRowHTML();
+}
+function bpmOpen(k){
+  if(!currentUser){ openAuthModal(); return; }
+  const cfg=BPM_CFG[k]; if(!cfg) return;
+  const blk=cfg.block?document.getElementById(cfg.block):null, body=document.getElementById('bpmBody'),
+        sh=document.getElementById('bpmSh'), ov=document.getElementById('bpmOv');
+  if(!body||!sh||!ov||(cfg.block&&!blk)) return;
+  if(bpmOpenKey) bpmClose(false);
+  if(blk) body.appendChild(blk);
+  else { bpmOpenKey=k; bpmFillDates(); }
+  document.getElementById('bpmTitle').textContent=cfg.title;
+  sh.dataset.k=k; ov.hidden=false; sh.hidden=false; bpmOpenKey=k;
+  const f=sh.querySelector('.qs-stars,.bp-spicy-btn,.bp-rv-btn,.rdp-year,.bpm-x'); if(f) try{f.focus({preventScroll:true});}catch(_){}
+}
+function bpmClose(saved){
+  const k=bpmOpenKey; if(!k) return;
+  const hold=document.getElementById('bpmHold'), sh=document.getElementById('bpmSh'), ov=document.getElementById('bpmOv');
+  const blk=BPM_CFG[k].block?document.getElementById(BPM_CFG[k].block):null;
+  if(blk&&hold) hold.appendChild(blk);
+  if(k==='fe'){ const bd=document.getElementById('bpmBody'); if(bd) bd.innerHTML=''; }
+  if(sh) sh.hidden=true; if(ov) ov.hidden=true;
+  bpmOpenKey=null;
+  if(!saved){ // se cierra sin guardar: se descarta la selección pendiente y se repinta el valor guardado
+    if(k==='val'&&!bpRatingBusy){ bpPendingStar=0; renderBpRatingBlock(); }
+    else if(k==='sp'&&!bpSpicyBusy){ bpPendingSpicy=-1; renderBpSpicyBlock(); }
+    else if(k==='ra'&&!rv.saving){ rv.pending=-1; rv.msg=''; rv.msgType=''; rvRender(); }
+  }
+  bpmRefresh();
+  const row=document.querySelector('.bpm-row[data-k="'+k+'"]'); if(row) try{row.focus({preventScroll:true});}catch(_){}
+}
+function bpmDone(k){ bpmRefresh(); if(bpmOpenKey===k) bpmClose(true); }
+(function(){
+  const wrap=document.getElementById('bpWrap'); if(!wrap) return;
+  wrap.addEventListener('click',e=>{
+    const row=e.target.closest('.bpm-row[data-k]');
+    if(row&&wrap.contains(row)){ bpmOpen(row.dataset.k); return; }
+    if(e.target.closest('#bpmX')||e.target.id==='bpmOv') bpmClose(false);
+  });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&bpmOpenKey) bpmClose(false); });
+})();
 
 /* FASE 8 — clics de navegación en BookPage (autora, saga, chips, ship, spicy).
    Delegado sobre #bpWrap (que se re-renderiza); reutiliza filterBy*FromModal. */
@@ -12738,6 +12876,7 @@ function renderBpRatingBlock(){
   if(!el) return;
   el.innerHTML=buildBpRatingHTML();
   attachBpStarTouch();
+  bpmRefresh();
 }
 
 /* Estrellas con soporte táctil real, acotadas a #bpStarInput (nunca a
@@ -12774,7 +12913,7 @@ async function submitVoteBP(){
   bpRatingBusy=false;
   bpPendingStar=0;
   showToast('¡Valoración guardada! ✓','success');
-  updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();
+  updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();bpmDone('val');
   checkNewLogros();
 }
 
@@ -12794,7 +12933,7 @@ async function deleteVoteBP(){
   bpRatingBusy=false;
   bpPendingStar=0;
   showToast('Voto eliminado','success');
-  updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();
+  updateStats();applyFilters(false);renderBpRatingBlock();_refreshBpGeneralRating();bpmDone('val');
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -12849,6 +12988,7 @@ function renderBpSpicyBlock(){
   if(!el) return;
   el.innerHTML=buildBpSpicyHTML();
   attachBpSpicyTouch();
+  bpmRefresh();
 }
 
 /* Botones con soporte táctil real, acotados a #bpSpicyInput (nunca a
@@ -12903,7 +13043,7 @@ async function submitSpicyVoteBP(){
   bpSpicyBusy=false;
   bpPendingSpicy=-1;
   showToast('¡Spicy guardado! 🌶','success');
-  applyFilters(false);renderBpSpicyBlock();
+  applyFilters(false);renderBpSpicyBlock();bpmDone('sp');
   checkNewLogros();
 }
 
@@ -12923,7 +13063,7 @@ async function deleteSpicyVoteBP(){
   bpSpicyBusy=false;
   bpPendingSpicy=-1;
   showToast('Spicy eliminado','success');
-  applyFilters(false);renderBpSpicyBlock();
+  applyFilters(false);renderBpSpicyBlock();bpmDone('sp');
 }
 
 /* Actualiza solo el bloque de valoración sin rerenderizar todo el modal */
@@ -15943,7 +16083,8 @@ function _refreshShelfUI(bookId){
   // Botones en BookPage (acotado a #bpWrap, sin getElementById ambiguo)
   if(activeBook && activeBook.id===bookId){
     const bpShelfWrap=document.querySelector('#bpWrap .shelf-btns');
-    if(bpShelfWrap) bpShelfWrap.outerHTML=buildShelfButtonsHTML(bookId);
+    if(bpShelfWrap) bpShelfWrap.outerHTML=buildShelfButtonsHTML(bookId,{noDates:true});
+    try{ bpmRefreshDates(bookId); }catch(e){}
   }
   // Botones en tarjeta
   const cardWrap=document.getElementById('cardShelf_'+bookId);
@@ -15990,7 +16131,7 @@ function buildPartialDateInputHTML(idPrefix, bookId, prefill){
 // Rellena año/mes/día con la fecha actual del navegador. NO guarda nada por sí
 // sola: solo pone los valores en los controles, igual que pide el paso 5.
 function _setPartialDateToday(btnEl, idPrefix, bookId){
-  const scopeEl=btnEl.closest('.shelf-btns');
+  const scopeEl=btnEl.closest('.shelf-btns,.bpm-dates');
   if(!scopeEl) return;
   const now=new Date();
   const yearEl=scopeEl.querySelector('#'+CSS.escape(`${idPrefix}Year_${bookId}`));
@@ -16027,7 +16168,7 @@ function _readPartialDateParts(scopeEl, idPrefix, bookId){
 }
 
 async function _submitSetLogStartDatePartial(btnEl, bookId, entryId, idPrefix){
-  const scopeEl=btnEl.closest('.shelf-btns');
+  const scopeEl=btnEl.closest('.shelf-btns,.bpm-dates');
   if(!scopeEl) return;
   const res=_readPartialDateParts(scopeEl, idPrefix, bookId);
   if(!res.ok){ showToast(res.error,'error'); return; }
@@ -16056,7 +16197,7 @@ async function _submitSetLogStartDatePartial(btnEl, bookId, entryId, idPrefix){
 }
 
 async function _submitAddReadLogEntryPartial(btnEl, bookId, endPrefix, startPrefix){
-  const scopeEl=btnEl.closest('.shelf-btns');
+  const scopeEl=btnEl.closest('.shelf-btns,.bpm-dates');
   if(!scopeEl) return;
   const endRes=_readPartialDateParts(scopeEl, endPrefix, bookId);
   if(!endRes.ok){ showToast(endRes.error,'error'); return; }
@@ -16070,7 +16211,7 @@ async function _submitAddReadLogEntryPartial(btnEl, bookId, endPrefix, startPref
   await addReadLogEntry(bookId, endRes.parts, startParts);
 }
 
-function buildShelfButtonsHTML(bookId){
+function buildShelfButtonsHTML(bookId,opts){
   const s=myReadingStatus[bookId];
   const log=myReadingLog[bookId]||[];
   const completedLog=log.filter(e=>e.read_at);
@@ -16171,12 +16312,13 @@ function buildShelfButtonsHTML(bookId){
       ${historyHtml?`<div class="rdp-history">${historyHtml}</div>`:''}
       ${finishRow}
     </div>`:'';
+  if(opts&&opts.datesOnly) return readDatePicker; // ficha compacta: solo el panel de fechas (para la ventana)
   return `<div class="shelf-btns" id="shelfBtns_${bookId}" role="group" aria-label="Estado de lectura">
     <button class="shelf-btn${s==='want'?' want':''}" aria-pressed="${s==='want'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','want')">${_shelfIco('want')}Quiero leer</button>
     <button class="shelf-btn${s==='reading'?' reading':''}" aria-pressed="${s==='reading'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','reading')">${_shelfIco('reading')}Leyendo</button>
     <button class="shelf-btn${s==='read'?' read':''}" aria-pressed="${s==='read'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','read')">${_shelfIco('read')}Leído</button>
     <button class="shelf-btn${s==='dnf'?' dnf':''}" aria-pressed="${s==='dnf'}" onclick="event.stopPropagation();setReadingStatus('${bookId}','dnf')">${_shelfIco('dnf')}Lo dejé</button>
-    ${readDatePicker}
+    ${(opts&&opts.noDates)?'':readDatePicker}
   </div>`;
 }
 
@@ -22017,5 +22159,78 @@ body.theme-halloween #bookPage .bp-rapidez-general .bp-rp-bolt.off,body.theme-ha
   });
 })();
 </script>
+
+<style id="bpm-css">
+/* FICHA COMPACTA — «Mis valoraciones» (filas + hoja). PC y móvil. */
+#bookPage .bpm{margin:.7rem 0 .8rem}
+#bookPage .bpm-lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 .45rem}
+#bookPage .bpm-grp{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+#bookPage .bpm-row{display:flex;align-items:center;gap:10px;width:100%;min-height:50px;padding:8px 12px;border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent;color:var(--text);font:inherit;font-size:14px;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#bookPage .bpm-row:hover{background:var(--surface2)}
+#bookPage .bpm-row:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+#bookPage .bpm-ic{flex:none;width:22px;text-align:center;font-size:18px;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+#bookPage .bpm-ic-val{color:var(--gold);font-family:inherit}
+#bookPage .bpm-nm{flex:0 0 76px;color:var(--muted);font-size:13px}
+#bookPage .bpm-vl{flex:1;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;font-weight:500}
+#bookPage .bpm-vl small{font-size:12px;font-weight:400;color:var(--muted)}
+#bookPage .bpm-vl .qstars{font-size:15px}
+#bookPage .bpm-vl .bp-mine-chile{font-size:14px}
+#bookPage .bpm-ico{display:inline-flex;gap:1px;line-height:1}
+#bookPage .bpm-empty{font-weight:400;color:var(--muted)}
+#bookPage .bpm-go{flex:none;color:var(--muted)}
+/* hoja */
+#bookPage .bpm-ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1190}
+#bookPage .bpm-sh{position:fixed;left:0;right:0;bottom:0;z-index:1200;background:var(--surface);color:var(--text);border-top:1px solid var(--border);border-radius:16px 16px 0 0;padding:10px 16px calc(16px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto;box-shadow:0 -8px 30px rgba(0,0,0,.25)}
+#bookPage .bpm-ov[hidden],#bookPage .bpm-sh[hidden],#bookPage #bpmHold[hidden]{display:none}
+#bookPage .bpm-grab{width:36px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 10px}
+#bookPage .bpm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+#bookPage .bpm-title{font-size:17px;font-weight:600;color:var(--text)}
+#bookPage .bpm-x{width:36px;height:36px;padding:0;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text);font-size:20px;line-height:1;cursor:pointer}
+#bookPage .bpm-body .bp-mine-block{display:flex;flex-direction:column;align-items:stretch;text-align:left}
+#bookPage .bpm-body .bp-mine-label{display:none}
+#bookPage .bpm-body .bp-mine-label-row{justify-content:flex-end;margin:0}
+#bookPage .bpm-body .vote-prompt{font-size:13px;margin:0 0 .5rem}
+#bookPage .bpm-body .bp-mine-btns{margin-top:.7rem;gap:.5rem;flex-wrap:wrap}
+#bookPage .bpm-body .vote-submit{flex:1 1 140px;min-height:44px;font-size:14px}
+#bookPage .bpm-body .vote-delete{min-height:44px;font-size:13px}
+/* estrellas en cuartos (0,25–5): más grandes dentro de la hoja */
+#bookPage .bpm-body .bp-qs-wrap .qs-stars{font-size:36px;gap:6px}
+#bookPage .bpm-body .qs-line{justify-content:flex-start}
+/* spicy y rapidez: botones táctiles de 44+ px, en una sola fila */
+#bookPage .bpm-body #bpSpicyInput.bp-spicy-input,
+#bookPage .bpm-body #bpRapidezInput.bp-rv-input{display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:4px;height:auto;margin:0}
+#bookPage .bpm-body #bpSpicyInput .bp-spicy-btn,
+#bookPage .bpm-body #bpRapidezInput .bp-rv-btn{width:46px;height:46px;min-width:46px;min-height:46px;padding:0;font-size:23px;display:inline-flex;align-items:center;justify-content:center}
+#bookPage .bpm-body .bp-rv-caption{margin:.4rem 0 0;font-size:13px}
+@media(max-width:359px){#bookPage .bpm-nm{flex-basis:64px}#bookPage .bpm-body .bp-qs-wrap .qs-stars{font-size:32px;gap:4px}}
+/* PC: la hoja pasa a ser un cuadro centrado */
+@media(min-width:900px){
+  #bookPage .bpm-sh{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-50%);width:min(440px,92vw);border:1px solid var(--border);border-radius:16px;padding:16px 20px 20px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+  #bookPage .bpm-grab{display:none}
+}
+@media(prefers-reduced-motion:no-preference){
+  #bookPage .bpm-sh:not([hidden]){animation:bpmUp .18s ease-out}
+  @keyframes bpmUp{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+}
+
+/* FICHA COMPACTA · parte 2 — «Mi lectura» (fechas + diario) */
+#bookPage .bpm-grp>.bpm-row:last-child{border-bottom:0}
+#bookPage .bpm-grp>:last-child .bpm-row,#bookPage .bpm-grp>:last-child.bpm-row{border-bottom:0}
+#bookPage #bpmDatesRow:empty{display:none}
+#bookPage .bpm-row{border-bottom:1px solid var(--border)}
+#bookPage .bpm-ic-fe{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+#bookPage .bpm-diary .bpm-row{cursor:pointer}
+#bookPage .bpm-diary div.bpm-row{cursor:default}
+#bookPage .bpm-diary .bpm-row .dy-btn{margin-left:auto;flex:none}
+#bookPage .bpm-vl strong{font-weight:600}
+#bookPage .bpm-vl .dy-bar{flex:1 1 100%;height:4px;margin:3px 0 0;border-radius:2px;background:var(--border);overflow:hidden;display:block}
+#bookPage .bpm-vl .dy-bar>span{display:block;height:100%;background:var(--gold);border-radius:2px}
+#bookPage .bpm-dates .rdp{margin:0;padding:0;border:0;background:none;border-radius:0;display:flex;flex-direction:column;gap:.9rem;width:100%}
+#bookPage .bpm-dates .rdp-head{display:none}
+#bookPage .bpm-dates .rdp-row>.rdp-btn{flex:1 1 100%;min-height:44px}
+#bookPage .bpm-dates .rdp-group{flex:1 1 100%}
+#bookPage .bpm-dates .rdp-ctl{font-size:16px;padding:10px 8px}
+#bookPage .bpm-dates .rdp-entry{flex-wrap:wrap}
+</style>
 </body>
 </html>
