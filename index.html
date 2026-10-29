@@ -12308,6 +12308,7 @@ function attachBpRapidezEvents(){
 
 function renderBookPage(book){
   const b=book;
+  { const bpg=document.getElementById('bookPage'); if(bpg) bpg.classList.remove('bpm-lifted'); }
   bpmOpenKey=null; // la hoja de «Mis valoraciones» vive dentro de #bpWrap: se recrea cerrada
   const authorStr=(b.authors||[]).map(a=>`<button type="button" class="bp-link" data-bpf="authors" data-bpv="${escHtml(a)}">${escHtml(a)}</button>`).join(', ')||'—';
   const coverEl=b.cover?`<img src="${b.cover}" alt="${escHtml(b.title)}" decoding="async">`:`<div class="bp-cover-ph">📖</div>`;
@@ -12575,6 +12576,7 @@ function bpmOpen(k){
   else { bpmOpenKey=k; bpmFillDates(); }
   document.getElementById('bpmTitle').textContent=cfg.title;
   sh.dataset.k=k; ov.hidden=false; sh.hidden=false; bpmOpenKey=k;
+  const bpg=document.getElementById('bookPage'); if(bpg) bpg.classList.add('bpm-lifted'); // #bookPage crea su propia capa (z-index:1): se eleva para quedar sobre barra inferior y cabecera
   const f=sh.querySelector('.qs-stars,.bp-spicy-btn,.bp-rv-btn,.rdp-year,.bpm-x'); if(f) try{f.focus({preventScroll:true});}catch(_){}
 }
 function bpmClose(saved){
@@ -12585,6 +12587,7 @@ function bpmClose(saved){
   if(k==='fe'){ const bd=document.getElementById('bpmBody'); if(bd) bd.innerHTML=''; }
   if(sh) sh.hidden=true; if(ov) ov.hidden=true;
   bpmOpenKey=null;
+  const bpg=document.getElementById('bookPage'); if(bpg) bpg.classList.remove('bpm-lifted');
   if(!saved){ // se cierra sin guardar: se descarta la selección pendiente y se repinta el valor guardado
     if(k==='val'&&!bpRatingBusy){ bpPendingStar=0; renderBpRatingBlock(); }
     else if(k==='sp'&&!bpSpicyBusy){ bpPendingSpicy=-1; renderBpSpicyBlock(); }
@@ -22213,6 +22216,8 @@ body.theme-halloween #bookPage .bp-rapidez-general .bp-rp-bolt.off,body.theme-ha
   @keyframes bpmUp{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
 }
 
+#bookPage.bpm-lifted{z-index:2000}
+#bookPage .bpm-sh{max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px)}
 /* FICHA COMPACTA · parte 2 — «Mi lectura» (fechas + diario) */
 #bookPage .bpm-grp>.bpm-row:last-child{border-bottom:0}
 #bookPage .bpm-grp>:last-child .bpm-row,#bookPage .bpm-grp>:last-child.bpm-row{border-bottom:0}
