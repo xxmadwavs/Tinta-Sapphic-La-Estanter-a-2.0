@@ -22236,6 +22236,20 @@ body.theme-halloween #bookPage .bp-rapidez-general .bp-rp-bolt.off,body.theme-ha
 #bookPage .bpm-dates .rdp-group{flex:1 1 100%}
 #bookPage .bpm-dates .rdp-ctl{font-size:16px;padding:10px 8px}
 #bookPage .bpm-dates .rdp-entry{flex-wrap:wrap}
+
+/* Protagonistas compactos (PC y móvil): avatar+nombre en una línea, filas «ETIQUETA · chips · +» en horizontal */
+#bookPage .bp-prot-list{gap:.5rem}
+#bookPage .bp-prot-card{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:.6rem;row-gap:.35rem;align-items:center;padding:.6rem .75rem}
+#bookPage .bp-prot-av{grid-column:1;grid-row:1;flex:none;width:30px;height:30px;font-size:15px}
+#bookPage .bp-prot-body{display:contents}
+#bookPage .bp-prot-name{grid-column:2;grid-row:1;padding:0;font-size:15px}
+#bookPage .bp-prot-row{grid-column:1/-1;flex-direction:row;align-items:center;gap:.5rem;min-width:0}
+#bookPage .bp-prot-lbl{flex:0 0 68px;font-size:10px;letter-spacing:.1em}
+#bookPage .bp-prot-chips{flex:1;min-width:0;gap:.3rem}
+html body #bookPage .bp-prot-card .tag{min-height:0;padding-top:3px;padding-bottom:3px}
+html body #bookPage .bp-prot-card .tag-adder-select,
+html body #bookPage .bp-prot-card .bp-tag-adder,
+html body #bookPage .bp-prot-card .bp-add-btn{-webkit-appearance:none;appearance:none;background-image:none;min-height:32px!important;height:32px;width:auto;max-width:92px;padding:0 12px;font-size:12px;line-height:1;text-align:center;text-align-last:center}
 </style>
 </body>
 </html>
