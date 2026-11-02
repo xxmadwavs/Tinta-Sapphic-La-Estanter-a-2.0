@@ -21798,27 +21798,153 @@
     "synopsis": "Cori Stratton ama su vida tranquila y su tienda de velas, pero todo corre peligro cuando el edificio donde vive y trabaja se pone a la venta. En el peor momento posible, regresa al pueblo Elizabeth Brennan, la chica popular del instituto que ni siquiera sabía que Cori existía\n\nLa vida de Elizabeth es un desastre: ha perdido su empleo y debe ayudar en la boda de su ex. Para no quedar en evidencia, arrastra a Cori a una mentira desesperada: fingir que son la pareja perfecta. A cambio de salvar su tienda, Cori acepta el trato, pero lo que empieza como una farsa de una semana se complica bajo la presión de los sentimientos reales. ¿Podrán sobrevivir a la boda sin que su relación falsa se convierta en algo más? Una encantadora comedia romántica sobre segundas oportunidades y amores inesperados",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Profesional de marketing",
+      "Publicidad",
+      "Colabora",
+      "Artesana",
+      "Fabricante de velas",
+      "Propietaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzbynznvcg",
+        "nombre": "Liz",
+        "profesiones": [
+          "Profesional de marketing",
+          "Publicidad",
+          "Colabora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      },
+      {
+        "id": "pmvzbynznobe",
+        "nombre": "Cori",
+        "profesiones": [
+          "Artesana",
+          "Fabricante de velas",
+          "Propietaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 34
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Fake Relationship"
     ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": "Crimson Valley",
+        "localidad": null,
+        "lugares": [
+          "Centro recreativo local"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Brennan House",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Whimsy",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "The Lodge",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Cal's Diner",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "bosque y senderos de los Adirondacks",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "granero donde se celebra el banquete de boda",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "other",
     "editions": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778008818895_viawi",
@@ -23010,7 +23136,8 @@
       "Romance",
       "Drama",
       "Acción",
-      "Thriller"
+      "Thriller",
+      "Contemporánea"
     ],
     "subgenres": [
       "Crimen",
@@ -23018,26 +23145,50 @@
       "Queer",
       "Erótica",
       "Autodescubrimiento",
-      "Familia"
+      "Familia",
+      "Segunda Oportunidad"
     ],
     "identidades": [
       "Ice Queen",
       "Sunshine",
-      "Lesbiana"
+      "Lesbiana",
+      "Femme"
     ],
     "characters": [
       "Música",
       "Profesora"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvzct6l14e2",
+        "nombre": "Natalya",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 45
+      },
+      {
+        "id": "pmvzct6l18cl",
+        "nombre": "Alison",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Fría × Cálida",
-      "Feroz × Tierna"
+      "Feroz × Tierna",
+      "Femme × Femme"
     ],
     "tropes": [
       "Age Gap",
       "Opposites Attract",
-      "Slow Burn"
+      "Slow Burn",
+      "Second Chance Romance"
     ],
     "edad": [
       "+40"
@@ -23059,6 +23210,13 @@
         "ciudad": "Musikverein",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Melbourne",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
@@ -23073,8 +23231,8 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
-    "rapidez_romance": null,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Requiem",
@@ -23234,26 +23392,112 @@
     "synopsis": "La estrella del pop Leontyne Blake está a punto de presentar sus nuevas canciones a sus fans. Pero, ¿está su relación con Holly, una enfermera de pueblo, preparada para su regreso a los escenarios?",
     "pages": 7,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Música",
+      "Queer",
+      "Familia",
+      "Celebridad",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Empresaria",
+      "Enfermera",
+      "Cantante profesional",
+      "Estrella del pop",
+      "Escritora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzbu35eg80",
+        "nombre": "Holly",
+        "profesiones": [
+          "Enfermera"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzbu35er9t",
+        "nombre": "Leontyne",
+        "profesiones": [
+          "Cantante profesional",
+          "Estrella del pop",
+          "Escritora"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [],
     "tropes": [],
+    "edad": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Fair Oaks",
+        "localidad": null,
+        "lugares": [
+          "Tejado de la casa de Leo",
+          "Chimenea de ladrillo",
+          "Panadería-pastelería Slice of Heaven y domicilio de las protagonistas"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Chicago y Boston. Son destinos de los conciertos previstos",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Corea del Sur",
+      "Estados Unidos"
+    ],
     "ambientacion": [],
-    "spicy": 2,
+    "content_warnings": [],
+    "spicy": 0,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Fair Oaks",
     "sagaNum": 1.5,
     "source": "other",
     "editions": [],
-    "pais_origen": [
-      "Corea del Sur",
-      "Estados Unidos"
-    ]
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778011360873_arwe3",
@@ -27122,24 +27366,66 @@
     "ship": [],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
-      "Coming Out"
+      "Coming Out",
+      "Música",
+      "Celebridad",
+      "Queer",
+      "Autodescubrimiento",
+      "Bisexual",
+      "Familia"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Lesbiana",
+      "Pansexual"
     ],
     "characters": [
       "Famosa",
-      "Cantante"
+      "Cantante",
+      "Música"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzbh832mqv",
+        "nombre": "Eden Sands",
+        "profesiones": [
+          "Cantante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 36
+      },
+      {
+        "id": "pmvzbpfet1g1",
+        "nombre": "Anna Moss",
+        "profesiones": [
+          "Cantante"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Grumpy × Sunshine",
+      "Ice Queen × Softie",
+      "Boss × Employee"
     ],
     "tropes": [
       "Age Gap",
-      "Slow Burn"
+      "Slow Burn",
+      "Workplace Romance",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Lesbian Awakening"
     ],
     "edad": [
       "25–39"
@@ -27154,7 +27440,15 @@
         "region": null,
         "ciudad": "Los Ángeles",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Vermont",
+          "Donde Eden tiene una casa de aproximadamente 70 acres. No se especifica el municipio",
+          "Millennium Park (Chicago)",
+          "Clear Creek (Denver)",
+          "Madison Square Garden (Nueva York)",
+          "Puerto de Boston",
+          "Puerto de Miami"
+        ]
       },
       {
         "pais": "Estados Unidos",
@@ -27218,19 +27512,43 @@
         "ciudad": "Toronto",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Vegas",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Denver",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York y Miami",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27256,34 +27574,114 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1680123068i/124923138.jpg",
     "synopsis": "Sloane Patterson es la sensación del fútbol estadounidense cuya llegada al Reino Unido causa un gran revuelo. Tiene el juego, la fama, el físico y la prometida. Pero las apariencias engañan.\n\nCuando la vida de Sloane empieza a desmoronarse, Ella Carmichael, la nueva empleada del Salchester Rovers, la ayuda a rehacer su vida. Pero a medida que las líneas entre sus vidas profesionales y personales se difuminan, las tensiones afloran. Ahora, el objetivo de Sloane de ayudar al equipo a ganar la liga y la FA Cup tiene un añadido importante: ganarse el corazón de Ella.",
     "pages": 374,
-    "isbn": null,
+    "isbn": "9781912019052",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "Deporte"
+      "Deporte",
+      "Queer",
+      "Celebridad",
+      "Familia",
+      "Feminismo",
+      "Autodescubrimiento"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Queer",
+      "Lesbiana"
     ],
     "characters": [
       "Futbolista",
       "Famosa"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvzbw2ix1q5",
+        "nombre": "Sloane Patterson",
+        "profesiones": [
+          "Futbolista"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzbw2ixicc",
+        "nombre": "Ella Carmichael",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Butch × Femme",
+      "Famosa × Anónima"
     ],
     "tropes": [
-      "Workplace Romance"
+      "Workplace Romance",
+      "Slow Burn",
+      "Secret Relationship",
+      "Opposites Attract"
     ],
     "edad": [
       "25–39"
     ],
     "pais_cultura": [
-      "Estados Unidos"
+      "Estados Unidos",
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Norte de Inglaterra",
+        "ciudad": "Salchester",
+        "localidad": null,
+        "lugares": [
+          "Instalaciones deportivas del Salchester Rovers",
+          "Estadio del club",
+          "Centro de entrenamiento",
+          "Apartamentos de Sloane",
+          "Ella",
+          "Shot Of The Day",
+          "Kilminster United",
+          "Wembley"
+        ]
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Fráncfort",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres (visita profesional de Ella y final de la FA Cup en Wembley)",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Reino Unido"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27292,13 +27690,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240065257_99fjq",
@@ -27391,19 +27788,67 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1771015461i/247984685.jpg",
     "synopsis": "Juliette y Adaline han pasado por innumerables pruebas y tribulaciones y finalmente están juntas. Esta secuela sigue los hitos especiales en sus vidas y cómo ambas los afrontan. Desde los grandes momentos hasta los más tranquilos, muestra lo que sucede después de que todo se calma y comienza la vida real. Explora cómo crecen individualmente y juntos, y cómo manejan el amor, la presión, la familia y todo lo que conlleva construir una vida juntos. ¿Perseverará el amor? ¿O se interpondrá la vida?",
     "pages": 104,
-    "isbn": null,
+    "isbn": "9798248164547",
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming Out",
+      "Universidad"
+    ],
+    "identidades": [
+      "Femme",
+      "Sexual con Juliette",
+      "Lesbiana"
+    ],
+    "characters": [
+      "Doctora / Médica",
+      "Artista",
+      "Estudiante de Medicina en Oxford",
+      "Artista plástica",
+      "Pintora",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzce89oo94",
+        "nombre": "Adaline",
+        "profesiones": [
+          "Estudiante de Medicina en Oxford"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzce89ors1",
+        "nombre": "Juliette",
+        "profesiones": [
+          "Artista plástica",
+          "Pintora",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Rich / Poor Romance"
+    ],
     "edad": [
       "Young Adult (15–18)"
     ],
@@ -27418,7 +27863,16 @@
         "region": null,
         "ciudad": "Oxford",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Instituto donde estudian al comienzo",
+          "Apartamento de Oxford",
+          "Universidad de Oxford",
+          "Galería de arte de Juliette",
+          "Hospital de Londres",
+          "Viñedo en Florencia",
+          "Finca escocesa donde se celebra la boda",
+          "Casa familiar donde viven con Sienna en el epílogo"
+        ]
       },
       {
         "pais": "Italia",
@@ -27442,13 +27896,6 @@
         "lugares": []
       },
       {
-        "pais": "Italia",
-        "region": null,
-        "ciudad": "Italia",
-        "localidad": null,
-        "lugares": []
-      },
-      {
         "pais": "Reino Unido",
         "region": null,
         "ciudad": "Londres",
@@ -27459,12 +27906,19 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Instituto",
+      "Hospital",
+      "Campo",
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Loathing You",
@@ -27490,23 +27944,112 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1662131270i/62222707.jpg",
     "synopsis": "Un compromiso roto y una luna de miel sin reembolso obligan a Robin Ellis a huir de todo. Cansada del caos familiar, decide viajar sola a Canadá para refugiarse en la nieve. Lo que no esperaba era chocar con Neve, una distante instructora de esquí que pondrá a prueba todos sus muros.\n\nBajo los cielos estrellados y el frío canadiense, surge entre ellas una conexión improbable. Robin ya ha sufrido demasiadas decepciones, y ambas saben que los romances de vacaciones tienen fecha de caducidad. ¿Podrán superar la distancia y el miedo al pasado para encontrar su final feliz? Una aventura navideña sobre segundas oportunidades y el valor de volver a confiar.",
     "pages": 304,
-    "isbn": null,
+    "isbn": "9781471412882",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
-      "Navidad"
+      "Navidad",
+      "Autodescubrimiento",
+      "Familia",
+      "Queer",
+      "Deporte",
+      "Segunda Oportunidad"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Instructora de esquí",
+      "Pastelera profesional"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzbuvmmv9i",
+        "nombre": "Neve",
+        "profesiones": [
+          "Instructora de esquí"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzbuvmmh16",
+        "nombre": "Robin",
+        "profesiones": [
+          "Pastelera profesional"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 26
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Grumpy × Sunshine"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Slow Burn",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Vacation Romance",
+      "Opposites Attract",
+      "Strangers to Lovers"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": "Alberta",
+        "ciudad": "Clement Falls",
+        "localidad": null,
+        "lugares": [
+          "Leeds",
+          "Bradford",
+          "Toronto y Dublín. Leeds Bradford y Toronto/Dublín",
+          "No",
+          "Estación de esquí",
+          "Resort",
+          "Clement Falls",
+          "Clement's Cakes",
+          "Cabaña de Robin",
+          "Casa de Neve",
+          "Lago Serissa"
+        ]
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Calgary",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Reino Unido"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27515,9 +28058,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240210922_mwwd5",
@@ -27529,21 +28075,65 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1675849546i/104903227.jpg",
     "synopsis": "Contra todo pronóstico, Charlotte y Millie fueron inseparables en Oxford: las mejores amigas, destinadas a cambiar el mundo como abogadas. Pero un giro inesperado las separó y no volvieron a verse en diez años.\n\nAhora Charlotte regresa a Oxford con un nuevo trabajo y una vida aparentemente bajo control… hasta que Millie aparece de nuevo. La conexión sigue intacta, pero esta vez la atracción amenaza con cambiarlo todo. ¿Podrán recuperar la amistad, o el amor reescribirá su historia?",
     "pages": 421,
-    "isbn": null,
+    "isbn": "9798378940127",
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Bisexual",
+      "Autodescubrimiento",
+      "Familia",
+      "Coming Out",
+      "Feminismo"
+    ],
     "identidades": [
-      "Bisexual"
+      "Bisexual",
+      "Lesbiana",
+      "Femme"
     ],
     "characters": [
-      "Abogada"
+      "Abogada",
+      "Camarera",
+      "Fisioterapeuta"
     ],
-    "dinamicas": [],
+    "protagonistas": [
+      {
+        "id": "pmvzcn3vqgkd",
+        "nombre": "Charlotte",
+        "profesiones": [],
+        "identidades": [
+          "Lesbiana",
+          "Femme"
+        ],
+        "edad": 33
+      },
+      {
+        "id": "pmvzcn3vry8d",
+        "nombre": "Millie",
+        "profesiones": [
+          "Fisioterapeuta"
+        ],
+        "identidades": [
+          "Bisexual",
+          "Femme"
+        ],
+        "edad": 33
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Friends to Lovers",
-      "Slow Burn"
+      "Slow Burn",
+      "Bi Awakening",
+      "Opposites Attract"
     ],
     "edad": [
       "25–39"
@@ -27551,8 +28141,43 @@
     "pais_cultura": [
       "Reino Unido"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Oxfordshire",
+        "ciudad": "Oxford",
+        "localidad": null,
+        "lugares": [
+          "Magdalen College",
+          "St. Hilda's",
+          "Worcester College",
+          "Christ Church",
+          "Museo Ashmolean",
+          "Beaumont Street",
+          "Banbury Road",
+          "Cowley Road",
+          "Jolly Farmers",
+          "Marston Meadows",
+          "East Oxford",
+          "Prados y caminos junto al río de Oxford y el North Oxford Tennis Club"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Oxford Romance",
@@ -27561,13 +28186,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240248197_9cpf0",
@@ -27580,23 +28204,69 @@
     "synopsis": "Olivia Sachdeva lo tiene todo bajo control: Oxford, un puesto como socia joven en el prestigioso bufete Bentley y una vida tan impecable como previsible. Su único refugio son los postres helados y las comedias románticas de su actriz favorita, Kate Laurence.\n\nPero cuando Kate aparece en su despacho con un divorcio urgente y un caos personal imposible de disimular, la perfección de Olivia empieza a resquebrajarse. Entre secretos que mantener y amistades demasiado curiosas, la abogada más fría y la estrella de cine más luminosa descubrirán que detrás de la fachada siempre puede esconderse algo inesperado… incluso el amor.",
     "pages": 404,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Bisexual",
+      "Celebridad",
+      "Familia",
+      "Coming Out"
+    ],
     "identidades": [
       "Bisexual",
-      "Ice Queen"
+      "Ice Queen",
+      "Lesbiana",
+      "Femme"
     ],
     "characters": [
       "Abogada",
-      "Famosa"
+      "Famosa",
+      "Actriz",
+      "Actriz profesional, principalmente de cine"
     ],
-    "dinamicas": [],
+    "protagonistas": [
+      {
+        "id": "pmvzcnszojis",
+        "nombre": "Olivia",
+        "profesiones": [
+          "Abogada"
+        ],
+        "identidades": [
+          "Lesbiana",
+          "Femme"
+        ],
+        "edad": 34
+      },
+      {
+        "id": "pmvzcnszow73",
+        "nombre": "Kate",
+        "profesiones": [
+          "Actriz profesional, principalmente de cine"
+        ],
+        "identidades": [
+          "Bisexual",
+          "Femme"
+        ],
+        "edad": 38
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Famosa × Anónima",
+      "Fría × Cálida"
+    ],
     "tropes": [
       "Forbidden Love",
-      "Slow Burn"
+      "Slow Burn",
+      "Opposites Attract",
+      "Strangers to Lovers"
     ],
     "edad": [
       "25–39"
@@ -27604,8 +28274,42 @@
     "pais_cultura": [
       "Reino Unido"
     ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Oxfordshire",
+        "ciudad": "Oxford",
+        "localidad": null,
+        "lugares": [
+          "Park Town",
+          "Jericho",
+          "Iffley Village",
+          "Beaumont Street",
+          "St Giles",
+          "Little Clarendon Street",
+          "East Oxford",
+          "Mesopotamia Walk",
+          "Christ Church Meadow",
+          "Alrededores de los ríos Cherwell y Támesis",
+          "Oficinas de Bentley & Partners y los estudios cinematográficos de Twickenham"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Reino Unido"
+    ],
     "ambientacion": [],
-    "spicy": 3,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Oxford Romance",
@@ -27614,13 +28318,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240287178_ywufl",
@@ -27636,19 +28339,56 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
-      "Madre Soltera"
+      "Madre Soltera",
+      "Farmacéutica",
+      "Directiva"
     ],
-    "dinamicas": [],
+    "protagonistas": [
+      {
+        "id": "pmvzbg1jgxxv",
+        "nombre": "Aubrey",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 33
+      },
+      {
+        "id": "pmvzbg1jg1xx",
+        "nombre": "Monica",
+        "profesiones": [
+          "Directiva"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Enemies to Lovers",
-      "Slow Burn"
+      "Slow Burn",
+      "Jealousy Trope"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -27666,19 +28406,43 @@
         "ciudad": "Outer Banks",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Lake Placid",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Junebug Farms",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27705,34 +28469,114 @@
     "synopsis": "La cineasta inglesa Alex Levitin viaja a Nueva Zelanda para salvar la \"peor película de la historia\". Su llegada no es ideal: casi atropella a la guapa policía local y descubre que el rodaje está siendo saboteado. Por otro lado, la agente Sam Keegan desprecia la producción y a los forasteros de Hollywood que la lideran, incluyendo a la adorable pero mordaz Alex.\n\nA pesar del choque de culturas y las malas habilidades de Alex al volante, la atracción surge entre paisajes neozelandeses. Obligadas a trabajar juntas para detener al saboteador del set, ambas descubrirán que el amor florece incluso en el rodaje más caótico. Una comedia romántica sáfica sobre la valentía de soñar en grande y encontrar el hogar donde menos lo esperas.",
     "pages": 336,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "Misterio"
+      "Misterio",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "Small Town"
+      "Small Town",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
     ],
     "identidades": [
       "Femme",
       "Ice Queen",
-      "Masc"
+      "Masc",
+      "Lesbiana"
     ],
     "characters": [
-      "Famosa"
+      "Famosa",
+      "Policía",
+      "Cineasta independiente",
+      "Directora de cine",
+      "Agente de policía de Nueva Zelanda"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcyp6h8y1",
+        "nombre": "Alex",
+        "profesiones": [
+          "Cineasta independiente",
+          "Directora de cine"
+        ],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": 30
+      },
+      {
+        "id": "pmvzcyp6hdxt",
+        "nombre": "Sam",
+        "profesiones": [
+          "Agente de policía de Nueva Zelanda"
+        ],
+        "identidades": [
+          "Lesbiana"
+        ],
+        "edad": 30
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Masc × Femme",
-      "Rich × Poor"
+      "Rich × Poor",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Opposites Attract",
       "Rich / Poor Romance",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Nueva Zelanda",
+        "region": "Waikato",
+        "ciudad": "Ika Whenu",
+        "localidad": null,
+        "lugares": [
+          "Rodaje de Shezan",
+          "Comisaría de Ika Whenu",
+          "Hotel Te Wharariki",
+          "Club de moteros",
+          "Caravana de producción y residencia de Sam. Al final",
+          "California"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Nueva Zelanda"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27741,13 +28585,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Nueva Zelanda"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240352691_ynigr",
@@ -27760,21 +28603,88 @@
     "synopsis": "Soraya es la princesa de un cuento de hadas que nadie quiere protagonizar: una maldición la vuelve venenosa al tacto. Mientras su hermano gemelo se prepara para su boda, ella vive oculta en los jardines, separada de una familia que le teme. Pero el aislamiento tiene un límite y Soraya está lista para buscar respuestas, incluso si estas se encuentran en lo más profundo de las mazmorras del palacio\n\nAllí habita un demonio que conoce el secreto de su libertad, mientras que en la superficie aparece un joven cuyos ojos no reflejan pavor, sino una comprensión inquietante. Entre la posibilidad de ser humana o aceptar su naturaleza monstruosa, Soraya deberá decidir qué precio está dispuesta a pagar por salir de las sombras. Una historia cautivadora sobre el poder, la identidad y la belleza que reside en lo letal",
     "pages": 322,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Romance",
-      "YA"
+      "YA",
+      "Aventura",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Magia",
+      "Mitología",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Participa",
+      "Soldado de Atashar"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzchquxw4e",
+        "nombre": "Soraya",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmvzchquxap2",
+        "nombre": "Parvaneh",
+        "profesiones": [
+          "Participa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzchqux1bm",
+        "nombre": "Azad",
+        "profesiones": [
+          "Soldado de Atashar"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Slow Burn"
+      "Slow Burn",
+      "Strangers to Lovers",
+      "Love Triangle"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Estados Unidos"
     ],
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 1,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27783,13 +28693,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240394536_s0o6m",
@@ -27801,25 +28710,103 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1717412848i/214187319.jpg",
     "synopsis": "¿Qué pasaría si te enamoraras de la madre de tu mejor amigo? Cuando Noah le pide a Brooke fingir ser su novia en una boda en México, ella acepta: son vacaciones gratis y, total, es lesbiana. Pero el plan flaquea al conocer a Jen, la madre de Noah. Sofisticada y bellísima, Jen es exactamente la mujer que hace que el pulso de Brooke se acelere.\n\nEntre cócteles y roces bajo el sol, la atracción se vuelve insostenible. Jen debería ser intocable, pero al corazón de Brooke no le importan las reglas ni los lazos familiares. En este triángulo de secretos, Brooke deberá decidir si reprime sus deseos o arriesga su amistad por un beso prohibido. Una comedia romántica sáfica llena de tensión, sol y dilemas morales.",
     "pages": 279,
-    "isbn": null,
+    "isbn": "9781912019434",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Segunda Oportunidad"
+    ],
     "identidades": [
       "Femme",
-      "Bisexual"
+      "Bisexual",
+      "Lesbiana"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Empresaria",
+      "Trabajadora del sector de servicios financieros",
+      "Al final trabaja para la empresa",
+      "Propietaria de un negocio de cocinas",
+      "Responsable"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcd7nvj9x",
+        "nombre": "Brooke",
+        "profesiones": [
+          "Trabajadora del sector de servicios financieros"
+        ],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": 29
+      },
+      {
+        "id": "pmvzcd7nvobb",
+        "nombre": "Jen",
+        "profesiones": [
+          "Empresaria",
+          "Propietaria de un negocio de cocinas",
+          "Responsable"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 44
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Age Gap",
       "Forced Proximity",
-      "Vacation Romance"
+      "Vacation Romance",
+      "Fake Relationship",
+      "Forbidden Love",
+      "Secret Relationship",
+      "Strangers to Lovers"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [
+      "México"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "México",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Southampton:",
+          "Mencionada durante la reunión laboral. Worcester: localidad donde Brooke visita a su madre y conoce a Gavin"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Reino Unido"
     ],
     "ambientacion": [],
-    "spicy": 3,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27828,13 +28815,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Reino Unido"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778240422699_cefa9",
@@ -27847,20 +28833,94 @@
     "synopsis": "Para los fans de The Holiday llega esta comedia navideña de intercambio de casas. En San Francisco, Bee Tyler vive asfixiada por el ritmo tecnológico y la perfección de su hermana Beth. Buscando un respiro, Bee intercambia su apartamento por una cabaña en el idílico y navideño pueblo de Salem, Ohio.\n\nAllí vive Clover Mills, quien tras un año duro huye a la gran ciudad para evadirse de las fiestas. El destino se enreda cuando Clover empieza a encontrarse con la atractiva Beth en San Francisco, mientras Bee estrecha lazos con Knox, el ex de Clover. Entre paisajes nevados y luces de ciudad, ambas descubrirán que el amor y la sanación aparecen donde menos lo esperan. Un romance sáfico y coral lleno de encanto y espíritu festivo.",
     "pages": 288,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
       "Navidad",
-      "Small Town"
+      "Small Town",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Escritora publicitaria",
+      "Empresaria",
+      "Profesional de comunicación comercial",
+      "Participa",
+      "Propietaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcgpasbf2",
+        "nombre": "Bee",
+        "profesiones": [
+          "Escritora publicitaria",
+          "Profesional de comunicación comercial",
+          "Participa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzcgpas0x3",
+        "nombre": "Clover",
+        "profesiones": [
+          "Propietaria",
+          "Participa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Opposites Attract",
+      "Vacation Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Campo",
+      "Pueblo pequeño"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": 2,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -27869,6 +28929,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -34884,7 +35946,8 @@
       "Romance",
       "Comedia Romántica",
       "Juvenil",
-      "YA"
+      "YA",
+      "Drama"
     ],
     "subgenres": [
       "Bisexual",
@@ -34892,12 +35955,36 @@
       "Reality Show",
       "Celebridad",
       "Familia",
-      "Universidad"
+      "Universidad",
+      "Autodescubrimiento",
+      "Coming Out"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Bisexual"
     ],
     "characters": [],
+    "protagonistas": [
+      {
+        "id": "pmvzclzm1ci2",
+        "nombre": "Maya",
+        "profesiones": [],
+        "identidades": [
+          "Femme",
+          "Bisexual"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmvzclzm16vm",
+        "nombre": "Skye",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 18
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -34908,10 +35995,13 @@
       "Rivals to Lovers",
       "Friends to Lovers",
       "Jealousy Trope",
-      "Found Family"
+      "Found Family",
+      "Love Triangle",
+      "Slow Burn"
     ],
     "edad": [
-      "New Adult (18–24)"
+      "New Adult (18–24)",
+      "Young Adult (15–18)"
     ],
     "pais_cultura": [],
     "ubicaciones": [
@@ -34935,8 +36025,8 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
-    "rapidez_romance": 3,
+    "spicy": 1,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -65896,26 +66986,125 @@
     "authors": [
       "Charlotte Greene"
     ],
-    "year": 2016,
+    "year": 2023,
     "cover": "https://s3.amazonaws.com/romance.io/books/large/582962807bd258a27e86ce5f.jpg",
     "synopsis": "Chloé Devereaux, historiadora de arte, regresa a Nueva Orleans para trabajar en la prestigiosa galería de la corporación Winters. Allí conoce a su jefa, la bella y despiadada Amelia Winters, una mujer que la intimida tanto como la seduce. Tras contratarla, Amelia inicia una transformación radical en la imagen de Chloé, vistiéndola con alta costura hasta dejarla irreconocible frente al espejo.\nMientras su entorno le advierte que Amelia es una mujer fatal peligrosa, Chloé se debate entre la profesionalidad y una atracción creciente que no puede ignorar. Entre lujos y miradas cargadas de intención, la línea del deber comienza a borrarse.\n¿Es Amelia la mentora que Chloé necesita o la trampa de la que debería huir antes de perderse a sí misma?",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Coming Out"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Historiadora del arte",
+      "Pintura artística como afición",
+      "Marchante de arte"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcoglnn1c",
+        "nombre": "Chloé",
+        "profesiones": [
+          "Historiadora del arte",
+          "Pintura artística como afición"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 26
+      },
+      {
+        "id": "pmvzcoglnulm",
+        "nombre": "Amelia",
+        "profesiones": [
+          "Marchante de arte"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Boss × Employee",
+      "Jefa × Subordinada",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Strangers to Lovers",
+      "Lesbian Awakening",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "Nueva Orleans",
+        "localidad": null,
+        "lugares": [
+          "Bywater",
+          "Mid-City",
+          "Garden District",
+          "Uptown",
+          "Barrio Francés",
+          "St. Charles Avenue",
+          "Camp Street",
+          "City Park",
+          "Almacén y oficinas de la Corporación Winters",
+          "Viviendas de los clientes",
+          "Mansión familiar de los Winters y Port of Call. En Nueva York",
+          "Sotheby's",
+          "Hoteles y espacios de eventos artísticos"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Francia",
+        "region": null,
+        "ciudad": "París",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Love",
@@ -65924,6 +67113,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -65939,30 +67130,118 @@
     "cover": "https://s3.amazonaws.com/romance.io/books/large/596c564b3ffdba61471c4b66.jpg",
     "synopsis": "Tras las fiestas y con el inicio del Año Nuevo, Chloé Deveraux y Amelia Winters por fin pueden centrarse en sí mismas y en su nuevo amor. Chloé espera que ambas puedan dejar de preocuparse y empezar a vivir.\n\nSin embargo, el camino del amor verdadero nunca es fácil, y Chloé y Amelia luchan por mantener su relación fuerte ante las crecientes complicaciones. Conflictos familiares y una mujer del pasado de Amelia conspiran para separarlas. Estos problemas, sumados al deseo de Chloé de dejar la galería de arte de Amelia, podrían ser el golpe definitivo para su frágil romance. ¿Podrán Chloé y Amelia superar estas amenazas, o es hora de seguir adelante?",
     "pages": 240,
-    "isbn": null,
+    "isbn": "9781626399440",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "BDSM"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Femme",
+      "Lesbiana"
+    ],
+    "characters": [
+      "Artista",
+      "Historiadora del arte",
+      "Profesora universitaria",
+      "Marchante de arte",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcrmcwwxp",
+        "nombre": "Emma",
+        "profesiones": [
+          "Historiadora del arte",
+          "Profesora universitaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzcrmcw3e9",
+        "nombre": "Amelia",
+        "profesiones": [
+          "Marchante de arte",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 29
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Boss × Employee",
+      "Jefa × Subordinada",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Workplace Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Luisiana",
+        "ciudad": "Nueva Orleans",
+        "localidad": null,
+        "lugares": [
+          "Barrio Francés",
+          "Marigny",
+          "Garden District",
+          "Apartamento de Chloé",
+          "Mansión de los Winters",
+          "Oficinas y almacén de la Corporación Winters",
+          "Teddy's",
+          "Galería de arte donde Chloé organiza su exposición",
+          "Universidad Estatal de Nueva Orleans y St. Ann Cottage"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad",
+      "Empresa",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
-    "sagaName": "Love",
+    "sagaName": "Por amor (For Love), libro 2.",
     "sagaNum": 2,
     "source": "other",
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -65978,30 +67257,114 @@
     "cover": "https://s3.amazonaws.com/romance.io/books/large/626a3d7c95d8edefb9597e7a.jpg",
     "synopsis": "Vivian Carlisle dirige con puño de hierro la prestigiosa revista de moda Du Jour. Su mundo de poder y éxito se pone patas arriba cuando descubre que está embarazada en medio de un divorcio complicado. Sin saber a quién acudir, se ve obligada a recurrir a Jules Moretti, su eficiente asistente y aspirante a escritora, quien acaba de salir de una ruptura.\nEste impactante secreto une a jefa y empleada en una intimidad que jamás imaginaron. Mientras navegan juntas por el caos y los desafíos diarios, la distancia profesional empieza a desdibujarse en un romance de oficina de desarrollo lento. Todo saldrá bien... siempre que no cometan la locura de enamorarse.",
     "pages": 396,
-    "isbn": null,
+    "isbn": "9783963246463",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Queer",
+      "Bisexual",
+      "Familia",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme",
+      "Bisexual"
+    ],
+    "characters": [
+      "Editora",
+      "Escritora",
+      "Asistente ejecutiva"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcvvk8qnd",
+        "nombre": "Vivian",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 42
+      },
+      {
+        "id": "pmvzcvvk8wxj",
+        "nombre": "Jules",
+        "profesiones": [
+          "Asistente ejecutiva"
+        ],
+        "identidades": [
+          "Femme",
+          "Bisexual"
+        ],
+        "edad": 25
+      }
+    ],
     "dinamicas": [
       "Boss × Employee",
       "Jefa × Subordinada",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Femme × Femme"
     ],
     "tropes": [
       "Age Gap",
       "Forced Proximity",
       "Slow Burn",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Lesbian Awakening",
+      "Ice Queen × Toaster Oven"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Nueva York y Pensilvania",
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": [
+          "Zona de Filadelfia"
+        ]
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
-    "content_warnings": [],
-    "spicy": 4,
+    "content_warnings": [
+      "Embarazo",
+      "Aborto",
+      "Infidelidad",
+      "Divorcio",
+      "Conflicto laboral",
+      "Diferencia de poder entre jefa",
+      "Subordinada",
+      "Contenido sexual explícito"
+    ],
+    "spicy": 5,
+    "rapidez_romance": 1,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Carlisle",
@@ -66010,17 +67373,16 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": true,
     "canal_month": "2026",
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1780517422135_iiy6g",
-    "title": "Above All Things",
+    "title": "Above All Things (Sobre todas las cosas)",
     "authors": [
       "Roslyn Sinclair"
     ],
@@ -66028,26 +67390,73 @@
     "cover": "https://m.media-amazon.com/images/I/71SY2D7c50L._AC_UF1000,1000_QL80_.jpg",
     "synopsis": "Tras superar el impactante descubrimiento del embarazo y confesar un amor mutuo, Jules Moretti y la implacable editora de moda Vivian Carlisle se enfrentan a una nueva realidad. Ahora que Jules busca forjar su propio camino profesional, ambas deben aprender a equilibrar su explosiva química con las traiciones laborales, las intromisiones familiares y la inminente llegada del bebé.\nEn esta segunda entrega, la adicta al trabajo y su exasistente pondrán a prueba su compromiso. Deberán decidir si los desafíos del entorno apagarán su pasión o si serán capaces de abrirse por completo al amor para llevar su relación sáfica a un nuevo nivel.",
     "pages": 314,
-    "isbn": null,
+    "isbn": "9783963246487",
     "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Erótica",
+      "Autodescubrimiento",
+      "Feminismo"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Editora",
+      "Escritora",
+      "Directiva"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzbejkv9nd",
+        "nombre": "Jules",
+        "profesiones": [
+          "Escritora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzbejkwbi6",
+        "nombre": "Vivian",
+        "profesiones": [
+          "Directiva"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 42
+      }
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Boss × Employee",
-      "Jefa × Subordinada"
+      "Jefa × Subordinada",
+      "Femme × Femme",
+      "Ice Queen × Softie",
+      "Top × Bottom",
+      "Dominante × Sumisa",
+      "Switch × Switch"
     ],
     "tropes": [
       "Age Gap",
       "Forced Proximity",
       "Slow Burn",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Opposites Attract",
+      "Forbidden Love",
+      "Ice Queen × Toaster Oven",
+      "Rich / Poor Romance",
+      "Secret Relationship"
     ],
     "edad": [
       "25–39",
@@ -66069,7 +67478,8 @@
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Oficina"
+      "Oficina",
+      "Ciudad"
     ],
     "idioma_original": "Inglés",
     "pais_origen": [
@@ -66078,9 +67488,10 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
-    "sagaName": "Carlisle",
+    "sagaName": "The Carlisle, libro 2 de 2",
     "sagaNum": 2,
     "source": "other",
     "editions": [],
@@ -94513,26 +95924,97 @@
     "synopsis": "La magnate editorial Vivian tiene una carrera exitosa, una hija pequeña feliz y a su adorada amante, Jules. Lo único que le falta es la aprobación familiar. ¿Podrá Vivian reconciliarse con su familia durante un tenso viaje al Medio Oeste con Jules?\n\nUn relato corto lésbico de la serie Carlisle, con una diferencia de edad considerable, que plantea la pregunta de si realmente se puede volver a casa.",
     "pages": 47,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Familia",
+      "Queer"
+    ],
     "identidades": [
-      "Bisexual"
+      "Bisexual",
+      "Femme",
+      "Indicado expresamente"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Escritora",
+      "Estilo de vida",
+      "Escritora freelance"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzctzsco37",
+        "nombre": "Vivian",
+        "profesiones": [
+          "Estilo de vida"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 44
+      },
+      {
+        "id": "pmvzctzsclqd",
+        "nombre": "Julia",
+        "profesiones": [
+          "Escritora freelance"
+        ],
+        "identidades": [
+          "Femme",
+          "Bisexual",
+          "Indicado expresamente"
+        ],
+        "edad": 28
+      }
+    ],
+    "dinamicas": [
+      "Rich × Poor"
+    ],
     "tropes": [
-      "Age Gap"
+      "Age Gap",
+      "Workplace Romance"
     ],
-    "edad": [],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
     "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Medio Oeste de Estados Unidos",
+        "ciudad": "Toledo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 1,
+    "rapidez_romance": null,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Carlisle",
@@ -94541,13 +96023,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1783778469063_s09qt",
@@ -99843,32 +101324,80 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1738318736i/221034780.jpg",
     "synopsis": "¿Quién iba a imaginar que fingir que veía fantasmas me enviaría directamente al infierno? Literalmente.\n\nEn un momento estaba en mi tienda, ocupándome de mis asuntos, y al siguiente una loca con alas me dejó inconsciente; cuando volví en mí, me encontraba en el reino de los demonios.\n\nResulta que los humanos con habilidades especiales son muy apreciados… porque saben mejor.\n\nCuando me obligaron a subir a ese escenario, estaba preparada para que me comieran. Para lo que no estaba preparada era para que una demonio guapa, aunque tremendamente pesada, me comprara.\n\nDice que quiere ayuda y que necesita mis poderes para conseguirla… pero, ¿qué pasará cuando descubra que todo es una mentira?",
     "pages": 144,
-    "isbn": null,
+    "isbn": "9781959187202",
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
       "Fantasía",
-      "Paranormal"
+      "Paranormal",
+      "Acción",
+      "Horror"
     ],
     "subgenres": [
-      "Dark Romance"
+      "Dark Romance",
+      "Queer",
+      "Sobrenatural",
+      "Crimen",
+      "Magia"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
-      "Demonio"
+      "Demonio",
+      "Propietaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzcupx2uem",
+        "nombre": "Mia",
+        "profesiones": [
+          "Propietaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzcupx2tgo",
+        "nombre": "Aris",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Dominante × Sumisa"
+      "Dominante × Sumisa",
+      "Femme × Femme"
     ],
     "tropes": [
       "Enemies to Lovers",
       "Slow Burn",
       "Hurt/Comfort",
       "Forced Proximity",
-      "Diferencia de altura"
+      "Diferencia de altura",
+      "Strangers to Lovers",
+      "Opposites Attract",
+      "Age Gap",
+      "Found Family"
     ],
-    "edad": [],
+    "edad": [
+      "+40"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -99881,6 +101410,7 @@
       "Maltrato animal leve"
     ],
     "spicy": 4,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Stolen Demon Brides",
@@ -99889,6 +101419,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -99905,30 +101437,70 @@
     "synopsis": "Durante toda mi vida me habían preparado para ser la esposa perfecta, sabiendo que algún día me venderían para crear un heredero aún más perfecto.\n\nY entonces me secuestraron.\n\nMe llevaron a un mundo de fantasía donde una demonio de las sombras, fría pero sensible, decidió comprarme para que fuera su compañera.\n\n¿Estaba mal que me alegrara de ser por fin libre?\n\n¿O que empezara a sentir algo por aquella fría demonio?\n\nEn cualquier caso, disfrutaría de mi libertad y, tal vez, si tenía suerte, podría convencer a mi nueva dueña de que hiciera uso de su adquisición.",
     "pages": 114,
     "isbn": null,
+    "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
       "Fantasía",
-      "Paranormal"
+      "Paranormal",
+      "Acción",
+      "Drama"
     ],
     "subgenres": [
       "Magia",
-      "Dark Romance"
+      "Dark Romance",
+      "Queer",
+      "Sobrenatural",
+      "Crimen"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
       "Demonio"
     ],
+    "protagonistas": [
+      {
+        "id": "pmvzcvbjk22t",
+        "nombre": "Iris",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmvzcvbjkvom",
+        "nombre": "Yien",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Dominante × Sumisa",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Femme × Femme"
     ],
     "tropes": [
       "Forced Proximity",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Strangers to Lovers",
+      "Lesbian Awakening",
+      "Opposites Attract"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -99938,9 +101510,16 @@
       "Muerte",
       "Trata de personas",
       "Ideación y mención de canibalismo",
-      "Depresión"
+      "Depresión",
+      "Gore",
+      "Mordidas consentidas",
+      "No consentidas",
+      "Consumo de humanos",
+      "Mutilaciones",
+      "Almas"
     ],
-    "spicy": 5,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Stolen Demon Brides",
@@ -99949,6 +101528,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
