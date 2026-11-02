@@ -37706,7 +37706,8 @@
     "genres": [
       "Romance",
       "Contemporánea",
-      "Drama"
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
       "Erótica",
@@ -37714,16 +37715,47 @@
       "Autodescubrimiento",
       "Familia",
       "Feminismo",
-      "Bisexual"
+      "Bisexual",
+      "BDSM",
+      "Universidad"
     ],
     "identidades": [
       "Femme",
       "Butch"
     ],
-    "characters": [],
-    "protagonistas": [],
+    "characters": [
+      "Artista",
+      "Profesora",
+      "Investigadora",
+      "Profesionales del entretenimiento"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqjjtfx4n",
+        "nombre": "Natalia",
+        "profesiones": [
+          "Profesionales del entretenimiento"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 48
+      },
+      {
+        "id": "pmvzqjjtggxe",
+        "nombre": "Sam",
+        "profesiones": [],
+        "identidades": [
+          "Butch"
+        ],
+        "edad": 50
+      }
+    ],
     "dinamicas": [
-      "Dominante × Sumisa"
+      "Dominante × Sumisa",
+      "Butch × Femme",
+      "Caos × Control",
+      "Grumpy × Sunshine"
     ],
     "tropes": [
       "Workplace Romance",
@@ -37731,9 +37763,14 @@
       "Hurt/Comfort",
       "Friends to Lovers",
       "Enemies to Lovers",
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "One Night Stand → More",
+      "Strangers to Lovers",
+      "Sex Toys / Juguetes Sexuales"
     ],
-    "edad": [],
+    "edad": [
+      "+40"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -37744,20 +37781,28 @@
         "ciudad": "Miami",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Oxford",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
-    "rapidez_romance": 4,
+    "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Dominion",
@@ -42933,7 +42978,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1766214629i/245555601.jpg",
     "synopsis": "Todo el mundo a su alrededor está enamorado… excepto Iris Kelly.\n\nSus amigos, su familia, incluso sus personajes ficticios: todos tienen pareja menos ella. Con el corazón algo roto y la inspiración por los suelos, Iris —autora de novelas románticas, irónicamente— busca ideas desesperadas para su segundo libro.\n\nUna noche loca en un bar con una desconocida guapísima, Stevie, termina en desastre… y en una inesperada propuesta: fingir que son novias. Iris acepta, esperando que la farsa le devuelva la chispa creativa. Pero a medida que la química entre ambas se vuelve demasiado real, Iris se pregunta si esta falsa relación podría ser justo lo que necesitaba… dentro y fuera del papel.\n\nUna comedia romántica sobre bloqueos, besos fingidos y amor verdadero cuando menos lo esperas.",
     "pages": 544,
-    "isbn": null,
+    "isbn": "9780593550588",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -42947,19 +42992,71 @@
       "Bisexual",
       "Autodescubrimiento",
       "Familia",
-      "Coming Out"
+      "Coming Out",
+      "Small Town",
+      "Universidad"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Andrógina"
     ],
-    "characters": [],
+    "characters": [
+      "Actriz",
+      "Escritora",
+      "Autora profesional de novelas románticas",
+      "Actriz profesional"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqrrjdihw",
+        "nombre": "Iris Kelly",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzqrrjd05b",
+        "nombre": "Stevie Scott",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzqrrjdscl",
+        "nombre": "Iris",
+        "profesiones": [
+          "Escritora",
+          "Autora profesional de novelas románticas"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmvzqrrjdzia",
+        "nombre": "Stevie",
+        "profesiones": [
+          "Actriz profesional"
+        ],
+        "identidades": [
+          "Andrógina"
+        ],
+        "edad": 28
+      }
+    ],
     "dinamicas": [
       "Feroz × Tierna",
-      "Caos × Control"
+      "Caos × Control",
+      "Andrógina × Femme"
     ],
     "tropes": [
       "Friends to Lovers",
-      "Slow Burn"
+      "Slow Burn",
+      "Fake Relationship",
+      "Strangers to Lovers",
+      "Forced Proximity",
+      "Workplace Romance"
     ],
     "edad": [
       "25–39"
@@ -42973,22 +43070,54 @@
         "region": null,
         "ciudad": "Bright Falls",
         "localidad": null,
+        "lugares": [
+          "Lush",
+          "Bitch's Brew",
+          "Teatro Empress",
+          "River Wild Books",
+          "Stella's",
+          "Club Belmont",
+          "Casa de Malibu",
+          "Una bodega del valle de Willamette",
+          "Delacorte Theatre y el apartamento de Stevie en Brooklyn"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Portland",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Malibu",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Pueblo pequeño"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 4,
     "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": null,
@@ -43052,7 +43181,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1550000245i/43263237.jpg",
     "synopsis": "1992. Tras un violento incidente en un concierto, Beth, de 17 años, ayuda a sus amigas a ocultar el cuerpo del novio abusivo de una de ellas. Ese acto las lanza a una espiral de venganza y violencia, mientras descubren que muchas otras chicas también necesitan protección.\n\n2022. Tess viaja en el tiempo intentando reescribir la historia para crear un futuro más justo. Pero cambiar el pasado es más complicado de lo que parece, y un grupo de viajeros amenaza con detenerla.\n\nCuando los caminos de Beth y Tess se cruzan, comienza una guerra por el control de la línea temporal. ¿Puede una sola persona marcar la diferencia en el curso de la historia?",
     "pages": 352,
-    "isbn": null,
+    "isbn": "9780765392121",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -43060,7 +43189,9 @@
       "Romance",
       "Histórica",
       "Drama",
-      "Contemporánea"
+      "Contemporánea",
+      "Aventura",
+      "Misterio"
     ],
     "subgenres": [
       "Viaje en el Tiempo",
@@ -43069,17 +43200,44 @@
       "Trans",
       "Autodescubrimiento",
       "Familia",
-      "Crimen"
+      "Crimen",
+      "Música",
+      "Coming of Age"
     ],
     "identidades": [
       "Butch"
     ],
-    "characters": [],
+    "characters": [
+      "Científica",
+      "Investigadora",
+      "Estudiante de secundaria en 1992"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqior4lv5",
+        "nombre": "Tess",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 47
+      },
+      {
+        "id": "pmvzqior4ngx",
+        "nombre": "Beth",
+        "profesiones": [
+          "Estudiante de secundaria en 1992"
+        ],
+        "identidades": [],
+        "edad": 17
+      }
+    ],
     "dinamicas": [],
     "tropes": [
       "Hurt/Comfort"
     ],
-    "edad": [],
+    "edad": [
+      "+40",
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -43090,15 +43248,57 @@
         "ciudad": "Irvine",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Chicago",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Flin Flon",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Beverly Hills",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Garden Grove",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Tustin",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Pasadena",
+        "localidad": null,
+        "lugares": []
       }
     ],
-    "epoca": "Contemporánea",
-    "periodo": null,
-    "tipo_mundo": null,
+    "epoca": "Histórica",
+    "periodo": "Historia alternativa que alterna entre el presente de 1992–1994 y 2022, el siglo XIX (1893–1894), el reino nabateo del siglo I a. C. y el Ordovícico, hace aproximadamente 447,1 millones de años. También incluye documentos y memorias fechados en 2029–2030.",
+    "tipo_mundo": "Ciencia ficción",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -44314,35 +44514,95 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Segunda Oportunidad"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Trabajadora de guardería",
+      "Cuidadora infantil"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqso9eo91",
+        "nombre": "Erin",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmvzqso9ey12",
+        "nombre": "Blair",
+        "profesiones": [
+          "Trabajadora de guardería",
+          "Cuidadora infantil"
+        ],
+        "identidades": [],
+        "edad": 22
+      }
+    ],
     "dinamicas": [
-      "Boss × Employee"
+      "Boss × Employee",
+      "Dominante × Sumisa",
+      "Top × Bottom"
     ],
     "tropes": [
       "Age Gap",
       "Workplace Romance",
       "Vacation Romance",
-      "Found Family"
+      "Found Family",
+      "Forced Proximity",
+      "One Night Stand → More",
+      "Strangers to Lovers"
     ],
     "edad": [
       "New Adult (18–24)",
       "25–39"
     ],
-    "pais_cultura": [],
-    "ubicaciones": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Casa de Erin",
+          "Casa de los Breckenridge",
+          "Piscina de los padres de Blair",
+          "Guardería de Nolan",
+          "Guardería donde posteriormente trabaja Blair",
+          "Hotel junto a la playa",
+          "Playa",
+          "Campo de sóftbol",
+          "Zoológico",
+          "Parque de atracciones"
+        ]
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 4,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
@@ -44369,18 +44629,62 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1706587212i/206180603.jpg",
     "synopsis": "Dos ex atrapadas en la misma casa por Navidad en este romance navideño de Ashley Herring Blake, autora de Iris Kelly Doesn't Date.\n\nCinco años después de ser plantada en el altar, Charlotte lleva una vida plena en Nueva York con su cuarteto de cuerdas. Cuando su compañera Sloane las invita a pasar la Navidad en Colorado, Charlotte acepta pensando en un retiro tranquilo. Pero no espera encontrarse allí con su ex, Brighton, quien también ha sido invitada.\n\nObligadas a convivir y participar en actividades navideñas organizadas por la madre de Sloane, los recuerdos y la música empiezan a acercarlas de nuevo. Aunque aún hay heridas abiertas, el espíritu navideño podría tener otros planes para ellas...",
     "pages": 342,
-    "isbn": null,
+    "isbn": "9780593637630",
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
       "Navidad",
-      "Small Town"
+      "Small Town",
+      "Queer",
+      "Música",
+      "Familia",
+      "Autodescubrimiento"
     ],
-    "identidades": [],
-    "characters": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Música",
+      "Camarera",
+      "Cantante",
+      "Profesora",
+      "Violinista profesional",
+      "Profesora de violín",
+      "Música profesional: guitarrista, cantante",
+      "Compositora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqq7inul4",
+        "nombre": "Charlotte",
+        "profesiones": [
+          "Violinista profesional",
+          "Profesora de violín"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 28
+      },
+      {
+        "id": "pmvzqq7infkv",
+        "nombre": "Brighton",
+        "profesiones": [
+          "Música profesional: guitarrista, cantante",
+          "Compositora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      }
+    ],
     "dinamicas": [
       "Femme × Femme",
       "Grumpy × Sunshine"
@@ -44388,10 +44692,13 @@
     "tropes": [
       "Forced Proximity",
       "Second Chance Romance",
-      "Friends with Benefits"
+      "Friends with Benefits",
+      "Childhood Friends",
+      "Friends to Lovers"
     ],
     "edad": [
-      "New Adult (18–24)"
+      "New Adult (18–24)",
+      "25–39"
     ],
     "pais_cultura": [
       "Estados Unidos"
@@ -44431,12 +44738,22 @@
         "ciudad": "Nashville",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Grand Haven",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
@@ -44444,6 +44761,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -44682,7 +45000,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1675085475i/61685991.jpg",
     "synopsis": "Una comedia romántica queer sobre cine, amistad y primeros amores en Hollywood.\n\nLuna Roth, aspirante a directora de fotografía, acaba de salir del armario como bisexual… y no tiene ni idea de cómo navegarlo. Mientras lidia con un jefe abusivo y sueña con trabajar en un set real, conoce a Valeria Sullivan, una famosa actriz que podría ser su gran oportunidad profesional… y tal vez algo más.\n\nCon la ayuda de su mejor amiga Romy, Luna intenta equilibrarlo todo: impresionar en el rodaje, acercarse a Valeria y mantener viva su amistad. Pero cuando los sentimientos se intensifican, su mundo empieza a tambalearse.\n\n¿Podrá Luna tenerlo todo —la carrera, la chica y a su mejor amiga— o perderá más de lo que imaginaba?",
     "pages": 336,
-    "isbn": null,
+    "isbn": "9780593468180",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -44690,20 +45008,81 @@
       "Contemporánea",
       "Comedia Romántica",
       "Juvenil",
-      "New Adult"
+      "New Adult",
+      "Drama"
     ],
     "subgenres": [
       "Celebridad",
       "Autodescubrimiento",
       "Bisexual",
-      "Queer"
+      "Queer",
+      "Coming Out",
+      "Familia",
+      "Feminismo",
+      "Erótica",
+      "Universidad",
+      "Dark Romance",
+      "Mafia",
+      "Omegaverse"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme",
+      "Butch",
+      "No Binarie"
+    ],
+    "characters": [
+      "Actriz profesional de cine",
+      "Televisión",
+      "Escritora",
+      "Guionista"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqgixqxgc",
+        "nombre": "Luna",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 24
+      },
+      {
+        "id": "pmvzqgixq0w0",
+        "nombre": "Valeria",
+        "profesiones": [
+          "Actriz profesional de cine",
+          "Televisión"
+        ],
+        "identidades": [
+          "Butch"
+        ],
+        "edad": 28
+      },
+      {
+        "id": "pmvzqgixq9b8",
+        "nombre": "Romy",
+        "profesiones": [
+          "Escritora",
+          "Guionista"
+        ],
+        "identidades": [
+          "No Binarie"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Butch × Femme"
+    ],
     "tropes": [
       "Coming Out tardío",
-      "Lesbian Awakening"
+      "Lesbian Awakening",
+      "Friends to Lovers",
+      "Workplace Romance",
+      "Bi Awakening",
+      "WhyChoose",
+      "Sex Toys / Juguetes Sexuales",
+      "Age Gap"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -44718,21 +45097,41 @@
         "region": null,
         "ciudad": "Los Ángeles",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "West Hollywood (WeHo)",
+          "Century City",
+          "Hollywood Hills",
+          "Culver City",
+          "Beverly Hills",
+          "Malibu",
+          "Santa Mónica",
+          "Chinatown",
+          "Downtown Los Angeles",
+          "Studio City",
+          "Pasadena",
+          "Encino",
+          "Manhattan Beach",
+          "Sunken City",
+          "Grand Park",
+          "Pharaoh Karaoke Lounge",
+          "Howlin' Ray's",
+          "Pleasure Chest",
+          "Erewhon y las instalaciones de Slater Management"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
-    "rapidez_romance": null,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -44801,21 +45200,59 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1729193849i/218006857.jpg",
     "synopsis": "El verano pasado, las tres mejores amigas de Nan desaparecieron en Saltcedar Canyon.\n\nDesde entonces, ha pasado el año lamentando su pérdida y evitando preguntas sobre lo que sucedió esa noche. Ahora, en el aniversario, está lista para despedirse, al igual que las familias de las chicas, que se han reunido para celebrar un homenaje. Pero su vigilia se ve interrumpida por el impactante regreso con vida de una de las chicas desaparecidas. Todos están encantados. Todos, es decir, excepto Nan, que estaba bastante segura de que estaban muertas.\n\nDespués de todo, ella fue quien las mató.",
     "pages": 281,
-    "isbn": null,
+    "isbn": "9780593302330",
     "wattpad": null,
     "ship": [],
     "genres": [
       "Horror",
       "Misterio",
       "Thriller",
-      "YA"
+      "YA",
+      "Psicológico",
+      "Drama",
+      "Juvenil"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Crimen",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Estudiante de secundaria",
+      "Trabajo temporal",
+      "Cajera"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqy06i54r",
+        "nombre": "Nan",
+        "profesiones": [
+          "Estudiante de secundaria",
+          "Trabajo temporal"
+        ],
+        "identidades": [],
+        "edad": 17
+      },
+      {
+        "id": "pmvzqy06imys",
+        "nombre": "Luce",
+        "profesiones": [
+          "Estudiante de secundaria",
+          "Cajera"
+        ],
+        "identidades": [],
+        "edad": 17
+      }
+    ],
     "dinamicas": [],
-    "tropes": [],
-    "edad": [],
+    "tropes": [
+      "Jealousy Trope"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -44826,19 +45263,45 @@
         "ciudad": null,
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Utah",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Lago de Saltcedar",
+          "Cañón de Saltcedar",
+          "Ojo del Diablo",
+          "Alojamiento turístico Bullfrog's",
+          "Puerto deportivo",
+          "Gasolinera",
+          "Casas de las protagonistas",
+          "Centro de visitantes y antiguas cabañas de guardabosques"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Salt Lake City",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Inglés",
+    "entornos": [
+      "Pueblo pequeño"
+    ],
+    "idioma_original": "Español",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 0,
+    "rapidez_romance": 0,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -44864,28 +45327,86 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1713361387i/200359301.jpg",
     "synopsis": "Una actriz en pausa, una académica implacable y una química imposible de ignorar.\n\nCuando la oscarizada Valeria Sullivan acepta un trabajo como profesora invitada en la USC, busca dejar atrás Hollywood y empezar de nuevo. Pero su coprofesora, Maeve Arko, no se lo pone fácil. Brillante, hermosa… y aparentemente inmune a su encanto, Maeve y Val chocan desde el primer día.\n\nA medida que las tensiones dan paso a una atracción inesperada, Val empieza a imaginar un futuro lejos de los focos. Pero cuando su fallido debut como directora vuelve a despertar el interés de la industria, deberá decidir entre el amor, la docencia… y una segunda oportunidad en Hollywood.",
     "pages": 336,
-    "isbn": null,
+    "isbn": "9780593468210",
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
-      "Celebridad"
+      "Celebridad",
+      "Queer",
+      "Erótica",
+      "Autodescubrimiento",
+      "Familia",
+      "Feminismo",
+      "Bisexual",
+      "Coming Out",
+      "Dark Romance",
+      "Mafia",
+      "Omegaverse",
+      "Universidad"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Actriz profesional de cine",
+      "Televisión"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqdd1gsle",
+        "nombre": "Valeria",
+        "profesiones": [
+          "Actriz profesional de cine",
+          "Televisión"
+        ],
+        "identidades": [],
+        "edad": 29
+      },
+      {
+        "id": "pmvzqdd1gc01",
+        "nombre": "Maeve",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Workplace Romance",
+      "Opposites Attract",
+      "Enemies to Lovers",
+      "Forbidden Love",
+      "WhyChoose"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
         "region": null,
         "ciudad": "Los Ángeles",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Hollywood Hills",
+          "Mid-Wilshire",
+          "Pasadena",
+          "Campus de University of Southern California (USC)",
+          "Ohio y Gambier (localidad natal de Maeve)"
+        ]
       },
       {
         "pais": "Estados Unidos",
@@ -44912,12 +45433,16 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 4,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -44951,22 +45476,60 @@
       "Misterio",
       "Thriller",
       "Juvenil",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "Queer",
       "Autodescubrimiento",
       "Familia",
-      "Crimen"
+      "Crimen",
+      "Bisexual",
+      "Coming Out",
+      "Universidad",
+      "Dark Romance",
+      "Mafia",
+      "Omegaverse",
+      "BDSM"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Estudiante"
+      "Estudiante",
+      "Camarera",
+      "Operadora de atracciones en Californialand"
     ],
-    "dinamicas": [],
-    "tropes": [],
+    "protagonistas": [
+      {
+        "id": "pmvzqf37kg1s",
+        "nombre": "Billie",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 17
+      },
+      {
+        "id": "pmvzqf37k6d5",
+        "nombre": "Sawyer",
+        "profesiones": [
+          "Operadora de atracciones en Californialand"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Love Triangle",
+      "Workplace Romance",
+      "WhyChoose"
+    ],
     "edad": [
       "Young Adult (15–18)"
     ],
@@ -44980,19 +45543,33 @@
         "ciudad": "Simi Valley",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Encino",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Parque de atracciones",
+    "tipo_mundo": "Realista",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 1,
+    "spicy": 0,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
@@ -45033,15 +45610,53 @@
       "Queer",
       "Familia",
       "Autodescubrimiento",
-      "Erótica"
+      "Erótica",
+      "Dark Romance",
+      "BDSM",
+      "Crimen",
+      "Feminismo",
+      "Small Town"
     ],
     "identidades": [
       "Femme",
-      "Masc"
+      "Butch"
     ],
-    "characters": [],
+    "characters": [
+      "Hacker",
+      "Heredera de la Familia Gallo",
+      "De los Distritos Sur",
+      "Líder de la Familia Tamayo",
+      "Jefa de una organización criminal"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzr2xzpxje",
+        "nombre": "Zarina",
+        "profesiones": [
+          "Heredera de la Familia Gallo",
+          "De los Distritos Sur"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 26
+      },
+      {
+        "id": "pmvzr2xzpesr",
+        "nombre": "Tamayo",
+        "profesiones": [
+          "Líder de la Familia Tamayo",
+          "Jefa de una organización criminal"
+        ],
+        "identidades": [
+          "Butch"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Dominante × Sumisa"
+      "Dominante × Sumisa",
+      "Butch × Femme"
     ],
     "tropes": [
       "Fake Relationship",
@@ -45049,22 +45664,25 @@
       "Forbidden Love",
       "Age Gap",
       "Hurt/Comfort",
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Strangers to Lovers"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [],
     "ubicaciones": [],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 5,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
@@ -45099,24 +45717,67 @@
       "Thriller",
       "Gótico",
       "Misterio",
-      "Drama"
+      "Drama",
+      "Psicológico",
+      "Romance"
     ],
     "subgenres": [
       "Queer",
       "Familia",
       "Crimen",
       "Autodescubrimiento",
-      "Sobrenatural"
+      "Sobrenatural",
+      "Universidad",
+      "Feminismo"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme",
+      "Butch"
+    ],
+    "characters": [
+      "Actriz",
+      "Estudiante",
+      "Jardinera",
+      "Graduada universitaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqnjh2wpe",
+        "nombre": "Nora",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 21
+      },
+      {
+        "id": "pmvzqnjh3jw5",
+        "nombre": "Madeline",
+        "profesiones": [
+          "Graduada universitaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 22
+      }
+    ],
+    "dinamicas": [
+      "Butch × Femme"
+    ],
     "tropes": [
       "Strangers to Lovers",
       "Forced Proximity",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Secret Relationship",
+      "Forbidden Love",
+      "Second Chance Romance",
+      "Rich / Poor Romance"
     ],
-    "edad": [],
+    "edad": [
+      "+40",
+      "New Adult (18–24)",
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -45127,11 +45788,53 @@
         "ciudad": "Altadena",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Pasadena",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "San Bernardino",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "San Francisco",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Berkeley",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Simi Valley",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista con elementos sobrenaturales",
     "entornos": [
       "Ciudad"
     ],
@@ -45139,8 +45842,8 @@
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
-    "rapidez_romance": 3,
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -45172,19 +45875,142 @@
     "genres": [
       "Comedia Romántica",
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "Queer",
       "Autodescubrimiento",
       "Familia",
-      "Small Town"
+      "Small Town",
+      "Segunda Oportunidad"
     ],
-    "identidades": [],
-    "characters": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Florista",
+      "Detective",
+      "Empresaria",
+      "Artista",
+      "Organizadora de bodas",
+      "Eventos",
+      "Detective de policía en Rosemont Ridge",
+      "Policía",
+      "Propietaria",
+      "Administradora de Harlow Tavern",
+      "Directora",
+      "Terapeuta",
+      "Casamentera profesional",
+      "Fundadora de Casanova Connections",
+      "Fundadora de Sterling Hearts"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqhhu9stl",
+        "nombre": "Cori",
+        "profesiones": [
+          "Organizadora de bodas",
+          "Eventos",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhu9g8s",
+        "nombre": "Zoe",
+        "profesiones": [
+          "Florista",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhu9hc0",
+        "nombre": "Kendell",
+        "profesiones": [
+          "Detective de policía en Rosemont Ridge",
+          "Policía"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhu9lmk",
+        "nombre": "Morgan",
+        "profesiones": [
+          "Propietaria",
+          "Administradora de Harlow Tavern",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhu982n",
+        "nombre": "Iliana",
+        "profesiones": [
+          "Empresaria",
+          "Directora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhu9kvu",
+        "nombre": "Talia",
+        "profesiones": [
+          "Artista",
+          "Terapeuta"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhua0co",
+        "nombre": "Nova",
+        "profesiones": [
+          "Casamentera profesional",
+          "Fundadora de Casanova Connections",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqhhuan4y",
+        "nombre": "Delilah",
+        "profesiones": [
+          "Casamentera profesional",
+          "Fundadora de Sterling Hearts",
+          "Empresaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Grumpy × Sunshine",
-      "Fría × Cálida"
+      "Fría × Cálida",
+      "Femme × Femme"
     ],
     "tropes": [
       "Forced Proximity",
@@ -45212,13 +46038,14 @@
     "periodo": null,
     "tipo_mundo": null,
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Pueblo pequeño"
     ],
     "idioma_original": null,
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 4,
     "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
@@ -45473,7 +46300,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1700434112i/195082245.jpg",
     "synopsis": "Una relación sin compromiso con una dominatrix parecía ideal para la estricta profesora Vivienne Carter, hasta que descubre quién es realmente Selene.\n\nVivienne no tiene tiempo para el amor: entre su carrera y criar a su sobrina, una conexión física sin emociones le basta. Pero su mundo da un giro cuando Selene resulta ser la nueva y autoritaria directora del instituto de su sobrina.\n\nY cuando Vivienne es llamada a su despacho por culpa de la adolescente… lo profesional y lo personal empiezan a mezclarse. ¿Qué pasa cuando los sentimientos entran en juego donde solo debía haber deseo?",
     "pages": 144,
-    "isbn": null,
+    "isbn": "9783963248337",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -45496,7 +46323,36 @@
       "Butch"
     ],
     "characters": [
-      "Profesora"
+      "Profesora",
+      "Escritora",
+      "Profesora universitaria",
+      "Directora",
+      "Dominatrix"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqkoxvg0f",
+        "nombre": "Vivienne",
+        "profesiones": [
+          "Profesora universitaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqkvn7trq",
+        "nombre": "Selene (Anna Rothschild)",
+        "profesiones": [
+          "Directora",
+          "Dominatrix"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -45506,24 +46362,38 @@
       "Sex Toys / Juguetes Sexuales",
       "Workplace Romance",
       "Opposites Attract",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Strangers to Lovers",
+      "Secret Relationship",
+      "Second Chance Romance"
     ],
     "edad": [
       "+40"
     ],
-    "pais_cultura": [],
-    "ubicaciones": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Oakdale",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 3,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
@@ -49560,7 +50430,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1724199663i/213344066.jpg",
     "synopsis": "Ofelia siempre ha soñado con entrar en Le Château Enchanté, la corte encantada del rey Léo, bendecido por los dioses, donde las sombras que acechan su tierra nunca se atreven a entrar.\n\nLope, su protectora y caballera, ha dedicado su vida a defenderla de esos monstruos, mientras sueña con huir junto a ella.\n\nPero cuando las sombras cruzan los límites, ambas se embarcan en un viaje hacia el corazón mismo de la oscuridad: el deslumbrante y peligroso Château Enchanté.",
     "pages": 432,
-    "isbn": null,
+    "isbn": "9780063359109",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -49569,7 +50439,8 @@
       "Romance",
       "Aventura",
       "Juvenil",
-      "YA"
+      "YA",
+      "Drama"
     ],
     "subgenres": [
       "Queer",
@@ -49581,12 +50452,40 @@
       "Sobrenatural"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Masc"
     ],
-    "characters": [],
+    "characters": [
+      "Caballera"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqqw1j34l",
+        "nombre": "Ofelia",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 17
+      },
+      {
+        "id": "pmvzqqw1jter",
+        "nombre": "Lope",
+        "profesiones": [
+          "Caballera"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Realeza × Plebeya",
-      "Protectora × Delicada"
+      "Protectora × Delicada",
+      "Masc × Femme",
+      "Dominante × Sumisa",
+      "Top × Bottom"
     ],
     "tropes": [
       "Childhood Friends",
@@ -49594,18 +50493,23 @@
       "Found Family",
       "Hurt/Comfort",
       "Slow Burn",
-      "Bodyguard / VIP"
+      "Bodyguard / VIP",
+      "Forced Proximity",
+      "Only One Bed"
     ],
-    "edad": [],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [],
     "ubicaciones": [],
-    "epoca": null,
+    "epoca": "Medieval",
     "periodo": "Fantasía de corte con ambientación preindustrial y estética de cuento de hadas.",
-    "tipo_mundo": null,
+    "tipo_mundo": "Fantasía",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Palacio"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -49638,13 +50542,15 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1615485431i/56978109.jpg",
     "synopsis": "Ophelia Rojas lo tiene claro: adora a sus amigas, la comida cubana, cuidar rosas… y enamorarse de chicos, muchos chicos. Todos se burlan de sus mil flechazos, pero ella siempre ha sido una romántica.\n\nHasta que empieza a pensar más en la tímida y encantadora Talia Sánchez que en su ex y el baile de graduación perdido. De pronto, la imagen que tenía de sí misma empieza a tambalearse.\n\nCon el fin del instituto cerca y su grupo de amigas cambiando, Ophelia deberá decidir si sigue aferrándose a la versión idealizada de quién cree ser… o si se atreve a descubrir quién es realmente.",
     "pages": 341,
-    "isbn": null,
+    "isbn": "9781250797308",
     "wattpad": null,
     "ship": [],
     "genres": [
       "Juvenil",
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "YA",
+      "Drama"
     ],
     "subgenres": [
       "Autodescubrimiento",
@@ -49652,16 +50558,53 @@
       "Queer",
       "Coming Out",
       "Familia",
-      "Bullying"
+      "Bullying",
+      "Coming of Age",
+      "Universidad",
+      "Erótica",
+      "Dark Romance",
+      "BDSM",
+      "Mafia",
+      "Omegaverse"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Estudiante",
+      "Estudiante de último curso de secundaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqfpsu3re",
+        "nombre": "Ophelia",
+        "profesiones": [
+          "Estudiante de último curso de secundaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 17
+      },
+      {
+        "id": "pmvzqfpsub0w",
+        "nombre": "Talia",
+        "profesiones": [
+          "Estudiante de último curso de secundaria"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Bi Awakening",
-      "Unrequited Love"
+      "Unrequited Love",
+      "Lesbian Awakening",
+      "WhyChoose",
+      "Age Gap"
     ],
     "edad": [
       "Young Adult (15–18)"
@@ -49676,13 +50619,74 @@
         "ciudad": null,
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Norte de California",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Centro comercial donde se encuentran Ollas Amarillas y el estudio fotográfico",
+          "Centro juvenil LGBTQIAP+"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Ninguna otra ciudad confirmada",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Instituto de Ophelia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "casas de las protagonistas",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "jardín de rosas de Ophelia",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "sendero de excursión",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "estudio de arte",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "campo de fútbol donde se celebra la graduación",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
-    "entornos": [],
-    "idioma_original": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
@@ -49840,12 +50844,38 @@
       "Crimen",
       "BDSM",
       "Familia",
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Mafia",
+      "Small Town",
+      "Universidad"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Hacker",
+      "Asesina profesional",
+      "Sicaria por contrato de La Triarquía"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqz4fhdmt",
+        "nombre": "Octavia",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 29
+      },
+      {
+        "id": "pmvzqz4fhy6l",
+        "nombre": "Theo",
+        "profesiones": [
+          "Asesina profesional",
+          "Sicaria por contrato de La Triarquía"
+        ],
+        "identidades": [],
+        "edad": 29
+      }
+    ],
     "dinamicas": [
       "Cazadora × Presa",
       "Caos × Control",
@@ -49856,9 +50886,12 @@
       "Hurt/Comfort",
       "Opposites Attract",
       "Secret Relationship",
-      "Sex Toys / Juguetes Sexuales"
+      "Sex Toys / Juguetes Sexuales",
+      "Strangers to Lovers"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Reino Unido"
     ],
@@ -49872,17 +50905,17 @@
       }
     ],
     "epoca": "Contemporánea",
-    "periodo": null,
-    "tipo_mundo": null,
+    "periodo": "2025",
+    "tipo_mundo": "Realista",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
-    "rapidez_romance": 3,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Triarchy Collection",
@@ -49990,7 +51023,8 @@
     "genres": [
       "Romance",
       "Contemporánea",
-      "Comedia Romántica"
+      "Comedia Romántica",
+      "Drama"
     ],
     "subgenres": [
       "Queer",
@@ -50001,9 +51035,37 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Abogada",
+      "Propietaria de un bufete privado"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqpi1rvh3",
+        "nombre": "Kat",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 22
+      },
+      {
+        "id": "pmvzqpi1rlef",
+        "nombre": "Noelle",
+        "profesiones": [
+          "Abogada",
+          "Propietaria de un bufete privado"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Dominante × Sumisa",
+      "Top × Bottom"
     ],
     "tropes": [
       "Fake Relationship",
@@ -50011,9 +51073,14 @@
       "Only One Bed",
       "Vacation Romance",
       "Student × Teacher",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Strangers to Lovers",
+      "Rich / Poor Romance"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -50024,19 +51091,32 @@
         "ciudad": "Saranac Lake",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Albany",
+        "localidad": null,
+        "lugares": [
+          "The Bristle (estudio de arte)",
+          "Bufete de Noelle",
+          "Casa de los padres Evergreen",
+          "Vivienda de Kat",
+          "Refugio local para personas sin hogar y el recorrido navideño de luces"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 4,
     "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
@@ -50139,42 +51219,76 @@
       "Fantasía Urbana",
       "Romance",
       "Aventura",
-      "Drama"
+      "Drama",
+      "Paranormal"
     ],
     "subgenres": [
       "BDSM",
       "Queer",
       "Familia",
       "Autodescubrimiento",
-      "Erótica"
+      "Erótica",
+      "Sobrenatural",
+      "Crimen"
     ],
     "identidades": [
-      "Butch"
+      "Butch",
+      "Femme",
+      "Humana",
+      "Mercenaria profesional"
     ],
-    "characters": [],
-    "protagonistas": [],
+    "characters": [
+      "Mercenaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqmoxa8ai",
+        "nombre": "Aria",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvzqmoxapf2",
+        "nombre": "Roan",
+        "profesiones": [
+          "Mercenaria"
+        ],
+        "identidades": [
+          "Butch"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Dominante × Sumisa"
+      "Dominante × Sumisa",
+      "Butch × Femme",
+      "Feroz × Tierna",
+      "Protectora × Delicada"
     ],
     "tropes": [
       "Hurt/Comfort",
       "Opposites Attract",
-      "Sex Toys / Juguetes Sexuales"
+      "Sex Toys / Juguetes Sexuales",
+      "Forced Proximity",
+      "Strangers to Lovers"
     ],
     "edad": [],
     "pais_cultura": [],
     "ubicaciones": [],
-    "epoca": null,
+    "epoca": "Medieval",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Fantasía",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 3,
     "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
@@ -50335,26 +51449,85 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1715873555i/208986950.jpg",
     "synopsis": "Hannah sabe cómo hacer crecer la empresa de joyería familiar, pero expresar sus emociones no es lo suyo. Quiere dejar a su novia, Bren, pero una tragedia ocurre antes de que lo haga.\n\nVanessa aún no supera que Bren la dejara años atrás. Dueña de una floristería desde hace más de 25 años, se enfrenta a los 50 mientras lidia con las críticas de su madre.\n\nCuando Vanessa aparece en el funeral de Bren, saltan las alarmas. ¿Conocieron realmente a Bren? A medida que salen a la luz secretos y mentiras, ambas descubren por qué sus relaciones fallaron… y quizá también si están listas para empezar algo nuevo entre ellas.",
     "pages": 312,
-    "isbn": null,
+    "isbn": "9781636797472",
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica",
+      "Bisexual",
+      "Dark Romance",
+      "Mafia",
+      "Omegaverse",
+      "Universidad"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Fabricación de joyería",
+      "Florista"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqeg3icbm",
+        "nombre": "Hannah",
+        "profesiones": [
+          "Fabricación de joyería"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 37
+      },
+      {
+        "id": "pmvzqeg3ii1j",
+        "nombre": "Vanessa",
+        "profesiones": [
+          "Florista"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 49
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Opposites Attract",
+      "Workplace Romance",
+      "Forbidden Love",
+      "Sex Toys / Juguetes Sexuales",
+      "Age Gap"
+    ],
+    "edad": [
+      "25–39",
+      "+40"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
         "region": null,
         "ciudad": "Seattle",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Late Bloomer Florist & Gifts",
+          "Sede de Baros",
+          "Jardines escolares",
+          "Granja e invernaderos de Sonja y Jeffrey"
+        ]
       },
       {
         "pais": "Estados Unidos",
@@ -50404,17 +51577,28 @@
         "ciudad": "Vail",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva Orleans",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Inglés",
+    "entornos": [
+      "Campo",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50596,24 +51780,55 @@
       "Queer",
       "Familia",
       "Autodescubrimiento",
-      "Segunda Oportunidad"
+      "Segunda Oportunidad",
+      "Bisexual",
+      "Universidad",
+      "Small Town"
     ],
     "identidades": [
       "Femme",
       "Butch"
     ],
     "characters": [
-      "Estudiante"
+      "Estudiante",
+      "Broker)",
+      "Técnica de resonancia magnética"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzr2hiaxpb",
+        "nombre": "Tori",
+        "profesiones": [
+          "Broker)"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmvzr2hiajih",
+        "nombre": "Mia",
+        "profesiones": [
+          "Técnica de resonancia magnética"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      }
     ],
     "dinamicas": [
-      "Fría × Cálida"
+      "Fría × Cálida",
+      "Femme × Femme"
     ],
     "tropes": [
       "Friends to Lovers",
       "Second Chance Romance",
       "Childhood Friends",
       "Unrequited Love",
-      "Slow Burn"
+      "Slow Burn",
+      "Lesbian Awakening"
     ],
     "edad": [
       "25–39"
@@ -50648,6 +51863,13 @@
         "ciudad": "Filadelfia",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Pensilvania",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
@@ -50657,12 +51879,12 @@
       "Hospital",
       "Ciudad"
     ],
-    "idioma_original": "Inglés",
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
-    "rapidez_romance": 3,
+    "spicy": 4,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -50688,7 +51910,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1726684450i/216540053.jpg",
     "synopsis": "Las naves espaciales no están programadas para vengarse, pero Deméter hará una excepción con Drácula.\n\nDemeter sólo quiere hacer su trabajo: transportar humanos entre la Tierra y Alfa Centauri. Por desgracia, sus pasajeros siguen muriendo, y no por fallos del equipo, como su sistema médico de inteligencia artificial, Steward, le hace creer. Se trata de asesinatos paranormales, que comenzaron cuando un repugnante y antiguo vampiro decidió subir a bordo de la Demeter y matar a todos sus humanos.\n\nPara evitar ser decomisada, Demeter debe unir fuerzas con su propio equipo: Un hombre lobo. Un ingeniero construido a partir de los muertos. Un faraón con poderes de otro mundo. Un vampiro rencoroso. Una flota de alegres drones araña. Juntos, este variopinto grupo se enfrentará al mal supremo: Drácula.",
     "pages": 407,
-    "isbn": null,
+    "isbn": "9781964721156",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -50698,21 +51920,77 @@
       "Horror",
       "Comedia Romántica",
       "Acción",
-      "Aventura"
+      "Aventura",
+      "Paranormal",
+      "Drama",
+      "Romance"
     ],
     "subgenres": [
       "Queer",
       "Sobrenatural",
       "Autodescubrimiento",
-      "Familia"
+      "Familia",
+      "Magia",
+      "Crimen",
+      "Small Town",
+      "Universidad"
     ],
-    "identidades": [],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Doctora / Médica",
+      "Pirata",
+      "Navegación",
+      "Inteligencia artificial médica de vuelo",
+      "Diagnóstico"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvzqym6hihe",
+        "nombre": "Demeter",
+        "profesiones": [
+          "Navegación"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzqym6hihu",
+        "nombre": "Agnus",
+        "profesiones": [
+          "Pirata"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzqym6hyhm",
+        "nombre": "Steward",
+        "profesiones": [
+          "Inteligencia artificial médica de vuelo",
+          "Diagnóstico"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvzqym6h72b",
+        "nombre": "Mina",
+        "profesiones": [
+          "Pirata"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [],
     "tropes": [
-      "Forced Proximity"
+      "Forced Proximity",
+      "Found Family"
     ],
     "edad": [
       "25–39"
@@ -50720,15 +51998,17 @@
     "pais_cultura": [],
     "ubicaciones": [],
     "epoca": "Futurista",
-    "periodo": null,
-    "tipo_mundo": null,
-    "entornos": [],
-    "idioma_original": null,
+    "periodo": "Futuro lejano, siglo XXIV y décadas posteriores.",
+    "tipo_mundo": "Ciencia ficción",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
-    "rapidez_romance": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57899,9 +59179,11 @@
     ],
     "year": 2025,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1754870455i/237674135.jpg",
-    "synopsis": "Olivia Jade lleva quince años como tour manager, entre giras, caos y romances fugaces. Tras un descanso, acepta dirigir la gira mundial de la superestrella pop Peyton Davis, una última gran apuesta para su carrera.\n\nPeyton está en la cima, pero fuera del escenario arrastra una relación rota, problemas familiares y un vacío que ya no puede ocultar.\n\nLa conexión entre ambas surge de forma inesperada. Para Peyton es la primera vez que siente algo así por una mujer… y por su propia tour manager. Pero los celos, las viejas heridas y la presión mediática amenazan con destruir lo que acaba de nacer.\n\n¿Podrá su amor sobrevivir incluso cuando el mundo entero —y sus propios miedos— se interpone?",
+    "synopsis": "Los monstruos nos rodean, acechan en las sombras, se esconden debajo de nuestras camas, pero a menudo son las personas que tenemos justo delante. Lo aprendí por las malas; por eso me convertí en cazador de monstruos.\n\nSiendo como soy, he vivido una vida prácticamente al margen del mundo… hasta que ya no pude soportarlo más.\n\nMe enamoré de una grifo que creía que lo era todo para mí. Pero entonces su familia descubrió lo que soy.\n\nCuando por fin me alejé de aquel desastre, me topé con la mujer más hermosa que jamás había visto y, al instante, me obsesioné con ella. Sabía que tenía que tenerla. Pero cada vez que me acercaba, ella desaparecía.\n\nCasi un siglo después, por fin la alcanzo, solo para volver a encontrarme con mi ex, lo que me hace darme cuenta de que los sentimientos que sentía por ella nunca desaparecieron.\n\nPor si eso no fuera ya lo bastante complicado, aparece una arpía desterrada que también despierta mi interés.\n\nCuatro almas perdidas. Cuatro seres diferentes que buscan amor y compañía.\n\n¿Encontraremos en los demás lo que anhelamos? ¿O estaremos condenados a vagar solos por el mundo para toda la eternidad?",
     "pages": 201,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Paranormal",
       "Romance"
@@ -57915,6 +59197,7 @@
       "Lesbiana"
     ],
     "characters": [],
+    "protagonistas": [],
     "dinamicas": [
       "Grumpy × Sunshine"
     ],
@@ -57926,8 +59209,17 @@
     "pais_cultura": [
       "Estados Unidos"
     ],
+    "ubicaciones": [],
+    "epoca": null,
+    "periodo": null,
+    "tipo_mundo": null,
+    "entornos": [],
+    "idioma_original": null,
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -57936,6 +59228,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
