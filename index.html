@@ -7757,15 +7757,15 @@ html:has(#homeNextDlg[open]){overflow:hidden}
     <div class="community-nav-wrap" id="communityNavWrap">
       <button class="desktop-nav-link community-nav-trigger" id="communityNavBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="communityNavMenu" onclick="toggleCommunityDropdown()">Comunidad <span class="community-nav-caret" aria-hidden="true">⌄</span></button>
       <div class="community-nav-menu" id="communityNavMenu" role="menu" aria-label="Secciones de comunidad">
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('top10');closeCommunityDropdown()">Las 10 de la noche en Tailandia</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('top10');closeCommunityDropdown()" data-hw="Las 10 de la noche en Tailandia">Top 10 Thais</button>
         <div class="community-nav-group-label">Clubs</div>
-        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('safi');closeCommunityDropdown()">El aquelarre Safi</button>
+        <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('safi');closeCommunityDropdown()" data-hw="El aquelarre Safi">SafiClub</button>
         <button type="button" role="menuitem" class="community-nav-item community-club-item" onclick="switchTab('thaiclub');closeCommunityDropdown()">Thai Club</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('canal');closeCommunityDropdown()">El rincón de la bruja</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('myrec');closeCommunityDropdown()">Mi grimorio</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('solicitudes');closeCommunityDropdown()">Invoca un libro</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('ruleta');closeCommunityDropdown()">La ruleta maldita</button>
-        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('bingo');closeCommunityDropdown()">Bingo de Halloween</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('canal');closeCommunityDropdown()" data-hw="El rincón de la bruja">Recomendaciones del Canal</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('myrec');closeCommunityDropdown()" data-hw="Mi grimorio">Mis Recomendaciones</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('solicitudes');closeCommunityDropdown()" data-hw="Invoca un libro">Solicitudes</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('ruleta');closeCommunityDropdown()" data-hw="La ruleta maldita">Ruleta</button>
+        <button type="button" role="menuitem" class="community-nav-item" onclick="switchTab('bingo');closeCommunityDropdown()" data-hw="Bingo de Halloween">Bingo</button>
       </div>
     </div>
   </div>
@@ -7833,11 +7833,11 @@ html:has(#homeNextDlg[open]){overflow:hidden}
   <div class="mbn-more-group-label">Comunidad</div>
   <button class="mbn-more-item" id="mbnMoreTop10" type="button" onclick="showCatalog('top10');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12c0 3.8 2.4 7.1 5.7 8.1"/><path d="M19.5 12c0 3.8-2.4 7.1-5.7 8.1"/><path d="M5.4 9.7l1.5.6M5.1 12.5l1.6.3M6 15.2l1.5-.1M7.3 17.6l1.5-.6"/><path d="M18.6 9.7l-1.5.6M18.9 12.5l-1.6.3M18 15.2l-1.5-.1M16.7 17.6l-1.5-.6"/></svg></span>
-    <span class="mbn-more-copy"><span>Top 10 Thais</span><small>Las 10 de la noche en Tailandia</small></span>
+    <span class="mbn-more-copy" data-hw="Las 10 de la noche en Tailandia"><span>Top 10 Thais</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreSafi" type="button" onclick="showCatalog('safi');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 0 3.1 1.2 3.1 2.9 0 1.3-.9 2.3-1.9 2.8 1.2.2 2.3 1.1 2.3 2.5 0 1.5-1.5 2.6-3.5 2.6s-3.5-1.1-3.5-2.6c0-1.4 1.1-2.3 2.3-2.5-1-.5-1.9-1.5-1.9-2.8 0-1.7 1.4-2.9 3.1-2.9Z"/><path d="M12 14.4V21"/><path d="M12 16.9c-1.1 0-2.1-.6-2.6-1.6"/><path d="M12 18.9c1.2 0 2.2-.7 2.7-1.8"/></svg></span>
-    <span class="mbn-more-copy"><span>SafiClub</span><small>El aquelarre Safi</small></span>
+    <span class="mbn-more-copy" data-hw="El aquelarre Safi"><span>SafiClub</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreThaiclub" type="button" onclick="showCatalog('thaiclub');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5 19v-3.5H4v-10Z"/></svg></span>
@@ -7845,23 +7845,23 @@ html:has(#homeNextDlg[open]){overflow:hidden}
   </button>
   <button class="mbn-more-item" id="mbnMoreCanal" type="button" onclick="showCatalog('canal');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5v3l3 .6v-4.2l-3 .6Z"/><path d="M6 9.6l12-3.4v11.6L6 14.4V9.6Z"/><path d="M9 15.3v2.9c0 .7.6 1.2 1.2 1l1.8-.6"/></svg></span>
-    <span class="mbn-more-copy"><span>Recomendaciones del Canal</span><small>El rincón de la bruja</small></span>
+    <span class="mbn-more-copy" data-hw="El rincón de la bruja"><span>Recomendaciones del Canal</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreMyrec" type="button" onclick="showCatalog('myrec');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6v-17Z"/></svg></span>
-    <span class="mbn-more-copy"><span>Mis Recomendaciones</span><small>Mi grimorio</small></span>
+    <span class="mbn-more-copy" data-hw="Mi grimorio"><span>Mis Recomendaciones</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreSolicitudes" type="button" onclick="showCatalog('solicitudes');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16v13H4v-13Z"/><path d="M4 7l8 6 8-6"/></svg></span>
-    <span class="mbn-more-copy"><span>Solicitudes</span><small>Invoca un libro</small></span>
+    <span class="mbn-more-copy" data-hw="Invoca un libro"><span>Solicitudes</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreRuleta" type="button" onclick="showCatalog('ruleta');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></span>
-    <span class="mbn-more-copy"><span>Ruleta</span><small>La ruleta maldita</small></span>
+    <span class="mbn-more-copy" data-hw="La ruleta maldita"><span>Ruleta</span></span>
   </button>
   <button class="mbn-more-item" id="mbnMoreBingo" type="button" onclick="showCatalog('bingo');closeMobileMoreMenu()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span>
-    <span class="mbn-more-copy"><span>Bingo</span><small>Bingo de Halloween</small></span>
+    <span class="mbn-more-copy" data-hw="Bingo de Halloween"><span>Bingo</span></span>
   </button>
   <button class="mbn-more-item pwa-install" id="pwaInstallMore" type="button" hidden onclick="closeMobileMoreMenu();pwaInstallClick()">
     <span class="icon mbn-more-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10"/><path d="M8 10.5l4 4 4-4"/><path d="M5 19.5h14"/></svg></span>
@@ -8693,6 +8693,35 @@ html:has(#homeNextDlg[open]){overflow:hidden}
       <p class="auth-toggle" style="margin-top:.5rem"><a onclick="showResetStep1()">← Volver</a></p>
     </div>
 
+  </div>
+</div>
+
+<!-- AJUSTES DE CUENTA: cambiar email y contraseña -->
+<div class="modal-bg" id="accountModal">
+  <div class="reset-modal" role="dialog" aria-modal="true" aria-labelledby="accTitle">
+    <button class="auth-close" onclick="closeAccountModal()" aria-label="Cerrar">✕</button>
+    <div class="auth-logo">Tinta <em>Sapphic</em></div>
+    <div class="auth-title" id="accTitle">Ajustes de cuenta</div>
+    <p class="auth-sub" id="accCurrentEmail"></p>
+    <div class="auth-form">
+      <input type="password" id="accCurrentPass" placeholder="Tu contraseña actual" autocomplete="current-password">
+    </div>
+
+    <div class="reset-step-tag" style="margin-top:1rem">Cambiar email</div>
+    <div class="auth-form">
+      <input type="email" id="accNewEmail" placeholder="Nuevo email" autocomplete="email">
+      <input type="email" id="accNewEmail2" placeholder="Repite el nuevo email" autocomplete="email" onkeydown="if(event.key==='Enter')handleChangeEmail()">
+      <button class="btn-primary" id="accEmailBtn" onclick="handleChangeEmail()">Cambiar email</button>
+    </div>
+    <div class="auth-error" id="accEmailMsg" role="alert" aria-live="polite"></div>
+
+    <div class="reset-step-tag" style="margin-top:1rem">Cambiar contraseña</div>
+    <div class="auth-form">
+      <input type="password" id="accNewPass" placeholder="Nueva contraseña (mín. 6 caracteres)" autocomplete="new-password">
+      <input type="password" id="accNewPass2" placeholder="Repite la contraseña" autocomplete="new-password" onkeydown="if(event.key==='Enter')handleChangePassword()">
+      <button class="btn-primary" id="accPassBtn" onclick="handleChangePassword()">Cambiar contraseña</button>
+    </div>
+    <div class="auth-error" id="accPassMsg" role="alert" aria-live="polite"></div>
   </div>
 </div>
 
@@ -10245,6 +10274,10 @@ function hwApplyTextOverrides(){
   setText('tabSolicitudes','Invoca un libro');
   setText('tabRuleta','La ruleta maldita');
   setText('tabBingo','Bingo de Halloween');
+  document.querySelectorAll('.community-nav-item[data-hw]').forEach(el=>{el.textContent=el.dataset.hw;});
+  document.querySelectorAll('.mbn-more-copy[data-hw]').forEach(el=>{
+    if(!el.querySelector('small')){const sm=document.createElement('small'); sm.textContent=el.dataset.hw; el.appendChild(sm);}
+  });
   setText('ruletaSpinLabel','Girar el destino');
   setText('solFormSub','¿Quieres ver una historia en nuestra estantería? Invócala aquí.');
   document.querySelectorAll('.sol-form-title').forEach(el=>el.textContent='Invoca tu próxima lectura');
@@ -13583,6 +13616,7 @@ function renderAuthUI(){
         <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openCartasModal()">Cartas de autora</button>
         <div class="user-dd-sep"></div>
         <div class="user-dd-group" role="presentation">Cuenta</div>
+        <button type="button" role="menuitem" class="user-dd-item" onclick="toggleUserDropdown();openAccountModal()">Ajustes de cuenta</button>
         <button type="button" role="menuitem" class="user-dd-item danger" onclick="logout()">Cerrar sesión</button>
       </div>
     </div>`;
@@ -13769,6 +13803,81 @@ async function handleResetPassword(){
   }
 }
 document.getElementById('resetModal').addEventListener('click',e=>{if(e.target.id==='resetModal')closeResetModal();});
+
+/* ── AJUSTES DE CUENTA (cambiar email / contraseña) ── */
+function openAccountModal(){
+  if(!currentUser) return;
+  ['accCurrentPass','accNewEmail','accNewEmail2','accNewPass','accNewPass2'].forEach(id=>{document.getElementById(id).value='';});
+  document.getElementById('accEmailMsg').textContent='';
+  document.getElementById('accPassMsg').textContent='';
+  document.getElementById('accCurrentEmail').textContent='Email actual: '+currentUser.email;
+  openAnimatedModalBg(document.getElementById('accountModal'));
+  document.body.style.overflow='hidden';
+}
+function closeAccountModal(){
+  closeAnimatedModalBg(document.getElementById('accountModal'));
+  document.body.style.overflow='';
+}
+document.getElementById('accountModal').addEventListener('click',e=>{if(e.target.id==='accountModal')closeAccountModal();});
+
+function accErrorText(error){
+  const m=(error&&error.message||'').toLowerCase();
+  if(/already|registered|exists/.test(m)) return 'Ese email ya está en uso.';
+  if(/rate limit|too many|security purposes/.test(m)) return 'Demasiados intentos. Espera un momento e inténtalo de nuevo.';
+  if(/different from the old/.test(m)) return 'La nueva contraseña debe ser distinta de la actual.';
+  if(/invalid.*email|email.*invalid/.test(m)) return 'El email no es válido.';
+  return (error&&error.message)||'No se pudo guardar. Inténtalo de nuevo.';
+}
+// Comprueba la contraseña actual antes de tocar la cuenta (sin confirmación por email, evita cambios desde una sesión abierta ajena)
+async function accVerifyCurrentPass(msgEl){
+  const cur=document.getElementById('accCurrentPass').value;
+  if(!cur){msgEl.textContent='Escribe tu contraseña actual.';return false;}
+  const {error}=await sb.auth.signInWithPassword({email:currentUser.email,password:cur});
+  if(error){msgEl.textContent='La contraseña actual no es correcta.';return false;}
+  return true;
+}
+async function handleChangeEmail(){
+  const msg=document.getElementById('accEmailMsg');
+  const btn=document.getElementById('accEmailBtn');
+  const e1=document.getElementById('accNewEmail').value.trim();
+  const e2=document.getElementById('accNewEmail2').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e1)){msg.textContent='Escribe un email válido.';return;}
+  if(e1.toLowerCase()!==e2.toLowerCase()){msg.textContent='Los emails no coinciden.';return;}
+  if(e1.toLowerCase()===(currentUser.email||'').toLowerCase()){msg.textContent='Ese ya es tu email actual.';return;}
+  btn.disabled=true;btn.textContent='Guardando…';msg.textContent='';
+  try{
+    if(!await accVerifyCurrentPass(msg)) return;
+    const {data,error}=await sb.auth.updateUser({email:e1});
+    if(error){msg.textContent=accErrorText(error);return;}
+    if(data?.user?.new_email){
+      msg.textContent='';
+      showToast('Te hemos enviado un enlace de confirmación a '+e1,'success');
+    }else{
+      showToast('¡Email actualizado! 🌹','success');
+    }
+    closeAccountModal();
+  }finally{
+    btn.disabled=false;btn.textContent='Cambiar email';
+  }
+}
+async function handleChangePassword(){
+  const msg=document.getElementById('accPassMsg');
+  const btn=document.getElementById('accPassBtn');
+  const p1=document.getElementById('accNewPass').value;
+  const p2=document.getElementById('accNewPass2').value;
+  if(p1.length<6){msg.textContent='Mínimo 6 caracteres.';return;}
+  if(p1!==p2){msg.textContent='Las contraseñas no coinciden.';return;}
+  btn.disabled=true;btn.textContent='Guardando…';msg.textContent='';
+  try{
+    if(!await accVerifyCurrentPass(msg)) return;
+    const {error}=await sb.auth.updateUser({password:p1});
+    if(error){msg.textContent=accErrorText(error);return;}
+    closeAccountModal();
+    showToast('¡Contraseña actualizada! 🌹','success');
+  }finally{
+    btn.disabled=false;btn.textContent='Cambiar contraseña';
+  }
+}
 
 var _toastTimer=null;
 function showToast(msg,type='success'){
