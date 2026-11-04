@@ -13805,8 +13805,19 @@ async function handleResetPassword(){
 document.getElementById('resetModal').addEventListener('click',e=>{if(e.target.id==='resetModal')closeResetModal();});
 
 /* ── AJUSTES DE CUENTA (cambiar email / contraseña) ── */
+// Renueva la sesión para que currentUser lleve el email vigente (p. ej. tras confirmar un cambio desde el correo)
+async function accRefreshUser(){
+  try{
+    const {data,error}=await sb.auth.refreshSession();
+    const u=data?.session?.user;
+    if(!error&&u){currentUser=u;renderAuthUI();}
+  }catch(e){}
+  const el=document.getElementById('accCurrentEmail');
+  if(el&&currentUser) el.textContent='Email actual: '+currentUser.email;
+}
 function openAccountModal(){
   if(!currentUser) return;
+  accRefreshUser();
   ['accCurrentPass','accNewEmail','accNewEmail2','accNewPass','accNewPass2'].forEach(id=>{document.getElementById(id).value='';});
   document.getElementById('accEmailMsg').textContent='';
   document.getElementById('accPassMsg').textContent='';
@@ -13832,8 +13843,15 @@ function accErrorText(error){
 async function accVerifyCurrentPass(msgEl){
   const cur=document.getElementById('accCurrentPass').value;
   if(!cur){msgEl.textContent='Escribe tu contraseña actual.';return false;}
-  const {error}=await sb.auth.signInWithPassword({email:currentUser.email,password:cur});
-  if(error){msgEl.textContent='La contraseña actual no es correcta.';return false;}
+  // Email vigente según el servidor (la sesión puede llevar uno antiguo tras un cambio de email)
+  let email=currentUser.email;
+  try{const {data}=await sb.auth.getUser(); if(data?.user?.email) email=data.user.email;}catch(e){}
+  const {error}=await sb.auth.signInWithPassword({email,password:cur});
+  if(error){
+    const bad=error.code==='invalid_credentials'||/invalid login credentials/i.test(error.message||'');
+    msgEl.textContent=bad?'La contraseña actual no es correcta.':accErrorText(error);
+    return false;
+  }
   return true;
 }
 async function handleChangeEmail(){
@@ -13853,6 +13871,7 @@ async function handleChangeEmail(){
       msg.textContent='';
       showToast('Te hemos enviado un enlace de confirmación a '+e1,'success');
     }else{
+      await accRefreshUser();
       showToast('¡Email actualizado! 🌹','success');
     }
     closeAccountModal();
