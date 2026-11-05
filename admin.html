@@ -3222,7 +3222,74 @@ var TP_NUM={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8
 
 function tpNorm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
 function tpCap(s){s=String(s||'').trim();return s.charAt(0).toUpperCase()+s.slice(1);}
-function tpUnspec(v){return !v||/^\s*(no\s+(est[aá]\s+)?(especificad|confirmad|identificad|defin|indicad|consta|aplica|determinab|determinad)|pendiente|desconocid|indeterminad|n\/?a\b|sin\s+(dato|especificar|determinar)|[-—–?]+\s*$)/i.test(String(v).trim());}
+function tpUnspec(v){return !v||/^\s*(no\s+(se\s+)?(ha\s+|han\s+)?(est[aá]n?\s+)?(especific|confirm|identific|defin|indic|consta|aplica|determin|menciona|facilit|proporcion|hay\b|existe)|pendiente|desconocid|indeterminad|n\/?a\b|sin\s+(dato|especificar|determinar)|[-—–?]+\s*$)/i.test(String(v).trim());}
+/* ── helpers nuevos del autocompletado por palabras clave ── */
+/* Región: «Estado de Nueva York, según…» → «Nueva York» */
+function tpRegionClean(v){
+  var s=String(v==null?'':v).replace(/\b(St|Sta|Sto|Mt|Ft)\./g,'$1\u0001').split(/[.;(]|,\s|\s[—–-]\s/)[0].replace(/\u0001/g,'.').trim();
+  return s.replace(/^(?:el\s+)?(?:estado|provincia|regi[oó]n|condado|comunidad aut[oó]noma)\s+de(?:l)?\s+/i,'').trim();
+}
+/* Nivel spicy escrito: «0/5 — Cero Steam», «3 de 5», «Spicy Light»… → 0–5 o null */
+function tpSpicyParse(v){
+  var t=String(v==null?'':v).replace(/[*#_`]/g,'').trim();
+  if(!t||tpUnspec(t)) return null;
+  var m=t.match(/(?:^|[^\d.,])([0-5])\s*(?:\/|de)\s*5\b/);
+  if(m) return parseInt(m[1],10);
+  var n=' '+tpNorm(t.split(/\.\s|\.$|;|\n/)[0])+' ';
+  if(/ cero steam | sin escenas /.test(n)) return 0;
+  if(/ mini steam /.test(n)) return 1;
+  if(/ soft steam /.test(n)) return 2;
+  if(/ spicy light /.test(n)) return 3;
+  if(/ infernal /.test(n)) return 5;
+  if(/^ spicy $/.test(n)) return 4;
+  return null;
+}
+/* Advertencias de contenido: palabras clave → etiquetas existentes; lo demás se añade tal cual (chip personalizado) */
+var TP_CW_KEYS=[
+  [/muerte|fallec|\bmor[ií]a\b/,'Muerte'],
+  [/duelo|muerte de (un|una|su|sus|familiar)|p[eé]rdida de (un|una|su|sus|familiar)|fallecimiento de/,'Muerte de un Ser Querido'],
+  [/c[aá]ncer|leucemia|enfermedad terminal/,'Enfermedad Terminal'],
+  [/conflictos? familiar/,'Conflictos Familiares'],
+  [/sexismo|misogin|machism/,'Misoginia'],
+  [/homof[oó]b/,'Homofobia'],[/lesbof[oó]b/,'Lesbofobia'],[/bif[oó]b/,'Bifobia'],[/transf[oó]b/,'Transfobia'],[/lgtb\w*f[oó]b|queerf[oó]b/,'Queerofobia / LGTBfobia'],
+  [/alcohol|bebida/,'Alcohol'],
+  [/drog|consumo de sustancias/,'Drogas / Consumo de Sustancias'],
+  [/acoso sexual/,'Acoso Sexual'],[/acoso|hostigamiento/,'Acoso / Hostigamiento'],[/bullying/,'Bullying'],[/ciberacoso|acoso cibern/,'Acoso Cibernético'],
+  [/autolesi/,'Autolesión'],[/intento de suicidio|suicidio/,'Suicidio / Intento de Suicidio'],[/ideaci[oó]n suicida/,'Ideación Suicida'],
+  [/depresi/,'Depresión'],[/ansiedad|ataques? de p[aá]nico/,'Ansiedad / Ataques de Pánico'],[/ptsd|trauma/,'PTSD / Trauma'],
+  [/enfermedad mental|salud mental/,'Enfermedad Mental'],[/trastornos? alimentari|anorexia|bulimia/,'Trastornos Alimentarios'],
+  [/abuso emocional|gaslighting/,'Abuso Emocional / Gaslighting'],[/abuso sexual/,'Abuso Sexual'],[/abuso infantil/,'Abuso Infantil'],[/abuso de poder/,'Abuso de Poder'],
+  [/maltrato f[ií]sico/,'Maltrato Físico'],[/violencia dom[eé]stica/,'Violencia Doméstica'],[/violencia gr[aá]fica/,'Violencia Gráfica'],[/violaci[oó]n/,'Violación'],
+  [/racism/,'Racismo'],[/clasism/,'Clasismo'],[/infidelidad/,'Infidelidad'],[/secuestro|cautiverio/,'Secuestro / Cautiverio'],[/guerra|conflicto armado/,'Guerra / Conflicto Armado'],
+  [/relaci[oó]n t[oó]xica/,'Relación Tóxica'],[/stalking|acecho/,'Stalking'],[/manipulaci[oó]n psicol/,'Manipulación Psicológica'],[/abandono/,'Abandono'],[/aborto/,'Aborto'],
+  [/outing/,'Outing (revelar orientación sin consentimiento)'],[/terapia de conversi/,'Terapia de Conversión'],[/gordof|fobia corporal/,'Gordofobia / Fobia Corporal'],
+  [/crueldad animal|maltrato animal|muerte de (un )?animal/,'Crueldad Animal']
+];
+function tpWarnings(v,res){
+  var n=0;
+  String(v==null?'':v).replace(/\.\s*$/,'').split(/,|;|\sy\s(?=[a-záéíóúñ])/i).forEach(function(it){
+    it=it.replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').replace(/[.\s]+$/,'').trim();
+    if(!it||tpUnspec(it)||/^(ninguna?|sin)\b/i.test(it)) return;
+    var low=tpNorm(it),found=[],ex=tpExact(it,CONTENT_WARNINGS);
+    if(ex) found.push(ex);
+    else TP_CW_KEYS.forEach(function(p){if(p[0].test(low)&&CONTENT_WARNINGS.indexOf(p[1])>=0&&found.indexOf(p[1])<0) found.push(p[1]);});
+    if(!found.length&&it.split(/\s+/).length<=6) found.push(tpCap(it));   /* no está en la lista: se añade igual como personalizada ✎ */
+    found.forEach(function(f){if(sel.content_warnings.indexOf(f)<0){sel.content_warnings.push(f);n++;}});
+  });
+  return n;
+}
+/* Dinámica de pareja que no está en la lista: «Jugadora de béisbol × árbitra deportiva» → chip personalizado */
+function tpDinamicaCustom(v){
+  var first=String(v==null?'':v).split(/\.\s|\.$|\n/)[0].trim();
+  if(!first||tpUnspec(first)||/^(ninguna?|no|sin)\b/i.test(first)) return 0;
+  var m=first.match(/^(.{2,40}?)\s*[×✕]\s*(.{2,40})$/)||first.match(/^(.{2,40}?)\s+x\s+(.{2,40})$/i);
+  if(!m) return 0;
+  var a=tpCap(m[1].replace(/\([^)]*\)/g,'').trim()),b=tpCap(m[2].replace(/\([^)]*\)/g,'').trim());
+  if(!a||!b) return 0;
+  var lab=tpMatch(a+' × '+b,DINAMICAS)||(a+' × '+b);
+  if(sel.dinamicas.indexOf(lab)>=0) return 0;
+  sel.dinamicas.push(lab);return 1;
+}
 function tpSplitList(s){
   var sep=/[;；]/.test(s)?/[;；]/:/,/;
   return String(s||'').split(sep).map(function(x){return x.trim();}).filter(Boolean)
@@ -3367,7 +3434,7 @@ function tpCountryIn(text){
   return null;
 }
 function tpAuthorNames(v){
-  v=String(v==null?'':v).replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+  v=String(v==null?'':v).replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').replace(/[.\s]+$/,'').trim();
   if(!v||tpUnspec(v)) return [];
   var cap='[A-ZÁÉÍÓÚÑ][^\\s,.;]*',m;
   if(v.split(/\s+/).length>6||/\b(figura|aparece|consta|firma|escribi|metadatos|identifica|indica)\b/i.test(v)){
@@ -3431,10 +3498,15 @@ function tpEntornos(text){
     var v=TP_ENTORNO[k];
     if(nt.indexOf(' '+k+' ')>=0&&ENTORNOS.indexOf(v)>=0&&sel.entornos.indexOf(v)<0){sel.entornos.push(v);n++;}
   });
+  /* «pequeña localidad», «comunidad pequeña», «small town» → Pueblo pequeño */
+  if(/(localidad|pueblo|ciudad|poblacion|comunidad|pueblecito)\s+(muy\s+)?pequen[oa]|pequen[oa]\s+(localidad|pueblo|ciudad|poblacion|comunidad)|small\s*town/.test(nt)&&ENTORNOS.indexOf('Pueblo pequeño')>=0&&sel.entornos.indexOf('Pueblo pequeño')<0){sel.entornos.push('Pueblo pequeño');n++;}
   return n;
 }
 /* nº de escenas explícitas en un texto (null si no se puede saber) */
 function tpExplicitCount(text){
+  /* valor que es solo un número («0.», «3») */
+  var pn=String(text||'').match(/^\s*(\d{1,2})\s*\.?\s*$/);
+  if(pn) return parseInt(pn[1],10);
   /* «dos explícitos y uno menos gráfico» → 2 (manda sobre «tres encuentros») */
   var mx=String(text||'').match(/\b(\d+|un|una|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\s+(?:(?:de\s+ellos\s+|de\s+ellas\s+|son\s+)?(?:escenas?\s+|encuentros?\s+)?)expl[ií]cit[oa]s?\b/i);
   if(mx){var wx=mx[1].toLowerCase();return /^\d+$/.test(wx)?parseInt(wx,10):TP_NUM[wx];}
@@ -3554,8 +3626,8 @@ function runTablePaste(text){
   var res={filled:0,unknown:[],notes:[],detected:rows.length>0,rapidez:false};
   if(!res.detected) return res;
   var unknown=res.unknown;
-  var city='',region='',country='',others=[],lugaresGen=[],epocaRow=null,explicitN=null;
-  var prot=[],sagaName='',sagaNum='',isbn='',year='',pages='',shipKV='',seccion='',spicyKV=null,periodoTxt='',titleDone=false,origenV='';
+  var city='',region='',country='',others=[],lugaresGen=[],epocaRow=null,explicitN=null,explicitTotal=null;
+  var prot=[],sagaName='',sagaNum='',isbn='',year='',pages='',seccion='',spicyKV=null,periodoTxt='',titleDone=false,origenV='';
 
   function loc(t){ /* texto libre de "País y localización" */
     var m;
@@ -3595,7 +3667,7 @@ function runTablePaste(text){
      se escriben tal cual si no están en las listas (quedan como chips personalizados ✎). Al final se vuelcan a protDraft
      y, de paso, a las secciones clásicas Personajes / Identidades / Edad. */
   var pd={},pdOrder=[];
-  function pdGet(id){if(!pd[id]){pd[id]={nombre:'',catBin:null,age:null,prof:[],ident:[]};pdOrder.push(id);}return pd[id];}
+  function pdGet(id){if(!pd[id]){pd[id]={nombre:'',catBin:null,age:null,prof:[],ident:[],raw:{}};pdOrder.push(id);}return pd[id];}
   function protCleanName(v){return String(v||'').replace(/\([^)]*\)/g,' ').replace(/[\s.,;:]+$/,'').replace(/\s+/g,' ').trim();}
   function protResolve(k,raw){
     var m=k.match(/protagonista(\d+)$/);
@@ -3606,9 +3678,17 @@ function runTablePaste(text){
       cn=cleanStr(P0.nombre);
       if(cn.length>=2&&k.length>cn.length&&k.slice(-cn.length)===cn) return {id:pdOrder[i],stem:k.slice(0,k.length-cn.length)};
     }
+    /* nombre dentro de la etiqueta: «Orientación sexual de Ivy», «Categoría profesional de June en Admin» */
+    var nraw=tpNorm(raw);
+    for(i=0;i<pdOrder.length;i++){
+      var P1=pd[pdOrder[i]];if(!P1.nombre) continue;
+      var nn=tpNorm(P1.nombre);if(nn.length<2) continue;
+      var mm=nraw.match(new RegExp('(?:^| )(?:de|del) '+nn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?: |$)'));
+      if(mm) return {id:pdOrder[i],stem:nraw.slice(0,mm.index).replace(/ /g,'')+'de'};
+    }
     /* «Edad de Jeans», «Profesión de Luk Nai», «Categoría de edad de Jeans»…: el prefijo no distingue mayúsculas; el nombre sí empieza en mayúscula */
     var rawS=String(raw||'').trim();
-    if(/^(?:edad|categor[ií]a de edad|profesi[oó]n|ocupaci[oó]n|expresi[oó]n de g[eé]nero|identidad)\b/i.test(rawS)){
+    if(/^(?:edad|categor[ií]a (?:de edad|profesional)|profesi[oó]n|ocupaci[oó]n|actividad|otras ocupaciones|expresi[oó]n de g[eé]nero|orientaci[oó]n|identidad)\b/i.test(rawS)){
       var dre=/\sdel?\s+/gi,dm,NAME=/^((?:[A-ZÁÉÍÓÚÑ][\wÁ-ÿ’'.-]*)(?:\s+[A-ZÁÉÍÓÚÑ][\wÁ-ÿ’'.-]*){0,2})\s*$/;
       while((dm=dre.exec(rawS))){
         var cand=rawS.slice(dm.index+dm[0].length),nmM=cand.match(NAME);
@@ -3646,8 +3726,12 @@ function runTablePaste(text){
     var isAge=/^edad(exacta)?(orangoestimado)?$/.test(stem),
         isCat=/^categoria(de)?edad$/.test(stem),
         isProf=/^(profesion|ocupacion|oficio)(uocupacion|uoficio)?(principal)?(actual)?$/.test(stem),
-        isId=/^(expresiondegenero|expresion|identidad|identidaddegenero|orientacion)$/.test(stem);
-    if(!(isAge||isCat||isProf||isId)) return false;
+        isProfAdmin=/^categoriaprofesional$/.test(stem),
+        isProfAct=/^(actividaddeportiva|actividadprincipal|actividad|cargodeportivo)$/.test(stem),
+        isProfOtras=/^(otrasocupaciones|otrasprofesiones|ocupacionesadicionales|otrasactividades)$/.test(stem),
+        isId=/^(expresion(degenero)?|identidad(degenero)?|orientacion(sexual|romantica|degenero)?)$/.test(stem);
+    if(!(isAge||isCat||isProf||isProfAdmin||isProfAct||isProfOtras||isId)) return false;
+    if(isProfAdmin){ if(!P.raw.admin) P.raw.admin=String(v); return true; }   /* empieza por «No se ha facilitado el catálogo…» pero trae la denominación a conservar */
     if(tpUnspec(v)) return true;
     if(isAge){
       if(PROT_DUDA.test(v)) return true;              /* «aparece con 14 años en un recuerdo…» no es su edad */
@@ -3660,32 +3744,89 @@ function runTablePaste(text){
       var c=protEdadCat(v);if(c) P.catBin=c;
       return true;
     }
-    if(isProf){
-      var items=tpSplitList(v);
-      items.forEach(function(it,ix){
-        it=it.replace(/[.\s]+$/,'').trim();
-        if(!it||tpUnspec(it)||/^(ninguna?|no\b|sin\b|pendiente|provisional)|no\s+se\s+(confirma|identifica)|no\s+determinad/i.test(it)||(PROT_NEG.test(it)&&!(curEv&&ix===0))) return;
-        var val=tpMatch(it,CHARACTERS);
-        if(!val&&ix===0&&it.split(/\s+/).length<=4) val=tpCap(it.replace(/\s+profesional$/i,'').trim());
-        if(!val&&curEv&&ix===0) val=tpFindWord(it,CHARACTERS);   /* frase de la tabla de evidencias: «Se presenta como estudiante universitaria…» */
-        if(val&&P.prof.indexOf(val)<0) P.prof.push(val);
-      });
-      return true;
-    }
-    /* identidad / expresión de género: lo que va antes de «, como…», «; …» o «(…)» */
-    var first=String(v).split(/[;(]|,\s*(?:como|seg[uú]n|basad|por|ya\s+que|aunque)\b|\.\s/i)[0].replace(/[.\s]+$/,'');
-    first.split(/\s\/\s|\/|,|\sy\s/).forEach(function(part){
-      part=part.replace(/\([^)]*\)/g,'').replace(/[.\s]+$/,'').trim();
-      if(!part||tpUnspec(part)||PROT_NEG.test(part)||/\d/.test(part)||part.split(/\s+/).length>3) return;
-      var val=tpExact(part,IDENTIDADES)||tpCap(part);
-      if(P.ident.indexOf(val)<0) P.ident.push(val);
-    });
+    /* profesión: se guarda el texto y se resuelve al final (protProfResolve) con la profesión EXACTA, esté o no en la lista */
+    if(isProf){ if(!P.raw.main){P.raw.main=String(v);P.raw.mainEv=!!curEv;} return true; }
+    if(isProfAdmin){ if(!P.raw.admin) P.raw.admin=String(v); return true; }
+    if(isProfAct){ if(!P.raw.act) P.raw.act=String(v); return true; }
+    if(isProfOtras){ if(!P.raw.otras) P.raw.otras=String(v); return true; }
+    /* identidad / orientación sexual / expresión de género: se añade lo afirmado (esté o no en la lista); «Otro», «no definido»… no se recoge */
+    protIdentItems(v).forEach(function(val){ if(P.ident.indexOf(val)<0) P.ident.push(val); });
     return true;
+  }
+  var PROT_ALIAS_ID={bi:'Bisexual',pan:'Pansexual',ace:'Asexual',nobinaria:'No Binarie',nobinario:'No Binarie',nobinarie:'No Binarie',saficas:'Lesbiana',safica:'Lesbiana',transgenero:'Trans',mujertrans:'Trans',hombretrans:'Trans'};
+  var PROT_OTRO=/^(otr[oa]s?|otro\s*\/\s*a|no\s+defin|sin\s+defin|indefinid|desconocid|n\/?a|ninguna?|no\s+(determin|especific|confirm)|pendiente|provisional)/i;
+  function protIdentItems(v){
+    var out=[],txt=String(v==null?'':v).replace(/[«»“”"]/g,'');
+    var first=txt.split(/[;(]|,\s*(?:como|seg[uú]n|basad|por|ya\s+que|aunque)\b|\.\s|\.$/i)[0].replace(/[.\s]+$/,'');
+    function add(x){if(x&&out.indexOf(x)<0) out.push(x);}
+    first.split(/\s\/\s|\/|,|\sy\s|\so\s/).forEach(function(part){
+      part=part.replace(/\([^)]*\)/g,'').replace(/[.\s]+$/,'').trim();
+      if(!part||tpUnspec(part)||PROT_OTRO.test(part)||/\d/.test(part)) return;
+      var ex=tpExact(part,IDENTIDADES)||PROT_ALIAS_ID[cleanStr(part)];
+      if(ex){add(ex);return;}
+      if(/^(no|sin)\b|confirm|sufic|opcional|inferid|aparece|participa|se\s+presenta/i.test(part)) return;
+      if(part.split(/\s+/).length>3) return;
+      add(tpCap(part));
+    });
+    if(!out.length&&!PROT_OTRO.test(first)&&!/^\s*(no|sin|ninguna?)\b/i.test(first)){
+      var w=tpFindWord(first,IDENTIDADES);if(w) add(w);
+    }
+    return out;
+  }
+  /* Profesión exacta de cada protagonista. Orden de prioridad:
+     1) la denominación que la propia tabla manda conservar («Categoría profesional … en Admin»: «debe conservarse como …»)
+     2) «Profesión principal» (primera frase; si es negativa —«No tiene profesión remunerada»— se usa «Actividad deportiva»)
+     3) «Otras ocupaciones» (p. ej. Estudiante). Lo que no esté en la lista se añade igualmente como chip personalizado ✎ */
+  function protProfResolve(P){
+    var out=[],R=P.raw||{};
+    function add(x){
+      x=String(x||'').replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').replace(/[.\s]+$/,'').trim();
+      if(!x||x.split(/\s+/).length>6||tpUnspec(x)) return;
+      var v=tpExact(x,CHARACTERS)||tpCap(x);
+      if(out.indexOf(v)<0) out.push(v);
+    }
+    function neg(t){return !t||tpUnspec(t)||/^\s*(ninguna?|no\b|sin\b|pendiente|provisional)/i.test(t);}
+    function firstSent(t){return String(t||'').split(/\.\s|\.$|\n|;/)[0].trim();}
+    function addList(t){
+      t=String(t||'').trim();if(!t) return;
+      if(tpExact(t,CHARACTERS)){add(t);return;}
+      t.split(/\s*\/\s*|\s+y\s+/).forEach(add);
+    }
+    var done=false,m;
+    if(R.admin){
+      m=R.admin.match(/(?:debe[n]?\s+conservarse|se\s+debe\s+conservar)\s+(?:como|es|son)\s+([^.;]+)/i);
+      if(m){
+        var d=m[1].split(/,\s*(?:no|sino)\s/i)[0];
+        d.split(/\s*\/\s*|\s+y\s+/).forEach(add);
+        done=out.length>0;
+      }
+    }
+    if(!done&&R.main){
+      if(R.mainEv){var w0=tpFindWord(R.main,CHARACTERS);if(w0) add(w0);}
+      else{
+        var fs=firstSent(R.main);
+        if(!neg(fs)){addList(fs.split(/,\s+(?:especializad|con\s|que\s|como\s)/i)[0]);}
+      }
+      done=out.length>0;
+    }
+    if(!done&&R.act){
+      var fa=firstSent(R.act).split(/,\s+(?:especializad|con\s|que\s|como\s)/i)[0];
+      if(!neg(fa)) addList(fa);
+    }
+    if(R.otras){
+      var fo=firstSent(R.otras);
+      if(!neg(fo)){
+        var wo=tpFindWord(fo,CHARACTERS);
+        if(wo) add(wo); else add(fo.split(/\s+(?:de|en|del)\s+|,|\s+y\s+/)[0]);
+      }
+    }
+    return out;
   }
   function protApply(){
     var names=[],any=false;
     pdOrder.slice().sort(function(a,b){var na=/^\d+$/.test(a),nb=/^\d+$/.test(b);return (na&&nb)?(a-b):(na?-1:nb?1:0);}).forEach(function(id){
       var P=pd[id],bin=P.age?tpAgeBin(P.age):(P.catBin||null);
+      protProfResolve(P).forEach(function(x){if(P.prof.indexOf(x)<0) P.prof.push(x);});
       if(!P.nombre&&!P.prof.length&&!P.ident.length&&!P.age&&!bin) return;
       var ex=null;
       protDraft.forEach(function(x){if(!ex&&P.nombre&&(x.nombre||'').trim().toLowerCase()===P.nombre.toLowerCase()) ex=x;});
@@ -3703,6 +3844,10 @@ function runTablePaste(text){
   function kvExtra(k,v){
     var m;
     if(protKV(k,v,curRaw)) return true;
+    /* filas descartadas / no confirmadas / justificaciones / datos ajenos a la ficha: nunca se recogen */
+    if(/descartad|noconfirmad|sinconfirmar|sinequivalencia/.test(k)||k.indexOf('justificacion')===0||/^profesionessecundarias/.test(k)) return true;
+    if(/^(advertenciasdecontenido|advertencias|contentwarnings|triggerwarnings|avisosdecontenido)$/.test(k)){res.filled+=tpWarnings(v,res);return true;}
+    if(/^(dinamicadepareja|dinamicaprincipal|dinamica)$/.test(k)){var dn0=tpScan(v,DINAMICAS,sel.dinamicas);res.filled+=dn0;if(!dn0) res.filled+=tpDinamicaCustom(v);return true;}
     if(k==='titulo'||k==='titulooriginal'||k==='titulodellibro'||k==='titulocompleto'){
       if(titleDone) return true;
       var t=tpTitleFrom(v),sm=t.match(/^(.*?)\s*\(([^()]*[A-Za-zÁ-ú][^()]*?)\s+#?(\d{1,2}(?:[.,]\d)?)\)\s*$/);
@@ -3739,15 +3884,16 @@ function runTablePaste(text){
       var dig=String(v).replace(/[\s-]/g,''),im=dig.match(/(97[89]\d{10}|\d{9}[\dXx])/);
       if(im&&(!isbn||k==='isbn')) isbn=im[1];return true;
     }
-    if(/^ships?$/.test(k)){if(!tpUnspec(v)) shipKV=v;return true;}
+    if(/^ships?$/.test(k)) return true; /* el ship se rellena siempre a mano: se ignora */
     if(/^protagonista\d*$/.test(k)){if(!tpUnspec(v)) prot.push(String(v).replace(/\([^)]*\)/g,'').replace(/[\s.,;:]+$/,'').trim());return true;}
     if(/^(seccion|section|seccionweb)$/.test(k)){seccion=v;return true;}
     if(k.indexOf('spicy')>=0&&k.indexOf('escena')<0||k==='nivelsteam'){
-      m=String(v).match(/(?:^|[^\d.,])([0-5])\s*(?:\/|de)\s*5\b/);
-      if(m) spicyKV=parseInt(m[1],10);
+      var sp0=tpSpicyParse(v);
+      if(sp0!==null){if(spicyKV===null) spicyKV=sp0;}
       else{var c0=tpExplicitCount(v);if(c0!==null&&explicitN===null) explicitN=c0;}
       return true;
     }
+    if(/^total.*explicit/.test(k)){var nt0=tpExplicitCount(v);if(nt0!==null) explicitTotal=nt0;return true;}
     if(k.indexOf('escena')>=0&&/explicit|sexuales/.test(k)&&!/sugerid|intim|masturb|otras|tercer|independ|\d$/.test(k)){
       var n0=tpExplicitCount(v);if(n0!==null) explicitN=n0;return true;
     }
@@ -3761,9 +3907,22 @@ function runTablePaste(text){
     }
     if(k.indexOf('orientacion')===0){res.filled+=tpScan(v,IDENTIDADES,sel.identidades);return true;}
     if(/^(pais|paisprincipal|paisdelahistoria|paisdeambientacion|paisdelaambientacion)$/.test(k)){if(!tpUnspec(v)) country=tpHead(v);return true;}
-    if(/^(estado|region|provincia|estadoprincipal|regionprincipal|regionoestado|regionoestadoprincipal|estadoregion|regionestadooprovincia|regionestadooprovinciaprincipal|regionestadoprovincia|regionestadoprovinciaprincipal)$/.test(k)){if(!tpUnspec(v)) region=tpHead(v);return true;}
+    if(/^(estado|region|provincia|estadoprincipal|regionprincipal|regionoestado|regionoestadoprincipal|estadoregion|estadooregion|regionestadooprovincia|regionestadooprovinciaprincipal|regionestadoprovincia|regionestadoprovinciaprincipal)$/.test(k)){if(!tpUnspec(v)) region=tpRegionClean(v);return true;}
     if(/^(ciudad|ciudadprincipal|ciudaddelahistoria)$/.test(k)){if(!tpUnspec(v)) city=tpHead(v);return true;}
-    if(/^otrasciudades/.test(k)){tpPlaceHeads(String(v).indexOf(';')>=0?v:String(v).replace(/,\s+(?=[A-ZÁÉÍÓÚÑ])/g,';')).forEach(function(x){others.push(x);});return true;}
+    if(/^otrasciudades/.test(k)){if(tpUnspec(v)) return true;tpPlaceHeads(String(v).indexOf(';')>=0?v:String(v).replace(/,\s+(?=[A-ZÁÉÍÓÚÑ])/g,';')).forEach(function(x){others.push(x);});return true;}
+    if(k==='localizacionprincipal'){
+      res.filled+=tpEntornos(v);
+      if(!region){var rm=String(v).match(/estado\s+de(?:l)?\s+([A-ZÁÉÍÓÚÑ][\wáéíóúñü]+(?:\s+(?:de\s+|del\s+)?[A-ZÁÉÍÓÚÑ][\wáéíóúñü]+)*)/);if(rm) region=rm[1].trim();}
+      return true;
+    }
+    if(/^(localizacionesvisitadas|lugaresvisitados|lugaresvisitadas)$/.test(k)){
+      if(tpUnspec(v)) return true;
+      String(v).split(/\.\s|\.$/)[0].split(/,\s+(?:donde|que|en\s+el|en\s+la)\s.*$/i)[0].split(/\s+y\s+|;|,/).forEach(function(x){
+        x=x.replace(/^(?:el|la|los|las|sus|su)\s+/i,'').trim();
+        if(x&&!tpUnspec(x)) lugaresGen.push(tpCap(x));
+      });
+      return true;
+    }
     if(/^otras?localizacion/.test(k)){
       var semi=/;/.test(v);
       v=String(v).replace(/\s+y\s+(otr[oa]s)\s/i,', $1 ');
@@ -3874,7 +4033,12 @@ function runTablePaste(text){
   });
 
   /* Spicy: según el nº de escenas explícitas (0→0 · 1–2→3 · 3–4→4 · 5+→5); si la tabla no lo da, la fila «Spicy N/5» */
-  if(explicitN!==null){sel.spicy=tpSpicy(explicitN);res.filled++;res.spicy=true;}
+  var cntExp=(explicitTotal!==null?explicitTotal:explicitN);
+  if(cntExp!==null){
+    var spv=tpSpicy(cntExp);
+    if(cntExp===0&&spicyKV!==null&&spicyKV<=2) spv=spicyKV;   /* 0 escenas explícitas: vale el nivel escrito si es 0, 1 o 2 (besos / muy light) */
+    sel.spicy=spv;res.filled++;res.spicy=true;
+  }
   else if(spicyKV!==null){sel.spicy=spicyKV;res.filled++;res.spicy=true;}
 
   /* País (cultura) */
@@ -3945,15 +4109,7 @@ function runTablePaste(text){
     res.notes.push('Sección: '+TP_SECCION_LBL[srcKey]+(srcExplicit?'':' (deducida)'));
   }
 
-  /* Ship: el indicado; si no, con la sección Thais se compone con los nombres de las dos protagonistas (PhinyaBusaya) */
-  var shipEl=document.getElementById('fShip');
-  if(shipEl&&!shipEl.value.trim()){
-    if(shipKV){shipEl.value=shipKV;res.filled++;}
-    else if(sel.source==='thais'&&prot.length>=2){
-      shipEl.value=prot.slice(0,2).map(function(n){return tpCap(n.split(/\s+/)[0]);}).join('');res.filled++;
-      res.notes.push('Ship compuesto con los nombres de las protagonistas');
-    }
-  }
+  /* Ship: NO se autocompleta nunca (se escribe a mano en el campo Ship(s)) */
 
   /* Época + periodo específico */
   if(epocaRow){
