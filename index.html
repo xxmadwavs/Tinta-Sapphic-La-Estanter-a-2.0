@@ -7729,6 +7729,49 @@ html:has(#homeNextDlg[open]){overflow:hidden}
 /* Protagonistas en su propia sección a todo el ancho, debajo de Géneros + Ficha técnica; dos tarjetas por fila si caben */
 #bookPage .bp-prot-section .bp-prot-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:.7rem}
 </style>
+<style id="rs-style">
+/* ── Sliders de rango (Año · Spicy · Valoración · Rapidez) ── */
+.dd-panel.rs-panel{width:min(310px,calc(100vw - 24px));min-width:0;max-width:min(310px,calc(100vw - 24px));padding:0;overflow:visible;max-height:none}
+.rs-box{padding:14px 18px 16px;text-align:left}
+.rs-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.rs-title{font-size:13px;font-weight:600;color:var(--text);letter-spacing:.01em}
+.rs-reset{border:none;background:none;padding:4px 2px;font:inherit;font-size:11.5px;color:var(--accent2);cursor:pointer;letter-spacing:.03em}
+.rs-reset:hover:not(:disabled){text-decoration:underline}
+.rs-reset:disabled{opacity:.35;cursor:default}
+.rs{--rs-t:22px;position:relative;height:62px;margin:0 2px}
+.rs-track{position:absolute;left:calc(var(--rs-t)/2);right:calc(var(--rs-t)/2);top:39px;height:6px;border-radius:3px;background:var(--surface3)}
+.rs-fill{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--accent)}
+.rs-bub{position:absolute;top:2px;min-width:34px;padding:3px 8px;border-radius:14px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;line-height:1.3;text-align:center;white-space:nowrap;pointer-events:none;z-index:5;box-shadow:0 2px 6px rgba(45,20,30,.22)}
+.rs-bub::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;background:inherit;transform:translateX(-50%) rotate(45deg);border-radius:1px}
+.rs-bub[style*="translateX(-100%)"]::after{left:auto;right:10px;transform:rotate(45deg)}
+.rs-bub[style*="translateX(0)"]::after{left:10px;transform:rotate(45deg)}
+.rs-in{position:absolute;left:0;top:31px;width:100%;height:var(--rs-t);margin:0;padding:0;background:transparent;pointer-events:none;-webkit-appearance:none;appearance:none;outline:none}
+.rs-in::-webkit-slider-runnable-track{height:var(--rs-t);background:transparent;border:none}
+.rs-in::-moz-range-track{height:var(--rs-t);background:transparent;border:none}
+.rs-in::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;pointer-events:auto;width:var(--rs-t);height:var(--rs-t);border-radius:50%;background:#fff;border:2px solid var(--accent);box-shadow:0 1px 5px rgba(45,20,30,.3);cursor:grab;margin-top:0}
+.rs-in::-moz-range-thumb{pointer-events:auto;box-sizing:border-box;width:var(--rs-t);height:var(--rs-t);border-radius:50%;background:#fff;border:2px solid var(--accent);box-shadow:0 1px 5px rgba(45,20,30,.3);cursor:grab}
+.rs-in:active::-webkit-slider-thumb{cursor:grabbing}
+.rs-in:focus-visible::-webkit-slider-thumb{outline:2px solid var(--accent2);outline-offset:2px}
+.rs-in:focus-visible::-moz-range-thumb{outline:2px solid var(--accent2);outline-offset:2px}
+.rs-ticks,.rs-ends{display:flex;justify-content:space-between;padding:0 9px;margin-top:-2px;font-size:11px;color:var(--muted)}
+.rs-ticks span{width:8px;text-align:center}
+.rs-ends{padding:0 2px}
+.rs-caption{margin-top:8px;font-size:12.5px;font-weight:500;color:var(--accent2);text-align:center;min-height:1.3em}
+.rs-unk{display:flex;align-items:flex-start;gap:9px;margin-top:12px;padding-top:11px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text);cursor:pointer;line-height:1.35}
+.rs-unk input{accent-color:var(--accent);width:16px;height:16px;flex-shrink:0;margin-top:1px;cursor:pointer}
+.rs-unk small{color:var(--muted);font-size:11px}
+.rs-note{margin:6px 0 8px;font-size:12.5px;color:var(--muted)}
+@media (max-width:639px){
+  .dd-panel.rs-panel{width:92vw;max-width:400px}
+  .rs{--rs-t:26px;height:66px}
+  .rs-track{top:41px}
+  .rs-in{top:31px}
+  .rs-ticks{padding:0 11px}
+  .rs-unk{font-size:14px}
+  .rs-unk input{width:19px;height:19px}
+}
+@media (prefers-reduced-motion:reduce){.rs-in::-webkit-slider-thumb{transition:none}}
+</style>
 </head>
 <body>
 
@@ -8145,11 +8188,19 @@ html:has(#homeNextDlg[open]){overflow:hidden}
       </div>
       <div class="dd-wrap" id="ddYear">
         <button class="dd-btn" onclick="toggleDD('ddYear')">Año <span class="dd-count" id="cntYear" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel"><div class="dd-list" id="listYear"></div></div>
+        <div class="dd-panel rs-panel" id="listYear"></div>
       </div>
       <div class="dd-wrap auth-only" id="ddSpicy">
         <button class="dd-btn" onclick="toggleDD('ddSpicy')">Spicy <span class="dd-count" id="cntSpicy" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-panel" id="listSpicy"></div>
+        <div class="dd-panel rs-panel" id="listSpicy"></div>
+      </div>
+      <div class="dd-wrap auth-only" id="ddRating">
+        <button class="dd-btn" onclick="toggleDD('ddRating')" title="Valoración media de la comunidad">Valoración <span class="dd-count" id="cntRating" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-panel rs-panel" id="listRating"></div>
+      </div>
+      <div class="dd-wrap auth-only" id="ddPace">
+        <button class="dd-btn" onclick="toggleDD('ddPace')" title="Rapidez del romance">Rapidez <span class="dd-count" id="cntPace" style="display:none">0</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-panel rs-panel" id="listPace"></div>
       </div>
       <div id="leidoFilter">
         <button class="dd-btn" id="btnNoLeido" onclick="toggleNoLeido()" title="Mostrar libros que aún no he marcado como leídos">📖 No leído</button>
@@ -8206,7 +8257,7 @@ html:has(#homeNextDlg[open]){overflow:hidden}
             </div>
             <!-- Valoración (solo registradas) -->
             <div class="fp-section no-accordion auth-only" id="secValoracion" data-field="valoracion">
-              <div class="fp-sec-label"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Valoración</span></div>
+              <div class="fp-sec-label"><span class="fp-sec-left"><span class="fp-sec-dot"></span>Mis valoraciones</span></div>
               <div class="fp-sec-body"><div class="fp-toggle-row" id="valoracionFilter">
                 <button class="dd-btn" id="btnValorado" onclick="toggleValoracion('valorado')" title="Mostrar solo libros que ya valoré">★ Valorados</button>
                 <button class="dd-btn" id="btnNoValorado" onclick="toggleValoracion('no_valorado')" title="Mostrar libros que aún no he valorado">☆ Sin valorar</button>
@@ -9800,7 +9851,7 @@ const VALID_TAGS={
 };
 const SPICY_MIN_VOTES=2;
 function emptyExcl(){return {genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],sagas:[],edad:[],pais_cultura:[],pais_origen:[]};}
-let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+let filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,ranges:{},runk:{},excl:emptyExcl()};
 const EXCL_KEYS=['genres','subgenres','dinamicas','tropes','characters','authors','years','sagas','edad','pais_cultura','pais_origen'];
 let currentPage=1;
 const PAGE_SIZE=50;
@@ -9859,6 +9910,7 @@ function pushState(addEntry){
     });
     if(filters.spicy.length) params.set('spicy',filters.spicy.join('|'));
     if(filters.spicyUnknown) params.set('spicyUnknown','1');
+    rfToParams(params);
     if(filters.adaptacion) params.set('adaptacion',filters.adaptacion);
     if(filters.valoracion) params.set('valoracion',filters.valoracion);
     if(filters.pages) params.set('pages',filters.pages);
@@ -9871,7 +9923,7 @@ function pushState(addEntry){
 function loadState(reset){
   const params=new URLSearchParams(location.search);
   if(reset){ // E27-F2: restauración desde el historial → parte de los valores por defecto para que no queden filtros de la entrada anterior (parámetro ausente = defecto)
-    filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+    filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,ranges:{},runk:{},excl:emptyExcl()};
     currentPage=1;
     document.getElementById('searchInput').value='';
   }
@@ -9890,6 +9942,7 @@ function loadState(reset){
   if(params.get('valoracion')) filters.valoracion=params.get('valoracion');
   if(params.get('pages')) filters.pages=params.get('pages');
   if(params.get('leido')) filters.leido=params.get('leido');
+  rfFromParams(params);
 }
 
 // E27-F2 — restaura el estado COMPLETO del catálogo (sección, página, búsqueda, filtros, exclusiones y controles) desde la URL de la entrada de historial activa.
@@ -10754,7 +10807,8 @@ async function loadBooks(){
   const _communityP=Promise.all([
     sbFetchAll('ratings','book_id,score,score_exact'),
     sbFetchAll('spicy_votes','book_id,level'),
-    sbFetchAll('community_tags','book_id,tag_type,tag_value')
+    sbFetchAll('community_tags','book_id,tag_type,tag_value'),
+    sbFetchAll('rapidez_romance_votes','book_id,rapidez')
   ]);
   _communityP.catch(()=>{}); // evita «unhandled rejection» si el JSON falla y se sale antes
   try{
@@ -10776,11 +10830,11 @@ async function loadBooks(){
   // FIX rendimiento — antes se esperaba aquí a bajar TODAS las valoraciones, votos spicy y tags de TODA la comunidad (decenas de
   // peticiones seguidas) antes de pintar nada. Ahora el catálogo se pinta en cuanto llegan los libros y estos datos se aplican
   // al terminar, en segundo plano (_applyCommunityData → _onCommunityLoaded repinta).
-  _communityP.then(([rData,svData,ctData])=>{ _applyCommunityData(rData,svData,ctData); _onCommunityLoaded(); })
+  _communityP.then(([rData,svData,ctData,rvData])=>{ _applyCommunityData(rData,svData,ctData,rvData); _onCommunityLoaded(); })
     .catch(e=>console.warn('[comunidad] no se pudieron cargar valoraciones/tags',e));
 }
 
-function _applyCommunityData(rData,svData,ctData){
+function _applyCommunityData(rData,svData,ctData,rvData){
   ratingsMap={};
   if(rData){
     const acc={}; let skipped=0;
@@ -10801,6 +10855,12 @@ function _applyCommunityData(rData,svData,ctData){
       spicyMap[id]={avg:Math.round(levels.reduce((a,b)=>a+b,0)/levels.length*10)/10,count:levels.length};
     });
   }
+  rapidezMap={};
+  if(rvData){
+    const g={};
+    rvData.forEach(r=>{ if(_rvValid(r.rapidez)){ (g[r.book_id]||(g[r.book_id]=[])).push(r.rapidez); } });
+    Object.entries(g).forEach(([id,v])=>{ rapidezMap[id]={avg:v.reduce((a,b)=>a+b,0)/v.length,count:v.length}; });
+  }
   communityTagsMap={}; protTagsMap={};
   if(ctData){
     ctData.forEach(r=>{
@@ -10819,7 +10879,7 @@ function _onCommunityLoaded(){
   updateStats();
   if(!_initDone) return; // si init() aún no ha pintado, lo hará ya con los datos cargados
   try{
-    applyFilters(false); updateDDCounts();
+    rfBuildAll(); applyFilters(false); updateDDCounts();
     if(document.getElementById('shelfView')?.classList.contains('active')) _renderShelfBooks();
     _bpRefreshIfOpen();
   }catch(e){ console.warn('[comunidad] repintado',e); }
@@ -10877,16 +10937,15 @@ function uniqVals(key){
 const DD_MAP = {
   genres:'listGenre', subgenres:'listSubgenre', dinamicas:'listDinamica',
   tropes:'listTrope', characters:'listCharacter', authors:'listAuthor',
-  years:'listYear', sagas:'listSaga', edad:'listEdad', pais_cultura:'listPais', pais_origen:'listPaisOrigen'
+  sagas:'listSaga', edad:'listEdad', pais_cultura:'listPais', pais_origen:'listPaisOrigen'
 };
 
 function buildDropdowns(){
   Object.entries(DD_MAP).forEach(([key,listId])=>{
-    if(listId==='listYear') buildDDList(listId, uniqVals('years'), 'years');
-    else if(listId==='listEdad') buildEdadDD();
+    if(listId==='listEdad') buildEdadDD();
     else buildDDList(listId, uniqVals(key), key);
   });
-  buildSpicyDD();
+  rfBuildAll();
   buildPagesDD();
   updateDDCounts();
 }
@@ -10918,15 +10977,154 @@ function buildDDList(listId,values,key,search=''){
     }).join('');
 }
 
-function buildSpicyDD(){
-  const el=document.getElementById('listSpicy');
-  el.innerHTML=(filters.spicy.length||filters.spicyUnknown?`<div class="dd-clear" onclick="clearDDFilter('spicy')">✕ Limpiar</div>`:'')+
-    `<div class="spicy-dd-item"><input type="checkbox" id="ddsp_unknown" ${filters.spicyUnknown?'checked':''} onchange="toggleSpicyUnknown()"><label for="ddsp_unknown">${SPICY_UNKNOWN_ICON} <span>${SPICY_UNKNOWN_LABEL}</span><small>Sin información de nivel</small></label></div>`+
-    SPICY_LABELS.map((lbl,i)=>{
-      const sid='ddsp_'+i;
-      return `<div class="spicy-dd-item"><input type="checkbox" id="${sid}" ${filters.spicy.includes(i)?'checked':''} onchange="toggleDDFilter('spicy',${i})"><label for="${sid}">${SPICY_ICONS[i]?SPICY_ICONS[i]+' ':''}<span>${lbl}</span><small>${['Sin escenas','Besos y miraditas','0–1 escena light','1–2 escenas explícitas','3–4 escenas explícitas','5+ escenas'][i]}</small></label></div>`;
-    }).join('');
+/* ══════════════════════════════════════════════════════════════
+   FILTROS DE RANGO (slider doble): Año · Spicy · Valoración · Rapidez
+   Estado: filters.ranges[k] = null | [min,max]  ·  filters.runk[k] = incluir libros sin dato
+   (Spicy usa filters.spicyUnknown como bandera, igual que antes). Un rango completo sin "sin dato" = sin filtro (null).
+   ══════════════════════════════════════════════════════════════ */
+let rapidezMap={}; // book_id -> {avg,count} (votos de la comunidad; como spicyMap)
+function effectivePace(b){
+  const pv=rapidezMap[b.id];
+  if(pv&&pv.count>=1) return Math.round(pv.avg); // con votos manda la media de las lectoras; sin votos, la editorial
+  return rapidezRomance(b);
 }
+function rfBooks(){ return activeSection==='all'?allBooks:allBooks.filter(b=>b.source===activeSection); }
+const RF={
+  year:{wrap:'ddYear',panel:'listYear',cnt:'cntYear',param:'yearR',title:'Año de publicación',pill:'Año',step:1,ticks:false,
+    get(b){const y=Number(b.year);return Number.isFinite(y)&&y>0?y:null;},
+    bounds(){const ys=rfBooks().map(b=>RF.year.get(b)).filter(v=>v!=null);return ys.length?[Math.min(...ys),Math.max(...ys)]:[1990,new Date().getFullYear()];},
+    fmt:v=>String(v),caption:(a,b)=>a===b?String(a):a+' – '+b,unkLabel:'Incluir libros sin año'},
+  spicy:{wrap:'ddSpicy',panel:'listSpicy',cnt:'cntSpicy',param:'spicyR',title:'Nivel spicy',pill:'Spicy',step:1,ticks:true,
+    get(b){const s=effectiveSpicy(b);return (s==null||s==='')?null:Number(s);},
+    bounds:()=>[0,5],fmt:v=>String(v),
+    caption:(a,b)=>a===b?SPICY_LABELS[a]:SPICY_LABELS[a]+' → '+SPICY_LABELS[b],unkLabel:'Incluir libros sin nivel spicy'},
+  rating:{wrap:'ddRating',panel:'listRating',cnt:'cntRating',param:'ratingR',title:'Valoración de la comunidad',pill:'Valoración',step:0.5,ticks:true,
+    get(b){const r=ratingsMap[b.id];return (r&&r.count>0)?r.avg:null;},
+    bounds:()=>[1,5],fmt:v=>String(v).replace('.',','),
+    caption:(a,b)=>(a===b?RF.rating.fmt(a):RF.rating.fmt(a)+' – '+RF.rating.fmt(b))+' ★ de media',unkLabel:'Incluir libros sin valoraciones'},
+  pace:{wrap:'ddPace',panel:'listPace',cnt:'cntPace',param:'paceR',title:'Rapidez del romance',pill:'Rapidez',step:1,ticks:true,
+    get:effectivePace,bounds:()=>[0,5],fmt:v=>String(v),
+    caption:(a,b)=>a===b?(a+'/5 '+RAPIDEZ_LABELS[a]):(a+'/5 '+RAPIDEZ_LABELS[a]+' → '+b+'/5 '+RAPIDEZ_LABELS[b]),unkLabel:'Incluir libros sin rapidez definida'}
+};
+function rfUnk(key){ return key==='spicy'?!!filters.spicyUnknown:!!filters.runk[key]; }
+function rfSetUnk(key,v){ if(key==='spicy') filters.spicyUnknown=!!v; else filters.runk[key]=!!v; }
+function rfMatch(key,b){
+  const r=filters.ranges[key]; if(!r) return true;
+  const v=RF[key].get(b);
+  if(v==null) return rfUnk(key);
+  return v>=r[0]-1e-9&&v<=r[1]+1e-9;
+}
+function rfPct(v,min,max){ return max>min?(v-min)/(max-min):0; }
+function rfBuild(key){
+  const c=RF[key], el=document.getElementById(c.panel); if(!el) return;
+  // Compatibilidad: enlace/chip antiguo "solo libros sin nivel spicy" (sin rango): se avisa en vez de mostrar un slider engañoso
+  if(key==='spicy'&&filters.spicyUnknown&&!filters.ranges.spicy&&!filters.spicy.length){
+    el.innerHTML='<div class="rs-box"><div class="rs-head"><span class="rs-title">'+c.title+'</span></div><p class="rs-note">Ahora solo se muestran los libros sin nivel spicy.</p><button type="button" class="rs-reset" onclick="rfClear(\'spicy\')">Quitar filtro</button></div>';
+    return;
+  }
+  const [bmin,bmax]=c.bounds();
+  const r=filters.ranges[key];
+  let lo=r?Math.min(Math.max(r[0],bmin),bmax):bmin, hi=r?Math.max(Math.min(r[1],bmax),bmin):bmax;
+  if(lo>hi){lo=bmin;hi=bmax;}
+  const unkN=rfBooks().filter(b=>c.get(b)==null).length;
+  const ticks=c.ticks?'<div class="rs-ticks" aria-hidden="true">'+Array.from({length:Math.floor(bmax-bmin)+1},(_,i)=>'<span>'+(bmin+i)+'</span>').join('')+'</div>':'<div class="rs-ends" aria-hidden="true"><span>'+c.fmt(bmin)+'</span><span>'+c.fmt(bmax)+'</span></div>';
+  const inp=(h,val,lbl)=>'<input type="range" class="rs-in" data-h="'+h+'" min="'+bmin+'" max="'+bmax+'" step="'+c.step+'" value="'+val+'" aria-label="'+lbl+'" oninput="rfInput(\''+key+'\',this)">';
+  el.innerHTML='<div class="rs-box" data-key="'+key+'">'+
+    '<div class="rs-head"><span class="rs-title">'+c.title+'</span><button type="button" class="rs-reset" onclick="rfClear(\''+key+'\')"'+(r?'':' disabled')+'>Restablecer</button></div>'+
+    '<div class="rs"><span class="rs-bub" data-b="lo"></span><span class="rs-bub" data-b="hi"></span>'+
+      '<div class="rs-track"><div class="rs-fill"></div></div>'+inp('lo',lo,c.title+': mínimo')+inp('hi',hi,c.title+': máximo')+'</div>'+
+    ticks+
+    '<div class="rs-caption" aria-live="polite"></div>'+
+    (unkN>0?'<label class="rs-unk"><input type="checkbox" '+(rfUnk(key)?'checked':'')+' onchange="rfToggleUnk(\''+key+'\',this.checked)"><span>'+c.unkLabel+' <small>('+unkN+')</small></span></label>':'')+
+  '</div>';
+  rfPaint(key);
+}
+function rfBuildAll(){ Object.keys(RF).forEach(rfBuild); }
+// Pinta burbujas, relleno y leyenda a partir de la posición de los dos tiradores (no toca el estado de filtros)
+function rfPaint(key){
+  const c=RF[key], box=document.querySelector('#'+c.panel+' .rs'); if(!box) return;
+  const loI=box.querySelector('[data-h=lo]'), hiI=box.querySelector('[data-h=hi]');
+  const min=Number(loI.min), max=Number(loI.max), a=Number(loI.value), b=Number(hiI.value);
+  const pa=rfPct(a,min,max), pb=rfPct(b,min,max);
+  const fill=box.querySelector('.rs-fill'); fill.style.left=(pa*100)+'%'; fill.style.width=((pb-pa)*100)+'%';
+  const bl=box.querySelector('[data-b=lo]'), bh=box.querySelector('[data-b=hi]');
+  bl.textContent=c.fmt(a); bh.textContent=c.fmt(b);
+  const pos=p=>'calc(var(--rs-t)/2 + (100% - var(--rs-t)) * '+p+')';
+  bl.style.left=pos(pa); bh.style.left=pos(pb);
+  const near=(pb-pa)<0.16&&a!==b; // burbujas pegadas: una a cada lado para que no se pisen
+  bl.style.transform=near?'translateX(-100%)':'translateX(-50%)';
+  bh.style.transform=near?'translateX(0)':'translateX(-50%)';
+  bh.style.visibility=(a===b)?'hidden':'visible';
+  loI.style.zIndex=(pa>0.5)?4:3; hiI.style.zIndex=(pa>0.5)?3:4; // el tirador mínimo queda encima si ambos están al final
+  const cap=box.parentNode.querySelector('.rs-caption'); if(cap) cap.textContent=c.caption(a,b);
+}
+function rfInput(key,inp){
+  const box=inp.closest('.rs'), loI=box.querySelector('[data-h=lo]'), hiI=box.querySelector('[data-h=hi]');
+  let a=Number(loI.value), b=Number(hiI.value);
+  if(inp===loI&&a>b){a=b;loI.value=a;}
+  if(inp===hiI&&b<a){b=a;hiI.value=b;}
+  rfPaint(key); rfCommit(key,a,b);
+}
+function rfCommit(key,a,b){
+  const [bmin,bmax]=RF[key].bounds();
+  if(key==='spicy') filters.spicy=[];   // el slider sustituye a la selección antigua por niveles
+  if(key==='year') filters.years=[];
+  filters.ranges[key]=(a<=bmin&&b>=bmax&&!rfUnk(key))?null:[a,b];
+  const rs=document.querySelector('#'+RF[key].panel+' .rs-reset'); if(rs) rs.disabled=!filters.ranges[key];
+  updateDDCounts(); applyFiltersDebounced();
+}
+function rfToggleUnk(key,on){
+  const [bmin,bmax]=RF[key].bounds();
+  rfSetUnk(key,on);
+  const r=filters.ranges[key];
+  if(on&&!r) filters.ranges[key]=[bmin,bmax];
+  else if(!on&&r&&r[0]<=bmin&&r[1]>=bmax) filters.ranges[key]=null;
+  if(key==='spicy') filters.spicy=[];
+  rfBuild(key); updateDDCounts(); renderActivePills(); applyFilters();
+}
+function rfClear(key){
+  filters.ranges[key]=null; rfSetUnk(key,false);
+  if(key==='spicy') filters.spicy=[];
+  rfBuild(key); updateDDCounts(); renderActivePills(); applyFilters();
+}
+function rfPillText(key){
+  const r=filters.ranges[key]; if(!r) return null;
+  const c=RF[key], t=r[0]===r[1]?c.fmt(r[0]):c.fmt(r[0])+'–'+c.fmt(r[1]);
+  return c.pill+': '+t+(key==='rating'?' ★':'')+(rfUnk(key)?' (+ sin dato)':'');
+}
+function rfUpdateCounts(){
+  Object.entries(RF).forEach(([k,c])=>{
+    const cnt=document.getElementById(c.cnt), btn=document.querySelector('#'+c.wrap+' .dd-btn'); if(!cnt||!btn) return;
+    let n=filters.ranges[k]?1:0;
+    if(k==='year') n+=filters.years.length+filters.excl.years.length;
+    if(k==='spicy') n+=filters.spicy.length+((filters.spicyUnknown&&!filters.ranges.spicy)?1:0);
+    cnt.textContent=n; cnt.style.display=n?'':'none'; btn.classList.toggle('has-sel',n>0);
+  });
+}
+// URL: yearR=2015-2026 · spicyR=2-4 · ratingR=3.5-5 · paceR=1-3 (+ yearRU/ratingRU/paceRU=1 para "incluir sin dato"; Spicy usa spicyUnknown)
+function rfToParams(params){
+  Object.entries(RF).forEach(([k,c])=>{
+    const r=filters.ranges[k]; if(!r) return;
+    params.set(c.param,r[0]+'-'+r[1]);
+    if(k!=='spicy'&&filters.runk[k]) params.set(c.param+'U','1');
+  });
+}
+function rfFromParams(params){
+  Object.entries(RF).forEach(([k,c])=>{
+    const m=/^(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/.exec(params.get(c.param)||'');
+    if(m&&Number(m[1])<=Number(m[2])){ filters.ranges[k]=[Number(m[1]),Number(m[2])]; if(k!=='spicy'&&params.get(c.param+'U')) filters.runk[k]=true; }
+  });
+  // Enlaces antiguos (?spicy=2|3 · ?years=2020): si es un tramo continuo, pasa al slider; si no, sigue funcionando como lista
+  if(!filters.ranges.spicy&&filters.spicy.length){
+    const s=[...filters.spicy].sort((x,y)=>x-y);
+    if(s[s.length-1]-s[0]+1===s.length){ filters.ranges.spicy=[s[0],s[s.length-1]]; filters.spicy=[]; }
+  }
+  if(!filters.ranges.year&&filters.years.length&&filters.years.every(y=>/^\d{4}$/.test(y))){
+    const y=filters.years.map(Number).sort((x,z)=>x-z);
+    if(y[y.length-1]-y[0]+1===y.length){ filters.ranges.year=[y[0],y[y.length-1]]; filters.years=[]; }
+  }
+}
+function buildSpicyDD(){ rfBuild('spicy'); }
 
 function filterDD(key,listId,search){
   buildDDList(listId, uniqVals(key), key, search);
@@ -10955,11 +11153,12 @@ function toggleExclFilter(key,val){
   const arr=filters.excl[key],idx=arr.indexOf(val);
   idx>=0?arr.splice(idx,1):arr.push(val);
   if(key==='edad') buildEdadDD();
-  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  else if(DD_MAP[key]) buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
 
 function toggleSpicyUnknown(){
+  if(filters.ranges.spicy){ rfToggleUnk('spicy',!filters.spicyUnknown); return; }
   filters.spicyUnknown=!filters.spicyUnknown;
   buildSpicyDD();
   updateDDCounts();renderActivePills();applyFilters();
@@ -10968,16 +11167,15 @@ function toggleSpicyUnknown(){
 function clearDDFilter(key){
   filters[key]=[];
   if(filters.excl[key]) filters.excl[key]=[];
-  if(key==='spicy') filters.spicyUnknown=false;
-  if(key==='spicy') buildSpicyDD();
+  if(key==='spicy'){ filters.spicyUnknown=false; filters.ranges.spicy=null; buildSpicyDD(); }
   else if(key==='edad') buildEdadDD();
-  else buildDDList(DD_MAP[key], uniqVals(key), key);
+  else if(DD_MAP[key]) buildDDList(DD_MAP[key], uniqVals(key), key);
   updateDDCounts();renderActivePills();applyFilters();
 }
 
 function updateDDCounts(){
   // Género / Autora / Año / Spicy — dropdowns rápidos que siguen visibles
-  [['Genre','genres'],['Author','authors'],['Year','years']].forEach(([k,fk])=>{
+  [['Genre','genres'],['Author','authors']].forEach(([k,fk])=>{
     const cnt=document.getElementById('cnt'+k);
     const btn=document.querySelector('#dd'+k+' .dd-btn');
     if(!cnt||!btn) return;
@@ -10986,13 +11184,7 @@ function updateDDCounts(){
     btn.classList.toggle('has-sel',n>0);
   });
   // Spicy special (includes unknown)
-  const spicyCnt=document.getElementById('cntSpicy');
-  const spicyBtn=document.querySelector('#ddSpicy .dd-btn');
-  if(spicyCnt&&spicyBtn){
-    const n=filters.spicy.length+(filters.spicyUnknown?1:0);
-    spicyCnt.textContent=n;spicyCnt.style.display=n?'':'none';
-    spicyBtn.classList.toggle('has-sel',n>0);
-  }
+  rfUpdateCounts(); // Año · Spicy · Valoración · Rapidez
   // Filtros que viven dentro del panel "+ Filtros"
   [['Subgenre','subgenres'],['Dinamica','dinamicas'],['Trope','tropes'],
    ['Character','characters'],['Saga','sagas'],['Edad','edad'],['Pais','pais_cultura'],['PaisOrigen','pais_origen']].forEach(([k,fk])=>{
@@ -11121,6 +11313,7 @@ function toggleDD(id){
   const wasOpen=wrap.classList.contains('open');
   closeAllDD();
   if(!wasOpen){
+    const _rk=Object.keys(RF).find(k=>RF[k].wrap===id); if(_rk) rfBuild(_rk); // límites y "sin dato" al día
     wrap.classList.add('open');
     if(id==='ddMoreFilters'||window.innerWidth<=639){
       const bd=document.getElementById('mfBackdrop');
@@ -11169,7 +11362,8 @@ function renderActivePills(){
     const label=filters.valoracion==='valorado'?'★ Mis valorados':'☆ Sin valorar';
     pills.push(`<span class="af-pill">${label}<button onclick="toggleValoracion('${filters.valoracion}')">×</button></span>`);
   }
-  if(filters.spicyUnknown){
+  Object.keys(RF).forEach(k=>{ const t=rfPillText(k); if(t) pills.push(`<span class="af-pill">${t}<button onclick="rfClear('${k}')">×</button></span>`); });
+  if(filters.spicyUnknown&&!filters.ranges.spicy){
     pills.push(`<span class="af-pill">Spicy: ${SPICY_UNKNOWN_LABEL}<button onclick="toggleSpicyUnknown()">×</button></span>`);
   }
   if(filters.adaptacion==='serie'){
@@ -11187,7 +11381,7 @@ function renderActivePills(){
 }
 
 function clearAllFilters(){
-  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,excl:emptyExcl()};
+  filters={q:'',genres:[],subgenres:[],dinamicas:[],tropes:[],characters:[],authors:[],years:[],spicy:[],spicyUnknown:false,sagas:[],edad:[],pais_cultura:[],pais_origen:[],identidades:[],warnings:[],ship:[],adaptacion:null,valoracion:null,pages:null,leido:null,ranges:{},runk:{},excl:emptyExcl()};
   document.getElementById('searchInput').value='';
   const _cp=document.getElementById('cntPages'); if(_cp) _cp.style.display='none';
   updateValoracionBtns();
@@ -11210,7 +11404,8 @@ function applyFilters(resetPage=true){
   if(filters.characters.length) books=books.filter(b=>filters.characters.every(c=>[...(b.characters||[]),...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
   if(filters.authors.length)   books=books.filter(b=>filters.authors.some(a=>(b.authors||[]).includes(a)));
   if(filters.years.length)     books=books.filter(b=>filters.years.includes(String(b.year)));
-  if(filters.spicy.length||filters.spicyUnknown){
+  Object.keys(RF).forEach(k=>{ if(filters.ranges[k]) books=books.filter(b=>rfMatch(k,b)); });
+  if(!filters.ranges.spicy&&(filters.spicy.length||filters.spicyUnknown)){
     books=books.filter(b=>{
       const s=effectiveSpicy(b);
       const isUnknown=s==null;
@@ -12130,6 +12325,7 @@ async function rvLoad(quiet){
     if(seq!==rv.seq||!_rvSame(bookId,userId)) return;          // respuesta obsoleta (otro libro / otra sesión / otra carga)
     const changed=rv.status!=='ready'||rv.avg!==st.avg||rv.count!==st.count||(!rv.saving&&rv.mine!==mine);
     rv.avg=st.avg; rv.count=st.count; if(!rv.saving) rv.mine=mine; rv.status='ready';
+    if(st.count>0) rapidezMap[bookId]={avg:st.avg,count:st.count}; else delete rapidezMap[bookId]; // el filtro Rapidez del catálogo usa la misma media
     if(changed) rvRender();
   }catch(err){
     if(seq!==rv.seq||!_rvSame(bookId,userId)) return;
@@ -13277,6 +13473,8 @@ function filterByTagFromModal(filterKey, value){
   const fromBp=_leaveDetailForCatalog();
   switchTab('estanteria');
   if(filterKey==='spicyUnknown'){ filters.spicy=[]; filters.spicyUnknown=true; }
+  else if(filterKey==='spicy'&&Number.isFinite(Number(value))){ filters.spicy=[]; filters.spicyUnknown=false; filters.ranges.spicy=[Number(value),Number(value)]; }
+  else if(filterKey==='years'&&/^\d{4}$/.test(String(value))){ filters.years=[]; filters.runk.year=false; filters.ranges.year=[Number(value),Number(value)]; }
   else{ filters[filterKey]=[value]; if(filterKey==='spicy') filters.spicyUnknown=false; }
   currentPage=1;
   if(fromBp) buildDropdowns();
@@ -13643,6 +13841,7 @@ function renderAuthUI(){
     if(hint) hint.classList.remove('hidden');
     // Limpiar filtros restringidos si estaban activos
     filters.spicy=[];filters.spicyUnknown=false;
+    filters.ranges.spicy=null;filters.ranges.rating=null;filters.ranges.pace=null;filters.runk.rating=false;filters.runk.pace=false;
     filters.edad=[];filters.pais_cultura=[];
     renderActivePills();applyFilters(false);
     const svi=document.getElementById('statVotesItem');
@@ -14360,7 +14559,7 @@ function updateHomeThaiClub(){
 function _safiItemsHTML(items){
   return items.map(b=>{
           const r=ratingsMap[b.id];
-          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">${fmtAvg(r.avg)}</span></div>`:'';
+          const avgBadge=r?.count>0?`<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);color:#fff;backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:#f2c76a;font-size:10px">★</span><span style="font-weight:600">${fmtAvg(r.avg)}</span></div>`:'';
           const authorStr=(b.authors||[]).join(', ')||'—';
           return `<div class="safi-item" onclick="openBookPage('${b.id}')">
             <div class="safi-item-cover">
@@ -14444,7 +14643,7 @@ function renderCanal(){
     let itemsHtml='';
     items.forEach(function(b,i){
       const r=ratingsMap[b.id];
-      const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
+      const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);color:#fff;backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:#f2c76a;font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
       const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=canal-item-ph>📖</div>\'">'+'':'<div class="canal-item-ph">📖</div>';
       const auth=(b.authors||[]).join(', ')||'—';
       const hideCls=i>=CANAL_LIMIT?' rec-item-hidden':'';
@@ -14503,7 +14702,7 @@ function renderMyrecCatDetail(c,hero,catMap,cat){
   let itemsHtml='';
   items.forEach(function(b){
     const r=ratingsMap[b.id];
-    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:var(--gold);font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
+    const ab=r&&r.count>0?'<div style="position:absolute;bottom:6px;right:6px;background:rgba(14,11,16,.8);color:#fff;backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:20px;padding:2px 7px;font-size:10.5px;display:flex;align-items:center;gap:3px;z-index:2"><span style="color:#f2c76a;font-size:10px">★</span><span style="font-weight:600">'+fmtAvg(r.avg)+'</span></div>':'';
     const cov=b.cover?'<img src="'+b.cover+'" alt="'+b.title+'" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=myrec-item-ph>📖</div>\'">'+'':'<div class="myrec-item-ph">📖</div>';
     const auth=(b.authors||[]).join(', ')||'—';
     itemsHtml+='<div class="myrec-item" onclick="openBookPage(\''+b.id+'\')"><div class="myrec-item-cover">'+cov+ab+'</div><div class="myrec-item-body"><div class="myrec-item-title">'+b.title+'</div><div class="myrec-item-author">'+auth+'</div></div></div>';
@@ -15505,7 +15704,8 @@ function getFilteredBooksForRuleta() {
   if (filters.characters.length) books = books.filter(b => filters.characters.every(c => [...(b.characters||[]), ...((communityTagsMap[b.id]||{}).character||[])].includes(c)));
   if (filters.authors.length)   books = books.filter(b => filters.authors.some(a => (b.authors||[]).includes(a)));
   if (filters.years.length)     books = books.filter(b => filters.years.includes(String(b.year)));
-  if (filters.spicy.length || filters.spicyUnknown) {
+  Object.keys(RF).forEach(k => { if (filters.ranges[k]) books = books.filter(b => rfMatch(k, b)); });
+  if (!filters.ranges.spicy && (filters.spicy.length || filters.spicyUnknown)) {
     books = books.filter(b => {
       const s = effectiveSpicy(b);
       if (filters.spicyUnknown && s == null) return true;
@@ -15598,7 +15798,8 @@ function ruletaUpdateUI() {
   });
   if (filters.q) pills.push(`<span class="af-pill">🔍 "${filters.q}"</span>`);
   if (filters.adaptacion === 'serie') pills.push(`<span class="af-pill">📺 Con serie</span>`);
-  if (filters.spicyUnknown) pills.push(`<span class="af-pill">Spicy: desconocido</span>`);
+  Object.keys(RF).forEach(k => { const t = rfPillText(k); if (t) pills.push(`<span class="af-pill">${t}</span>`); });
+  if (filters.spicyUnknown && !filters.ranges.spicy) pills.push(`<span class="af-pill">Spicy: desconocido</span>`);
   if (pills.length === 0 && ruletaSection === 'all') pills.push(`<span style="font-size:12px;color:var(--muted);font-style:italic">Ningún filtro aplicado — se usan todos los libros</span>`);
   else if (pills.length === 0) pills.push(`<span style="font-size:12px;color:var(--muted);font-style:italic">Solo filtro de tipo activo</span>`);
   pillsEl.innerHTML = pills.join('');
