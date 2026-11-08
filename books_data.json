@@ -18273,12 +18273,15 @@
       "Romance",
       "Contemporánea",
       "Drama",
-      "Thriller"
+      "Thriller",
+      "Misterio"
     ],
     "subgenres": [
       "Small Town",
       "Queer",
-      "Familia"
+      "Familia",
+      "Crimen",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Femme",
@@ -18287,7 +18290,26 @@
     ],
     "characters": [
       "Reportera / Periodista",
-      "Política"
+      "Política",
+      "Periodista"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw508gcdzdu",
+        "nombre": "Catherine",
+        "profesiones": [
+          "Periodista"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw508gcdt8t",
+        "nombre": "Lauren",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
@@ -18317,22 +18339,41 @@
         "ciudad": "Washington D.C",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Iowa y Washington D",
+        "ciudad": "Washington D",
+        "localidad": null,
+        "lugares": [
+          "Feria Estatal de Iowa",
+          "Entorno familiar de los King",
+          "Oficina de Lesser Security y espacios vinculados a la investigación política"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "No se ha reconstruido una lista completa y verificada",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Oficina"
     ],
-    "idioma_original": "Inglés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Nueva Zelanda"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
-    "rapidez_romance": 0,
+    "rapidez_romance": 4,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "On The Record",
@@ -23207,7 +23248,9 @@
     "genres": [
       "Romance",
       "Thriller",
-      "Misterio"
+      "Misterio",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "Música",
@@ -23215,7 +23258,10 @@
       "Dark Romance",
       "BDSM",
       "Crimen",
-      "Queer"
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica"
     ],
     "identidades": [
       "Grumpy",
@@ -23224,17 +23270,54 @@
       "Femme"
     ],
     "characters": [
-      "Detective"
+      "Detective",
+      "Asesina profesional",
+      "Periodista de investigación"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw507umartd",
+        "nombre": "Natalya",
+        "profesiones": [
+          "Asesina profesional"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw507umakjy",
+        "nombre": "Alison",
+        "profesiones": [
+          "Periodista de investigación"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw507umah16",
+        "nombre": "Sonja",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Femme × Femme",
+      "Fría × Cálida"
     ],
     "tropes": [
       "Age Gap",
       "Forbidden Love",
       "Enemies to Lovers",
       "Revenge Romance",
-      "Slow Burn"
+      "Slow Burn",
+      "Opposites Attract",
+      "Secret Relationship"
     ],
     "edad": [
       "+40",
@@ -23257,6 +23340,20 @@
         "ciudad": "Frankston",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Orquesta Filarmónica de Victoria",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Herald Sun",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
@@ -23272,7 +23369,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
-    "rapidez_romance": null,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Requiem",
@@ -23691,7 +23788,8 @@
       "Queer",
       "Celebridad",
       "Autodescubrimiento",
-      "Familia"
+      "Familia",
+      "Coming Out"
     ],
     "identidades": [
       "Lesbiana",
@@ -23699,12 +23797,38 @@
     ],
     "characters": [
       "Actriz",
-      "Doctora / Médica"
+      "Doctora / Médica",
+      "Actriz británica"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw503rcdrd8",
+        "nombre": "Elizabeth",
+        "profesiones": [
+          "Actriz británica"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw503rcdou8",
+        "nombre": "Summer",
+        "profesiones": [
+          "Actriz"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
       "Ice Queen × Sunshine",
-      "Fría × Cálida"
+      "Fría × Cálida",
+      "Femme × Femme"
     ],
     "tropes": [
       "Fake Relationship",
@@ -23712,7 +23836,8 @@
       "Workplace Romance",
       "Slow Burn",
       "Opposites Attract",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Strangers to Lovers"
     ],
     "edad": [
       "25–39"
@@ -23725,6 +23850,13 @@
         "pais": "Estados Unidos",
         "region": null,
         "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Palm Springs",
         "localidad": null,
         "lugares": []
       }
@@ -23742,7 +23874,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
-    "rapidez_romance": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -24546,7 +24678,7 @@
     "authors": [
       "Choi Jin-young"
     ],
-    "year": 2017,
+    "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1610461099i/56592266.jpg",
     "synopsis": "Un grupo de coreanos atraviesa un paisaje devastado por la enfermedad, pero ¿con qué fin? To the Warm Horizon muestra cómo, en un mundo postapocalíptico, los seres humanos siguen buscando un propósito, el parentesco e incluso la intimidad. Centrándose en dos jóvenes, Jina y Dori, que encuentran el amor contra todo pronóstico, Choi Jin-young crea una distopía en la que la gente intenta encontrar una dirección después de que sus mundos se hayan vuelto del revés.",
     "pages": 173,
@@ -24555,22 +24687,55 @@
     "ship": [],
     "genres": [
       "Ciencia Ficción",
-      "Distopía"
+      "Distopía",
+      "Drama",
+      "Romance",
+      "Psicológico"
     ],
     "subgenres": [
-      "Coming of Age"
+      "Coming of Age",
+      "Queer",
+      "Familia",
+      "Crimen",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [],
+    "protagonistas": [
+      {
+        "id": "pmw4zxwj3xul",
+        "nombre": "Dori",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 20
+      },
+      {
+        "id": "pmw4zxwj3fsz",
+        "nombre": "Jina",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zxwj3f36",
+        "nombre": "Joy",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
     "tropes": [
       "Forbidden Love",
       "Hurt/Comfort",
-      "Found Family"
+      "Found Family",
+      "Forced Proximity"
     ],
     "edad": [
       "New Adult (18–24)",
@@ -24609,11 +24774,26 @@
         "ciudad": "Qingdao",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Corea del Sur",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Corea",
+          "Carretera de huida",
+          "Pueblos",
+          "Almacenes",
+          "Ciudades devastadas",
+          "Catedral roja",
+          "Edificios de trabajo forzado en Rusia"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [],
     "idioma_original": null,
     "pais_origen": [
@@ -24621,7 +24801,8 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -24660,7 +24841,9 @@
       "Queer",
       "Erótica",
       "Autodescubrimiento",
-      "Familia"
+      "Familia",
+      "Feminismo",
+      "Celebridad"
     ],
     "identidades": [
       "Lesbiana",
@@ -24672,7 +24855,37 @@
       "CEO",
       "Reportera / Periodista",
       "Editora",
-      "Empresaria"
+      "Empresaria",
+      "Camarera",
+      "Escritora",
+      "Periodista",
+      "Magnate de los medios de comunicación"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw502it9rt8",
+        "nombre": "Maddie",
+        "profesiones": [
+          "Periodista",
+          "Escritora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw502it98lf",
+        "nombre": "Elena",
+        "profesiones": [
+          "Empresaria",
+          "Magnate de los medios de comunicación"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
@@ -24719,6 +24932,13 @@
           "Entorno editorial y de moda",
           "Playas de Sídney y eventos de la industria"
         ]
+      },
+      {
+        "pais": "Australia",
+        "region": null,
+        "ciudad": "Greenpoint",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
@@ -24727,14 +24947,14 @@
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": "Inglés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Nueva Zelanda"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
-    "rapidez_romance": 3,
+    "rapidez_romance": 2,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Truth",
@@ -24752,7 +24972,7 @@
   },
   {
     "id": "b_1778225306383_yentj",
-    "title": "You, Me, U.S",
+    "title": "You, Me, U.S.",
     "authors": [
       "Brigitte Bautista"
     ],
@@ -24765,12 +24985,16 @@
     "ship": [],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "Coming Out",
       "Bisexual",
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Queer",
+      "Familia",
+      "Baihee 🐉"
     ],
     "identidades": [
       "Butch",
@@ -24778,11 +25002,52 @@
     ],
     "characters": [
       "Escort",
-      "Cajera de supermercado"
+      "Cajera de supermercado",
+      "Cantante",
+      "Trabajadora sexual independiente"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw500izjz5y",
+        "nombre": "Joanna «Jo» Suárez",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw500izjez1",
+        "nombre": "Elizabeth «Liza»",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw500izjxzz",
+        "nombre": "Jo",
+        "profesiones": [
+          "Trabajadora sexual independiente"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw500izjc0o",
+        "nombre": "Liza",
+        "profesiones": [
+          "Cajera de supermercado"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Butch × Femme",
-      "Feroz × Tierna"
+      "Feroz × Tierna",
+      "Femme × Femme"
     ],
     "tropes": [
       "Friends to Lovers",
@@ -24804,7 +25069,19 @@
         "region": null,
         "ciudad": "Manila",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Makati",
+          "Ermita",
+          "Taguig",
+          "Ortigas",
+          "Greenbelt",
+          "Mang Larry’s",
+          "Appliance Center",
+          "Sagada",
+          "Benguet",
+          "Cagayan",
+          "Batanes"
+        ]
       },
       {
         "pais": "Filipinas",
@@ -24840,19 +25117,36 @@
         "ciudad": "Sagada",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Cebu",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Filipinas",
+        "region": null,
+        "ciudad": "Baguio y La Unión",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Filipinas"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -24870,7 +25164,7 @@
   },
   {
     "id": "b_1778225475046_wzhf4",
-    "title": "The falling in love montage",
+    "title": "The Falling in Love Montage",
     "authors": [
       "Ciara Smyth"
     ],
@@ -24878,7 +25172,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1570034111l/53066661.jpg",
     "synopsis": "Saoirse no cree en el amor ni en los finales felices: su madre padece demencia precoz y ella teme heredar el mismo destino. Por eso evita cualquier relación seria.\n\nHasta que conoce a Ruby, una chica traviesa y encantadora que le propone un trato irresistible: vivir un verano de citas de comedia romántica, con la promesa de romper en otoño. Sin compromisos. Sin corazones rotos.\n\nEl problema es que, incluso con las reglas claras, enamorarse nunca sale según el guion.",
     "pages": 368,
-    "isbn": null,
+    "isbn": "9781787611924",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -24891,6 +25185,22 @@
       "Femme"
     ],
     "characters": [],
+    "protagonistas": [
+      {
+        "id": "pmw501gndyq2",
+        "nombre": "Saoirse",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw501gndrk2",
+        "nombre": "Ruby",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Masc × Femme"
     ],
@@ -24921,6 +25231,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -24950,7 +25261,8 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [
       "Erótica"
@@ -24961,12 +25273,37 @@
       "Ice Queen",
       "Sunshine"
     ],
-    "characters": [],
+    "characters": [
+      "Abogada"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw5020mgobk",
+        "nombre": "Laurie",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw5020mgayd",
+        "nombre": "Diana",
+        "profesiones": [
+          "Abogada"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme",
       "Grumpy × Sunshine",
       "Ice Queen × Sunshine",
-      "Rich × Poor"
+      "Rich × Poor",
+      "Boss × Employee"
     ],
     "tropes": [
       "Age Gap",
@@ -24986,21 +25323,30 @@
         "ciudad": "Atlanta",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Zebulon",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Oficina"
+      "Oficina",
+      "Ciudad"
     ],
-    "idioma_original": "Inglés",
+    "idioma_original": "Español",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -33910,7 +34256,8 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Paranormal"
     ],
     "subgenres": [
       "Erótica",
@@ -33918,7 +34265,10 @@
       "Dark Romance",
       "Sobrenatural",
       "Queer",
-      "Magia"
+      "Magia",
+      "Familia",
+      "Crimen",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Lesbiana",
@@ -33930,7 +34280,28 @@
       "Empresaria",
       "Cazadora",
       "Jefa de seguridad",
-      "Profesora"
+      "Profesora",
+      "Dhampir"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zr1ewba0",
+        "nombre": "Octavia",
+        "profesiones": [
+          "Vampira"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zr1ewya2",
+        "nombre": "Red",
+        "profesiones": [
+          "Dhampir"
+        ],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Rich × Poor",
@@ -33947,7 +34318,8 @@
       "Forbidden Love",
       "Opposites Attract",
       "Rivals to Lovers",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Destined Lovers"
     ],
     "edad": [
       "25–39",
@@ -33958,10 +34330,10 @@
     ],
     "ubicaciones": [],
     "epoca": null,
-    "periodo": null,
-    "tipo_mundo": "Mundo ficticio",
+    "periodo": "Fantasía vampírica; alterna presente narrativo con una línea de hace mil años",
+    "tipo_mundo": "Fantasía",
     "entornos": [],
-    "idioma_original": "Inglés",
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [
@@ -33969,6 +34341,7 @@
       "Queerofobia / LGTBfobia"
     ],
     "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Kingdom of Immortal Lovers",
@@ -43607,25 +43980,97 @@
     "synopsis": "Romper corazones es arriesgado. Nunca sabes cuándo el tuyo podría ser el próximo.\n\nPrimrose Carter es parte de FIRE, una sociedad secreta universitaria que seduce, manipula y desaparece. Su próxima misión: Giselle Lawson, patinadora estrella e hija de un magnate. Fácil... hasta que Primrose se da cuenta de que Giselle no es como los demás objetivos.\n\nGiselle solo quiere escapar de la presión familiar y olvidar a su ex, pero la misteriosa chica del hielo le complica los planes… y le acelera el corazón.\n\nEntre engaños, secretos y una atracción cada vez más intensa, ambas descubrirán que jugar con fuego y con hielo puede acabar en llamas.",
     "pages": 358,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "Deporte",
-      "Universidad"
+      "Universidad",
+      "Autodescubrimiento",
+      "Familia",
+      "Queer",
+      "Erótica"
     ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Estudiante universitaria",
+      "Jugadora",
+      "Patinadora artística competitiva"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4z91gda1z",
+        "nombre": "Primrose",
+        "profesiones": [
+          "Estudiante universitaria",
+          "Jugadora"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4z91gd6x0",
+        "nombre": "Giselle",
+        "profesiones": [
+          "Estudiante universitaria",
+          "Patinadora artística competitiva"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Friends to Lovers"
     ],
     "edad": [
       "New Adult (18–24)"
     ],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Universidad",
+          "Residencia universitaria",
+          "Instalaciones de hockey sobre hielo",
+          "Pista de patinaje artística",
+          "Espacios de reuniones",
+          "Eventos sociales"
+        ]
+      },
+      {
+        "pais": "Suiza",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -43634,6 +44079,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -44003,18 +44450,98 @@
     "synopsis": "Cuando Brooke Winters, perfeccionista y solitaria desde la muerte de su madre, acepta ser tutora de la popular Madeline Hayes, espera frustración, no conexión. Madeline parece tenerlo todo: amigos, un novio ideal y una imagen impecable. Pero bajo su fachada segura, esconde dudas e inseguridades. Durante un viaje escolar de esquí en el que comparten habitación, sus barreras empiezan a caer. Entre confidencias y momentos compartidos, descubren una conexión inesperada que las obliga a replantearse quiénes son y qué quieren.\nFirst Echo es una historia emotiva sobre el duelo, la identidad y la valentía de mostrarse tal como eres.",
     "pages": 278,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Juvenil"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Baihee 🐉",
+      "BDSM",
+      "Erótica",
+      "Mafia",
+      "Omegaverse",
+      "Universidad"
+    ],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Estudiante"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4ziztwghe",
+        "nombre": "Brooke Winters",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4ziztweol",
+        "nombre": "Madeline Hayes",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
-    "tropes": [],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Roommates",
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Rivals to Lovers"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Colorado",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Resort de esquí",
+          "Pistas de snowboard",
+          "Hotel",
+          "Habitación compartida",
+          "Cafetería",
+          "Comedor",
+          "Telesilla",
+          "Montaña",
+          "Autobús de regreso"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Cafetería"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Echo",
@@ -44023,6 +44550,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -44039,21 +44568,103 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1733669187i/218460299.jpg",
     "synopsis": "Mia, de dieciséis años, está atrapada en un velero en medio del Caribe tras un humillante incidente escolar. Mientras sus padres celebran la oportunidad de empezar de cero, ella lo vive como un secuestro sin internet ni escapatoria. Su única meta: hackear un teléfono satelital y recuperar su antigua vida. Pero mientras construye un laboratorio improvisado a bordo y lidia con su inestable salud mental, aparecen Alby y Nisha, dos adolescentes que le ofrecen amistad, y quizá algo más. En medio de islas remotas, conversaciones imaginarias y decisiones cruciales, Mia tendrá que enfrentarse a la pregunta más difícil: ¿quién quiere ser, ahora que no puede huir de sí misma?",
     "pages": 272,
-    "isbn": null,
+    "isbn": "9780593660317",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Aventura",
       "YA",
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Ciencia Ficción"
     ],
     "subgenres": [
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Coming of Age",
+      "Bisexual",
+      "Familia",
+      "Queer",
+      "Deporte",
+      "Erótica",
+      "Dark Romance",
+      "Mafia",
+      "Omegaverse",
+      "Universidad",
+      "Small Town",
+      "Sobrenatural"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "identidades": [
+      "Femme: presentación femenina",
+      "Vestimenta"
+    ],
+    "characters": [
+      "Estudiante de secundaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zko3hy5x",
+        "nombre": "Alby",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zko3h4nk",
+        "nombre": "Mia",
+        "profesiones": [
+          "Estudiante de secundaria"
+        ],
+        "identidades": [],
+        "edad": 17
+      },
+      {
+        "id": "pmw4zko3hhyj",
+        "nombre": "Nisha",
+        "profesiones": [],
+        "identidades": [
+          "Femme: presentación femenina",
+          "Vestimenta"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Love Triangle",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Fake Relationship",
+      "Friends with Benefits",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Slow Burn",
+      "Secret Relationship",
+      "Only One Bed",
+      "Roommates",
+      "Road Trip",
+      "Vacation Romance",
+      "Lesbian Awakening"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -44062,6 +44673,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -45538,7 +46151,7 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1693440479i/196726166.jpg",
     "synopsis": "La Bruja de la Miel de Innisfree está maldita: jamás podrá encontrar el amor verdadero.\n\nMarigold Claude, de 21 años, acepta convertirse en la próxima Bruja de la Miel en la isla de Innisfree, sabiendo que su nueva vida mágica conlleva una maldición: nadie puede enamorarse de ella. Pero todo cambia cuando aparece Lottie Burke, una escéptica que no cree en la magia. Marigold intentará demostrarle lo contrario… y acabará enamorándose.\n\nCuando una magia oscura amenaza su mundo, Marigold deberá decidir entre proteger su poder o arriesgarlo todo por amor.",
     "pages": 368,
-    "isbn": null,
+    "isbn": "9780316568883",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -45553,13 +46166,42 @@
       "Queer",
       "Familia",
       "Sobrenatural",
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Erótica"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Bruja"
+      "Bruja",
+      "Tatuadora",
+      "Bruja de la Miel",
+      "Apicultora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zap5e1u8",
+        "nombre": "Marigold",
+        "profesiones": [
+          "Bruja de la Miel",
+          "Apicultora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 21
+      },
+      {
+        "id": "pmw4zap5e56c",
+        "nombre": "Lottie",
+        "profesiones": [
+          "Tatuadora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine",
@@ -45572,21 +46214,28 @@
       "Slow Burn",
       "Only One Bed",
       "Hurt/Comfort",
-      "Found Family"
+      "Found Family",
+      "Friends to Lovers",
+      "Soulmates"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [],
     "ubicaciones": [],
     "epoca": "Histórica",
     "periodo": null,
-    "tipo_mundo": null,
-    "entornos": [],
-    "idioma_original": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Isla",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
-    "rapidez_romance": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -45904,30 +46553,81 @@
     "authors": [
       "Arizona Tape"
     ],
-    "year": 2018,
+    "year": 2020,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1576170243l/51895492.jpg",
     "synopsis": "La princesa Zafira siempre quiso lo que no podía tener, y el trono no es la excepción. No se detendrá ante nada para conseguir la corona, incluso si eso significa matar a su hermano. Pero cuando la princesa Jade aparece en la corte, todo cambia. Ahora, hay alguien más que se interpone en su camino, y este alguien tiene unos ojos verdes asesinos.\n\nAmbos anhelan lo mismo; solo uno puede ganar. Para conseguir lo que sus corazones retorcidos anhelan, no se detendrán ante nada. Pero ¿y si en medio del caos y la destrucción, encuentran la chispa de algo más, algo más? ¿Renunciarán a la corona o a sí mismos?",
     "pages": 170,
-    "isbn": null,
+    "isbn": "9781728397426",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Paranormal",
-      "Romance"
+      "Romance",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Crimen",
+      "Dark Romance",
+      "BDSM",
+      "Baihee 🐉",
+      "Omegaverse",
+      "Universidad",
+      "Small Town"
+    ],
     "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Princesa"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4ze0k9qfk",
+        "nombre": "Zafira",
+        "profesiones": [
+          "Princesa"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4ze0ka7zw",
+        "nombre": "Jade",
+        "profesiones": [
+          "Princesa"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Forbidden Love",
+      "Forced Proximity"
     ],
     "edad": [],
     "pais_cultura": [
       "Mundo fantástico"
     ],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Palacio"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Twisted Trilogy",
@@ -45936,6 +46636,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -46827,13 +47529,53 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Juvenil",
+      "YA"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming Out",
+      "Deporte"
+    ],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Estudiante",
+      "Estudiante de secundaria",
+      "Voluntaria en una clínica",
+      "Hospital"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zrd1eom4",
+        "nombre": "Jess",
+        "profesiones": [
+          "Estudiante de secundaria"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zrd1e804",
+        "nombre": "Sam",
+        "profesiones": [
+          "Voluntaria en una clínica",
+          "Hospital"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [],
-    "tropes": [],
+    "tropes": [
+      "Friends to Lovers",
+      "Coming Out tardío",
+      "Hurt/Comfort"
+    ],
     "edad": [
       "Young Adult (15–18)"
     ],
@@ -46846,20 +47588,30 @@
         "region": null,
         "ciudad": null,
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Escuela",
+          "Clínica/hospital",
+          "Casa de Scarlett",
+          "Casa de Sam",
+          "Iglesia",
+          "Campo de lacrosse"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Hospital"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 2,
+    "rapidez_romance": 3,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "Losing Sam",
@@ -46881,7 +47633,7 @@
     "authors": [
       "Giana Darling"
     ],
-    "year": 2024,
+    "year": 2023,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1705660416i/204124683.jpg",
     "synopsis": "Nací mujer\nFui criada por mujeres\nMe enamore de mujeres\n\nHasta que me matriculé en la Universidad de Acheron, nunca había conocido mucho a los hombres. Ciertamente no sabía lo suficiente como para temerles\nEntonces, una tormentosa noche de otoño, el profesor Morgan intentó destruirme.\nY cuando el presidente de la universidad nos descubrió, fui yo quien fue castigada por la seducción no deseada.\nPero me dejaron dos valiosas lecciones\nNunca dejaría que otra mujer fuera lastimada por hombres otra vez si pudiera evitarlo\nY cuando alguien te lastima, te traiciona e intenta arrancarte el alma, solo hay un remedio para el dolor\nLa venganza\nY la mía toma la forma de la muy hermosa, muy virginal y muy heterosexual hija del presidente, Luna Pallas.\nAntes de que termine el trimestre, destruiré su inocencia tal como su madre y el profesor Morgan destruyeron la mía.",
     "pages": 367,
@@ -46890,10 +47642,20 @@
     "ship": [],
     "genres": [
       "Romance",
-      "New Adult"
+      "New Adult",
+      "Contemporánea",
+      "Drama",
+      "Psicológico"
     ],
     "subgenres": [
-      "Dark Romance"
+      "Dark Romance",
+      "Erótica",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Crimen",
+      "Feminismo",
+      "Mitología"
     ],
     "identidades": [
       "Femme"
@@ -46901,6 +47663,26 @@
     "characters": [
       "Estudiante",
       "Deportista"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zs1dio49",
+        "nombre": "Lex",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zs1diz7b",
+        "nombre": "Luna",
+        "profesiones": [
+          "Estudiante"
+        ],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Femme × Femme"
@@ -46910,7 +47692,9 @@
       "Forced Proximity",
       "Hurt/Comfort",
       "Opposites Attract",
-      "Secret Relationship"
+      "Secret Relationship",
+      "Revenge Romance",
+      "Forbidden Love"
     ],
     "edad": [
       "New Adult (18–24)"
@@ -46944,7 +47728,9 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Canadá"
@@ -46956,6 +47742,7 @@
       "Enfermedad Mental"
     ],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -47167,37 +47954,75 @@
     "authors": [
       "Racquel Marie"
     ],
-    "year": 2023,
+    "year": 2022,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1681912569i/61484919.jpg",
     "synopsis": "La vida de Valentina “Vale” Castillo-Green gira en torno al fútbol: sus amistades, su futuro y las exigencias de su padre dependen de ello. Pero tras pelearse con su eterna rival, Leticia Ortiz, durante los playoffs, todo por lo que ha luchado se tambalea.\n\nPara escapar de la vergüenza, Vale se refugia en su antiguo campamento de fútbol, buscando paz y redención… hasta que descubre que debe ser co-capitana del equipo con Leticia. Si quieren impresionar a los ojeadores universitarios, tendrán que dejar sus diferencias atrás y lograr que el equipo funcione.\n\nEntre la presión, los conflictos y su padre controlando cada paso, Vale empieza a apoyarse en Leticia más de lo que imaginaba. Y lo que comienza como una alianza forzada podría convertirse en algo mucho más profundo.",
     "pages": 384,
-    "isbn": null,
+    "isbn": "9781250836281",
     "wattpad": null,
     "ship": [],
     "genres": [
       "Romance",
       "Juvenil",
       "Contemporánea",
-      "Drama"
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
       "Deporte",
       "Queer",
       "Familia",
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Coming of Age",
+      "Bisexual",
+      "Coming Out"
     ],
-    "identidades": [],
-    "characters": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante de secundaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zc6cufh0",
+        "nombre": "Valentina",
+        "profesiones": [
+          "Estudiante de secundaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 17
+      },
+      {
+        "id": "pmw4zc6cu8kb",
+        "nombre": "Leticia",
+        "profesiones": [
+          "Estudiante de secundaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 17
+      }
+    ],
     "dinamicas": [
-      "Seria × Divertida"
+      "Seria × Divertida",
+      "Femme × Femme"
     ],
     "tropes": [
       "Rivals to Lovers",
       "Slow Burn",
       "Childhood Friends",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Forced Proximity",
+      "Friends to Lovers"
     ],
-    "edad": [],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -47207,23 +48032,31 @@
         "region": null,
         "ciudad": "Santa Cruz",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Campamento All-Stars",
+          "Campos de fútbol",
+          "Cabañas",
+          "Instituto",
+          "Casa de Vale",
+          "Playa"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Instituto"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
-    "rapidez_romance": 2,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -47241,7 +48074,7 @@
   },
   {
     "id": "b_1778922392690_v4owd",
-    "title": "Here We Go Again",
+    "title": "Here We Go Again: A Novel",
     "authors": [
       "Alison Cochrun"
     ],
@@ -47249,20 +48082,61 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1687105656i/176443353.jpg",
     "synopsis": "Logan y Rosemary fueron amigas inseparables hasta que un suceso las distanció antes del instituto. Diez años después, siguen atrapadas en su pequeño pueblo, trabajando como profesoras y evitando enfrentarse a su pasado.\n\nCuando su antiguo profesor les revela que está enfermo, acceden a acompañarlo en un último viaje por carretera. Obligadas a convivir, los recuerdos resurgen, los roces también… y quizás una segunda oportunidad.",
     "pages": 368,
-    "isbn": null,
+    "isbn": "9781668021200",
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Profesora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zcwhdq6x",
+        "nombre": "Logan",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmw4zcwhdyc4",
+        "nombre": "Rosemary",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Childhood Friends",
+      "Friends to Lovers",
+      "Forced Proximity",
+      "Road Trip",
+      "Only One Bed"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -47343,13 +48217,23 @@
         "ciudad": "Ocean Springs",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Washington",
+        "ciudad": "Vista Summit",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Viaje"
+      "Viaje",
+      "Hospital",
+      "Instituto",
+      "Ciudad"
     ],
     "idioma_original": "Inglés",
     "pais_origen": [
@@ -47358,6 +48242,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -47431,19 +48316,72 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
-      "Dark Romance"
+      "Dark Romance",
+      "Erótica",
+      "Queer",
+      "Familia",
+      "Crimen",
+      "Autodescubrimiento",
+      "Universidad",
+      "Mafia",
+      "Omegaverse",
+      "Small Town",
+      "Sobrenatural"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante universitaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zl19tlui",
+        "nombre": "Maggie",
+        "profesiones": [
+          "Estudiante universitaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 21
+      },
+      {
+        "id": "pmw4zl19tm0o",
+        "nombre": "Bridgette",
+        "profesiones": [
+          "Estudiante universitaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 21
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Secret Relationship",
+      "Opposites Attract",
+      "Friends with Benefits",
+      "Slow Burn",
+      "Workplace Romance",
+      "Love Triangle"
     ],
     "edad": [
-      "Young Adult (15–18)"
+      "New Adult (18–24)"
     ],
     "pais_cultura": [
       "Estados Unidos"
@@ -47454,18 +48392,62 @@
         "region": "Massachusetts",
         "ciudad": "Salem",
         "localidad": null,
+        "lugares": [
+          "Salem",
+          "Espacios urbanos",
+          "Universitarios",
+          "Residenciales"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Gallows Hill",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Putnam Manor",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "campus universitario",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "mansión Putnam",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "habitaciones y espacios de la Hermandad",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -47576,37 +48558,91 @@
     "ship": [],
     "genres": [
       "Distopía",
-      "Romance"
+      "Romance",
+      "Aventura",
+      "Acción",
+      "Drama",
+      "Thriller"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Sobrenatural",
+      "Familia",
+      "Autodescubrimiento",
+      "Queer"
+    ],
     "identidades": [
       "Grumpy",
       "Sunshine"
     ],
     "characters": [
-      "Zombie"
+      "Zombie",
+      "Recolección",
+      "Tareas"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zqj4wsd7",
+        "nombre": "Saff",
+        "profesiones": [
+          "Recolección"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zqj4w4y1",
+        "nombre": "Maddie",
+        "profesiones": [
+          "Tareas"
+        ],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Protectora × Delicada"
     ],
     "tropes": [
       "Enemies to Lovers",
-      "Forced Proximity"
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Found Family",
+      "Friends to Lovers"
     ],
     "edad": [],
-    "pais_cultura": [],
-    "ubicaciones": [],
-    "epoca": "Distópica",
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Oakridge",
+        "localidad": null,
+        "lugares": [
+          "Búnker",
+          "Carretera",
+          "Viviendas abandonadas",
+          "Centro médico",
+          "Comunidad fortificada y zonas afectadas"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Apocalíptico",
-    "entornos": [],
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -52033,22 +53069,124 @@
     "authors": [
       "Adiba Jaigirdar"
     ],
-    "year": 2025,
+    "year": 2024,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1706723300i/200982327.jpg",
     "synopsis": "Meghna y Rani eran mejores amigas, ahora son rivales. Cuando descubren que Zak, el chico entre ambas, las ha engañado, deciden unirse para vengarse en la Feria de Jóvenes Científicos con una app que expone infieles. Trabajar juntas no será fácil... sobre todo cuando resurgen sentimientos que quizá nunca fueron solo amistad.",
     "pages": 320,
-    "isbn": null,
+    "isbn": "9781250842091",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "YA"
+      "YA",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Juvenil"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Queer",
+      "Bisexual",
+      "Autodescubrimiento",
+      "Familia",
+      "Coming Out",
+      "Baihee 🐉",
+      "BDSM",
+      "Dark Romance",
+      "Erótica",
+      "Mafia",
+      "Omegaverse",
+      "Universidad"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante de secundaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zeh8issj",
+        "nombre": "Meghna",
+        "profesiones": [
+          "Estudiante de secundaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4zeh8i2gz",
+        "nombre": "Rani",
+        "profesiones": [
+          "Estudiante de secundaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Childhood Friends",
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Jealousy Trope",
+      "Hurt/Comfort",
+      "Rivals to Lovers"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [
+      {
+        "pais": "Irlanda",
+        "region": null,
+        "ciudad": "Dublín",
+        "localidad": null,
+        "lugares": [
+          "Casas de Meghna y Rani",
+          "Escuela",
+          "Exposición de Jóvenes Científicos",
+          "Cafés",
+          "Parque",
+          "RDS y museo/sala de conferencias en Ámsterdam"
+        ]
+      },
+      {
+        "pais": "Irlanda",
+        "region": null,
+        "ciudad": "Ámsterdam",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Irlanda",
+        "region": null,
+        "ciudad": "Países Bajos (viaje para la Exposición Europea de Jóvenes Científicos)",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Irlanda",
+      "Bangladés"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -52057,36 +53195,110 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Irlanda",
-      "Bangladés"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779389416897_lhcud",
     "title": "The Two Lies of Faven Sythe",
     "authors": [
-      "Megan E. O'Keefe"
+      "Megan E. O'Keefe",
+      "Megan E. O’Keefe"
     ],
     "year": 2025,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1744784098i/220967612.jpg",
     "synopsis": "The Black Celeste es una historia de fantasmas espaciales. La nave, antes legendaria, yace olvidada en el cementerio estelar conocido como el Clutch. La pirata Bitter Amandine sabe lo que oculta... y no piensa volver allí jamás.\n\nFaven Sythe, una crystborn criada para trazar rutas estelares, busca respuestas tras la desaparición de su mentor, cuyo último rumbo termina justo en el Clutch. Solo Amandine puede ayudarla.\n\nJuntas descubrirán una conspiración galáctica y secretos que Amandine juró enterrar, incluyendo cómo sobrevivió la última vez... y qué se oculta realmente entre las estrellas.",
     "pages": 345,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Ciencia Ficción",
+      "Fantasía",
+      "Aventura",
+      "Acción"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Crimen",
+      "Sobrenatural",
+      "Erótica",
+      "Mafia",
+      "Omegaverse",
+      "Small Town"
+    ],
+    "identidades": [
+      "Apariencia",
+      "Expresión",
+      "Vestimenta"
+    ],
+    "characters": [
+      "Pirata",
+      "Navegante de rutas estelares",
+      "Pirata espacial",
+      "Capitana de la nave Marquette"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zk4yr28f",
+        "nombre": "Faven",
+        "profesiones": [
+          "Navegante de rutas estelares"
+        ],
+        "identidades": [
+          "Apariencia",
+          "Expresión"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4zk4yr5r4",
+        "nombre": "Amandine",
+        "profesiones": [
+          "Pirata espacial",
+          "Capitana de la nave Marquette"
+        ],
+        "identidades": [
+          "Vestimenta"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Roommates",
+      "Slow Burn"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Futurista",
+    "periodo": "Futuro de ciencia ficción.",
+    "tipo_mundo": "Ciencia ficción",
+    "entornos": [],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
+    ],
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -52095,13 +53307,12 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1779389446189_dkt6j",
@@ -52240,16 +53451,114 @@
     "synopsis": "Necesitaba un marido. Consiguió una esposa… y demasiados sentimientos.\n\nEleanor Brewster, una dama inglesa con una mansión en ruinas, necesita casarse para conservar su legado.\nDanni Franks, una granjera sin filtros y con deudas, no tiene tiempo para dramas aristocráticos.\n\nCuando un accidente une sus caminos, acuerdan un matrimonio falso que lo soluciona todo: casa para una, estabilidad para la otra y cero complicaciones románticas.\nFácil… hasta que los sentimientos se entrometen.\n\nAñade una mejor amiga curiosa, un inversor entrometido y un caballo con carácter, y quizá este trato acabe siendo algo más que un simple acuerdo.",
     "pages": 240,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica",
+      "Crimen",
+      "Small Town"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Aristócrata",
+      "Administradora de la finca familiar",
+      "Gestión",
+      "Agricultora",
+      "Granjera",
+      "Trabajo manual agrícola"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zozeohta",
+        "nombre": "Eleanor",
+        "profesiones": [
+          "Aristócrata",
+          "Administradora de la finca familiar",
+          "Gestión"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4zozeofc3",
+        "nombre": "Danni",
+        "profesiones": [
+          "Agricultora",
+          "Granjera",
+          "Trabajo manual agrícola"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Grumpy × Sunshine",
+      "Rich × Poor"
+    ],
+    "tropes": [
+      "Arranged Marriage",
+      "Marriage of Convenience",
+      "Forced Proximity",
+      "Opposites Attract",
+      "Secret Relationship",
+      "Hurt/Comfort",
+      "Jealousy Trope"
+    ],
+    "edad": [],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Mansión Brewster",
+          "Granja de Danni",
+          "Granero",
+          "Corral",
+          "Pub Fox and Hounds",
+          "Registro Civil y entorno rural del pueblo"
+        ]
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Ninguna ciudad identificada",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Campo",
+      "Pueblo pequeño"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": null,
     "ambientacion": [],
-    "spicy": null,
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -52258,6 +53567,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -52721,18 +54032,101 @@
     "synopsis": "Menos mal que Allison no está enamorada de su mejor amiga.\n\nAllison y Kate son brillantes en diseño de vestuario, pero opuestas en el amor: Kate solo cree en líos sin compromiso, mientras que Allison, con sus jerséis tejidos y calcetines con fresas, lleva dos años buscando novia sin éxito.\n\nHasta que se le ocurre pedir ayuda a su amiga experta en flirteo.\n\nKate acepta encantada; enseñarle a ligar parece la distracción perfecta para no enfrentar lo que en realidad siente. Porque quizás no odia las relaciones… solo le dan miedo.\n\nPero no pasa nada. Porque no están enamoradas. ¿Verdad?",
     "pages": 339,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Autodescubrimiento",
+      "Queer",
+      "Universidad",
+      "Familia",
+      "Erótica",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Estudiante universitaria de diseño de vestuario"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4za0co72b",
+        "nombre": "Allison",
+        "profesiones": [
+          "Estudiante universitaria de diseño de vestuario"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4za0condt",
+        "nombre": "Kate",
+        "profesiones": [
+          "Estudiante universitaria de diseño de vestuario"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Friends to Lovers"
+      "Friends to Lovers",
+      "Friends with Benefits"
     ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Canadá"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Canadá",
+        "region": "Quebec",
+        "ciudad": "Montreal",
+        "localidad": null,
+        "lugares": [
+          "MCA",
+          "Residencias universitarias",
+          "Voltage Vintage",
+          "Cafeterías",
+          "Bares",
+          "Apartamentos",
+          "Pista de patinaje y espacios de producción audiovisual"
+        ]
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Ninguna otra ciudad confirmada",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
     "ambientacion": [],
+    "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -52741,6 +54135,8 @@
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
@@ -53122,7 +54518,7 @@
   },
   {
     "id": "b_1779391826648_hj8xz",
-    "title": "The Princess's Pet",
+    "title": "The Princess's Pet (Soul Match Series Book 1). Título español: La mascota de la princesa.",
     "authors": [
       "J.K. Jeffrey"
     ],
@@ -53136,31 +54532,82 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Paranormal",
+      "Acción",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Magia",
+      "Sobrenatural",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica",
+      "BDSM",
+      "Mitología",
+      "Universidad",
+      "Crimen"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Princesa de Borealis",
+      "Estudiante de la Academia Sanguis"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zuw9x324",
+        "nombre": "Selene",
+        "profesiones": [
+          "Princesa de Borealis"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4zuw9yt21",
+        "nombre": "Perséfone",
+        "profesiones": [
+          "Estudiante de la Academia Sanguis"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Realeza × Plebeya",
+      "Diosa × Devota",
+      "Dominante × Sumisa"
     ],
-    "tropes": [],
+    "tropes": [
+      "Destined Lovers",
+      "Soulmates",
+      "Forbidden Love",
+      "Forced Proximity"
+    ],
     "edad": [
       "Young Adult (15–18)"
     ],
     "pais_cultura": [],
     "ubicaciones": [],
-    "epoca": null,
+    "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Mundo ficticio",
+    "tipo_mundo": "Paranormal",
     "entornos": [],
-    "idioma_original": "Inglés",
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 3,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Soul Match Series",
@@ -53192,34 +54639,76 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Paranormal"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Queer",
+      "Sobrenatural"
+    ],
+    "identidades": [
+      "Femme"
+    ],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Realeza",
+      "Princesa de Borealis",
+      "Estudiante de la Academia Sanguis",
+      "Sirvienta"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zvxjrgwj",
+        "nombre": "Selene",
+        "profesiones": [
+          "Princesa de Borealis"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4zvxjrdca",
+        "nombre": "Perséfone",
+        "profesiones": [
+          "Estudiante de la Academia Sanguis",
+          "Sirvienta"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Realeza × Plebeya",
+      "Boss × Employee"
     ],
-    "tropes": [],
+    "tropes": [
+      "Forbidden Love",
+      "Workplace Romance",
+      "Forced Proximity"
+    ],
     "edad": [
       "Young Adult (15–18)"
     ],
     "pais_cultura": [],
     "ubicaciones": [],
-    "epoca": null,
+    "epoca": "Histórica",
     "periodo": null,
-    "tipo_mundo": "Mundo ficticio",
+    "tipo_mundo": "Fantasía",
     "entornos": [],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 4,
+    "rapidez_romance": 4,
     "formato": "Saga",
     "adaptacion": null,
-    "sagaName": "Soul Match Series",
+    "sagaName": "Soul Match Series Book",
     "sagaNum": 2,
     "source": "other",
     "editions": [],
@@ -53248,32 +54737,58 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Paranormal"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Sobrenatural",
+      "Queer"
+    ],
     "identidades": [],
     "characters": [
-      "Vampira"
+      "Vampira",
+      "Princesa de Borealis"
     ],
-    "dinamicas": [],
+    "protagonistas": [
+      {
+        "id": "pmw4zwc34k2s",
+        "nombre": "Perséfone",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zwc340eq",
+        "nombre": "Selene",
+        "profesiones": [
+          "Princesa de Borealis"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Realeza × Plebeya"
+    ],
     "tropes": [],
     "edad": [
       "Young Adult (15–18)"
     ],
     "pais_cultura": [],
     "ubicaciones": [],
-    "epoca": null,
+    "epoca": "Histórica",
     "periodo": null,
-    "tipo_mundo": "Mundo ficticio",
+    "tipo_mundo": "Fantasía",
     "entornos": [],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
-    "sagaName": "Soul Match Series",
+    "sagaName": "Soul Match Series Book",
     "sagaNum": 3,
     "source": "other",
     "editions": [],
@@ -53425,17 +54940,62 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Psicológico"
     ],
     "subgenres": [
       "Dark Romance",
-      "Erótica"
+      "Erótica",
+      "BDSM",
+      "Queer",
+      "Celebridad",
+      "Crimen"
     ],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Abogada",
+      "Actriz",
+      "Abogada penalista"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zx86zm08",
+        "nombre": "Laura",
+        "profesiones": [
+          "Abogada penalista"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw4zx86z2ug",
+        "nombre": "Harley",
+        "profesiones": [
+          "Actriz"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Famosa × Anónima",
+      "Femme × Femme"
+    ],
     "tropes": [
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Workplace Romance",
+      "Forbidden Love",
+      "Forced Proximity",
+      "One Night Stand → More",
+      "Secret Relationship"
     ],
     "edad": [],
     "pais_cultura": [
@@ -53448,7 +55008,16 @@
         "region": "Nueva York",
         "ciudad": "Nueva York",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Club Pétale",
+          "Nueva York",
+          "Residencia",
+          "Espacios de trabajo de Laura",
+          "Plató de cine",
+          "Jet privado",
+          "Hotel",
+          "Hawái"
+        ]
       },
       {
         "pais": "Francia",
@@ -53461,12 +55030,15 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 5,
+    "spicy": 4,
+    "rapidez_romance": 5,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -53496,19 +55068,52 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Erótica"
+    ],
     "identidades": [
       "Femme"
     ],
     "characters": [
       "Tatuadora",
-      "Profesora"
+      "Profesora",
+      "Artista",
+      "Maestra de segundo grado de primaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zymnxfls",
+        "nombre": "Bryce",
+        "profesiones": [
+          "Tatuadora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 28
+      },
+      {
+        "id": "pmw4zymnx940",
+        "nombre": "Daisy",
+        "profesiones": [
+          "Maestra de segundo grado de primaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 30
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Ice Queen × Sunshine"
     ],
     "tropes": [
       "Fake Relationship",
@@ -53532,17 +55137,48 @@
         "ciudad": null,
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": "Alberta",
+        "ciudad": "Cherry Peak",
+        "localidad": null,
+        "lugares": [
+          "Peakside",
+          "Escuela de Cherry Peak",
+          "Casa de la familia Mitchell",
+          "Estudio Into The Shade",
+          "Rancho Steele y tienda de tatuajes de Shade"
+        ]
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Calgary",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Toronto se menciona",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -53570,8 +55206,8 @@
     "year": 2023,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1672452085i/75434345.jpg",
     "synopsis": "Hace nueve años, la fría y distante Michelle Hastings prefirió su carrera al amor. Ahora vive con esa elección mientras dirige una empresa secreta que atiende a ricos y poderosos.\n\nLlega Eden Lawless. A la cándida activista le resulta un poco extraño que una misteriosa organización la contrate para derrocar a un alcalde corrupto. Pero le gustan los retos. Mucho más difícil es sacarse de la cabeza a su bella nueva jefa. La atracción entre ellos es eléctrica.",
-    "pages": 284,
-    "isbn": "9783963247477",
+    "pages": 369,
+    "isbn": "9783955332402",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -53591,7 +55227,33 @@
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Política",
+      "Activista",
+      "Agente de investigación encubierta de Fixers",
+      "Directora de campaña política"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw509w3gxzw",
+        "nombre": "Eden",
+        "profesiones": [
+          "Activista",
+          "Agente de investigación encubierta de Fixers"
+        ],
+        "identidades": [],
+        "edad": 20
+      },
+      {
+        "id": "pmw509w3gsle",
+        "nombre": "Michelle",
+        "profesiones": [
+          "Directora de campaña política"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Jefa × Subordinada",
       "Fría × Cálida"
@@ -53605,7 +55267,8 @@
     ],
     "edad": [
       "25–39",
-      "+40"
+      "+40",
+      "New Adult (18–24)"
     ],
     "pais_cultura": [
       "Estados Unidos"
@@ -53614,7 +55277,14 @@
       {
         "pais": "Estados Unidos",
         "region": null,
-        "ciudad": "Washington",
+        "ciudad": "Washington DC",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Boston",
         "localidad": null,
         "lugares": []
       }
@@ -53623,7 +55293,8 @@
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Oficina"
     ],
     "idioma_original": "Inglés",
     "pais_origen": [
@@ -53632,7 +55303,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
-    "rapidez_romance": null,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Villains",
@@ -53665,7 +55336,8 @@
       "Romance",
       "Contemporánea",
       "Drama",
-      "Thriller"
+      "Thriller",
+      "Comedia Romántica"
     ],
     "subgenres": [
       "Queer",
@@ -53674,19 +55346,48 @@
       "Familia",
       "Feminismo",
       "Erótica",
-      "Segunda Oportunidad"
+      "Segunda Oportunidad",
+      "Coming Out"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Empresaria"
+      "Empresaria",
+      "Activista profesional",
+      "Directora de The Fixers"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw504ff5dti",
+        "nombre": "Eden",
+        "profesiones": [
+          "Activista profesional"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 36
+      },
+      {
+        "id": "pmw504ff52tz",
+        "nombre": "Michelle",
+        "profesiones": [
+          "Directora de The Fixers"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 48
+      }
     ],
     "dinamicas": [
       "Fría × Cálida",
       "Caos × Control",
       "Jefa × Subordinada",
-      "Ice Queen × Softie"
+      "Ice Queen × Softie",
+      "Femme × Femme",
+      "Ice Queen × Sunshine"
     ],
     "tropes": [
       "Enemies to Lovers",
@@ -53695,7 +55396,9 @@
       "Workplace Romance",
       "Opposites Attract",
       "Ice Queen × Toaster Oven",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Forced Proximity",
+      "Secret Relationship"
     ],
     "edad": [
       "25–39",
@@ -53725,6 +55428,48 @@
         "ciudad": "Maryland",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Washington D",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "otras localidades de Maryland y Virginia vinculadas a las operaciones de The Fixers",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Oficina de The Fixers",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "casa de Michelle",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "casa de Aggie",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "instalaciones y lugares",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
@@ -53740,7 +55485,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
-    "rapidez_romance": 2,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Villains",
@@ -53772,27 +55517,106 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Aventura"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Magia",
+      "Sobrenatural"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Reina del Queendom"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw500415rfy",
+        "nombre": "Reyna",
+        "profesiones": [
+          "Reina del Queendom"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmw500415oo4",
+        "nombre": "Kianthe",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Found Family",
+      "Hurt/Comfort"
+    ],
     "edad": [],
     "pais_cultura": [],
-    "ubicaciones": [],
-    "epoca": null,
+    "ubicaciones": [
+      {
+        "pais": "Queendom",
+        "region": "Tawney se encuentra en la frontera entre el Queendom",
+        "ciudad": "Tawney",
+        "localidad": null,
+        "lugares": [
+          "New Leaf Tomes and Tea",
+          "Gran Palacio",
+          "Magicary",
+          "Cordillera Vardian",
+          "Montañas de los dragones",
+          "Caverna alquímica",
+          "Campamento de Albert"
+        ]
+      },
+      {
+        "pais": "Queendom",
+        "region": null,
+        "ciudad": "Winterhaven",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Queendom",
+        "region": null,
+        "ciudad": "Magicary",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Queendom",
+        "region": null,
+        "ciudad": "Lathe y Koll",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Medieval",
     "periodo": null,
-    "tipo_mundo": "Mundo ficticio",
-    "entornos": [],
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Pueblo pequeño",
+      "Palacio",
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 0,
+    "rapidez_romance": null,
     "formato": "Saga",
     "adaptacion": null,
     "sagaName": "Tomes & Tea",
@@ -53870,16 +55694,40 @@
       "Erótica",
       "Queer",
       "Familia",
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Universidad",
+      "Segunda Oportunidad"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [
-      "Profesora"
+      "Profesora",
+      "Escritora",
+      "Profesora universitaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw50bueucxp",
+        "nombre": "Taylor",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw50bueute3",
+        "nombre": "Raquel",
+        "profesiones": [
+          "Profesora universitaria",
+          "Escritora"
+        ],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Age-gap; profesora × Estudiante"
     ],
     "tropes": [
       "Second Chance Romance",
@@ -53887,7 +55735,9 @@
       "Opposites Attract",
       "Student × Teacher",
       "One Night Stand → More",
-      "Slow Burn"
+      "Slow Burn",
+      "Vacation Romance",
+      "Forbidden Love"
     ],
     "edad": [
       "25–39",
@@ -53902,7 +55752,11 @@
         "region": null,
         "ciudad": "Miami",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Lockwood College",
+          "Campus universitario",
+          "Hotel y vivienda de las protagonistas"
+        ]
       },
       {
         "pais": "Estados Unidos",
@@ -53916,7 +55770,8 @@
     "periodo": null,
     "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad"
     ],
     "idioma_original": "Inglés",
     "pais_origen": null,
@@ -54076,16 +55931,46 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Contemporánea"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento"
+    ],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "Organizadora de bodas"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw50ate94bt",
+        "nombre": "Margot",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw50ate91ux",
+        "nombre": "Olivia",
+        "profesiones": [
+          "Organizadora de bodas"
+        ],
+        "identidades": [],
+        "edad": 30
+      }
+    ],
     "dinamicas": [],
     "tropes": [
-      "Friends to Lovers"
+      "Friends to Lovers",
+      "Second Chance Romance",
+      "Childhood Friends"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -54095,7 +55980,10 @@
         "region": null,
         "ciudad": "Seattle",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Emerald City Events",
+          "Lugares de bodas y espacios vinculados a la organización de eventos"
+        ]
       },
       {
         "pais": "Estados Unidos",
@@ -54108,7 +55996,9 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
@@ -54116,6 +56006,7 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 4,
+    "rapidez_romance": 3,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Written in the Stars",
@@ -58748,18 +60639,85 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Erótica",
+      "Familia",
+      "Autodescubrimiento",
+      "Queer",
+      "Música",
+      "Universidad",
+      "Celebridad"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Música",
+      "Investigadora",
+      "Profesora",
+      "DJ",
+      "Productora musical",
+      "Astrofísica"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zt03eg0f",
+        "nombre": "Bella Foster",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zt03es2z",
+        "nombre": "Ava Miller",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zt03fi9c",
+        "nombre": "Bella",
+        "profesiones": [
+          "DJ",
+          "Productora musical"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 20
+      },
+      {
+        "id": "pmw4zt03fsq1",
+        "nombre": "Ava",
+        "profesiones": [
+          "Astrofísica"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 39
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
     "tropes": [
       "Age Gap",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Forbidden Love",
+      "One Night Stand → More"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -58777,14 +60735,18 @@
       }
     ],
     "epoca": "Contemporánea",
-    "periodo": null,
+    "periodo": "2023",
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Inglés",
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 5,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Brooklyn Girls",
@@ -58802,7 +60764,7 @@
   },
   {
     "id": "b_1779643090519_177ep",
-    "title": "Lapdance Love",
+    "title": "Lapdance Love: When Worlds Collide! — The Brooklyn Girls.",
     "authors": [
       "A. Goswami"
     ],
@@ -58816,15 +60778,39 @@
     "genres": [
       "Romance"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Música"
+    ],
     "identidades": [],
-    "characters": [],
+    "characters": [
+      "DJ"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw4zu5t9v11",
+        "nombre": "Bella",
+        "profesiones": [
+          "DJ"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw4zu5t9dxv",
+        "nombre": "Ava",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
+    ],
     "dinamicas": [],
     "tropes": [
       "Age Gap"
     ],
     "edad": [],
-    "pais_cultura": [],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
@@ -58839,17 +60825,27 @@
         "ciudad": "Shelton",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Brooklyn",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
-    "idioma_original": "Inglés",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 3,
+    "rapidez_romance": null,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "The Brooklyn Girls",
@@ -68308,7 +70304,7 @@
   },
   {
     "id": "b_1780387057454_igbsz",
-    "title": "Sun Poisoning",
+    "title": "Sun Poisoning: Universally Knighted: A Paranormal Queer Standalone Series",
     "authors": [
       "Phoenix Kathryn"
     ],
@@ -68322,14 +70318,20 @@
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
-      "Romance"
+      "Romance",
+      "Paranormal",
+      "Contemporánea"
     ],
     "subgenres": [
       "Erótica",
       "BDSM",
       "Dark Romance",
       "Magia",
-      "Universidad"
+      "Universidad",
+      "Queer",
+      "Sobrenatural",
+      "Deporte",
+      "Autodescubrimiento"
     ],
     "identidades": [
       "Grumpy",
@@ -68338,7 +70340,28 @@
     ],
     "characters": [
       "Vampira",
-      "Bruja"
+      "Bruja",
+      "Estudiante universitaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmw508yl4axc",
+        "nombre": "Piper",
+        "profesiones": [
+          "Estudiante universitaria"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmw508yl4qis",
+        "nombre": "Kailani",
+        "profesiones": [
+          "Estudiante universitaria"
+        ],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Grumpy × Sunshine"
@@ -68380,13 +70403,16 @@
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": "Fantasía",
-    "entornos": [],
+    "tipo_mundo": "Paranormal",
+    "entornos": [
+      "Universidad"
+    ],
     "idioma_original": "Inglés",
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
@@ -117909,5 +119935,1221 @@
       "THAIS",
       "Friends to Lovers"
     ]
+  },
+  {
+    "id": "b_1792840059202_4ziq5",
+    "title": "Querida Amy",
+    "authors": [
+      "Riley Blythe"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/71W1EfGDZ0L._SL1500_.jpg",
+    "synopsis": "Una escritora muerta. Un testamento que puede cambiarlo todo. Y una mujer que sabe imitar su letra demasiado bien.\n\nCuando la célebre novelista Amelia Ashby muere en su aislada casa de la costa de Norfolk, deja una última un testamento manuscrito que convierte a Hazel Calloway, su joven asistente, en heredera de todo.\n\nLa familia de Amelia está convencida de que es una falsificación.\n\nNora Vance, experta en escritura forense, recibe tres semanas para averiguar la verdad. Para hacerlo tendrá que instalarse en Marsh End, la casa donde Amelia vivió durante décadas, y trabajar junto a la mujer que podría tener más que ganar con un testamento falso.\n\nHazel no ayuda demasiado a despejar las dudas. Sabe reproducir a la perfección la letra de Amelia. Lleva años haciéndolo para contestar su correspondencia.\n\nPero cuanto más examina Nora las cartas, los manuscritos y los últimos escritos de la novelista, más evidente resulta que hay algo que no encaja.\n\nY mientras busca la verdad sobre Amelia, Nora empieza a descubrir cosas que no debería sentir por Hazel.\n\nEn una casa llena de cartas, secretos y palabras que alguien ha intentado ocultar, descubrir quién escribió cada una puede ser solo el principio.\n\nPorque algunas cartas no están destinadas a ser encontradas.",
+    "pages": 473,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Misterio"
+    ],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Small Town",
+      "Familia"
+    ],
+    "identidades": [
+      "Otro"
+    ],
+    "characters": [
+      "Perito",
+      "Escritora",
+      "Perita calígrafa"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvtzcs3si1k",
+        "nombre": "Nora Vance",
+        "profesiones": [
+          "Perita calígrafa"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvtzcs3salk",
+        "nombre": "Hazel Calloway",
+        "profesiones": [
+          "Escritora"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Introvertida × Extrovertida",
+      "Fría × Cálida",
+      "Seria × Divertida",
+      "Butch × Femme",
+      "Masc × Femme"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Workplace Romance",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": "Norfolk",
+        "ciudad": "No",
+        "localidad": null,
+        "lugares": [
+          "Saltmere",
+          "Marsh End",
+          "Casa de Amelia Ashby",
+          "The Anchor",
+          "Marisma",
+          "Diques",
+          "Muelle",
+          "Estación de Ely y el juzgado de Norwich"
+        ]
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "King's Lynn",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Norwich",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Bath",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Ely",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Edimburgo y Glasgow",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Histórica",
+    "periodo": "Década de 1980, con acontecimientos retrospectivos y referencias que llegan a finales de esa década.",
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792840338904_tfx7s",
+    "title": "¿A qué saben tus miedos?",
+    "authors": [
+      "Verónica Espinosa"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/818eud9AboL._SL1500_.jpg",
+    "synopsis": "Un viajecito inesperado a Bali. Una chef con mucho carácter. Una crítica demasiado intensa. Y una relación inconclusa que hará que la isla de los dioses salte por los aires.\n\nSofía es la aclamada Chef Principal del resort Paraíso Azul en Benidorm: apasionada, perfeccionista, con un pronto de mil demonios en la cocina y un corazón entregado. Para situar el restaurante en un nivel superior, la dirección le otorga una beca de formación exclusiva en el resort hermano de la cadena: el idílico Blue Paradise, en Bali. ¿El objetivo? Dominar las técnicas de la cocina exótica indonesia y fusionarlas con la gastronomía mediterránea.\n\nLo que Sofía no espera es que no será la única que viaje a la isla de los dioses , porque allí se encontrará con el mayor de sus problemas: Valentina.\n\nValentina es enviada al resort para gestionar una gala gastronómica con la premisa de que tendrá que aliarse con Sofía. Sin embargo, después de sus malas decisiones, y de haber dejado inconclusa su historia de la peor forma posible, se topa con que las cosas no serán tan fáciles y que nada de lo que hizo, se puede arreglar con una simple disculpa.\n\nAhora, bajo los atardeceres dorados de Bali y con una Sofía enamorada, pero orgullosamente herida, descubrirá que dejarse arrastrar por el miedo y los fantasmas del pasado, solo crea dolor y que el amor, exige sinceridad y mucha mucha pasión.\n\n¿Podrá Valentina dejar atrás sus miedos y permitir que Sofía le robe el corazón? ¿O volverá a caer en el error de siempre?",
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Comedia Romántica"
+    ],
+    "subgenres": [
+      "Queer",
+      "Segunda Oportunidad",
+      "Autodescubrimiento",
+      "Familia",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme",
+      "Butch"
+    ],
+    "characters": [
+      "Chef",
+      "Directora de control de calidad",
+      "Inspectora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvtzf3r6iks",
+        "nombre": "Sofía Jiménez",
+        "profesiones": [
+          "Chef"
+        ],
+        "identidades": [
+          "Butch"
+        ],
+        "edad": 28
+      },
+      {
+        "id": "pmvtzf3r65h4",
+        "nombre": "Valentina Romero",
+        "profesiones": [
+          "Directora de control de calidad"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Butch × Femme",
+      "Fría × Cálida",
+      "Caos × Control",
+      "Jefa × Subordinada"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Forced Proximity",
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Slow Burn",
+      "Jealousy Trope",
+      "One Night Stand → More",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Alicante",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Indonesia",
+        "region": "Bali",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Paraíso Azul en Benidorm",
+          "Blue Paradise Bali",
+          "Pueblo de Made",
+          "Río Ayung",
+          "Sebatu",
+          "Keramas y el Palacio de Ubud"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": "2026",
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Hotel",
+      "Palacio",
+      "Pueblo pequeño"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": [
+      "España"
+    ],
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Paraíso Azul",
+    "sagaNum": 2,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792841161876_d6qao",
+    "title": "Mi alcaldesa favorita",
+    "authors": [
+      "Olivia Marquez"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/71Vo6EHgjtL._SL1500_.jpg",
+    "synopsis": "licia solo quería abrir una cafetería. No esperaba tener que discutir con la alcaldesa. Y mucho menos querer besarla.\n\nDespués de quince años trabajando en publicidad, Alicia ha dejado Madrid para empezar de cero en Puerto de Lúa, un pequeño pueblo de la costa cántabra. Tiene una cafetería recién estrenada, unos ahorros que desaparecen a velocidad preocupante y cuatro mesas de terraza que el ayuntamiento se resiste a autorizar.\n\nPor si fuera poco, van a levantar la plaza justo delante de su negocio.\n\nEn el ayuntamiento se encuentra con Beatriz, una alcaldesa que no está dispuesta a saltarse las normas por nadie. Alicia, por su parte, tampoco piensa resignarse a perder su terraza sin protestar.\n\nLo que ninguna de las dos había previsto es lo complicado que iba a resultar mantener las cosas en el terreno estrictamente profesional.\n\nPorque Beatriz intenta hacer bien su trabajo. Alicia solo quiere que la dejen trabajar. Y entre cafés, reuniones municipales y vecinos que parecen saberlo todo antes que ellas, empieza a resultar bastante difícil fingir que lo suyo es un asunto exclusivamente administrativo.\n\nPorque enamorarse ya tiene sus dificultades. Hacerlo de la alcaldesa de un pueblo donde nadie sabe meterse en sus asuntos es otro nivel.\n\nUna comedia romántica sáfica con protagonistas adultas, humor cotidiano, vecinos entrañables y un amor que llega cuando ninguna de las dos esperaba complicarse la vida.",
+    "pages": 243,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
+    ],
+    "subgenres": [
+      "Queer",
+      "Small Town",
+      "Autodescubrimiento",
+      "Familia"
+    ],
+    "identidades": [
+      "Otro"
+    ],
+    "characters": [
+      "Dueña de cafetería",
+      "Alcaldesa",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvtzhrly682",
+        "nombre": "Alicia",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [],
+        "edad": 41
+      },
+      {
+        "id": "pmvtzhrly7gq",
+        "nombre": "Beatriz",
+        "profesiones": [
+          "Alcaldesa"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Seria × Divertida"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Workplace Romance",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "+40"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "España",
+        "region": "Cantabria",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Ayuntamiento",
+          "Plaza central",
+          "Cafetería La Esquina",
+          "Paseo marítimo",
+          "Playa",
+          "Centro cultural",
+          "Casas de las protagonistas y restaurantes de la zona"
+        ]
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Santander",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Comillas",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Pueblo pequeño",
+      "Cafetería"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 2,
+    "rapidez_romance": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "spanish",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792930269220_ds545",
+    "title": "Pining for You",
+    "authors": [
+      "Stef Ferrari"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/81MkIyoyu5L._SL1500_.jpg",
+    "synopsis": "Bennie Bosley es la encarnación del espíritu navideño. Su habilidad, casi mágica, para elegir el regalo perfecto, su conocimiento enciclopédico de las películas navideñas y su destreza como repostera —trabaja, nada menos, que en una granja de árboles de Navidad— la convierten en toda una autoridad en todo lo relacionado con la alegría navideña. Así que, cuando Bennie ve destellos tras toparse con la chica más impresionante que ha visto jamás en su pequeño pueblo de Connecticut, sus amigos se quedan atónitos al ver que Bennie no parece darse cuenta de lo que está pasando: auténtica magia navideña en acción… y la oportunidad perfecta para su tan ansiado primer beso.\n\nSolo hay un problema: su chica misteriosa, Eve, vive en Brooklyn y Bennie nunca le pidió el número de teléfono ni el apellido. Pero aparecer de improviso para hacer un gran gesto romántico es un clásico de las fiestas por una razón, ¿no? Y sus amigos no están dispuestos a perderse los fuegos artificiales.\n\nPero lo que se suponía que iba a ser una breve aventura navideña se convierte en una carrera por todo Brooklyn cuando llega la mayor tormenta de nieve de la década. ¿Conseguirán Bennie y su pandilla localizar a Eve para vivir un «felices para siempre» y llegar a tiempo a su última fiesta de Nochebuena en Cooper Farm, o estará su momento de película navideña destinado a acabar en la sala de montaje?",
+    "pages": 384,
+    "isbn": "9798347107438",
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Comedia Romántica",
+      "Romance",
+      "Contemporánea",
+      "YA",
+      "Juvenil"
+    ],
+    "subgenres": [
+      "Queer",
+      "Navidad",
+      "Small Town",
+      "Coming of Age",
+      "Autodescubrimiento",
+      "Familia",
+      "Universidad"
+    ],
+    "identidades": [
+      "Femme",
+      "Otro"
+    ],
+    "characters": [],
+    "protagonistas": [
+      {
+        "id": "pmvu1nl63ncf",
+        "nombre": "Bennie Bosley",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 17
+      },
+      {
+        "id": "pmvu1nl63gzj",
+        "nombre": "Eve",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 17
+      }
+    ],
+    "dinamicas": [],
+    "tropes": [
+      "Strangers to Lovers",
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Connecticut",
+        "ciudad": "Ripton",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad",
+      "Campo"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 1,
+    "rapidez_romance": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792930335710_yh4gg",
+    "title": "To Fight and To Fold",
+    "authors": [
+      "Lana Kole"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/91qbQpwArCL._SL1500_.jpg",
+    "synopsis": "Aaryn se enamoró una vez de un caballero, uno que se mostraba tan receloso ante la tensión que había entre ellos como Aaryn estaba deseosa de aceptarla… hasta que Thea le robó su dragón y Aaryn descubrió que cada momento que habían compartido había sido una farsa desde el principio.\nAhora, Aaryn se ve atrapada en medio de una disputa que dura ya siglos entre los druidas rebeldes y el reino de Evergale.\nStarspark la espera en los círculos, desvaneciéndose, y lo único que podrá curarlo es la mujer que Thea dejó atrás. Thea —no la caballera que Aaryn conoció en su día, sino una druida que busca enmendar sus errores— debe convencer a Aaryn de que deje atrás Evergale.\nAaryn debe aprender cuándo luchar y cuándo rendirse, por el bien de su dragón, por ella misma y por la druida que le robó el corazón.\n\nAcompaña a Aaryn y a Thea en su huida hacia los cielos en esta aventura romántica y fantástica de temática sáfica.",
+    "pages": 461,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Fantasía",
+      "Romance",
+      "Aventura",
+      "Drama",
+      "Acción"
+    ],
+    "subgenres": [
+      "Queer",
+      "Magia",
+      "Familia",
+      "Mitología",
+      "Sobrenatural",
+      "Segunda Oportunidad"
+    ],
+    "identidades": [
+      "Femme",
+      "Butch",
+      "Otro"
+    ],
+    "characters": [
+      "Druida"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvu1p8kyp89",
+        "nombre": "Aaryn",
+        "profesiones": [
+          "Druida"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvu1p8kyxg4",
+        "nombre": "Thea",
+        "profesiones": [
+          "Druida"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Butch × Femme"
+    ],
+    "tropes": [
+      "Hurt/Comfort",
+      "Slow Burn",
+      "Opposites Attract",
+      "Forbidden Love",
+      "Friends to Lovers",
+      "Second Chance Romance",
+      "Enemies to Lovers"
+    ],
+    "edad": [],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": null,
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 3,
+    "formato": "Saga",
+    "adaptacion": null,
+    "sagaName": "Riders of Rishika",
+    "sagaNum": 1,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792930446941_05o6d",
+    "title": "My Ex-Girlfriend Is My Bodyguard",
+    "authors": [
+      "P. S. Scott"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/81Z-XwpNEZL._SL1500_.jpg",
+    "synopsis": "Faye Ashford, una «reina de hielo» de treinta y ocho años, ha construido un imperio empresarial como brillante y elegante directora general de Ashford Enterprises. Tiene todo lo que siempre había deseado: riqueza, prestigio y el respeto de una junta directiva implacable. Pero cuando un acosador anónimo burla la seguridad de su empresa, enviándole amenazas crípticas y recurriendo cada vez más a la violencia, la junta interviene para contratar a un guardaespaldas personal.\n\nFaye espera a una profesional cualquiera que pase desapercibida. En cambio, se encuentra con Reese Callahan: su primer amor, su primera novia y la mujer a la que Faye le rompió el corazón hace quince años.\n\nReese, ahora una especialista de élite en seguridad privada, es disciplinada, letal y está decidida a mantener las cosas estrictamente profesionales. No ha superado cómo Faye le rompió el corazón hace años, y planea mantener las distancias con la única mujer a la que ha amado jamás. Vigilar a Faye durante diez horas al día es una auténtica tortura, pero cuando un atentado contra la vida de Faye las obliga a refugiarse en un piso franco aislado, la proximidad forzada hace que su autocontrol se haga añicos.\n\nAtrapadas entre el peligro mortal y el amor innegable que nunca terminó del todo, las dos mujeres viven una apasionada aventura entre las grietas de la realidad. Pero a medida que su capullo secreto se convierte en un refugio seguro, y comparten días y noches en un ritmo doméstico y tranquilo, sus sentimientos comienzan a cambiar. Faye sabe que no pueden vivir para siempre en esta idílica y aislada casita de campo, pero ¿está preparada para salir por fin de su jaula de oro y reclamar a Reese? ¿Y podrá Reese arriesgar de nuevo su corazón con la única mujer que se lo rompió?",
+    "pages": 58,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Acción",
+      "Thriller",
+      "Drama"
+    ],
+    "subgenres": [
+      "Queer",
+      "Segunda Oportunidad",
+      "Crimen",
+      "Autodescubrimiento",
+      "Familia"
+    ],
+    "identidades": [
+      "Femme",
+      "Maquillaje",
+      "Perlas",
+      "Trajes de falda",
+      "Masc",
+      "Botas",
+      "Chaleco táctico"
+    ],
+    "characters": [
+      "CEO",
+      "Guardaespaldas"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvu1rr6nd1q",
+        "nombre": "Faye",
+        "profesiones": [
+          "CEO"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 38
+      },
+      {
+        "id": "pmvu1rr6nyqm",
+        "nombre": "Reese",
+        "profesiones": [
+          "Guardaespaldas"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Bodyguard × VIP",
+      "Ice Queen × Softie"
+    ],
+    "tropes": [
+      "Second Chance Romance",
+      "Bodyguard / VIP",
+      "Workplace Romance",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Forced Proximity"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Oficina ejecutiva y ático de Faye",
+          "Gala empresarial",
+          "Sede de Ashford Global",
+          "Vehículo de Reese y cabaña aislada utilizada"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Oficina"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792930528430_nrpa6",
+    "title": "Perfectly Ruined",
+    "authors": [
+      "Elara Vossen"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/81tWJjhiMfL._SL1500_.jpg",
+    "synopsis": "Clara es la bailarina perfecta. Angelina es la chispa destinada a reducir a cenizas su mundo perfecto.\n\nClara ha pasado toda su vida encerrada en una jaula inmaculada y gélida. Moldeada por su tiránica madre para convertirse en la impecable prima del New York Elite Ballet, ella no siente: simplemente ejecuta. Pero cuando la eligen para interpretar al Cisne Blanco junto a su mayor rival, la tensión en el escenario alcanza su punto álgido.\n\nAngelina es todo lo que Clara no es. Es descarada, ferozmente apasionada y completamente embriagadora. En el papel del Cisne Negro, Angelina está decidida a llevar a Clara más allá de su límite y a hacer añicos su fría fachada.\n\nLo que comienza como una rivalidad amarga y despiadada en la sala de ensayos pronto se convierte en una obsesión prohibida y devoradora a puerta cerrada. El tacto de Angelina enseña a Clara a respirar, a desear y a ser, por fin, libre. Pero a medida que se acerca la noche del estreno y la madre de Clara amenaza con destruir la carrera de Angelina, Clara debe tomar una decisión imposible: seguir siendo la muñeca perfecta y vacía… o dejar que la mujer a la que ama la arruine por completo.",
+    "pages": 319,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Drama"
+    ],
+    "subgenres": [
+      "Queer",
+      "Erótica",
+      "Familia",
+      "Autodescubrimiento"
+    ],
+    "identidades": [
+      "Femme",
+      "Otro"
+    ],
+    "characters": [
+      "Bailarina"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvu1qi0q3bl",
+        "nombre": "Clara",
+        "profesiones": [
+          "Bailarina"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmvu1qi0qd2g",
+        "nombre": "Angelina",
+        "profesiones": [
+          "Bailarina"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Fría × Cálida",
+      "Femme × Femme",
+      "Feroz × Tierna"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Rivals to Lovers",
+      "Hurt/Comfort",
+      "Forbidden Love",
+      "Opposites Attract",
+      "Workplace Romance"
+    ],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Estado de Nueva York",
+        "ciudad": "Nueva York",
+        "localidad": null,
+        "lugares": [
+          "Upper East Side",
+          "Brooklyn",
+          "Apartamento/loft de Angelina",
+          "Teatro y salas de ensayo del New York Elite Ballet",
+          "Camerinos",
+          "Escenario"
+        ]
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "No se confirma una lista extensa de visitas físicas a otras ciudades",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "algunas referencias geográficas no implican desplazamientos de las protagonistas",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 5,
+    "rapidez_romance": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792932170676_7jmwk",
+    "title": "A Very Merry Detour",
+    "authors": [
+      "Court Behr"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/I/810oU1eZRRL._SL1500_.jpg",
+    "synopsis": "En medio de las luces centelleantes de un pueblo de esquí de Utah cubierto de nieve, el intento de una mujer por recuperar a su ex la lleva, en cambio, a un futuro que no creía posible.\n\nA veces, el camino hacia el amor es aquel que nunca habías planeado.\n\nSon las fiestas, y a Alaina acaba de dejarla su pareja. Decidida a pasar una Navidad romántica, se embarca en un viaje por carretera a través del país para dar una sorpresa a su exnovio y convencerlo de que ella es la mujer de su vida. Pero sus planes se tuercen cuando se estrella contra un montículo de nieve. La rescata Priscilla, una librera lacónica y seria a la que no le interesa en absoluto el espíritu navideño. Varada, con el coche fuera de servicio, Alaina elabora una lista de aventuras navideñas para que su ex se arrepienta de su decisión y, para su sorpresa, Priscilla se ofrece a acompañarla.\n\nEl plan de Alaina sale a la perfección, salvo por un detalle: cuanto más tiempo pasa con Priscilla, menos segura está de qué —o a quién— quiere realmente. «A Very Merry Detour», un conmovedor romance lésbico repleto del espíritu festivo de un pueblo pequeño, explora cómo el amor verdadero siempre deja espacio para nuestro yo más auténtico.",
+    "pages": 368,
+    "isbn": "9780593979037",
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Comedia Romántica",
+      "Drama"
+    ],
+    "subgenres": [
+      "Navidad",
+      "Small Town",
+      "Autodescubrimiento",
+      "Queer",
+      "Familia",
+      "Bisexual",
+      "Coming Out"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Camarera",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvupirrq4id",
+        "nombre": "Priscilla",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvupirrqi8j",
+        "nombre": "Alaina",
+        "profesiones": [
+          "Camarera"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Grumpy × Sunshine",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Forced Proximity",
+      "Strangers to Lovers",
+      "Stranded Together",
+      "Road Trip",
+      "Opposites Attract",
+      "Hurt/Comfort",
+      "Vacation Romance"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "Utah",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Utah",
+        "ciudad": "Brooks",
+        "localidad": null,
+        "lugares": [
+          "Brooks Books",
+          "Restaurante de Patty",
+          "Plaza del pueblo",
+          "Estación de esquí",
+          "Bosque",
+          "Plantación de árboles",
+          "Casa de Grant y Ned",
+          "Aeropuerto"
+        ]
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad",
+      "Pueblo pequeño",
+      "Restaurante",
+      "Campo"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 3,
+    "rapidez_romance": 4,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
+    "id": "b_1792053909226_xpi27",
+    "title": "Queen Without a Name – Flame Garland",
+    "authors": [
+      "SuketaSiri"
+    ],
+    "year": null,
+    "cover": "data:image/jpeg;base64,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",
+    "synopsis": null,
+    "pages": null,
+    "isbn": null,
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Acción",
+      "Thriller"
+    ],
+    "subgenres": [
+      "Mafia",
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "BDSM",
+      "Erótica"
+    ],
+    "identidades": [
+      "Femme",
+      "Masc"
+    ],
+    "characters": [
+      "CEO",
+      "Empresaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmvr6oq3q77b",
+        "nombre": "Phiraya Kraisorn (PK)",
+        "profesiones": [
+          "Empresaria"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmvr6oq3qozh",
+        "nombre": "Malai Suthida",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Masc × Femme",
+      "Dominante × Sumisa",
+      "Grumpy × Sunshine",
+      "Fría × Cálida",
+      "Feroz × Tierna",
+      "Protectora × Delicada",
+      "Jefa × Subordinada"
+    ],
+    "tropes": [
+      "Age Gap",
+      "Destined Lovers",
+      "Childhood Friends",
+      "Hurt/Comfort",
+      "Found Family",
+      "Secret Relationship",
+      "Workplace Romance",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "New Adult (18–24)",
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Tailandia",
+      "China"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "China",
+        "region": "Shenzhen",
+        "ciudad": "Luohu",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Bangkok",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Shenzhen",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "China",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "Distrito de Luohu y Nightfall Club en Shenzhen",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "mansión Kraisorn",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "oficina y empresa de Phiraya",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "barrio y hogar de Malai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "restaurante donde trabaja Malai",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "templo",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "orfanato",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Tailandia",
+        "region": null,
+        "ciudad": "hospital mencionado en la trama retrospectiva",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Español",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [],
+    "spicy": 0,
+    "rapidez_romance": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "thais",
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
   }
 ]
