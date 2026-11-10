@@ -492,6 +492,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tag-warning{background:#8b1a2a;color:#ffd0d8;border:1px solid rgba(255,100,120,0.35);font-size:11px;font-weight:600;letter-spacing:.02em}
 .tag-year{background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
 .tag-formato{background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal-text);border:1px solid color-mix(in srgb,var(--teal) 25%,transparent)}
+.tag-trad-falta{background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent)}
+.tag-trad-ok{background:color-mix(in srgb,var(--teal) 14%,transparent);color:var(--teal-text);border:1px solid color-mix(in srgb,var(--teal) 30%,transparent)}
 .tag-adaptacion{background:rgba(155,130,201,0.12);color:#c4b0e8;border:1px solid rgba(155,130,201,0.3)}
 .tag-edad{background:color-mix(in srgb,var(--gold) 12%,transparent);color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
 .book-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem}
@@ -11516,7 +11518,7 @@ function renderGrid(books, total, totalPages){
         <a class="book-title ts-book-link" href="#libro/${encodeURIComponent(b.id)}" onclick="openBookPage('${b.id}');return false;">${escHtml(b.title)}</a>
         ${cardSagaSub}
         <div class="book-author">${escHtml(authorStr)}</div>
-        <div class="book-tags">${genreTags}${yearTag}</div>
+        <div class="book-tags">${genreTags}${yearTag}${tradTag(b)}</div>
         <div class="book-footer">
           ${currentUser
             ? (r.count>0?`<span style="color:var(--gold);font-size:11px">★ ${fmtAvg(r.avg)}</span>`:`<span class="no-ratings">Sin valoraciones</span>`)
@@ -12687,6 +12689,7 @@ function renderBookPage(book){
       <div class="bp-content">
         <h1 class="bp-title">${escHtml(b.title)}</h1>
         <p class="bp-author">por ${authorStr}</p>
+        ${tradTag(b)?`<div class="book-tags" style="margin-bottom:.6rem">${tradTag(b)}</div>`:''}
         ${sagaRow}
         ${generalRow}
         ${miPanel}
@@ -14903,6 +14906,14 @@ function getSolChip(groupId){
 }
 
 function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+/* Estado de traducción (solo Thais): únicamente se pinta en el enlace privado de LIBROS-THAIS-Y-LIBROS-LE-DOS-NO-SUBIDOS- */
+function tradVisible(){ return location.hostname.toLowerCase()==='xxmadwavs.github.io' && location.pathname.toLowerCase().indexOf('/libros-thais-y-libros-le-dos-no-subidos-')===0; }
+function tradTag(b){
+  if(!tradVisible()||b.source!=='thais') return '';
+  if(b.traduccion==='falta') return '<span class="tag tag-trad-falta">Falta traducir</span>';
+  if(b.traduccion==='traducido') return '<span class="tag tag-trad-ok">Traducido</span>';
+  return '';
+}
 
 async function enviarSolicitud(){
   if(!currentUser){openAuthModal();return;}

@@ -963,6 +963,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <label class="form-label">Ship(s) <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(nombres separados por comas)</span></label>
   <input type="text" id="fShip" placeholder="PhinyaBusaya, OtroShip…">
 </div>
+<div class="form-row" id="transRow" style="display:none">
+  <label class="form-label">Traducción <span style="color:var(--muted);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(solo se ve en el enlace privado del index)</span></label>
+  <select id="fTraduccion">
+    <option value="">Sin marcar</option>
+    <option value="falta">Falta traducir</option>
+    <option value="traducido">Traducido</option>
+  </select>
+</div>
 <div class="sub-lbl">Sección *</div>
 <div class="source-chip-group" id="sourceChips">
   <button class="source-chip active-thais" id="sourceThais" onclick="setSource('thais')">🌸 Thais</button>
@@ -1835,6 +1843,7 @@ function openEditModal(id) {
   document.getElementById('fIsbn').value    =b.isbn||'';
   document.getElementById('fWattpad').value =b.wattpad||'';
   document.getElementById('fShip').value    =(b.ship&&b.ship.length)?b.ship.join(', '):'';
+  document.getElementById('fTraduccion').value=b.traduccion||'';
   const shipRow=document.getElementById('shipRow');
   if(shipRow) shipRow.style.display=(b.source==='thais')?'':'none';
   previewCover(b.cover||'');
@@ -1959,6 +1968,7 @@ function clearForm() {
   document.getElementById('fThaiClub').checked=false;
   document.getElementById('thaiCatField').style.display='none';
   document.getElementById('fThaiCats').value='';
+  document.getElementById('fTraduccion').value='';
   document.getElementById('fCanalRec').checked=false;
   document.getElementById('canalRecField').style.display='none';
   document.getElementById('fCanalMonth').value='';
@@ -2346,6 +2356,8 @@ function setSource(v){
   });
   const shipRow=document.getElementById('shipRow');
   if(shipRow) shipRow.style.display=(v==='thais')?'':'none';
+  const transRow=document.getElementById('transRow');
+  if(transRow) transRow.style.display=(v==='thais')?'':'none';
 }
 
 
@@ -2665,6 +2677,7 @@ function saveBook() {
     sagaName:  document.getElementById('fSagaName').value.trim()||null,
     sagaNum:   document.getElementById('fSagaNum').value!==''?parseFloat(document.getElementById('fSagaNum').value):null,
     source:    sel.source||'thais',
+    traduccion: sel.source==='thais' ? (document.getElementById('fTraduccion').value||null) : null, // 'falta' | 'traducido' | null
     editions:  editions.filter(e=>e.url).map(e=>({lang:e.lang,store:e.store,url:e.url})),
     saficlub: document.getElementById('fSafiClub').checked,
     safi_categories: document.getElementById('fSafiClub').checked
@@ -3589,7 +3602,26 @@ function tpListItems(s){
   return String(s||'').split(/,|;|\sy\s/).map(function(x){return x.trim().replace(/\.$/,'');}).filter(Boolean);
 }
 var TP_EV_RE=/^(expl[ií]cit|inferid|inferenc|pendiente|recuento|no\s+(determinable|especificad|confirmad|identificad)|clasificaci[oó]n|no\s+aplica)/i;
+/* Texto copiado de una tabla con UNA CELDA POR LÍNEA (sin tabuladores ni «|»): clave en una línea y valor en la siguiente.
+   Se reconstruyen filas «clave\tvalor». Las cabeceras de bloque (sin valor propio) se descartan. */
+var TP_SECTION_HEADS=/^(contenido sexual|velocidad del romance|ambientaci[oó]n|din[aá]mica de pareja|tropos? narrativos?|g[eé]neros? literarios?|subg[eé]neros? y tem[aá]ticas|profesiones de las protagonistas|edades y expresi[oó]n de g[eé]nero|datos pendientes|informaci[oó]n b[aá]sica|datos generales|personajes|identidades?)$/i;
+function tpLinesToRows(text){
+  var lines=text.split(/\r?\n/).map(function(l){return l.replace(/[*#]/g,'').trim();}).filter(function(l){return l;});
+  if(lines.length<4) return text;
+  /* Si ya hay separadores en la mayoría de líneas, no se toca */
+  var sepd=lines.filter(function(l){return /\t|\||\s{2,}|:\s*\S/.test(l);}).length;
+  if(sepd>lines.length*0.3) return text;
+  var out=[],i=0;
+  while(i<lines.length){
+    var l=lines[i];
+    if(TP_SECTION_HEADS.test(l)){i++;continue;}
+    if(i+1<lines.length&&!TP_SECTION_HEADS.test(lines[i+1])){out.push(l+'\t'+lines[i+1]);i+=2;}
+    else i++;
+  }
+  return out.join('\n');
+}
 function tpParseRows(text){
+  text=tpLinesToRows(text);
   var rows=[],kv=[];
   text.split(/\r?\n/).forEach(function(line){
     if(!line.trim()||/^[\s|:\-]+$/.test(line)) return;
@@ -3598,6 +3630,7 @@ function tpParseRows(text){
     else if(line.indexOf('|')>=0){cells=line.split('|');sep='pipe';}
     else{cells=line.split(/\s{2,}/);sep='space';}
     cells=cells.map(function(c){return c.replace(/[*#]/g,'').trim();});
+    if(cells[0]) cells[0]=cells[0].replace(/^protagonista\s+principal\s+(\d+)\s*$/i,'Protagonista $1');
     while(cells.length&&!cells[0]) cells.shift();
     while(cells.length&&!cells[cells.length-1]) cells.pop();
     if(cells.length<2) return;
