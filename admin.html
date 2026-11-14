@@ -4708,10 +4708,18 @@ function pEsc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,
 function pNorm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
 
 async function postGetCatalog(){
-  if(postCatalog) return postCatalog;
+  if(postCatalog && postCatalog.length) return postCatalog;
   const map = new Map();
-  try{ const r = await fetch('books_data.json'); if(r.ok){ (await r.json()).forEach(b=>map.set(b.id,b)); } }
-  catch(e){ console.warn('No se pudo cargar books_data.json', e); }
+  // 1) catálogo publicado (probamos varias rutas por si el admin está en otra carpeta)
+  for(const url of ['books_data.json','./books_data.json','../books_data.json','/books_data.json']){
+    try{
+      const r = await fetch(url, {cache:'no-cache'});
+      if(!r.ok) continue;
+      const data = await r.json();
+      if(Array.isArray(data) && data.length){ data.forEach(b=>b&&b.id&&map.set(b.id,b)); break; }
+    }catch(e){ /* siguiente ruta */ }
+  }
+  // 2) lo que tengas cargado en el editor (Importar JSON) se superpone / sirve de respaldo
   (books||[]).forEach(b=>{ if(b && b.id) map.set(b.id,b); });
   postCatalog = [...map.values()].map(b=>({id:b.id, titulo:b.title||'', autor:(b.authors||(b.author?[b.author]:[])).join(', '), cover:b.cover||''}));
   return postCatalog;
@@ -4834,7 +4842,7 @@ async function postBuscar(){
   const cat = await postGetCatalog();
   if(pNorm(document.getElementById('pfBuscar').value.trim())!==q) return;
   const hits = cat.filter(b=>pNorm(b.titulo).includes(q)||pNorm(b.autor).includes(q)).slice(0,8);
-  if(!hits.length){ box.innerHTML='<div class="empty" style="padding:1rem;font-size:12.5px">Sin resultados en el catálogo.</div>'; box.classList.add('open'); return; }
+  if(!hits.length){ box.innerHTML='<div class="empty" style="padding:1rem;font-size:12.5px">'+(cat.length?'Sin resultados en el catálogo.':'No se pudo cargar el catálogo (books_data.json). Pulsa «⬆ Importar JSON» arriba con tu archivo books_data.json y vuelve a buscar, o añade el libro a mano.')+'</div>'; box.classList.add('open'); return; }
   box.innerHTML = hits.map(b=>{
     const ya = postDraft.some(it=>it.book_id===b.id);
     const th = b.cover?`<img class="rec-thumb" src="${pEsc(b.cover)}" alt="" loading="lazy">`:'<span class="rec-thumb">📖</span>';
