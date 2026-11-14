@@ -578,6 +578,38 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ub-chips{margin-top:.45rem}
 #bookModal .ub-add-btn{padding:6px}
 </style>
+<style id="posts-admin-css">
+.rec-pick-wrap{position:relative}
+.rec-results{display:none;position:absolute;left:0;right:0;top:100%;margin-top:4px;z-index:20;background:var(--surface);border:1px solid var(--border2);border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.35);max-height:300px;overflow-y:auto}
+.rec-results.open{display:block}
+.rec-res{display:flex;align-items:center;gap:10px;width:100%;padding:7px 10px;border:0;border-bottom:1px solid var(--border);background:transparent;color:var(--text);text-align:left;cursor:pointer;font-family:'Instrument Sans',sans-serif}
+.rec-res:last-child{border-bottom:0}
+.rec-res:hover,.rec-res:focus-visible{background:var(--accent-soft);outline:none}
+.rec-res.added{opacity:.45;cursor:default}
+.rec-thumb{width:34px;height:50px;flex:0 0 34px;border-radius:5px;object-fit:cover;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted)}
+.rec-res-t{font-size:13px;font-weight:500;line-height:1.25}
+.rec-res-a{font-size:11.5px;color:var(--muted)}
+.rec-items{display:grid;gap:8px;margin-top:10px}
+.rec-row{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(130px,200px) auto;gap:10px;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:8px 10px}
+.rec-row-info{min-width:0}
+.rec-row-t{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-row-a{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-row input.rec-label{width:100%;padding:7px 10px;border-radius:9px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font-size:12.5px;font-family:'Instrument Sans',sans-serif;outline:none}
+.rec-row input.rec-label:focus{border-color:var(--accent)}
+.rec-row-btns{display:flex;gap:4px}
+.rec-row-btns .btn{padding:3px 9px}
+.rec-sec{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:600;margin:1.1rem 0 .6rem;padding-bottom:.35rem;border-bottom:1px solid var(--border)}
+.rec-manual{display:none;margin-top:8px;padding:10px;border:1px dashed var(--border2);border-radius:12px}
+.rec-manual.open{display:block}
+.rec-hint{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:.35rem}
+.rec-mini-covers{display:flex;gap:3px;flex-shrink:0}
+.rec-mini-covers img{width:22px;height:33px;object-fit:cover;border-radius:3px;border:1px solid var(--border)}
+.post-img-box{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.post-img-prev{width:120px;aspect-ratio:4/5;border-radius:10px;border:1px dashed var(--border2);background:var(--surface2);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:11px;text-align:center;flex-shrink:0}
+.post-img-prev img{width:100%;height:100%;object-fit:cover;display:block}
+.post-img-box .btn{display:inline-block}
+@media(max-width:640px){.rec-row{grid-template-columns:34px minmax(0,1fr) auto}.rec-row input.rec-label{grid-column:1 / -1}}
+</style>
 </head>
 <body>
 
@@ -622,6 +654,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <button class="main-tab-btn" id="tabBtnSolicitudes" onclick="switchMainTab('solicitudes')">📬 Solicitudes <span class="tab-badge" id="tabBadgeSol">—</span></button>
     <button class="main-tab-btn" id="tabBtnBingo" onclick="switchMainTab('bingo')">🎲 Bingo</button>
     <button class="main-tab-btn" id="tabBtnTop10" onclick="switchMainTab('top10')">🏆 Top 10</button>
+    <button class="main-tab-btn" id="tabBtnPosts" onclick="switchMainTab('posts')">✨ Posts</button>
   </div>
 
   <!-- ── PANEL LIBROS ── -->
@@ -840,6 +873,81 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div id="adminTop10Container"><div class="empty">Cargando…</div></div>
     </div>
   </div><!-- /panelTop10 -->
+
+  <!-- ── PANEL POSTS (recomendaciones del Inicio) ── -->
+  <div class="main-panel" id="panelPosts">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:.6rem">
+        <div class="card-title" style="margin-bottom:0">✨ Posts de recomendaciones</div>
+        <button class="btn primary small" onclick="abrirNuevoPost()">+ Nuevo post</button>
+      </div>
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:1.1rem">Posts para recomendar libros por temporada, por una serie que se estrena… Cada post lleva una <strong>imagen</strong> (la que haces en Canva), un <strong>texto</strong> y los <strong>libros</strong> del catálogo. Los posts <strong style="color:var(--accent2)">activos</strong> aparecen en el Inicio, en el sitio de «Tu próxima historia te espera» (los 6 más recientes, en carrusel). Sin posts activos, vuelve a verse el saludo normal.</p>
+      <div id="postsAdminList"><div class="empty">Cargando…</div></div>
+    </div>
+  </div><!-- /panelPosts -->
+
+  <!-- MODAL NUEVO/EDITAR POST -->
+  <div class="modal-bg" id="postModal" style="display:none;align-items:flex-start;justify-content:center">
+    <div class="modal" style="max-width:780px">
+      <div class="modal-top">
+        <div class="modal-title" id="postModalTitle">Nuevo post</div>
+        <button class="modal-close" onclick="cerrarPostModal()">✕</button>
+      </div>
+      <div style="padding:1.5rem;overflow-y:auto;max-height:calc(100vh - 180px)">
+        <div class="form-row">
+          <label class="form-label" for="pfTitulo">Título *</label>
+          <input type="text" id="pfTitulo" maxlength="90" placeholder="Ej: Deseo, culpa y traición">
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="pfEtiqueta">Etiqueta (serie, temporada…)</label>
+          <input type="text" id="pfEtiqueta" maxlength="60" placeholder="Ej: Si te gustó THE BODY (2026)  ·  Temporada: Otoño">
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="pfTexto">Texto del post</label>
+          <textarea id="pfTexto" rows="6" maxlength="3000" placeholder="Escribe aquí el texto: por qué las recomiendas, de qué va la serie… (los saltos de línea se respetan)"></textarea>
+        </div>
+
+        <div class="rec-sec">Imagen principal</div>
+        <div class="post-img-box">
+          <div class="post-img-prev" id="pfImgPrev">Sin imagen</div>
+          <div>
+            <label class="btn small" for="pfImgFile">⬆ Subir imagen</label>
+            <input type="file" id="pfImgFile" accept="image/*" style="display:none" onchange="postPickImage(this)">
+            <button class="btn small danger" id="pfImgDel" onclick="postClearImage()" style="display:none">✕ Quitar</button>
+            <div class="rec-hint">Formato recomendado vertical 4:5 (como 1080×1350). Se reduce automáticamente a ≤1600 px para que cargue rápido.</div>
+          </div>
+        </div>
+
+        <div class="rec-sec">Libros (<span id="pfCount">0</span>/12) — opcional</div>
+        <div class="rec-pick-wrap">
+          <input type="search" id="pfBuscar" placeholder="🔍 Busca un libro del catálogo por título o autora…" autocomplete="off"
+            style="width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:13.5px;font-family:'Instrument Sans',sans-serif;outline:none"
+            oninput="postBuscar()" onfocus="postBuscar()">
+          <div class="rec-results" id="pfResultados"></div>
+        </div>
+        <div class="rec-hint">¿No está en tu catálogo? <a href="#" onclick="postToggleManual();return false" style="color:var(--accent2)">Añádelo a mano</a> (se mostrará con la portada que pongas, sin ficha).</div>
+        <div class="rec-manual" id="pfManual">
+          <div class="form-row-half">
+            <div class="form-row"><label class="form-label" for="pfManTitulo">Título *</label><input type="text" id="pfManTitulo"></div>
+            <div class="form-row"><label class="form-label" for="pfManAutor">Autora</label><input type="text" id="pfManAutor"></div>
+          </div>
+          <div class="form-row"><label class="form-label" for="pfManCover">URL de la portada</label><input type="url" id="pfManCover" placeholder="https://…"></div>
+          <button class="btn small teal" onclick="postAddManual()">+ Añadir al post</button>
+        </div>
+        <div class="rec-items" id="pfItems"></div>
+        <div class="rec-hint">La nota de cada libro es opcional (ej. «Deseo prohibido»); se ve pegada a la portada dentro del post. Usa ↑ ↓ para ordenar.</div>
+
+        <div style="display:flex;align-items:center;gap:10px;margin:1.2rem 0 .2rem">
+          <input type="checkbox" id="pfActivo" style="accent-color:var(--accent);width:16px;height:16px;cursor:pointer">
+          <label for="pfActivo" style="font-size:13px;cursor:pointer;color:var(--muted)">Mostrar en el Inicio (<strong style="color:var(--accent2)">activo</strong>)</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="cerrarPostModal()">Cancelar</button>
+        <button class="btn primary" id="pfSave" onclick="guardarPost()">Guardar post</button>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL NUEVO/EDITAR BINGO -->
   <div class="modal-bg" id="bingoModal" style="display:none;align-items:flex-start;justify-content:center">
@@ -4414,6 +4522,7 @@ function switchMainTab(tab) {
   if (tab === 'solicitudes') renderAdminSolicitudes();
   if (tab === 'bingo') cargarBingosAdmin();
   if (tab === 'top10') renderAdminTop10();
+  if (tab === 'posts') cargarPostsAdmin();
 }
 
 function admSelChip(groupId, btn){
@@ -4590,6 +4699,222 @@ function fmtFechaBingo(iso){
          d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
 }
 
+
+/* ══════════════ POSTS DEL INICIO (tabla home_posts + Storage home-posts) ══════════════ */
+let postsAdminData = [], postEditingId = null, postDraft = [], postCatalog = null;
+let postImg = {url:'', path:'', blob:null, oldPath:''};
+const POST_MAX = 12;
+function pEsc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function pNorm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+
+async function postGetCatalog(){
+  if(postCatalog) return postCatalog;
+  const map = new Map();
+  try{ const r = await fetch('books_data.json'); if(r.ok){ (await r.json()).forEach(b=>map.set(b.id,b)); } }
+  catch(e){ console.warn('No se pudo cargar books_data.json', e); }
+  (books||[]).forEach(b=>{ if(b && b.id) map.set(b.id,b); });
+  postCatalog = [...map.values()].map(b=>({id:b.id, titulo:b.title||'', autor:(b.authors||(b.author?[b.author]:[])).join(', '), cover:b.cover||''}));
+  return postCatalog;
+}
+
+async function cargarPostsAdmin(){
+  const list = document.getElementById('postsAdminList');
+  list.innerHTML = '<div class="empty">Cargando…</div>';
+  const {data, error} = await sb.from('home_posts').select('*').order('created_at',{ascending:false});
+  if(error){
+    const falta = error.code==='42P01' || /home_posts/.test(error.message||'');
+    list.innerHTML = '<div class="empty" style="color:var(--rose)">'+(falta
+      ? 'La tabla <code>home_posts</code> todavía no existe. Ejecuta el archivo <code>home_posts.sql</code> en Supabase → SQL Editor y recarga.'
+      : 'Error al cargar: '+pEsc(error.message))+'</div>';
+    return;
+  }
+  postsAdminData = data || [];
+  if(!postsAdminData.length){ list.innerHTML='<div class="empty">Aún no hay posts. Crea el primero con «+ Nuevo post».</div>'; return; }
+  list.innerHTML = postsAdminData.map(r=>{
+    const items = Array.isArray(r.items) ? r.items : [];
+    const th = r.imagen_url ? `<img class="rec-thumb" style="width:40px;height:50px;flex-basis:40px" src="${pEsc(r.imagen_url)}" alt="" loading="lazy">` : '<span class="rec-thumb" style="width:40px;height:50px;flex-basis:40px">✨</span>';
+    const fecha = r.created_at ? new Date(r.created_at).toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'}) : '';
+    return `<div class="book-item" style="flex-wrap:wrap;gap:.75rem;margin-bottom:8px">
+      ${th}
+      <div class="book-info">
+        <div class="book-name">${pEsc(r.titulo)} ${r.activo?'<span class="badge" style="background:rgba(192,111,196,0.2);color:var(--accent2);border:1px solid rgba(192,111,196,0.35)">✦ ACTIVO</span>':'<span class="badge" style="background:var(--surface3);color:var(--muted)">oculto</span>'}</div>
+        <div class="book-meta">${fecha}${r.etiqueta?' · '+pEsc(r.etiqueta):''} · ${items.length} libro(s)</div>
+      </div>
+      <div class="book-actions">
+        <button class="btn small ${r.activo?'':'teal'}" onclick="togglePostActivo('${pEsc(r.id)}',${r.activo?'false':'true'})">${r.activo?'⏸ Ocultar':'▶ Mostrar'}</button>
+        <button class="btn small" onclick="editarPost('${pEsc(r.id)}')">✏ Editar</button>
+        <button class="btn small danger" onclick="borrarPost('${pEsc(r.id)}')">✕ Borrar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function togglePostActivo(id, val){
+  const {error} = await sb.from('home_posts').update({activo:val, updated_at:new Date().toISOString()}).eq('id',id);
+  if(error){ showToast('Error: '+error.message,'error'); return; }
+  showToast(val?'Post visible en el Inicio ✦':'Post oculto','success');
+  cargarPostsAdmin();
+}
+async function borrarPost(id){
+  if(!confirm('¿Borrar este post? También se borrará su imagen.')) return;
+  const r = postsAdminData.find(x=>x.id===id);
+  const {error} = await sb.from('home_posts').delete().eq('id',id);
+  if(error){ showToast('Error al borrar: '+error.message,'error'); return; }
+  if(r && r.imagen_path) sb.storage.from('home-posts').remove([r.imagen_path]).catch(()=>{});
+  showToast('Post borrado','success');
+  cargarPostsAdmin();
+}
+
+function postShowImage(){
+  const box = document.getElementById('pfImgPrev');
+  box.innerHTML = postImg.url ? `<img src="${pEsc(postImg.url)}" alt="Vista previa">` : 'Sin imagen';
+  document.getElementById('pfImgDel').style.display = postImg.url ? '' : 'none';
+}
+function postPickImage(inp){
+  const f = inp.files && inp.files[0]; inp.value='';
+  if(!f) return;
+  if(!/^image\//.test(f.type)){ showToast('Ese archivo no es una imagen','error'); return; }
+  const url = URL.createObjectURL(f), img = new Image();
+  img.onload = ()=>{
+    const MAX = 1600, k = Math.min(1, MAX/Math.max(img.width,img.height));
+    const c = document.createElement('canvas'); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k);
+    const ctx = c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height);
+    c.toBlob(b=>{
+      URL.revokeObjectURL(url);
+      if(!b){ showToast('No se pudo procesar la imagen','error'); return; }
+      postImg.blob = b; postImg.url = URL.createObjectURL(b); postShowImage();
+    }, 'image/jpeg', 0.88);
+  };
+  img.onerror = ()=>{ URL.revokeObjectURL(url); showToast('No se pudo leer la imagen','error'); };
+  img.src = url;
+}
+function postClearImage(){ postImg.blob=null; postImg.url=''; postImg.path=''; postShowImage(); }
+
+function _postOpenModal(){
+  document.getElementById('pfManual').classList.remove('open');
+  ['pfManTitulo','pfManAutor','pfManCover','pfBuscar'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('pfResultados').classList.remove('open');
+  postShowImage(); postRenderItems();
+  document.getElementById('postModal').style.display='flex';
+  document.body.style.overflow='hidden';
+  postGetCatalog();
+}
+function abrirNuevoPost(){
+  postEditingId = null; postDraft = []; postImg = {url:'',path:'',blob:null,oldPath:''};
+  document.getElementById('postModalTitle').textContent='Nuevo post';
+  ['pfTitulo','pfEtiqueta','pfTexto'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('pfActivo').checked=true;
+  _postOpenModal();
+}
+function editarPost(id){
+  const r = postsAdminData.find(x=>x.id===id); if(!r) return;
+  postEditingId = id;
+  postDraft = (Array.isArray(r.items)?r.items:[]).map(it=>({...it}));
+  postImg = {url:r.imagen_url||'', path:r.imagen_path||'', blob:null, oldPath:r.imagen_path||''};
+  document.getElementById('postModalTitle').textContent='Editar: '+r.titulo;
+  document.getElementById('pfTitulo').value=r.titulo||'';
+  document.getElementById('pfEtiqueta').value=r.etiqueta||'';
+  document.getElementById('pfTexto').value=r.texto||'';
+  document.getElementById('pfActivo').checked=!!r.activo;
+  _postOpenModal();
+}
+function cerrarPostModal(){
+  document.getElementById('postModal').style.display='none';
+  document.body.style.overflow='';
+}
+
+async function postBuscar(){
+  const q = pNorm(document.getElementById('pfBuscar').value.trim());
+  const box = document.getElementById('pfResultados');
+  if(q.length<2){ box.classList.remove('open'); box.innerHTML=''; return; }
+  const cat = await postGetCatalog();
+  if(pNorm(document.getElementById('pfBuscar').value.trim())!==q) return;
+  const hits = cat.filter(b=>pNorm(b.titulo).includes(q)||pNorm(b.autor).includes(q)).slice(0,8);
+  if(!hits.length){ box.innerHTML='<div class="empty" style="padding:1rem;font-size:12.5px">Sin resultados en el catálogo.</div>'; box.classList.add('open'); return; }
+  box.innerHTML = hits.map(b=>{
+    const ya = postDraft.some(it=>it.book_id===b.id);
+    const th = b.cover?`<img class="rec-thumb" src="${pEsc(b.cover)}" alt="" loading="lazy">`:'<span class="rec-thumb">📖</span>';
+    return `<button type="button" class="rec-res${ya?' added':''}" ${ya?'disabled':`onclick="postAddBook('${pEsc(b.id)}')"`}>${th}<span><div class="rec-res-t">${pEsc(b.titulo)}${ya?' · ya añadido':''}</div><div class="rec-res-a">${pEsc(b.autor)}</div></span></button>`;
+  }).join('');
+  box.classList.add('open');
+}
+async function postAddBook(id){
+  if(postDraft.length>=POST_MAX){ showToast('Máximo '+POST_MAX+' libros por post','error'); return; }
+  const b = (await postGetCatalog()).find(x=>x.id===id); if(!b) return;
+  if(postDraft.some(it=>it.book_id===id)) return;
+  postDraft.push({book_id:b.id, label:'', titulo:b.titulo, autor:b.autor, cover:b.cover});
+  document.getElementById('pfBuscar').value='';
+  document.getElementById('pfResultados').classList.remove('open');
+  postRenderItems(true);
+}
+function postToggleManual(){ document.getElementById('pfManual').classList.toggle('open'); }
+function postAddManual(){
+  const titulo = document.getElementById('pfManTitulo').value.trim();
+  if(!titulo){ showToast('Pon al menos el título','error'); return; }
+  if(postDraft.length>=POST_MAX){ showToast('Máximo '+POST_MAX+' libros por post','error'); return; }
+  const cv = document.getElementById('pfManCover').value.trim();
+  postDraft.push({book_id:null, label:'', titulo, autor:document.getElementById('pfManAutor').value.trim(), cover:/^https?:\/\//i.test(cv)?cv:''});
+  ['pfManTitulo','pfManAutor','pfManCover'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('pfManual').classList.remove('open');
+  postRenderItems(true);
+}
+function postMove(i,d){ const j=i+d; if(j<0||j>=postDraft.length) return; [postDraft[i],postDraft[j]]=[postDraft[j],postDraft[i]]; postRenderItems(); }
+function postRemove(i){ postDraft.splice(i,1); postRenderItems(); }
+function postSetLabel(i,v){ if(postDraft[i]) postDraft[i].label=v; }
+function postRenderItems(focusLast){
+  document.getElementById('pfCount').textContent = postDraft.length;
+  const box = document.getElementById('pfItems');
+  if(!postDraft.length){ box.innerHTML='<div class="empty" style="padding:1.2rem;font-size:12.5px">Sin libros (opcional).</div>'; return; }
+  box.innerHTML = postDraft.map((it,i)=>{
+    const th = it.cover?`<img class="rec-thumb" src="${pEsc(it.cover)}" alt="" loading="lazy">`:'<span class="rec-thumb">📖</span>';
+    return `<div class="rec-row">${th}
+      <div class="rec-row-info"><div class="rec-row-t">${pEsc(it.titulo||'Sin título')}${it.book_id?'':' <span class="badge badge-genre">manual</span>'}</div><div class="rec-row-a">${pEsc(it.autor||'')}</div></div>
+      <input class="rec-label" type="text" maxlength="40" placeholder="Nota (opcional)" value="${pEsc(it.label||'')}" aria-label="Nota de ${pEsc(it.titulo||'')}" oninput="postSetLabel(${i},this.value)">
+      <div class="rec-row-btns">
+        <button class="btn small" ${i===0?'disabled':''} onclick="postMove(${i},-1)" title="Subir">↑</button>
+        <button class="btn small" ${i===postDraft.length-1?'disabled':''} onclick="postMove(${i},1)" title="Bajar">↓</button>
+        <button class="btn small danger" onclick="postRemove(${i})" title="Quitar">✕</button>
+      </div></div>`;
+  }).join('');
+  if(focusLast){ const inp = box.querySelectorAll('input.rec-label'); inp[inp.length-1]?.focus(); }
+}
+
+async function guardarPost(){
+  const titulo = document.getElementById('pfTitulo').value.trim();
+  if(!titulo){ showToast('El título es obligatorio','error'); return; }
+  const btn = document.getElementById('pfSave'); btn.disabled = true; btn.textContent = 'Guardando…';
+  try{
+    let imagen_url = postImg.url, imagen_path = postImg.path;
+    if(postImg.blob){
+      const path = Date.now()+'-'+Math.random().toString(36).slice(2,7)+'.jpg';
+      const up = await sb.storage.from('home-posts').upload(path, postImg.blob, {contentType:'image/jpeg', cacheControl:'31536000', upsert:false});
+      if(up.error){
+        const bucket = /bucket/i.test(up.error.message||'');
+        showToast('No se pudo subir la imagen: '+(bucket?'falta crear el bucket «home-posts» (ejecuta home_posts.sql)':up.error.message),'error'); return;
+      }
+      imagen_path = path;
+      imagen_url = sb.storage.from('home-posts').getPublicUrl(path).data.publicUrl;
+    }
+    const items = postDraft.map(it=>({book_id:it.book_id||null, label:(it.label||'').trim(), titulo:it.titulo||'', autor:it.autor||'', cover:it.cover||''}));
+    const payload = {
+      titulo,
+      etiqueta: document.getElementById('pfEtiqueta').value.trim() || null,
+      texto: document.getElementById('pfTexto').value.trim() || null,
+      imagen_url: imagen_url || null, imagen_path: imagen_path || null,
+      items, activo: document.getElementById('pfActivo').checked,
+      updated_at: new Date().toISOString()
+    };
+    let error;
+    if(postEditingId) ({error} = await sb.from('home_posts').update(payload).eq('id',postEditingId));
+    else ({error} = await sb.from('home_posts').insert(payload));
+    if(error){ showToast('Error al guardar: '+error.message,'error'); return; }
+    // imagen anterior ya sustituida o quitada → se limpia de Storage
+    if(postImg.oldPath && postImg.oldPath!==imagen_path) sb.storage.from('home-posts').remove([postImg.oldPath]).catch(()=>{});
+    showToast(postEditingId?'Post actualizado ✓':'Post creado ✓','success');
+    cerrarPostModal(); cargarPostsAdmin();
+  } finally { btn.disabled = false; btn.textContent = 'Guardar post'; }
+}
+document.addEventListener('click',e=>{ if(!e.target.closest('.rec-pick-wrap')) document.getElementById('pfResultados')?.classList.remove('open'); });
 async function cargarBingosAdmin(){
   const list = document.getElementById('bingoAdminList');
   list.innerHTML = '<div class="empty">Cargando…</div>';
