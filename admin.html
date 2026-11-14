@@ -4722,10 +4722,14 @@ async function cargarPostsAdmin(){
   list.innerHTML = '<div class="empty">Cargando…</div>';
   const {data, error} = await sb.from('home_posts').select('*').order('created_at',{ascending:false});
   if(error){
-    const falta = error.code==='42P01' || /home_posts/.test(error.message||'');
-    list.innerHTML = '<div class="empty" style="color:var(--rose)">'+(falta
-      ? 'La tabla <code>home_posts</code> todavía no existe. Ejecuta el archivo <code>home_posts.sql</code> en Supabase → SQL Editor y recarga.'
-      : 'Error al cargar: '+pEsc(error.message))+'</div>';
+    const code = error.code || '', msg = error.message || '';
+    let ayuda;
+    if(code==='42P01' || code==='PGRST205' || /schema cache|does not exist/i.test(msg))
+      ayuda = 'Supabase no encuentra la tabla <code>home_posts</code> en este proyecto. Si ya ejecutaste <code>home_posts.sql</code>, ejecuta también <code>notify pgrst, \'reload schema\';</code> en el SQL Editor y recarga; y comprueba que lo ejecutaste en el mismo proyecto que usa la web.';
+    else if(code==='42501' || /permission|policy|row-level/i.test(msg))
+      ayuda = 'Falta permiso: comprueba que has iniciado sesión con la cuenta admin y que se crearon las políticas del archivo <code>home_posts.sql</code>.';
+    else ayuda = 'Error al cargar los posts.';
+    list.innerHTML = '<div class="empty" style="color:var(--rose);font-style:normal">'+ayuda+'<br><small style="opacity:.8">Detalle: '+pEsc(code+' '+msg)+'</small></div>';
     return;
   }
   postsAdminData = data || [];
