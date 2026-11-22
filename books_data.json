@@ -84835,7 +84835,7 @@
   },
   {
     "id": "b_1780861946027_olr0d",
-    "title": "El canto de la sirena",
+    "title": "El canto de la sirena.",
     "authors": [
       "Astrix Borges"
     ],
@@ -84850,18 +84850,61 @@
       "Romance",
       "Contemporánea",
       "Drama",
-      "Psicológico"
+      "Psicológico",
+      "Histórica",
+      "Comedia Romántica"
     ],
     "subgenres": [
       "Queer",
       "Autodescubrimiento",
       "Familia",
-      "Coming Out"
+      "Coming Out",
+      "Universidad",
+      "Deporte",
+      "Crimen",
+      "Bisexual",
+      "BDSM",
+      "Dark Romance",
+      "Erótica",
+      "Coming of Age"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Lesbiana"
     ],
-    "characters": [],
+    "characters": [
+      "Profesora",
+      "Camarera",
+      "Empresaria",
+      "Arquitecta",
+      "Nadadora del equipo de Welmond University",
+      "Nadadora competitiva universitaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwsdtagb6si",
+        "nombre": "Morgan",
+        "profesiones": [
+          "Arquitecta"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwsdtagc8zi",
+        "nombre": "Blair",
+        "profesiones": [
+          "Nadadora del equipo de Welmond University",
+          "Nadadora competitiva universitaria"
+        ],
+        "identidades": [
+          "Lesbiana"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
       "Mentora × Aprendiz",
       "Femme × Femme"
@@ -84869,7 +84912,15 @@
     "tropes": [
       "Age Gap",
       "Student × Teacher",
-      "Workplace Romance"
+      "Workplace Romance",
+      "Forbidden Love",
+      "Hurt/Comfort",
+      "Lesbian Awakening",
+      "One Night Stand → More",
+      "Secret Relationship",
+      "Second Chance Romance",
+      "Strangers to Lovers",
+      "Sex Toys / Juguetes Sexuales"
     ],
     "edad": [
       "+40",
@@ -84885,25 +84936,48 @@
         "ciudad": "Richmond",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Tappahannock",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Chantilly",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": null,
+        "ciudad": "Filadelfia",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad"
     ],
     "idioma_original": null,
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
-    "rapidez_romance": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -84936,24 +85010,65 @@
       "Queer",
       "Autodescubrimiento",
       "Familia",
-      "Feminismo"
+      "Feminismo",
+      "Universidad"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Presentadora de informativos televisivos",
+      "Periodista",
+      "Becaria"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwsduf3w4f4",
+        "nombre": "Evelyn",
+        "profesiones": [
+          "Presentadora de informativos televisivos",
+          "Periodista"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 38
+      },
+      {
+        "id": "pmwsduf3wtei",
+        "nombre": "Rachel",
+        "profesiones": [
+          "Becaria"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 24
+      }
+    ],
     "dinamicas": [
       "Jefa × Subordinada",
-      "Femme × Femme"
+      "Femme × Femme",
+      "Boss × Employee",
+      "Mentora × Aprendiz"
     ],
     "tropes": [
       "Age Gap",
       "Forbidden Love",
       "Secret Relationship",
       "Workplace Romance",
-      "Jealousy Trope"
+      "Jealousy Trope",
+      "May-December Romance",
+      "One Night Stand → More",
+      "Strangers to Lovers",
+      "Second Chance Romance",
+      "Hurt/Comfort",
+      "Opposites Attract"
     ],
-    "edad": [],
+    "edad": [
+      "25–39",
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [
       "Canadá"
     ],
@@ -84964,11 +85079,18 @@
         "ciudad": "Vancouver",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Canadá",
+        "region": null,
+        "ciudad": "Montreal",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Ciencia ficción",
     "entornos": [
       "Ciudad"
     ],
@@ -84978,13 +85100,14 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 4,
+    "spicy": 3,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -85093,25 +85216,73 @@
     "genres": [
       "Romance",
       "Contemporánea",
-      "Drama"
+      "Drama",
+      "Psicológico",
+      "Thriller"
     ],
     "subgenres": [
       "Queer",
       "Autodescubrimiento",
       "Familia",
-      "Coming Out"
+      "Coming Out",
+      "Bisexual",
+      "Universidad"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Bisexual"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Galerista de arte",
+      "Periodista",
+      "Realiza entrevistas"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwse38upp8m",
+        "nombre": "Tania",
+        "profesiones": [
+          "Galerista de arte"
+        ],
+        "identidades": [
+          "Femme",
+          "Bisexual"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwse38up5mf",
+        "nombre": "María",
+        "profesiones": [
+          "Periodista",
+          "Realiza entrevistas"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 28
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Mentora × Aprendiz",
+      "Boss × Employee",
+      "Jefa × Subordinada"
+    ],
     "tropes": [
       "Slow Burn",
       "Hurt/Comfort",
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Strangers to Lovers",
+      "Opposites Attract",
+      "Forbidden Love",
+      "Workplace Romance",
+      "Jealousy Trope",
+      "One Night Stand → More"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "España"
     ],
@@ -85121,12 +85292,14 @@
         "region": null,
         "ciudad": "Madrid",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Zona de Menéndez Pelayo"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
       "Ciudad"
     ],
@@ -85136,13 +85309,14 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
-    "rapidez_romance": 2,
+    "spicy": 1,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -121902,11 +122076,12 @@
     "content_warnings": [],
     "spicy": 4,
     "rapidez_romance": 4,
-    "formato": null,
+    "formato": "Saga",
     "adaptacion": null,
-    "sagaName": null,
-    "sagaNum": null,
+    "sagaName": "Evermore Eternals",
+    "sagaNum": 3,
     "source": "other",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -126756,9 +126931,9 @@
     "tropes": [
       "Found Family",
       "Secret Relationship",
-      "Age Gap",
       "Friends to Lovers",
-      "Workplace Romance"
+      "Destined Lovers",
+      "Rich/Poor Romance"
     ],
     "edad": [
       "Young Adult (15–18)"
