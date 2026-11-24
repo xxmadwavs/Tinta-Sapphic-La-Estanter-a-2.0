@@ -24707,47 +24707,131 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1490718750i/34723188.jpg",
     "synopsis": "Finnian Kane, famosa mentalista y atea, sufre una crisis de fe tras la muerte de su hermana. Buscando refugio de la prensa, alquila una casa de campo en Axedale para intentar seguir adelante.\n\nLa reverenda Bridget Claremont se propone ayudarla a recuperar la esperanza. Bridge anhela una pareja, pero ser una vicaria lesbiana en un pequeño pueblo inglés dificulta su búsqueda.\n\nPese a sus creencias opuestas y a que Finn no parece ser el tipo de Bridge, la química entre ambas es inmediata. ¿Podrá la maestra de la ilusión cautivar el corazón de la vicaria?",
     "pages": 261,
-    "isbn": null,
+    "isbn": "9781635550306",
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Romance",
-      "Contemporánea"
+      "Contemporánea",
+      "Drama"
     ],
     "subgenres": [
       "BDSM",
-      "Small Town"
+      "Small Town",
+      "Erótica",
+      "Queer",
+      "Autodescubrimiento",
+      "Familia"
     ],
     "identidades": [
       "Femme",
       "Masc",
-      "Ice Queen"
+      "Ice Queen",
+      "Butch",
+      "Control"
     ],
     "characters": [
-      "Actriz"
+      "Actriz",
+      "Artista",
+      "Maga profesional, ilusionista",
+      "Mentalista",
+      "Vicaria de la Iglesia de Inglaterra",
+      "Maga profesional"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv85o2m85f",
+        "nombre": "Finnian Kane",
+        "profesiones": [
+          "Maga profesional"
+        ],
+        "identidades": [
+          "Butch"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmwv85o2mlus",
+        "nombre": "Bridget Claremont",
+        "profesiones": [],
+        "identidades": [
+          "Control"
+        ],
+        "edad": 36
+      }
     ],
     "dinamicas": [
-      "Masc × Femme"
+      "Masc × Femme",
+      "Butch × Femme",
+      "Dominante × Sumisa",
+      "Top × Bottom"
     ],
     "tropes": [
       "Age Gap",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Forbidden Love",
+      "Hurt/Comfort"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Reino Unido"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Reino Unido",
+        "region": "Kent",
+        "ciudad": "Axedale",
+        "localidad": null,
+        "lugares": [
+          "Axedale Hall",
+          "Iglesia de Axedale",
+          "Vicaría",
+          "Casa de Finn",
+          "Granjas del pueblo",
+          "Pub",
+          "Club nocturno Red’s y distintos lugares de Londres"
+        ]
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": "Londres",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": [
+      "Estados Unidos"
     ],
     "ambientacion": [],
-    "spicy": 5,
+    "content_warnings": [],
+    "spicy": 4,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "other",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Estados Unidos"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1778011744118_v4yn0",
@@ -76499,10 +76583,17 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea"
     ],
     "subgenres": [
-      "Erótica"
+      "Erótica",
+      "Queer",
+      "Baihee 🐉",
+      "BDSM",
+      "Bisexual",
+      "Universidad",
+      "Poliamor"
     ],
     "identidades": [
       "Ice Queen",
@@ -76514,7 +76605,83 @@
       "Butch"
     ],
     "characters": [
-      "Abogada"
+      "Abogada",
+      "Empresaria",
+      "Personal de limpieza",
+      "Empleada del departamento de Contabilidad"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv7q66619l",
+        "nombre": "Vanessa Connolly",
+        "profesiones": [
+          "Abogada"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q666lc3",
+        "nombre": "Mal",
+        "profesiones": [
+          "Personal de limpieza"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q666kbr",
+        "nombre": "Sheryl",
+        "profesiones": [
+          "Empleada del departamento de Contabilidad"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q666425",
+        "nombre": "Fiona Wharton",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q667tt5",
+        "nombre": "Gail Digby",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q667drg",
+        "nombre": "Kay",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q667vfa",
+        "nombre": "Gabriele",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q6670n7",
+        "nombre": "Vivian",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7q667at6",
+        "nombre": "Claudia",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      }
     ],
     "dinamicas": [
       "Femme × Femme",
@@ -76522,9 +76689,15 @@
     ],
     "tropes": [
       "Age Gap",
-      "Enemies to Lovers"
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Rivals to Lovers",
+      "Workplace Romance"
     ],
-    "edad": [],
+    "edad": [
+      "+40",
+      "25–39"
+    ],
     "pais_cultura": [
       "Reino Unido"
     ],
@@ -76549,6 +76722,18 @@
         "ciudad": "Exeter",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Reino Unido",
+        "region": null,
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Oficinas",
+          "Archivos empresariales",
+          "Apartamentos corporativos",
+          "Hoteles y un club privado de encuentros sexuales para mujeres"
+        ]
       }
     ],
     "epoca": "Contemporánea",
@@ -76562,11 +76747,13 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 5,
+    "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "other",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -84757,7 +84944,7 @@
   },
   {
     "id": "b_1780861851294_0qqip",
-    "title": "Ella que llegó a ser el sol.",
+    "title": "Ella que llegó a ser el sol",
     "authors": [
       "Shelley Parker-Chan"
     ],
@@ -84765,7 +84952,7 @@
     "cover": "https://m.media-amazon.com/images/I/71gzcLLCxlL._SL1500_.jpg",
     "synopsis": "En 1345, bajo el dominio mongol en China, dos hermanos reciben destinos opuestos: el niño, grandeza; la niña, la nada. Pero tras un ataque que los deja huérfanos, es el hermano quien sucumbe a la desesperación. Decidida a sobrevivir y escapar de su propia muerte predestinada, la joven asume la identidad de Zhu Chongba para entrar en un monasterio.\n\nAllí descubre que es capaz de cualquier crueldad para mantenerse oculta. Cuando su santuario es destruido por la rebelión, Zhu ve la oportunidad definitiva: reclamar para sí la grandeza abandonada de su hermano y el Mandato del Cielo. Una épica reimaginación del ascenso de la dinastía Ming donde la ambición desafía al destino. \"Me niego a ser nada\".",
     "pages": 416,
-    "isbn": null,
+    "isbn": "9788419030108",
     "wattpad": null,
     "ship": [],
     "genres": [
@@ -84777,18 +84964,92 @@
       "Acción",
       "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
+    "subgenres": [
+      "Familia",
+      "Deporte",
+      "Trans",
+      "Bisexual"
+    ],
+    "identidades": [
+      "Hombre",
+      "Eunuco",
+      "Femme"
+    ],
+    "characters": [
+      "Líder militar",
+      "Antiguo miembro",
+      "Participa"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv6hhmb7xi",
+        "nombre": "Zhu",
+        "profesiones": [
+          "Líder militar"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv6hhmbmxu",
+        "nombre": "Ouyang",
+        "profesiones": [
+          "Antiguo miembro"
+        ],
+        "identidades": [
+          "Hombre",
+          "Eunuco"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv6hhmbr0m",
+        "nombre": "Ma Xiuying",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 17
+      },
+      {
+        "id": "pmwv6hhmb35y",
+        "nombre": "Ma",
+        "profesiones": [
+          "Participa"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Butch × Femme",
+      "Masc × Femme",
+      "Andrógina × Femme",
+      "Jefa × Subordinada",
+      "Mentora × Aprendiz"
+    ],
     "tropes": [
       "Forbidden Love",
       "Slow Burn",
       "Hurt/Comfort",
       "Unrequited Love",
-      "Arranged Marriage"
+      "Arranged Marriage",
+      "Marriage of Convenience",
+      "Secret Relationship",
+      "Friends to Lovers",
+      "Age Gap",
+      "Enemies to Lovers",
+      "One Night Stand → More",
+      "Strangers to Lovers",
+      "Lesbian Awakening",
+      "Bi Awakening",
+      "Opposites Attract"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)",
+      "Young Adult (15–18)"
+    ],
     "pais_cultura": [
       "China",
       "Ambientación asiática"
@@ -84796,16 +85057,22 @@
     "ubicaciones": [
       {
         "pais": "China",
-        "region": null,
-        "ciudad": null,
+        "region": "Llanuras centrales de China",
+        "ciudad": "Anfeng",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Yangzhou",
+          "Otras zonas vinculadas a las campañas militares",
+          "Comercio y los territorios del Yuan. No todas se visitan directamente"
+        ]
       }
     ],
     "epoca": "Histórica",
     "periodo": "Siglo XIV, durante la dinastía Yuan y las rebeliones contra el dominio mongol.",
-    "tipo_mundo": null,
-    "entornos": [],
+    "tipo_mundo": "Fantasía",
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": null,
     "pais_origen": [
       "Australia"
@@ -84816,13 +85083,14 @@
       "Queerofobia / LGTBfobia",
       "Muerte"
     ],
-    "spicy": 2,
+    "spicy": 3,
     "rapidez_romance": null,
     "formato": "Dúo",
     "adaptacion": null,
     "sagaName": "The Radiant Emperor",
     "sagaNum": 1,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -86787,25 +87055,83 @@
     "genres": [
       "Romance",
       "Contemporánea",
-      "Drama"
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
       "Autodescubrimiento",
       "Familia",
       "Queer",
-      "Coming Out"
+      "Coming Out",
+      "Bisexual",
+      "Universidad"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Lesbiana",
+      "Bisexual"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Reparadora",
+      "Gestión",
+      "Florista",
+      "Diseña"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv6idpajnp",
+        "nombre": "Ophelia",
+        "profesiones": [
+          "Reparadora",
+          "Gestión"
+        ],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": 25
+      },
+      {
+        "id": "pmwv6idpbte7",
+        "nombre": "Josephine",
+        "profesiones": [
+          "Florista",
+          "Diseña"
+        ],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Fría × Cálida",
+      "Protectora × Delicada"
+    ],
     "tropes": [
       "Fake Relationship",
       "Forced Proximity",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Slow Burn",
+      "Found Family",
+      "Jealousy Trope",
+      "Arranged Marriage",
+      "Marriage of Convenience",
+      "Age Gap",
+      "One Night Stand → More",
+      "Secret Relationship",
+      "Second Chance Romance",
+      "Lesbian Awakening",
+      "Coming Out tardío",
+      "Love Triangle",
+      "Strangers to Lovers"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -86816,25 +87142,34 @@
         "ciudad": "Mystic",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "Estados Unidos",
+        "region": "Connecticut",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Pueblo pequeño"
     ],
     "idioma_original": null,
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
-    "rapidez_romance": 2,
+    "rapidez_romance": 1,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -86988,22 +87323,77 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "Queer",
+      "Autodescubrimiento",
+      "Familia",
+      "Música"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Fotógrafa",
+      "Intérprete profesional",
+      "Fotógrafa profesional"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv7j8xmmfo",
+        "nombre": "Clara",
+        "profesiones": [
+          "Intérprete profesional"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv7j8xmyou",
+        "nombre": "Mara",
+        "profesiones": [
+          "Fotógrafa profesional"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 36
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Caos × Control",
+      "Introvertida × Extrovertida",
+      "Seria × Divertida"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Opposites Attract",
+      "Vacation Romance",
+      "Hurt/Comfort",
+      "Jealousy Trope",
+      "Enemies to Lovers"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "Italia"
+    ],
     "ubicaciones": [
       {
         "pais": "Italia",
         "region": "Toscana",
         "ciudad": "Florencia",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Zona de San Niccolò y Giardino delle Rose"
+        ]
       },
       {
         "pais": "Italia",
@@ -87030,19 +87420,23 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Español",
     "pais_origen": [
       "España"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 3,
+    "spicy": 4,
+    "rapidez_romance": 5,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -87067,14 +87461,69 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Drama",
+      "Thriller"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
+    "subgenres": [
+      "Queer",
+      "Deporte",
+      "Familia",
+      "Autodescubrimiento",
+      "Crimen"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Futbolista",
+      "Guardaespaldas",
+      "Futbolista profesional",
+      "Especialista en seguridad privada"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv7jwbcz5a",
+        "nombre": "Iris",
+        "profesiones": [
+          "Futbolista profesional"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      },
+      {
+        "id": "pmwv7jwbcngg",
+        "nombre": "Paula",
+        "profesiones": [
+          "Especialista en seguridad privada",
+          "Guardaespaldas"
+        ],
+        "identidades": [],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Caos × Control",
+      "Fría × Cálida",
+      "Introvertida × Extrovertida",
+      "Seria × Divertida",
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Bodyguard / VIP",
+      "Fake Relationship",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Opposites Attract",
+      "Jealousy Trope",
+      "Found Family"
+    ],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
@@ -87084,7 +87533,17 @@
         "region": "Washington",
         "ciudad": "Seattle",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Instalaciones deportivas",
+          "Vestuarios",
+          "Campo de entrenamiento",
+          "Estadio",
+          "Restaurantes",
+          "Cafeterías",
+          "Hotel de concentración",
+          "Viviendas particulares",
+          "Calles de Seattle"
+        ]
       },
       {
         "pais": "Estados Unidos",
@@ -87097,7 +87556,9 @@
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Español",
     "pais_origen": [
       "España"
@@ -87105,11 +87566,13 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 2,
+    "rapidez_romance": 4,
     "formato": "Trilogía",
     "adaptacion": null,
     "sagaName": "Seattle Emerals",
     "sagaNum": 2,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -89934,8 +90397,7 @@
     "title": "Anne sin filtros",
     "authors": [
       "Iria G. Parente",
-      "Selene M. Pascual",
-      "Iria Gil Parente"
+      "Selene M. Pascual"
     ],
     "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1623935190i/58360575.jpg",
@@ -89959,13 +90421,61 @@
       "Familia",
       "Coming of Age",
       "Música",
-      "Poliamor"
+      "Poliamor",
+      "Bisexual",
+      "Trans",
+      "Universidad"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Bisexual",
+      "Lesbiana",
+      "Trans",
+      "Presentación masculina",
+      "Gay"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Estudiante",
+      "Estudiante de Medicina"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv6jzkyemd",
+        "nombre": "Anne",
+        "profesiones": [],
+        "identidades": [
+          "Femme",
+          "Bisexual"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmwv6jzkyr5z",
+        "nombre": "Diana",
+        "profesiones": [],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv6jzkyvl2",
+        "nombre": "Gilbert",
+        "profesiones": [
+          "Estudiante de Medicina"
+        ],
+        "identidades": [
+          "Trans"
+        ],
+        "edad": 18
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Masc × Femme",
+      "Butch × Femme"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Friends to Lovers",
@@ -89973,10 +90483,22 @@
       "Slow Burn",
       "Hurt/Comfort",
       "Coming Out tardío",
-      "Opposites Attract"
+      "Opposites Attract",
+      "Rivals to Lovers",
+      "Jealousy Trope",
+      "Unrequited Love",
+      "Secret Relationship",
+      "Age Gap",
+      "One Night Stand → More",
+      "Second Chance Romance"
     ],
-    "edad": [],
-    "pais_cultura": [],
+    "edad": [
+      "New Adult (18–24)",
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [
+      "Canadá"
+    ],
     "ubicaciones": [
       {
         "pais": "Canadá",
@@ -89988,9 +90510,11 @@
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad",
+      "Cafetería"
     ],
     "idioma_original": null,
     "pais_origen": [
@@ -90005,6 +90529,7 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90019,7 +90544,7 @@
     "id": "b_1781168183693_axyec",
     "title": "Incomprendidas",
     "authors": [
-      "Bárbara Matta"
+      "nombre\tBárbara Matta."
     ],
     "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1625141731i/58466329.jpg",
@@ -90039,34 +90564,98 @@
     "subgenres": [
       "Familia",
       "Crimen",
-      "Autodescubrimiento"
+      "Autodescubrimiento",
+      "Música"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [],
-    "dinamicas": [],
-    "tropes": [
-      "Hurt/Comfort"
+    "protagonistas": [
+      {
+        "id": "pmwv6o64700c",
+        "nombre": "Amber",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv6o647d55",
+        "nombre": "Olive",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
     ],
-    "edad": [],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Hurt/Comfort",
+      "Friends to Lovers",
+      "Strangers to Lovers",
+      "Unrequited Love",
+      "Secret Relationship",
+      "Arranged Marriage",
+      "Love Triangle",
+      "Jealousy Trope",
+      "Childhood Friends",
+      "Slow Burn",
+      "Age Gap"
+    ],
+    "edad": [
+      "Young Adult (15–18)",
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [],
-    "ubicaciones": [],
+    "ubicaciones": [
+      {
+        "pais": "Países Bajos",
+        "region": null,
+        "ciudad": "Ámsterdam",
+        "localidad": null,
+        "lugares": [
+          "Bar Rompecabezas",
+          "Viviendas de Amber",
+          "Olive",
+          "Ezra y Anthony",
+          "Parque de atracciones abandonado",
+          "Auditorio",
+          "Teatro escolar",
+          "Biblioteca",
+          "Canchas deportivas",
+          "Sala de música",
+          "Oficina de la directora",
+          "Estación de policía",
+          "Juzgados",
+          "Hospital psiquiátrico"
+        ]
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
-    "entornos": [],
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Hospital",
+      "Oficina",
+      "Ciudad"
+    ],
     "idioma_original": null,
     "pais_origen": null,
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 1,
-    "rapidez_romance": null,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90325,12 +90914,34 @@
       "Queer",
       "Autodescubrimiento",
       "Coming Out",
-      "Familia"
+      "Familia",
+      "Bisexual",
+      "Música"
     ],
     "identidades": [
       "Femme"
     ],
     "characters": [],
+    "protagonistas": [
+      {
+        "id": "pmwv6lm9ywhr",
+        "nombre": "Julieta",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 33
+      },
+      {
+        "id": "pmwv6lm9yrcc",
+        "nombre": "Rebeca",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 27
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -90342,9 +90953,14 @@
       "Hurt/Comfort",
       "Second Chance Romance",
       "Coming Out tardío",
-      "Unrequited Love"
+      "Unrequited Love",
+      "Age Gap",
+      "Lesbian Awakening",
+      "Love Triangle"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "España"
     ],
@@ -90354,14 +90970,61 @@
         "region": null,
         "ciudad": "Barcelona",
         "localidad": null,
+        "lugares": [
+          "Plaza Universidad",
+          "Gran Vía",
+          "Calle Aribau",
+          "Calle Villarroel",
+          "Calle Doctor Rizal",
+          "Paseo de Gracia",
+          "Calle Valencia",
+          "Rambla Cataluña",
+          "Calle Enric Granados",
+          "Barrio del Born",
+          "Barrio Gótico",
+          "Raval",
+          "Gràcia",
+          "Barceloneta",
+          "Sant Gervasi/Sarrià",
+          "Eixample",
+          "Plaza Cataluña"
+        ]
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Cambrils",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Reus",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Tarragona",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Madrid",
+        "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad"
     ],
     "idioma_original": null,
     "pais_origen": [
@@ -90370,12 +91033,13 @@
     "ambientacion": [],
     "content_warnings": [],
     "spicy": 3,
-    "rapidez_romance": 3,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90388,7 +91052,7 @@
   },
   {
     "id": "b_1781168399235_r1zsa",
-    "title": "The Prom.",
+    "title": "The Prom",
     "authors": [
       "Saundra Mitchell",
       "Bob Martin",
@@ -90399,27 +91063,78 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1557728174i/43667490.jpg",
     "synopsis": "Emma Nolan solo sueña con bailar con su novia en la graduación, pero en su conservador pueblo, eso es un desafío imposible. Alyssa Greene, la chica más popular y su amor secreto, vive bajo la sombra de una madre estricta que lidera la oposición contra este deseo.\nCuando dos estrellas de Broadway, Barry Glickman y Dee Dee Allen, llegan para defender la causa —y ganar publicidad—, la tormenta mediática estalla. Entre prejuicios y dudas sobre salir del armario, el grupo deberá aprender que, a pesar del caos, el amor es la única causa por la que vale la pena luchar unidos.\n¿Lograrán que el baile de sus sueños se convierta en una realidad para todos?",
     "pages": 288,
-    "isbn": null,
+    "isbn": "9788417605469",
     "wattpad": null,
     "ship": [],
     "genres": [
       "Contemporánea",
       "Romance",
-      "YA"
+      "YA",
+      "Drama",
+      "Juvenil",
+      "Comedia Romántica",
+      "Psicológico"
     ],
-    "subgenres": [],
-    "identidades": [],
+    "subgenres": [
+      "Coming Out",
+      "Queer",
+      "Bullying",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming of Age",
+      "Feminismo",
+      "Música",
+      "Celebridad",
+      "Crimen",
+      "Bisexual",
+      "No Binarie",
+      "Trans",
+      "Universidad"
+    ],
+    "identidades": [
+      "Lesbiana",
+      "Femme"
+    ],
     "characters": [
-      "Estudiante"
+      "Estudiante",
+      "Cantante"
     ],
-    "dinamicas": [],
+    "protagonistas": [
+      {
+        "id": "pmwv6piagzf8",
+        "nombre": "Emma",
+        "profesiones": [],
+        "identidades": [
+          "Lesbiana"
+        ],
+        "edad": 17
+      },
+      {
+        "id": "pmwv6piaggnm",
+        "nombre": "Alyssa",
+        "profesiones": [],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": 17
+      }
+    ],
+    "dinamicas": [
+      "Masc × Femme"
+    ],
     "tropes": [
       "Forbidden Love",
       "Secret Relationship",
       "Second Chance Romance",
       "Hurt/Comfort",
       "Found Family",
-      "Coming Out tardío"
+      "Coming Out tardío",
+      "Friends to Lovers",
+      "Childhood Friends",
+      "Love Triangle",
+      "Age Gap",
+      "Slow Burn"
     ],
     "edad": [
       "Young Adult (15–18)"
@@ -90430,29 +91145,34 @@
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": null,
+        "region": "Indiana",
+        "ciudad": "Edgewater",
         "localidad": null,
         "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
-    "entornos": [],
-    "idioma_original": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Instituto",
+      "Pueblo pequeño",
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Estados Unidos"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 1,
     "rapidez_romance": null,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90467,7 +91187,7 @@
     "id": "b_1781168432917_i8tth",
     "title": "Un verano de muerte",
     "authors": [
-      "Xuri Fenton"
+      "nombre\tZuria Fenton"
     ],
     "year": 2021,
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1634637388i/59409231.jpg",
@@ -90482,18 +91202,44 @@
       "Aventura",
       "Thriller",
       "Misterio",
-      "Drama"
+      "Drama",
+      "Comedia Romántica"
     ],
     "subgenres": [
       "Autodescubrimiento",
       "Familia",
       "Queer",
-      "Coming Out"
+      "Coming Out",
+      "Música"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
+    "characters": [
+      "Camarera"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv6n34j33y",
+        "nombre": "Dena",
+        "profesiones": [
+          "Camarera"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv6n34j2eb",
+        "nombre": "Haya",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 19
+      }
+    ],
     "dinamicas": [
       "Femme × Femme"
     ],
@@ -90501,16 +91247,61 @@
       "Friends to Lovers",
       "Slow Burn",
       "Unrequited Love",
-      "Hurt/Comfort"
+      "Hurt/Comfort",
+      "Childhood Friends",
+      "Jealousy Trope",
+      "Lesbian Awakening",
+      "Found Family",
+      "Love Triangle",
+      "Age Gap",
+      "Workplace Romance",
+      "Friends with Benefits",
+      "One Night Stand → More",
+      "Secret Relationship",
+      "Forbidden Love",
+      "Forced Proximity",
+      "Only One Bed"
     ],
-    "edad": [],
-    "pais_cultura": [],
-    "ubicaciones": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "México"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "México",
+        "region": "Península de Yucatán",
+        "ciudad": null,
+        "localidad": null,
+        "lugares": [
+          "Beijing",
+          "Singapur",
+          "Bruselas y Oceanía. Se mencionan en relación con los viajes laborales de la madre",
+          "Sus desplazamientos o las historias que Haya conoce sobre su padre"
+        ]
+      },
+      {
+        "pais": "México",
+        "region": null,
+        "ciudad": "Tulum",
+        "localidad": null,
+        "lugares": []
+      },
+      {
+        "pais": "México",
+        "region": null,
+        "ciudad": "Cancún",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Universidad"
     ],
     "idioma_original": null,
     "pais_origen": [
@@ -90518,13 +91309,14 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 1,
     "rapidez_romance": 1,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90545,41 +91337,90 @@
     "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1633179149i/59130247.jpg",
     "synopsis": "Una historia sobre la corrupción, el primer amor y la inteligencia artificial en el más allá chino\n\nEn la décima corte del infierno, los espíritus que son lo bastante ricos pueden sobornar a los funcionarios del inframundo y así librarse de terribles tormentos y de la temida reencarnación. ¿Quién quiere reencarnarse pudiendo disfrutar eternamente de comodidad y riquezas?\n\nEs una no-muerte cómoda incluso para Siew Tsin, casada a su pesar con el hombre más rico del infierno y sin ninguna expectativa ni intereses futuros. Hasta que su marido trae a casa a una nueva esposa… Yonghua es una mujer artificial hecha de terracota, y su mera existencia pondrá el inframundo patas arriba. Tras conocerla, tampoco Siew Tsin volverá a ser la misma.\n\nLa mujer de terracota es un relato de Zen Cho que aúna la sátira y la esperanza, nuestra edición está ilustrada por la artista QU Lan, y cuenta con una introducción realizada por la autora en exclusiva para esta edición y un posfacio sobre las tradiciones funerarias chinas que apareccen en la historia por Wang Xing.",
     "pages": 100,
-    "isbn": null,
+    "isbn": "9788412437515",
     "wattpad": null,
     "ship": [],
     "genres": [
       "Fantasía",
       "Fantasía Urbana",
       "Romance",
-      "Drama"
+      "Drama",
+      "Ciencia Ficción",
+      "Psicológico",
+      "Horror",
+      "Histórica"
     ],
     "subgenres": [
       "Magia",
       "Mitología",
       "Sobrenatural",
       "Queer",
-      "Feminismo"
+      "Feminismo",
+      "Autodescubrimiento",
+      "Familia",
+      "Reencarnación",
+      "Música",
+      "Bisexual",
+      "Coming of Age",
+      "Coming Out",
+      "Crimen",
+      "Poesía",
+      "Poliamor"
     ],
     "identidades": [
       "Femme"
     ],
-    "characters": [],
-    "dinamicas": [],
+    "characters": [
+      "Administró",
+      "Ingeniero de reanimación"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv79sthvy9",
+        "nombre": "Siew Tsin",
+        "profesiones": [],
+        "identidades": [],
+        "edad": 19
+      },
+      {
+        "id": "pmwv79sthakn",
+        "nombre": "Yonghua",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme",
+      "Masc × Femme",
+      "Dominante × Sumisa"
+    ],
     "tropes": [
       "Reencarnación",
-      "Forbidden Love"
+      "Forbidden Love",
+      "Unrequited Love",
+      "Secret Relationship",
+      "Love Triangle",
+      "Strangers to Lovers",
+      "Second Chance Romance",
+      "Age Gap",
+      "Arranged Marriage"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)",
+      "+40"
+    ],
     "pais_cultura": [],
     "ubicaciones": [],
     "epoca": "Histórica",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Ciencia ficción",
     "entornos": [
       "Ciudad"
     ],
-    "idioma_original": null,
+    "idioma_original": "Inglés",
     "pais_origen": [
       "Malasia"
     ],
@@ -90592,6 +91433,7 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90618,45 +91460,106 @@
     "genres": [
       "Contemporánea",
       "Romance",
-      "Drama"
+      "Drama",
+      "Psicológico",
+      "Juvenil",
+      "New Adult",
+      "Comedia Romántica",
+      "Misterio"
     ],
     "subgenres": [
       "Queer",
       "Familia",
       "Autodescubrimiento",
-      "Feminismo"
+      "Feminismo",
+      "Coming of Age",
+      "Coming Out",
+      "Celebridad",
+      "Interracial",
+      "Small Town",
+      "Crimen",
+      "Música",
+      "Universidad"
     ],
     "identidades": [
-      "Femme"
+      "Femme",
+      "Mantiene relaciones románticas",
+      "Sexuales con mujeres",
+      "Mantiene atracción",
+      "Relaciones con hombres"
     ],
-    "characters": [],
+    "characters": [
+      "Jefa de coctelería",
+      "Restauradora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv7dafwtki",
+        "nombre": "Sara",
+        "profesiones": [
+          "Jefa de coctelería"
+        ],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwv7dafwgr7",
+        "nombre": "Emilie",
+        "profesiones": [
+          "Restauradora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 25
+      }
+    ],
     "dinamicas": [
-      "Femme × Femme"
+      "Femme × Femme",
+      "Butch × Femme"
     ],
     "tropes": [
       "Strangers to Lovers",
       "Workplace Romance",
       "Hurt/Comfort",
-      "Second Chance Romance"
+      "Second Chance Romance",
+      "Friends to Lovers",
+      "Secret Relationship",
+      "Forbidden Love",
+      "Age Gap",
+      "Love Triangle",
+      "Slow Burn"
     ],
-    "edad": [],
+    "edad": [
+      "25–39"
+    ],
     "pais_cultura": [
       "Estados Unidos"
     ],
     "ubicaciones": [
       {
         "pais": "Estados Unidos",
-        "region": null,
-        "ciudad": "Los Ángeles, California.",
+        "region": "California",
+        "ciudad": "Los Ángeles",
         "localidad": null,
-        "lugares": []
+        "lugares": [
+          "Venice",
+          "Silver Lake",
+          "Echo Park",
+          "West Hollywood",
+          "Sunset Boulevard",
+          "Abbot Kinney Boulevard y la zona de Sunset y Selma",
+          "Long Beach",
+          "Donde vive la familia de Emilie y donde compra y reforma una mansión en Ocean Avenue"
+        ]
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
-    "tipo_mundo": null,
+    "tipo_mundo": "Realista",
     "entornos": [
-      "Ciudad"
+      "Ciudad",
+      "Pueblo pequeño"
     ],
     "idioma_original": null,
     "pais_origen": [
@@ -90664,13 +91567,14 @@
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 2,
+    "spicy": 3,
     "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -90692,35 +91596,137 @@
     "synopsis": "Bex acaba de terminar el instituto y está exultante: le han dado una beca de prácticas en su serie de TV favorita, Silver Falls. Allí, en Los Ángeles, por fin podrá comenzar su carrera como guionista.\nSin embargo, las cosas son más duras de lo que esperaba y Bex se pasa el tiempo llevando cafés para el showrunner. ¿Quizá podría impresionarlo si escribiera el guión de un episodio? Claro que Bex tiene sus propias ideas acerca de la serie y nada le suena mejor que un romance sáfico con su actriz fetiche, la youtuber Shrupty Padwal.",
     "pages": 344,
     "isbn": null,
+    "wattpad": null,
+    "ship": [],
     "genres": [
       "Contemporánea",
-      "Romance"
+      "Romance",
+      "Comedia Romántica",
+      "Drama",
+      "Juvenil",
+      "YA",
+      "Psicológico"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "Queer",
+      "Coming Out",
+      "Autodescubrimiento",
+      "Coming of Age",
+      "Bullying",
+      "Familia",
+      "Feminismo",
+      "Celebridad",
+      "Música",
+      "Small Town",
+      "Bisexual",
+      "Interracial",
+      "Universidad",
+      "Reality Show",
+      "Wattpad"
+    ],
+    "identidades": [
+      "Masc",
+      "Lesbiana",
+      "Femme"
+    ],
+    "characters": [
+      "Escritora",
+      "Actriz",
+      "Estudiante",
+      "Participa"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv71eujw0d",
+        "nombre": "Bex",
+        "profesiones": [
+          "Escritora",
+          "Estudiante"
+        ],
+        "identidades": [
+          "Masc",
+          "Lesbiana"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmwv71eujway",
+        "nombre": "Shrupty",
+        "profesiones": [
+          "Actriz",
+          "Participa"
+        ],
+        "identidades": [
+          "Femme",
+          "Lesbiana"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Masc × Femme",
+      "Famosa × Anónima",
+      "Butch × Femme"
+    ],
+    "tropes": [
+      "Strangers to Lovers",
+      "Workplace Romance",
+      "Hurt/Comfort",
+      "Lesbian Awakening",
+      "Secret Relationship",
+      "Forbidden Love",
+      "Friends to Lovers",
+      "Childhood Friends",
+      "Slow Burn",
+      "Age Gap",
+      "Love Triangle",
+      "Opposites Attract"
+    ],
+    "edad": [
+      "Young Adult (15–18)",
+      "New Adult (18–24)"
+    ],
+    "pais_cultura": [
+      "Estados Unidos"
+    ],
+    "ubicaciones": [
+      {
+        "pais": "Estados Unidos",
+        "region": "California",
+        "ciudad": "Los Ángeles",
+        "localidad": null,
+        "lugares": []
+      }
+    ],
+    "epoca": "Contemporánea",
+    "periodo": null,
+    "tipo_mundo": "Realista",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": null,
+    "pais_origen": [
+      "Australia"
+    ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 1,
+    "rapidez_romance": 4,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
     "canal_rec": false,
     "canal_month": null,
     "my_rec": false,
-    "my_rec_categories": [],
-    "pais_origen": [
-      "Australia"
-    ]
+    "my_rec_categories": []
   },
   {
     "id": "b_1781168534508_oibuz",
@@ -90736,15 +91742,72 @@
     "wattpad": null,
     "ship": [],
     "genres": [
-      "Romance"
+      "Romance",
+      "Histórica",
+      "Drama",
+      "Aventura"
     ],
-    "subgenres": [],
-    "identidades": [],
-    "characters": [],
-    "dinamicas": [],
-    "tropes": [],
-    "edad": [],
-    "pais_cultura": [],
+    "subgenres": [
+      "Queer",
+      "Feminismo",
+      "Autodescubrimiento",
+      "Familia",
+      "Música",
+      "Crimen"
+    ],
+    "identidades": [
+      "Femme"
+    ],
+    "characters": [
+      "Enfermera",
+      "Instructora",
+      "Maestra de educación primaria",
+      "Dependienta"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv7htsh9xp",
+        "nombre": "Dolores",
+        "profesiones": [
+          "Enfermera",
+          "Instructora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": 32
+      },
+      {
+        "id": "pmwv7htshpa8",
+        "nombre": "Isabel",
+        "profesiones": [
+          "Maestra de educación primaria",
+          "Dependienta"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Femme × Femme"
+    ],
+    "tropes": [
+      "Friends to Lovers",
+      "Lesbian Awakening",
+      "Slow Burn",
+      "Hurt/Comfort",
+      "Found Family",
+      "Road Trip",
+      "Reencarnación"
+    ],
+    "edad": [
+      "25–39"
+    ],
+    "pais_cultura": [
+      "España"
+    ],
     "ubicaciones": [
       {
         "pais": "España",
@@ -90782,22 +91845,26 @@
         "lugares": []
       }
     ],
-    "epoca": "1937-1945",
+    "epoca": "Histórica",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Ciudad"
+    ],
     "idioma_original": "Español",
     "pais_origen": [
       "España"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": null,
+    "spicy": 4,
+    "rapidez_romance": 3,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
     "saficlub": false,
     "safi_categories": [],
@@ -108036,23 +109103,66 @@
     "ship": [],
     "genres": [
       "YA",
-      "Romance"
+      "Romance",
+      "Contemporánea",
+      "Juvenil",
+      "Comedia Romántica",
+      "Drama"
     ],
-    "subgenres": [],
+    "subgenres": [
+      "Queer",
+      "Familia",
+      "Autodescubrimiento",
+      "Coming of Age",
+      "Música"
+    ],
     "identidades": [
       "Masc",
-      "Femme"
+      "Femme",
+      "Lesbiana"
     ],
-    "characters": [],
+    "characters": [
+      "Cajera supermercado",
+      "Profesora"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwv7g8s9yrv",
+        "nombre": "Didi",
+        "profesiones": [
+          "Cajera supermercado"
+        ],
+        "identidades": [
+          "Lesbiana"
+        ],
+        "edad": null
+      },
+      {
+        "id": "pmwv7g8s9qh0",
+        "nombre": "Clara",
+        "profesiones": [
+          "Profesora"
+        ],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
     "dinamicas": [
-      "Grumpy × Sunshine"
+      "Grumpy × Sunshine",
+      "Femme × Femme"
     ],
     "tropes": [
       "Friends to Lovers",
       "Slow Burn",
-      "Found Family"
+      "Found Family",
+      "Workplace Romance",
+      "Second Chance Romance"
     ],
-    "edad": [],
+    "edad": [
+      "New Adult (18–24)"
+    ],
     "pais_cultura": [
       "Australia",
       "España"
@@ -108064,24 +109174,36 @@
         "ciudad": "Madrid",
         "localidad": null,
         "lugares": []
+      },
+      {
+        "pais": "España",
+        "region": null,
+        "ciudad": "Marbella",
+        "localidad": null,
+        "lugares": []
       }
     ],
     "epoca": "Contemporánea",
     "periodo": null,
     "tipo_mundo": "Realista",
-    "entornos": [],
+    "entornos": [
+      "Universidad",
+      "Ciudad"
+    ],
     "idioma_original": "Español",
     "pais_origen": [
       "España"
     ],
     "ambientacion": [],
     "content_warnings": [],
-    "spicy": 1,
+    "spicy": 3,
+    "rapidez_romance": 2,
     "formato": null,
     "adaptacion": null,
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [
       {
         "lang": "ES",
