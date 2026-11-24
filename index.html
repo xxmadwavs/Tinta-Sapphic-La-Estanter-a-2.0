@@ -7523,6 +7523,42 @@ body:not(.home-active) .hero{
 .home-journey-pick:hover{background:var(--surface3);border-color:var(--accent)}
 .home-journey-pick:focus-visible,.home-next-item:focus-visible,.home-next-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 html:has(#homeNextDlg[open]){overflow:hidden}
+
+/* ── Sorteo de «Quiero leer» (tira tipo tragaperras). Solo variables del tema. ── */
+.tbr-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:.7rem}
+.tbr-actions .home-journey-pick{margin:0}
+.tbr-shelf-btn{flex:0 0 auto;min-height:44px;border:1px solid var(--border2);background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:0 .9rem;font:600 12px var(--font-body);cursor:pointer;white-space:nowrap;transition:background .16s,border-color .16s}
+.tbr-shelf-btn:hover{background:var(--surface3);border-color:var(--accent)}
+.tbr-shelf-btn[hidden]{display:none}
+.tbr-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.95rem}
+.tbr-filters select{flex:1 1 150px;min-width:0}
+.tbr-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:1.2rem 1.5rem 1.3rem;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+.tbr-window{--tbr-w:104px;position:relative;flex:0 0 auto;width:100%;overflow:hidden;padding:1.1rem 0;border:1px solid var(--border2);border-radius:var(--radius);background:var(--surface2)}
+.tbr-window::before,.tbr-window::after{content:"";position:absolute;top:0;bottom:0;width:15%;z-index:2;pointer-events:none}
+.tbr-window::before{left:0;background:linear-gradient(90deg,var(--surface2),transparent)}
+.tbr-window::after{right:0;background:linear-gradient(270deg,var(--surface2),transparent)}
+.tbr-track{display:flex;gap:.6rem;width:max-content;min-height:calc(var(--tbr-w)*1.5);will-change:transform}
+.tbr-item{flex:0 0 var(--tbr-w);width:var(--tbr-w);aspect-ratio:2/3;overflow:hidden;border:1px solid var(--border2);border-radius:8px;background:var(--surface3);box-shadow:0 4px 12px rgba(0,0,0,.14);opacity:.8;transition:opacity .3s,transform .3s,box-shadow .3s}
+.tbr-item img{display:block;width:100%;height:100%;object-fit:cover}
+.tbr-item.win{opacity:1;transform:scale(1.07);border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),0 8px 22px rgba(0,0,0,.25)}
+.tbr-mark{position:absolute;left:50%;top:0;width:0;height:0;z-index:3;border:8px solid transparent;border-top-color:var(--accent);border-bottom:0;transform:translateX(-50%);pointer-events:none}
+.tbr-spin{border:0;border-radius:999px;background:var(--accent);color:#fff;padding:.65rem 2rem;font:700 .95rem var(--font-body);letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:filter .16s,transform .16s}
+.tbr-spin:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
+.tbr-spin:disabled{opacity:.5;cursor:default}
+.tbr-spin:focus-visible,.tbr-btn:focus-visible,.tbr-shelf-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tbr-result{width:100%;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1.1rem}
+.tbr-result:empty{display:none}
+.tbr-res-cover{flex:0 0 92px;width:92px;aspect-ratio:2/3;overflow:hidden;border:1px solid var(--border2);border-radius:var(--radius);background:var(--surface3);box-shadow:0 5px 16px rgba(0,0,0,.18)}
+.tbr-res-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.tbr-res-info{flex:1 1 220px;min-width:0;text-align:left}
+.tbr-res-kicker{margin:0 0 .15rem;color:var(--muted);font-size:.65rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.tbr-res-title{margin:0 0 .15rem;font:600 1.5rem/1.15 var(--font-display);color:var(--text);overflow-wrap:anywhere}
+.tbr-res-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.tbr-btn{border:1px solid var(--border2);background:transparent;color:var(--muted);border-radius:999px;padding:.42rem .95rem;font:600 .78rem var(--font-body);cursor:pointer;transition:color .16s,border-color .16s,background .16s}
+.tbr-btn:hover{color:var(--accent);border-color:var(--accent)}
+.tbr-btn.primary{background:var(--accent-soft);color:var(--accent)}
+html:has(#tbrDlg[open]){overflow:hidden}
+@media(max-width:520px){.tbr-window{--tbr-w:88px}.tbr-body{padding:1rem 1.1rem 1.1rem}.tbr-res-info{text-align:center}.tbr-res-actions{justify-content:center}}
 .home-next-dlg{position:fixed;inset:0;margin:auto;width:min(720px,calc(100vw - 1.5rem));max-height:min(88vh,780px);max-height:min(88dvh,780px);padding:0;border:1px solid var(--border2);border-radius:var(--radius-lg);background:var(--surface);color:var(--text);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6)}
 .home-next-dlg[open]{display:flex;flex-direction:column;animation:modalBoxFadeIn .22s cubic-bezier(.25,.7,.3,1)}
 .home-next-dlg::backdrop{background:rgba(8,5,10,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
@@ -7993,6 +8029,33 @@ html:has(#homeNextDlg[open]){overflow:hidden}
   <div class="home-next-foot">
     <span class="home-next-count" id="homeNextCount" aria-live="polite"></span>
     <button type="button" class="home-next-btn" id="homeNextClear" data-home-next-clear hidden>Quitar elección</button>
+  </div>
+</dialog>
+
+<dialog class="home-next-dlg tbr-dlg" id="tbrDlg" aria-labelledby="tbrTitle">
+  <button type="button" class="modal-close" data-tbr-close aria-label="Cerrar">✕</button>
+  <div class="home-next-head">
+    <p class="home-next-kicker">Tu «Quiero leer»</p>
+    <h2 id="tbrTitle">Sorteo de lectura</h2>
+    <p class="home-next-sub">Deja que la suerte elija tu próxima lectura. Puedes acotar el bombo antes de girar.</p>
+    <div class="tbr-filters">
+      <select class="sort-select" id="tbrGenre" aria-label="Filtrar por género"><option value="">Todos los géneros</option></select>
+      <select class="sort-select" id="tbrPages" aria-label="Filtrar por extensión">
+        <option value="">Cualquier extensión</option>
+        <option value="s">Cortos (hasta 300 págs.)</option>
+        <option value="m">Medios (301–500)</option>
+        <option value="l">Largos (más de 500)</option>
+      </select>
+    </div>
+  </div>
+  <div class="tbr-body">
+    <div class="tbr-window" id="tbrWindow"><div class="tbr-track" id="tbrTrack"></div><i class="tbr-mark" aria-hidden="true"></i></div>
+    <button type="button" class="tbr-spin" id="tbrSpin" data-tbr-spin>Girar</button>
+    <div class="tbr-result" id="tbrResult" aria-live="polite"></div>
+  </div>
+  <div class="home-next-foot">
+    <span class="home-next-count" id="tbrCount" aria-live="polite"></span>
+    <button type="button" class="home-next-btn" id="tbrReset" data-tbr-reset hidden>Reponer descartados</button>
   </div>
 </dialog>
 
@@ -8741,6 +8804,7 @@ html:has(#homeNextDlg[open]){overflow:hidden}
           <option value="year_asc">Año: más antiguos</option>
         </select>
         <button class="shelf-clear-btn" onclick="shelfClearFilters()" hidden>Limpiar</button>
+        <button type="button" class="tbr-shelf-btn" id="tbrShelfBtn" data-tbr-open hidden>🎰 Sortear</button>
       </div>
       <div id="shelfBooksContainer"></div>
       <div id="shelfInfo" class="shelf-info" hidden><div class="si-main"><span class="si-t"></span><span class="si-a" hidden></span></div><div class="si-meta" hidden></div></div>
@@ -9592,6 +9656,97 @@ document.addEventListener('click',e=>{
   if(e.target.closest('[data-home-next-close]')){ const d=document.getElementById('homeNextDlg'); if(d) d.close(); }
 });
 document.addEventListener('input',e=>{ if(e.target.id==='homeNextQ') homeNextPickList(); });
+/* ── Sorteo de «Quiero leer»: tira tipo tragaperras ── */
+const _tbr={out:new Set(),win:null,busy:false,t:0,bound:false};
+const _tbrEl=id=>document.getElementById(id);
+function _tbrWants(){ return allBooks.filter(b=>myReadingStatus[String(b.id)]==='want'); }
+function _tbrPool(){
+  const g=_tbrEl('tbrGenre').value, p=_tbrEl('tbrPages').value;
+  return _tbrWants().filter(b=>{
+    if(_tbr.out.has(String(b.id))) return false;
+    if(g&&!(b.genres||[]).includes(g)) return false;
+    if(p){ const n=Number(b.pages); if(!n) return false; if(p==='s'&&n>300) return false; if(p==='m'&&(n<=300||n>500)) return false; if(p==='l'&&n<=500) return false; }
+    return true;
+  });
+}
+function _tbrCover(b){
+  return b.cover?`<img src="${escHtml(b.cover)}" alt="" decoding="async" onerror="this.outerHTML='<span class=home-next-ph>✦</span>'">`:'<span class="home-next-ph" aria-hidden="true">✦</span>';
+}
+function _tbrPad(){
+  const w=_tbrEl('tbrWindow'), iw=parseFloat(getComputedStyle(w).getPropertyValue('--tbr-w'))||104;
+  _tbrEl('tbrTrack').style.paddingLeft=Math.max(0,(w.clientWidth-iw)/2)+'px';
+}
+function _tbrMeta(){
+  const n=_tbrPool().length;
+  _tbrEl('tbrCount').textContent=n+(n===1?' libro en el bombo':' libros en el bombo');
+  _tbrEl('tbrReset').hidden=!_tbr.out.size;
+}
+function _tbrLock(on){
+  _tbrEl('tbrSpin').disabled=on||!_tbrPool().length;
+  _tbrEl('tbrGenre').disabled=on; _tbrEl('tbrPages').disabled=on;
+}
+function _tbrIdle(){
+  clearTimeout(_tbr.t); _tbr.busy=false; _tbr.win=null;
+  const pool=_tbrPool(), track=_tbrEl('tbrTrack'), res=_tbrEl('tbrResult');
+  track.style.transition='none'; track.style.transform='translateX(0)'; _tbrPad();
+  track.innerHTML=pool.slice().sort(()=>Math.random()-.5).slice(0,14).map(b=>`<div class="tbr-item">${_tbrCover(b)}</div>`).join('');
+  res.innerHTML=pool.length?'':`<p class="home-next-empty">${_tbr.out.size?'Has descartado todos los libros. Repón los descartados para volver a sortear.':'No hay libros en tu «Quiero leer» con estos filtros.'}</p>`;
+  _tbrMeta(); _tbrLock(false);
+}
+function _tbrSpin(){
+  if(_tbr.busy) return;
+  const pool=_tbrPool(); if(!pool.length) return;
+  const N=46, W=38, r=()=>pool[Math.floor(Math.random()*pool.length)];
+  const win=r(), seq=[];
+  for(let i=0;i<N;i++){
+    let b=i===W?win:r();
+    for(let k=0;k<8&&pool.length>1&&i!==W&&(b===seq[i-1]||(i>=W-1&&i<=W+1&&b===win));k++) b=r();
+    seq.push(b);
+  }
+  const track=_tbrEl('tbrTrack');
+  _tbr.win=win; _tbr.busy=true; _tbrEl('tbrResult').innerHTML=''; _tbrLock(true);
+  track.style.transition='none'; track.style.transform='translateX(0)'; _tbrPad();
+  track.innerHTML=seq.map((b,i)=>`<div class="tbr-item${i===W?' tbr-win-slot':''}">${_tbrCover(b)}</div>`).join('');
+  void track.offsetWidth;
+  const step=track.children[1].offsetLeft-track.children[0].offsetLeft;
+  const x=-(W*step+(Math.random()-.5)*step*.5);   // aterriza algo descentrada, como una tragaperras real
+  const ms=(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)?0:5200;
+  track.style.transition=ms?`transform ${ms}ms cubic-bezier(.12,.6,.12,1)`:'none';
+  track.style.transform=`translateX(${x}px)`;
+  clearTimeout(_tbr.t); _tbr.t=setTimeout(_tbrDone,ms+120);
+}
+function _tbrDone(){
+  _tbr.busy=false; _tbrLock(false);
+  const b=_tbr.win; if(!b) return;
+  const slot=_tbrEl('tbrTrack').querySelector('.tbr-win-slot'); if(slot) slot.classList.add('win');
+  const res=_tbrEl('tbrResult');
+  res.innerHTML=`<div class="tbr-res-cover">${_tbrCover(b)}</div><div class="tbr-res-info"><p class="tbr-res-kicker">Te ha tocado</p><h3 class="tbr-res-title">${escHtml(b.title||'')}</h3><p class="home-next-author">${escHtml((b.authors||[]).join(', '))}</p><div class="tbr-res-actions"><button type="button" class="tbr-btn primary" data-tbr-view>Abrir ficha</button><button type="button" class="tbr-btn" data-tbr-spin>Volver a girar</button><button type="button" class="tbr-btn" data-tbr-out>Descartar y girar</button></div></div>`;
+  res.scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+function tbrOpen(){
+  const dlg=_tbrEl('tbrDlg');
+  if(!dlg||!currentUser||typeof dlg.showModal!=='function') return;
+  _tbr.out=new Set();
+  const gs=new Map(); _tbrWants().forEach(b=>(b.genres||[]).forEach(g=>gs.set(g,(gs.get(g)||0)+1)));
+  _tbrEl('tbrGenre').innerHTML='<option value="">Todos los géneros</option>'+[...gs].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'es')).map(([g,n])=>`<option value="${escHtml(g)}">${escHtml(g)} (${n})</option>`).join('');
+  _tbrEl('tbrPages').value='';
+  if(!_tbr.bound){ dlg.addEventListener('close',()=>{ clearTimeout(_tbr.t); _tbr.busy=false; }); _tbr.bound=true; }
+  dlg.showModal();
+  _tbrIdle();
+}
+document.addEventListener('click',e=>{
+  if(e.target.id==='tbrDlg'){ e.target.close(); return; }
+  if(e.target.closest('[data-tbr-open]')){ tbrOpen(); return; }
+  if(e.target.closest('[data-tbr-close]')){ _tbrEl('tbrDlg').close(); return; }
+  if(e.target.closest('[data-tbr-spin]')){ _tbrSpin(); return; }
+  if(e.target.closest('[data-tbr-out]')){
+    if(_tbr.win&&!_tbr.busy){ _tbr.out.add(String(_tbr.win.id)); _tbrMeta(); if(_tbrPool().length) _tbrSpin(); else _tbrIdle(); }
+    return;
+  }
+  if(e.target.closest('[data-tbr-reset]')){ _tbr.out.clear(); _tbrIdle(); return; }
+  if(e.target.closest('[data-tbr-view]')){ const id=_tbr.win&&_tbr.win.id; _tbrEl('tbrDlg').close(); if(id!=null) openBookPage(String(id)); }
+});
+document.addEventListener('change',e=>{ if(e.target.id==='tbrGenre'||e.target.id==='tbrPages') _tbrIdle(); });
 function homeJourneyRender(){
   const section=document.getElementById('homeJourneySection');
   if(!section) return;
@@ -9621,7 +9776,7 @@ function homeJourneyRender(){
   const prevEl=document.getElementById('homePreviousContent'), nextEl=document.getElementById('homeNextContent');
   if(prevEl) prevEl.innerHTML=_homeJourneyCardHTML(previous,'previous',previousDate&&previous?`Terminado · ${_dyFmtDateShort(previousDate)}`:'');
   if(nextEl){
-    const pickBtn=l=>`<button type="button" class="home-journey-pick" data-home-next-pick>${l}</button>`;
+    const pickBtn=l=>`<div class="tbr-actions"><button type="button" class="home-journey-pick" data-home-next-pick>${l}</button>${wants.length>1?'<button type="button" class="home-journey-pick" data-tbr-open>🎰 Sortear</button>':''}</div>`;
     if(next) nextEl.innerHTML=_homeJourneyCardHTML(next,'next')+pickBtn('Cambiar');
     else if(wants.length) nextEl.innerHTML='<p class="home-journey-empty">Elige cuál será tu próxima lectura.</p>'+pickBtn('Elegir libro');
     else nextEl.innerHTML='<p class="home-journey-empty">Añade un libro a «Quiero leer» para poder elegirlo aquí.</p>';
@@ -17674,6 +17829,7 @@ function _renderShelfBooks(){
   if(shelfViewMode==='shelf'&&shelfFilter==='read') books=_shelfYearFilter(books); // FASE E15.4: el filtro de año vive solo aquí (Galería/Lista reutilizan _shelfPrepareBooks)
   document.getElementById('shelfMainTitle').innerHTML=`${titleMap[shelfFilter]} <span>${books.length}</span>`;
   _shelfSyncClearUI();
+  { const tb=document.getElementById('tbrShelfBtn'); if(tb) tb.hidden=shelfFilter!=='want'; } // sorteo: solo en «Quiero leer»
   const container=document.getElementById('shelfBooksContainer');
 
   if(!books.length){
