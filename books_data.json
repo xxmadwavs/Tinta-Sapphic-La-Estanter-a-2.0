@@ -118494,6 +118494,7 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "thais",
+    "traduccion": null,
     "editions": [
       {
         "lang": "EN",
@@ -118505,8 +118506,8 @@
     "safi_categories": [],
     "thaiclub": false,
     "thai_categories": [],
-    "canal_rec": false,
-    "canal_month": null,
+    "canal_rec": true,
+    "canal_month": "2026",
     "my_rec": true,
     "my_rec_categories": [
       "Forbidden Love",
@@ -119838,9 +119839,12 @@
     "sagaName": null,
     "sagaNum": null,
     "source": "spanish",
+    "traduccion": null,
     "editions": [],
-    "saficlub": false,
-    "safi_categories": [],
+    "saficlub": true,
+    "safi_categories": [
+      "2026"
+    ],
     "thaiclub": false,
     "thai_categories": [],
     "canal_rec": false,
