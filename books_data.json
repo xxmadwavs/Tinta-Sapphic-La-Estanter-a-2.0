@@ -131438,20 +131438,6 @@
     ],
     "protagonistas": [
       {
-        "id": "pmwscz88l4j4",
-        "nombre": "Emmaline Berry. Narradora y protagonista principal",
-        "profesiones": [],
-        "identidades": [],
-        "edad": null
-      },
-      {
-        "id": "pmwscz88lpl8",
-        "nombre": "Blair Moore. Compañera de Hawthorne, interés romántico de Emmaline y personaje fundamental para el desenlace",
-        "profesiones": [],
-        "identidades": [],
-        "edad": null
-      },
-      {
         "id": "pmwscz88l17l",
         "nombre": "Emmaline",
         "profesiones": [],
@@ -131592,20 +131578,6 @@
     ],
     "protagonistas": [
       {
-        "id": "pmwsd1doroxg",
-        "nombre": "Rayleigh Scarlet, conocida como Rayleigh la Tiradora Certera . Es una joven pirata y capitana del Revenant",
-        "profesiones": [],
-        "identidades": [],
-        "edad": null
-      },
-      {
-        "id": "pmwsd1dor50l",
-        "nombre": "Maren. Es una sirena que puede adoptar forma humana y cuya misión inicial es encontrar a la Bruja del Mar para recuperar el alma de su hermano. No se indica apellido",
-        "profesiones": [],
-        "identidades": [],
-        "edad": null
-      },
-      {
         "id": "pmwsd1dosx46",
         "nombre": "Rayleigh",
         "profesiones": [
@@ -131619,7 +131591,9 @@
       {
         "id": "pmwsd1doshzi",
         "nombre": "Maren",
-        "profesiones": [],
+        "profesiones": [
+          "Sirena"
+        ],
         "identidades": [
           "Femme"
         ],
