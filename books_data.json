@@ -131546,6 +131546,151 @@
     "my_rec_categories": []
   },
   {
+    "id": "b_1795383635388_00yyl",
+    "title": "The Siren's Kiss",
+    "authors": [
+      "Leslie Vedder"
+    ],
+    "year": 2026,
+    "cover": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/818vAoO1ABL._SL1500_.jpg",
+    "synopsis": "Dead Shot Rayleigh lleva tres años atrapada en un barco maldito tras cruzarse en el camino del dios del mar, Roger «Mano Roja». Su única esperanza de recuperar la libertad es encontrar el corazón que le robaron hace mucho tiempo, lo que implica enfrentarse a su enemiga acérrima, la Bruja del Mar.\n\nPero Rayleigh no es la única que tiene cuentas que saldar... La fogosa sirena Maren también busca a la Bruja del Mar, decidida a negociar por el alma de su hermano perdido.\n\nCuando las misiones independientes de Rayleigh y Maren las unen, saltan chispas y todos sus planes se van al traste. Ahora tendrán que unir fuerzas para sobrevivir.\n\nEncontrar a la Bruja del Mar. Robar el corazón. Y no enamorarse de tu enemiga, por muy irresistible que sea. ¿Tan difícil puede ser?",
+    "pages": 320,
+    "isbn": "9781419788314",
+    "wattpad": null,
+    "ship": [],
+    "genres": [
+      "Fantasía",
+      "Romance",
+      "Aventura",
+      "Acción",
+      "Contemporánea",
+      "Paranormal",
+      "Juvenil",
+      "YA"
+    ],
+    "subgenres": [
+      "Queer",
+      "Sobrenatural",
+      "Magia",
+      "Mitología",
+      "Familia",
+      "Autodescubrimiento",
+      "Erótica",
+      "BDSM",
+      "Dark Romance",
+      "Crimen",
+      "Mafia",
+      "Omegaverse"
+    ],
+    "identidades": [
+      "Masc",
+      "Femme"
+    ],
+    "characters": [
+      "Pirata",
+      "Sirena"
+    ],
+    "protagonistas": [
+      {
+        "id": "pmwsd1doroxg",
+        "nombre": "Rayleigh Scarlet, conocida como Rayleigh la Tiradora Certera . Es una joven pirata y capitana del Revenant",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwsd1dor50l",
+        "nombre": "Maren. Es una sirena que puede adoptar forma humana y cuya misión inicial es encontrar a la Bruja del Mar para recuperar el alma de su hermano. No se indica apellido",
+        "profesiones": [],
+        "identidades": [],
+        "edad": null
+      },
+      {
+        "id": "pmwsd1dosx46",
+        "nombre": "Rayleigh",
+        "profesiones": [
+          "Pirata"
+        ],
+        "identidades": [
+          "Masc"
+        ],
+        "edad": 18
+      },
+      {
+        "id": "pmwsd1doshzi",
+        "nombre": "Maren",
+        "profesiones": [],
+        "identidades": [
+          "Femme"
+        ],
+        "edad": null
+      }
+    ],
+    "dinamicas": [
+      "Masc × Femme",
+      "Sirena × Marinera",
+      "Cazadora × Presa",
+      "Protectora × Delicada",
+      "Dominante × Sumisa"
+    ],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Hurt/Comfort",
+      "Found Family"
+    ],
+    "edad": [
+      "Young Adult (15–18)"
+    ],
+    "pais_cultura": [],
+    "ubicaciones": [],
+    "epoca": "Histórica",
+    "periodo": "Fantasía de inspiración pirata, con barcos de vela, pistolas de chispa, sables, galeones, tabernas, navegación a vela y estructuras de poder propias de los Reyes Piratas. No corresponde a un periodo histórico real identificable.",
+    "tipo_mundo": "Mundo ficticio",
+    "entornos": [
+      "Ciudad"
+    ],
+    "idioma_original": "Inglés",
+    "pais_origen": null,
+    "ambientacion": [],
+    "content_warnings": [
+      "Violencia pirata",
+      "Combates con armas de fuego",
+      "Sables",
+      "Heridas",
+      "Sangre",
+      "Muerte",
+      "Ahogamiento",
+      "Secuestro / Cautiverio",
+      "Encarcelamiento",
+      "Maldiciones",
+      "Tortura o coerción física",
+      "Caza furtiva de criaturas marinas",
+      "Captura de sirenas",
+      "Muerte de un Ser Querido",
+      "Pérdida de seres queridos",
+      "Sacrificio",
+      "Peligro mortal"
+    ],
+    "spicy": 0,
+    "rapidez_romance": 3,
+    "formato": null,
+    "adaptacion": null,
+    "sagaName": null,
+    "sagaNum": null,
+    "source": "other",
+    "traduccion": null,
+    "editions": [],
+    "saficlub": false,
+    "safi_categories": [],
+    "thaiclub": false,
+    "thai_categories": [],
+    "canal_rec": false,
+    "canal_month": null,
+    "my_rec": false,
+    "my_rec_categories": []
+  },
+  {
     "id": "b_1794047951497_5der8",
     "title": "Love Me to Hurt Me",
     "authors": [
