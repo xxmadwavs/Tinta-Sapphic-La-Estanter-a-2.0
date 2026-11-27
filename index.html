@@ -11636,12 +11636,26 @@ function toggleDD(id){
   if(!wasOpen){
     const _rk=Object.keys(RF).find(k=>RF[k].wrap===id); if(_rk) rfBuild(_rk); // límites y "sin dato" al día
     wrap.classList.add('open');
+    if(id==='ddMoreFilters') placeMoreFilters();
     if(id==='ddMoreFilters'||window.innerWidth<=639){
       const bd=document.getElementById('mfBackdrop');
       if(bd) bd.classList.add('open');
     }
   }
 }
+// Mantiene el panel "+ Filtros" dentro de la ventana, esté donde esté el botón (p. ej. en pantalla dividida)
+function placeMoreFilters(){
+  const wrap=document.getElementById('ddMoreFilters');
+  const panel=wrap&&wrap.querySelector('.more-filters-panel');
+  if(!panel) return;
+  panel.style.left=panel.style.right='';
+  if(!wrap.classList.contains('open')||getComputedStyle(panel).position==='fixed') return; // en móvil va centrado por CSS
+  const r=wrap.getBoundingClientRect(), w=panel.offsetWidth, m=12;
+  const x=Math.max(m,Math.min(r.right-w,document.documentElement.clientWidth-w-m));
+  panel.style.left=(x-r.left)+'px';
+  panel.style.right='auto';
+}
+window.addEventListener('resize',placeMoreFilters);
 function closeAllDD(){
   document.querySelectorAll('.dd-wrap.open').forEach(w=>w.classList.remove('open'));
   const bd=document.getElementById('mfBackdrop');
