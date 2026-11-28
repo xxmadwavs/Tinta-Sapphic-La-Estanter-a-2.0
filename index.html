@@ -5426,7 +5426,10 @@ async function loadBooks(){
     if(!res.ok) throw new Error();
     const data=await res.json();
     // Support both old (author: string) and new (authors: array) format
-    allBooks=data.map(b=>{
+    // Publicación programada: oculta los libros cuya fecha publicar_desde
+    // (YYYY-MM-DD) aún no ha llegado. Sin fecha = visible.
+    const hoyISO=new Date().toLocaleDateString('sv-SE');
+    allBooks=data.filter(b=>!b.publicar_desde||b.publicar_desde<=hoyISO).map(b=>{
       if(!b.authors) b.authors=b.author?[b.author]:[];
       return b;
     });
