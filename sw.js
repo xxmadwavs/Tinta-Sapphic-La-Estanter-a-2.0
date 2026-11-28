@@ -20,7 +20,7 @@ const INDEX_PATH = 'index.html';
 const INDEX_URL  = new URL(INDEX_PATH, SCOPE).href;
 
 const CSS_PATH = 'estilos.css';
-const CSS_URL  = CSS_PATH + '?v=4';           // mismo ?v= que en el <link> de index.html
+const CSS_URL  = CSS_PATH + '?v=5';           // mismo ?v= que en el <link> de index.html
 
 const REQUIRED = [INDEX_PATH, CSS_URL];       // si falla, la instalación se reintenta
 const SHELL    = ['manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png']; // best-effort

@@ -5777,3 +5777,50 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 /* ── Pasaporte sapphic: chapa de país ── */
 .pp-badge{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.22))}
 .pp-badge.is-locked{filter:none;opacity:.85}
+
+/* ── Pasaporte sapphic: portada, medallas, páginas de continente, territorios y ficha del sello (antes inline en index.html) ── */
+/* Pasaporte sapphic · paso 2.2: páginas por continente (solo variables existentes; sirve a los tres temas) */
+#ppBody .pp-pages{margin:0 0 1.1rem}
+#ppBody .pp-pages .section-tab{padding:7px 14px;font-size:12.5px}
+#ppBody .pp-pagehead{display:flex;align-items:baseline;justify-content:space-between;gap:.3rem 1rem;flex-wrap:wrap;margin:.2rem 0 .2rem}
+#ppBody .pp-pagetitle{font-family:var(--font-display);font-size:1.6rem;font-weight:500;color:var(--text);margin:0}
+#ppBody .pp-ph-main{display:flex;align-items:center;gap:.7rem;min-width:0}
+#ppBody .pp-ph-medal{flex:0 0 52px;width:52px}
+#ppBody .pp-ph-sub{display:block;font-size:11px;color:var(--muted)}
+#ppBody .pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin:1rem 0;padding:0;list-style:none}
+#ppBody .pp-grid>li{min-width:0}
+#ppBody .pp-slot{display:flex;flex-direction:column;align-items:center;gap:.3rem;height:100%;padding:.55rem .4rem .65rem;border:1px solid var(--border2);border-radius:14px;background:var(--surface);color:inherit;text-align:center;text-decoration:none}
+#ppBody a.pp-slot:hover{border-color:var(--accent2)}
+#ppBody a.pp-slot:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#ppBody .pp-slot.is-empty{background:transparent;border-style:dashed}
+#ppBody .pp-name{font-size:12px;font-weight:600;line-height:1.25;color:var(--text);overflow-wrap:anywhere}
+#ppBody .pp-date{font-size:11px;color:var(--muted)}
+#ppBody .pp-slot.is-empty .pp-name{font-weight:500;color:var(--muted)}
+#ppBody .pp-sub{grid-column:1/-1;margin-top:.3rem;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#ppBody .pp-more{margin-top:.2rem}
+#ppBody .pp-terr{display:block;margin-top:.9rem}
+#ppBody .pp-h{margin:1.4rem 0 .6rem;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#ppBody .pp-medals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem .6rem;margin:0;padding:0;list-style:none}
+#ppBody .pp-medal{display:flex;flex-direction:column;align-items:center;gap:.25rem;min-width:0;text-align:center}
+#ppBody .pp-medal .pp-badge{width:100%;max-width:96px}
+#ppBody .pp-medal.is-locked .pp-name{font-weight:500;color:var(--muted)}
+#ppBody .pp-last{max-width:220px}
+@media (min-width:640px){#ppBody .pp-medals{grid-template-columns:repeat(6,minmax(0,1fr))}}
+#ppFicha{position:fixed;inset:0;z-index:2100;display:flex;align-items:flex-end;justify-content:center}
+#ppFicha .pp-f-back{position:absolute;inset:0;background:rgba(20,10,16,.55)}
+#ppFicha .pp-f-card{position:relative;width:100%;max-width:420px;max-height:90vh;overflow:auto;padding:1.1rem 1.1rem 1.2rem;border:1px solid var(--border2);border-radius:18px 18px 0 0;background:var(--surface);color:var(--text);box-shadow:0 -6px 28px rgba(0,0,0,.25)}
+#ppFicha .pp-f-top{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem}
+#ppFicha .pp-f-badge{flex:0 0 96px}
+#ppFicha .pp-f-name{margin:0;font-family:var(--font-display);font-size:1.4rem;font-weight:500;line-height:1.2;overflow-wrap:anywhere}
+#ppFicha .pp-f-body{display:flex;gap:.9rem;align-items:flex-start}
+#ppFicha .pp-f-cover,#ppFicha .pp-f-ph{flex:0 0 84px;width:84px;aspect-ratio:2/3;border-radius:6px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#ppFicha .pp-f-ph{background:var(--accent-soft,#eee);border:1px dashed var(--border2);box-shadow:none}
+#ppFicha .pp-f-info{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+#ppFicha .pp-f-lbl{margin-top:.5rem;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#ppFicha .pp-f-lbl:first-child{margin-top:0}
+#ppFicha .pp-f-book{font-size:14px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+#ppFicha .pp-f-val{font-size:13px}
+#ppFicha .pp-f-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.1rem}
+@media (min-width:640px){#ppFicha{align-items:center}#ppFicha .pp-f-card{border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.35)}}
+@media (min-width:640px){#ppBody .pp-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:900px){#ppBody .pp-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
