@@ -56,7 +56,7 @@
   window.supabase = { createClient: function(){ return client; } };
 })();
 </script>
-<link rel="stylesheet" href="./estilos.css?v=2">
+<link rel="stylesheet" href="./estilos.css?v=3">
 <style id="f36-seasonal-editorial">
 
 /* ══════════════════════════════════════════════════════════════
@@ -14279,14 +14279,20 @@ function wsTipText(key,iso){
   const name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso,n=(_wsResult[key]?.countries.get(iso))||0;
   return {name,n,html:`<strong>${escHtml(name)}</strong><span class="${n?'':'is-muted'}">${n?`${n} lectura${n===1?'':'s'}`:'Aún no descubierto'}</span>`};
 }
+// Ficha del lugar elegido: dentro del panel del país (bajo la cabecera) si existe; si no, en la línea de información del mapa
+function wsInfoSet(key,html){
+  const card=key===WS_CITY_MAP?document.getElementById('wsCpCard'):null;
+  if(card){ card.innerHTML=html; return; }
+  const info=document.getElementById('wsInfo_'+key); if(info) info.innerHTML=html;
+}
 /* ── Libros del lugar elegido (país, ciudad o región): lista bajo la ficha, cada uno abre su ficha ── */
 function wsBooksClear(key){ const el=document.getElementById('wsBooks_'+key); if(el) el.textContent=''; }
-function wsBooksShow(key,ids){
+function wsBooksShow(key,ids,label){
   const el=document.getElementById('wsBooks_'+key); if(!el) return;
   const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
   const list=[...ids].map(id=>byId.get(String(id))).filter(Boolean).sort((a,b)=>String(a.title).localeCompare(String(b.title),'es'));
   if(!list.length){ el.textContent=''; return; }
-  el.innerHTML=`<p class="ws-books-head">${list.length} libro${list.length===1?'':'s'}</p><ul class="ws-books-list">`+list.map(b=>{
+  el.innerHTML=`<p class="ws-books-head">${list.length} libro${list.length===1?'':'s'}${label?' en '+escHtml(label):''}</p><ul class="ws-books-list">`+list.map(b=>{
     const cov=b.cover?`<img src="${escHtml(b.cover)}" alt="" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=ws-books-ph>✦</span>'">`:'<span class="ws-books-ph" aria-hidden="true">✦</span>';
     const au=wsToList(b.authors).join(', ');
     return `<li><a class="ws-book" href="#libro/${encodeURIComponent(b.id)}" data-book="${escHtml(String(b.id))}">${cov}<span class="ws-book-t">${escHtml(b.title)}</span>${au?`<span class="ws-book-a">${escHtml(au)}</span>`:''}</a></li>`;
@@ -14314,7 +14320,7 @@ function wsShowTip(key,iso,cx,cy,pin){
     ref.selected=iso; (ref.byIso.get(iso)||[]).forEach(el=>{ if(el.classList.contains('ws-c')) el.classList.add('is-sel'); });
     const info=document.getElementById('wsInfo_'+key);
     if(info) info.innerHTML=`<b>${escHtml(t.name)}</b> · ${t.n?`${t.n} lectura${t.n===1?'':'s'}`:'Aún no descubierto'}`;
-    wsBooksShow(key,wsCountryBookIds(key,iso));
+    wsBooksShow(key,wsCountryBookIds(key,iso),t.name);
   }
 }
 
@@ -14587,12 +14593,12 @@ function wsCityShowTip(cx,cy,pin){
 }
 function wsCitySelect(id){
   _wsCityUI.sel=id||null; _wsCityUI.pinned=true; wsCityPlaceTip();
+  if(!id&&_wsCountrySel){ wsInfoSet(WS_CITY_MAP,''); wsBooksShow(WS_CITY_MAP,wsCountryBookIds(WS_CITY_MAP,_wsCountrySel),(_wsIsoToName&&_wsIsoToName.get(_wsCountrySel))||_wsCountrySel); }
   const it=id&&_wsCityUI.zone.find(x=>x.city.id===id); if(it) wsCityInfo(it);
 }
 function wsCityInfo(it){
-  const info=document.getElementById('wsInfo_'+WS_CITY_MAP);
-  if(info) info.innerHTML=`<b>${escHtml(it.city.ciudad)}</b> · ${escHtml(it.city.pais)} · ${wsCityLecturas(it.n)}`;
-  wsBooksShow(WS_CITY_MAP,it.books||[]);
+  wsInfoSet(WS_CITY_MAP,`<b>${escHtml(it.city.ciudad)}</b> · ${escHtml(it.city.pais)} · ${wsCityLecturas(it.n)}`);
+  wsBooksShow(WS_CITY_MAP,it.books||[],it.city.ciudad);   // al elegir una ciudad, solo los libros de esa ciudad
 }
 function wsCityHideTip(){
   const u=_wsCityUI; u.pinned=false; u.sel=null; u.zone=[];
@@ -14821,7 +14827,7 @@ function wsCountryPanel(iso,list,rlist){
   // Las lecturas con ciudad sin cartografiar se avisan una sola vez bajo los chips de regiones
   const via=rlist.filter(it=>it.via.size).map(it=>`${escHtml([...it.via].join(', '))} (${escHtml(it.region.nombre)})`);
   const total=(_wsResult[WS_CITY_MAP]&&_wsResult[WS_CITY_MAP].countries.get(iso))||0;
-  p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4>${total?`<span class="ws-cp-count">${wsCityLecturas(total)}</span>`:''}</div>`+
+  p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4>${total?`<span class="ws-cp-count">${wsCityLecturas(total)}</span>`:''}</div><div class="ws-cp-card" id="wsCpCard" aria-live="polite"></div>`+
     (list.length?(both?'<h5 class="ws-cp-sub">Ciudades</h5>':'')+`<ul class="ws-cp-list">${list.map(cityRow).join('')}</ul>`:'')+
     (rlist.length?'<h5 class="ws-cp-sub">Regiones · ubicación aproximada</h5>'+`<ul class="ws-cp-list">${rlist.map(regRow).join('')}</ul>`+(via.length?`<p class="ws-cp-via">Incluye lecturas con ciudad aún sin cartografiar: ${via.join('; ')}.</p>`:''):'')+
     (both||list.length||rlist.length?'':`<p class="ws-cp-none">No hay ciudades ni regiones descubiertas en ${escHtml(name)}${wsInYear()}.</p>`);
@@ -14863,7 +14869,7 @@ function wsCountryApply(){
   wsPaintCities(list);      // primero ciudades; las regiones se insertan debajo de ellas
   wsPaintRegions(rlist);
   wsCountryPanel(iso,list,rlist);
-  if(iso) wsBooksShow(WS_CITY_MAP,wsCountryBookIds(WS_CITY_MAP,iso)); else wsBooksClear(WS_CITY_MAP);
+  if(iso) wsBooksShow(WS_CITY_MAP,wsCountryBookIds(WS_CITY_MAP,iso),(_wsIsoToName&&_wsIsoToName.get(iso))||iso); else wsBooksClear(WS_CITY_MAP);
   const pts=iso?wsCountryPoints(iso):[];
   wsViewTo(pts.length?wsZoomBox(iso,pts):[0,0,_wsMap.w,_wsMap.h]);
   _wsCityUI.w=svg.clientWidth;
@@ -15068,9 +15074,9 @@ function wsRegShowTip(cx,cy,pin,forced){
   if(pin&&z.length===1) wsRegInfo(z[0]);
 }
 function wsRegInfo(it){
-  const info=document.getElementById('wsInfo_'+WS_CITY_MAP),t=wsRegTipo(it.region);
-  if(info) info.innerHTML=`<b>${escHtml(it.region.nombre)}</b> · ${escHtml(it.region.pais||'')}${t?' · '+escHtml(t):''} · ${wsCityLecturas(it.n)}`;
-  wsBooksShow(WS_CITY_MAP,it.books||[]);
+  const t=wsRegTipo(it.region);
+  wsInfoSet(WS_CITY_MAP,`<b>${escHtml(it.region.nombre)}</b> · ${escHtml(it.region.pais||'')}${t?' · '+escHtml(t):''} · ${wsCityLecturas(it.n)}`);
+  wsBooksShow(WS_CITY_MAP,it.books||[],it.region.nombre);
 }
 function wsRegHideTip(){
   const u=_wsRegUI; u.pinned=false; u.zone=[];

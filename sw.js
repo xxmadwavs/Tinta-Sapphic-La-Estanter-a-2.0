@@ -10,7 +10,7 @@
    - NO toca nada más: Supabase, autenticación, Google Fonts, CDN, admin.html,
      peticiones POST/Range... pasan directas a la red sin pasar por la caché.
    - Nunca borra datos del usuario: solo gestiona sus propias cachés (prefijo del scope). */
-const VERSION = '1.2.1';
+const VERSION = '1.2.2';
 
 const SCOPE  = self.registration.scope;       // p. ej. https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria/
 const PREFIX = 'ts::' + SCOPE + '::';         // distinto en cada despliegue
@@ -20,7 +20,7 @@ const INDEX_PATH = 'index.html';
 const INDEX_URL  = new URL(INDEX_PATH, SCOPE).href;
 
 const CSS_PATH = 'estilos.css';
-const CSS_URL  = CSS_PATH + '?v=2';           // mismo ?v= que en el <link> de index.html
+const CSS_URL  = CSS_PATH + '?v=3';           // mismo ?v= que en el <link> de index.html
 
 const REQUIRED = [INDEX_PATH, CSS_URL];       // si falla, la instalación se reintenta
 const SHELL    = ['manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png']; // best-effort

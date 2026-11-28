@@ -5715,13 +5715,17 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 /* ── Mi mundo sapphic: libros del lugar elegido ── */
 .ws-books:empty{display:none}
 .ws-books{margin-top:.6rem}
-.ws-books-head{margin:0 0 .45rem;font-size:12px;color:var(--muted)}
-.ws-books-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.8rem .6rem;max-height:340px;overflow-y:auto}
-.ws-book{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--text);font-size:11.5px;line-height:1.3;border-radius:8px}
+.ws-books-head{margin:0 0 .5rem;font-size:13px;font-weight:600;color:var(--text)}
+.ws-books-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem .7rem;max-height:none;overflow:visible}
+.ws-books-list li{min-width:0}
+.ws-book{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--text);font-size:12px;line-height:1.3;border-radius:8px}
 .ws-book img,.ws-books-ph{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;border:1px solid var(--border);background:var(--accent-soft)}
 .ws-books-ph{display:flex;align-items:center;justify-content:center;color:var(--muted)}
-.ws-book-t{font-weight:600}
-.ws-book-a{color:var(--muted)}
+.ws-book-t{font-weight:600;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+.ws-book-a{color:var(--muted);font-size:11px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;line-clamp:1;overflow:hidden}
+.ws-cp-card{margin:.6rem 0 0;padding:.55rem .8rem;border:1px solid var(--border2);border-radius:10px;background:var(--accent-soft);font-size:13px;line-height:1.4;color:var(--muted)}
+.ws-cp-card:empty{display:none}
+.ws-cp-card b{color:var(--text);font-weight:600}
 .ws-book:hover .ws-book-t{color:var(--accent)}
 .ws-book:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:640px){.ws-books{padding:0 .3rem}}
