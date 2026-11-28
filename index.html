@@ -3284,6 +3284,10 @@ html:has(#tbrDlg[open]){overflow:hidden}
         <p class="ws-lead">Los países se descubren: cada país que aparece en al menos una lectura terminada durante el año se ilumina en el mapa.</p>
         <label class="ws-year"><span>Año</span><select id="wsYear" onchange="wsSetYear(this.value)"></select></label>
       </div>
+      <div class="ws-search" id="wsSearchBox">
+        <input type="search" class="ws-search-input" id="wsSearch" placeholder="Buscar país, ciudad o región…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="wsSearchList" aria-autocomplete="list" aria-label="Buscar un lugar en el mapa">
+        <ul class="ws-search-list" id="wsSearchList" role="listbox" aria-label="Resultados" hidden></ul>
+      </div>
       <div class="ws-tl" id="wsTl" hidden>
         <button type="button" class="ws-tl-play" id="wsTlPlay" aria-label="Reproducir">▶</button>
         <input type="range" class="ws-tl-range" id="wsTlRange" min="0" max="0" value="0" step="1" aria-label="Línea de tiempo: lecturas en orden cronológico">
@@ -14010,6 +14014,181 @@ function wsTlTogglePlay(){
   },90);
 }
 
+/* ── Progreso, país al azar y buscador ──
+   Progreso: países descubiertos en cada mapa de los que tiene world_map_data.json (los que traen código ISO).
+   País al azar: uno aún sin descubrir en ese mapa y con libros del catálogo que no has terminado nunca (se listan como en la ficha del lugar).
+   Buscador: país, ciudad o región (catálogos ya cargados); lleva al lugar con el zoom existente, o lo marca si aún no tiene lecturas. */
+let _wsRandLast={};
+function wsProgressHTML(key,n){
+  const tot=_wsIsoToName?_wsIsoToName.size:0; if(!tot) return '';
+  const pct=Math.min(100,n/tot*100);
+  return `<div class="ws-prog"><div class="ws-prog-bar" role="progressbar" aria-label="Países descubiertos" aria-valuemin="0" aria-valuemax="${tot}" aria-valuenow="${n}"><i style="width:${pct.toFixed(1)}%"></i></div>`+
+    `<span class="ws-prog-txt">${n} de ${tot} países y territorios · ${Math.round(pct)} %</span>`+
+    `<button type="button" class="ws-rand" data-ws-rand="${key}">🎲 País sin descubrir</button>`+
+    `<button type="button" class="ws-rand" data-ws-png="${key}">⬇ Imagen PNG</button></div>`;
+}
+// Resalta un país en el mapa `key` (como al fijarlo con un clic) y escribe la ficha; no toca el zoom
+function wsFindShow(key,iso,html){
+  const ref=_wsRefs[key],info=document.getElementById('wsInfo_'+key); if(!ref) return;
+  if(ref.selected) (ref.byIso.get(ref.selected)||[]).forEach(el=>el.classList.remove('is-sel'));
+  ref.selected=iso||null;
+  if(iso) (ref.byIso.get(iso)||[]).forEach(el=>{ if(el.classList.contains('ws-c')) el.classList.add('is-sel'); });
+  if(info) info.innerHTML=html;
+}
+function wsFindClear(){ const svg=wsCitySvg(); if(svg) svg.querySelectorAll('.ws-find').forEach(el=>el.remove()); clearTimeout(wsFindClear.t); }
+function wsFindMark(x,y,w){
+  const svg=wsCitySvg(); if(!svg) return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('class','ws-find'); c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',(7*w/_wsMap.w).toFixed(3));
+  svg.appendChild(c); wsFindClear.t=setTimeout(wsFindClear,6000);
+}
+function wsRandomCountry(key){
+  const m=WS_MAPS.find(x=>x.key===key),res=_wsResult[key],ref=_wsRefs[key],info=document.getElementById('wsInfo_'+key); if(!m||!res||!ref||!info) return;
+  const read=new Set(); Object.keys(myReadingLog).forEach(id=>{ if((myReadingLog[id]||[]).some(e=>wsEntryYear(e)!=null)) read.add(String(id)); });
+  const byIso=new Map();
+  allBooks.forEach(b=>{ if(read.has(String(b.id))) return;
+    wsToList(b[m.field]).forEach(v=>{ const iso=wsResolveIso(v);
+      if(iso&&!res.countries.has(iso)&&ref.byIso.has(iso)){ if(!byIso.has(iso)) byIso.set(iso,new Set()); byIso.get(iso).add(String(b.id)); } });
+  });
+  if(!byIso.size){ wsFindShow(key,null,'No quedan países sin descubrir con libros sin leer en el catálogo.'); wsBooksClear(key); return; }
+  let isos=[...byIso.keys()]; if(isos.length>1) isos=isos.filter(i=>i!==_wsRandLast[key]);
+  const iso=isos[Math.floor(Math.random()*isos.length)]; _wsRandLast[key]=iso;
+  const ids=byIso.get(iso),name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso;
+  if(key===WS_CITY_MAP){ wsFindClear(); wsCountrySet(null); if(wsSilBox(iso)) wsViewTo(wsZoomBox(iso,[])); } // primero la vista (wsCountrySet limpia la ficha)
+  wsFindShow(key,iso,`<b>${escHtml(name)}</b> · aún sin descubrir · ${ids.size} libro${ids.size===1?'':'s'} ${key==='origen'?'de autoras de este país':'ambientado'+(ids.size===1?'':'s')+' aquí'} por leer`);
+  wsBooksShow(key,ids);
+}
+
+// Buscador
+function wsSearchPool(){
+  const pool=[],byIso=new Map();
+  if(_wsIsoToName) _wsIsoToName.forEach((name,iso)=>{ const e={kind:'country',name,iso,keys:[wsCityNorm(name)]}; pool.push(e); byIso.set(iso,e); });
+  Object.keys(WS_ALIASES).forEach(k=>{ const e=byIso.get(WS_ALIASES[k]); if(e) e.keys.push(wsCityNorm(k)); });
+  if(_wsCityIndex&&wsCityCatalogOk()) _wsCityIndex.byId.forEach(c=>pool.push({kind:'city',name:c.ciudad,iso:String(c.pais_iso).toUpperCase(),id:c.id,pt:c,sub:c.pais||'',keys:[c.ciudad].concat(Array.isArray(c.aliases)?c.aliases:[]).filter(x=>typeof x==='string'&&x.trim()).map(wsCityNorm)}));
+  if(_wsRegIndex&&wsRegCatalogOk()) _wsRegIndex.byId.forEach(r=>pool.push({kind:'region',name:r.nombre,iso:String(r.pais_iso).toUpperCase(),id:r.id,pt:r,sub:(wsRegTipo(r)?wsRegTipo(r)+' · ':'')+(r.pais||''),keys:[r.nombre].concat(Array.isArray(r.aliases)?r.aliases:[]).filter(x=>typeof x==='string'&&x.trim()).map(wsCityNorm)}));
+  return pool;
+}
+function wsSearchRun(q){
+  q=wsCityNorm(q||''); if(q.length<2) return [];
+  const rank={country:0,city:1,region:2},out=[];
+  wsSearchPool().forEach(e=>{
+    let best=9; e.keys.forEach(k=>{ const sc=k===q?0:k.startsWith(q)?1:(' '+k).includes(' '+q)?2:k.includes(q)?3:9; if(sc<best) best=sc; });
+    if(best<9) out.push({e,best});
+  });
+  out.sort((a,b)=>a.best-b.best||rank[a.e.kind]-rank[b.e.kind]||String(a.e.name).localeCompare(String(b.e.name),'es'));
+  return out.slice(0,8).map(o=>o.e);
+}
+function wsSearchStatus(it){
+  const r=_wsCityResult;
+  if(it.kind==='country') return wsCountrySelectable(it.iso)?'descubierto':'sin descubrir';
+  const hit=r&&(it.kind==='city'?r.cities.get(it.id):r.regions.get(it.id));
+  return hit?wsCityLecturas(hit.n):'sin lecturas';
+}
+function wsSearchGo(it){
+  const svg=wsCitySvg(),wrap=document.getElementById('wsWrap_'+WS_CITY_MAP); if(!svg||!_wsMap) return;
+  wsFindClear();
+  if(wrap&&wrap.scrollIntoView) wrap.scrollIntoView({block:'nearest',behavior:_prefersReducedMotion()?'auto':'smooth'});
+  const name=(_wsIsoToName&&_wsIsoToName.get(it.iso))||it.iso,r=_wsCityResult;
+  const hit=it.kind==='country'?null:(r&&(it.kind==='city'?r.cities.get(it.id):r.regions.get(it.id)));
+  if(it.kind==='country'&&wsCountrySelectable(it.iso)){ wsCountrySet(it.iso); return; }
+  if(hit&&wsCountrySelectable(it.iso)){   // ciudad/región con lecturas: se selecciona el país y, al acabar el zoom, se abre su ficha
+    wsCountrySet(it.iso);
+    setTimeout(()=>{ if(_wsCountrySel!==it.iso) return; if(it.kind==='city') wsCityFromList(it.id); else wsRegFromList(it.id); },_prefersReducedMotion()?0:WS_ZOOM_MS+80);
+    return;
+  }
+  wsCountrySet(null);                      // sin lecturas: se acerca al lugar y se marca
+  if(it.kind==='country'){
+    if(wsSilBox(it.iso)) wsViewTo(wsZoomBox(it.iso,[]));
+    wsFindShow(WS_CITY_MAP,it.iso,`<b>${escHtml(it.name)}</b> · Aún no descubierto`);
+    return;
+  }
+  const W=_wsMap.w,H=_wsMap.h,w=Math.max(wsFreeMinW(svg),W/5),box=wsFreeClamp(svg,it.pt.x-w/2,it.pt.y-w*H/W/2,w);
+  wsViewTo(box); wsFindMark(it.pt.x,it.pt.y,box[2]);
+  wsFindShow(WS_CITY_MAP,it.iso,`<b>${escHtml(it.name)}</b> · ${escHtml(name)} · Sin lecturas${wsInYear()}`);
+}
+function wsSearchInit(){
+  const inp=document.getElementById('wsSearch'),list=document.getElementById('wsSearchList'); if(!inp||!list||inp.dataset.ws) return; inp.dataset.ws='1';
+  let items=[],act=-1;
+  const close=()=>{ list.hidden=true; inp.setAttribute('aria-expanded','false'); inp.removeAttribute('aria-activedescendant'); act=-1; };
+  const mark=()=>{ list.querySelectorAll('[role=option]').forEach((li,i)=>li.setAttribute('aria-selected',String(i===act))); if(act>=0) inp.setAttribute('aria-activedescendant','wsSo_'+act); else inp.removeAttribute('aria-activedescendant'); };
+  const render=()=>{
+    if(inp.value.trim().length<2){ close(); return; }
+    list.innerHTML=items.length?items.map((it,i)=>`<li role="option" id="wsSo_${i}" class="ws-so" data-i="${i}" aria-selected="false"><span class="ws-so-n">${escHtml(it.name)}</span><span class="ws-so-s">${it.kind==='country'?'País':escHtml(it.sub)}</span><span class="ws-so-st">${escHtml(wsSearchStatus(it))}</span></li>`).join(''):'<li class="ws-so-none">Sin resultados</li>';
+    list.hidden=false; inp.setAttribute('aria-expanded','true');
+  };
+  const pick=i=>{ const it=items[i]; if(!it) return; inp.value=it.name; close(); inp.blur(); wsSearchGo(it); };
+  inp.addEventListener('focus',()=>{ wsLoadCities().then(()=>wsLoadRegions()).catch(()=>{}); });
+  inp.addEventListener('input',()=>{ items=wsSearchRun(inp.value); act=-1; render(); });
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){ if(!list.hidden){ close(); e.stopPropagation(); } return; }
+    if(list.hidden||!items.length) return;
+    if(e.key==='ArrowDown'){ e.preventDefault(); act=(act+1)%items.length; mark(); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); act=(act-1+items.length)%items.length; mark(); }
+    else if(e.key==='Enter'){ e.preventDefault(); pick(act>=0?act:0); }
+  });
+  list.addEventListener('mousedown',e=>e.preventDefault());
+  list.addEventListener('click',e=>{ const li=e.target.closest('[data-i]'); if(li) pick(+li.dataset.i); });
+  document.addEventListener('pointerdown',e=>{ if(!e.target.closest||!e.target.closest('#wsSearchBox')) close(); });
+}
+
+/* ── Imagen PNG del mapa ──
+   Se dibuja en un canvas (Path2D con los mismos paths del mapa) a vista mundial completa, sin zoom ni selección.
+   Los colores se leen del propio DOM (elementos de prueba con las clases del mapa), así que respetan el tema activo.
+   Refleja el estado actual: año elegido o «Todos los años» y, si el deslizador está en un punto, hasta qué lectura. */
+function wsEntryDateText(e){
+  const P=rcEntryParts(e); if(!P) return '';
+  return P.month==null?String(P.year):(P.day==null?WS_MES[P.month-1]+' '+P.year:P.day+' '+WS_MES[P.month-1]+' '+P.year);
+}
+function wsRoundRect(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+async function wsExportPng(key){
+  const m=WS_MAPS.find(x=>x.key===key),res=_wsResult[key],svg=document.querySelector('#wsWrap_'+key+' svg'),card=document.querySelector('.ws-card[data-map="'+key+'"]');
+  if(!m||!res||!svg||!card||!_wsMap) return;
+  const btn=card.querySelector('[data-ws-png]'),info=document.getElementById('wsInfo_'+key);
+  if(btn) btn.disabled=true;
+  try{
+    if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+    const NS='http://www.w3.org/2000/svg',zk=parseFloat(svg.style.getPropertyValue('--ws-k'))||1;
+    const probe=(tag,cls)=>{ const el=document.createElementNS(NS,tag); el.setAttribute('class',cls); svg.appendChild(el);
+      const cs=getComputedStyle(el),o={fill:cs.fill,stroke:cs.stroke,sw:(parseFloat(cs.strokeWidth)||0)/zk}; el.remove(); return o; };
+    const base=probe('path','ws-c'),found=probe('path','ws-c is-found'),dot=probe('circle','ws-dot is-found');
+    const cs=(sel,root)=>{ const el=(root||card).querySelector(sel); return el?getComputedStyle(el):getComputedStyle(card); };
+    const wrapCs=getComputedStyle(card.querySelector('.ws-mapwrap')),cardCs=getComputedStyle(card),titleCs=cs('.ws-card-title'),subCs=cs('.ws-card-sub');
+    const title=(card.querySelector('.ws-card-title')||{}).textContent||'Mi mundo sapphic';
+    // Texto de estado: año, o «Todos los años» (con la fecha hasta la que llega el deslizador)
+    let when=wsYear==='all'?'Todos los años':String(wsYear);
+    if(wsYear==='all'&&_wsTl.limit!=null){ const it=_wsTl.entries[_wsTl.limit-1]; when=_wsTl.limit?'Hasta '+wsEntryDateText(it.e)+' · '+_wsTl.limit+' de '+_wsTl.entries.length+' lecturas':'Antes de tu primera lectura'; }
+    const tot=_wsIsoToName?_wsIsoToName.size:0,n=res.countries.size;
+    const W=2000,PAD=64,mw=W-2*PAD,k=mw/_wsMap.w,mh=_wsMap.h*k,top=PAD+64+54+36,H=Math.round(top+mh+36+44+PAD);
+    const cvs=document.createElement('canvas'); cvs.width=W; cvs.height=H; const ctx=cvs.getContext('2d');
+    ctx.fillStyle=cardCs.backgroundColor&&cardCs.backgroundColor!=='rgba(0, 0, 0, 0)'?cardCs.backgroundColor:getComputedStyle(document.body).backgroundColor; ctx.fillRect(0,0,W,H);
+    ctx.textBaseline='alphabetic';
+    ctx.fillStyle=titleCs.color; ctx.font='600 60px '+titleCs.fontFamily; ctx.fillText(title,PAD,PAD+56);
+    ctx.fillStyle=subCs.color; ctx.font='34px '+cardCs.fontFamily; ctx.fillText(when,PAD,PAD+56+54);
+    // lienzo del mapa
+    ctx.save(); wsRoundRect(ctx,PAD,top,mw,mh,24); ctx.fillStyle=wrapCs.backgroundColor; ctx.fill(); ctx.clip();
+    ctx.translate(PAD,top); ctx.scale(k,k); ctx.lineJoin='round';
+    _wsMap.c.forEach(c=>{ const f=!!(c.i&&res.countries.has(c.i)),st=f?found:base,path=new Path2D(c.d);
+      ctx.fillStyle=st.fill; ctx.fill(path);
+      if(st.stroke&&st.stroke!=='none'&&st.sw){ ctx.strokeStyle=st.stroke; ctx.lineWidth=st.sw; ctx.stroke(path); } });
+    (_wsMap.s||[]).forEach(d=>{ if(!res.countries.has(d.i)) return; ctx.beginPath(); ctx.arc(d.x,d.y,3,0,Math.PI*2); ctx.fillStyle=dot.fill; ctx.fill();
+      if(dot.stroke&&dot.stroke!=='none'&&dot.sw){ ctx.strokeStyle=dot.stroke; ctx.lineWidth=dot.sw; ctx.stroke(); } });
+    ctx.restore();
+    // pie: contador y marca
+    const fy=top+mh+36+30;
+    ctx.fillStyle=titleCs.color; ctx.font='600 36px '+cardCs.fontFamily; ctx.textAlign='left';
+    ctx.fillText(tot?n+' de '+tot+' países y territorios':n+(n===1?' país descubierto':' países descubiertos'),PAD,fy);
+    ctx.fillStyle=subCs.color; ctx.font='30px '+cardCs.fontFamily; ctx.textAlign='right'; ctx.fillText('Mi mundo sapphic · Tinta Sapphic',W-PAD,fy);
+    const blob=await new Promise(r=>cvs.toBlob(r,'image/png'));
+    if(!blob) throw new Error('toBlob vacío');
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='mi-mundo-sapphic-'+(key==='origen'?'autoras':'historias')+'-'+(wsYear==='all'?'todos-los-anios':wsYear)+'.png';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  }catch(err){
+    console.warn('[Mi mundo] imagen:',err&&err.message);
+    if(info) info.textContent='No se pudo crear la imagen. Inténtalo de nuevo.';
+  }finally{ if(btn) btn.disabled=false; }
+}
+
 function wsBuild(){
   const NS='http://www.w3.org/2000/svg',W=_wsMap.w,H=_wsMap.h;
   const host=document.getElementById('wsCards');
@@ -14026,7 +14205,11 @@ function wsBuild(){
     </section>`).join('');
   if(!host.dataset.wsBooks){ // un único listener: abre la ficha del libro pulsado
     host.dataset.wsBooks='1';
-    host.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('.ws-book'); if(!a) return; e.preventDefault(); openBookPage(a.dataset.book); });
+    host.addEventListener('click',e=>{
+      const r=e.target.closest&&e.target.closest('[data-ws-rand]'); if(r){ wsRandomCountry(r.dataset.wsRand); return; }
+      const g=e.target.closest&&e.target.closest('[data-ws-png]'); if(g){ wsExportPng(g.dataset.wsPng); return; }
+      const a=e.target.closest&&e.target.closest('.ws-book'); if(!a) return; e.preventDefault(); openBookPage(a.dataset.book);
+    });
   }
   WS_MAPS.forEach(m=>{
     const wrap=document.getElementById('wsWrap_'+m.key);
@@ -14147,7 +14330,7 @@ function wsPaint(){
     document.getElementById('wsCnt_'+m.key).innerHTML=
       `<span><b>${nC}</b>${nC===1?'país descubierto':'países descubiertos'}</span>`+
       `<span><b>${res.located}</b>${res.located===1?'lectura ubicada':'lecturas ubicadas'}</span>`+
-      (res.unlocated?`<span class="ws-extra">${res.unlocated} lectura${res.unlocated===1?'':'s'} sin ubicación cartografiable</span>`:'');
+      (res.unlocated?`<span class="ws-extra">${res.unlocated} lectura${res.unlocated===1?'':'s'} sin ubicación cartografiable</span>`:'')+wsProgressHTML(m.key,nC);
     document.getElementById('wsAltSum_'+m.key).textContent=`Ver lista de países descubiertos (${nC})`;
     const rows=[...res.countries.entries()].map(([iso,n])=>[_wsIsoToName.get(iso)||iso,n]).sort((a,b)=>a[0].localeCompare(b[0],'es'));
     const regs=[...res.regions.entries()];
@@ -14170,6 +14353,7 @@ function renderWorldSapphic(){
   if(!document.getElementById('wsBlock')) return;
   wsFillYearSelect();
   wsTlSync();
+  wsSearchInit();
   if(!_wsMap){
     if(!_wsBuilt&&!document.querySelector('#wsCards .ws-loading')) document.getElementById('wsCards').innerHTML='<div class="ws-loading">Cargando mapas…</div>';
     wsLoadMap().then(()=>{ if(document.getElementById('mundoView').classList.contains('active')) renderWorldSapphic(); }).catch(wsShowError);

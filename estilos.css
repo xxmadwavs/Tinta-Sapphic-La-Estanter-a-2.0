@@ -5746,3 +5746,25 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 @keyframes ws-pop{0%{filter:brightness(2.2) drop-shadow(0 0 4px var(--accent))}100%{filter:none}}
 .ws-c.is-new{animation:ws-pop .9s ease-out}
 @media (prefers-reduced-motion:reduce){.ws-c.is-new{animation:none}}
+/* ── Mi mundo sapphic: buscador, progreso y país sin descubrir ── */
+.ws-search{position:relative;margin:0 0 .9rem}
+.ws-search-input{width:100%;box-sizing:border-box;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font:inherit;font-size:14px}
+.ws-search-input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ws-search-list{position:absolute;left:0;right:0;top:100%;z-index:20;list-style:none;margin:4px 0 0;padding:4px;background:var(--surface);border:1px solid var(--border2);border-radius:10px;max-height:320px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.ws-search-list[hidden]{display:none}
+.ws-so{display:flex;align-items:baseline;gap:.5rem;padding:9px 10px;border-radius:8px;font-size:13.5px;cursor:pointer;min-height:24px}
+.ws-so:hover,.ws-so[aria-selected="true"]{background:var(--accent-soft)}
+.ws-so-n{font-weight:600;color:var(--text)}
+.ws-so-s{color:var(--muted);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ws-so-st{color:var(--muted);font-size:11.5px;white-space:nowrap}
+.ws-so-none{padding:9px 10px;font-size:13px;color:var(--muted)}
+.ws-prog{flex-basis:100%;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem .8rem;margin-top:.4rem}
+.ws-prog-bar{flex:1 1 180px;height:8px;border-radius:6px;background:var(--border);overflow:hidden}
+.ws-prog-bar i{display:block;height:100%;border-radius:6px;background:var(--accent);transition:width .35s}
+.ws-prog-txt{font-size:12px;color:var(--muted)}
+.ws-rand{padding:7px 12px;min-height:34px;border-radius:20px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--text);font:inherit;font-size:12.5px;cursor:pointer}
+.ws-rand:hover{background:var(--accent);color:var(--surface)}
+.ws-rand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@keyframes ws-find{0%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(2.6)}}
+.ws-find{fill:none;stroke:var(--accent2);stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;animation:ws-find 1.2s ease-out 3}
+@media (prefers-reduced-motion:reduce){.ws-find{animation:none}.ws-prog-bar i{transition:none}}
