@@ -56,7 +56,7 @@
   window.supabase = { createClient: function(){ return client; } };
 })();
 </script>
-<link rel="stylesheet" href="./estilos.css?v=1">
+<link rel="stylesheet" href="./estilos.css?v=2">
 <style id="f36-seasonal-editorial">
 
 /* ══════════════════════════════════════════════════════════════
@@ -14815,13 +14815,15 @@ function wsCountryPanel(iso,list,rlist){
   if(!iso){ p.textContent=''; return; }
   rlist=rlist||[];
   const name=(_wsIsoToName&&_wsIsoToName.get(iso))||iso,both=list.length&&rlist.length;
-  const cityRow=it=>`<li><button type="button" class="ws-cp-row" data-city="${escHtml(it.city.id)}"><b>${escHtml(it.city.ciudad)}</b><span>· ${wsCityLecturas(it.n)}</span></button></li>`;
-  const regRow=it=>{ const t=wsRegTipo(it.region),via=it.via.size;
-    return `<li${via?' class="ws-cp-li-via"':''}><button type="button" class="ws-cp-row" data-region="${escHtml(it.region.id)}"><b>${escHtml(it.region.nombre)}</b><span>· ${wsCityLecturas(it.n)}${t?' · '+escHtml(t):''}</span></button>`+
-      (via?`<p class="ws-cp-via">Incluye lecturas con ciudad aún sin cartografiar: ${escHtml([...it.via].join(', '))}</p>`:'')+`</li>`; };
-  p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4></div>`+
+  const cityRow=it=>`<li><button type="button" class="ws-cp-row" data-city="${escHtml(it.city.id)}"><b>${escHtml(it.city.ciudad)}</b><span>${wsCityLecturas(it.n)}</span></button></li>`;
+  const regRow=it=>{ const t=wsRegTipo(it.region);
+    return `<li><button type="button" class="ws-cp-row" data-region="${escHtml(it.region.id)}"><b>${escHtml(it.region.nombre)}</b><span>${wsCityLecturas(it.n)}${t?' · '+escHtml(t):''}</span></button></li>`; };
+  // Las lecturas con ciudad sin cartografiar se avisan una sola vez bajo los chips de regiones
+  const via=rlist.filter(it=>it.via.size).map(it=>`${escHtml([...it.via].join(', '))} (${escHtml(it.region.nombre)})`);
+  const total=(_wsResult[WS_CITY_MAP]&&_wsResult[WS_CITY_MAP].countries.get(iso))||0;
+  p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4>${total?`<span class="ws-cp-count">${wsCityLecturas(total)}</span>`:''}</div>`+
     (list.length?(both?'<h5 class="ws-cp-sub">Ciudades</h5>':'')+`<ul class="ws-cp-list">${list.map(cityRow).join('')}</ul>`:'')+
-    (rlist.length?'<h5 class="ws-cp-sub">Regiones · ubicación aproximada</h5>'+`<ul class="ws-cp-list">${rlist.map(regRow).join('')}</ul>`:'')+
+    (rlist.length?'<h5 class="ws-cp-sub">Regiones · ubicación aproximada</h5>'+`<ul class="ws-cp-list">${rlist.map(regRow).join('')}</ul>`+(via.length?`<p class="ws-cp-via">Incluye lecturas con ciudad aún sin cartografiar: ${via.join('; ')}.</p>`:''):'')+
     (both||list.length||rlist.length?'':`<p class="ws-cp-none">No hay ciudades ni regiones descubiertas en ${escHtml(name)}${wsInYear()}.</p>`);
 }
 
