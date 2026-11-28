@@ -6,11 +6,11 @@
    - Red primero (con revalidación) para index.html, estilos.css y los JSON de datos; la caché es
      solo respaldo sin conexión o con red muy lenta. Si sirve una copia guardada,
      avisa a la página (mensaje 'ts-stale') para que lo indique al usuario.
-   - Estáticos propios (iconos, manifest, assets/): caché con actualización en segundo plano.
+   - Estáticos propios (iconos, manifest, assets/, sellos/): caché con actualización en segundo plano.
    - NO toca nada más: Supabase, autenticación, Google Fonts, CDN, admin.html,
      peticiones POST/Range... pasan directas a la red sin pasar por la caché.
    - Nunca borra datos del usuario: solo gestiona sus propias cachés (prefijo del scope). */
-const VERSION = '1.2.3';
+const VERSION = '1.2.4';
 
 const SCOPE  = self.registration.scope;       // p. ej. https://xxmadwavs.github.io/Tinta-Sapphic-La-Estanteria/
 const PREFIX = 'ts::' + SCOPE + '::';         // distinto en cada despliegue
@@ -25,7 +25,7 @@ const CSS_URL  = CSS_PATH + '?v=4';           // mismo ?v= que en el <link> de i
 const REQUIRED = [INDEX_PATH, CSS_URL];       // si falla, la instalación se reintenta
 const SHELL    = ['manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png']; // best-effort
 const DATA     = ['books_data.json', 'world_map_data.json', 'world_cities_data.json', 'world_regions_data.json', 'world_countries_data.json'];
-const STATIC_PREFIXES = ['assets/', 'icons/'];
+const STATIC_PREFIXES = ['assets/', 'icons/', 'sellos/'];
 const STATIC_FILES    = ['manifest.json'];
 
 const NET_TIMEOUT_MS = 5000;                  // red lenta: si hay copia guardada, se usa tras este tiempo

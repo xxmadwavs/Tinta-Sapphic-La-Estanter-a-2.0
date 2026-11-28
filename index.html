@@ -3279,7 +3279,12 @@ html:has(#tbrDlg[open]){overflow:hidden}
       <div class="shelf-main-title">Mi mundo sapphic</div>
     </div>
 
-    <div class="stats-block ws-block" id="wsBlock">
+    <div class="section-tabs" role="tablist" aria-label="Mi mundo sapphic">
+      <button type="button" class="section-tab active-thais" id="mundoTabMapa" role="tab" aria-selected="true" aria-controls="wsBlock" onclick="setMundoTab('mapa')">Mapa</button>
+      <button type="button" class="section-tab" id="mundoTabPasaporte" role="tab" aria-selected="false" aria-controls="ppBlock" onclick="setMundoTab('pasaporte')">Pasaporte</button>
+    </div>
+
+    <div class="stats-block ws-block" id="wsBlock" role="tabpanel" aria-labelledby="mundoTabMapa">
       <div class="ws-toolbar">
         <p class="ws-lead">Los países se descubren: cada país que aparece en al menos una lectura terminada durante el año se ilumina en el mapa.</p>
         <label class="ws-year"><span>Año</span><select id="wsYear" onchange="wsSetYear(this.value)"></select></label>
@@ -3295,6 +3300,10 @@ html:has(#tbrDlg[open]){overflow:hidden}
       </div>
       <div class="ws-empty" id="wsEmpty" hidden>Todavía no hay descubrimientos en este año. Cada lectura terminada iluminará un país en el mapa</div>
       <div id="wsCards"><div class="ws-loading">Cargando mapas…</div></div>
+    </div>
+
+    <div class="stats-block ws-block" id="ppBlock" role="tabpanel" aria-labelledby="mundoTabPasaporte" hidden>
+      <div id="ppBody"></div>
     </div>
   </div>
 </div>
@@ -12825,6 +12834,7 @@ async function openMundoModal(silent){
   document.getElementById('mundoView').classList.add('active');
   window.scrollTo({top:0});
   if(!silent) viewUrlSync('mundo',true,_mundoPrevState);
+  setMundoTab('mapa');
   renderWorldSapphic();
 }
 
@@ -13943,7 +13953,7 @@ function computePassport(){
   return [...first.values()].map(p=>{
     const b=byId.get(p.bookId);
     return {iso:p.iso,name:p.name,at:p.at,year:wsEntryYear(p.entry),dateText:wsEntryDateText(p.entry),
-      bookId:p.bookId,title:b?b.title:'',cover:b&&b.cover?b.cover:'',reads:p.reads,books:p.books.size};
+      entry:p.entry,bookId:p.bookId,title:b?b.title:'',cover:b&&b.cover?b.cover:'',reads:p.reads,books:p.books.size};
   }).sort((a,b)=>a.at<b.at?-1:a.at>b.at?1:a.name.localeCompare(b.name,'es'));
 }
 
@@ -13958,7 +13968,7 @@ function ppLoadTable(){
   if(_ppTable) return Promise.resolve(_ppTable);
   return fetch('world_countries_data.json').then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(d=>{
     const m=new Map(); (d.paises||[]).concat(d.territorios||[]).forEach(p=>m.set(p.iso,p));
-    _ppTable={byIso:m,continentes:d.continentes||{},mundo:d.mundo||{}}; return _ppTable;
+    _ppTable={byIso:m,continentes:d.continentes||{},mundo:d.mundo||{},territorios:new Set((d.territorios||[]).map(p=>p.iso))}; return _ppTable;
   });
 }
 function ppLum(hex){ const n=parseInt(String(hex).slice(1),16),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);};
@@ -14037,6 +14047,162 @@ function ppMedal(code,opts){
   opts=opts||{}; const m=ppMedalInfo(code);
   if(!opts.locked&&m.slug) return `<img class="pp-badge is-medal" style="aspect-ratio:1/1" src="${PP_IMG_DIR}${escHtml(m.slug)}.webp" alt="${escHtml('Medalla de '+m.nombre)}" loading="lazy" decoding="async" data-pp-medal="${escHtml(code)}" onerror="ppImgFallback(this)">`;
   return ppMedalSvg(code,opts);
+}
+
+/* ── Pasaporte sapphic · paso 2.1: pestañas «Mapa» / «Pasaporte» de Mundo y portada con contadores ──
+   El Pasaporte no depende del año ni del deslizador (computePassport recorre todas las lecturas terminadas).
+   Se abre siempre en «Mapa». Las páginas por continente, los huecos y las medallas llegan en los pasos siguientes. */
+let _mundoTab='mapa';
+function setMundoTab(tab){
+  tab=tab==='pasaporte'?'pasaporte':'mapa'; _mundoTab=tab;
+  const isP=tab==='pasaporte';
+  [['mundoTabMapa',!isP],['mundoTabPasaporte',isP]].forEach(([id,on])=>{
+    const b=document.getElementById(id); if(!b) return;
+    b.classList.toggle('active-thais',on); b.setAttribute('aria-selected',String(on));
+  });
+  const m=document.getElementById('wsBlock'),p=document.getElementById('ppBlock');
+  if(m) m.hidden=isP; if(p) p.hidden=!isP;
+  if(isP) ppRender();
+}
+let _ppPage='portada',_ppMissing={},_ppTerr={},_ppState=null;
+function ppRender(){
+  const host=document.getElementById('ppBody'); if(!host) return;
+  if(!host.dataset.ppBound){   // un solo listener: los sellos son enlaces #libro/ID
+    host.dataset.ppBound='1';
+    host.addEventListener('click',e=>{
+      const a=e.target.closest&&e.target.closest('a.pp-slot[data-iso]'); if(!a) return;
+      e.preventDefault(); ppOpenFicha(a.dataset.iso,a);
+    });
+    // Deslizar entre páginas (Portada → continentes). Se ignora si empieza en las pestañas (que pueden desplazarse) o si el gesto es más vertical que horizontal.
+    let sx=0,sy=0,ok=false;
+    host.addEventListener('touchstart',e=>{ const t=e.touches[0]; ok=e.touches.length===1&&!(e.target.closest&&e.target.closest('.pp-pages')); sx=t.clientX; sy=t.clientY; },{passive:true});
+    host.addEventListener('touchend',e=>{
+      if(!ok||!_ppState) return; ok=false; const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+      if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.5) return;
+      ppStep(dx<0?1:-1);
+    },{passive:true});
+  }
+  host.innerHTML='<div class="ws-loading">Cargando pasaporte…</div>';
+  Promise.all([wsLoadMap(),ppLoadTable()]).then(()=>{
+    if(_mundoTab!=='pasaporte') return;                     // el usuario ya volvió al mapa
+    _ppState={list:computePassport()||[],tab:_ppTable,isos:new Set(_wsIsoToName?_wsIsoToName.keys():[])};
+    if(_ppPage!=='portada'&&!_ppState.tab.continentes[_ppPage]) _ppPage='portada';
+    ppDraw();
+  }).catch(()=>{ host.innerHTML='<div class="ws-error">No se pudo cargar el pasaporte.<br><button type="button" onclick="ppRender()">Reintentar</button></div>'; });
+}
+function ppSetPage(p){ _ppPage=p; ppDraw(); }
+function ppStep(d){   // d=+1 página siguiente, -1 anterior; sin vuelta al llegar al final
+  if(!_ppState) return; const order=['portada'].concat(Object.keys(_ppState.tab.continentes));
+  const i=order.indexOf(_ppPage)+d; if(i<0||i>=order.length) return;
+  ppSetPage(order[i]);
+}
+function ppMonthYear(p){ const P=p.entry&&rcEntryParts(p.entry); if(!P) return p.dateText||''; return P.month==null?String(P.year):WS_MES[P.month-1]+' '+P.year; }
+function ppToggleTerr(code){ _ppTerr[code]=!_ppTerr[code]; ppDraw(); }
+function ppToggleMissing(code){ _ppMissing[code]=!_ppMissing[code]; ppDraw(); }
+function ppContOf(S,iso){ const e=S.tab.byIso.get(iso); return e&&S.tab.continentes[e.continente]?e.continente:null; }
+function ppDraw(){
+  const host=document.getElementById('ppBody'),S=_ppState; if(!host||!S) return;
+  const codes=Object.keys(S.tab.continentes),cnt={}; codes.forEach(c=>cnt[c]=0);
+  S.list.forEach(p=>{ const c=ppContOf(S,p.iso); if(c) cnt[c]++; });
+  const nav=`<nav class="pp-pages section-tabs" aria-label="Páginas del pasaporte">`+
+    `<button type="button" class="section-tab${_ppPage==='portada'?' active-thais':''}"${_ppPage==='portada'?' aria-current="page"':''} onclick="ppSetPage('portada')">Portada</button>`+
+    codes.map(c=>`<button type="button" class="section-tab${_ppPage===c?' active-thais':''}"${_ppPage===c?' aria-current="page"':''} onclick="ppSetPage('${c}')">${escHtml(S.tab.continentes[c].nombre)} <span class="tab-count">${cnt[c]}</span></button>`).join('')+`</nav>`;
+  host.innerHTML=nav+(_ppPage==='portada'?ppCoverHtml(S,codes):ppContinentHtml(S,_ppPage));
+  const act=host.querySelector('.pp-pages .active-thais');   // con muchas pestañas, la activa queda a la vista (también tras deslizar)
+  if(act&&act.scrollIntoView) try{ act.scrollIntoView({block:'nearest',inline:'center'}); }catch(e){}
+}
+/* Regla de medallas (A): la de continente se consigue con PP_MEDAL_MIN países descubiertos en él; la de Mundo, con todas las de continente. */
+const PP_MEDAL_MIN=5;
+function ppMedalStatus(S,codes){
+  const cnt={}; codes.forEach(c=>cnt[c]=0);
+  S.list.forEach(p=>{ const c=ppContOf(S,p.iso); if(c) cnt[c]++; });
+  const conts=codes.map(c=>({code:c,n:cnt[c],ok:cnt[c]>=PP_MEDAL_MIN})),done=conts.filter(m=>m.ok).length;
+  return {conts,done,world:codes.length>0&&done===codes.length};
+}
+function ppCoverHtml(S,codes){
+  const n=S.list.length,conts=new Set(); S.list.forEach(p=>{ const c=ppContOf(S,p.iso); if(c) conts.add(c); });
+  const M=ppMedalStatus(S,codes);
+  const items=M.conts.map(m=>({code:m.code,ok:m.ok,name:S.tab.continentes[m.code].nombre,sub:m.ok?'Conseguida':`${m.n} de ${PP_MEDAL_MIN} países`}))
+    .concat([{code:'MUNDO',ok:M.world,name:'Mundo',sub:M.world?'Conseguida':`${M.done} de ${codes.length} continentes`}]);
+  const medals=`<h3 class="pp-h">Medallas</h3><ul class="pp-medals" aria-label="Medallas">`+items.map(i=>
+    `<li class="pp-medal${i.ok?'':' is-locked'}">${ppMedal(i.code,{locked:!i.ok})}<span class="pp-name">${escHtml(i.name)}</span><span class="pp-date">${escHtml(i.sub)}</span></li>`).join('')+`</ul>`;
+  let last='';
+  if(n){
+    const p=S.list[n-1],e=S.tab.byIso.get(p.iso),name=(e&&e.nombre)||p.name,date=p.dateText||'';
+    last=`<h3 class="pp-h">Último sello</h3><div class="pp-last"><a class="pp-slot" href="#libro/${encodeURIComponent(p.bookId)}" data-iso="${escHtml(p.iso)}" data-book="${escHtml(String(p.bookId))}" aria-label="${escHtml(name+(date?', primera lectura '+date:'')+(p.title?': '+p.title:''))}">${ppBadge(p.iso)}<span class="pp-name">${escHtml(name)}</span>${date?`<span class="pp-date">${escHtml(date)}</span>`:''}${p.title?`<span class="pp-date">${escHtml(p.title)}</span>`:''}</a></div>`;
+  }
+  return `<p class="ws-lead">Cada país se abre con tu primera lectura terminada de allí, sin importar el año. La medalla de un continente llega con ${PP_MEDAL_MIN} países; la de Mundo, con todas las de continente.</p>`+
+    `<div class="ws-counters" role="group" aria-label="Resumen del pasaporte">`+
+      `<span><b>${n}</b> ${n===1?'país':'países'}</span>`+
+      `<span><b>${conts.size}</b> de ${codes.length} continentes</span>`+
+    `</div>`+
+    (n?'':`<div class="ws-empty">Todavía no tienes sellos. Termina un libro ambientado o escrito en otro país para abrir tu primera página.</div>`)+
+    medals+last;
+}
+/* Ficha del sello: portada y título del libro que abrió el país, primera lectura, nº de libros leídos de allí y acceso a BookPage.
+   Solo datos de computePassport (sin inventar nada). Esc, clic fuera o «Cerrar» la cierran y el foco vuelve al sello. */
+let _ppFichaFrom=null;
+function ppCloseFicha(silent){
+  const el=document.getElementById('ppFicha'); if(!el) return;
+  document.removeEventListener('keydown',ppFichaKey,true); el.remove();
+  if(!silent&&_ppFichaFrom&&document.contains(_ppFichaFrom)) try{ _ppFichaFrom.focus(); }catch(e){}
+}
+function ppFichaKey(e){
+  const el=document.getElementById('ppFicha'); if(!el) return;
+  if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); ppCloseFicha(); return; }
+  if(e.key!=='Tab') return;
+  const f=[...el.querySelectorAll('button,a[href]')]; if(!f.length) return;
+  const first=f[0],last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
+}
+function ppOpenFicha(iso,trigger){
+  const S=_ppState; if(!S) return;
+  const p=S.list.find(x=>x.iso===iso); if(!p) return;
+  ppCloseFicha(true); _ppFichaFrom=trigger||null;
+  const e=S.tab.byIso.get(iso),name=(e&&e.nombre)||p.name,hasBook=allBooks.some(b=>String(b.id)===String(p.bookId));
+  const cover=p.cover?`<img class="pp-f-cover" src="${escHtml(p.cover)}" alt="${escHtml('Portada de '+p.title)}" decoding="async" onerror="this.outerHTML='<div class=pp-f-ph></div>'">`:'<div class="pp-f-ph" aria-hidden="true"></div>';
+  const nb=p.books===1?'1 libro leído':`${p.books} libros leídos`;
+  const el=document.createElement('div'); el.id='ppFicha'; el.className='pp-ficha';
+  el.innerHTML=`<div class="pp-f-back" data-pp-close="1"></div>`+
+    `<div class="pp-f-card" role="dialog" aria-modal="true" aria-labelledby="ppFichaT">`+
+      `<div class="pp-f-top"><div class="pp-f-badge">${ppBadge(iso)}</div><h3 class="pp-f-name" id="ppFichaT">${escHtml(name)}</h3></div>`+
+      `<div class="pp-f-body">${cover}<div class="pp-f-info">`+
+        `<span class="pp-f-lbl">Lo abrió</span><span class="pp-f-book">${escHtml(p.title||'Libro sin título')}</span>`+
+        (p.dateText?`<span class="pp-f-lbl">Primera lectura</span><span class="pp-f-val">${escHtml(p.dateText)}</span>`:'')+
+        `<span class="pp-f-lbl">De este país</span><span class="pp-f-val">${escHtml(nb)}</span>`+
+      `</div></div>`+
+      `<div class="pp-f-actions">${hasBook?`<button type="button" class="ws-rand" id="ppFichaGo">Ver libro</button>`:''}<button type="button" class="ws-rand" data-pp-close="1">Cerrar</button></div>`+
+    `</div>`;
+  el.addEventListener('click',ev=>{ if(ev.target.closest&&ev.target.closest('[data-pp-close]')) ppCloseFicha(); });
+  const go=el.querySelector('#ppFichaGo');
+  if(go) go.addEventListener('click',()=>{ ppCloseFicha(true); openBookPage(p.bookId); });
+  document.body.appendChild(el);
+  document.addEventListener('keydown',ppFichaKey,true);
+  const first=el.querySelector('button'); if(first) first.focus();
+}
+function ppSlotHtml(S,p,byId){
+  const e=S.tab.byIso.get(p.iso),name=(e&&e.nombre)||p.name,my=ppMonthYear(p),full=p.dateText||'',bk=byId.get(String(p.bookId));
+  return `<li><a class="pp-slot" href="#libro/${encodeURIComponent(p.bookId)}" data-iso="${escHtml(p.iso)}" data-book="${escHtml(String(p.bookId))}" aria-label="${escHtml(name+(full?', primera lectura '+full:'')+(bk?': '+bk.title:''))}">${ppBadge(p.iso)}<span class="pp-name">${escHtml(name)}</span>${my?`<span class="pp-date">${escHtml(my)}</span>`:''}</a></li>`;
+}
+function ppHoleHtml(e){ return `<li><div class="pp-slot is-empty">${ppBadge(e.iso,{locked:true})}<span class="pp-name">${escHtml(e.nombre)}</span></div></li>`; }
+function ppContinentHtml(S,code){
+  const cont=S.tab.continentes[code],isT=iso=>S.tab.territorios.has(iso);
+  const foundAll=S.list.filter(p=>ppContOf(S,p.iso)===code),got=new Set(foundAll.map(p=>p.iso));
+  const missAll=[...S.tab.byIso.values()].filter(e=>e.continente===code&&S.isos.has(e.iso)&&!got.has(e.iso)).sort((x,y)=>x.nombre.localeCompare(y.nombre,'es'));
+  const foundC=foundAll.filter(p=>!isT(p.iso)),foundT=foundAll.filter(p=>isT(p.iso)),missC=missAll.filter(e=>!isT(e.iso)),missT=missAll.filter(e=>isT(e.iso));
+  const total=foundAll.length+missAll.length,pct=total?foundAll.length/total*100:0,open=!!_ppMissing[code],tOpen=!!_ppTerr[code],tTot=foundT.length+missT.length;
+  const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
+  const medOk=foundAll.length>=PP_MEDAL_MIN,medTxt=medOk?'Medalla conseguida':`Medalla: ${foundAll.length} de ${PP_MEDAL_MIN} países`;
+  return `<div class="pp-pagehead"><div class="pp-ph-main"><div class="pp-ph-medal">${ppMedal(code,{locked:!medOk})}</div><div><h3 class="pp-pagetitle">${escHtml(cont.nombre)}</h3><span class="pp-ph-sub">${escHtml(medTxt)}</span></div></div>`+
+      `<span class="ws-prog-txt">${foundAll.length} de ${total} países y territorios · ${Math.round(pct)} %</span></div>`+
+    `<div class="ws-prog"><div class="ws-prog-bar" role="progressbar" aria-label="Sellos de ${escHtml(cont.nombre)}" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${foundAll.length}"><i style="width:${pct.toFixed(1)}%"></i></div></div>`+
+    (foundC.length?`<ul class="pp-grid">${foundC.map(p=>ppSlotHtml(S,p,byId)).join('')}</ul>`
+      :(foundAll.length?'':`<div class="ws-empty">Aún no has abierto esta página. Cada libro terminado de ${escHtml(cont.nombre)} añade un sello.</div>`))+
+    (missC.length?`<button type="button" class="ws-rand pp-more" aria-expanded="${open}" onclick="ppToggleMissing('${code}')">${open?'Ocultar los que faltan':`Mostrar los ${missC.length} que faltan`}</button>`:'')+
+    (open&&missC.length?`<ul class="pp-grid pp-holes" aria-label="Sellos por descubrir">${missC.map(ppHoleHtml).join('')}</ul>`:'')+
+    (tTot?`<button type="button" class="ws-rand pp-more pp-terr" aria-expanded="${tOpen}" onclick="ppToggleTerr('${code}')">${tOpen?'Ocultar':'Mostrar'} territorios · ${foundT.length} de ${tTot}</button>`:'')+
+    (tOpen&&tTot?`<ul class="pp-grid pp-terrs" aria-label="Territorios">${foundT.map(p=>ppSlotHtml(S,p,byId)).join('')}${missT.map(ppHoleHtml).join('')}</ul>`:'');
 }
 
 function wsFillYearSelect(){
@@ -17736,6 +17902,53 @@ html body #bookPage .bp-prot-card .tag{min-height:0;padding-top:3px;padding-bott
 html body #bookPage .bp-prot-card .tag-adder-select,
 html body #bookPage .bp-prot-card .bp-tag-adder,
 html body #bookPage .bp-prot-card .bp-add-btn{-webkit-appearance:none;appearance:none;background-image:none;min-height:32px!important;height:32px;width:auto;max-width:92px;padding:0 12px;font-size:12px;line-height:1;text-align:center;text-align-last:center}
+</style>
+<style id="pp-pasaporte">
+/* Pasaporte sapphic · paso 2.2: páginas por continente (solo variables existentes; sirve a los tres temas) */
+#ppBody .pp-pages{margin:0 0 1.1rem}
+#ppBody .pp-pages .section-tab{padding:7px 14px;font-size:12.5px}
+#ppBody .pp-pagehead{display:flex;align-items:baseline;justify-content:space-between;gap:.3rem 1rem;flex-wrap:wrap;margin:.2rem 0 .2rem}
+#ppBody .pp-pagetitle{font-family:var(--font-display);font-size:1.6rem;font-weight:500;color:var(--text);margin:0}
+#ppBody .pp-ph-main{display:flex;align-items:center;gap:.7rem;min-width:0}
+#ppBody .pp-ph-medal{flex:0 0 52px;width:52px}
+#ppBody .pp-ph-sub{display:block;font-size:11px;color:var(--muted)}
+#ppBody .pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin:1rem 0;padding:0;list-style:none}
+#ppBody .pp-grid>li{min-width:0}
+#ppBody .pp-slot{display:flex;flex-direction:column;align-items:center;gap:.3rem;height:100%;padding:.55rem .4rem .65rem;border:1px solid var(--border2);border-radius:14px;background:var(--surface);color:inherit;text-align:center;text-decoration:none}
+#ppBody a.pp-slot:hover{border-color:var(--accent2)}
+#ppBody a.pp-slot:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#ppBody .pp-slot.is-empty{background:transparent;border-style:dashed}
+#ppBody .pp-name{font-size:12px;font-weight:600;line-height:1.25;color:var(--text);overflow-wrap:anywhere}
+#ppBody .pp-date{font-size:11px;color:var(--muted)}
+#ppBody .pp-slot.is-empty .pp-name{font-weight:500;color:var(--muted)}
+#ppBody .pp-sub{grid-column:1/-1;margin-top:.3rem;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#ppBody .pp-more{margin-top:.2rem}
+#ppBody .pp-terr{display:block;margin-top:.9rem}
+#ppBody .pp-h{margin:1.4rem 0 .6rem;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#ppBody .pp-medals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem .6rem;margin:0;padding:0;list-style:none}
+#ppBody .pp-medal{display:flex;flex-direction:column;align-items:center;gap:.25rem;min-width:0;text-align:center}
+#ppBody .pp-medal .pp-badge{width:100%;max-width:96px}
+#ppBody .pp-medal.is-locked .pp-name{font-weight:500;color:var(--muted)}
+#ppBody .pp-last{max-width:220px}
+@media (min-width:640px){#ppBody .pp-medals{grid-template-columns:repeat(6,minmax(0,1fr))}}
+#ppFicha{position:fixed;inset:0;z-index:2100;display:flex;align-items:flex-end;justify-content:center}
+#ppFicha .pp-f-back{position:absolute;inset:0;background:rgba(20,10,16,.55)}
+#ppFicha .pp-f-card{position:relative;width:100%;max-width:420px;max-height:90vh;overflow:auto;padding:1.1rem 1.1rem 1.2rem;border:1px solid var(--border2);border-radius:18px 18px 0 0;background:var(--surface);color:var(--text);box-shadow:0 -6px 28px rgba(0,0,0,.25)}
+#ppFicha .pp-f-top{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem}
+#ppFicha .pp-f-badge{flex:0 0 96px}
+#ppFicha .pp-f-name{margin:0;font-family:var(--font-display);font-size:1.4rem;font-weight:500;line-height:1.2;overflow-wrap:anywhere}
+#ppFicha .pp-f-body{display:flex;gap:.9rem;align-items:flex-start}
+#ppFicha .pp-f-cover,#ppFicha .pp-f-ph{flex:0 0 84px;width:84px;aspect-ratio:2/3;border-radius:6px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#ppFicha .pp-f-ph{background:var(--accent-soft,#eee);border:1px dashed var(--border2);box-shadow:none}
+#ppFicha .pp-f-info{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+#ppFicha .pp-f-lbl{margin-top:.5rem;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#ppFicha .pp-f-lbl:first-child{margin-top:0}
+#ppFicha .pp-f-book{font-size:14px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+#ppFicha .pp-f-val{font-size:13px}
+#ppFicha .pp-f-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.1rem}
+@media (min-width:640px){#ppFicha{align-items:center}#ppFicha .pp-f-card{border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.35)}}
+@media (min-width:640px){#ppBody .pp-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:900px){#ppBody .pp-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 </style>
 </body>
 </html>
