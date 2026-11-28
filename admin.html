@@ -1175,6 +1175,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
   </div>
 </div>
+<div class="chip-section" id="sec-programado">
+  <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl" style="color:var(--gold)">🗓️ Publicación programada</span></div>
+  <div class="chip-section-body">
+<label class="form-label">Mostrar en la web a partir de (vacío = visible ya)</label>
+<div style="display:flex;gap:8px;align-items:center">
+  <input type="date" id="fPublicarDesde" style="max-width:200px">
+  <button type="button" class="btn small" onclick="document.getElementById('fPublicarDesde').value=''">Quitar fecha</button>
+</div>
+  </div>
+</div>
 <div class="chip-section" id="sec-canal">
   <div class="chip-section-hd" onclick="toggleChipSection(this)"><span class="chip-section-arrow">▾</span><span class="chip-section-lbl" style="color:var(--teal)">📻 Recomendación del Canal</span><span class="fold-sum" id="sum-canal"></span></div>
   <div class="chip-section-body">
@@ -1845,11 +1855,13 @@ function renderBookList() {
     const spicyLabel=(b.spicy===null||b.spicy===undefined)?`<span class="badge" style="background:rgba(120,120,120,0.12);color:var(--muted);border:1px solid rgba(120,120,120,0.2)">❓</span>`:b.spicy>0?`<span class="badge" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.2)">${'🌶'.repeat(b.spicy)}</span>`:'';
     const authorStr=(b.authors||[]).join(', ')||'—';
     const votes=vc[b.id]||0;
+    const hoyISO=new Date().toLocaleDateString('sv-SE');
+    const progBadge=(b.publicar_desde&&b.publicar_desde>hoyISO)?`<span class="badge" style="background:var(--gold-soft);color:var(--gold);border:1px solid rgba(201,151,90,0.2)">🗓️ programado ${b.publicar_desde.split('-').reverse().join('/')}</span>`:'';
     const sagaStr=b.sagaName?` · ${b.sagaName}${b.sagaNum!=null?' #'+b.sagaNum:''}`:'';
     return `<div class="book-item">
       ${cover}
       <div class="book-info">
-        <div class="book-name">${b.title} ${genreBadges}${spicyLabel}</div>
+        <div class="book-name">${b.title} ${genreBadges}${spicyLabel}${progBadge}</div>
         <div class="book-meta">${authorStr}${b.year?' · '+b.year:''}${sagaStr} · ${votes} voto${votes!==1?'s':''}</div>
       </div>
       <div class="book-actions">
@@ -2004,6 +2016,7 @@ function openEditModal(id) {
   document.getElementById('thaiCatField').style.display=b.thaiclub?'block':'none';
   document.getElementById('fThaiCats').value=(b.thai_categories||[]).join(', ');
   // Canal Rec
+  document.getElementById('fPublicarDesde').value=b.publicar_desde||'';
   document.getElementById('fCanalRec').checked=!!b.canal_rec;
   document.getElementById('canalRecField').style.display=b.canal_rec?'block':'none';
   document.getElementById('fCanalMonth').value=b.canal_month||'';
@@ -2077,6 +2090,7 @@ function clearForm() {
   document.getElementById('thaiCatField').style.display='none';
   document.getElementById('fThaiCats').value='';
   document.getElementById('fTraduccion').value='';
+  document.getElementById('fPublicarDesde').value='';
   document.getElementById('fCanalRec').checked=false;
   document.getElementById('canalRecField').style.display='none';
   document.getElementById('fCanalMonth').value='';
@@ -2797,6 +2811,7 @@ function saveBook() {
     thai_categories: document.getElementById('fThaiClub').checked
       ? (v=>v.length?v:['Sin categoría'])(document.getElementById('fThaiCats').value.split(',').map(s=>s.trim()).filter(Boolean))
       : [],
+    publicar_desde: document.getElementById('fPublicarDesde').value||null,
     canal_rec: document.getElementById('fCanalRec').checked,
     canal_month: document.getElementById('fCanalRec').checked
       ? (document.getElementById('fCanalMonth').value.trim()||'Sin fecha')
