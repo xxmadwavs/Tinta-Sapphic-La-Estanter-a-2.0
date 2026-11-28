@@ -3284,6 +3284,11 @@ html:has(#tbrDlg[open]){overflow:hidden}
         <p class="ws-lead">Los países se descubren: cada país que aparece en al menos una lectura terminada durante el año se ilumina en el mapa.</p>
         <label class="ws-year"><span>Año</span><select id="wsYear" onchange="wsSetYear(this.value)"></select></label>
       </div>
+      <div class="ws-tl" id="wsTl" hidden>
+        <button type="button" class="ws-tl-play" id="wsTlPlay" aria-label="Reproducir">▶</button>
+        <input type="range" class="ws-tl-range" id="wsTlRange" min="0" max="0" value="0" step="1" aria-label="Línea de tiempo: lecturas en orden cronológico">
+        <div class="ws-tl-label" id="wsTlLabel" aria-live="polite"></div>
+      </div>
       <div class="ws-empty" id="wsEmpty" hidden>Todavía no hay descubrimientos en este año. Cada lectura terminada iluminará un país en el mapa</div>
       <div id="wsCards"><div class="ws-loading">Cargando mapas…</div></div>
     </div>
@@ -13889,7 +13894,7 @@ function computeWorldDiscoveries(year){
   const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
   Object.keys(myReadingLog).forEach(bookId=>{
     // Cada entrada del historial es una lectura independiente (las relecturas suman)
-    const n=(myReadingLog[bookId]||[]).filter(e=>wsEntryYear(e)===year).length;
+    const n=wsEntryCount(bookId,year);
     if(!n) return;
     const book=byId.get(String(bookId));
     WS_MAPS.forEach(m=>{
@@ -13911,15 +13916,98 @@ function wsFillYearSelect(){
   const sel=document.getElementById('wsYear'); if(!sel) return;
   const cur=new Date().getFullYear(),{min,max}=wsYearBounds();
   const lo=Math.min(min==null?cur:min,cur),hi=Math.max(max==null?cur:max,cur);
-  if(wsYear==null||wsYear<lo||wsYear>hi) wsYear=cur;
-  let html='';
+  if(wsYear==null||(wsYear!=='all'&&(wsYear<lo||wsYear>hi))) wsYear=cur;
+  let html='<option value="all">Todos los años</option>';
   for(let y=hi;y>=lo;y--) html+=`<option value="${y}">${y}</option>`;
   sel.innerHTML=html; sel.value=String(wsYear);
 }
 function wsSetYear(v){
-  const y=parseInt(v,10); if(isNaN(y)) return;
+  const y=v==='all'?'all':parseInt(v,10); if(y!=='all'&&isNaN(y)) return;
+  wsTlStop(); _wsTl.limit=null;
   _wsKeepYearSel=true; // Fase 5.3: el país seleccionado sobrevive al cambio de año
   wsYear=y; renderWorldSapphic();
+}
+
+/* ── Todos los años + línea de tiempo ──
+   wsYear puede ser un año (número) o 'all'. Con 'all' aparece un deslizador que recorre las lecturas terminadas en orden
+   cronológico (read_at): el mapa muestra solo las primeras v, de modo que los países se van iluminando en el orden en que se descubrieron.
+   Con el deslizador al final (v = total) el resultado es idéntico a 'Todos los años' sin deslizador. */
+let _wsTl={entries:[],limit:null,allowed:new Map(),playing:false,timer:0,raf:0,inited:false};
+const WS_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function wsInYear(){ return wsYear==='all'?'':' en '+wsYear; }
+// Nº de lecturas terminadas del libro que cuentan ahora: ese año, o todas (o las del tramo del deslizador) con 'all'
+function wsEntryCount(bookId,year){
+  const list=myReadingLog[bookId]||[];
+  if(year==='all'){
+    if(_wsTl.limit==null) return list.filter(e=>wsEntryYear(e)!=null).length;
+    return _wsTl.allowed.get(String(bookId))||0;
+  }
+  return list.filter(e=>wsEntryYear(e)===year).length;
+}
+function wsTlBuild(){
+  const out=[];
+  Object.keys(myReadingLog).forEach(id=>(myReadingLog[id]||[]).forEach(e=>{ if(wsEntryYear(e)!=null) out.push({id:String(id),at:e.read_at,e}); }));
+  out.sort((a,b)=>a.at<b.at?-1:a.at>b.at?1:(a.id<b.id?-1:a.id>b.id?1:0));
+  _wsTl.entries=out;
+}
+function wsTlSetLimit(v){
+  const N=_wsTl.entries.length; v=Math.max(0,Math.min(N,v|0));
+  _wsTl.limit=v>=N?null:v;
+  const m=new Map(); for(let i=0;i<v;i++){ const id=_wsTl.entries[i].id; m.set(id,(m.get(id)||0)+1); }
+  _wsTl.allowed=m;
+}
+function wsTlLabel(){
+  const lab=document.getElementById('wsTlLabel'); if(!lab) return;
+  const N=_wsTl.entries.length,v=_wsTl.limit==null?N:_wsTl.limit;
+  if(!v){ lab.textContent='Antes de tu primera lectura · 0 de '+N; return; }
+  const it=_wsTl.entries[v-1],P=rcEntryParts(it.e),b=allBooks.find(x=>String(x.id)===it.id);
+  const f=P?(P.month==null?String(P.year):(P.day==null?WS_MES[P.month-1]+' '+P.year:P.day+' '+WS_MES[P.month-1]+' '+P.year)):'';
+  lab.textContent=f+(b?' · '+b.title:'')+' · '+v+' de '+N;
+}
+function wsTlSync(){
+  const box=document.getElementById('wsTl'); if(!box) return;
+  if(wsYear!=='all'){ wsTlStop(); _wsTl.limit=null; _wsTl.allowed=new Map(); box.hidden=true; return; }
+  wsTlBuild();
+  const N=_wsTl.entries.length;
+  box.hidden=!N;
+  wsTlSetLimit(_wsTl.limit==null?N:_wsTl.limit);
+  const rng=document.getElementById('wsTlRange'); rng.max=String(N); rng.value=String(_wsTl.limit==null?N:_wsTl.limit);
+  wsTlLabel();
+  if(!_wsTl.inited){
+    _wsTl.inited=true;
+    rng.addEventListener('input',()=>{ wsTlStop(); wsTlSetLimit(+rng.value); wsTlQueue(); });
+    document.getElementById('wsTlPlay').addEventListener('click',wsTlTogglePlay);
+  }
+}
+function wsTlQueue(){ if(_wsTl.raf) return; _wsTl.raf=requestAnimationFrame(()=>{ _wsTl.raf=0; wsTlApply(); }); }
+// Repinta con el tramo actual (sin pasar por renderWorldSapphic: conserva país seleccionado y zoom) y resalta lo recién descubierto
+function wsTlApply(){
+  if(wsYear!=='all'||!_wsBuilt) return;
+  const before=WS_MAPS.map(m=>new Set(_wsResult[m.key]?_wsResult[m.key].countries.keys():[]));
+  _wsResult=computeWorldDiscoveries('all'); wsPaint(); wsTlLabel(); wsRenderCities();
+  if(_prefersReducedMotion()) return;
+  WS_MAPS.forEach((m,i)=>{ const ref=_wsRefs[m.key]; _wsResult[m.key].countries.forEach((n,iso)=>{
+    if(before[i].has(iso)) return;
+    (ref.byIso.get(iso)||[]).forEach(el=>{ if(!el.classList.contains('ws-c')) return; el.classList.remove('is-new'); void el.getBoundingClientRect(); el.classList.add('is-new'); setTimeout(()=>el.classList.remove('is-new'),1000); });
+  }); });
+}
+function wsTlStop(){
+  _wsTl.playing=false; clearInterval(_wsTl.timer); _wsTl.timer=0;
+  const b=document.getElementById('wsTlPlay'); if(b){ b.textContent='▶'; b.setAttribute('aria-label','Reproducir'); }
+}
+function wsTlTogglePlay(){
+  if(_wsTl.playing){ wsTlStop(); return; }
+  const N=_wsTl.entries.length,rng=document.getElementById('wsTlRange'),btn=document.getElementById('wsTlPlay'); if(!N||!rng) return;
+  let v=_wsTl.limit==null?N:_wsTl.limit; if(v>=N) v=0;      // al final → vuelve a empezar
+  const step=Math.max(1,Math.ceil(N/150));                    // ~13 s de principio a fin
+  _wsTl.playing=true; btn.textContent='⏸'; btn.setAttribute('aria-label','Pausar');
+  wsTlSetLimit(v); rng.value=String(v); wsTlApply();
+  _wsTl.timer=setInterval(()=>{
+    const view=document.getElementById('mundoView');
+    if(wsYear!=='all'||!view||!view.classList.contains('active')){ wsTlStop(); return; }
+    v=Math.min(N,v+step); wsTlSetLimit(v); rng.value=String(v); wsTlApply();
+    if(v>=N) wsTlStop();
+  },90);
 }
 
 function wsBuild(){
@@ -14065,11 +14153,11 @@ function wsPaint(){
     const regs=[...res.regions.entries()];
     document.getElementById('wsAlt_'+m.key).innerHTML=
       (rows.length?`<ul class="ws-alt-list">${rows.map(([nm,n])=>`<li>${escHtml(nm)}<span>${n} lectura${n===1?'':'s'}</span></li>`).join('')}</ul>`
-        :`<p class="ws-alt-note">Aún no hay países descubiertos en ${wsYear}.</p>`)+
+        :`<p class="ws-alt-note">Aún no hay países descubiertos${wsInYear()}.</p>`)+
       (regs.length?`<p class="ws-alt-note">Región sin país concreto (no se pinta en el mapa): ${regs.map(([g,n])=>`${escHtml(g)} (${n} lectura${n===1?'':'s'})`).join(', ')}.</p>`:'');
   });
   const empty=document.getElementById('wsEmpty');
-  if(empty){ empty.hidden=anyFound; empty.textContent=`Todavía no hay descubrimientos en ${wsYear}. Cada lectura terminada iluminará un país en el mapa`; }
+  if(empty){ empty.hidden=anyFound; empty.textContent=`Todavía no hay descubrimientos${wsInYear()}. Cada lectura terminada iluminará un país en el mapa`; }
 }
 
 function wsShowError(){
@@ -14081,6 +14169,7 @@ function wsShowError(){
 function renderWorldSapphic(){
   if(!document.getElementById('wsBlock')) return;
   wsFillYearSelect();
+  wsTlSync();
   if(!_wsMap){
     if(!_wsBuilt&&!document.querySelector('#wsCards .ws-loading')) document.getElementById('wsCards').innerHTML='<div class="ws-loading">Cargando mapas…</div>';
     wsLoadMap().then(()=>{ if(document.getElementById('mundoView').classList.contains('active')) renderWorldSapphic(); }).catch(wsShowError);
@@ -14176,7 +14265,7 @@ function computeCityDiscoveries(year){
   if(!_wsCityIndex) return res;
   const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
   Object.keys(myReadingLog).forEach(bookId=>{
-    const n=(myReadingLog[bookId]||[]).filter(e=>wsEntryYear(e)===year).length;
+    const n=wsEntryCount(bookId,year);
     if(!n) return;
     const book=byId.get(String(bookId)),ids=new Set(),regs=new Map(),cityRegs=new Set();
     if(book&&Array.isArray(book.ubicaciones)) book.ubicaciones.forEach(u=>{
@@ -14549,7 +14638,7 @@ function wsCountryPanel(iso,list,rlist){
   p.innerHTML=`<div class="ws-cp-head"><button type="button" class="ws-cp-back" data-back-world="1">← Mundo</button><h4 class="ws-cp-title">${escHtml(name)}</h4></div>`+
     (list.length?(both?'<h5 class="ws-cp-sub">Ciudades</h5>':'')+`<ul class="ws-cp-list">${list.map(cityRow).join('')}</ul>`:'')+
     (rlist.length?'<h5 class="ws-cp-sub">Regiones · ubicación aproximada</h5>'+`<ul class="ws-cp-list">${rlist.map(regRow).join('')}</ul>`:'')+
-    (both||list.length||rlist.length?'':`<p class="ws-cp-none">No hay ciudades ni regiones descubiertas en ${escHtml(name)} en ${wsYear}.</p>`);
+    (both||list.length||rlist.length?'':`<p class="ws-cp-none">No hay ciudades ni regiones descubiertas en ${escHtml(name)}${wsInYear()}.</p>`);
 }
 
 // Lista alternativa de países (accesible): botones para los seleccionables, incluidos los descubiertos solo por una ciudad

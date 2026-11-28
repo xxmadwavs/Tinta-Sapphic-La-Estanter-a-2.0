@@ -5735,3 +5735,14 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 .ws-card[data-map="cultura"] .ws-svg.is-zoomed{touch-action:none;cursor:grab}
 .ws-card[data-map="cultura"] .ws-svg.is-dragging{cursor:grabbing}
 @media (prefers-reduced-motion:reduce){.ws-zoom-hint{transition:none}}
+/* ── Mi mundo sapphic: todos los años + línea de tiempo ── */
+.ws-tl{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:.2rem 0 1rem}
+.ws-tl[hidden]{display:none}
+.ws-tl-play{flex:0 0 auto;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--accent);background:var(--accent-soft);color:var(--text);font-size:14px;line-height:1;cursor:pointer}
+.ws-tl-play:hover{background:var(--accent);color:var(--surface)}
+.ws-tl-play:focus-visible,.ws-tl-range:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ws-tl-range{flex:1 1 220px;min-width:0;accent-color:var(--accent);height:28px;cursor:pointer}
+.ws-tl-label{flex:1 1 100%;font-size:12px;color:var(--muted);min-height:1.4em}
+@keyframes ws-pop{0%{filter:brightness(2.2) drop-shadow(0 0 4px var(--accent))}100%{filter:none}}
+.ws-c.is-new{animation:ws-pop .9s ease-out}
+@media (prefers-reduced-motion:reduce){.ws-c.is-new{animation:none}}
