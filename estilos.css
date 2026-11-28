@@ -5711,3 +5711,27 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 .pwa-ok{display:inline-flex;align-items:center;justify-content:center;padding:9px 22px;border-radius:30px;border:1px solid var(--accent);background:var(--accent);color:var(--surface);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer}
 .pwa-ok:hover{background:var(--accent2)}
 .pwa-ok:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+/* ── Mi mundo sapphic: libros del lugar elegido ── */
+.ws-books:empty{display:none}
+.ws-books{margin-top:.6rem}
+.ws-books-head{margin:0 0 .45rem;font-size:12px;color:var(--muted)}
+.ws-books-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.8rem .6rem;max-height:340px;overflow-y:auto}
+.ws-book{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--text);font-size:11.5px;line-height:1.3;border-radius:8px}
+.ws-book img,.ws-books-ph{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;border:1px solid var(--border);background:var(--accent-soft)}
+.ws-books-ph{display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.ws-book-t{font-weight:600}
+.ws-book-a{color:var(--muted)}
+.ws-book:hover .ws-book-t{color:var(--accent)}
+.ws-book:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:640px){.ws-books{padding:0 .3rem}}
+/* ── Mi mundo sapphic: zoom y arrastre libres ── */
+.ws-zoom{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:4px;z-index:3}
+.ws-zoom button{width:36px;height:36px;padding:0;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font-family:var(--font-body);font-size:18px;font-weight:600;line-height:1;cursor:pointer;opacity:.92}
+.ws-zoom button:hover:not(:disabled){background:var(--accent-soft)}
+.ws-zoom button:disabled{opacity:.35;cursor:default}
+.ws-zoom button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ws-zoom-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);width:max-content;max-width:90%;padding:6px 12px;border-radius:20px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:3}
+.ws-zoom-hint.show{opacity:1}
+.ws-card[data-map="cultura"] .ws-svg.is-zoomed{touch-action:none;cursor:grab}
+.ws-card[data-map="cultura"] .ws-svg.is-dragging{cursor:grabbing}
+@media (prefers-reduced-motion:reduce){.ws-zoom-hint{transition:none}}
