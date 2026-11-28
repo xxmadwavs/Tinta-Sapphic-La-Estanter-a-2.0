@@ -1,0 +1,2565 @@
+{
+ "version": 2,
+ "continentes": {
+  "AF": {
+   "nombre": "África",
+   "medalla": "africa"
+  },
+  "AM": {
+   "nombre": "América",
+   "medalla": "america"
+  },
+  "AS": {
+   "nombre": "Asia",
+   "medalla": "asia"
+  },
+  "EU": {
+   "nombre": "Europa",
+   "medalla": "europa"
+  },
+  "OC": {
+   "nombre": "Oceanía",
+   "medalla": "oceania"
+  }
+ },
+ "mundo": {
+  "medalla": "mundo"
+ },
+ "paises": [
+  {
+   "iso": "AF",
+   "nombre": "Afganistán",
+   "continente": "AS",
+   "colores": [
+    "#111111",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AL",
+   "nombre": "Albania",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "DE",
+   "nombre": "Alemania",
+   "continente": "EU",
+   "colores": [
+    "#111111",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "AD",
+   "nombre": "Andorra",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AO",
+   "nombre": "Angola",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#111111",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AG",
+   "nombre": "Antigua y Barbuda",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#111111",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SA",
+   "nombre": "Arabia Saudita",
+   "continente": "AS",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "DZ",
+   "nombre": "Argelia",
+   "continente": "AF",
+   "colores": [
+    "#FFFFFF",
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AR",
+   "nombre": "Argentina",
+   "continente": "AM",
+   "colores": [
+    "#75AADB",
+    "#FFFFFF",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "AM",
+   "nombre": "Armenia",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#F77F00"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AU",
+   "nombre": "Australia",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "AT",
+   "nombre": "Austria",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "AZ",
+   "nombre": "Azerbaiyán",
+   "continente": "AS",
+   "colores": [
+    "#75AADB",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BS",
+   "nombre": "Bahamas",
+   "continente": "AM",
+   "colores": [
+    "#00ABC9",
+    "#FCD116",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BD",
+   "nombre": "Bangladés",
+   "continente": "AS",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BB",
+   "nombre": "Barbados",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "BH",
+   "nombre": "Bahrein",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BE",
+   "nombre": "Bélgica",
+   "continente": "EU",
+   "colores": [
+    "#111111",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BZ",
+   "nombre": "Belice",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BJ",
+   "nombre": "Benin",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BY",
+   "nombre": "Bielorrusia",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BO",
+   "nombre": "Bolivia",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BA",
+   "nombre": "Bosnia y Herzegovina",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "BW",
+   "nombre": "Botsuana",
+   "continente": "AF",
+   "colores": [
+    "#75AADB",
+    "#111111",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "BR",
+   "nombre": "Brasil",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#1F4E9E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "BN",
+   "nombre": "Brunei Darussalam",
+   "continente": "AS",
+   "colores": [
+    "#FCD116",
+    "#FFFFFF",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BG",
+   "nombre": "Bulgaria",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BF",
+   "nombre": "Burkina Faso",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BI",
+   "nombre": "Burundi",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BT",
+   "nombre": "Bután",
+   "continente": "AS",
+   "colores": [
+    "#FCD116",
+    "#F77F00",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CV",
+   "nombre": "Cabo Verde",
+   "continente": "AF",
+   "colores": [
+    "#0B2A5B",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KH",
+   "nombre": "Camboya",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CM",
+   "nombre": "Camerún",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CA",
+   "nombre": "Canadá",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "QA",
+   "nombre": "Catar",
+   "continente": "AS",
+   "colores": [
+    "#8D1B3D",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TD",
+   "nombre": "Chad",
+   "continente": "AF",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CZ",
+   "nombre": "Chequia",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E",
+    "#1F4E9E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "CL",
+   "nombre": "Chile",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CN",
+   "nombre": "China",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "CY",
+   "nombre": "Chipre",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#F77F00",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CO",
+   "nombre": "Colombia",
+   "continente": "AM",
+   "colores": [
+    "#FCD116",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KM",
+   "nombre": "Comoras",
+   "continente": "AF",
+   "colores": [
+    "#FCD116",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CG",
+   "nombre": "Congo",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KP",
+   "nombre": "Corea del Norte",
+   "continente": "AS",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KR",
+   "nombre": "Corea del Sur",
+   "continente": "AS",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E",
+    "#1F4E9E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "CI",
+   "nombre": "Costa de Marfil",
+   "continente": "AF",
+   "colores": [
+    "#F77F00",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CR",
+   "nombre": "Costa Rica",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "HR",
+   "nombre": "Croacia",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CU",
+   "nombre": "Cuba",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "DK",
+   "nombre": "Dinamarca",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "DM",
+   "nombre": "Dominica",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "EC",
+   "nombre": "Ecuador",
+   "continente": "AM",
+   "colores": [
+    "#FCD116",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "EG",
+   "nombre": "Egipto",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SV",
+   "nombre": "El Salvador",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AE",
+   "nombre": "Emiratos Árabes Unidos",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ER",
+   "nombre": "Eritrea",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#75AADB",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SK",
+   "nombre": "Eslovaquia",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SI",
+   "nombre": "Eslovenia",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ES",
+   "nombre": "España",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "US",
+   "nombre": "Estados Unidos",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "EE",
+   "nombre": "Estonia",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#111111",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SZ",
+   "nombre": "Esuatini",
+   "continente": "AF",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ET",
+   "nombre": "Etiopía",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PH",
+   "nombre": "Filipinas",
+   "continente": "AS",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "FI",
+   "nombre": "Finlandia",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "FJ",
+   "nombre": "Fiji",
+   "continente": "OC",
+   "colores": [
+    "#75AADB",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "FR",
+   "nombre": "Francia",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "GA",
+   "nombre": "Gabón",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GM",
+   "nombre": "Gambia",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GE",
+   "nombre": "Georgia",
+   "continente": "AS",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GH",
+   "nombre": "Ghana",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GD",
+   "nombre": "Granada",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GR",
+   "nombre": "Grecia",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "GT",
+   "nombre": "Guatemala",
+   "continente": "AM",
+   "colores": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GN",
+   "nombre": "Guinea",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GQ",
+   "nombre": "Guinea Ecuatorial",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GW",
+   "nombre": "Guinea Bissau",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GY",
+   "nombre": "Guyana",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "HT",
+   "nombre": "Haití",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "HN",
+   "nombre": "Honduras",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "HU",
+   "nombre": "Hungría",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "IN",
+   "nombre": "India",
+   "continente": "AS",
+   "colores": [
+    "#F77F00",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "ID",
+   "nombre": "Indonesia",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IQ",
+   "nombre": "Iraq",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IR",
+   "nombre": "Irán",
+   "continente": "AS",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IE",
+   "nombre": "Irlanda",
+   "continente": "EU",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#F77F00"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "IS",
+   "nombre": "Islandia",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "MH",
+   "nombre": "Islas Marshall",
+   "continente": "OC",
+   "colores": [
+    "#1F4E9E",
+    "#F77F00",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SB",
+   "nombre": "Islas Salomón",
+   "continente": "OC",
+   "colores": [
+    "#1F4E9E",
+    "#1E8A4C",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IL",
+   "nombre": "Israel",
+   "continente": "AS",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IT",
+   "nombre": "Italia",
+   "continente": "EU",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "JM",
+   "nombre": "Jamaica",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#111111",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "JP",
+   "nombre": "Japón",
+   "continente": "AS",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "JO",
+   "nombre": "Jordania",
+   "continente": "AS",
+   "colores": [
+    "#111111",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KZ",
+   "nombre": "Kazajistán",
+   "continente": "AS",
+   "colores": [
+    "#4189DD",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KE",
+   "nombre": "Kenia",
+   "continente": "AF",
+   "colores": [
+    "#111111",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KG",
+   "nombre": "Kirguistán",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KI",
+   "nombre": "Kiribati",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KW",
+   "nombre": "Kuwait",
+   "continente": "AS",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LA",
+   "nombre": "Laos",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LS",
+   "nombre": "Lesoto",
+   "continente": "AF",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LV",
+   "nombre": "Letonia",
+   "continente": "EU",
+   "colores": [
+    "#8D1B3D",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LB",
+   "nombre": "Líbano",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LR",
+   "nombre": "Liberia",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LY",
+   "nombre": "Libia",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#111111",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LI",
+   "nombre": "Liechtenstein",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LT",
+   "nombre": "Lituania",
+   "continente": "EU",
+   "colores": [
+    "#FCD116",
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LU",
+   "nombre": "Luxemburgo",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#75AADB"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MK",
+   "nombre": "Macedonia del Norte",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MG",
+   "nombre": "Madagascar",
+   "continente": "AF",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MY",
+   "nombre": "Malasia",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#0B2A5B"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MW",
+   "nombre": "Malaui",
+   "continente": "AF",
+   "colores": [
+    "#111111",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MV",
+   "nombre": "Maldivas",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "ML",
+   "nombre": "Malí",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MT",
+   "nombre": "Malta",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MA",
+   "nombre": "Marruecos",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "MU",
+   "nombre": "Mauricio",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MR",
+   "nombre": "Mauritania",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MX",
+   "nombre": "México",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "FM",
+   "nombre": "Micronesia",
+   "continente": "OC",
+   "colores": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MD",
+   "nombre": "Moldavia",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MC",
+   "nombre": "Mónaco",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "MN",
+   "nombre": "Mongolia",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ME",
+   "nombre": "Montenegro",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "MZ",
+   "nombre": "Mozambique",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#111111",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MM",
+   "nombre": "Myanmar",
+   "continente": "AS",
+   "colores": [
+    "#FCD116",
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NA",
+   "nombre": "Namibia",
+   "continente": "AF",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NR",
+   "nombre": "Nauru",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#FCD116",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NP",
+   "nombre": "Nepal",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "NI",
+   "nombre": "Nicaragua",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NE",
+   "nombre": "Níger",
+   "continente": "AF",
+   "colores": [
+    "#F77F00",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NG",
+   "nombre": "Nigeria",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "NO",
+   "nombre": "Noruega",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "NZ",
+   "nombre": "Nueva Zelanda",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "OM",
+   "nombre": "Omán",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NL",
+   "nombre": "Países Bajos",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "PK",
+   "nombre": "Pakistán",
+   "continente": "AS",
+   "colores": [
+    "#00573F",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "PW",
+   "nombre": "Palau",
+   "continente": "OC",
+   "colores": [
+    "#75AADB",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PS",
+   "nombre": "Palestina",
+   "continente": "AS",
+   "colores": [
+    "#111111",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PA",
+   "nombre": "Panamá",
+   "continente": "AM",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PG",
+   "nombre": "Papua Nueva Guinea",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#111111",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PY",
+   "nombre": "Paraguay",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PE",
+   "nombre": "Perú",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "PL",
+   "nombre": "Polonia",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PT",
+   "nombre": "Portugal",
+   "continente": "EU",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GB",
+   "nombre": "Reino Unido",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "CF",
+   "nombre": "República Centroafricana",
+   "continente": "AF",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CD",
+   "nombre": "República Democrática del Congo",
+   "continente": "AF",
+   "colores": [
+    "#4189DD",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "DO",
+   "nombre": "República Dominicana",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "RW",
+   "nombre": "Ruanda",
+   "continente": "AF",
+   "colores": [
+    "#4189DD",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "RO",
+   "nombre": "Rumanía",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "RU",
+   "nombre": "Rusia",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "WS",
+   "nombre": "Samoa",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#0B2A5B",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KN",
+   "nombre": "Saint Kitts y Nevis",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SM",
+   "nombre": "San Marino",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#75AADB"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "VC",
+   "nombre": "San Vicente y las Granadinas",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LC",
+   "nombre": "Santa Lucía",
+   "continente": "AM",
+   "colores": [
+    "#4189DD",
+    "#FCD116",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ST",
+   "nombre": "Santo Tomé y Príncipe",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SN",
+   "nombre": "Senegal",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "RS",
+   "nombre": "Serbia",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SC",
+   "nombre": "Seychelles",
+   "continente": "AF",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SL",
+   "nombre": "Sierra Leona",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SG",
+   "nombre": "Singapur",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "SY",
+   "nombre": "Siria",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SO",
+   "nombre": "Somalia",
+   "continente": "AF",
+   "colores": [
+    "#4189DD",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "LK",
+   "nombre": "Sri Lanka",
+   "continente": "AS",
+   "colores": [
+    "#8D1B3D",
+    "#F77F00",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ZA",
+   "nombre": "Sudáfrica",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SD",
+   "nombre": "Sudán",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SS",
+   "nombre": "Sudán del Sur",
+   "continente": "AF",
+   "colores": [
+    "#111111",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SE",
+   "nombre": "Suecia",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CH",
+   "nombre": "Suiza",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "SR",
+   "nombre": "Suriname",
+   "continente": "AM",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TH",
+   "nombre": "Tailandia",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#0B2A5B"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "TZ",
+   "nombre": "Tanzania",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TJ",
+   "nombre": "Tayikistán",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TL",
+   "nombre": "Timor-Leste",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#111111",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TG",
+   "nombre": "Togo",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TO",
+   "nombre": "Tonga",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TT",
+   "nombre": "Trinidad y Tobago",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#111111",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TN",
+   "nombre": "Túnez",
+   "continente": "AF",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TM",
+   "nombre": "Turkmenistán",
+   "continente": "AS",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TR",
+   "nombre": "Turquía",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "TV",
+   "nombre": "Tuvalu",
+   "continente": "OC",
+   "colores": [
+    "#75AADB",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false,
+   "sin_mapa": true
+  },
+  {
+   "iso": "UA",
+   "nombre": "Ucrania",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "UG",
+   "nombre": "Uganda",
+   "continente": "AF",
+   "colores": [
+    "#111111",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "UY",
+   "nombre": "Uruguay",
+   "continente": "AM",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "UZ",
+   "nombre": "Uzbekistán",
+   "continente": "AS",
+   "colores": [
+    "#75AADB",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "VU",
+   "nombre": "Vanuatu",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#1E8A4C",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "VA",
+   "nombre": "Santa Sede",
+   "continente": "EU",
+   "colores": [
+    "#FCD116",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "VE",
+   "nombre": "Venezuela",
+   "continente": "AM",
+   "colores": [
+    "#FCD116",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "VN",
+   "nombre": "Vietnam",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "YE",
+   "nombre": "Yemen",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#111111"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "DJ",
+   "nombre": "Yibuti",
+   "continente": "AF",
+   "colores": [
+    "#75AADB",
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ZM",
+   "nombre": "Zambia",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#C8102E",
+    "#F77F00"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "ZW",
+   "nombre": "Zimbabue",
+   "continente": "AF",
+   "colores": [
+    "#1E8A4C",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  }
+ ],
+ "territorios": [
+  {
+   "iso": "MP",
+   "nombre": "Islas Marianas del Norte",
+   "continente": "OC",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "VI",
+   "nombre": "Islas Vírgenes de los Estados Unidos",
+   "continente": "AM",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GU",
+   "nombre": "Guam",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AS",
+   "nombre": "Samoa Americana",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PR",
+   "nombre": "Puerto Rico",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#1F4E9E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GS",
+   "nombre": "Georgia del Sur y las Islas Sandwich del Sur",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IO",
+   "nombre": "Territorio Británico del Océano Índico",
+   "continente": "AS",
+   "colores": [
+    "#FFFFFF",
+    "#0B2A5B",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SH",
+   "nombre": "Santa Helena, Ascensión y Tristán de Acuña",
+   "continente": "AF",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PN",
+   "nombre": "Pitcairn",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AI",
+   "nombre": "Anguila",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#FFFFFF",
+    "#F77F00"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "FK",
+   "nombre": "Islas Malvinas",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "KY",
+   "nombre": "Islas Caimán",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BM",
+   "nombre": "Bermudas",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#0B2A5B"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "VG",
+   "nombre": "Islas Vírgenes británicas",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TC",
+   "nombre": "Islas Turcas y Caicos",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MS",
+   "nombre": "Montserrat",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#1E8A4C",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "JE",
+   "nombre": "Jersey",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GG",
+   "nombre": "Guernsey",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "IM",
+   "nombre": "Isla de Man",
+   "continente": "EU",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TW",
+   "nombre": "Taiwán",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#0B2A5B",
+    "#FFFFFF"
+   ],
+   "ilustrado": true
+  },
+  {
+   "iso": "NU",
+   "nombre": "Niue",
+   "continente": "OC",
+   "colores": [
+    "#FCD116",
+    "#0B2A5B",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CK",
+   "nombre": "Islas Cook",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AW",
+   "nombre": "Aruba",
+   "continente": "AM",
+   "colores": [
+    "#4189DD",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "CW",
+   "nombre": "Curaçao",
+   "continente": "AM",
+   "colores": [
+    "#0B2A5B",
+    "#FCD116",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "EH",
+   "nombre": "Sahara Occidental",
+   "continente": "AF",
+   "colores": [
+    "#111111",
+    "#FFFFFF",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PM",
+   "nombre": "San Pedro y Miquelón",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "WF",
+   "nombre": "Wallis y Futuna",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MF",
+   "nombre": "Saint Martin (francesa)",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "BL",
+   "nombre": "Saint Barthélemy",
+   "continente": "AM",
+   "colores": [
+    "#1F4E9E",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "PF",
+   "nombre": "Polinesia Francesa",
+   "continente": "OC",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NC",
+   "nombre": "Nueva Caledonia",
+   "continente": "OC",
+   "colores": [
+    "#1F4E9E",
+    "#C8102E",
+    "#1E8A4C"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "TF",
+   "nombre": "Tierras Australes Francesas",
+   "continente": "AF",
+   "colores": [
+    "#0B2A5B",
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "AX",
+   "nombre": "Islas Åland",
+   "continente": "EU",
+   "colores": [
+    "#1F4E9E",
+    "#FCD116",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "GL",
+   "nombre": "Groenlandia",
+   "continente": "AM",
+   "colores": [
+    "#FFFFFF",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "FO",
+   "nombre": "Islas Feroe",
+   "continente": "EU",
+   "colores": [
+    "#FFFFFF",
+    "#1F4E9E",
+    "#C8102E"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "MO",
+   "nombre": "Macao",
+   "continente": "AS",
+   "colores": [
+    "#00573F",
+    "#FFFFFF",
+    "#FCD116"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "HK",
+   "nombre": "Hong Kong",
+   "continente": "AS",
+   "colores": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "HM",
+   "nombre": "Heard e Islas McDonald",
+   "continente": "OC",
+   "colores": [
+    "#0B2A5B",
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "NF",
+   "nombre": "Isla Norfolk",
+   "continente": "OC",
+   "colores": [
+    "#1E8A4C",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  },
+  {
+   "iso": "SX",
+   "nombre": "Sint Maarten (neerlandesa)",
+   "continente": "AM",
+   "colores": [
+    "#C8102E",
+    "#1F4E9E",
+    "#FFFFFF"
+   ],
+   "ilustrado": false
+  }
+ ],
+ "nota": "El nombre es informativo: el código usa el ISO y toma el nombre de world_map_data.json. Cada ISO del mapa tiene entrada aquí (países + territorios)."
+}

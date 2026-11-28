@@ -5773,3 +5773,7 @@ body.theme-halloween .hv-hero{--hv-flora:var(--accent)}
 @keyframes ws-find{0%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(2.6)}}
 .ws-find{fill:none;stroke:var(--accent2);stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none;transform-box:fill-box;transform-origin:center;animation:ws-find 1.2s ease-out 3}
 @media (prefers-reduced-motion:reduce){.ws-find{animation:none}.ws-prog-bar i{transition:none}}
+
+/* ── Pasaporte sapphic: chapa de país ── */
+.pp-badge{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.22))}
+.pp-badge.is-locked{filter:none;opacity:.85}

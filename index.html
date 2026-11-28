@@ -56,7 +56,7 @@
   window.supabase = { createClient: function(){ return client; } };
 })();
 </script>
-<link rel="stylesheet" href="./estilos.css?v=3">
+<link rel="stylesheet" href="./estilos.css?v=4">
 <style id="f36-seasonal-editorial">
 
 /* ══════════════════════════════════════════════════════════════
@@ -13914,6 +13914,129 @@ function computeWorldDiscoveries(year){
     });
   });
   return res;
+}
+
+/* ── Pasaporte sapphic · paso 1: primera lectura de cada país ──
+   Independiente del año y del deslizador de Mi mundo: recorre TODAS las lecturas terminadas (read_at) y, por cada país de
+   pais_cultura, guarda la más antigua (empate → id). No hay lista de países: uno nuevo aparece solo al terminar un libro de allí.
+   Requiere el mapa cargado (await wsLoadMap()). Devuelve un array ordenado por fecha de descubrimiento. */
+function computePassport(){
+  if(!_wsNameToIso) return null;
+  const field=(WS_MAPS.find(m=>m.key==='cultura')||{}).field||'pais_cultura';
+  const byId=new Map(); allBooks.forEach(b=>byId.set(String(b.id),b));
+  const first=new Map();
+  Object.keys(myReadingLog).forEach(bookId=>{
+    const book=byId.get(String(bookId)); if(!book) return;
+    const isos=new Set(); wsToList(book[field]).forEach(v=>{ const i=wsResolveIso(v); if(i) isos.add(i); });
+    if(!isos.size) return;
+    (myReadingLog[bookId]||[]).forEach(e=>{
+      if(wsEntryYear(e)==null) return;                       // lectura en curso: no abre el país
+      isos.forEach(iso=>{
+        let p=first.get(iso);
+        if(!p){ p={iso,name:(_wsIsoToName&&_wsIsoToName.get(iso))||iso,at:null,entry:null,bookId:null,reads:0,books:new Set()}; first.set(iso,p); }
+        p.reads++; p.books.add(String(bookId));
+        const id=String(bookId);
+        if(p.at==null||e.read_at<p.at||(e.read_at===p.at&&id<p.bookId)){ p.at=e.read_at; p.entry=e; p.bookId=id; }
+      });
+    });
+  });
+  return [...first.values()].map(p=>{
+    const b=byId.get(p.bookId);
+    return {iso:p.iso,name:p.name,at:p.at,year:wsEntryYear(p.entry),dateText:wsEntryDateText(p.entry),
+      bookId:p.bookId,title:b?b.title:'',cover:b&&b.cover?b.cover:'',reads:p.reads,books:p.books.size};
+  }).sort((a,b)=>a.at<b.at?-1:a.at>b.at?1:a.name.localeCompare(b.name,'es'));
+}
+
+/* ── Pasaporte sapphic · paso 4: chapa de país ──
+   ppBadge(iso,{locked}) devuelve el HTML de la chapa. Si el país tiene ilustración (campo «ilustrado» de world_countries_data.json)
+   usa PP_IMG_DIR+ISO.webp y, si el archivo no existe, cae a la chapa generada. La generada: borde dorado, esmalte del color de la
+   bandera, silueta del país (world_map_data.json) en oro y un libro. Con {locked:true} es el hueco punteado de un país sin descubrir.
+   Requiere wsLoadMap() y ppLoadTable() ya resueltos. */
+const PP_IMG_DIR='sellos/';
+let _ppTable=null,_ppSeq=0;
+function ppLoadTable(){
+  if(_ppTable) return Promise.resolve(_ppTable);
+  return fetch('world_countries_data.json').then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(d=>{
+    const m=new Map(); (d.paises||[]).concat(d.territorios||[]).forEach(p=>m.set(p.iso,p));
+    _ppTable={byIso:m,continentes:d.continentes||{},mundo:d.mundo||{}}; return _ppTable;
+  });
+}
+function ppLum(hex){ const n=parseInt(String(hex).slice(1),16),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);};
+  return .2126*f(n>>16&255)+.7152*f(n>>8&255)+.0722*f(n&255); }
+function ppPalette(e){
+  const cols=(e&&e.colores)||[], field=cols.find(c=>ppLum(c)<.3)||'#762B45';   // esmalte oscuro: el oro de la silueta siempre contrasta
+  return {field,accent:cols.find(c=>c!==field)||'#F6E3A1'};
+}
+function ppSilhouette(iso){   // → {paths, box:[x,y,w,h]} con la caja de la silueta útil + margen (mínimo 5 u.: las islas pequeñas se amplían hasta llenar la chapa)
+  if(!_wsMap) return null;
+  const d=_wsMap.c.filter(c=>c.i===iso).map(c=>c.d).join(''); if(!d) return null;
+  const sb=wsSilBox(iso); if(!sb||Math.max(sb[2]-sb[0],sb[3]-sb[1])<4.5) return null;   // polígono demasiado pequeño para dibujarlo con forma: va el marcador
+  let w=sb[2]-sb[0],h=sb[3]-sb[1],cx=(sb[0]+sb[2])/2,cy=(sb[1]+sb[3])/2;
+  w=Math.max(w*1.08,5); h=Math.max(h*1.08,5);
+  return {d,box:[cx-w/2,cy-h/2,w,h]};
+}
+function ppBadgeSvg(iso,opts){
+  opts=opts||{}; const e=_ppTable&&_ppTable.byIso.get(iso),id='pp'+(++_ppSeq),nm=(e&&e.nombre)||(_wsIsoToName&&_wsIsoToName.get(iso))||iso;
+  const sil=ppSilhouette(iso),R={x:46,y:22,w:208,h:104};
+  let art='';
+  if(sil){
+    const s=Math.min(R.w/sil.box[2],R.h/sil.box[3]),w=sil.box[2]*s,h=sil.box[3]*s,x=R.x+(R.w-w)/2,y=R.y+(R.h-h)/2;
+    art=`<svg x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" viewBox="${sil.box.map(n=>+n.toFixed(2)).join(' ')}" overflow="hidden">`+
+        `<path d="${sil.d}" fill="${opts.locked?'var(--accent-soft,#eee)':`url(#${id}g)`}" stroke="${opts.locked?'var(--border2,#bbb)':'#8A6414'}" stroke-width="${opts.locked?1:.9}" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>`;
+  } else art=`<g fill="none" stroke="${opts.locked?'var(--border2,#bbb)':`url(#${id}g)`}" stroke-width="3.5"><circle cx="150" cy="74" r="25"/></g><circle cx="150" cy="74" r="10" fill="${opts.locked?'var(--accent-soft,#eee)':`url(#${id}g)`}" stroke="${opts.locked?'var(--border2,#bbb)':'#8A6414'}" stroke-width=".9"/>`;   // micro-estado o sin polígono: anillo + punto
+  const label=opts.locked?`${nm}: aún sin descubrir`:`Chapa de ${nm}`;
+  if(opts.locked) return `<svg class="pp-badge is-locked" viewBox="0 0 300 200" role="img" aria-label="${escHtml(label)}"><rect x="6" y="6" width="288" height="188" rx="28" fill="none" stroke="var(--border2,#bbb)" stroke-width="2" stroke-dasharray="7 6"/>${art}</svg>`;
+  const P=ppPalette(e);
+  return `<svg class="pp-badge" viewBox="0 0 300 200" role="img" aria-label="${escHtml(label)}">`+
+    `<defs><linearGradient id="${id}r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8E8A8"/><stop offset=".45" stop-color="#D9AE3C"/><stop offset="1" stop-color="#9C7420"/></linearGradient>`+
+    `<linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6E3A1"/><stop offset="1" stop-color="#C99A2E"/></linearGradient>`+
+    `<linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>`+
+    `<rect x="4" y="4" width="292" height="192" rx="30" fill="url(#${id}r)"/>`+
+    `<rect x="13" y="13" width="274" height="174" rx="22" fill="${P.field}"/>`+
+    `<rect x="13" y="13" width="274" height="86" rx="22" fill="url(#${id}s)"/>`+
+    `<rect x="19" y="19" width="262" height="162" rx="17" fill="none" stroke="${P.accent}" stroke-opacity=".75" stroke-width="2"/>`+
+    art+
+    `<g transform="translate(118 128)"><path d="M0 9Q16 0 32 9V37Q16 29 0 37Z" fill="#FBF3E0" stroke="#C99A2E" stroke-width="1.6" stroke-linejoin="round"/><path d="M64 9Q48 0 32 9V37Q48 29 64 37Z" fill="#FBF3E0" stroke="#C99A2E" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 41Q17 34 32 42Q47 34 62 41" fill="none" stroke="#E8C468" stroke-width="1.6" stroke-linecap="round"/></g></svg>`;
+}
+function ppBadge(iso,opts){
+  opts=opts||{}; const e=_ppTable&&_ppTable.byIso.get(iso);
+  if(!opts.locked&&e&&e.ilustrado) return `<img class="pp-badge" src="${PP_IMG_DIR}${escHtml(iso)}.webp" alt="${escHtml('Chapa de '+e.nombre)}" loading="lazy" decoding="async" data-pp-iso="${escHtml(iso)}" onerror="ppImgFallback(this)">`;
+  return ppBadgeSvg(iso,opts);
+}
+function ppImgFallback(img){   // la ilustración no está subida: se sustituye por la chapa (o medalla) generada
+  img.onerror=null; const t=document.createElement('template');
+  t.innerHTML=img.dataset.ppMedal?ppMedalSvg(img.dataset.ppMedal,{}):ppBadgeSvg(img.dataset.ppIso,{});
+  img.replaceWith(t.content.firstChild);
+}
+
+/* ── Pasaporte sapphic · medallas de continente (y de Mundo) ──
+   ppMedal(code,{locked}): code = 'AF'|'AM'|'AS'|'EU'|'OC' o 'MUNDO'. Va aparte de ppBadge porque los códigos de continente
+   chocan con ISO de país (AF = Afganistán, AS = Samoa Americana). La imagen es PP_IMG_DIR+<medalla>.webp, con el slug de
+   «continentes[code].medalla» (o «mundo.medalla»); si no hay slug o el archivo no existe, medalla generada: aro dorado,
+   esmalte del continente, estrellas y un libro. Es cuadrada (1:1), a diferencia de la chapa de país (3:2). */
+const PP_MEDAL_FIELD={AF:'#0F4A33',AM:'#14275F',AS:'#5B1230',EU:'#5B1230',OC:'#0E5C5C',MUNDO:'#3A1B5E'};
+function ppMedalInfo(code){
+  const t=_ppTable; if(!t) return {nombre:code,slug:null};
+  const c=code==='MUNDO'?{nombre:'Mundo',medalla:(t.mundo&&t.mundo.medalla)||null}:(t.continentes[code]||{nombre:code});
+  return {nombre:c.nombre||code,slug:c.medalla||null};
+}
+function ppMedalSvg(code,opts){
+  opts=opts||{}; const nm=ppMedalInfo(code).nombre,id='pm'+(++_ppSeq),label=opts.locked?`${nm}: aún sin descubrir`:`Medalla de ${nm}`;
+  const st='style="aspect-ratio:1/1"';
+  if(opts.locked) return `<svg class="pp-badge is-medal is-locked" ${st} viewBox="0 0 200 200" role="img" aria-label="${escHtml(label)}"><circle cx="100" cy="100" r="93" fill="none" stroke="var(--border2,#bbb)" stroke-width="2" stroke-dasharray="7 6"/><circle cx="100" cy="100" r="40" fill="var(--accent-soft,#eee)" stroke="var(--border2,#bbb)" stroke-width="1"/></svg>`;
+  const stars=Array.from({length:12},(_,i)=>{ const a=i*Math.PI/6; return `<circle cx="${(100+76*Math.sin(a)).toFixed(1)}" cy="${(100-76*Math.cos(a)).toFixed(1)}" r="3.2" fill="#F6E3A1"/>`; }).join('');
+  return `<svg class="pp-badge is-medal" ${st} viewBox="0 0 200 200" role="img" aria-label="${escHtml(label)}">`+
+    `<defs><linearGradient id="${id}r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8E8A8"/><stop offset=".45" stop-color="#D9AE3C"/><stop offset="1" stop-color="#9C7420"/></linearGradient>`+
+    `<linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>`+
+    `<circle cx="100" cy="100" r="96" fill="url(#${id}r)"/><circle cx="100" cy="100" r="88" fill="${PP_MEDAL_FIELD[code]||'#5B1230'}"/>`+
+    `<path d="M12 100a88 88 0 0 1 176 0Z" fill="url(#${id}s)"/>`+
+    `<circle cx="100" cy="100" r="60" fill="none" stroke="#E8C468" stroke-opacity=".7" stroke-width="1.6"/>${stars}`+
+    `<g transform="translate(68 84) scale(1)"><path d="M0 9Q16 0 32 9V37Q16 29 0 37Z" fill="#FBF3E0" stroke="#C99A2E" stroke-width="1.6" stroke-linejoin="round"/><path d="M64 9Q48 0 32 9V37Q48 29 64 37Z" fill="#FBF3E0" stroke="#C99A2E" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 41Q17 34 32 42Q47 34 62 41" fill="none" stroke="#E8C468" stroke-width="1.6" stroke-linecap="round"/></g></svg>`;
+}
+function ppMedal(code,opts){
+  opts=opts||{}; const m=ppMedalInfo(code);
+  if(!opts.locked&&m.slug) return `<img class="pp-badge is-medal" style="aspect-ratio:1/1" src="${PP_IMG_DIR}${escHtml(m.slug)}.webp" alt="${escHtml('Medalla de '+m.nombre)}" loading="lazy" decoding="async" data-pp-medal="${escHtml(code)}" onerror="ppImgFallback(this)">`;
+  return ppMedalSvg(code,opts);
 }
 
 function wsFillYearSelect(){
